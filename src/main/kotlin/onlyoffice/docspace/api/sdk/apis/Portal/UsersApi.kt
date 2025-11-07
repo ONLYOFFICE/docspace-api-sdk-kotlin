@@ -1,0 +1,121 @@
+ /*
+ * (c) Copyright Ascensio System SIA 2025
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+
+package onlyoffice.docspace.api.sdk.apis
+
+import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
+import retrofit2.http.*
+import retrofit2.Call
+import okhttp3.RequestBody
+import com.squareup.moshi.Json
+
+import onlyoffice.docspace.api.sdk.models.EmployeeType
+import onlyoffice.docspace.api.sdk.models.Int64Wrapper
+import onlyoffice.docspace.api.sdk.models.StringWrapper
+import onlyoffice.docspace.api.sdk.models.UserInfoWrapper
+
+interface UsersApi {
+    /**
+     * GET api/2.0/portal/users/invite/{employeeType}
+     * Get an invitation link
+     * Returns an invitation link for joining the portal.
+     * Responses:
+     *  - 200: Invitation link
+     *  - 401: Unauthorized
+     *
+     * REST API Reference for getInvitationLink Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-invitation-link/
+     *
+     *
+     * @param employeeType The type of employee role for the invitation link (All, RoomAdmin, Guest, DocSpaceAdmin, User).
+     * @return [Call]<[StringWrapper]>
+     */
+    @GET("api/2.0/portal/users/invite/{employeeType}")
+    fun getInvitationLink(@Path("employeeType") employeeType: EmployeeType): Call<StringWrapper>
+
+    /**
+     * GET api/2.0/portal/userscount
+     * Get a number of portal users
+     * Returns a number of portal users.
+     * Responses:
+     *  - 200: Number of portal users
+     *  - 401: Unauthorized
+     *
+     * REST API Reference for getPortalUsersCount Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-portal-users-count/
+     *
+     *
+     * @return [Call]<[Int64Wrapper]>
+     */
+    @GET("api/2.0/portal/userscount")
+    fun getPortalUsersCount(): Call<Int64Wrapper>
+
+    /**
+     * GET api/2.0/portal/users/{userID}
+     * Get a user by ID
+     * Returns a user with the ID specified in the request from the current portal.
+     * Responses:
+     *  - 200: User information
+     *  - 401: Unauthorized
+     *
+     * REST API Reference for getUserById Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-user-by-id/
+     *
+     *
+     * @param userID The user ID extracted from the route parameters.
+     * @return [Call]<[UserInfoWrapper]>
+     */
+    @GET("api/2.0/portal/users/{userID}")
+    fun getUserById(@Path("userID") userID: java.util.UUID): Call<UserInfoWrapper>
+
+    /**
+     * POST api/2.0/portal/present/mark
+     * Mark a gift message as read
+     * Marks a gift message as read.
+     * Responses:
+     *  - 200: OK
+     *  - 401: Unauthorized
+     *
+     * REST API Reference for markGiftMessageAsRead Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/mark-gift-message-as-read/
+     *
+     *
+     * @return [Call]<[Unit]>
+     */
+    @POST("api/2.0/portal/present/mark")
+    fun markGiftMessageAsRead(): Call<Unit>
+
+    /**
+     * POST api/2.0/portal/sendcongratulations
+     * Send congratulations
+     * Sends congratulations to the user after registering a portal.
+     * Responses:
+     *  - 200: Ok
+     *  - 403: No permissions to perform this action
+     *
+     * REST API Reference for sendCongratulations Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/send-congratulations/
+     *
+     *
+     * @param userid The user ID to receive the congratulatory message.
+     * @param key The template identifier or email configuration key.
+     * @return [Call]<[Unit]>
+     */
+    @POST("api/2.0/portal/sendcongratulations")
+    fun sendCongratulations(@Query("Userid") userid: java.util.UUID, @Query("Key") key: kotlin.String): Call<Unit>
+
+}
