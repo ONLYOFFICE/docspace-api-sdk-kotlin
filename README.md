@@ -1,6 +1,5 @@
 # onlyoffice.docspace.api.sdk
 
-## Overview
 The ONLYOFFICE DocSpace SDK for Kotlin is a library that provides tools for integrating and managing DocSpace features within your applications. It simplifies interaction with the DocSpace API by offering ready-to-use methods and models.
 
 For more information, please visit [https://helpdesk.onlyoffice.com/hc/en-us](https://helpdesk.onlyoffice.com/hc/en-us)
