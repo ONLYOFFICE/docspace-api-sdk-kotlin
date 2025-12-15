@@ -40,8 +40,8 @@ import onlyoffice.docspace.api.sdk.models.SecurityInfoSimpleRequestDto
 interface SharingApi {
     /**
      * POST api/2.0/files/share/{key}/password
-     * 
-     * 
+     * Apply external data password
+     * Applies a password specified in the request to get the external data.
      * Responses:
      *  - 200: External data
      *  - 429: Too many requests
@@ -59,10 +59,11 @@ interface SharingApi {
 
     /**
      * POST api/2.0/files/owner
-     * 
-     * 
+     * Change the file owner
+     * Changes the owner of the file with the ID specified in the request.
      * Responses:
      *  - 200: File entry information
+     *  - 401: Unauthorized
      *
      * REST API Reference for changeFileOwner Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/change-file-owner/
@@ -76,8 +77,8 @@ interface SharingApi {
 
     /**
      * GET api/2.0/files/share/{key}
-     * 
-     * 
+     * Get the external data
+     * Returns the external data by the key specified in the request.
      * Responses:
      *  - 200: External data
      *
@@ -95,10 +96,11 @@ interface SharingApi {
 
     /**
      * GET api/2.0/files/file/{id}/share
-     * 
-     * 
+     * Get the shared file information
+     * Returns the detailed information about the shared file with the ID specified in the request.
      * Responses:
      *  - 200: List of shared file information
+     *  - 401: Unauthorized
      *
      * REST API Reference for getFileSecurityInfo Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-file-security-info/
@@ -114,10 +116,11 @@ interface SharingApi {
 
     /**
      * GET api/2.0/files/folder/{id}/share
-     * 
-     * 
+     * Get the shared folder information
+     * Returns the detailed information about the shared folder with the ID specified in the request.
      * Responses:
      *  - 200: List of shared file information
+     *  - 401: Unauthorized
      *
      * REST API Reference for getFolderSecurityInfo Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-security-info/
@@ -133,10 +136,11 @@ interface SharingApi {
 
     /**
      * GET api/2.0/files/file/{fileId}/group/{groupId}/share
-     * 
-     * 
+     * Get group members with security information
+     * Returns the group members with their file security information.
      * Responses:
      *  - 200: Ok
+     *  - 401: Unauthorized
      *
      * REST API Reference for getGroupsMembersWithFileSecurity Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-groups-members-with-file-security/
@@ -154,10 +158,11 @@ interface SharingApi {
 
     /**
      * GET api/2.0/files/folder/{folderId}/group/{groupId}/share
-     * 
-     * 
+     * Get group members with security information
+     * Returns the group members with their folder security information.
      * Responses:
      *  - 200: Ok
+     *  - 401: Unauthorized
      *
      * REST API Reference for getGroupsMembersWithFolderSecurity Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-groups-members-with-folder-security/
@@ -175,10 +180,11 @@ interface SharingApi {
 
     /**
      * POST api/2.0/files/share
-     * 
-     * 
+     * Get the sharing rights
+     * Returns the sharing rights for all the files and folders specified in the request.
      * Responses:
      *  - 200: List of shared files and folders information
+     *  - 401: Unauthorized
      *
      * REST API Reference for getSecurityInfo Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-security-info/
@@ -192,10 +198,11 @@ interface SharingApi {
 
     /**
      * GET api/2.0/files/file/{fileId}/sharedusers
-     * 
-     * 
+     * Get user access rights by file ID
+     * Returns a list of users with their access rights to the file with the ID specified in the request.
      * Responses:
      *  - 200: List of users with their access rights to the file
+     *  - 401: Unauthorized
      *
      * REST API Reference for getSharedUsers Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-shared-users/
@@ -209,10 +216,11 @@ interface SharingApi {
 
     /**
      * DELETE api/2.0/files/share
-     * 
-     * 
+     * Remove the sharing rights
+     * Removes the sharing rights from all the files and folders specified in the request.
      * Responses:
      *  - 200: Boolean value: true if the operation is successful
+     *  - 401: Unauthorized
      *
      * REST API Reference for removeSecurityInfo Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/remove-security-info/
@@ -226,10 +234,11 @@ interface SharingApi {
 
     /**
      * POST api/2.0/files/file/{fileId}/sendeditornotify
-     * 
-     * 
+     * Send the mention message
+     * Sends a message to the users who are mentioned in the file with the ID specified in the request.
      * Responses:
      *  - 200: List of access rights information
+     *  - 401: Unauthorized
      *
      * REST API Reference for sendEditorNotify Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/send-editor-notify/
@@ -244,10 +253,11 @@ interface SharingApi {
 
     /**
      * PUT api/2.0/files/file/{fileId}/share
-     * 
-     * 
+     * Share a file
+     * Sets the sharing settings to a file with the ID specified in the request.
      * Responses:
      *  - 200: List of shared file information: sharing rights, a user who has the access to the specified file, the file is locked by this user or not, this user is an owner of the specified file or not, this user can edit the access to the specified file or not
+     *  - 401: Unauthorized
      *
      * REST API Reference for setFileSecurityInfo Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-file-security-info/
@@ -262,10 +272,11 @@ interface SharingApi {
 
     /**
      * PUT api/2.0/files/folder/{folderId}/share
-     * 
-     * 
+     * Share a folder
+     * Sets the sharing settings to a folder with the ID specified in the request.
      * Responses:
      *  - 200: List of shared folder information: sharing rights, a user who has the access to the specified folder, the folder is locked by this user or not, this user is an owner of the specified folder or not, this user can edit the access to the specified folder or not
+     *  - 401: Unauthorized
      *
      * REST API Reference for setFolderSecurityInfo Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-folder-security-info/
@@ -280,10 +291,11 @@ interface SharingApi {
 
     /**
      * PUT api/2.0/files/share
-     * 
-     * 
+     * Set the sharing rights
+     * Sets the sharing rights to all the files and folders specified in the request.
      * Responses:
      *  - 200: List of shared files and folders information: sharing rights, a user who has the access to the specified folder, the folder is locked by this user or not, this user is an owner of the specified folder or not, this user can edit the access to the specified folder or not
+     *  - 401: Unauthorized
      *
      * REST API Reference for setSecurityInfo Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-security-info/

@@ -9,6 +9,7 @@
 | **description** | **kotlin.String** | The brief description of the authorization service. |  [optional] |
 | **instruction** | **kotlin.String** | The detailed instructions for configuring or using the authorization service. |  [optional] |
 | **canSet** | **kotlin.Boolean** | Specifies whether the authorization service can be configured by the user. |  [optional] |
+| **paid** | **kotlin.Boolean** | Specifies whether the authorization service is paid or not. |  [optional] |
 | **props** | [**kotlin.collections.List&lt;AuthKey&gt;**](AuthKey.md) | The collection of authorization keys associated with the authorization service. |  [optional] |
 
 

@@ -23,7 +23,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **employeeType** | [**EmployeeType**](.md)| The type of employee role for the invitation link (All, RoomAdmin, Guest, DocSpaceAdmin, User). | [enum: 0, 1, 2, 3, 4] |
+| **employeeType** | [**EmployeeType**](.md)| The type of employee role for the invitation link (All, RoomAdmin, Guest, DocSpaceAdmin, User). | [enum: All, RoomAdmin, Guest, DocSpaceAdmin, User] |
 
 ### Return type
 

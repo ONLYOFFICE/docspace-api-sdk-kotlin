@@ -27,6 +27,7 @@ import com.squareup.moshi.JsonClass
 /**
  * The file history information.
  *
+ * @param id The unique identifier for the file history entry.
  * @param action 
  * @param initiator 
  * @param date 
@@ -36,6 +37,10 @@ import com.squareup.moshi.JsonClass
 
 
 data class HistoryDto (
+
+    /* The unique identifier for the file history entry. */
+    @Json(name = "id")
+    val id: kotlin.Int,
 
     @Json(name = "action")
     val action: HistoryAction,

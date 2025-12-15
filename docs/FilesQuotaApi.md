@@ -4,8 +4,8 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**resetRoomQuota**](FilesQuotaApi.md#resetRoomQuota) | **PUT** api/2.0/files/rooms/resetquota |  |
-| [**updateRoomsQuota**](FilesQuotaApi.md#updateRoomsQuota) | **PUT** api/2.0/files/rooms/roomquota |  |
+| [**resetRoomQuota**](FilesQuotaApi.md#resetRoomQuota) | **PUT** api/2.0/files/rooms/resetquota | Reset the room quota limit |
+| [**updateRoomsQuota**](FilesQuotaApi.md#updateRoomsQuota) | **PUT** api/2.0/files/rooms/roomquota | Change the room quota limit |
 
 
 
@@ -13,7 +13,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 # **resetRoomQuota**
 > FolderIntegerArrayWrapper resetRoomQuota (UpdateRoomsRoomIdsRequestDtoInteger updateRoomsRoomIdsRequestDtoInteger)
 
-
+Resets the quota limit for the rooms with the IDs specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/reset-room-quota/).
 
@@ -28,7 +28,11 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Authorization
 
-No authorization required
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
 
 ### Example
 ```kotlin
@@ -38,6 +42,8 @@ No authorization required
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(QuotaApi::class.java)
 val updateRoomsRoomIdsRequestDtoInteger : UpdateRoomsRoomIdsRequestDtoInteger =  // UpdateRoomsRoomIdsRequestDtoInteger | 
 
@@ -54,7 +60,7 @@ val result : FolderIntegerArrayWrapper = webService.resetRoomQuota(updateRoomsRo
 # **updateRoomsQuota**
 > FolderIntegerArrayWrapper updateRoomsQuota (UpdateRoomsQuotaRequestDtoInteger updateRoomsQuotaRequestDtoInteger)
 
-
+Changes the quota limit for the rooms with the IDs specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/update-rooms-quota/).
 
@@ -69,7 +75,11 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Authorization
 
-No authorization required
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
 
 ### Example
 ```kotlin
@@ -79,6 +89,8 @@ No authorization required
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(QuotaApi::class.java)
 val updateRoomsQuotaRequestDtoInteger : UpdateRoomsQuotaRequestDtoInteger =  // UpdateRoomsQuotaRequestDtoInteger | 
 

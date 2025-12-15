@@ -21,22 +21,22 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * [0 - Skip, 1 - Overwrite, 2 - Duplicate]
+ * [Skip - Skip, Overwrite - Overwrite, Duplicate - Duplicate]
  *
  * Values: Skip,Overwrite,Duplicate
  */
 
 @JsonClass(generateAdapter = false)
-enum class FileConflictResolveType(val value: kotlin.Int) {
+enum class FileConflictResolveType(val value: kotlin.String) {
 
-    @Json(name = 0)
-    Skip(0),
+    @Json(name = "Skip")
+    Skip("Skip"),
 
-    @Json(name = 1)
-    Overwrite(1),
+    @Json(name = "Overwrite")
+    Overwrite("Overwrite"),
 
-    @Json(name = 2)
-    Duplicate(2);
+    @Json(name = "Duplicate")
+    Duplicate("Duplicate");
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use
@@ -45,7 +45,7 @@ enum class FileConflictResolveType(val value: kotlin.Int) {
      * This solves a problem when the variable name and its value are different, and ensures that
      * the client sends the correct enum values to the server always.
      */
-    override fun toString(): kotlin.String = value.toString()
+    override fun toString(): kotlin.String = value
 
     companion object {
         /**

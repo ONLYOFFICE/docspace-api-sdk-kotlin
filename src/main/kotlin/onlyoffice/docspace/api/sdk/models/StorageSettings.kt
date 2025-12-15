@@ -25,7 +25,6 @@ import com.squareup.moshi.JsonClass
  *
  * @param module 
  * @param props 
- * @param id 
  * @param lastModified 
  */
 
@@ -37,9 +36,6 @@ data class StorageSettings (
 
     @Json(name = "props")
     val props: kotlin.collections.Map<kotlin.String, kotlin.String>? = null,
-
-    @Json(name = "id")
-    val id: java.util.UUID? = null,
 
     @Json(name = "lastModified")
     val lastModified: java.time.OffsetDateTime? = null

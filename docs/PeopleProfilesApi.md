@@ -264,7 +264,7 @@ val result : ObjectWrapper = webService.getClaims()
 
 <a id="getProfileByEmail"></a>
 # **getProfileByEmail**
-> EmployeeFullWrapper getProfileByEmail (kotlin.String email, kotlin.String culture)
+> EmployeeFullWrapper getProfileByEmail (kotlin.String email, kotlin.String encemail, kotlin.String culture)
 
 Returns the detailed information about a profile of the user with the email specified in the request.
 
@@ -272,6 +272,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Parameters
 | **email** | **kotlin.String**| The user email address. | [optional] |
+| **encemail** | **kotlin.String**| The user encrypted email address. | [optional] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **culture** | **kotlin.String**| Culture | [optional] |
@@ -300,9 +301,10 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ProfilesApi::class.java)
 val email : kotlin.String = Sydney_Roberts4@hotmail.com // kotlin.String | The user email address.
+val encemail : kotlin.String = some text // kotlin.String | The user encrypted email address.
 val culture : kotlin.String = some text // kotlin.String | Culture
 
-val result : EmployeeFullWrapper = webService.getProfileByEmail(email, culture)
+val result : EmployeeFullWrapper = webService.getProfileByEmail(email, encemail, culture)
 ```
 
 ### HTTP request headers
@@ -627,7 +629,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ProfilesApi::class.java)
-val userid : kotlin.String = 9846 // kotlin.String | The user ID.
+val userid : kotlin.String = 9079 // kotlin.String | The user ID.
 val updateMemberRequestDto : UpdateMemberRequestDto =  // UpdateMemberRequestDto | The request parameters for updating the user information.
 
 val result : EmployeeFullWrapper = webService.updateMember(userid, updateMemberRequestDto)

@@ -74,10 +74,11 @@ import okhttp3.MultipartBody
 interface FilesApi {
     /**
      * POST api/2.0/files/file/{fileId}/recent
-     * 
-     * 
+     * Add a file to the Recent section
+     * Adds a file with the ID specified in the request to the Recent section.
      * Responses:
      *  - 200: New file information
+     *  - 401: Unauthorized
      *
      * REST API Reference for addFileToRecent Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/add-file-to-recent/
@@ -91,10 +92,11 @@ interface FilesApi {
 
     /**
      * POST api/2.0/files/templates
-     * 
-     * 
+     * Add template files
+     * Adds files with the IDs specified in the request to the template list.
      * Responses:
      *  - 200: Boolean value: true if the operation is successful
+     *  - 401: Unauthorized
      *
      * REST API Reference for addTemplates Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/add-templates/
@@ -108,10 +110,11 @@ interface FilesApi {
 
     /**
      * PUT api/2.0/files/file/{fileId}/history
-     * 
-     * 
+     * Change version history
+     * Changes the version history of a file with the ID specified in the request.
      * Responses:
      *  - 200: Updated information about file versions
+     *  - 401: Unauthorized
      *  - 403: You do not have enough permissions to edit the file
      *
      * REST API Reference for changeVersionHistory Operation
@@ -127,8 +130,8 @@ interface FilesApi {
 
     /**
      * POST api/2.0/files/masterform/{fileId}/checkfillformdraft
-     * 
-     * 
+     * Check the form draft filling
+     * Checks if the current file is a form draft which can be filled out.
      * Responses:
      *  - 200: Link to the form
      *  - 403: You don't have enough permission to view the file
@@ -146,11 +149,12 @@ interface FilesApi {
 
     /**
      * POST api/2.0/files/file/{fileId}/copyas
-     * 
-     * 
+     * Copy a file
+     * Copies (and converts if possible) an existing file to the specified folder.
      * Responses:
      *  - 200: Copied file entry information
      *  - 400: No file id or folder id toFolderId determine provider
+     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to create
      *  - 404: File not found
      *
@@ -167,10 +171,11 @@ interface FilesApi {
 
     /**
      * POST api/2.0/files/file/{fileId}/edit_session
-     * 
-     * 
+     * Create the editing session
+     * Creates a session to edit the existing file with multiple chunks (needed for WebDAV).   **Note**: Information about created session which includes:  &lt;ul&gt;  &lt;li&gt;&lt;b&gt;id:&lt;/b&gt; unique ID of this upload session,&lt;/li&gt;  &lt;li&gt;&lt;b&gt;created:&lt;/b&gt; UTC time when the session was created,&lt;/li&gt;  &lt;li&gt;&lt;b&gt;expired:&lt;/b&gt; UTC time when the session will expire if no chunks are sent before that time,&lt;/li&gt;  &lt;li&gt;&lt;b&gt;location:&lt;/b&gt; URL where you should send your next chunk,&lt;/li&gt;  &lt;li&gt;&lt;b&gt;bytes_uploaded:&lt;/b&gt; number of bytes uploaded for the specific upload ID,&lt;/li&gt;  &lt;li&gt;&lt;b&gt;bytes_total:&lt;/b&gt; total number of bytes which will be uploaded.&lt;/li&gt;  &lt;/ul&gt;
      * Responses:
      *  - 200: Information about created session
+     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to edit the file
      *
      * REST API Reference for createEditSession Operation
@@ -186,10 +191,11 @@ interface FilesApi {
 
     /**
      * POST api/2.0/files/{folderId}/file
-     * 
-     * 
+     * Create a file
+     * Creates a new file in the specified folder with the title specified in the request.   **Note**: If a file extension is different from DOCX/XLSX/PPTX and refers to one of the known text, spreadsheet, or presentation formats, it will be changed to DOCX/XLSX/PPTX accordingly. If the file extension is not specified or is unknown, the DOCX extension will be added to the file title.
      * Responses:
      *  - 200: New file information
+     *  - 401: Unauthorized
      *
      * REST API Reference for createFile Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-file/
@@ -204,10 +210,11 @@ interface FilesApi {
 
     /**
      * POST api/2.0/files/@my/file
-     * 
-     * 
+     * Create a file in the My documents section
+     * Creates a new file in the My documents section with the title specified in the request.   **Note**: If a file extension is different from DOCX/XLSX/PPTX and refers to one of the known text, spreadsheet, or presentation formats, it will be changed to DOCX/XLSX/PPTX accordingly. If the file extension is not specified or is unknown, the DOCX extension will be added to the file title.
      * Responses:
      *  - 200: New file information
+     *  - 401: Unauthorized
      *
      * REST API Reference for createFileInMyDocuments Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-file-in-my-documents/
@@ -221,10 +228,11 @@ interface FilesApi {
 
     /**
      * POST api/2.0/files/file/{id}/link
-     * 
-     * 
+     * Create primary external link
+     * Creates a primary external link by the identifier specified in the request.
      * Responses:
      *  - 200: File security information
+     *  - 401: Unauthorized
      *  - 404: Not Found
      *
      * REST API Reference for createFilePrimaryExternalLink Operation
@@ -240,10 +248,11 @@ interface FilesApi {
 
     /**
      * POST api/2.0/files/{folderId}/html
-     * 
-     * 
+     * Create an HTML file
+     * Creates an HTML (.html) file in the selected folder with the title and contents specified in the request.
      * Responses:
      *  - 200: New file information
+     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to create
      *
      * REST API Reference for createHtmlFile Operation
@@ -259,10 +268,11 @@ interface FilesApi {
 
     /**
      * POST api/2.0/files/@my/html
-     * 
-     * 
+     * Create an HTML file in the My documents section
+     * Creates an HTML (.html) file in the My documents section with the title and contents specified in the request.
      * Responses:
      *  - 200: New file information
+     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to create
      *
      * REST API Reference for createHtmlFileInMyDocuments Operation
@@ -277,10 +287,11 @@ interface FilesApi {
 
     /**
      * POST api/2.0/files/{folderId}/text
-     * 
-     * 
+     * Create a text file
+     * Creates a text (.txt) file in the selected folder with the title and contents specified in the request.
      * Responses:
      *  - 200: New file information
+     *  - 401: Unauthorized
      *
      * REST API Reference for createTextFile Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-text-file/
@@ -295,10 +306,11 @@ interface FilesApi {
 
     /**
      * POST api/2.0/files/@my/text
-     * 
-     * 
+     * Create a text file in the My documents section
+     * Creates a text (.txt) file in the My documents section with the title and contents specified in the request.
      * Responses:
      *  - 200: New file information
+     *  - 401: Unauthorized
      *
      * REST API Reference for createTextFileInMyDocuments Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-text-file-in-my-documents/
@@ -312,8 +324,8 @@ interface FilesApi {
 
     /**
      * POST api/2.0/files/thumbnails
-     * 
-     * 
+     * Create file thumbnails
+     * Creates thumbnails for the files with the IDs specified in the request.
      * Responses:
      *  - 200: List of file IDs
      *
@@ -329,10 +341,11 @@ interface FilesApi {
 
     /**
      * DELETE api/2.0/files/file/{fileId}
-     * 
-     * 
+     * Delete a file
+     * Deletes a file with the ID specified in the request.
      * Responses:
      *  - 200: List of file operations
+     *  - 401: Unauthorized
      *
      * REST API Reference for deleteFile Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-file/
@@ -347,10 +360,11 @@ interface FilesApi {
 
     /**
      * DELETE api/2.0/files/recent
-     * 
-     * 
+     * Delete recent files
+     * Removes files with the IDs specified in the request from the Recent section.
      * Responses:
      *  - 200: No content
+     *  - 401: Unauthorized
      *
      * REST API Reference for deleteRecent Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-recent/
@@ -364,10 +378,11 @@ interface FilesApi {
 
     /**
      * DELETE api/2.0/files/templates
-     * 
-     * 
+     * Delete template files
+     * Removes files with the IDs specified in the request from the template list.
      * Responses:
      *  - 200: Boolean value: true if the operation is successful
+     *  - 401: Unauthorized
      *
      * REST API Reference for deleteTemplates Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-templates/
@@ -381,10 +396,11 @@ interface FilesApi {
 
     /**
      * GET api/2.0/files/file/{fileId}/formroles
-     * 
-     * 
+     * Get form roles
+     * Returns all roles for the specified form.
      * Responses:
      *  - 200: Successfully retrieved all roles for the form
+     *  - 401: Unauthorized
      *  - 403: You do not have enough permissions to view the form roles
      *
      * REST API Reference for getAllFormRoles Operation
@@ -399,8 +415,8 @@ interface FilesApi {
 
     /**
      * GET api/2.0/files/file/{fileId}/edit/diff
-     * 
-     * 
+     * Get changes URL
+     * Returns a URL to the changes of a file version specified in the request.
      * Responses:
      *  - 200: File version history data
      *
@@ -417,8 +433,8 @@ interface FilesApi {
 
     /**
      * GET api/2.0/files/file/{fileId}/edit/history
-     * 
-     * 
+     * Get version history
+     * Returns the version history of a file with the ID specified in the request.
      * Responses:
      *  - 200: Version history data
      *
@@ -434,10 +450,11 @@ interface FilesApi {
 
     /**
      * GET api/2.0/files/file/{fileId}/log
-     * 
-     * 
+     * Get file history
+     * Returns the list of actions performed on the file with the specified identifier.
      * Responses:
      *  - 200: List of actions performed on the file
+     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to perform the operation
      *  - 404: The required file was not found
      *
@@ -459,8 +476,8 @@ interface FilesApi {
 
     /**
      * GET api/2.0/files/file/{fileId}
-     * 
-     * 
+     * Get file information
+     * Returns the detailed information about a file with the ID specified in the request.
      * Responses:
      *  - 200: File information
      *
@@ -477,10 +494,11 @@ interface FilesApi {
 
     /**
      * GET api/2.0/files/file/{id}/links
-     * 
-     * 
+     * Get file external links
+     * Returns the external links of a file with the ID specified in the request.
      * Responses:
      *  - 200: File security information
+     *  - 401: Unauthorized
      *
      * REST API Reference for getFileLinks Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-file-links/
@@ -496,8 +514,8 @@ interface FilesApi {
 
     /**
      * GET api/2.0/files/file/{id}/link
-     * 
-     * 
+     * Get primary external link
+     * Returns the primary external link by the identifier specified in the request.
      * Responses:
      *  - 200: File security information
      *  - 404: Not Found
@@ -516,8 +534,8 @@ interface FilesApi {
 
     /**
      * GET api/2.0/files/file/{fileId}/history
-     * 
-     * 
+     * Get file versions
+     * Returns the detailed information about all the available file versions with the ID specified in the request.
      * Responses:
      *  - 200: Information about file versions: folder ID, version, version group, content length, pure content length, file status, URL to view a file, web URL, file type, file extension, comment, encrypted or not, thumbnail URL, thumbnail status, locked or not, user ID who locked a file, denies file downloading or not, denies file sharing or not, file accessibility
      *
@@ -533,8 +551,8 @@ interface FilesApi {
 
     /**
      * GET api/2.0/files/file/fillresult
-     * 
-     * 
+     * Get form-filling result
+     * Retrieves the result of a form-filling session.
      * Responses:
      *  - 200: Ok
      *
@@ -550,10 +568,11 @@ interface FilesApi {
 
     /**
      * GET api/2.0/files/file/{fileId}/presigned
-     * 
-     * 
+     * Get file download link asynchronously
+     * Returns a link to download a file with the ID specified in the request asynchronously.
      * Responses:
      *  - 200: File download link
+     *  - 401: Unauthorized
      *
      * REST API Reference for getPresignedFileUri Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-presigned-file-uri/
@@ -567,10 +586,11 @@ interface FilesApi {
 
     /**
      * GET api/2.0/files/file/{fileId}/presigneduri
-     * 
-     * 
+     * Get file download link
+     * Returns a pre-signed URL to download a file with the specified ID.  This temporary link provides secure access to the file.
      * Responses:
      *  - 200: File download link
+     *  - 401: Unauthorized
      *
      * REST API Reference for getPresignedUri Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-presigned-uri/
@@ -584,10 +604,11 @@ interface FilesApi {
 
     /**
      * GET api/2.0/files/file/{fileId}/protectusers
-     * 
-     * 
+     * Get users access rights to the protected file
+     * Returns a list of users with their access rights to the protected file with the ID specified in the request.
      * Responses:
      *  - 200: List of users with their access rights to the protected file
+     *  - 401: Unauthorized
      *
      * REST API Reference for getProtectedFileUsers Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-protected-file-users/
@@ -601,10 +622,11 @@ interface FilesApi {
 
     /**
      * POST api/2.0/files/file/referencedata
-     * 
-     * 
+     * Get reference data
+     * Returns the reference data to uniquely identify a file in its system and check the availability of insering data into the destination spreadsheet by the external link.
      * Responses:
      *  - 200: File reference data
+     *  - 401: Unauthorized
      *
      * REST API Reference for getReferenceData Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-reference-data/
@@ -618,10 +640,11 @@ interface FilesApi {
 
     /**
      * GET api/2.0/files/file/{fileId}/isformpdf
-     * 
-     * 
+     * Check the PDF file
+     * Checks if the PDF file is a form or not.
      * Responses:
      *  - 200: Boolean value: true - the PDF file is form, false - the PDF file is not a form
+     *  - 401: Unauthorized
      *
      * REST API Reference for isFormPDF Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/is-form-pdf/
@@ -635,10 +658,11 @@ interface FilesApi {
 
     /**
      * PUT api/2.0/files/file/{fileId}/lock
-     * 
-     * 
+     * Lock a file
+     * Locks a file with the ID specified in the request.
      * Responses:
      *  - 200: Locked file information
+     *  - 401: Unauthorized
      *
      * REST API Reference for lockFile Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/lock-file/
@@ -653,10 +677,11 @@ interface FilesApi {
 
     /**
      * PUT api/2.0/files/file/{fileId}/manageformfilling
-     * 
-     * 
+     * Perform form filling action
+     * Performs the specified form filling action.
      * Responses:
      *  - 200: Successfully processed the form filling action
+     *  - 401: Unauthorized
      *  - 403: You do not have enough permissions to perform this action
      *
      * REST API Reference for manageFormFilling Operation
@@ -672,8 +697,8 @@ interface FilesApi {
 
     /**
      * GET api/2.0/files/file/{fileId}/openedit
-     * 
-     * 
+     * Open a file configuration
+     * Returns the initialization configuration of a file to open it in the editor.
      * Responses:
      *  - 200: Configuration parameters
      *  - 403: You don't have enough permission to view the file
@@ -694,9 +719,9 @@ interface FilesApi {
     fun openEditFile(@Path("fileId") fileId: kotlin.Int, @Query("version") version: kotlin.Int? = null, @Query("view") view: kotlin.Boolean? = null, @Query("editorType") editorType: EditorType? = null, @Query("edit") edit: kotlin.Boolean? = null, @Query("fill") fill: kotlin.Boolean? = null): Call<ConfigurationIntegerWrapper>
 
     /**
-     * GET api/2.0/files/file/{fileId}/restoreversion
-     * 
-     * 
+     * POST api/2.0/files/file/{fileId}/restoreversion
+     * Restore a file version
+     * Restores a file version specified in the request.
      * Responses:
      *  - 200: Version history data: file ID, key, file version, version group, a user who updated a file, creation time, history changes in the string format, list of history changes, server version
      *  - 400: No file id or folder id toFolderId determine provider
@@ -711,16 +736,17 @@ interface FilesApi {
      * @param url The file version URL of the restore. (optional)
      * @return [Call]<[EditHistoryArrayWrapper]>
      */
-    @GET("api/2.0/files/file/{fileId}/restoreversion")
+    @POST("api/2.0/files/file/{fileId}/restoreversion")
     fun restoreFileVersion(@Path("fileId") fileId: kotlin.Int, @Query("version") version: kotlin.Int? = null, @Query("url") url: kotlin.String? = null): Call<EditHistoryArrayWrapper>
 
     /**
      * PUT api/2.0/files/file/{fileId}/saveediting
-     * 
-     * 
+     * Save file edits
+     * Saves edits to a file with the ID specified in the request.
      * Responses:
      *  - 200: Saved file parameters
      *  - 400: No file id or folder id toFolderId determine provider
+     *  - 401: Unauthorized
      *  - 403: You do not have enough permissions to edit the file
      *
      * REST API Reference for saveEditingFileFromForm Operation
@@ -740,10 +766,11 @@ interface FilesApi {
 
     /**
      * POST api/2.0/files/file/{id}/saveaspdf
-     * 
-     * 
+     * Save a file as PDF
+     * Saves a file with the identifier specified in the request as a PDF document.
      * Responses:
      *  - 200: New file information
+     *  - 401: Unauthorized
      *  - 404: File not found
      *
      * REST API Reference for saveFileAsPdf Operation
@@ -759,10 +786,11 @@ interface FilesApi {
 
     /**
      * POST api/2.0/files/file/{fileId}/formrolemapping
-     * 
-     * 
+     * Save form role mapping
+     * Saves the form role mapping.
      * Responses:
      *  - 200: Updated information about form role mappings
+     *  - 401: Unauthorized
      *  - 403: You do not have enough permissions to edit the file
      *
      * REST API Reference for saveFormRoleMapping Operation
@@ -778,10 +806,11 @@ interface FilesApi {
 
     /**
      * PUT api/2.0/files/file/{fileId}/customfilter
-     * 
-     * 
+     * Set the Custom Filter editing mode
+     * Sets the Custom Filter editing mode to a file with the ID specified in the request.
      * Responses:
      *  - 200: File information
+     *  - 401: Unauthorized
      *
      * REST API Reference for setCustomFilterTag Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-custom-filter-tag/
@@ -796,10 +825,11 @@ interface FilesApi {
 
     /**
      * PUT api/2.0/files/file/{id}/links
-     * 
-     * 
+     * Set an external link
+     * Sets an external link to a file with the ID specified in the request.
      * Responses:
      *  - 200: File security information
+     *  - 401: Unauthorized
      *
      * REST API Reference for setFileExternalLink Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-file-external-link/
@@ -814,10 +844,11 @@ interface FilesApi {
 
     /**
      * PUT api/2.0/files/{fileId}/order
-     * 
-     * 
+     * Set file order
+     * Sets the order of the file with the ID specified in the request.
      * Responses:
      *  - 200: Updated file information
+     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to perform the operation
      *  - 404: Not Found
      *
@@ -834,10 +865,11 @@ interface FilesApi {
 
     /**
      * PUT api/2.0/files/order
-     * 
-     * 
+     * Set order of files
+     * Sets the order of the files specified in the request.
      * Responses:
      *  - 200: Updated file entries information
+     *  - 401: Unauthorized
      *
      * REST API Reference for setFilesOrder Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-files-order/
@@ -851,8 +883,8 @@ interface FilesApi {
 
     /**
      * POST api/2.0/files/file/{fileId}/startedit
-     * 
-     * 
+     * Start file editing
+     * Informs about opening a file with the ID specified in the request for editing, locking it from being deleted or moved (this method is called by the mobile editors).
      * Responses:
      *  - 200: File key for Document Service
      *  - 403: You don't have enough permission to view the file
@@ -870,10 +902,11 @@ interface FilesApi {
 
     /**
      * PUT api/2.0/files/file/{fileId}/startfilling
-     * 
-     * 
+     * Start file filling
+     * Starts filling a file with the ID specified in the request.
      * Responses:
      *  - 200: File information
+     *  - 401: Unauthorized
      *  - 403: You do not have enough permissions to edit the file
      *
      * REST API Reference for startFillingFile Operation
@@ -888,10 +921,11 @@ interface FilesApi {
 
     /**
      * GET api/2.0/files/favorites/{fileId}
-     * 
-     * 
+     * Change the file favorite status
+     * Changes the favorite status of the file with the ID specified in the request.
      * Responses:
      *  - 200: Boolean value: true - the file is favorite, false - the file is not favorite
+     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to perform the operation
      *
      * REST API Reference for toggleFileFavorite Operation
@@ -907,8 +941,8 @@ interface FilesApi {
 
     /**
      * GET api/2.0/files/file/{fileId}/trackeditfile
-     * 
-     * 
+     * Track file editing
+     * Tracks file changes when editing.
      * Responses:
      *  - 200: File changes
      *  - 403: You don't have enough permission to perform the operation
@@ -928,8 +962,8 @@ interface FilesApi {
 
     /**
      * PUT api/2.0/files/file/{fileId}
-     * 
-     * 
+     * Update a file
+     * Updates the information of the selected file with the parameters specified in the request.
      * Responses:
      *  - 200: Updated file information
      *  - 403: You do not have enough permissions to edit the file

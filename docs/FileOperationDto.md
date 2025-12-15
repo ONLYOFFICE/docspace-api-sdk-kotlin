@@ -13,6 +13,7 @@
 | **url** | [**java.net.URI**](java.net.URI.md) | The file operation URL. |  [optional] |
 | **files** | [**kotlin.collections.List&lt;FileEntryBaseDto&gt;**](FileEntryBaseDto.md) | The list of files of the file operation. |  [optional] |
 | **folders** | [**kotlin.collections.List&lt;FileEntryBaseDto&gt;**](FileEntryBaseDto.md) | The list of folders of the file operation. |  [optional] |
+| **status** | [**DistributedTaskStatus**](DistributedTaskStatus.md) |  |  [optional] |
 
 
 

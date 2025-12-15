@@ -6,6 +6,8 @@
 | ------------ | ------------- | ------------- | ------------- |
 | **title** | **kotlin.String** | The file entry title. |  [optional] |
 | **access** | [**FileShare**](FileShare.md) |  |  [optional] |
+| **sharedBy** | [**EmployeeDto**](EmployeeDto.md) |  |  [optional] |
+| **ownedBy** | [**EmployeeDto**](EmployeeDto.md) |  |  [optional] |
 | **shared** | **kotlin.Boolean** | Specifies if the file entry is shared via link or not. |  [optional] |
 | **sharedForUser** | **kotlin.Boolean** | Specifies if the file entry is shared for user or not. |  [optional] |
 | **parentShared** | **kotlin.Boolean** | Indicates whether the parent entity is shared. |  [optional] |

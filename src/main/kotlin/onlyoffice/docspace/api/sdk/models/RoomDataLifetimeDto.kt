@@ -35,10 +35,10 @@ data class RoomDataLifetimeDto (
 
     /* Specifies whether to permanently delete the room data or not. */
     @Json(name = "deletePermanently")
-    val deletePermanently: kotlin.Boolean,
+    val deletePermanently: kotlin.Boolean? = null,
 
     @Json(name = "period")
-    val period: RoomDataLifetimePeriod,
+    val period: RoomDataLifetimePeriod? = null,
 
     /* Specifies the time period value of the room data lifetime. */
     @Json(name = "value")

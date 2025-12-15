@@ -4,11 +4,11 @@
 ## Enum
 
 
-    * `Skip` (value: `0`)
+    * `Skip` (value: `"Skip"`)
 
-    * `Overwrite` (value: `1`)
+    * `Overwrite` (value: `"Overwrite"`)
 
-    * `Duplicate` (value: `2`)
+    * `Duplicate` (value: `"Duplicate"`)
 
 
 

@@ -60,6 +60,7 @@ import com.squareup.moshi.JsonClass
  * @param year Specifies if the tenant quota is yearly subscription or not.
  * @param countFreeBackup The number of free backups within a month.
  * @param backup Specifies if the backup anabled as a wallet service or not.
+ * @param countAIAgent The number of AI agents.
  */
 
 
@@ -211,7 +212,11 @@ data class TenantQuota (
 
     /* Specifies if the backup anabled as a wallet service or not. */
     @Json(name = "backup")
-    val backup: kotlin.Boolean? = null
+    val backup: kotlin.Boolean? = null,
+
+    /* The number of AI agents. */
+    @Json(name = "countAIAgent")
+    val countAIAgent: kotlin.Int? = null
 
 ) {
 

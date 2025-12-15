@@ -16,6 +16,7 @@
 
 package onlyoffice.docspace.api.sdk.models
 
+import onlyoffice.docspace.api.sdk.models.DistributedTaskStatus
 import onlyoffice.docspace.api.sdk.models.FileEntryBaseDto
 import onlyoffice.docspace.api.sdk.models.FileOperationType
 
@@ -34,6 +35,7 @@ import com.squareup.moshi.JsonClass
  * @param url The file operation URL.
  * @param files The list of files of the file operation.
  * @param folders The list of folders of the file operation.
+ * @param status 
  */
 
 
@@ -72,7 +74,10 @@ data class FileOperationDto (
 
     /* The list of folders of the file operation. */
     @Json(name = "folders")
-    val folders: kotlin.collections.List<FileEntryBaseDto>? = null
+    val folders: kotlin.collections.List<FileEntryBaseDto>? = null,
+
+    @Json(name = "status")
+    val status: DistributedTaskStatus? = null
 
 ) {
 

@@ -30,10 +30,11 @@ import onlyoffice.docspace.api.sdk.models.UpdateRoomsRoomIdsRequestDtoInteger
 interface QuotaApi {
     /**
      * PUT api/2.0/files/rooms/resetquota
-     * 
-     * 
+     * Reset the room quota limit
+     * Resets the quota limit for the rooms with the IDs specified in the request.
      * Responses:
      *  - 200: List of rooms with the detailed information
+     *  - 401: Unauthorized
      *
      * REST API Reference for resetRoomQuota Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/reset-room-quota/
@@ -47,10 +48,11 @@ interface QuotaApi {
 
     /**
      * PUT api/2.0/files/rooms/roomquota
-     * 
-     * 
+     * Change the room quota limit
+     * Changes the quota limit for the rooms with the IDs specified in the request.
      * Responses:
      *  - 200: List of rooms with the detailed information
+     *  - 401: Unauthorized
      *
      * REST API Reference for updateRoomsQuota Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-rooms-quota/

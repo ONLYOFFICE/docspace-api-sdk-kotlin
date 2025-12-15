@@ -4,15 +4,15 @@
 ## Enum
 
 
-    * `All` (value: `0`)
+    * `All` (value: `"All"`)
 
-    * `RoomAdmin` (value: `1`)
+    * `RoomAdmin` (value: `"RoomAdmin"`)
 
-    * `Guest` (value: `2`)
+    * `Guest` (value: `"Guest"`)
 
-    * `DocSpaceAdmin` (value: `3`)
+    * `DocSpaceAdmin` (value: `"DocSpaceAdmin"`)
 
-    * `User` (value: `4`)
+    * `User` (value: `"User"`)
 
 
 

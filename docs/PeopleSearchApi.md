@@ -294,7 +294,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **employeeStatus** | [**EmployeeStatus**](.md)| The user status. | [optional] [enum: 1, 2, 4, 5, 7] |
 | **groupId** | **java.util.UUID**| The group ID. | [optional] |
 | **activationStatus** | [**EmployeeActivationStatus**](.md)| The user activation status. | [optional] [enum: 0, 1, 2, 4] |
-| **employeeType** | [**EmployeeType**](.md)| The user type. | [optional] [enum: 0, 1, 2, 3, 4] |
+| **employeeType** | [**EmployeeType**](.md)| The user type. | [optional] [enum: All, RoomAdmin, Guest, DocSpaceAdmin, User] |
 | **employeeTypes** | [**kotlin.collections.List&lt;kotlin.Int&gt;**](kotlin.Int.md)| The list of user types. | [optional] [enum: 0, 1, 2, 3, 4] |
 | **isAdministrator** | **kotlin.Boolean**| Specifies if the user is an administrator or not. | [optional] |
 | **payments** | [**Payments**](.md)| The user payment status. | [optional] [enum: 0, 1] |
@@ -592,7 +592,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **employeeStatus** | [**EmployeeStatus**](.md)| The user status. | [optional] [enum: 1, 2, 4, 5, 7] |
 | **groupId** | **java.util.UUID**| The group ID. | [optional] |
 | **activationStatus** | [**EmployeeActivationStatus**](.md)| The user activation status. | [optional] [enum: 0, 1, 2, 4] |
-| **employeeType** | [**EmployeeType**](.md)| The user type. | [optional] [enum: 0, 1, 2, 3, 4] |
+| **employeeType** | [**EmployeeType**](.md)| The user type. | [optional] [enum: All, RoomAdmin, Guest, DocSpaceAdmin, User] |
 | **employeeTypes** | [**kotlin.collections.List&lt;kotlin.Int&gt;**](kotlin.Int.md)| The list of user types. | [optional] [enum: 0, 1, 2, 3, 4] |
 | **isAdministrator** | **kotlin.Boolean**| Specifies if the user is an administrator or not. | [optional] |
 | **payments** | [**Payments**](.md)| The user payment status. | [optional] [enum: 0, 1] |

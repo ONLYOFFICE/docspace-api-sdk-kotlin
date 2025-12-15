@@ -21,70 +21,70 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * [0 - Emp invite, 1 - Link invite, 2 - Portal suspend, 3 - Portal continue, 4 - Portal remove, 5 - Dns change, 6 - Portal owner change, 7 - Activation, 8 - Email change, 9 - Email activation, 10 - Password change, 11 - Profile remove, 12 - Phone activation, 13 - Phone auth, 14 - Auth, 15 - Tfa activation, 16 - Tfa auth, 17 - Wizard, 18 - Guest share link]
+ * [EmpInvite - Emp invite, LinkInvite - Link invite, PortalSuspend - Portal suspend, PortalContinue - Portal continue, PortalRemove - Portal remove, DnsChange - Dns change, PortalOwnerChange - Portal owner change, Activation - Activation, EmailChange - Email change, EmailActivation - Email activation, PasswordChange - Password change, ProfileRemove - Profile remove, PhoneActivation - Phone activation, PhoneAuth - Phone auth, Auth - Auth, TfaActivation - Tfa activation, TfaAuth - Tfa auth, Wizard - Wizard, GuestShareLink - Guest share link]
  *
  * Values: EmpInvite,LinkInvite,PortalSuspend,PortalContinue,PortalRemove,DnsChange,PortalOwnerChange,Activation,EmailChange,EmailActivation,PasswordChange,ProfileRemove,PhoneActivation,PhoneAuth,Auth,TfaActivation,TfaAuth,Wizard,GuestShareLink
  */
 
 @JsonClass(generateAdapter = false)
-enum class ConfirmType(val value: kotlin.Int) {
+enum class ConfirmType(val value: kotlin.String) {
 
-    @Json(name = 0)
-    EmpInvite(0),
+    @Json(name = "EmpInvite")
+    EmpInvite("EmpInvite"),
 
-    @Json(name = 1)
-    LinkInvite(1),
+    @Json(name = "LinkInvite")
+    LinkInvite("LinkInvite"),
 
-    @Json(name = 2)
-    PortalSuspend(2),
+    @Json(name = "PortalSuspend")
+    PortalSuspend("PortalSuspend"),
 
-    @Json(name = 3)
-    PortalContinue(3),
+    @Json(name = "PortalContinue")
+    PortalContinue("PortalContinue"),
 
-    @Json(name = 4)
-    PortalRemove(4),
+    @Json(name = "PortalRemove")
+    PortalRemove("PortalRemove"),
 
-    @Json(name = 5)
-    DnsChange(5),
+    @Json(name = "DnsChange")
+    DnsChange("DnsChange"),
 
-    @Json(name = 6)
-    PortalOwnerChange(6),
+    @Json(name = "PortalOwnerChange")
+    PortalOwnerChange("PortalOwnerChange"),
 
-    @Json(name = 7)
-    Activation(7),
+    @Json(name = "Activation")
+    Activation("Activation"),
 
-    @Json(name = 8)
-    EmailChange(8),
+    @Json(name = "EmailChange")
+    EmailChange("EmailChange"),
 
-    @Json(name = 9)
-    EmailActivation(9),
+    @Json(name = "EmailActivation")
+    EmailActivation("EmailActivation"),
 
-    @Json(name = 10)
-    PasswordChange(10),
+    @Json(name = "PasswordChange")
+    PasswordChange("PasswordChange"),
 
-    @Json(name = 11)
-    ProfileRemove(11),
+    @Json(name = "ProfileRemove")
+    ProfileRemove("ProfileRemove"),
 
-    @Json(name = 12)
-    PhoneActivation(12),
+    @Json(name = "PhoneActivation")
+    PhoneActivation("PhoneActivation"),
 
-    @Json(name = 13)
-    PhoneAuth(13),
+    @Json(name = "PhoneAuth")
+    PhoneAuth("PhoneAuth"),
 
-    @Json(name = 14)
-    Auth(14),
+    @Json(name = "Auth")
+    Auth("Auth"),
 
-    @Json(name = 15)
-    TfaActivation(15),
+    @Json(name = "TfaActivation")
+    TfaActivation("TfaActivation"),
 
-    @Json(name = 16)
-    TfaAuth(16),
+    @Json(name = "TfaAuth")
+    TfaAuth("TfaAuth"),
 
-    @Json(name = 17)
-    Wizard(17),
+    @Json(name = "Wizard")
+    Wizard("Wizard"),
 
-    @Json(name = 18)
-    GuestShareLink(18);
+    @Json(name = "GuestShareLink")
+    GuestShareLink("GuestShareLink");
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use
@@ -93,7 +93,7 @@ enum class ConfirmType(val value: kotlin.Int) {
      * This solves a problem when the variable name and its value are different, and ensures that
      * the client sends the correct enum values to the server always.
      */
-    override fun toString(): kotlin.String = value.toString()
+    override fun toString(): kotlin.String = value
 
     companion object {
         /**

@@ -150,11 +150,12 @@ interface ProfilesApi {
      *
      *
      * @param email The user email address. (optional)
+     * @param encemail The user encrypted email address. (optional)
      * @param culture Culture (optional)
      * @return [Call]<[EmployeeFullWrapper]>
      */
     @GET("api/2.0/people/email")
-    fun getProfileByEmail(@Query("email") email: kotlin.String? = null, @Query("culture") culture: kotlin.String? = null): Call<EmployeeFullWrapper>
+    fun getProfileByEmail(@Query("email") email: kotlin.String? = null, @Query("encemail") encemail: kotlin.String? = null, @Query("culture") culture: kotlin.String? = null): Call<EmployeeFullWrapper>
 
     /**
      * GET api/2.0/people/{userid}

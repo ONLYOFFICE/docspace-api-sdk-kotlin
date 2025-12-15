@@ -21,22 +21,22 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * [0 - Base, 1 - Dark, 2 - System]
+ * [Base - Base, Dark - Dark, System - System]
  *
  * Values: Base,Dark,System
  */
 
 @JsonClass(generateAdapter = false)
-enum class DarkThemeSettingsType(val value: kotlin.Int) {
+enum class DarkThemeSettingsType(val value: kotlin.String) {
 
-    @Json(name = 0)
-    Base(0),
+    @Json(name = "Base")
+    Base("Base"),
 
-    @Json(name = 1)
-    Dark(1),
+    @Json(name = "Dark")
+    Dark("Dark"),
 
-    @Json(name = 2)
-    System(2);
+    @Json(name = "System")
+    System("System");
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use
@@ -45,7 +45,7 @@ enum class DarkThemeSettingsType(val value: kotlin.Int) {
      * This solves a problem when the variable name and its value are different, and ensures that
      * the client sends the correct enum values to the server always.
      */
-    override fun toString(): kotlin.String = value.toString()
+    override fun toString(): kotlin.String = value
 
     companion object {
         /**

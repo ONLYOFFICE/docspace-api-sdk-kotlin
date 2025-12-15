@@ -64,7 +64,7 @@ import com.squareup.moshi.JsonClass
  * @param editInternal 
  * @param editExpiration 
  * @param vectorization 
- * @param ascAi 
+ * @param askAi 
  * @param useChat 
  */
 
@@ -194,8 +194,8 @@ data class FileEntryDtoIntegerAllOfSecurity (
     @Json(name = "Vectorization")
     val vectorization: kotlin.Boolean? = null,
 
-    @Json(name = "AscAi")
-    val ascAi: kotlin.Boolean? = null,
+    @Json(name = "AskAi")
+    val askAi: kotlin.Boolean? = null,
 
     @Json(name = "UseChat")
     val useChat: kotlin.Boolean? = null

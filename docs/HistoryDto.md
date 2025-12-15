@@ -4,6 +4,7 @@
 ## Properties
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
+| **id** | **kotlin.Int** | The unique identifier for the file history entry. |  |
 | **action** | [**HistoryAction**](HistoryAction.md) |  |  |
 | **initiator** | [**EmployeeDto**](EmployeeDto.md) |  |  |
 | **date** | [**ApiDateTime**](ApiDateTime.md) |  |  |

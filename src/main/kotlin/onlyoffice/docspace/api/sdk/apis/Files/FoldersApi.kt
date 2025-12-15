@@ -57,10 +57,11 @@ import okhttp3.MultipartBody
 interface FoldersApi {
     /**
      * POST api/2.0/files/{folderId}/upload/check
-     * 
-     * 
+     * Check file uploads
+     * Checks the file uploads to the folder with the ID specified in the request.
      * Responses:
      *  - 200: Inserted file
+     *  - 401: Unauthorized
      *
      * REST API Reference for checkUpload Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/check-upload/
@@ -75,10 +76,11 @@ interface FoldersApi {
 
     /**
      * POST api/2.0/files/folder/{folderId}
-     * 
-     * 
+     * Create a folder
+     * Creates a new folder with the title specified in the request. The parent folder ID can be also specified.
      * Responses:
      *  - 200: New folder parameters
+     *  - 401: Unauthorized
      *
      * REST API Reference for createFolder Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-folder/
@@ -93,10 +95,11 @@ interface FoldersApi {
 
     /**
      * POST api/2.0/files/folder/{id}/link
-     * 
-     * 
+     * Create primary external link
+     * Creates a primary external link by the identifier specified in the request.
      * Responses:
      *  - 200: Folders security information
+     *  - 401: Unauthorized
      *  - 404: Not Found
      *
      * REST API Reference for createFolderPrimaryExternalLink Operation
@@ -112,10 +115,11 @@ interface FoldersApi {
 
     /**
      * POST api/2.0/files/folder/{folderId}/log/report
-     * 
-     * 
+     * Generates folder history
+     * Generates the activity history of a folder.
      * Responses:
      *  - 200: URL to the report file
+     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to perform the operation
      *  - 404: The required folder was not found
      *
@@ -131,10 +135,11 @@ interface FoldersApi {
 
     /**
      * DELETE api/2.0/files/folder/{folderId}
-     * 
-     * 
+     * Delete a folder
+     * Deletes a folder with the ID specified in the request.
      * Responses:
      *  - 200: List of file operations
+     *  - 401: Unauthorized
      *
      * REST API Reference for deleteFolder Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-folder/
@@ -149,10 +154,11 @@ interface FoldersApi {
 
     /**
      * GET api/2.0/files/@favorites
-     * 
-     * 
+     * Get the Favorites section
+     * Returns the detailed list of files and folders located in the Favorites section.
      * Responses:
      *  - 200: The Favorites section contents
+     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to view the folder content
      *  - 404: The required folder was not found
      *
@@ -174,10 +180,11 @@ interface FoldersApi {
 
     /**
      * GET api/2.0/files/filesusedspace
-     * 
-     * 
+     * Get used space of files
+     * Returns the used space of files in the root folders.
      * Responses:
      *  - 200: Used space of files in the root folders
+     *  - 401: Unauthorized
      *
      * REST API Reference for getFilesUsedSpace Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-files-used-space/
@@ -190,8 +197,8 @@ interface FoldersApi {
 
     /**
      * GET api/2.0/files/{folderId}/formfilter
-     * 
-     * 
+     * Get folder form filter
+     * Returns the form filter of a folder with the ID specified in the request.
      * Responses:
      *  - 200: Ok
      *
@@ -207,8 +214,8 @@ interface FoldersApi {
 
     /**
      * GET api/2.0/files/{folderId}
-     * 
-     * 
+     * Get a folder by ID
+     * Returns the detailed list of files and folders located in the folder with the ID specified in the request.
      * Responses:
      *  - 200: Folder contents
      *  - 403: You don't have enough permission to view the folder content
@@ -220,6 +227,7 @@ interface FoldersApi {
      *
      * @param folderId The folder ID.
      * @param userIdOrGroupId The user or group ID. (optional)
+     * @param sharedBy The identifier of the user who shared the folder or file. (optional)
      * @param filterType The filter type. (optional)
      * @param roomId The room ID. (optional)
      * @param excludeSubject Specifies whether to exclude search by user or group ID. (optional)
@@ -237,14 +245,15 @@ interface FoldersApi {
      * @return [Call]<[FolderContentIntegerWrapper]>
      */
     @GET("api/2.0/files/{folderId}")
-    fun getFolderByFolderId(@Path("folderId") folderId: kotlin.Int, @Query("userIdOrGroupId") userIdOrGroupId: java.util.UUID? = null, @Query("filterType") filterType: FilterType? = null, @Query("roomId") roomId: kotlin.Int? = null, @Query("excludeSubject") excludeSubject: kotlin.Boolean? = null, @Query("applyFilterOption") applyFilterOption: ApplyFilterOption? = null, @Query("extension") extension: kotlin.String? = null, @Query("searchArea") searchArea: SearchArea? = null, @Query("formsItemKey") formsItemKey: kotlin.String? = null, @Query("formsItemType") formsItemType: kotlin.String? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterValue") filterValue: kotlin.String? = null, @Query("Location") location: Location? = null): Call<FolderContentIntegerWrapper>
+    fun getFolderByFolderId(@Path("folderId") folderId: kotlin.Int, @Query("userIdOrGroupId") userIdOrGroupId: java.util.UUID? = null, @Query("sharedBy") sharedBy: java.util.UUID? = null, @Query("filterType") filterType: FilterType? = null, @Query("roomId") roomId: kotlin.Int? = null, @Query("excludeSubject") excludeSubject: kotlin.Boolean? = null, @Query("applyFilterOption") applyFilterOption: ApplyFilterOption? = null, @Query("extension") extension: kotlin.String? = null, @Query("searchArea") searchArea: SearchArea? = null, @Query("formsItemKey") formsItemKey: kotlin.String? = null, @Query("formsItemType") formsItemType: kotlin.String? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterValue") filterValue: kotlin.String? = null, @Query("Location") location: Location? = null): Call<FolderContentIntegerWrapper>
 
     /**
      * GET api/2.0/files/folder/{folderId}/log
-     * 
-     * 
+     * Get folder history
+     * Returns the activity history of a folder with a specified identifier.
      * Responses:
      *  - 200: List of actions in the folder
+     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to perform the operation
      *  - 404: The required folder was not found
      *
@@ -266,8 +275,8 @@ interface FoldersApi {
 
     /**
      * GET api/2.0/files/folder/{folderId}
-     * 
-     * 
+     * Get folder information
+     * Returns the detailed information about a folder with the ID specified in the request.
      * Responses:
      *  - 200: Folder parameters
      *
@@ -283,10 +292,11 @@ interface FoldersApi {
 
     /**
      * GET api/2.0/files/folder/{id}/links
-     * 
-     * 
+     * Get the folder links
+     * Returns the links of the folder with the ID specified in the request.
      * Responses:
      *  - 200: Folder security information
+     *  - 401: Unauthorized
      *
      * REST API Reference for getFolderLinks Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-links/
@@ -300,10 +310,11 @@ interface FoldersApi {
 
     /**
      * GET api/2.0/files/folder/{folderId}/path
-     * 
-     * 
+     * Get the folder path
+     * Returns a path to the folder with the ID specified in the request.
      * Responses:
      *  - 200: List of file entry information
+     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to view the folder content
      *
      * REST API Reference for getFolderPath Operation
@@ -318,8 +329,8 @@ interface FoldersApi {
 
     /**
      * GET api/2.0/files/folder/{id}/link
-     * 
-     * 
+     * Get primary external link
+     * Returns the primary external link by the identifier specified in the request.
      * Responses:
      *  - 200: Folder security information
      *  - 404: Not Found
@@ -338,10 +349,11 @@ interface FoldersApi {
 
     /**
      * GET api/2.0/files/recent
-     * 
-     * 
+     * Get the Recent section
+     * Returns the detailed list of files located in the Recent section.
      * Responses:
      *  - 200: The Recent section contents
+     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to view the folder content
      *  - 404: The required folder was not found
      *
@@ -367,10 +379,11 @@ interface FoldersApi {
 
     /**
      * GET api/2.0/files/{folderId}/subfolders
-     * 
-     * 
+     * Get subfolders
+     * Returns a list of all the subfolders from a folder with the ID specified in the request.
      * Responses:
      *  - 200: List of file entry information
+     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to view the folder content
      *
      * REST API Reference for getFolders Operation
@@ -385,10 +398,11 @@ interface FoldersApi {
 
     /**
      * GET api/2.0/files/@my
-     * 
-     * 
+     * Get the My documents section
+     * Returns the detailed list of files and folders located in the My documents section.
      * Responses:
      *  - 200: The My documents section contents
+     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to view the folder content
      *  - 404: The required folder was not found
      *
@@ -411,10 +425,11 @@ interface FoldersApi {
 
     /**
      * GET api/2.0/files/{folderId}/news
-     * 
-     * 
+     * Get new folder items
+     * Returns a list of all the new items from a folder with the ID specified in the request.
      * Responses:
      *  - 200: List of file entry information
+     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to view the folder content
      *
      * REST API Reference for getNewFolderItems Operation
@@ -429,10 +444,11 @@ interface FoldersApi {
 
     /**
      * GET api/2.0/files/@privacy
-     * 
-     * 
+     * Get the Private Room section
+     * Returns the detailed list of files and folders located in the Private Room section.
      * Responses:
      *  - 200: The Private Room section contents
+     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to view the folder content
      *  - 404: The required folder was not found
      *
@@ -454,10 +470,11 @@ interface FoldersApi {
 
     /**
      * GET api/2.0/files/@recent
-     * 
-     * 
+     * Get the Recent section
+     * Returns the detailed list of files located in the Recent section.
      * Responses:
      *  - 200: The Recent section contents
+     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to view the folder content
      *  - 404: The required folder was not found
      *
@@ -483,10 +500,11 @@ interface FoldersApi {
 
     /**
      * GET api/2.0/files/@root
-     * 
-     * 
+     * Get filtered sections
+     * Returns all the sections matching the parameters specified in the request.
      * Responses:
      *  - 200: List of section contents with the following parameters
+     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to view the folder content
      *  - 404: The required folder was not found
      *
@@ -509,10 +527,11 @@ interface FoldersApi {
 
     /**
      * GET api/2.0/files/@trash
-     * 
-     * 
+     * Get the Trash section
+     * Returns the detailed list of files and folders located in the Trash section.
      * Responses:
      *  - 200: The Trash section contents
+     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to view the folder content
      *  - 404: The required folder was not found
      *
@@ -535,10 +554,11 @@ interface FoldersApi {
 
     /**
      * POST api/2.0/files/{folderId}/insert
-     * 
-     * 
+     * Insert a file
+     * Inserts a file specified in the request to the selected folder by single file uploading.
      * Responses:
      *  - 200: Inserted file
+     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to create
      *  - 404: Folder not found
      *
@@ -567,10 +587,11 @@ interface FoldersApi {
 
     /**
      * POST api/2.0/files/@my/insert
-     * 
-     * 
+     * Insert a file to the My documents section
+     * Inserts a file specified in the request to the My documents section by single file uploading.
      * Responses:
      *  - 200: Inserted file
+     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to create
      *  - 404: Folder not found
      *
@@ -598,10 +619,11 @@ interface FoldersApi {
 
     /**
      * PUT api/2.0/files/folder/{folderId}
-     * 
-     * 
+     * Rename a folder
+     * Renames the selected folder with a new title specified in the request.
      * Responses:
      *  - 200: Folder parameters
+     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to rename the folder
      *
      * REST API Reference for renameFolder Operation
@@ -617,10 +639,11 @@ interface FoldersApi {
 
     /**
      * PUT api/2.0/files/folder/{folderId}/order
-     * 
-     * 
+     * Set folder order
+     * Sets the order of a folder with ID specified in the request.
      * Responses:
      *  - 200: List of file operations
+     *  - 401: Unauthorized
      *
      * REST API Reference for setFolderOrder Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-folder-order/
@@ -635,10 +658,11 @@ interface FoldersApi {
 
     /**
      * PUT api/2.0/files/folder/{id}/links
-     * 
-     * 
+     * Set the folder external link
+     * Sets the folder external link with the ID specified in the request.
      * Responses:
      *  - 200: Folder information
+     *  - 401: Unauthorized
      *
      * REST API Reference for setFolderPrimaryExternalLink Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-folder-primary-external-link/
@@ -653,10 +677,11 @@ interface FoldersApi {
 
     /**
      * POST api/2.0/files/{folderId}/upload
-     * 
-     * 
+     * Upload a file
+     * Uploads a file specified in the request to the selected folder by single file uploading or standart multipart/form-data method.   **Note**:  You can upload files in two different ways:   &lt;ol&gt;  &lt;li&gt;Using single file upload. You should set the Content-Type and Content-Disposition headers to specify a file name and content type, and send the file to the request body.&lt;/li&gt;  &lt;li&gt;Using standart multipart/form-data method.&lt;/li&gt;  &lt;/ol&gt;
      * Responses:
      *  - 200: Inserted file
+     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to create
      *  - 404: Folder not found
      *
@@ -673,10 +698,11 @@ interface FoldersApi {
 
     /**
      * POST api/2.0/files/@my/upload
-     * 
-     * 
+     * Upload a file to the My documents section
+     * Uploads a file specified in the request to the My documents section by single file uploading or standart multipart/form-data method.   **Note**:  You can upload files in two different ways:   &lt;ol&gt;  &lt;li&gt;Using single file upload. You should set the Content-Type and Content-Disposition headers to specify a file name and content type, and send the file to the request body.&lt;/li&gt;  &lt;li&gt;Using standart multipart/form-data method.&lt;/li&gt;  &lt;/ol&gt;
      * Responses:
      *  - 200: Uploaded file(s)
+     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to create
      *  - 404: File not found
      *

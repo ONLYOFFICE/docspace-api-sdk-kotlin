@@ -35,10 +35,11 @@ import onlyoffice.docspace.api.sdk.models.ThirdPartyRequestDto
 interface ThirdPartyIntegrationApi {
     /**
      * DELETE api/2.0/files/thirdparty/{providerId}
-     * 
-     * 
+     * Remove a third-party account
+     * Removes the third-party storage service account with the ID specified in the request.
      * Responses:
      *  - 200: Third-party folder ID
+     *  - 401: Unauthorized
      *
      * REST API Reference for deleteThirdParty Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-third-party/
@@ -52,26 +53,29 @@ interface ThirdPartyIntegrationApi {
 
     /**
      * GET api/2.0/files/thirdparty/providers
-     * 
-     * 
+     * Get all providers
+     * Returns a list of all providers.   **Note**: Available provider keys: Dropbox, Box, WebDav, OneDrive, GoogleDrive, kDrive, ownCloud, Nextcloud.
      * Responses:
      *  - 200: List of provider
+     *  - 401: Unauthorized
      *
      * REST API Reference for getAllProviders Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-all-providers/
      *
      *
+     * @param excludewebdav Specifies whether WebDAV resources should be excluded from the result.. (optional)
      * @return [Call]<[ProviderArrayWrapper]>
      */
     @GET("api/2.0/files/thirdparty/providers")
-    fun getAllProviders(): Call<ProviderArrayWrapper>
+    fun getAllProviders(@Query("excludewebdav") excludewebdav: kotlin.Boolean? = null): Call<ProviderArrayWrapper>
 
     /**
      * GET api/2.0/files/thirdparty/backup
-     * 
-     * 
+     * Get a third-party account backup
+     * Returns a backup of the connected third-party account.
      * Responses:
      *  - 200: Folder for the third-party account backup
+     *  - 401: Unauthorized
      *
      * REST API Reference for getBackupThirdPartyAccount Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-backup-third-party-account/
@@ -84,10 +88,11 @@ interface ThirdPartyIntegrationApi {
 
     /**
      * GET api/2.0/files/thirdparty/capabilities
-     * 
-     * 
+     * Get providers
+     * Returns the list of the available providers.   **Note**: Available provider keys: DropboxV2, Box, WebDav, Yandex, OneDrive, SharePoint, GoogleDrive, kDrive.
      * Responses:
      *  - 200: List of provider keys
+     *  - 401: Unauthorized
      *
      * REST API Reference for getCapabilities Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-capabilities/
@@ -100,10 +105,11 @@ interface ThirdPartyIntegrationApi {
 
     /**
      * GET api/2.0/files/thirdparty/common
-     * 
-     * 
+     * Get the common third-party services
+     * Returns a list of the third-party services connected to the Common section.
      * Responses:
      *  - 200: List of common third-party folderst
+     *  - 401: Unauthorized
      *
      * REST API Reference for getCommonThirdPartyFolders Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-common-third-party-folders/
@@ -116,10 +122,11 @@ interface ThirdPartyIntegrationApi {
 
     /**
      * GET api/2.0/files/thirdparty
-     * 
-     * 
+     * Get the third-party accounts
+     * Returns a list of all the connected third-party accounts.
      * Responses:
      *  - 200: List of connected providers information
+     *  - 401: Unauthorized
      *
      * REST API Reference for getThirdPartyAccounts Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-third-party-accounts/
@@ -132,10 +139,11 @@ interface ThirdPartyIntegrationApi {
 
     /**
      * POST api/2.0/files/thirdparty
-     * 
-     * 
+     * Save a third-party account
+     * Saves the third-party storage service account. For WebDav, Yandex, kDrive and SharePoint, the login and password are used for authentication. For other providers, the authentication is performed using a token received via OAuth 2.0.   **Note**: List of provider keys: DropboxV2, Box, WebDav, Yandex, OneDrive, SharePoint, GoogleDrive, kDrive.
      * Responses:
      *  - 200: Connected provider folder
+     *  - 401: Unauthorized
      *
      * REST API Reference for saveThirdParty Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/save-third-party/
@@ -149,10 +157,11 @@ interface ThirdPartyIntegrationApi {
 
     /**
      * POST api/2.0/files/thirdparty/backup
-     * 
-     * 
+     * Save a third-party account backup
+     * Saves a backup of the connected third-party account.   **Note**: List of provider keys: DropboxV2, Box, WebDav, Yandex, OneDrive, SharePoint, GoogleDrive, kDrive.
      * Responses:
      *  - 200: Folder for the third-party account backup
+     *  - 401: Unauthorized
      *
      * REST API Reference for saveThirdPartyBackup Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/save-third-party-backup/

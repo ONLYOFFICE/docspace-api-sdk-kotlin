@@ -167,7 +167,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **userId** | **java.util.UUID**| The user ID. | [optional] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **type** | [**EmployeeType**](.md)| The expected user type. | [optional] [enum: 0, 1, 2, 3, 4] |
+| **type** | [**EmployeeType**](.md)| The expected user type. | [optional] [enum: All, RoomAdmin, Guest, DocSpaceAdmin, User] |
 
 ### Return type
 

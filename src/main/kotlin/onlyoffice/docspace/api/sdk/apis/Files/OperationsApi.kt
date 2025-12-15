@@ -47,10 +47,11 @@ import onlyoffice.docspace.api.sdk.models.*
 interface OperationsApi {
     /**
      * POST api/2.0/files/favorites
-     * 
-     * 
+     * Add favorite files and folders
+     * Adds files and folders with the IDs specified in the request to the favorite list.
      * Responses:
      *  - 200: Boolean value: true if the operation is successful
+     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to perform the operation
      *
      * REST API Reference for addFavorites Operation
@@ -65,8 +66,8 @@ interface OperationsApi {
 
     /**
      * PUT api/2.0/files/fileops/bulkdownload
-     * 
-     * 
+     * Bulk download
+     * Starts the download process of files and folders with the IDs specified in the request.
      * Responses:
      *  - 200: List of file operations
      *  - 403: You don't have enough permission to download
@@ -83,10 +84,11 @@ interface OperationsApi {
 
     /**
      * GET api/2.0/files/file/{fileId}/checkconversion
-     * 
-     * 
+     * Get conversion status
+     * Checks the conversion status of a file with the ID specified in the request.
      * Responses:
      *  - 200: Conversion result
+     *  - 401: Unauthorized
      *
      * REST API Reference for checkConversionStatus Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/check-conversion-status/
@@ -101,10 +103,11 @@ interface OperationsApi {
 
     /**
      * GET api/2.0/files/fileops/move
-     * 
-     * 
+     * Move or copy files to a folder
+     * Checks if files or folders can be moved or copied to the specified folder, moves or copies them, and returns their information.
      * Responses:
      *  - 200: List of file entry information
+     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to create
      *
      * REST API Reference for checkMoveOrCopyBatchItems Operation
@@ -119,10 +122,11 @@ interface OperationsApi {
 
     /**
      * GET api/2.0/files/fileops/checkdestfolder
-     * 
-     * 
+     * Check for moving or copying files to a folder
+     * Checks if files can be moved or copied to the specified folder.
      * Responses:
      *  - 200: Result
+     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to create
      *
      * REST API Reference for checkMoveOrCopyDestFolder Operation
@@ -137,10 +141,11 @@ interface OperationsApi {
 
     /**
      * PUT api/2.0/files/fileops/copy
-     * 
-     * 
+     * Copy to the folder
+     * Copies all the selected files and folders to the folder with the ID specified in the request.
      * Responses:
      *  - 200: List of file operations
+     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to copy
      *
      * REST API Reference for copyBatchItems Operation
@@ -155,10 +160,11 @@ interface OperationsApi {
 
     /**
      * POST api/2.0/files/{folderId}/upload/create_session
-     * 
-     * 
+     * Chunked upload
+     * Creates the session to upload large files in multiple chunks to the folder with the ID specified in the request.   **Note**: Each chunk can have different length but the length should be multiple of &lt;b&gt;512&lt;/b&gt; and greater or equal to &lt;b&gt;10 mb&lt;/b&gt;. Last chunk can have any size.  After the initial response to the request with the &lt;b&gt;200 OK&lt;/b&gt; status, you must get the &lt;em&gt;location&lt;/em&gt; field value from the response. Send all your chunks to this location.  Each chunk must be sent in the exact order the chunks appear in the file.  After receiving each chunk, the server will respond with the current information about the upload session if no errors occurred.  When the number of bytes uploaded is equal to the number of bytes you sent in the initial request, the server responds with the &lt;b&gt;201 Created&lt;/b&gt; status and sends you information about the uploaded file.  Information about created session which includes:  &lt;ul&gt;  &lt;li&gt;&lt;b&gt;id:&lt;/b&gt; unique ID of this upload session,&lt;/li&gt;  &lt;li&gt;&lt;b&gt;created:&lt;/b&gt; UTC time when the session was created,&lt;/li&gt;  &lt;li&gt;&lt;b&gt;expired:&lt;/b&gt; UTC time when the session will expire if no chunks are sent before that time,&lt;/li&gt;  &lt;li&gt;&lt;b&gt;location:&lt;/b&gt; URL where you should send your next chunk,&lt;/li&gt;  &lt;li&gt;&lt;b&gt;bytes_uploaded:&lt;/b&gt; number of bytes uploaded for the specific upload ID,&lt;/li&gt;  &lt;li&gt;&lt;b&gt;bytes_total:&lt;/b&gt; total number of bytes which will be uploaded.&lt;/li&gt;  &lt;/ul&gt;
      * Responses:
      *  - 200: Information about created session
+     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to create
      *
      * REST API Reference for createUploadSession Operation
@@ -174,10 +180,11 @@ interface OperationsApi {
 
     /**
      * PUT api/2.0/files/fileops/delete
-     * 
-     * 
+     * Delete files and folders
+     * Deletes the files and folders with the IDs specified in the request.
      * Responses:
      *  - 200: List of file operations
+     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to delete
      *
      * REST API Reference for deleteBatchItems Operation
@@ -192,10 +199,11 @@ interface OperationsApi {
 
     /**
      * DELETE api/2.0/files/favorites
-     * 
-     * 
+     * Delete favorite files and folders (using body parameters)
+     * Removes files and folders with the IDs specified in the request from the favorite list. This method uses the body parameters.
      * Responses:
      *  - 200: Boolean value: true if the operation is successful
+     *  - 401: Unauthorized
      *
      * REST API Reference for deleteFavoritesFromBody Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-favorites-from-body/
@@ -209,10 +217,11 @@ interface OperationsApi {
 
     /**
      * PUT api/2.0/files/fileops/deleteversion
-     * 
-     * 
+     * Delete file versions
+     * Deletes the file versions with the IDs specified in the request.
      * Responses:
      *  - 200: List of file operations
+     *  - 401: Unauthorized
      *
      * REST API Reference for deleteFileVersions Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-file-versions/
@@ -226,10 +235,11 @@ interface OperationsApi {
 
     /**
      * PUT api/2.0/files/fileops/duplicate
-     * 
-     * 
+     * Duplicate files and folders
+     * Duplicates all the selected files and folders.
      * Responses:
      *  - 200: List of file operations
+     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to duplicate
      *
      * REST API Reference for duplicateBatchItems Operation
@@ -244,10 +254,11 @@ interface OperationsApi {
 
     /**
      * PUT api/2.0/files/fileops/emptytrash
-     * 
-     * 
+     * Empty the Trash folder
+     * Deletes all the files and folders from the Trash folder.
      * Responses:
      *  - 200: List of file operations
+     *  - 401: Unauthorized
      *
      * REST API Reference for emptyTrash Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/empty-trash/
@@ -261,8 +272,8 @@ interface OperationsApi {
 
     /**
      * GET api/2.0/files/fileops
-     * 
-     * 
+     * Get active file operations
+     * Returns a list of all the active file operations.
      * Responses:
      *  - 200: List of file operations
      *
@@ -278,8 +289,8 @@ interface OperationsApi {
 
     /**
      * GET api/2.0/files/fileops/{operationType}
-     * 
-     * 
+     * Get file operation statuses
+     * Retrieves the statuses of operations filtered by the specified operation type.
      * Responses:
      *  - 200: List of file operations
      *
@@ -296,10 +307,11 @@ interface OperationsApi {
 
     /**
      * PUT api/2.0/files/fileops/markasread
-     * 
-     * 
+     * Mark as read
+     * Marks the files and folders with the IDs specified in the request as read.
      * Responses:
      *  - 200: List of file operations
+     *  - 401: Unauthorized
      *
      * REST API Reference for markAsRead Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/mark-as-read/
@@ -313,10 +325,11 @@ interface OperationsApi {
 
     /**
      * PUT api/2.0/files/fileops/move
-     * 
-     * 
+     * Move or copy to a folder
+     * Moves or copies all the selected files and folders to the folder with the ID specified in the request.
      * Responses:
      *  - 200: List of file operations
+     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to move
      *
      * REST API Reference for moveBatchItems Operation
@@ -331,10 +344,11 @@ interface OperationsApi {
 
     /**
      * PUT api/2.0/files/file/{fileId}/checkconversion
-     * 
-     * 
+     * Start file conversion
+     * Starts a conversion operation of a file with the ID specified in the request.
      * Responses:
      *  - 200: Conversion result
+     *  - 401: Unauthorized
      *
      * REST API Reference for startFileConversion Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/start-file-conversion/
@@ -349,8 +363,8 @@ interface OperationsApi {
 
     /**
      * PUT api/2.0/files/fileops/terminate/{id}
-     * 
-     * 
+     * Finish active operations
+     * Finishes an operation with the ID specified in the request or all the active operations.
      * Responses:
      *  - 200: List of file operations
      *
@@ -366,10 +380,11 @@ interface OperationsApi {
 
     /**
      * PUT api/2.0/files/file/{fileId}/comment
-     * 
-     * 
+     * Update a comment
+     * Updates a comment in a file with the ID specified in the request.
      * Responses:
      *  - 200: Updated comment
+     *  - 401: Unauthorized
      *
      * REST API Reference for updateFileComment Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-file-comment/

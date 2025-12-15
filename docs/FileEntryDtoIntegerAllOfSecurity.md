@@ -45,7 +45,7 @@
 | **editInternal** | **kotlin.Boolean** |  |  [optional] |
 | **editExpiration** | **kotlin.Boolean** |  |  [optional] |
 | **vectorization** | **kotlin.Boolean** |  |  [optional] |
-| **ascAi** | **kotlin.Boolean** |  |  [optional] |
+| **askAi** | **kotlin.Boolean** |  |  [optional] |
 | **useChat** | **kotlin.Boolean** |  |  [optional] |
 
 

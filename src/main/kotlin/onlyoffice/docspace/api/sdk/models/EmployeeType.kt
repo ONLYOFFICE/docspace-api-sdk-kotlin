@@ -21,28 +21,28 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * [0 - All, 1 - Room admin, 2 - Guest, 3 - DocSpace admin, 4 - User]
+ * [All - All, RoomAdmin - Room admin, Guest - Guest, DocSpaceAdmin - DocSpace admin, User - User]
  *
  * Values: All,RoomAdmin,Guest,DocSpaceAdmin,User
  */
 
 @JsonClass(generateAdapter = false)
-enum class EmployeeType(val value: kotlin.Int) {
+enum class EmployeeType(val value: kotlin.String) {
 
-    @Json(name = 0)
-    All(0),
+    @Json(name = "All")
+    All("All"),
 
-    @Json(name = 1)
-    RoomAdmin(1),
+    @Json(name = "RoomAdmin")
+    RoomAdmin("RoomAdmin"),
 
-    @Json(name = 2)
-    Guest(2),
+    @Json(name = "Guest")
+    Guest("Guest"),
 
-    @Json(name = 3)
-    DocSpaceAdmin(3),
+    @Json(name = "DocSpaceAdmin")
+    DocSpaceAdmin("DocSpaceAdmin"),
 
-    @Json(name = 4)
-    User(4);
+    @Json(name = "User")
+    User("User");
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use
@@ -51,7 +51,7 @@ enum class EmployeeType(val value: kotlin.Int) {
      * This solves a problem when the variable name and its value are different, and ensures that
      * the client sends the correct enum values to the server always.
      */
-    override fun toString(): kotlin.String = value.toString()
+    override fun toString(): kotlin.String = value
 
     companion object {
         /**

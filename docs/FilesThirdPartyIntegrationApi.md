@@ -4,14 +4,14 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**deleteThirdParty**](FilesThirdPartyIntegrationApi.md#deleteThirdParty) | **DELETE** api/2.0/files/thirdparty/{providerId} |  |
-| [**getAllProviders**](FilesThirdPartyIntegrationApi.md#getAllProviders) | **GET** api/2.0/files/thirdparty/providers |  |
-| [**getBackupThirdPartyAccount**](FilesThirdPartyIntegrationApi.md#getBackupThirdPartyAccount) | **GET** api/2.0/files/thirdparty/backup |  |
-| [**getCapabilities**](FilesThirdPartyIntegrationApi.md#getCapabilities) | **GET** api/2.0/files/thirdparty/capabilities |  |
-| [**getCommonThirdPartyFolders**](FilesThirdPartyIntegrationApi.md#getCommonThirdPartyFolders) | **GET** api/2.0/files/thirdparty/common |  |
-| [**getThirdPartyAccounts**](FilesThirdPartyIntegrationApi.md#getThirdPartyAccounts) | **GET** api/2.0/files/thirdparty |  |
-| [**saveThirdParty**](FilesThirdPartyIntegrationApi.md#saveThirdParty) | **POST** api/2.0/files/thirdparty |  |
-| [**saveThirdPartyBackup**](FilesThirdPartyIntegrationApi.md#saveThirdPartyBackup) | **POST** api/2.0/files/thirdparty/backup |  |
+| [**deleteThirdParty**](FilesThirdPartyIntegrationApi.md#deleteThirdParty) | **DELETE** api/2.0/files/thirdparty/{providerId} | Remove a third-party account |
+| [**getAllProviders**](FilesThirdPartyIntegrationApi.md#getAllProviders) | **GET** api/2.0/files/thirdparty/providers | Get all providers |
+| [**getBackupThirdPartyAccount**](FilesThirdPartyIntegrationApi.md#getBackupThirdPartyAccount) | **GET** api/2.0/files/thirdparty/backup | Get a third-party account backup |
+| [**getCapabilities**](FilesThirdPartyIntegrationApi.md#getCapabilities) | **GET** api/2.0/files/thirdparty/capabilities | Get providers |
+| [**getCommonThirdPartyFolders**](FilesThirdPartyIntegrationApi.md#getCommonThirdPartyFolders) | **GET** api/2.0/files/thirdparty/common | Get the common third-party services |
+| [**getThirdPartyAccounts**](FilesThirdPartyIntegrationApi.md#getThirdPartyAccounts) | **GET** api/2.0/files/thirdparty | Get the third-party accounts |
+| [**saveThirdParty**](FilesThirdPartyIntegrationApi.md#saveThirdParty) | **POST** api/2.0/files/thirdparty | Save a third-party account |
+| [**saveThirdPartyBackup**](FilesThirdPartyIntegrationApi.md#saveThirdPartyBackup) | **POST** api/2.0/files/thirdparty/backup | Save a third-party account backup |
 
 
 
@@ -19,7 +19,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 # **deleteThirdParty**
 > StringWrapper deleteThirdParty (kotlin.Int providerId)
 
-
+Removes the third-party storage service account with the ID specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-third-party/).
 
@@ -34,7 +34,11 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Authorization
 
-No authorization required
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
 
 ### Example
 ```kotlin
@@ -44,6 +48,8 @@ No authorization required
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ThirdPartyIntegrationApi::class.java)
 val providerId : kotlin.Int = 1234 // kotlin.Int | The provider ID.
 
@@ -58,14 +64,16 @@ val result : StringWrapper = webService.deleteThirdParty(providerId)
 
 <a id="getAllProviders"></a>
 # **getAllProviders**
-> ProviderArrayWrapper getAllProviders ()
+> ProviderArrayWrapper getAllProviders (kotlin.Boolean excludewebdav)
 
-
+Returns a list of all providers.   **Note**: Available provider keys: Dropbox, Box, WebDav, OneDrive, GoogleDrive, kDrive, ownCloud, Nextcloud.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-all-providers/).
 
 ### Parameters
-This endpoint does not need any parameter.
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **excludewebdav** | **kotlin.Boolean**| Specifies whether WebDAV resources should be excluded from the result.. | [optional] |
 
 ### Return type
 
@@ -73,7 +81,11 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
 
 ### Example
 ```kotlin
@@ -83,9 +95,12 @@ No authorization required
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ThirdPartyIntegrationApi::class.java)
+val excludewebdav : kotlin.Boolean = true // kotlin.Boolean | Specifies whether WebDAV resources should be excluded from the result..
 
-val result : ProviderArrayWrapper = webService.getAllProviders()
+val result : ProviderArrayWrapper = webService.getAllProviders(excludewebdav)
 ```
 
 ### HTTP request headers
@@ -98,7 +113,7 @@ val result : ProviderArrayWrapper = webService.getAllProviders()
 # **getBackupThirdPartyAccount**
 > FolderStringWrapper getBackupThirdPartyAccount ()
 
-
+Returns a backup of the connected third-party account.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-backup-third-party-account/).
 
@@ -111,7 +126,11 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
 
 ### Example
 ```kotlin
@@ -121,6 +140,8 @@ No authorization required
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ThirdPartyIntegrationApi::class.java)
 
 val result : FolderStringWrapper = webService.getBackupThirdPartyAccount()
@@ -136,7 +157,7 @@ val result : FolderStringWrapper = webService.getBackupThirdPartyAccount()
 # **getCapabilities**
 > ArrayArrayWrapper getCapabilities ()
 
-
+Returns the list of the available providers.   **Note**: Available provider keys: DropboxV2, Box, WebDav, Yandex, OneDrive, SharePoint, GoogleDrive, kDrive.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-capabilities/).
 
@@ -149,7 +170,11 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
 
 ### Example
 ```kotlin
@@ -159,6 +184,8 @@ No authorization required
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ThirdPartyIntegrationApi::class.java)
 
 val result : ArrayArrayWrapper = webService.getCapabilities()
@@ -174,7 +201,7 @@ val result : ArrayArrayWrapper = webService.getCapabilities()
 # **getCommonThirdPartyFolders**
 > FolderStringArrayWrapper getCommonThirdPartyFolders ()
 
-
+Returns a list of the third-party services connected to the Common section.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-common-third-party-folders/).
 
@@ -187,7 +214,11 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
 
 ### Example
 ```kotlin
@@ -197,6 +228,8 @@ No authorization required
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ThirdPartyIntegrationApi::class.java)
 
 val result : FolderStringArrayWrapper = webService.getCommonThirdPartyFolders()
@@ -212,7 +245,7 @@ val result : FolderStringArrayWrapper = webService.getCommonThirdPartyFolders()
 # **getThirdPartyAccounts**
 > ThirdPartyParamsArrayWrapper getThirdPartyAccounts ()
 
-
+Returns a list of all the connected third-party accounts.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-third-party-accounts/).
 
@@ -225,7 +258,11 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
 
 ### Example
 ```kotlin
@@ -235,6 +272,8 @@ No authorization required
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ThirdPartyIntegrationApi::class.java)
 
 val result : ThirdPartyParamsArrayWrapper = webService.getThirdPartyAccounts()
@@ -250,7 +289,7 @@ val result : ThirdPartyParamsArrayWrapper = webService.getThirdPartyAccounts()
 # **saveThirdParty**
 > FolderStringWrapper saveThirdParty (ThirdPartyRequestDto thirdPartyRequestDto)
 
-
+Saves the third-party storage service account. For WebDav, Yandex, kDrive and SharePoint, the login and password are used for authentication. For other providers, the authentication is performed using a token received via OAuth 2.0.   **Note**: List of provider keys: DropboxV2, Box, WebDav, Yandex, OneDrive, SharePoint, GoogleDrive, kDrive.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/save-third-party/).
 
@@ -265,7 +304,11 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Authorization
 
-No authorization required
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
 
 ### Example
 ```kotlin
@@ -275,6 +318,8 @@ No authorization required
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ThirdPartyIntegrationApi::class.java)
 val thirdPartyRequestDto : ThirdPartyRequestDto =  // ThirdPartyRequestDto | 
 
@@ -291,7 +336,7 @@ val result : FolderStringWrapper = webService.saveThirdParty(thirdPartyRequestDt
 # **saveThirdPartyBackup**
 > FolderStringWrapper saveThirdPartyBackup (ThirdPartyBackupRequestDto thirdPartyBackupRequestDto)
 
-
+Saves a backup of the connected third-party account.   **Note**: List of provider keys: DropboxV2, Box, WebDav, Yandex, OneDrive, SharePoint, GoogleDrive, kDrive.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/save-third-party-backup/).
 
@@ -306,7 +351,11 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Authorization
 
-No authorization required
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
 
 ### Example
 ```kotlin
@@ -316,6 +365,8 @@ No authorization required
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ThirdPartyIntegrationApi::class.java)
 val thirdPartyBackupRequestDto : ThirdPartyBackupRequestDto =  // ThirdPartyBackupRequestDto | 
 

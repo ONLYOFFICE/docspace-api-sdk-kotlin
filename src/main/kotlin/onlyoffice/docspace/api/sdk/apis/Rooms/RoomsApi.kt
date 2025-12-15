@@ -69,10 +69,11 @@ import onlyoffice.docspace.api.sdk.models.UserInvitation
 interface RoomsApi {
     /**
      * PUT api/2.0/files/rooms/{id}/tags
-     * 
-     * 
+     * Add the room tags
+     * Adds the tags to a room with the ID specified in the request.
      * Responses:
      *  - 200: Room information
+     *  - 401: Unauthorized
      *  - 403: You don't have permission to edit the room
      *
      * REST API Reference for addRoomTags Operation
@@ -88,10 +89,11 @@ interface RoomsApi {
 
     /**
      * PUT api/2.0/files/rooms/{id}/archive
-     * 
-     * 
+     * Archive a room
+     * Moves a room with the ID specified in the request to the Archive section.
      * Responses:
      *  - 200: File operation
+     *  - 401: Unauthorized
      *
      * REST API Reference for archiveRoom Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/archive-room/
@@ -106,10 +108,11 @@ interface RoomsApi {
 
     /**
      * POST api/2.0/files/rooms/{id}/cover
-     * 
-     * 
+     * Change the room cover
+     * Changes a cover of a room with the ID specified in the request.
      * Responses:
      *  - 200: Room cover
+     *  - 401: Unauthorized
      *  - 403: You don't have permission to change cover
      *  - 404: The required room was not found
      *
@@ -126,10 +129,11 @@ interface RoomsApi {
 
     /**
      * POST api/2.0/files/rooms
-     * 
-     * 
+     * Create a room
+     * Creates a room in the Rooms section.
      * Responses:
      *  - 200: Room information
+     *  - 401: Unauthorized
      *
      * REST API Reference for createRoom Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-room/
@@ -143,10 +147,11 @@ interface RoomsApi {
 
     /**
      * POST api/2.0/files/rooms/fromtemplate
-     * 
-     * 
+     * Create a room from the template
+     * Creates a room in the Rooms section based on the template.
      * Responses:
      *  - 200: Status
+     *  - 401: Unauthorized
      *
      * REST API Reference for createRoomFromTemplate Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-room-from-template/
@@ -160,10 +165,11 @@ interface RoomsApi {
 
     /**
      * POST api/2.0/files/rooms/{id}/logo
-     * 
-     * 
+     * Create a room logo
+     * Creates a logo for a room with the ID specified in the request.
      * Responses:
      *  - 200: Room information
+     *  - 401: Unauthorized
      *  - 404: The required room was not found
      *
      * REST API Reference for createRoomLogo Operation
@@ -179,10 +185,11 @@ interface RoomsApi {
 
     /**
      * POST api/2.0/files/tags
-     * 
-     * 
+     * Create a room tag
+     * Creates a custom room tag with the parameters specified in the request.
      * Responses:
      *  - 200: New tag name
+     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to perform the operation
      *
      * REST API Reference for createRoomTag Operation
@@ -197,10 +204,11 @@ interface RoomsApi {
 
     /**
      * POST api/2.0/files/roomtemplate
-     * 
-     * 
+     * Start creating room template
+     * Starts creating the room template.
      * Responses:
      *  - 200: Status
+     *  - 401: Unauthorized
      *
      * REST API Reference for createRoomTemplate Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-room-template/
@@ -214,10 +222,11 @@ interface RoomsApi {
 
     /**
      * POST api/2.0/files/rooms/thirdparty/{id}
-     * 
-     * 
+     * Create a third-party room
+     * Creates a room in the Rooms section stored in a third-party storage.
      * Responses:
      *  - 200: Room information
+     *  - 401: Unauthorized
      *
      * REST API Reference for createRoomThirdParty Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-room-third-party/
@@ -232,10 +241,11 @@ interface RoomsApi {
 
     /**
      * DELETE api/2.0/files/tags
-     * 
-     * 
+     * Delete the custom room tags
+     * Deletes a bunch of custom room tags specified in the request.
      * Responses:
      *  - 200: Ok
+     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to perform the operation
      *
      * REST API Reference for deleteCustomTags Operation
@@ -250,10 +260,11 @@ interface RoomsApi {
 
     /**
      * DELETE api/2.0/files/rooms/{id}
-     * 
-     * 
+     * Remove a room
+     * Removes a room with the ID specified in the request.
      * Responses:
      *  - 200: File operation
+     *  - 401: Unauthorized
      *
      * REST API Reference for deleteRoom Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-room/
@@ -268,10 +279,11 @@ interface RoomsApi {
 
     /**
      * DELETE api/2.0/files/rooms/{id}/logo
-     * 
-     * 
+     * Remove a room logo
+     * Removes a logo from a room with the ID specified in the request.
      * Responses:
      *  - 200: Room information
+     *  - 401: Unauthorized
      *
      * REST API Reference for deleteRoomLogo Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-room-logo/
@@ -285,10 +297,11 @@ interface RoomsApi {
 
     /**
      * DELETE api/2.0/files/rooms/{id}/tags
-     * 
-     * 
+     * Remove the room tags
+     * Removes the tags from a room with the ID specified in the request.
      * Responses:
      *  - 200: Room information
+     *  - 401: Unauthorized
      *  - 403: You don't have permission to edit the room
      *
      * REST API Reference for deleteRoomTags Operation
@@ -304,10 +317,11 @@ interface RoomsApi {
 
     /**
      * GET api/2.0/files/rooms/{id}/news
-     * 
-     * 
+     * Get the new room items
+     * Returns a list of all the new items from a room with the ID specified in the request.
      * Responses:
      *  - 200: List of file entry information
+     *  - 401: Unauthorized
      *
      * REST API Reference for getNewRoomItems Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-new-room-items/
@@ -321,10 +335,11 @@ interface RoomsApi {
 
     /**
      * GET api/2.0/files/roomtemplate/{id}/public
-     * 
-     * 
+     * Get public settings
+     * Returns the public settings of the room template with the ID specified in the request.
      * Responses:
      *  - 200: Ok
+     *  - 401: Unauthorized
      *
      * REST API Reference for getPublicSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-public-settings/
@@ -338,10 +353,11 @@ interface RoomsApi {
 
     /**
      * GET api/2.0/files/rooms/covers
-     * 
-     * 
+     * Get covers
+     * Returns a list of all covers.
      * Responses:
      *  - 200: Gets room cover
+     *  - 401: Unauthorized
      *
      * REST API Reference for getRoomCovers Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-covers/
@@ -354,10 +370,11 @@ interface RoomsApi {
 
     /**
      * GET api/2.0/files/rooms/fromtemplate/status
-     * 
-     * 
+     * Get the room creation progress
+     * Returns the progress of creating a room from the template.
      * Responses:
      *  - 200: Status
+     *  - 401: Unauthorized
      *
      * REST API Reference for getRoomCreatingStatus Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-creating-status/
@@ -370,10 +387,11 @@ interface RoomsApi {
 
     /**
      * GET api/2.0/files/rooms/indexexport
-     * 
-     * 
+     * Get the room index export
+     * Returns the room index export.
      * Responses:
      *  - 200: Ok
+     *  - 401: Unauthorized
      *
      * REST API Reference for getRoomIndexExport Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-index-export/
@@ -386,8 +404,8 @@ interface RoomsApi {
 
     /**
      * GET api/2.0/files/rooms/{id}
-     * 
-     * 
+     * Get room information
+     * Returns the room information.
      * Responses:
      *  - 200: Room information
      *
@@ -403,10 +421,11 @@ interface RoomsApi {
 
     /**
      * GET api/2.0/files/rooms/{id}/links
-     * 
-     * 
+     * Get the room links
+     * Returns the links of the room with the ID specified in the request.
      * Responses:
      *  - 200: Room security information
+     *  - 401: Unauthorized
      *
      * REST API Reference for getRoomLinks Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-links/
@@ -421,10 +440,11 @@ interface RoomsApi {
 
     /**
      * GET api/2.0/files/rooms/{id}/share
-     * 
-     * 
+     * Get the room access rights
+     * Returns the access rights of a room with the ID specified in the request.
      * Responses:
      *  - 200: Security information of room files
+     *  - 401: Unauthorized
      *
      * REST API Reference for getRoomSecurityInfo Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-security-info/
@@ -442,10 +462,11 @@ interface RoomsApi {
 
     /**
      * GET api/2.0/files/tags
-     * 
-     * 
+     * Get the room tags
+     * Returns a list of custom room tags.
      * Responses:
      *  - 200: List of tag names
+     *  - 401: Unauthorized
      *
      * REST API Reference for getRoomTagsInfo Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-tags-info/
@@ -461,10 +482,11 @@ interface RoomsApi {
 
     /**
      * GET api/2.0/files/roomtemplate/status
-     * 
-     * 
+     * Get status of room template creation
+     * Returns the progress status of the room template creation process.
      * Responses:
      *  - 200: Status
+     *  - 401: Unauthorized
      *
      * REST API Reference for getRoomTemplateCreatingStatus Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-template-creating-status/
@@ -477,10 +499,11 @@ interface RoomsApi {
 
     /**
      * GET api/2.0/files/rooms
-     * 
-     * 
+     * Get rooms
+     * Returns the contents of the Rooms section by the parameters specified in the request.
      * Responses:
      *  - 200: Returns the contents of the Rooms section
+     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to view the room content
      *
      * REST API Reference for getRoomsFolder Operation
@@ -509,10 +532,11 @@ interface RoomsApi {
 
     /**
      * GET api/2.0/files/rooms/news
-     * 
-     * 
+     * Get the room new items
+     * Returns the room new items.
      * Responses:
      *  - 200: List of new items
+     *  - 401: Unauthorized
      *
      * REST API Reference for getRoomsNewItems Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-rooms-new-items/
@@ -525,10 +549,11 @@ interface RoomsApi {
 
     /**
      * GET api/2.0/files/rooms/{id}/link
-     * 
-     * 
+     * Get the room primary external link
+     * Returns the primary external link of the room with the ID specified in the request.
      * Responses:
      *  - 200: Room security information
+     *  - 401: Unauthorized
      *  - 404: Not Found
      *
      * REST API Reference for getRoomsPrimaryExternalLink Operation
@@ -543,10 +568,11 @@ interface RoomsApi {
 
     /**
      * PUT api/2.0/files/rooms/{id}/pin
-     * 
-     * 
+     * Pin a room
+     * Pins a room with the ID specified in the request to the top of the list.
      * Responses:
      *  - 200: Room information
+     *  - 401: Unauthorized
      *
      * REST API Reference for pinRoom Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/pin-room/
@@ -560,10 +586,11 @@ interface RoomsApi {
 
     /**
      * PUT api/2.0/files/rooms/{id}/reorder
-     * 
-     * 
+     * Reorder the room
+     * Reorders the room with ID specified in the request.
      * Responses:
      *  - 200: Room information
+     *  - 401: Unauthorized
      *
      * REST API Reference for reorderRoom Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/reorder-room/
@@ -577,10 +604,11 @@ interface RoomsApi {
 
     /**
      * POST api/2.0/files/rooms/{id}/resend
-     * 
-     * 
+     * Resend the room invitations
+     * Resends the email invitations to a room with the ID specified in the request to the selected users.
      * Responses:
      *  - 200: Ok
+     *  - 401: Unauthorized
      *
      * REST API Reference for resendEmailInvitations Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/resend-email-invitations/
@@ -595,10 +623,11 @@ interface RoomsApi {
 
     /**
      * PUT api/2.0/files/roomtemplate/public
-     * 
-     * 
+     * Set public settings
+     * Sets the public settings for the room template with the ID specified in the request.
      * Responses:
      *  - 200: Ok
+     *  - 401: Unauthorized
      *
      * REST API Reference for setPublicSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-public-settings/
@@ -612,10 +641,11 @@ interface RoomsApi {
 
     /**
      * PUT api/2.0/files/rooms/{id}/links
-     * 
-     * 
+     * Set the room external or invitation link
+     * Sets the room external or invitation link with the ID specified in the request.
      * Responses:
      *  - 200: Room security information
+     *  - 401: Unauthorized
      *
      * REST API Reference for setRoomLink Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-room-link/
@@ -630,10 +660,11 @@ interface RoomsApi {
 
     /**
      * PUT api/2.0/files/rooms/{id}/share
-     * 
-     * 
+     * Set the room access rights
+     * Sets the access rights to the room with the ID specified in the request.
      * Responses:
      *  - 200: Room security information
+     *  - 401: Unauthorized
      *
      * REST API Reference for setRoomSecurity Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-room-security/
@@ -648,10 +679,11 @@ interface RoomsApi {
 
     /**
      * POST api/2.0/files/rooms/{id}/indexexport
-     * 
-     * 
+     * Start the room index export
+     * Starts the index export of a room with the ID specified in the request.
      * Responses:
      *  - 200: Ok
+     *  - 401: Unauthorized
      *  - 501: Folder indexing is turned off
      *
      * REST API Reference for startRoomIndexExport Operation
@@ -666,10 +698,11 @@ interface RoomsApi {
 
     /**
      * DELETE api/2.0/files/rooms/indexexport
-     * 
-     * 
+     * Terminate the room index export
+     * Terminates the room index export.
      * Responses:
      *  - 200: Ok
+     *  - 401: Unauthorized
      *
      * REST API Reference for terminateRoomIndexExport Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/terminate-room-index-export/
@@ -682,10 +715,11 @@ interface RoomsApi {
 
     /**
      * PUT api/2.0/files/rooms/{id}/unarchive
-     * 
-     * 
+     * Unarchive a room
+     * Moves a room with the ID specified in the request from the Archive section to the Rooms section.
      * Responses:
      *  - 200: File operation
+     *  - 401: Unauthorized
      *
      * REST API Reference for unarchiveRoom Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/unarchive-room/
@@ -700,10 +734,11 @@ interface RoomsApi {
 
     /**
      * PUT api/2.0/files/rooms/{id}/unpin
-     * 
-     * 
+     * Unpin a room
+     * Unpins a room with the ID specified in the request from the top of the list.
      * Responses:
      *  - 200: Room information
+     *  - 401: Unauthorized
      *
      * REST API Reference for unpinRoom Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/unpin-room/
@@ -717,10 +752,11 @@ interface RoomsApi {
 
     /**
      * PUT api/2.0/files/rooms/{id}
-     * 
-     * 
+     * Update a room
+     * Updates a room with the ID specified in the request.
      * Responses:
      *  - 200: Updated room information
+     *  - 401: Unauthorized
      *
      * REST API Reference for updateRoom Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-room/
@@ -735,10 +771,11 @@ interface RoomsApi {
 
     /**
      * POST api/2.0/files/logos
-     * 
-     * 
+     * Upload a room logo image
+     * Uploads a temporary image to create a room logo.
      * Responses:
      *  - 200: Upload result
+     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
      *
      * REST API Reference for uploadRoomLogo Operation

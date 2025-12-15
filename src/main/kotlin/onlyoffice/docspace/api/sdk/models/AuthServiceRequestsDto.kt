@@ -29,6 +29,7 @@ import com.squareup.moshi.JsonClass
  * @param description The brief description of the authorization service.
  * @param instruction The detailed instructions for configuring or using the authorization service.
  * @param canSet Specifies whether the authorization service can be configured by the user.
+ * @param paid Specifies whether the authorization service is paid or not.
  * @param props The collection of authorization keys associated with the authorization service.
  */
 
@@ -54,6 +55,10 @@ data class AuthServiceRequestsDto (
     /* Specifies whether the authorization service can be configured by the user. */
     @Json(name = "canSet")
     val canSet: kotlin.Boolean? = null,
+
+    /* Specifies whether the authorization service is paid or not. */
+    @Json(name = "paid")
+    val paid: kotlin.Boolean? = null,
 
     /* The collection of authorization keys associated with the authorization service. */
     @Json(name = "props")

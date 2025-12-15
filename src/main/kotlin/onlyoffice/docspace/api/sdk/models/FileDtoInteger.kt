@@ -41,6 +41,8 @@ import com.squareup.moshi.JsonClass
  *
  * @param title The file entry title.
  * @param access 
+ * @param sharedBy 
+ * @param ownedBy 
  * @param shared Specifies if the file entry is shared via link or not.
  * @param sharedForUser Specifies if the file entry is shared for user or not.
  * @param parentShared Indicates whether the parent entity is shared.
@@ -114,6 +116,12 @@ data class FileDtoInteger (
 
     @Json(name = "access")
     val access: FileShare? = null,
+
+    @Json(name = "sharedBy")
+    val sharedBy: EmployeeDto? = null,
+
+    @Json(name = "ownedBy")
+    val ownedBy: EmployeeDto? = null,
 
     /* Specifies if the file entry is shared via link or not. */
     @Json(name = "shared")

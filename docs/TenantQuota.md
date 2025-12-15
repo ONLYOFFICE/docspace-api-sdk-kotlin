@@ -41,6 +41,7 @@
 | **year** | **kotlin.Boolean** | Specifies if the tenant quota is yearly subscription or not. |  [optional] |
 | **countFreeBackup** | **kotlin.Int** | The number of free backups within a month. |  [optional] |
 | **backup** | **kotlin.Boolean** | Specifies if the backup anabled as a wallet service or not. |  [optional] |
+| **countAIAgent** | **kotlin.Int** | The number of AI agents. |  [optional] |
 
 
 
