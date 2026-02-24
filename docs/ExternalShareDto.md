@@ -1,0 +1,22 @@
+
+# ExternalShareDto
+
+## Properties
+| Name | Type | Description | Notes |
+| ------------ | ------------- | ------------- | ------------- |
+| **status** | [**Status**](Status.md) |  |  |
+| **id** | **kotlin.String** | The external data ID. |  |
+| **title** | **kotlin.String** | The external data title. |  |
+| **tenantId** | **kotlin.Int** | The tenant ID. |  |
+| **shared** | **kotlin.Boolean** | Specifies whether to share the external data or not. |  |
+| **linkId** | [**java.util.UUID**](java.util.UUID.md) | The link ID of the external data. |  |
+| **isAuthenticated** | **kotlin.Boolean** | Specifies whether the user is authenticated or not. |  |
+| **type** | [**FileEntryType**](FileEntryType.md) |  |  [optional] |
+| **entityId** | **kotlin.String** | The unique identifier of the shared entity. |  [optional] |
+| **entityTitle** | **kotlin.String** | The title of the shared entity. |  [optional] |
+| **entityType** | [**FileEntryType**](FileEntryType.md) |  |  [optional] |
+| **isRoom** | **kotlin.Boolean** | Indicates whether the entity represents a room. |  [optional] |
+| **isRoomMember** | **kotlin.Boolean** | The room ID of the external data. |  [optional] |
+
+
+
