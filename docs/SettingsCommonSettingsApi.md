@@ -18,6 +18,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 | [**getSupportedCultures**](SettingsCommonSettingsApi.md#getSupportedCultures) | **GET** api/2.0/settings/cultures | Get supported languages |
 | [**getTenantUserInvitationSettings**](SettingsCommonSettingsApi.md#getTenantUserInvitationSettings) | **GET** api/2.0/settings/invitationsettings | Get the user invitation settings |
 | [**getTimeZones**](SettingsCommonSettingsApi.md#getTimeZones) | **GET** api/2.0/settings/timezones | Get time zones |
+| [**saveDefaultFolder**](SettingsCommonSettingsApi.md#saveDefaultFolder) | **PUT** api/2.0/settings/defaultfolder | Set the default folder |
 | [**saveDnsSettings**](SettingsCommonSettingsApi.md#saveDnsSettings) | **PUT** api/2.0/settings/dns | Save the DNS settings |
 | [**saveMailDomainSettings**](SettingsCommonSettingsApi.md#saveMailDomainSettings) | **POST** api/2.0/settings/maildomainsettings | Save the mail domain settings |
 | [**savePortalColorTheme**](SettingsCommonSettingsApi.md#savePortalColorTheme) | **PUT** api/2.0/settings/colortheme | Save a color theme |
@@ -200,7 +201,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(CommonSettingsApi::class.java)
-val id : kotlin.Int = 9846 // kotlin.Int | The ID of the portal theme to delete.
+val id : kotlin.Int = 1 // kotlin.Int | The ID of the portal theme to delete.
 
 val result : CustomColorThemesSettingsWrapper = webService.deletePortalColorTheme(id)
 ```
@@ -621,6 +622,53 @@ val result : TimezonesRequestsArrayWrapper = webService.getTimeZones()
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+<a id="saveDefaultFolder"></a>
+# **saveDefaultFolder**
+> StudioDefaultPageSettingsWrapper saveDefaultFolder (DefaultProductRequestDto defaultProductRequestDto)
+
+Sets the default folder.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/save-default-folder/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **defaultProductRequestDto** | [**DefaultProductRequestDto**](DefaultProductRequestDto.md)|  | [optional] |
+
+### Return type
+
+[**StudioDefaultPageSettingsWrapper**](StudioDefaultPageSettingsWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(CommonSettingsApi::class.java)
+val defaultProductRequestDto : DefaultProductRequestDto =  // DefaultProductRequestDto | 
+
+val result : StudioDefaultPageSettingsWrapper = webService.saveDefaultFolder(defaultProductRequestDto)
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 

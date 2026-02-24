@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 
 
-package onlyoffice.docspace.api.sdk.apis
+package onlyoffice.docspace.api.sdk.apis.People
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
@@ -34,9 +34,9 @@ interface GuestsApi {
      * Approves a guest sharing link and returns the detailed information about a guest.
      * Responses:
      *  - 200: Detailed profile information
-     *  - 401: Unauthorized
-     *  - 403: No permissions to perform this action
      *  - 404: User not found
+     *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for approveGuestShareLink Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/approve-guest-share-link/
@@ -54,8 +54,8 @@ interface GuestsApi {
      * Deletes guests from the list and excludes them from rooms to which they were invited.
      * Responses:
      *  - 200: Request parameters for deleting guests
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for deleteGuests Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-guests/

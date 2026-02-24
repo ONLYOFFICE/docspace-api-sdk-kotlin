@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,13 +29,13 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = false)
 enum class EditorType(val value: kotlin.Int) {
 
-    @Json(name = 0)
+    @Json(name = "0")
     Desktop(0),
 
-    @Json(name = 1)
+    @Json(name = "1")
     Mobile(1),
 
-    @Json(name = 2)
+    @Json(name = "2")
     Embedded(2);
 
     /**
@@ -58,7 +58,7 @@ enum class EditorType(val value: kotlin.Int) {
          */
         fun decode(data: kotlin.Any?): EditorType? = data?.let {
           val normalizedData = "$it".lowercase()
-          values().firstOrNull { value ->
+          entries.firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()
           }
         }

@@ -9,8 +9,8 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 | [**getExternalShareData**](FilesSharingApi.md#getExternalShareData) | **GET** api/2.0/files/share/{key} | Get the external data |
 | [**getFileSecurityInfo**](FilesSharingApi.md#getFileSecurityInfo) | **GET** api/2.0/files/file/{id}/share | Get the shared file information |
 | [**getFolderSecurityInfo**](FilesSharingApi.md#getFolderSecurityInfo) | **GET** api/2.0/files/folder/{id}/share | Get the shared folder information |
-| [**getGroupsMembersWithFileSecurity**](FilesSharingApi.md#getGroupsMembersWithFileSecurity) | **GET** api/2.0/files/file/{fileId}/group/{groupId}/share | Get group members with security information |
-| [**getGroupsMembersWithFolderSecurity**](FilesSharingApi.md#getGroupsMembersWithFolderSecurity) | **GET** api/2.0/files/folder/{folderId}/group/{groupId}/share | Get group members with security information |
+| [**getGroupsMembersWithFileSecurity**](FilesSharingApi.md#getGroupsMembersWithFileSecurity) | **GET** api/2.0/files/file/{fileId}/group/{groupId}/share | Get file group members with security information |
+| [**getGroupsMembersWithFolderSecurity**](FilesSharingApi.md#getGroupsMembersWithFolderSecurity) | **GET** api/2.0/files/folder/{folderId}/group/{groupId}/share | Get folder group members with security information |
 | [**getSecurityInfo**](FilesSharingApi.md#getSecurityInfo) | **POST** api/2.0/files/share | Get the sharing rights |
 | [**getSharedUsers**](FilesSharingApi.md#getSharedUsers) | **GET** api/2.0/files/file/{fileId}/sharedusers | Get user access rights by file ID |
 | [**removeSecurityInfo**](FilesSharingApi.md#removeSecurityInfo) | **DELETE** api/2.0/files/share | Remove the sharing rights |
@@ -144,8 +144,8 @@ No authorization required
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(SharingApi::class.java)
 val key : kotlin.String = some text // kotlin.String | The unique key of the external shared data.
-val fileId : kotlin.String = 9846 // kotlin.String | The unique document identifier.
-val folderId : kotlin.String = 9846 // kotlin.String | The unique folder identifier.
+val fileId : kotlin.String = 1 // kotlin.String | The unique document identifier.
+val folderId : kotlin.String = 1 // kotlin.String | The unique folder identifier.
 
 val result : ExternalShareWrapper = webService.getExternalShareData(key, fileId, folderId)
 ```
@@ -194,7 +194,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SharingApi::class.java)
-val id : kotlin.Int = 9846 // kotlin.Int | The file unique identifier.
+val id : kotlin.Int = 1 // kotlin.Int | The file unique identifier.
 val count : kotlin.Int = 1234 // kotlin.Int | The number of items to retrieve in the request.
 val startIndex : kotlin.Int = 1234 // kotlin.Int | The starting index for the query results.
 
@@ -245,7 +245,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SharingApi::class.java)
-val id : kotlin.Int = 9846 // kotlin.Int | The folder unique identifier.
+val id : kotlin.Int = 1 // kotlin.Int | The folder unique identifier.
 val count : kotlin.Int = 1234 // kotlin.Int | The number of items to retrieve in the request.
 val startIndex : kotlin.Int = 1234 // kotlin.Int | The starting index for the query results.
 
@@ -298,7 +298,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SharingApi::class.java)
-val fileId : kotlin.Int = 9846 // kotlin.Int | The file ID.
+val fileId : kotlin.Int = 1 // kotlin.Int | The file ID.
 val groupId : java.util.UUID = 75a5f745-f697-4418-b38d-0fe0d277e258 // java.util.UUID | The group ID.
 val count : kotlin.Int = 1234 // kotlin.Int | The number of items to be retrieved in the current query.
 val startIndex : kotlin.Int = 1234 // kotlin.Int | The starting index for the query result set.
@@ -353,7 +353,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SharingApi::class.java)
-val folderId : kotlin.Int = 9846 // kotlin.Int | The folder ID.
+val folderId : kotlin.Int = 1 // kotlin.Int | The folder ID.
 val groupId : java.util.UUID = 75a5f745-f697-4418-b38d-0fe0d277e258 // java.util.UUID | The group ID.
 val count : kotlin.Int = 1234 // kotlin.Int | The number of items to be retrieved in the current query.
 val startIndex : kotlin.Int = 1234 // kotlin.Int | The starting index for the query result set.
@@ -451,7 +451,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SharingApi::class.java)
-val fileId : kotlin.Int = 9846 // kotlin.Int | The file unique identifier.
+val fileId : kotlin.Int = 1 // kotlin.Int | The file unique identifier.
 
 val result : MentionWrapperArrayWrapper = webService.getSharedUsers(fileId)
 ```
@@ -546,7 +546,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SharingApi::class.java)
-val fileId : kotlin.Int = 9846 // kotlin.Int | The file ID with the mention message.
+val fileId : kotlin.Int = 1 // kotlin.Int | The file ID with the mention message.
 val mentionMessageWrapper : MentionMessageWrapper =  // MentionMessageWrapper | The mention message.
 
 val result : AceShortWrapperArrayWrapper = webService.sendEditorNotify(fileId, mentionMessageWrapper)
@@ -595,7 +595,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SharingApi::class.java)
-val fileId : kotlin.Int = 9846 // kotlin.Int | The file ID.
+val fileId : kotlin.Int = 1 // kotlin.Int | The file ID.
 val securityInfoSimpleRequestDto : SecurityInfoSimpleRequestDto =  // SecurityInfoSimpleRequestDto | The parameters of the security information simple request.
 
 val result : FileShareArrayWrapper = webService.setFileSecurityInfo(fileId, securityInfoSimpleRequestDto)
@@ -644,7 +644,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SharingApi::class.java)
-val folderId : kotlin.Int = 9846 // kotlin.Int | The folder ID.
+val folderId : kotlin.Int = 1 // kotlin.Int | The folder ID.
 val securityInfoSimpleRequestDto : SecurityInfoSimpleRequestDto =  // SecurityInfoSimpleRequestDto | The parameters of the security information simple request.
 
 val result : FileShareArrayWrapper = webService.setFolderSecurityInfo(folderId, securityInfoSimpleRequestDto)

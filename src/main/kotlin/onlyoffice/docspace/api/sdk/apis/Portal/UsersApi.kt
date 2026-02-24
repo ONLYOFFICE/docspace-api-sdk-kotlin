@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 
 
-package onlyoffice.docspace.api.sdk.apis
+package onlyoffice.docspace.api.sdk.apis.Portal
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
@@ -25,10 +25,50 @@ import com.squareup.moshi.Json
 
 import onlyoffice.docspace.api.sdk.models.EmployeeType
 import onlyoffice.docspace.api.sdk.models.Int64Wrapper
+import onlyoffice.docspace.api.sdk.models.InvitationLinkCreateRequestDto
+import onlyoffice.docspace.api.sdk.models.InvitationLinkDeleteRequestDto
+import onlyoffice.docspace.api.sdk.models.InvitationLinkUpdateRequestDto
+import onlyoffice.docspace.api.sdk.models.InvitationLinkWrapper
 import onlyoffice.docspace.api.sdk.models.StringWrapper
 import onlyoffice.docspace.api.sdk.models.UserInfoWrapper
 
 interface UsersApi {
+    /**
+     * POST api/2.0/portal/users/invitationlink
+     * Create an invitation link
+     * Returns an invitation link for joining the portal.
+     * Responses:
+     *  - 200: Invitation link
+     *  - 401: Unauthorized
+     *
+     * REST API Reference for createInvitationLink Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-invitation-link/
+     *
+     *
+     * @param invitationLinkCreateRequestDto  (optional)
+     * @return [Call]<[InvitationLinkWrapper]>
+     */
+    @POST("api/2.0/portal/users/invitationlink")
+    fun createInvitationLink(@Body invitationLinkCreateRequestDto: InvitationLinkCreateRequestDto? = null): Call<InvitationLinkWrapper>
+
+    /**
+     * DELETE api/2.0/portal/users/invitationlink
+     * Deletes an invitation link.
+     * Ensures that the current user has permission to delete the specified invitation link.  Throws security or not-found exceptions if required conditions are not met.
+     * Responses:
+     *  - 200: Invitation link
+     *  - 401: Unauthorized
+     *
+     * REST API Reference for deleteInvitationLink Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-invitation-link/
+     *
+     *
+     * @param invitationLinkDeleteRequestDto The data transfer object containing the details of the invitation link to be deleted. (optional)
+     * @return [Call]<[StringWrapper]>
+     */
+    @DELETE("api/2.0/portal/users/invitationlink")
+    fun deleteInvitationLink(@Body invitationLinkDeleteRequestDto: InvitationLinkDeleteRequestDto? = null): Call<StringWrapper>
+
     /**
      * GET api/2.0/portal/users/invite/{employeeType}
      * Get an invitation link
@@ -41,11 +81,30 @@ interface UsersApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-invitation-link/
      *
      *
-     * @param employeeType The type of employee role for the invitation link (All, RoomAdmin, Guest, DocSpaceAdmin, User).
+     * @param employeeType The type of employee role for the invitation link (DocSpaceAdmin, RoomAdmin or User).
      * @return [Call]<[StringWrapper]>
      */
+    @Deprecated("This api was deprecated")
     @GET("api/2.0/portal/users/invite/{employeeType}")
     fun getInvitationLink(@Path("employeeType") employeeType: EmployeeType): Call<StringWrapper>
+
+    /**
+     * GET api/2.0/portal/users/invitationlink/{employeeType}
+     * Get an invitation link
+     * Returns an invitation link for joining the portal.
+     * Responses:
+     *  - 200: Invitation link
+     *  - 401: Unauthorized
+     *
+     * REST API Reference for getInvitationLinkByEmployeeType Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-invitation-link-by-employee-type/
+     *
+     *
+     * @param employeeType The type of employee role for the invitation link (DocSpaceAdmin, RoomAdmin or User).
+     * @return [Call]<[InvitationLinkWrapper]>
+     */
+    @GET("api/2.0/portal/users/invitationlink/{employeeType}")
+    fun getInvitationLinkByEmployeeType(@Path("employeeType") employeeType: EmployeeType): Call<InvitationLinkWrapper>
 
     /**
      * GET api/2.0/portal/userscount
@@ -117,5 +176,23 @@ interface UsersApi {
      */
     @POST("api/2.0/portal/sendcongratulations")
     fun sendCongratulations(@Query("Userid") userid: java.util.UUID, @Query("Key") key: kotlin.String): Call<Unit>
+
+    /**
+     * PUT api/2.0/portal/users/invitationlink
+     * Update an invitation link
+     * Returns an invitation link for joining the portal.
+     * Responses:
+     *  - 200: Invitation link
+     *  - 401: Unauthorized
+     *
+     * REST API Reference for updateInvitationLink Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-invitation-link/
+     *
+     *
+     * @param invitationLinkUpdateRequestDto  (optional)
+     * @return [Call]<[InvitationLinkWrapper]>
+     */
+    @PUT("api/2.0/portal/users/invitationlink")
+    fun updateInvitationLink(@Body invitationLinkUpdateRequestDto: InvitationLinkUpdateRequestDto? = null): Call<InvitationLinkWrapper>
 
 }

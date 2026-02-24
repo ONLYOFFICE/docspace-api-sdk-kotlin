@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,28 +29,28 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = false)
 enum class EntryType(val value: kotlin.Int) {
 
-    @Json(name = 0)
+    @Json(name = "0")
     None(0),
 
-    @Json(name = 1)
+    @Json(name = "1")
     File(1),
 
-    @Json(name = 2)
+    @Json(name = "2")
     Folder(2),
 
-    @Json(name = 23)
+    @Json(name = "23")
     User(23),
 
-    @Json(name = 24)
+    @Json(name = "24")
     Group(24),
 
-    @Json(name = 25)
+    @Json(name = "25")
     Room(25),
 
-    @Json(name = 26)
+    @Json(name = "26")
     Tag(26),
 
-    @Json(name = 27)
+    @Json(name = "27")
     Agent(27);
 
     /**
@@ -73,7 +73,7 @@ enum class EntryType(val value: kotlin.Int) {
          */
         fun decode(data: kotlin.Any?): EntryType? = data?.let {
           val normalizedData = "$it".lowercase()
-          values().firstOrNull { value ->
+          entries.firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()
           }
         }

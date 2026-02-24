@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.DuplicateRequestDtoAllOfFileIds
+import onlyoffice.docspace.api.sdk.models.ContinueChatBodyFilesInner
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -32,7 +32,7 @@ data class UpdateRoomsRoomIdsRequestDtoInteger (
 
     /* The list of room IDs. */
     @Json(name = "roomIds")
-    val roomIds: kotlin.collections.List<DuplicateRequestDtoAllOfFileIds>? = null
+    val roomIds: kotlin.collections.List<ContinueChatBodyFilesInner>? = null
 
 ) {
 

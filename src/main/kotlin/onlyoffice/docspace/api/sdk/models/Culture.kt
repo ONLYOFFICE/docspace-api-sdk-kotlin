@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,17 +21,17 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The culture code parameters.
+ * The culture name parameters.
  *
- * @param cultureName The user language.
+ * @param cultureName The user culture name (en-US, de, fr, es, ...).
  */
 
 
 data class Culture (
 
-    /* The user language. */
+    /* The user culture name (en-US, de, fr, es, ...). */
     @Json(name = "cultureName")
-    val cultureName: kotlin.String? = null
+    val cultureName: kotlin.String
 
 ) {
 

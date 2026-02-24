@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 
 
-package onlyoffice.docspace.api.sdk.apis
+package onlyoffice.docspace.api.sdk.apis.People
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
@@ -23,9 +23,9 @@ import retrofit2.Call
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
+import onlyoffice.docspace.api.sdk.models.ChangePasswordRequest
 import onlyoffice.docspace.api.sdk.models.EmailMemberRequestDto
 import onlyoffice.docspace.api.sdk.models.EmployeeFullWrapper
-import onlyoffice.docspace.api.sdk.models.MemberBaseRequestDto
 import onlyoffice.docspace.api.sdk.models.StringWrapper
 
 interface PasswordApi {
@@ -35,21 +35,21 @@ interface PasswordApi {
      * Sets a new password to the user with the ID specified in the request.
      * Responses:
      *  - 200: Detailed user information
-     *  - 400: Incorrect email
+     *  - 400: Incorrect userId or password
+     *  - 403: The link is invalid or no permissions to perform this action
+     *  - 404: The user could not be found
      *  - 401: Unauthorized
-     *  - 403: The invitation link is invalid or its validity has expired
-     *  - 404: User not found
      *
      * REST API Reference for changeUserPassword Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/change-user-password/
      *
      *
      * @param userid The user ID.
-     * @param memberBaseRequestDto The request parameters for the user generic information.
+     * @param changePasswordRequest The request parameters for updating a user password.
      * @return [Call]<[EmployeeFullWrapper]>
      */
     @PUT("api/2.0/people/{userid}/password")
-    fun changeUserPassword(@Path("userid") userid: java.util.UUID, @Body memberBaseRequestDto: MemberBaseRequestDto): Call<EmployeeFullWrapper>
+    fun changeUserPassword(@Path("userid") userid: java.util.UUID, @Body changePasswordRequest: ChangePasswordRequest): Call<EmployeeFullWrapper>
 
     /**
      * POST api/2.0/people/password

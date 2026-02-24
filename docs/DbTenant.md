@@ -9,7 +9,7 @@
 | **alias** | **kotlin.String** | The tenant alias. |  [optional] |
 | **mappedDomain** | **kotlin.String** | Mapped domain |  [optional] |
 | **version** | **kotlin.Int** | The tenant version. |  [optional] |
-| **versionChanged** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) | The Version_changed field. |  [optional] |
+| **versionChangedField** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) | The Version_changed field. |  [optional] |
 | **versionChanged** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) | The date and time when the version was changed. |  [optional] |
 | **language** | **kotlin.String** | The tenant language. |  [optional] |
 | **timeZone** | **kotlin.String** | The tenant time zone. |  [optional] |

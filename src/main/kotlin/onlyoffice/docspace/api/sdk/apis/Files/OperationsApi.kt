@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 
 
-package onlyoffice.docspace.api.sdk.apis
+package onlyoffice.docspace.api.sdk.apis.Files
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
@@ -28,6 +28,8 @@ import onlyoffice.docspace.api.sdk.models.BatchRequestDto
 import onlyoffice.docspace.api.sdk.models.BooleanWrapper
 import onlyoffice.docspace.api.sdk.models.CheckConversionRequestDtoInteger
 import onlyoffice.docspace.api.sdk.models.CheckDestFolderWrapper
+import onlyoffice.docspace.api.sdk.models.ChunkedUploadSessionResponseIntegerWrapper
+import onlyoffice.docspace.api.sdk.models.ChunkedUploadSessionResponseWrapperIntegerWrapper
 import onlyoffice.docspace.api.sdk.models.ConversationResultArrayWrapper
 import onlyoffice.docspace.api.sdk.models.DeleteBatchRequestDto
 import onlyoffice.docspace.api.sdk.models.DeleteVersionBatchRequestDto
@@ -37,22 +39,43 @@ import onlyoffice.docspace.api.sdk.models.FileEntryBaseArrayWrapper
 import onlyoffice.docspace.api.sdk.models.FileOperationArrayWrapper
 import onlyoffice.docspace.api.sdk.models.FileOperationType
 import onlyoffice.docspace.api.sdk.models.FileOperationWrapper
-import onlyoffice.docspace.api.sdk.models.ObjectWrapper
 import onlyoffice.docspace.api.sdk.models.SessionRequest
 import onlyoffice.docspace.api.sdk.models.StringWrapper
 import onlyoffice.docspace.api.sdk.models.UpdateComment
+import onlyoffice.docspace.api.sdk.models.UploadSessionResponseIntegerWrapper
 
 import onlyoffice.docspace.api.sdk.models.*
 
+import okhttp3.MultipartBody
+
 interface OperationsApi {
+    /**
+     * DELETE api/2.0/files/{folderId}/session/{sessionId}
+     * Aborts an in-progress file upload session.
+     * This method allows users to cancel an ongoing upload session identified by the session ID.  Once the session is aborted, the associated resources will be cleaned up, and the session will no longer accept further uploads.
+     * Responses:
+     *  - 200: OK
+     *  - 401: Unauthorized
+     *
+     * REST API Reference for abortUploadSession Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/abort-upload-session/
+     *
+     *
+     * @param sessionId 
+     * @param folderId 
+     * @return [Call]<[Unit]>
+     */
+    @DELETE("api/2.0/files/{folderId}/session/{sessionId}")
+    fun abortUploadSession(@Path("sessionId") sessionId: kotlin.String, @Path("folderId") folderId: kotlin.Int): Call<Unit>
+
     /**
      * POST api/2.0/files/favorites
      * Add favorite files and folders
      * Adds files and folders with the IDs specified in the request to the favorite list.
      * Responses:
      *  - 200: Boolean value: true if the operation is successful
-     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to perform the operation
+     *  - 401: Unauthorized
      *
      * REST API Reference for addFavorites Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/add-favorites/
@@ -107,8 +130,8 @@ interface OperationsApi {
      * Checks if files or folders can be moved or copied to the specified folder, moves or copies them, and returns their information.
      * Responses:
      *  - 200: List of file entry information
-     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to create
+     *  - 401: Unauthorized
      *
      * REST API Reference for checkMoveOrCopyBatchItems Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/check-move-or-copy-batch-items/
@@ -126,8 +149,8 @@ interface OperationsApi {
      * Checks if files can be moved or copied to the specified folder.
      * Responses:
      *  - 200: Result
-     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to create
+     *  - 401: Unauthorized
      *
      * REST API Reference for checkMoveOrCopyDestFolder Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/check-move-or-copy-dest-folder/
@@ -145,8 +168,8 @@ interface OperationsApi {
      * Copies all the selected files and folders to the folder with the ID specified in the request.
      * Responses:
      *  - 200: List of file operations
-     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to copy
+     *  - 401: Unauthorized
      *
      * REST API Reference for copyBatchItems Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/copy-batch-items/
@@ -161,11 +184,11 @@ interface OperationsApi {
     /**
      * POST api/2.0/files/{folderId}/upload/create_session
      * Chunked upload
-     * Creates the session to upload large files in multiple chunks to the folder with the ID specified in the request.   **Note**: Each chunk can have different length but the length should be multiple of &lt;b&gt;512&lt;/b&gt; and greater or equal to &lt;b&gt;10 mb&lt;/b&gt;. Last chunk can have any size.  After the initial response to the request with the &lt;b&gt;200 OK&lt;/b&gt; status, you must get the &lt;em&gt;location&lt;/em&gt; field value from the response. Send all your chunks to this location.  Each chunk must be sent in the exact order the chunks appear in the file.  After receiving each chunk, the server will respond with the current information about the upload session if no errors occurred.  When the number of bytes uploaded is equal to the number of bytes you sent in the initial request, the server responds with the &lt;b&gt;201 Created&lt;/b&gt; status and sends you information about the uploaded file.  Information about created session which includes:  &lt;ul&gt;  &lt;li&gt;&lt;b&gt;id:&lt;/b&gt; unique ID of this upload session,&lt;/li&gt;  &lt;li&gt;&lt;b&gt;created:&lt;/b&gt; UTC time when the session was created,&lt;/li&gt;  &lt;li&gt;&lt;b&gt;expired:&lt;/b&gt; UTC time when the session will expire if no chunks are sent before that time,&lt;/li&gt;  &lt;li&gt;&lt;b&gt;location:&lt;/b&gt; URL where you should send your next chunk,&lt;/li&gt;  &lt;li&gt;&lt;b&gt;bytes_uploaded:&lt;/b&gt; number of bytes uploaded for the specific upload ID,&lt;/li&gt;  &lt;li&gt;&lt;b&gt;bytes_total:&lt;/b&gt; total number of bytes which will be uploaded.&lt;/li&gt;  &lt;/ul&gt;
+     * Creates the session to upload large files in multiple chunks to the folder with the ID specified in the request.
      * Responses:
      *  - 200: Information about created session
-     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to create
+     *  - 401: Unauthorized
      *
      * REST API Reference for createUploadSession Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-upload-session/
@@ -173,10 +196,30 @@ interface OperationsApi {
      *
      * @param folderId The session folder ID.
      * @param sessionRequest The session parameters.
-     * @return [Call]<[ObjectWrapper]>
+     * @return [Call]<[ChunkedUploadSessionResponseWrapperIntegerWrapper]>
      */
+    @Deprecated("This api was deprecated")
     @POST("api/2.0/files/{folderId}/upload/create_session")
-    fun createUploadSession(@Path("folderId") folderId: kotlin.Int, @Body sessionRequest: SessionRequest): Call<ObjectWrapper>
+    fun createUploadSession(@Path("folderId") folderId: kotlin.Int, @Body sessionRequest: SessionRequest): Call<ChunkedUploadSessionResponseWrapperIntegerWrapper>
+
+    /**
+     * POST api/2.0/files/{folderId}/session
+     * Creates a session for uploading a file to a specific folder in chunks.
+     * The session allows the user to upload a file in smaller chunks to the folder identified by its ID.  The file information, such as name, size, and additional metadata, must be provided in the request.  This method facilitates large file upload scenarios by enabling chunked file uploads.
+     * Responses:
+     *  - 200: OK
+     *  - 401: Unauthorized
+     *
+     * REST API Reference for createUploadSessionInFolder Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-upload-session-in-folder/
+     *
+     *
+     * @param folderId The session folder ID.
+     * @param sessionRequest The session parameters.
+     * @return [Call]<[ChunkedUploadSessionResponseIntegerWrapper]>
+     */
+    @POST("api/2.0/files/{folderId}/session")
+    fun createUploadSessionInFolder(@Path("folderId") folderId: kotlin.Int, @Body sessionRequest: SessionRequest): Call<ChunkedUploadSessionResponseIntegerWrapper>
 
     /**
      * PUT api/2.0/files/fileops/delete
@@ -184,8 +227,8 @@ interface OperationsApi {
      * Deletes the files and folders with the IDs specified in the request.
      * Responses:
      *  - 200: List of file operations
-     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to delete
+     *  - 401: Unauthorized
      *
      * REST API Reference for deleteBatchItems Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-batch-items/
@@ -239,8 +282,8 @@ interface OperationsApi {
      * Duplicates all the selected files and folders.
      * Responses:
      *  - 200: List of file operations
-     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to duplicate
+     *  - 401: Unauthorized
      *
      * REST API Reference for duplicateBatchItems Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/duplicate-batch-items/
@@ -269,6 +312,25 @@ interface OperationsApi {
      */
     @PUT("api/2.0/files/fileops/emptytrash")
     fun emptyTrash(@Query("Single") single: kotlin.Boolean? = null): Call<FileOperationArrayWrapper>
+
+    /**
+     * PUT api/2.0/files/{folderId}/session/{sessionId}/finalize
+     * Finalize an upload session
+     * Finalizes the upload session by processing the uploaded file chunks and marking the upload as complete.  This method consolidates chunked uploads into a complete file if required, sends notifications about the upload event,  and performs any additional cleanup or related actions, such as socket updates and webhook publishing.
+     * Responses:
+     *  - 200: OK
+     *  - 401: Unauthorized
+     *
+     * REST API Reference for finalizeSession Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/finalize-session/
+     *
+     *
+     * @param folderId 
+     * @param sessionId 
+     * @return [Call]<[UploadSessionResponseIntegerWrapper]>
+     */
+    @PUT("api/2.0/files/{folderId}/session/{sessionId}/finalize")
+    fun finalizeSession(@Path("folderId") folderId: kotlin.Int, @Path("sessionId") sessionId: kotlin.String): Call<UploadSessionResponseIntegerWrapper>
 
     /**
      * GET api/2.0/files/fileops
@@ -329,8 +391,8 @@ interface OperationsApi {
      * Moves or copies all the selected files and folders to the folder with the ID specified in the request.
      * Responses:
      *  - 200: List of file operations
-     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to move
+     *  - 401: Unauthorized
      *
      * REST API Reference for moveBatchItems Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/move-batch-items/
@@ -396,5 +458,48 @@ interface OperationsApi {
      */
     @PUT("api/2.0/files/file/{fileId}/comment")
     fun updateFileComment(@Path("fileId") fileId: kotlin.Int, @Body updateComment: UpdateComment): Call<StringWrapper>
+
+    /**
+     * POST api/2.0/files/{folderId}/session/{sessionId}/upload
+     * Handles the upload of a chunk for an existing upload session.
+     * This method allows the caller to upload a specific chunk of a file to an ongoing upload session.  The session is identified by the session ID provided in the request. The chunk can be of any size  within the limits allowed during the session initialization. Each chunk must be uploaded in the  correct order for the server to process it appropriately.  The server updates the upload session status and stores the progress information after processing  each chunk. The updated session details are returned in the response.
+     * Responses:
+     *  - 200: OK
+     *  - 401: Unauthorized
+     *
+     * REST API Reference for uploadAsyncSession Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-async-session/
+     *
+     *
+     * @param folderId 
+     * @param sessionId 
+     * @param chunkNumber  (optional)
+     * @param file  (optional)
+     * @return [Call]<[ChunkedUploadSessionResponseIntegerWrapper]>
+     */
+    @Multipart
+    @POST("api/2.0/files/{folderId}/session/{sessionId}/upload")
+    fun uploadAsyncSession(@Path("folderId") folderId: kotlin.Int, @Path("sessionId") sessionId: kotlin.String, @Query("ChunkNumber") chunkNumber: kotlin.Int? = null, @Part file: MultipartBody.Part? = null): Call<ChunkedUploadSessionResponseIntegerWrapper>
+
+    /**
+     * POST api/2.0/files/{folderId}/session/{sessionId}
+     * Resumes an ongoing file upload session for uploading additional chunks of data.
+     * This method allows continuing an interrupted or partially completed file upload session by uploading subsequent data chunks.  The server will validate each uploaded chunk, update the session state, and respond with the status of the current upload. Once  the total bytes uploaded match the total file size, the file upload process is finalized and related events are triggered.  If the file is newly uploaded, the server responds with a 201 Created status upon completion. If it overwrites an existing file,  versioning information is updated accordingly. The method also triggers associated webhooks and socket notifications to reflect  the updated file state.
+     * Responses:
+     *  - 200: OK
+     *  - 401: Unauthorized
+     *
+     * REST API Reference for uploadSession Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-session/
+     *
+     *
+     * @param folderId 
+     * @param sessionId 
+     * @param file  (optional)
+     * @return [Call]<[UploadSessionResponseIntegerWrapper]>
+     */
+    @Multipart
+    @POST("api/2.0/files/{folderId}/session/{sessionId}")
+    fun uploadSession(@Path("folderId") folderId: kotlin.Int, @Path("sessionId") sessionId: kotlin.String, @Part file: MultipartBody.Part? = null): Call<UploadSessionResponseIntegerWrapper>
 
 }

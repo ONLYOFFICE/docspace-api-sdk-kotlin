@@ -11,7 +11,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 
 <a id="changeUserPassword"></a>
 # **changeUserPassword**
-> EmployeeFullWrapper changeUserPassword (java.util.UUID userid, MemberBaseRequestDto memberBaseRequestDto)
+> EmployeeFullWrapper changeUserPassword (java.util.UUID userid, ChangePasswordRequest changePasswordRequest)
 
 Sets a new password to the user with the ID specified in the request.
 
@@ -21,7 +21,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **userid** | **java.util.UUID**| The user ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **memberBaseRequestDto** | [**MemberBaseRequestDto**](MemberBaseRequestDto.md)| The request parameters for the user generic information. | |
+| **changePasswordRequest** | [**ChangePasswordRequest**](ChangePasswordRequest.md)| The request parameters for updating a user password. | |
 
 ### Return type
 
@@ -46,10 +46,10 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PasswordApi::class.java)
-val userid : java.util.UUID = aae1e103-bca5-9fa1-ba8c-42058b4abf28 // java.util.UUID | The user ID.
-val memberBaseRequestDto : MemberBaseRequestDto =  // MemberBaseRequestDto | The request parameters for the user generic information.
+val userid : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The user ID.
+val changePasswordRequest : ChangePasswordRequest =  // ChangePasswordRequest | The request parameters for updating a user password.
 
-val result : EmployeeFullWrapper = webService.changeUserPassword(userid, memberBaseRequestDto)
+val result : EmployeeFullWrapper = webService.changeUserPassword(userid, changePasswordRequest)
 ```
 
 ### HTTP request headers

@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 
 
-package onlyoffice.docspace.api.sdk.apis
+package onlyoffice.docspace.api.sdk.apis.Settings
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
@@ -38,8 +38,8 @@ interface TFASettingsApi {
      * Returns the two-factor authentication application codes.
      * Responses:
      *  - 200: List of TFA application codes
-     *  - 401: Unauthorized
      *  - 405: TFA application settings are not available
+     *  - 401: Unauthorized
      *
      * REST API Reference for getTfaAppCodes Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tfa-app-codes/
@@ -90,8 +90,8 @@ interface TFASettingsApi {
      * Generates the setup TFA code for the current user.
      * Responses:
      *  - 200: Setup code
-     *  - 401: Unauthorized
      *  - 405: TFA application settings are not available
+     *  - 401: Unauthorized
      *
      * REST API Reference for tfaAppGenerateSetupCode Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/tfa-app-generate-setup-code/
@@ -126,9 +126,9 @@ interface TFASettingsApi {
      * Unlinks the current two-factor authentication application from the user account specified in the request.
      * Responses:
      *  - 200: Login URL
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
      *  - 405: TFA application settings are not available
+     *  - 401: Unauthorized
      *
      * REST API Reference for unlinkTfaApp Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/unlink-tfa-app/
@@ -146,8 +146,8 @@ interface TFASettingsApi {
      * Requests the new backup codes for the two-factor authentication application.
      * Responses:
      *  - 200: New backup codes
-     *  - 401: Unauthorized
      *  - 405: TFA application settings are not available
+     *  - 401: Unauthorized
      *
      * REST API Reference for updateTfaAppCodes Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-tfa-app-codes/
@@ -164,8 +164,8 @@ interface TFASettingsApi {
      * Updates the two-factor authentication settings with the parameters specified in the request.
      * Responses:
      *  - 200: True if the operation is successful
-     *  - 401: Unauthorized
      *  - 405: SMS settings are not available/TFA application settings are not available
+     *  - 401: Unauthorized
      *
      * REST API Reference for updateTfaSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-tfa-settings/
@@ -183,9 +183,9 @@ interface TFASettingsApi {
      * Returns the confirmation email URL for updating TFA settings.
      * Responses:
      *  - 200: Confirmation email URL
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
      *  - 405: SMS settings are not available/TFA application settings are not available
+     *  - 401: Unauthorized
      *
      * REST API Reference for updateTfaSettingsLink Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-tfa-settings-link/

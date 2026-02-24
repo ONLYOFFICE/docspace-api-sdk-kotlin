@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,43 +29,43 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = false)
 enum class SortedByType(val value: kotlin.Int) {
 
-    @Json(name = 0)
+    @Json(name = "0")
     DateAndTime(0),
 
-    @Json(name = 1)
+    @Json(name = "1")
     AZ(1),
 
-    @Json(name = 2)
+    @Json(name = "2")
     Size(2),
 
-    @Json(name = 3)
+    @Json(name = "3")
     Author(3),
 
-    @Json(name = 4)
+    @Json(name = "4")
     Type(4),
 
-    @Json(name = 5)
+    @Json(name = "5")
     New(5),
 
-    @Json(name = 6)
+    @Json(name = "6")
     DateAndTimeCreation(6),
 
-    @Json(name = 7)
+    @Json(name = "7")
     RoomType(7),
 
-    @Json(name = 8)
+    @Json(name = "8")
     Tags(8),
 
-    @Json(name = 9)
+    @Json(name = "9")
     Room(9),
 
-    @Json(name = 10)
+    @Json(name = "10")
     CustomOrder(10),
 
-    @Json(name = 11)
+    @Json(name = "11")
     LastOpened(11),
 
-    @Json(name = 12)
+    @Json(name = "12")
     UsedSpace(12);
 
     /**
@@ -88,7 +88,7 @@ enum class SortedByType(val value: kotlin.Int) {
          */
         fun decode(data: kotlin.Any?): SortedByType? = data?.let {
           val normalizedData = "$it".lowercase()
-          values().firstOrNull { value ->
+          entries.firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()
           }
         }

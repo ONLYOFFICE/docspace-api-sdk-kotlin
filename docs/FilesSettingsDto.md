@@ -61,6 +61,7 @@
 | **maxUploadThreadCount** | **kotlin.Int** | The maximum number of upload threads. |  [optional] |
 | **chunkUploadSize** | **kotlin.Long** | The size of a large file that is uploaded in chunks. |  [optional] |
 | **openEditorInSameTab** | **kotlin.Boolean** | Specifies whether to open the editor in the same tab or not. |  [optional] |
+| **organizeRoomsGrouping** | **kotlin.Boolean** | Specifies whether the grouping of rooms is enabled or not. |  [optional] |
 | **extsFilesVectorized** | **kotlin.collections.List&lt;kotlin.String&gt;** | List of extensions available for vectorization |  [optional] |
 | **maxVectorizationFileSize** | **kotlin.Long** | The maximum file size for vectorization |  [optional] |
 

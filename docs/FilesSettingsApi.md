@@ -16,6 +16,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 | [**externalShareSocialMedia**](FilesSettingsApi.md#externalShareSocialMedia) | **PUT** api/2.0/files/settings/externalsocialmedia | Change the external sharing ability on social networks |
 | [**forcesave**](FilesSettingsApi.md#forcesave) | **PUT** api/2.0/files/forcesave | Change the forcesaving ability |
 | [**getAutomaticallyCleanUp**](FilesSettingsApi.md#getAutomaticallyCleanUp) | **GET** api/2.0/files/settings/autocleanup | Get the trash bin auto-clearing setting |
+| [**getDefaultTemplates**](FilesSettingsApi.md#getDefaultTemplates) | **GET** api/2.0/files/settings/defaulttemplate | Get the default template setting |
 | [**getDocServiceUrl**](FilesSettingsApi.md#getDocServiceUrl) | **GET** api/2.0/files/docservice | Get the document service URL |
 | [**getFilesModule**](FilesSettingsApi.md#getFilesModule) | **GET** api/2.0/files/info | Get the Documents information |
 | [**getFilesSettings**](FilesSettingsApi.md#getFilesSettings) | **GET** api/2.0/files/settings | Get file settings |
@@ -24,10 +25,13 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 | [**hideConfirmRoomLifetime**](FilesSettingsApi.md#hideConfirmRoomLifetime) | **PUT** api/2.0/files/hideconfirmroomlifetime | Hide confirmation dialog when changing room lifetime settings |
 | [**isAvailablePrivacyRoomSettings**](FilesSettingsApi.md#isAvailablePrivacyRoomSettings) | **GET** api/2.0/files/@privacy/available | Check the Private Room availability |
 | [**keepNewFileName**](FilesSettingsApi.md#keepNewFileName) | **PUT** api/2.0/files/keepnewfilename | Ask a new file name |
+| [**setDefaultTemplate**](FilesSettingsApi.md#setDefaultTemplate) | **PUT** api/2.0/files/settings/defaulttemplate | Change the default template setting |
 | [**setOpenEditorInSameTab**](FilesSettingsApi.md#setOpenEditorInSameTab) | **PUT** api/2.0/files/settings/openeditorinsametab | Open document in the same browser tab |
+| [**setOrganizeRoomsGrouping**](FilesSettingsApi.md#setOrganizeRoomsGrouping) | **PUT** api/2.0/files/settings/organizegrouping | Organize rooms grouping |
 | [**storeForcesave**](FilesSettingsApi.md#storeForcesave) | **PUT** api/2.0/files/storeforcesave | Change the ability to store the forcesaved files |
 | [**storeOriginal**](FilesSettingsApi.md#storeOriginal) | **PUT** api/2.0/files/storeoriginal | Change the ability to upload original formats |
 | [**updateFileIfExist**](FilesSettingsApi.md#updateFileIfExist) | **PUT** api/2.0/files/updateifexist | Update a file version if it exists |
+| [**uploadDefaultTemplate**](FilesSettingsApi.md#uploadDefaultTemplate) | **POST** api/2.0/files/settings/defaulttemplate | Upload a file as the default template setting |
 
 
 
@@ -589,6 +593,50 @@ val result : AutoCleanUpDataWrapper = webService.getAutomaticallyCleanUp()
  - **Accept**: application/json
 
 
+<a id="getDefaultTemplates"></a>
+# **getDefaultTemplates**
+> DefaultTemplateSettingsWrapper getDefaultTemplates ()
+
+Returns the default template setting.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-default-templates/).
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**DefaultTemplateSettingsWrapper**](DefaultTemplateSettingsWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(SettingsApi::class.java)
+
+val result : DefaultTemplateSettingsWrapper = webService.getDefaultTemplates()
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
 <a id="getDocServiceUrl"></a>
 # **getDocServiceUrl**
 > DocServiceUrlWrapper getDocServiceUrl (kotlin.Boolean version)
@@ -944,6 +992,53 @@ val result : BooleanWrapper = webService.keepNewFileName(settingsRequestDto)
  - **Accept**: application/json
 
 
+<a id="setDefaultTemplate"></a>
+# **setDefaultTemplate**
+> DefaultTemplateSettingsWrapper setDefaultTemplate (DefaultTemplateSettingsRequestDto defaultTemplateSettingsRequestDto)
+
+Changes the default template setting.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/set-default-template/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **defaultTemplateSettingsRequestDto** | [**DefaultTemplateSettingsRequestDto**](DefaultTemplateSettingsRequestDto.md)|  | [optional] |
+
+### Return type
+
+[**DefaultTemplateSettingsWrapper**](DefaultTemplateSettingsWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(SettingsApi::class.java)
+val defaultTemplateSettingsRequestDto : DefaultTemplateSettingsRequestDto =  // DefaultTemplateSettingsRequestDto | 
+
+val result : DefaultTemplateSettingsWrapper = webService.setDefaultTemplate(defaultTemplateSettingsRequestDto)
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
 <a id="setOpenEditorInSameTab"></a>
 # **setOpenEditorInSameTab**
 > BooleanWrapper setOpenEditorInSameTab (SettingsRequestDto settingsRequestDto)
@@ -983,6 +1078,53 @@ val webService = apiClient.createWebservice(SettingsApi::class.java)
 val settingsRequestDto : SettingsRequestDto =  // SettingsRequestDto | 
 
 val result : BooleanWrapper = webService.setOpenEditorInSameTab(settingsRequestDto)
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+<a id="setOrganizeRoomsGrouping"></a>
+# **setOrganizeRoomsGrouping**
+> BooleanWrapper setOrganizeRoomsGrouping (SettingsRequestDto settingsRequestDto)
+
+Changes the setting that allows the user to organize the grouping of rooms.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/set-organize-rooms-grouping/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **settingsRequestDto** | [**SettingsRequestDto**](SettingsRequestDto.md)|  | [optional] |
+
+### Return type
+
+[**BooleanWrapper**](BooleanWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(SettingsApi::class.java)
+val settingsRequestDto : SettingsRequestDto =  // SettingsRequestDto | 
+
+val result : BooleanWrapper = webService.setOrganizeRoomsGrouping(settingsRequestDto)
 ```
 
 ### HTTP request headers
@@ -1126,5 +1268,54 @@ val result : BooleanWrapper = webService.updateFileIfExist(settingsRequestDto)
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+<a id="uploadDefaultTemplate"></a>
+# **uploadDefaultTemplate**
+> DefaultTemplateSettingsWrapper uploadDefaultTemplate (kotlin.String fileExtension, java.io.File file)
+
+Uploads a file to use as the default template setting.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-default-template/).
+
+### Parameters
+| **fileExtension** | **kotlin.String**| File extension of a template to replace | |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **file** | **java.io.File**| File to replace template with | |
+
+### Return type
+
+[**DefaultTemplateSettingsWrapper**](DefaultTemplateSettingsWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(SettingsApi::class.java)
+val fileExtension : kotlin.String = .txt // kotlin.String | File extension of a template to replace
+val file : java.io.File = BINARY_DATA_HERE // java.io.File | File to replace template with
+
+val result : DefaultTemplateSettingsWrapper = webService.uploadDefaultTemplate(fileExtension, file)
+```
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 

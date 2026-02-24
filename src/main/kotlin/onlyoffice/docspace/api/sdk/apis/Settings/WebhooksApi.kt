@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 
 
-package onlyoffice.docspace.api.sdk.apis
+package onlyoffice.docspace.api.sdk.apis.Settings
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
@@ -24,7 +24,7 @@ import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
 import onlyoffice.docspace.api.sdk.models.CreateWebhooksConfigRequestsDto
-import onlyoffice.docspace.api.sdk.models.UnknownWrapper
+import onlyoffice.docspace.api.sdk.models.GetWebhookTriggers200Response
 import onlyoffice.docspace.api.sdk.models.UpdateWebhooksConfigRequestsDto
 import onlyoffice.docspace.api.sdk.models.WebhookGroupStatus
 import onlyoffice.docspace.api.sdk.models.WebhookRetryRequestsDto
@@ -100,10 +100,10 @@ interface WebhooksApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-webhook-triggers/
      *
      *
-     * @return [Call]<[UnknownWrapper]>
+     * @return [Call]<[GetWebhookTriggers200Response]>
      */
     @GET("api/2.0/settings/webhook/triggers")
-    fun getWebhookTriggers(): Call<UnknownWrapper>
+    fun getWebhookTriggers(): Call<GetWebhookTriggers200Response>
 
     /**
      * GET api/2.0/settings/webhooks/log
@@ -157,8 +157,8 @@ interface WebhooksApi {
      * Responses:
      *  - 200: Logs of the webhook activities
      *  - 400: Id incorrect
-     *  - 401: Unauthorized
      *  - 404: Item not found
+     *  - 401: Unauthorized
      *
      * REST API Reference for retryWebhook Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/retry-webhook/

@@ -5,7 +5,7 @@
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
 | **id** | [**java.util.UUID**](java.util.UUID.md) | The user ID. |  [optional] |
-| **displayName** | **kotlin.String** | The user display name. |  [optional] |
+| **displayName** | **kotlin.String** | The HTML-encoded user&#39;s display name formatted according to the default format for the current culture. |  [optional] |
 | **title** | **kotlin.String** | The user title. |  [optional] |
 | **avatar** | **kotlin.String** | The user avatar. |  [optional] |
 | **avatarOriginal** | **kotlin.String** | The user original size avatar. |  [optional] |

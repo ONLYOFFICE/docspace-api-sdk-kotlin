@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The ai agent quota settings.
+ * The AI agent quota settings.
  *
  * @param enableQuota Specifies if the quota is enabled for the tenant entity or not.
  * @param defaultQuota The default quota of the tenant entity.

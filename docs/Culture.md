@@ -4,7 +4,7 @@
 ## Properties
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
-| **cultureName** | **kotlin.String** | The user language. |  [optional] |
+| **cultureName** | **kotlin.String** | The user culture name (en-US, de, fr, es, ...). |  |
 
 
 

@@ -4,6 +4,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
+| [**cancelBackup**](BackupApi.md#cancelBackup) | **POST** api/2.0/backup/cancelbackup | Cancel current backup |
 | [**createBackupSchedule**](BackupApi.md#createBackupSchedule) | **POST** api/2.0/backup/createbackupschedule | Create the backup schedule |
 | [**deleteBackup**](BackupApi.md#deleteBackup) | **DELETE** api/2.0/backup/deletebackup/{id} | Delete the backup |
 | [**deleteBackupHistory**](BackupApi.md#deleteBackupHistory) | **DELETE** api/2.0/backup/deletebackuphistory | Delete the backup history |
@@ -17,6 +18,50 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 | [**startBackup**](BackupApi.md#startBackup) | **POST** api/2.0/backup/startbackup | Start the backup |
 | [**startBackupRestore**](BackupApi.md#startBackupRestore) | **POST** api/2.0/backup/startrestore | Start the restoring process |
 
+
+
+<a id="cancelBackup"></a>
+# **cancelBackup**
+> BooleanWrapper cancelBackup ()
+
+Cancel current backup.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/cancel-backup/).
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**BooleanWrapper**](BooleanWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(BackupApi::class.java)
+
+val result : BooleanWrapper = webService.cancelBackup()
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
 <a id="createBackupSchedule"></a>

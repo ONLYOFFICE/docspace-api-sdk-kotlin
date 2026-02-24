@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -83,6 +83,7 @@ import com.squareup.moshi.JsonClass
  * @param maxUploadThreadCount The maximum number of upload threads.
  * @param chunkUploadSize The size of a large file that is uploaded in chunks.
  * @param openEditorInSameTab Specifies whether to open the editor in the same tab or not.
+ * @param organizeRoomsGrouping Specifies whether the grouping of rooms is enabled or not.
  * @param extsFilesVectorized List of extensions available for vectorization
  * @param maxVectorizationFileSize The maximum file size for vectorization
  */
@@ -315,6 +316,10 @@ data class FilesSettingsDto (
     @Json(name = "openEditorInSameTab")
     val openEditorInSameTab: kotlin.Boolean? = null,
 
+    /* Specifies whether the grouping of rooms is enabled or not. */
+    @Json(name = "organizeRoomsGrouping")
+    val organizeRoomsGrouping: kotlin.Boolean? = null,
+
     /* List of extensions available for vectorization */
     @Json(name = "extsFilesVectorized")
     val extsFilesVectorized: kotlin.collections.List<kotlin.String>? = null,
@@ -331,7 +336,7 @@ data class FilesSettingsDto (
      * Values: None,ReadWrite,Read,Restrict,Varies,Review,Comment,FillForms,CustomFilter,RoomManager,Editing,ContentCreator
      */
     @JsonClass(generateAdapter = false)
-    enum class DefaultSharingAccessRights(val value: kotlin.String) {
+    enum class DefaultSharingAccessRights(val value: kotlin.Int) {
         @Json(name = "0") None(0),
         @Json(name = "1") ReadWrite(1),
         @Json(name = "2") Read(2),

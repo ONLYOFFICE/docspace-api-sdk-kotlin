@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 
 
-package onlyoffice.docspace.api.sdk.apis
+package onlyoffice.docspace.api.sdk.apis.Migration
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
@@ -35,8 +35,8 @@ interface MigrationApi {
      * Cancels the migration.
      * Responses:
      *  - 200: Ok
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for cancelMigration Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/cancel-migration/
@@ -53,8 +53,8 @@ interface MigrationApi {
      * Clears the migration.
      * Responses:
      *  - 200: Ok
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for clearMigration Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/clear-migration/
@@ -71,8 +71,8 @@ interface MigrationApi {
      * Finishes the migration process.
      * Responses:
      *  - 200: Ok
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for finishMigration Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/finish-migration/
@@ -90,8 +90,8 @@ interface MigrationApi {
      * Returns the migration logs.
      * Responses:
      *  - 200: Ok
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for getMigrationLogs Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-migration-logs/
@@ -108,8 +108,8 @@ interface MigrationApi {
      * Returns the migration status.
      * Responses:
      *  - 200: Ok
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for getMigrationStatus Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-migration-status/
@@ -126,8 +126,8 @@ interface MigrationApi {
      * Returns a list of available migrations.
      * Responses:
      *  - 200: Ok
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for listMigrations Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/list-migrations/
@@ -144,8 +144,8 @@ interface MigrationApi {
      * Starts the migration process.
      * Responses:
      *  - 200: Ok
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for startMigration Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/start-migration/
@@ -163,8 +163,8 @@ interface MigrationApi {
      * Uploads and initializes a migration with a migrator name specified in the request.
      * Responses:
      *  - 200: Ok
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for uploadAndInitializeMigration Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-and-initialize-migration/

@@ -12,7 +12,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 
 <a id="getStorageEncryptionProgress"></a>
 # **getStorageEncryptionProgress**
-> DoubleWrapper getStorageEncryptionProgress ()
+> DoubleNullableWrapper getStorageEncryptionProgress ()
 
 Returns the storage encryption progress.
 
@@ -23,7 +23,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**DoubleWrapper**](DoubleWrapper.md)
+[**DoubleNullableWrapper**](DoubleNullableWrapper.md)
 
 ### Authorization
 
@@ -45,7 +45,7 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(EncryptionApi::class.java)
 
-val result : DoubleWrapper = webService.getStorageEncryptionProgress()
+val result : DoubleNullableWrapper = webService.getStorageEncryptionProgress()
 ```
 
 ### HTTP request headers

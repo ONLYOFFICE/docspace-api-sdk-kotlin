@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 
 
-package onlyoffice.docspace.api.sdk.apis
+package onlyoffice.docspace.api.sdk.apis.Files
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
@@ -136,7 +136,7 @@ interface SharingApi {
 
     /**
      * GET api/2.0/files/file/{fileId}/group/{groupId}/share
-     * Get group members with security information
+     * Get file group members with security information
      * Returns the group members with their file security information.
      * Responses:
      *  - 200: Ok
@@ -158,7 +158,7 @@ interface SharingApi {
 
     /**
      * GET api/2.0/files/folder/{folderId}/group/{groupId}/share
-     * Get group members with security information
+     * Get folder group members with security information
      * Returns the group members with their folder security information.
      * Responses:
      *  - 200: Ok

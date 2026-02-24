@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,6 +34,8 @@ import com.squareup.moshi.JsonClass
  * @param linkType 
  * @param password The link password.
  * @param denyDownload Specifies if downloading the file from the link is disabled or not.
+ * @param maxUseCount The maximum number of times the invitation link can be used.
+ * @param currentUseCount The current number of times the invitation link has been used.
  */
 
 
@@ -66,7 +68,15 @@ data class RoomLinkRequest (
 
     /* Specifies if downloading the file from the link is disabled or not. */
     @Json(name = "denyDownload")
-    val denyDownload: kotlin.Boolean? = null
+    val denyDownload: kotlin.Boolean? = null,
+
+    /* The maximum number of times the invitation link can be used. */
+    @Json(name = "maxUseCount")
+    val maxUseCount: kotlin.Int? = null,
+
+    /* The current number of times the invitation link has been used. */
+    @Json(name = "currentUseCount")
+    val currentUseCount: kotlin.Int? = null
 
 ) {
 

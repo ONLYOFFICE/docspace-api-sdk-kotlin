@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,46 +29,46 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = false)
 enum class LoginProvider(val value: kotlin.Int) {
 
-    @Json(name = 0)
+    @Json(name = "0")
     Facebook(0),
 
-    @Json(name = 1)
+    @Json(name = "1")
     Google(1),
 
-    @Json(name = 2)
+    @Json(name = "2")
     Dropbox(2),
 
-    @Json(name = 3)
+    @Json(name = "3")
     Docusign(3),
 
-    @Json(name = 4)
+    @Json(name = "4")
     Box(4),
 
-    @Json(name = 5)
+    @Json(name = "5")
     OneDrive(5),
 
-    @Json(name = 6)
+    @Json(name = "6")
     GosUslugi(6),
 
-    @Json(name = 7)
+    @Json(name = "7")
     LinkedIn(7),
 
-    @Json(name = 8)
+    @Json(name = "8")
     MailRu(8),
 
-    @Json(name = 9)
+    @Json(name = "9")
     VK(9),
 
-    @Json(name = 10)
+    @Json(name = "10")
     Wordpress(10),
 
-    @Json(name = 11)
+    @Json(name = "11")
     Yahoo(11),
 
-    @Json(name = 12)
+    @Json(name = "12")
     Yandex(12),
 
-    @Json(name = 13)
+    @Json(name = "13")
     Github(13);
 
     /**
@@ -91,7 +91,7 @@ enum class LoginProvider(val value: kotlin.Int) {
          */
         fun decode(data: kotlin.Any?): LoginProvider? = data?.let {
           val normalizedData = "$it".lowercase()
-          values().firstOrNull { value ->
+          entries.firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()
           }
         }

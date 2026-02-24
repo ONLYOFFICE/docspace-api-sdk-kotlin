@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,16 +29,16 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = false)
 enum class NotificationType(val value: kotlin.Int) {
 
-    @Json(name = 0)
+    @Json(name = "0")
     Badges(0),
 
-    @Json(name = 1)
+    @Json(name = "1")
     RoomsActivity(1),
 
-    @Json(name = 2)
+    @Json(name = "2")
     DailyFeed(2),
 
-    @Json(name = 3)
+    @Json(name = "3")
     UsefullTips(3);
 
     /**
@@ -61,7 +61,7 @@ enum class NotificationType(val value: kotlin.Int) {
          */
         fun decode(data: kotlin.Any?): NotificationType? = data?.let {
           val normalizedData = "$it".lowercase()
-          values().firstOrNull { value ->
+          entries.firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()
           }
         }

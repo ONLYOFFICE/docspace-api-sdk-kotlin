@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,34 +29,34 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = false)
 enum class FileStatus(val value: kotlin.Int) {
 
-    @Json(name = 0)
+    @Json(name = "0")
     None(0),
 
-    @Json(name = 1)
+    @Json(name = "1")
     IsEditing(1),
 
-    @Json(name = 2)
+    @Json(name = "2")
     IsNew(2),
 
-    @Json(name = 4)
+    @Json(name = "4")
     IsConverting(4),
 
-    @Json(name = 8)
+    @Json(name = "8")
     IsOriginal(8),
 
-    @Json(name = 16)
+    @Json(name = "16")
     IsEditingAlone(16),
 
-    @Json(name = 32)
+    @Json(name = "32")
     IsFavorite(32),
 
-    @Json(name = 64)
+    @Json(name = "64")
     IsTemplate(64),
 
-    @Json(name = 128)
+    @Json(name = "128")
     IsFillFormDraft(128),
 
-    @Json(name = 256)
+    @Json(name = "256")
     IsCompletedForm(256);
 
     /**
@@ -79,7 +79,7 @@ enum class FileStatus(val value: kotlin.Int) {
          */
         fun decode(data: kotlin.Any?): FileStatus? = data?.let {
           val normalizedData = "$it".lowercase()
-          values().firstOrNull { value ->
+          entries.firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()
           }
         }

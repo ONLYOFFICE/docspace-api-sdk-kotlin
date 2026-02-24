@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,22 +21,22 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * [0 - In Progress, 1 - Completed, 2 - Failed]
  *
- * Values: _0,_1,_2
+ * Values: InProgress,Completed,Failed
  */
 
 @JsonClass(generateAdapter = false)
 enum class VectorizationStatus(val value: kotlin.Int) {
 
-    @Json(name = 0)
-    _0(0),
+    @Json(name = "0")
+    InProgress(0),
 
-    @Json(name = 1)
-    _1(1),
+    @Json(name = "1")
+    Completed(1),
 
-    @Json(name = 2)
-    _2(2);
+    @Json(name = "2")
+    Failed(2);
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use
@@ -58,7 +58,7 @@ enum class VectorizationStatus(val value: kotlin.Int) {
          */
         fun decode(data: kotlin.Any?): VectorizationStatus? = data?.let {
           val normalizedData = "$it".lowercase()
-          values().firstOrNull { value ->
+          entries.firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()
           }
         }

@@ -27,7 +27,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **dump** | **kotlin.Boolean**|  | [optional] |
+| **dump** | **kotlin.Boolean**| Indicates whether the operation should perform a dump of backup storage data.  This property is used as a parameter in backup-related API requests to specify  if additional details or data dumping is required during the process. | [optional] |
 
 ### Return type
 
@@ -52,7 +52,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(StorageApi::class.java)
-val dump : kotlin.Boolean = true // kotlin.Boolean | 
+val dump : kotlin.Boolean = true // kotlin.Boolean | Indicates whether the operation should perform a dump of backup storage data.  This property is used as a parameter in backup-related API requests to specify  if additional details or data dumping is required during the process.
 
 val result : StorageArrayWrapper = webService.getAllBackupStorages(dump)
 ```

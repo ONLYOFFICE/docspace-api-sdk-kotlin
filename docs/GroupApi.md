@@ -102,7 +102,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(GroupApi::class.java)
-val id : java.util.UUID = aae1e103-bca5-9fa1-ba8c-42058b4abf28 // java.util.UUID | The group ID.
+val id : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The group ID.
 val membersRequest : MembersRequest =  // MembersRequest | The member request.
 
 val result : GroupWrapper = webService.addMembersTo(id, membersRequest)
@@ -150,7 +150,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(GroupApi::class.java)
-val id : java.util.UUID = aae1e103-bca5-9fa1-ba8c-42058b4abf28 // java.util.UUID | The group ID.
+val id : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The group ID.
 
 val result : NoContentResultWrapper = webService.deleteGroup(id)
 ```
@@ -165,7 +165,7 @@ val result : NoContentResultWrapper = webService.deleteGroup(id)
 # **getGroup**
 > GroupWrapper getGroup (java.util.UUID id, kotlin.Boolean includeMembers)
 
-Returns the detailed information about the selected group.   **Note**: This method returns full group information.
+Returns the detailed information about the selected group.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-group/).
 
@@ -198,7 +198,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(GroupApi::class.java)
-val id : java.util.UUID = aae1e103-bca5-9fa1-ba8c-42058b4abf28 // java.util.UUID | The group ID.
+val id : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The group ID.
 val includeMembers : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to include the group members or not.
 
 val result : GroupWrapper = webService.getGroup(id, includeMembers)
@@ -246,7 +246,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(GroupApi::class.java)
-val userid : java.util.UUID = aae1e103-bca5-9fa1-ba8c-42058b4abf28 // java.util.UUID | The user ID.
+val userid : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The user ID.
 
 val result : GroupSummaryArrayWrapper = webService.getGroupByUserId(userid)
 ```
@@ -261,7 +261,7 @@ val result : GroupSummaryArrayWrapper = webService.getGroupByUserId(userid)
 # **getGroups**
 > GroupArrayWrapper getGroups (java.util.UUID userId, kotlin.Boolean manager, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterValue)
 
-Returns the general information about all the groups, such as group ID and group manager.   **Note**: This method returns partial group information.
+Returns the general information about all the groups, such as group ID and group manager.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-groups/).
 
@@ -299,7 +299,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(GroupApi::class.java)
-val userId : java.util.UUID = aae1e103-bca5-9fa1-ba8c-42058b4abf28 // java.util.UUID | The user ID.
+val userId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The user ID.
 val manager : kotlin.Boolean = true // kotlin.Boolean | Specifies if the user is a manager or not.
 val count : kotlin.Int = 1234 // kotlin.Int | The number of records to retrieve.
 val startIndex : kotlin.Int = 1234 // kotlin.Int | The starting index for paginated results.
@@ -402,7 +402,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(GroupApi::class.java)
-val id : java.util.UUID = aae1e103-bca5-9fa1-ba8c-42058b4abf28 // java.util.UUID | The group ID.
+val id : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The group ID.
 val membersRequest : MembersRequest =  // MembersRequest | The member request.
 
 val result : GroupWrapper = webService.removeMembersFrom(id, membersRequest)
@@ -451,7 +451,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(GroupApi::class.java)
-val id : java.util.UUID = aae1e103-bca5-9fa1-ba8c-42058b4abf28 // java.util.UUID | The group ID.
+val id : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The group ID.
 val setManagerRequest : SetManagerRequest =  // SetManagerRequest | The request for setting a group manager.
 
 val result : GroupWrapper = webService.setGroupManager(id, setManagerRequest)
@@ -500,7 +500,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(GroupApi::class.java)
-val id : java.util.UUID = aae1e103-bca5-9fa1-ba8c-42058b4abf28 // java.util.UUID | The group ID.
+val id : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The group ID.
 val membersRequest : MembersRequest =  // MembersRequest | The member request.
 
 val result : GroupWrapper = webService.setMembersTo(id, membersRequest)
@@ -549,7 +549,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(GroupApi::class.java)
-val id : java.util.UUID = aae1e103-bca5-9fa1-ba8c-42058b4abf28 // java.util.UUID | The group ID.
+val id : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The group ID.
 val updateGroupRequest : UpdateGroupRequest =  // UpdateGroupRequest | The request for updating a group.
 
 val result : GroupWrapper = webService.updateGroup(id, updateGroupRequest)

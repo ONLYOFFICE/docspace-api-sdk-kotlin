@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 
 
-package onlyoffice.docspace.api.sdk.apis
+package onlyoffice.docspace.api.sdk.apis.Settings
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
@@ -24,7 +24,7 @@ import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
 import onlyoffice.docspace.api.sdk.models.BooleanWrapper
-import onlyoffice.docspace.api.sdk.models.DoubleWrapper
+import onlyoffice.docspace.api.sdk.models.DoubleNullableWrapper
 import onlyoffice.docspace.api.sdk.models.EncryptionSettingsWrapper
 import onlyoffice.docspace.api.sdk.models.StorageEncryptionRequestsDto
 
@@ -35,17 +35,17 @@ interface EncryptionApi {
      * Returns the storage encryption progress.
      * Responses:
      *  - 200: Storage encryption progress
-     *  - 401: Unauthorized
      *  - 405: Method not allowed
+     *  - 401: Unauthorized
      *
      * REST API Reference for getStorageEncryptionProgress Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-storage-encryption-progress/
      *
      *
-     * @return [Call]<[DoubleWrapper]>
+     * @return [Call]<[DoubleNullableWrapper]>
      */
     @GET("api/2.0/settings/encryption/progress")
-    fun getStorageEncryptionProgress(): Call<DoubleWrapper>
+    fun getStorageEncryptionProgress(): Call<DoubleNullableWrapper>
 
     /**
      * GET api/2.0/settings/encryption/settings
@@ -53,9 +53,9 @@ interface EncryptionApi {
      * Returns the storage encryption settings.
      * Responses:
      *  - 200: Storage encryption settings
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
      *  - 405: Method not allowed
+     *  - 401: Unauthorized
      *
      * REST API Reference for getStorageEncryptionSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-storage-encryption-settings/
@@ -72,10 +72,10 @@ interface EncryptionApi {
      * Starts the storage encryption process.
      * Responses:
      *  - 200: Boolean value: true if the operation is successful
-     *  - 401: Unauthorized
      *  - 402: Your pricing plan does not support this option
      *  - 403: No permissions to perform this action
      *  - 405: Method not allowed
+     *  - 401: Unauthorized
      *
      * REST API Reference for startStorageEncryption Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/start-storage-encryption/

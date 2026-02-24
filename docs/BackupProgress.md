@@ -11,6 +11,7 @@
 | **link** | **kotlin.String** |  |  [optional] |
 | **tenantId** | **kotlin.Int** |  |  [optional] |
 | **backupProgressEnum** | [**BackupProgressEnum**](BackupProgressEnum.md) |  |  [optional] |
+| **status** | [**DistributedTaskStatus**](DistributedTaskStatus.md) |  |  [optional] |
 | **taskId** | **kotlin.String** |  |  [optional] |
 
 

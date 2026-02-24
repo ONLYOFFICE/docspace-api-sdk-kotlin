@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,34 +29,34 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = false)
 enum class ProviderFilter(val value: kotlin.Int) {
 
-    @Json(name = 0)
+    @Json(name = "0")
     None(0),
 
-    @Json(name = 1)
+    @Json(name = "1")
     Box(1),
 
-    @Json(name = 2)
+    @Json(name = "2")
     DropBox(2),
 
-    @Json(name = 3)
+    @Json(name = "3")
     GoogleDrive(3),
 
-    @Json(name = 4)
+    @Json(name = "4")
     kDrive(4),
 
-    @Json(name = 5)
+    @Json(name = "5")
     OneDrive(5),
 
-    @Json(name = 6)
+    @Json(name = "6")
     SharePoint(6),
 
-    @Json(name = 7)
+    @Json(name = "7")
     WebDav(7),
 
-    @Json(name = 8)
+    @Json(name = "8")
     Yandex(8),
 
-    @Json(name = 9)
+    @Json(name = "9")
     Storage(9);
 
     /**
@@ -79,7 +79,7 @@ enum class ProviderFilter(val value: kotlin.Int) {
          */
         fun decode(data: kotlin.Any?): ProviderFilter? = data?.let {
           val normalizedData = "$it".lowercase()
-          values().firstOrNull { value ->
+          entries.firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()
           }
         }

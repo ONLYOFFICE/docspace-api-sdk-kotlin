@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 
 
-package onlyoffice.docspace.api.sdk.apis
+package onlyoffice.docspace.api.sdk.apis.Portal
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
@@ -32,9 +32,9 @@ interface GuestsApi {
      * Returns a link to share a guest with another user.
      * Responses:
      *  - 200: User share link
-     *  - 401: Unauthorized
-     *  - 403: No permissions to perform this action
      *  - 404: User not found
+     *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for getGuestSharingLink Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-guest-sharing-link/

@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.ActiveConnectionsWrapperLinksInner
+import onlyoffice.docspace.api.sdk.models.GetPortalPrices200ResponseLinksInner
 import onlyoffice.docspace.api.sdk.models.WebhooksConfigDto
 
 import com.squareup.moshi.Json
@@ -26,10 +26,10 @@ import com.squareup.moshi.JsonClass
  * 
  *
  * @param response 
- * @param count 
- * @param links 
- * @param status 
- * @param statusCode 
+ * @param count The total number of items in the response
+ * @param links List of links related to the response
+ * @param status HTTP status code of the response
+ * @param statusCode HTTP status code of the response (duplicate of status)
  */
 
 
@@ -38,15 +38,19 @@ data class WebhooksConfigWrapper (
     @Json(name = "response")
     val response: WebhooksConfigDto? = null,
 
+    /* The total number of items in the response */
     @Json(name = "count")
     val count: kotlin.Int? = null,
 
+    /* List of links related to the response */
     @Json(name = "links")
-    val links: kotlin.collections.List<ActiveConnectionsWrapperLinksInner>? = null,
+    val links: kotlin.collections.List<GetPortalPrices200ResponseLinksInner>? = null,
 
+    /* HTTP status code of the response */
     @Json(name = "status")
     val status: kotlin.Int? = null,
 
+    /* HTTP status code of the response (duplicate of status) */
     @Json(name = "statusCode")
     val statusCode: kotlin.Int? = null
 

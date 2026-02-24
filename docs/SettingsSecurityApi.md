@@ -98,8 +98,8 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SecurityApi::class.java)
-val productid : java.util.UUID = aae1e103-bca5-9fa1-ba8c-42058b4abf28 // java.util.UUID | The ID of the product extracted from the query parameters.
-val userid : java.util.UUID = aae1e103-bca5-9fa1-ba8c-42058b4abf28 // java.util.UUID | The user ID extracted from the query parameters.
+val productid : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The ID of the product extracted from the query parameters.
+val userid : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The user ID extracted from the query parameters.
 
 val result : ProductAdministratorWrapper = webService.getIsProductAdministrator(productid, userid)
 ```
@@ -190,7 +190,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SecurityApi::class.java)
-val productid : java.util.UUID = aae1e103-bca5-9fa1-ba8c-42058b4abf28 // java.util.UUID | The ID of the product extracted from the route parameters.
+val productid : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The ID of the product extracted from the route parameters.
 
 val result : EmployeeArrayWrapper = webService.getProductAdministrators(productid)
 ```
@@ -237,7 +237,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SecurityApi::class.java)
-val id : java.util.UUID = aae1e103-bca5-9fa1-ba8c-42058b4abf28 // java.util.UUID | The ID extracted from the route parameters.
+val id : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The ID extracted from the route parameters.
 
 val result : BooleanWrapper = webService.getWebItemSecurityInfo(id)
 ```

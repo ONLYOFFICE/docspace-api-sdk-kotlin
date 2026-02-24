@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -80,6 +80,7 @@ import com.squareup.moshi.JsonClass
  * @param contentLength The content length of the file.
  * @param pureContentLength The pure content length of the file.
  * @param fileStatus 
+ * @param editingBy The list of users editing the file.
  * @param mute Specifies if the file is muted or not.
  * @param viewUrl The URL link to view the file.
  * @param webUrl The Web URL link to the file.
@@ -257,6 +258,10 @@ data class FileDtoInteger (
 
     @Json(name = "fileStatus")
     val fileStatus: FileStatus? = null,
+
+    /* The list of users editing the file. */
+    @Json(name = "editingBy")
+    val editingBy: kotlin.collections.Map<kotlin.String, kotlin.String>? = null,
 
     /* Specifies if the file is muted or not. */
     @Json(name = "mute")

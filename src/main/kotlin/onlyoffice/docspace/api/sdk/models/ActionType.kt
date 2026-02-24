@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,64 +29,64 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = false)
 enum class ActionType(val value: kotlin.Int) {
 
-    @Json(name = 0)
+    @Json(name = "0")
     None(0),
 
-    @Json(name = 1)
+    @Json(name = "1")
     Create(1),
 
-    @Json(name = 2)
+    @Json(name = "2")
     Update(2),
 
-    @Json(name = 3)
+    @Json(name = "3")
     Delete(3),
 
-    @Json(name = 4)
+    @Json(name = "4")
     Link(4),
 
-    @Json(name = 5)
+    @Json(name = "5")
     Unlink(5),
 
-    @Json(name = 6)
+    @Json(name = "6")
     Attach(6),
 
-    @Json(name = 7)
+    @Json(name = "7")
     Detach(7),
 
-    @Json(name = 8)
+    @Json(name = "8")
     Send(8),
 
-    @Json(name = 9)
+    @Json(name = "9")
     Import(9),
 
-    @Json(name = 10)
+    @Json(name = "10")
     Export(10),
 
-    @Json(name = 11)
+    @Json(name = "11")
     UpdateAccess(11),
 
-    @Json(name = 12)
+    @Json(name = "12")
     Download(12),
 
-    @Json(name = 13)
+    @Json(name = "13")
     Upload(13),
 
-    @Json(name = 14)
+    @Json(name = "14")
     Copy(14),
 
-    @Json(name = 15)
+    @Json(name = "15")
     Move(15),
 
-    @Json(name = 16)
+    @Json(name = "16")
     Reassigns(16),
 
-    @Json(name = 17)
+    @Json(name = "17")
     Follow(17),
 
-    @Json(name = 18)
+    @Json(name = "18")
     Unfollow(18),
 
-    @Json(name = 19)
+    @Json(name = "19")
     Logout(19);
 
     /**
@@ -109,7 +109,7 @@ enum class ActionType(val value: kotlin.Int) {
          */
         fun decode(data: kotlin.Any?): ActionType? = data?.let {
           val normalizedData = "$it".lowercase()
-          values().firstOrNull { value ->
+          entries.firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()
           }
         }

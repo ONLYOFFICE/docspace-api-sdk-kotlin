@@ -50,7 +50,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SearchApi::class.java)
-val id : kotlin.Int = 9846 // kotlin.Int | The group ID.
+val id : kotlin.Int = 1 // kotlin.Int | The group ID.
 val excludeShared : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to exclude the group sharing settings from the response.
 val count : kotlin.Int = 1234 // kotlin.Int | The number of groups to retrieve in the request.
 val startIndex : kotlin.Int = 1234 // kotlin.Int | The starting index from which to begin retrieving groups with their sharing settings.
@@ -105,7 +105,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SearchApi::class.java)
-val id : kotlin.Int = 9846 // kotlin.Int | The group ID.
+val id : kotlin.Int = 1 // kotlin.Int | The group ID.
 val excludeShared : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to exclude the group sharing settings from the response.
 val count : kotlin.Int = 1234 // kotlin.Int | The number of groups to retrieve in the request.
 val startIndex : kotlin.Int = 1234 // kotlin.Int | The starting index from which to begin retrieving groups with their sharing settings.
@@ -160,7 +160,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SearchApi::class.java)
-val id : kotlin.Int = 9846 // kotlin.Int | The group ID.
+val id : kotlin.Int = 1 // kotlin.Int | The group ID.
 val excludeShared : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to exclude the group sharing settings from the response.
 val count : kotlin.Int = 1234 // kotlin.Int | The number of groups to retrieve in the request.
 val startIndex : kotlin.Int = 1234 // kotlin.Int | The starting index from which to begin retrieving groups with their sharing settings.

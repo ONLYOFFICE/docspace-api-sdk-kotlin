@@ -66,7 +66,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SearchApi::class.java)
-val id : kotlin.Int = 9846 // kotlin.Int | The user ID.
+val id : kotlin.Int = 1 // kotlin.Int | The user ID.
 val employeeStatus : EmployeeStatus =  // EmployeeStatus | The user status.
 val activationStatus : EmployeeActivationStatus =  // EmployeeActivationStatus | The user activation status.
 val excludeShared : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to exclude the account sharing settings from the response.
@@ -137,7 +137,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SearchApi::class.java)
-val id : kotlin.Int = 9846 // kotlin.Int | The user ID.
+val id : kotlin.Int = 1 // kotlin.Int | The user ID.
 val employeeStatus : EmployeeStatus =  // EmployeeStatus | The user status.
 val activationStatus : EmployeeActivationStatus =  // EmployeeActivationStatus | The user activation status.
 val excludeShared : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to exclude the account sharing settings from the response.
@@ -208,7 +208,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SearchApi::class.java)
-val id : kotlin.Int = 9846 // kotlin.Int | The user ID.
+val id : kotlin.Int = 1 // kotlin.Int | The user ID.
 val employeeStatus : EmployeeStatus =  // EmployeeStatus | The user status.
 val activationStatus : EmployeeActivationStatus =  // EmployeeActivationStatus | The user activation status.
 val excludeShared : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to exclude the account sharing settings from the response.
@@ -415,7 +415,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SearchApi::class.java)
-val id : kotlin.Int = 9846 // kotlin.Int | The user ID.
+val id : kotlin.Int = 1 // kotlin.Int | The user ID.
 val employeeStatus : EmployeeStatus =  // EmployeeStatus | The user status.
 val activationStatus : EmployeeActivationStatus =  // EmployeeActivationStatus | The user activation status.
 val excludeShared : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to exclude the user sharing settings or not.
@@ -486,7 +486,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SearchApi::class.java)
-val id : kotlin.Int = 9846 // kotlin.Int | The user ID.
+val id : kotlin.Int = 1 // kotlin.Int | The user ID.
 val employeeStatus : EmployeeStatus =  // EmployeeStatus | The user status.
 val activationStatus : EmployeeActivationStatus =  // EmployeeActivationStatus | The user activation status.
 val excludeShared : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to exclude the user sharing settings or not.
@@ -557,7 +557,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SearchApi::class.java)
-val id : kotlin.Int = 9846 // kotlin.Int | The user ID.
+val id : kotlin.Int = 1 // kotlin.Int | The user ID.
 val employeeStatus : EmployeeStatus =  // EmployeeStatus | The user status.
 val activationStatus : EmployeeActivationStatus =  // EmployeeActivationStatus | The user activation status.
 val excludeShared : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to exclude the user sharing settings or not.

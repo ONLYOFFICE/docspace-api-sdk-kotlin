@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 
 
-package onlyoffice.docspace.api.sdk.apis
+package onlyoffice.docspace.api.sdk.apis.Files
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
@@ -49,8 +49,6 @@ import onlyoffice.docspace.api.sdk.models.SearchArea
 import onlyoffice.docspace.api.sdk.models.SortOrder
 import onlyoffice.docspace.api.sdk.models.StringWrapper
 import onlyoffice.docspace.api.sdk.models.UploadRequestDto
-
-import onlyoffice.docspace.api.sdk.models.*
 
 import okhttp3.MultipartBody
 
@@ -99,8 +97,8 @@ interface FoldersApi {
      * Creates a primary external link by the identifier specified in the request.
      * Responses:
      *  - 200: Folders security information
-     *  - 401: Unauthorized
      *  - 404: Not Found
+     *  - 401: Unauthorized
      *
      * REST API Reference for createFolderPrimaryExternalLink Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-folder-primary-external-link/
@@ -119,9 +117,9 @@ interface FoldersApi {
      * Generates the activity history of a folder.
      * Responses:
      *  - 200: URL to the report file
-     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to perform the operation
      *  - 404: The required folder was not found
+     *  - 401: Unauthorized
      *
      * REST API Reference for createReportFolderHistory Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-report-folder-history/
@@ -158,9 +156,9 @@ interface FoldersApi {
      * Returns the detailed list of files and folders located in the Favorites section.
      * Responses:
      *  - 200: The Favorites section contents
-     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to view the folder content
      *  - 404: The required folder was not found
+     *  - 401: Unauthorized
      *
      * REST API Reference for getFavoritesFolder Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-favorites-folder/
@@ -253,25 +251,23 @@ interface FoldersApi {
      * Returns the activity history of a folder with a specified identifier.
      * Responses:
      *  - 200: List of actions in the folder
-     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to perform the operation
      *  - 404: The required folder was not found
+     *  - 401: Unauthorized
      *
      * REST API Reference for getFolderHistory Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-history/
      *
      *
      * @param folderId The folder ID of the history request.
-     * @param utcTime The time in UTC format. (optional)
-     * @param timeZoneOffset The time zone offset. (optional)
-     * @param utcTime The time in UTC format. (optional)
-     * @param timeZoneOffset The time zone offset. (optional)
+     * @param fromDate The start date of the history request. (optional)
+     * @param toDate The end date of the history request. (optional)
      * @param count The number of records to retrieve for the folder history. (optional)
      * @param startIndex The starting index from which the history records are retrieved in the request. (optional)
      * @return [Call]<[HistoryArrayWrapper]>
      */
     @GET("api/2.0/files/folder/{folderId}/log")
-    fun getFolderHistory(@Path("folderId") folderId: kotlin.Int, @Query("utcTime") utcTime: java.time.OffsetDateTime? = null, @Query("timeZoneOffset") timeZoneOffset: kotlin.String? = null, @Query("utcTime") utcTime: java.time.OffsetDateTime? = null, @Query("timeZoneOffset") timeZoneOffset: kotlin.String? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null): Call<HistoryArrayWrapper>
+    fun getFolderHistory(@Path("folderId") folderId: kotlin.Int, @Query("fromDate") fromDate: ApiDateTime? = null, @Query("toDate") toDate: ApiDateTime? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null): Call<HistoryArrayWrapper>
 
     /**
      * GET api/2.0/files/folder/{folderId}
@@ -314,8 +310,8 @@ interface FoldersApi {
      * Returns a path to the folder with the ID specified in the request.
      * Responses:
      *  - 200: List of file entry information
-     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to view the folder content
+     *  - 401: Unauthorized
      *
      * REST API Reference for getFolderPath Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-path/
@@ -348,43 +344,13 @@ interface FoldersApi {
     fun getFolderPrimaryExternalLink(@Path("id") id: kotlin.Int, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null): Call<FileShareWrapper>
 
     /**
-     * GET api/2.0/files/recent
-     * Get the Recent section
-     * Returns the detailed list of files located in the Recent section.
-     * Responses:
-     *  - 200: The Recent section contents
-     *  - 401: Unauthorized
-     *  - 403: You don't have enough permission to view the folder content
-     *  - 404: The required folder was not found
-     *
-     * REST API Reference for getFolderRecent Operation
-     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-recent/
-     *
-     *
-     * @param userIdOrGroupId The user or group ID. (optional)
-     * @param filterType The filter type. (optional)
-     * @param excludeSubject Specifies whether to exclude search by user or group ID. (optional)
-     * @param applyFilterOption Specifies whether to return only files, only folders or all elements. (optional)
-     * @param searchArea The search area. (optional)
-     * @param extension Specifies whether to search for a specific file extension in the Recent folder. (optional)
-     * @param count The maximum number of items to return. (optional)
-     * @param startIndex The starting position of the results to be returned in the query response. (optional)
-     * @param sortBy Specifies the sorting criteria for the folder request. (optional)
-     * @param sortOrder The order in which the results are sorted. (optional)
-     * @param filterValue The text used for filtering or searching folder contents. (optional)
-     * @return [Call]<[FolderContentIntegerWrapper]>
-     */
-    @GET("api/2.0/files/recent")
-    fun getFolderRecent(@Query("userIdOrGroupId") userIdOrGroupId: java.util.UUID? = null, @Query("filterType") filterType: FilterType? = null, @Query("excludeSubject") excludeSubject: kotlin.Boolean? = null, @Query("applyFilterOption") applyFilterOption: ApplyFilterOption? = null, @Query("searchArea") searchArea: SearchArea? = null, @Query("extension") extension: CSVParams? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterValue") filterValue: kotlin.String? = null): Call<FolderContentIntegerWrapper>
-
-    /**
      * GET api/2.0/files/{folderId}/subfolders
      * Get subfolders
      * Returns a list of all the subfolders from a folder with the ID specified in the request.
      * Responses:
      *  - 200: List of file entry information
-     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to view the folder content
+     *  - 401: Unauthorized
      *
      * REST API Reference for getFolders Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folders/
@@ -402,9 +368,9 @@ interface FoldersApi {
      * Returns the detailed list of files and folders located in the My documents section.
      * Responses:
      *  - 200: The My documents section contents
-     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to view the folder content
      *  - 404: The required folder was not found
+     *  - 401: Unauthorized
      *
      * REST API Reference for getMyFolder Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-my-folder/
@@ -429,8 +395,8 @@ interface FoldersApi {
      * Returns a list of all the new items from a folder with the ID specified in the request.
      * Responses:
      *  - 200: List of file entry information
-     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to view the folder content
+     *  - 401: Unauthorized
      *
      * REST API Reference for getNewFolderItems Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-new-folder-items/
@@ -448,9 +414,9 @@ interface FoldersApi {
      * Returns the detailed list of files and folders located in the Private Room section.
      * Responses:
      *  - 200: The Private Room section contents
-     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to view the folder content
      *  - 404: The required folder was not found
+     *  - 401: Unauthorized
      *
      * REST API Reference for getPrivacyFolder Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-privacy-folder/
@@ -469,14 +435,14 @@ interface FoldersApi {
     fun getPrivacyFolder(@Query("userIdOrGroupId") userIdOrGroupId: java.util.UUID? = null, @Query("filterType") filterType: FilterType? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterValue") filterValue: kotlin.String? = null): Call<FolderContentIntegerWrapper>
 
     /**
-     * GET api/2.0/files/@recent
+     * GET api/2.0/files/recent
      * Get the Recent section
      * Returns the detailed list of files located in the Recent section.
      * Responses:
      *  - 200: The Recent section contents
-     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to view the folder content
      *  - 404: The required folder was not found
+     *  - 401: Unauthorized
      *
      * REST API Reference for getRecentFolder Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-recent-folder/
@@ -495,7 +461,7 @@ interface FoldersApi {
      * @param filterValue The text used for filtering or searching folder contents. (optional)
      * @return [Call]<[FolderContentIntegerWrapper]>
      */
-    @GET("api/2.0/files/@recent")
+    @GET("api/2.0/files/recent")
     fun getRecentFolder(@Query("userIdOrGroupId") userIdOrGroupId: java.util.UUID? = null, @Query("filterType") filterType: FilterType? = null, @Query("excludeSubject") excludeSubject: kotlin.Boolean? = null, @Query("applyFilterOption") applyFilterOption: ApplyFilterOption? = null, @Query("searchArea") searchArea: SearchArea? = null, @Query("extension") extension: CSVParams? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterValue") filterValue: kotlin.String? = null): Call<FolderContentIntegerWrapper>
 
     /**
@@ -504,9 +470,9 @@ interface FoldersApi {
      * Returns all the sections matching the parameters specified in the request.
      * Responses:
      *  - 200: List of section contents with the following parameters
-     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to view the folder content
      *  - 404: The required folder was not found
+     *  - 401: Unauthorized
      *
      * REST API Reference for getRootFolders Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-root-folders/
@@ -531,9 +497,9 @@ interface FoldersApi {
      * Returns the detailed list of files and folders located in the Trash section.
      * Responses:
      *  - 200: The Trash section contents
-     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to view the folder content
      *  - 404: The required folder was not found
+     *  - 401: Unauthorized
      *
      * REST API Reference for getTrashFolder Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-trash-folder/
@@ -558,9 +524,9 @@ interface FoldersApi {
      * Inserts a file specified in the request to the selected folder by single file uploading.
      * Responses:
      *  - 200: Inserted file
-     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to create
      *  - 404: Folder not found
+     *  - 401: Unauthorized
      *
      * REST API Reference for insertFile Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/insert-file/
@@ -591,9 +557,9 @@ interface FoldersApi {
      * Inserts a file specified in the request to the My documents section by single file uploading.
      * Responses:
      *  - 200: Inserted file
-     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to create
      *  - 404: Folder not found
+     *  - 401: Unauthorized
      *
      * REST API Reference for insertFileToMyFromBody Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/insert-file-to-my-from-body/
@@ -623,8 +589,8 @@ interface FoldersApi {
      * Renames the selected folder with a new title specified in the request.
      * Responses:
      *  - 200: Folder parameters
-     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to rename the folder
+     *  - 401: Unauthorized
      *
      * REST API Reference for renameFolder Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/rename-folder/
@@ -678,12 +644,12 @@ interface FoldersApi {
     /**
      * POST api/2.0/files/{folderId}/upload
      * Upload a file
-     * Uploads a file specified in the request to the selected folder by single file uploading or standart multipart/form-data method.   **Note**:  You can upload files in two different ways:   &lt;ol&gt;  &lt;li&gt;Using single file upload. You should set the Content-Type and Content-Disposition headers to specify a file name and content type, and send the file to the request body.&lt;/li&gt;  &lt;li&gt;Using standart multipart/form-data method.&lt;/li&gt;  &lt;/ol&gt;
+     * Uploads a file specified in the request to the selected folder by single file uploading or standart multipart/form-data method.
      * Responses:
      *  - 200: Inserted file
-     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to create
      *  - 404: Folder not found
+     *  - 401: Unauthorized
      *
      * REST API Reference for uploadFile Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-file/
@@ -699,28 +665,21 @@ interface FoldersApi {
     /**
      * POST api/2.0/files/@my/upload
      * Upload a file to the My documents section
-     * Uploads a file specified in the request to the My documents section by single file uploading or standart multipart/form-data method.   **Note**:  You can upload files in two different ways:   &lt;ol&gt;  &lt;li&gt;Using single file upload. You should set the Content-Type and Content-Disposition headers to specify a file name and content type, and send the file to the request body.&lt;/li&gt;  &lt;li&gt;Using standart multipart/form-data method.&lt;/li&gt;  &lt;/ol&gt;
+     * Uploads a file specified in the request to the My documents section by single file uploading or standart multipart/form-data method.
      * Responses:
      *  - 200: Uploaded file(s)
-     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to create
      *  - 404: File not found
+     *  - 401: Unauthorized
      *
      * REST API Reference for uploadFileToMy Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-file-to-my/
      *
      *
-     * @param file The file to be uploaded. (optional)
-     * @param contentType  (optional)
-     * @param contentDisposition  (optional)
-     * @param files The list of files when specified as multipart/form-data. (optional)
-     * @param createNewIfExist Specifies whether to create the new file if it already exists or not. (optional)
-     * @param storeOriginalFileFlag Specifies whether to upload documents in the original formats as well or not. (optional)
-     * @param keepConvertStatus Specifies whether to keep the file converting status or not. (optional)
-     * @param stream The request input stream. (optional)
+     * @param inDto The request parameters for uploading a file. (optional)
      * @return [Call]<[ObjectWrapper]>
      */
     @POST("api/2.0/files/@my/upload")
-    fun uploadFileToMy(@Query("file") file: java.io.File? = null, @Query("contentType") contentType: ContentType? = null, @Query("contentDisposition") contentDisposition: ContentDisposition? = null, @Query("files") files: kotlin.collections.List<java.io.File>? = null, @Query("createNewIfExist") createNewIfExist: kotlin.Boolean? = null, @Query("storeOriginalFileFlag") storeOriginalFileFlag: kotlin.Boolean? = null, @Query("keepConvertStatus") keepConvertStatus: kotlin.Boolean? = null, @Query("stream") stream: java.io.File? = null): Call<ObjectWrapper>
+    fun uploadFileToMy(@Query("inDto") inDto: UploadRequestDto? = null): Call<ObjectWrapper>
 
 }

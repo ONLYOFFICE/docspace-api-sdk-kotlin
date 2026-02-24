@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 
 
-package onlyoffice.docspace.api.sdk.apis
+package onlyoffice.docspace.api.sdk.apis.Settings
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
@@ -37,14 +37,14 @@ interface StorageApi {
      * Returns a list of all the backup storages.
      * Responses:
      *  - 200: List of the backup storages with the following parameters
+     *  - 403: Access denied
      *  - 401: Unauthorized
-     *  - 402: Your pricing plan does not support this option
      *
      * REST API Reference for getAllBackupStorages Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-all-backup-storages/
      *
      *
-     * @param dump  (optional)
+     * @param dump Indicates whether the operation should perform a dump of backup storage data.  This property is used as a parameter in backup-related API requests to specify  if additional details or data dumping is required during the process. (optional)
      * @return [Call]<[StorageArrayWrapper]>
      */
     @GET("api/2.0/settings/storage/backup")
@@ -56,8 +56,8 @@ interface StorageApi {
      * Returns a list of all the CDN storages.
      * Responses:
      *  - 200: List of the CDN storages with the following parameters
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for getAllCdnStorages Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-all-cdn-storages/
@@ -74,8 +74,8 @@ interface StorageApi {
      * Returns a list of all the portal storages.
      * Responses:
      *  - 200: List of storages with the following parameters
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for getAllStorages Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-all-storages/
@@ -126,8 +126,8 @@ interface StorageApi {
      * Resets the CDN storage settings to the default parameters.
      * Responses:
      *  - 200: Ok
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for resetCdnToDefault Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/reset-cdn-to-default/
@@ -144,8 +144,8 @@ interface StorageApi {
      * Resets the storage settings to the default parameters.
      * Responses:
      *  - 200: Ok
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for resetStorageToDefault Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/reset-storage-to-default/
@@ -163,8 +163,8 @@ interface StorageApi {
      * Responses:
      *  - 200: Updated CDN storage
      *  - 400: Module
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for updateCdnStorage Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-cdn-storage/
@@ -183,8 +183,8 @@ interface StorageApi {
      * Responses:
      *  - 200: Updated storage settings
      *  - 400: Module
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for updateStorage Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-storage/

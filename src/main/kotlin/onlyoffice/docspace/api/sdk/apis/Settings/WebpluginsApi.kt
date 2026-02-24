@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 
 
-package onlyoffice.docspace.api.sdk.apis
+package onlyoffice.docspace.api.sdk.apis.Settings
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
@@ -35,8 +35,8 @@ interface WebpluginsApi {
      * Responses:
      *  - 200: Web plugin
      *  - 400: bad request
-     *  - 401: Unauthorized
      *  - 403: Plugins disabled
+     *  - 401: Unauthorized
      *
      * REST API Reference for addWebPluginFromFile Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/add-web-plugin-from-file/
@@ -54,8 +54,8 @@ interface WebpluginsApi {
      * Deletes a web plugin by the name specified in the request.
      * Responses:
      *  - 200: Ok
-     *  - 401: Unauthorized
      *  - 403: Plugins disabled
+     *  - 401: Unauthorized
      *
      * REST API Reference for deleteWebPlugin Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-web-plugin/
@@ -73,8 +73,8 @@ interface WebpluginsApi {
      * Returns a web plugin by the name specified in the request.
      * Responses:
      *  - 200: Web plugin
-     *  - 401: Unauthorized
      *  - 403: Plugins disabled
+     *  - 401: Unauthorized
      *
      * REST API Reference for getWebPlugin Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-web-plugin/
@@ -92,8 +92,8 @@ interface WebpluginsApi {
      * Returns the portal web plugins.
      * Responses:
      *  - 200: Web plugin
-     *  - 401: Unauthorized
      *  - 403: Plugins disabled
+     *  - 401: Unauthorized
      *
      * REST API Reference for getWebPlugins Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-web-plugins/
@@ -111,8 +111,8 @@ interface WebpluginsApi {
      * Updates a web plugin with the parameters specified in the request.
      * Responses:
      *  - 200: Ok
-     *  - 401: Unauthorized
      *  - 403: Plugins disabled
+     *  - 401: Unauthorized
      *
      * REST API Reference for updateWebPlugin Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-web-plugin/

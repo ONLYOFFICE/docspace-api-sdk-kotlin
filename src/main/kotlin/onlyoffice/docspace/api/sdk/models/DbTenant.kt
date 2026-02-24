@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ import com.squareup.moshi.JsonClass
  * @param alias The tenant alias.
  * @param mappedDomain Mapped domain
  * @param version The tenant version.
- * @param versionChanged The Version_changed field.
+ * @param versionChangedField The Version_changed field.
  * @param versionChanged The date and time when the version was changed.
  * @param language The tenant language.
  * @param timeZone The tenant time zone.
@@ -75,7 +75,7 @@ data class DbTenant (
 
     /* The Version_changed field. */
     @Json(name = "version_Changed")
-    val versionChanged: java.time.OffsetDateTime? = null,
+    val versionChangedField: java.time.OffsetDateTime? = null,
 
     /* The date and time when the version was changed. */
     @Json(name = "versionChanged")

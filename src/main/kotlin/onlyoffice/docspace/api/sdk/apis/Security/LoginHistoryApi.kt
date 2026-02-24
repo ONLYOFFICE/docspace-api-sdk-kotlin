@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 
 
-package onlyoffice.docspace.api.sdk.apis
+package onlyoffice.docspace.api.sdk.apis.Security
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
@@ -28,8 +28,6 @@ import onlyoffice.docspace.api.sdk.models.LoginEventArrayWrapper
 import onlyoffice.docspace.api.sdk.models.MessageAction
 import onlyoffice.docspace.api.sdk.models.StringWrapper
 
-import onlyoffice.docspace.api.sdk.models.*
-
 interface LoginHistoryApi {
     /**
      * POST api/2.0/security/audit/login/report
@@ -37,8 +35,8 @@ interface LoginHistoryApi {
      * Generates the login history report.
      * Responses:
      *  - 200: URL to the xlsx report file
-     *  - 401: Unauthorized
      *  - 402: Your pricing plan does not support this option
+     *  - 401: Unauthorized
      *
      * REST API Reference for createLoginHistoryReport Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-login-history-report/
@@ -55,8 +53,8 @@ interface LoginHistoryApi {
      * Returns all the latest user login activity, including successful logins and error logs.
      * Responses:
      *  - 200: List of login events
-     *  - 401: Unauthorized
      *  - 402: Your pricing plan does not support this option
+     *  - 401: Unauthorized
      *
      * REST API Reference for getLastLoginEvents Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-last-login-events/
@@ -73,8 +71,8 @@ interface LoginHistoryApi {
      * Returns a list of the login events by the parameters specified in the request.
      * Responses:
      *  - 200: List of filtered login events
-     *  - 401: Unauthorized
      *  - 402: Your pricing plan does not support this option
+     *  - 401: Unauthorized
      *
      * REST API Reference for getLoginEventsByFilter Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-login-events-by-filter/
@@ -82,15 +80,13 @@ interface LoginHistoryApi {
      *
      * @param userId The ID of the user whose login events are being queried. (optional)
      * @param action The login-related action to filter events by. (optional)
-     * @param utcTime The time in UTC format. (optional)
-     * @param timeZoneOffset The time zone offset. (optional)
-     * @param utcTime The time in UTC format. (optional)
-     * @param timeZoneOffset The time zone offset. (optional)
+     * @param from The starting date and time for filtering login events. (optional)
+     * @param to The ending date and time for filtering login events. (optional)
      * @param count The number of login events to retrieve in the query. (optional)
      * @param startIndex The starting index for fetching a subset of login events from the query results. (optional)
      * @return [Call]<[LoginEventArrayWrapper]>
      */
     @GET("api/2.0/security/audit/login/filter")
-    fun getLoginEventsByFilter(@Query("userId") userId: java.util.UUID? = null, @Query("action") action: MessageAction? = null, @Query("utcTime") utcTime: java.time.OffsetDateTime? = null, @Query("timeZoneOffset") timeZoneOffset: kotlin.String? = null, @Query("utcTime") utcTime: java.time.OffsetDateTime? = null, @Query("timeZoneOffset") timeZoneOffset: kotlin.String? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null): Call<LoginEventArrayWrapper>
+    fun getLoginEventsByFilter(@Query("userId") userId: java.util.UUID? = null, @Query("action") action: MessageAction? = null, @Query("from") from: ApiDateTime? = null, @Query("to") to: ApiDateTime? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null): Call<LoginEventArrayWrapper>
 
 }

@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 
 
-package onlyoffice.docspace.api.sdk.apis
+package onlyoffice.docspace.api.sdk.apis.Security
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
@@ -34,8 +34,6 @@ import onlyoffice.docspace.api.sdk.models.ProductType
 import onlyoffice.docspace.api.sdk.models.StringWrapper
 import onlyoffice.docspace.api.sdk.models.TenantAuditSettingsWrapper
 
-import onlyoffice.docspace.api.sdk.models.*
-
 interface AuditTrailDataApi {
     /**
      * POST api/2.0/security/audit/events/report
@@ -43,9 +41,9 @@ interface AuditTrailDataApi {
      * Generates the audit trail report.
      * Responses:
      *  - 200: URL to the xlsx report file
-     *  - 401: Unauthorized
      *  - 402: Your pricing plan does not support this option
      *  - 403: You don't have enough permission to create
+     *  - 401: Unauthorized
      *
      * REST API Reference for createAuditTrailReport Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-audit-trail-report/
@@ -62,8 +60,8 @@ interface AuditTrailDataApi {
      * Returns a list of the audit events by the parameters specified in the request.
      * Responses:
      *  - 200: List of filtered audit trail data
-     *  - 401: Unauthorized
      *  - 402: Your pricing plan does not support this option
+     *  - 401: Unauthorized
      *
      * REST API Reference for getAuditEventsByFilter Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-audit-events-by-filter/
@@ -75,16 +73,14 @@ interface AuditTrailDataApi {
      * @param action The specific action that occurred within the audit event. (optional)
      * @param entryType The type of audit entry (e.g., Folder, User, File). (optional)
      * @param target The target object affected by the audit event (e.g., document ID, user account). (optional)
-     * @param utcTime The time in UTC format. (optional)
-     * @param timeZoneOffset The time zone offset. (optional)
-     * @param utcTime The time in UTC format. (optional)
-     * @param timeZoneOffset The time zone offset. (optional)
+     * @param from The starting date and time for filtering audit events. (optional)
+     * @param to The ending date and time for filtering audit events. (optional)
      * @param count The maximum number of audit event records to retrieve. (optional)
      * @param startIndex The index of the first audit event record to retrieve in a paged query. (optional)
      * @return [Call]<[AuditEventArrayWrapper]>
      */
     @GET("api/2.0/security/audit/events/filter")
-    fun getAuditEventsByFilter(@Query("userId") userId: java.util.UUID? = null, @Query("moduleType") moduleType: LocationType? = null, @Query("actionType") actionType: ActionType? = null, @Query("action") action: MessageAction? = null, @Query("entryType") entryType: EntryType? = null, @Query("target") target: kotlin.String? = null, @Query("utcTime") utcTime: java.time.OffsetDateTime? = null, @Query("timeZoneOffset") timeZoneOffset: kotlin.String? = null, @Query("utcTime") utcTime: java.time.OffsetDateTime? = null, @Query("timeZoneOffset") timeZoneOffset: kotlin.String? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null): Call<AuditEventArrayWrapper>
+    fun getAuditEventsByFilter(@Query("userId") userId: java.util.UUID? = null, @Query("moduleType") moduleType: LocationType? = null, @Query("actionType") actionType: ActionType? = null, @Query("action") action: MessageAction? = null, @Query("entryType") entryType: EntryType? = null, @Query("target") target: kotlin.String? = null, @Query("from") from: ApiDateTime? = null, @Query("to") to: ApiDateTime? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null): Call<AuditEventArrayWrapper>
 
     /**
      * GET api/2.0/security/audit/settings/lifetime
@@ -92,8 +88,8 @@ interface AuditTrailDataApi {
      * Returns the audit trail settings.
      * Responses:
      *  - 200: Audit settings
-     *  - 401: Unauthorized
      *  - 402: Your pricing plan does not support this option
+     *  - 401: Unauthorized
      *
      * REST API Reference for getAuditSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-audit-settings/
@@ -144,8 +140,8 @@ interface AuditTrailDataApi {
      * Returns a list of the latest changes (creation, modification, deletion, etc.) made by users to the entities on the portal.
      * Responses:
      *  - 200: List of audit trail data
-     *  - 401: Unauthorized
      *  - 402: Your pricing plan does not support this option
+     *  - 401: Unauthorized
      *
      * REST API Reference for getLastAuditEvents Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-last-audit-events/
@@ -163,8 +159,8 @@ interface AuditTrailDataApi {
      * Responses:
      *  - 200: Audit trail settings
      *  - 400: Exception in LoginHistoryLifeTime or AuditTrailLifeTime
-     *  - 401: Unauthorized
      *  - 402: Your pricing plan does not support this option
+     *  - 401: Unauthorized
      *
      * REST API Reference for setAuditSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-audit-settings/

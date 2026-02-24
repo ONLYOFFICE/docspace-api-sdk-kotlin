@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@
 package onlyoffice.docspace.api.sdk.models
 
 import onlyoffice.docspace.api.sdk.models.BackupProgressEnum
+import onlyoffice.docspace.api.sdk.models.DistributedTaskStatus
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -31,6 +32,7 @@ import com.squareup.moshi.JsonClass
  * @param link 
  * @param tenantId 
  * @param backupProgressEnum 
+ * @param status 
  * @param taskId 
  */
 
@@ -57,6 +59,9 @@ data class BackupProgress (
 
     @Json(name = "backupProgressEnum")
     val backupProgressEnum: BackupProgressEnum? = null,
+
+    @Json(name = "status")
+    val status: DistributedTaskStatus? = null,
 
     @Json(name = "taskId")
     val taskId: kotlin.String? = null

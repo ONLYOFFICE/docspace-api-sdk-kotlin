@@ -7,7 +7,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 | [**calculateWalletPayment**](PortalPaymentApi.md#calculateWalletPayment) | **PUT** api/2.0/portal/payment/calculatewallet | Calculate the wallet payment amount |
 | [**changeTenantWalletServiceState**](PortalPaymentApi.md#changeTenantWalletServiceState) | **POST** api/2.0/portal/payment/servicestate | Change wallet service state |
 | [**createCustomerOperationsReport**](PortalPaymentApi.md#createCustomerOperationsReport) | **POST** api/2.0/portal/payment/customer/operationsreport | Start the customer operations report generation |
-| [**getCheckoutSetupUrl**](PortalPaymentApi.md#getCheckoutSetupUrl) | **GET** api/2.0/portal/payment/chechoutsetupurl | Get the checkout setup page URL |
+| [**getCheckoutSetupUrl**](PortalPaymentApi.md#getCheckoutSetupUrl) | **GET** api/2.0/portal/payment/checkoutsetupurl | Get the checkout setup page URL |
 | [**getCustomerBalance**](PortalPaymentApi.md#getCustomerBalance) | **GET** api/2.0/portal/payment/customer/balance | Get the customer balance |
 | [**getCustomerInfo**](PortalPaymentApi.md#getCustomerInfo) | **GET** api/2.0/portal/payment/customerinfo | Get the customer information |
 | [**getCustomerOperations**](PortalPaymentApi.md#getCustomerOperations) | **GET** api/2.0/portal/payment/customer/operations | Get the customer operations |
@@ -603,7 +603,7 @@ val result : StringWrapper = webService.getPaymentUrl(paymentUrlRequestsDto)
 
 <a id="getPortalPrices"></a>
 # **getPortalPrices**
-> UnknownWrapper getPortalPrices ()
+> GetPortalPrices200Response getPortalPrices ()
 
 Returns the available portal prices.
 
@@ -614,7 +614,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**UnknownWrapper**](UnknownWrapper.md)
+[**GetPortalPrices200Response**](GetPortalPrices200Response.md)
 
 ### Authorization
 
@@ -636,7 +636,7 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PaymentApi::class.java)
 
-val result : UnknownWrapper = webService.getPortalPrices()
+val result : GetPortalPrices200Response = webService.getPortalPrices()
 ```
 
 ### HTTP request headers
@@ -829,7 +829,7 @@ val result : QuotaWrapper = webService.getWalletService(service)
 
 <a id="getWalletServices"></a>
 # **getWalletServices**
-> QuotaArrayWrapper getWalletServices ()
+> WalletServiceArrayWrapper getWalletServices ()
 
 Returns the available wallet services.
 
@@ -840,7 +840,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**QuotaArrayWrapper**](QuotaArrayWrapper.md)
+[**WalletServiceArrayWrapper**](WalletServiceArrayWrapper.md)
 
 ### Authorization
 
@@ -862,7 +862,7 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PaymentApi::class.java)
 
-val result : QuotaArrayWrapper = webService.getWalletServices()
+val result : WalletServiceArrayWrapper = webService.getWalletServices()
 ```
 
 ### HTTP request headers

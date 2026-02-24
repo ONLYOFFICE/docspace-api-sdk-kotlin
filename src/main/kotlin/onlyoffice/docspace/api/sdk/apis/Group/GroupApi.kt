@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 
 
-package onlyoffice.docspace.api.sdk.apis
+package onlyoffice.docspace.api.sdk.apis.Group
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
@@ -58,8 +58,8 @@ interface GroupApi {
      * Adds new group members to the group with the ID specified in the request.
      * Responses:
      *  - 200: Group with the detailed information
-     *  - 401: Unauthorized
      *  - 404: Group not found
+     *  - 401: Unauthorized
      *
      * REST API Reference for addMembersTo Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/add-members-to/
@@ -78,8 +78,8 @@ interface GroupApi {
      * Deletes a group with the ID specified in the request from the list of groups on the portal.
      * Responses:
      *  - 200: No content
-     *  - 401: Unauthorized
      *  - 404: Group not found
+     *  - 401: Unauthorized
      *
      * REST API Reference for deleteGroup Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-group/
@@ -94,11 +94,11 @@ interface GroupApi {
     /**
      * GET api/2.0/group/{id}
      * Get a group
-     * Returns the detailed information about the selected group.   **Note**: This method returns full group information.
+     * Returns the detailed information about the selected group.
      * Responses:
      *  - 200: Group with the detailed information
-     *  - 401: Unauthorized
      *  - 404: Group not found
+     *  - 401: Unauthorized
      *
      * REST API Reference for getGroup Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-group/
@@ -132,7 +132,7 @@ interface GroupApi {
     /**
      * GET api/2.0/group
      * Get groups
-     * Returns the general information about all the groups, such as group ID and group manager.   **Note**: This method returns partial group information.
+     * Returns the general information about all the groups, such as group ID and group manager.
      * Responses:
      *  - 200: List of groups
      *  - 401: Unauthorized
@@ -159,8 +159,8 @@ interface GroupApi {
      * Moves all the members from the selected group to another one specified in the request.
      * Responses:
      *  - 200: Group with the detailed information
-     *  - 401: Unauthorized
      *  - 404: Group not found
+     *  - 401: Unauthorized
      *
      * REST API Reference for moveMembersTo Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/move-members-to/
@@ -179,8 +179,8 @@ interface GroupApi {
      * Removes the group members specified in the request from the selected group.
      * Responses:
      *  - 200: Group with the detailed information
-     *  - 401: Unauthorized
      *  - 404: Group not found
+     *  - 401: Unauthorized
      *
      * REST API Reference for removeMembersFrom Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/remove-members-from/
@@ -199,8 +199,8 @@ interface GroupApi {
      * Sets a user with the ID specified in the request as a group manager.
      * Responses:
      *  - 200: Group with the detailed information
-     *  - 401: Unauthorized
      *  - 404: User not found
+     *  - 401: Unauthorized
      *
      * REST API Reference for setGroupManager Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-group-manager/
@@ -238,8 +238,8 @@ interface GroupApi {
      * Updates the existing group changing the group manager, name, and/or members.
      * Responses:
      *  - 200: Updated group with the detailed information
-     *  - 401: Unauthorized
      *  - 404: Group not found
+     *  - 401: Unauthorized
      *
      * REST API Reference for updateGroup Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-group/

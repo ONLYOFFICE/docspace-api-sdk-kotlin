@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 
 
-package onlyoffice.docspace.api.sdk.apis
+package onlyoffice.docspace.api.sdk.apis.People
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
@@ -36,9 +36,9 @@ interface PhotosApi {
      * Creates the user photo thumbnails by coordinates of the original image specified in the request.
      * Responses:
      *  - 200: Thumbnail parameters
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
      *  - 404: User not found
+     *  - 401: Unauthorized
      *
      * REST API Reference for createMemberPhotoThumbnails Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-member-photo-thumbnails/
@@ -57,9 +57,9 @@ interface PhotosApi {
      * Deletes a photo of the user with the ID specified in the request.
      * Responses:
      *  - 200: Thumbnail parameters: original photo, retina, maximum size photo, big, medium, small
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
      *  - 404: User not found
+     *  - 401: Unauthorized
      *
      * REST API Reference for deleteMemberPhoto Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-member-photo/
@@ -77,9 +77,9 @@ interface PhotosApi {
      * Returns a photo of the user with the ID specified in the request.
      * Responses:
      *  - 200: Thumbnail parameters: original photo, retina, maximum size photo, big, medium, small
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
      *  - 404: User not found
+     *  - 401: Unauthorized
      *
      * REST API Reference for getMemberPhoto Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-member-photo/
@@ -97,9 +97,9 @@ interface PhotosApi {
      * Updates a photo of the user with the ID specified in the request.
      * Responses:
      *  - 200: Updated thumbnail parameters: original photo, retina, maximum size photo, big, medium, small
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
      *  - 404: User not found
+     *  - 401: Unauthorized
      *
      * REST API Reference for updateMemberPhoto Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-member-photo/
@@ -119,10 +119,10 @@ interface PhotosApi {
      * Responses:
      *  - 200: Result of file uploading
      *  - 400: The uploaded file could not be found
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
      *  - 413: Image size is too large
      *  - 415: Unknown image file type
+     *  - 401: Unauthorized
      *
      * REST API Reference for uploadMemberPhoto Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-member-photo/

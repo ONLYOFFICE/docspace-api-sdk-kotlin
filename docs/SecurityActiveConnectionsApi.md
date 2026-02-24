@@ -92,7 +92,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ActiveConnectionsApi::class.java)
-val loginEventId : kotlin.Int = 9846 // kotlin.Int | The ID of the specific login event.
+val loginEventId : kotlin.Int = 1 // kotlin.Int | The ID of the specific login event.
 
 val result : BooleanWrapper = webService.logOutActiveConnection(loginEventId)
 ```
@@ -183,7 +183,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ActiveConnectionsApi::class.java)
-val userId : java.util.UUID = aae1e103-bca5-9fa1-ba8c-42058b4abf28 // java.util.UUID | The user ID extracted from the route parameters.
+val userId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The user ID extracted from the route parameters.
 
 webService.logOutAllActiveConnectionsForUser(userId)
 ```

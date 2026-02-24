@@ -8,8 +8,6 @@ import onlyoffice.docspace.api.sdk.auth.OAuthFlow
 import onlyoffice.docspace.api.sdk.auth.ApiKeyAuth
 import onlyoffice.docspace.api.sdk.auth.HttpBasicAuth
 import onlyoffice.docspace.api.sdk.auth.HttpBearerAuth
-import onlyoffice.docspace.api.sdk.auth.ApiKeyAuth
-import onlyoffice.docspace.api.sdk.auth.ApiKeyAuth
 
 import okhttp3.Call
 import okhttp3.Interceptor
@@ -146,7 +144,7 @@ class ApiClient(
         return this
     }
 
-    fun setCredentials(username: String, password: String): ApiClient {
+    fun setOAuthCredentials(username: String, password: String): ApiClient {
         apiAuthorizations.values.runOnFirst<Interceptor, OAuth> {
             tokenRequestBuilder.setUsername(username).setPassword(password)
         }

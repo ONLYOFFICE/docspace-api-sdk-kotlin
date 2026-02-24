@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 
 
-package onlyoffice.docspace.api.sdk.apis
+package onlyoffice.docspace.api.sdk.apis.Files
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
@@ -54,7 +54,7 @@ interface ThirdPartyIntegrationApi {
     /**
      * GET api/2.0/files/thirdparty/providers
      * Get all providers
-     * Returns a list of all providers.   **Note**: Available provider keys: Dropbox, Box, WebDav, OneDrive, GoogleDrive, kDrive, ownCloud, Nextcloud.
+     * Returns a list of all providers.
      * Responses:
      *  - 200: List of provider
      *  - 401: Unauthorized
@@ -89,7 +89,7 @@ interface ThirdPartyIntegrationApi {
     /**
      * GET api/2.0/files/thirdparty/capabilities
      * Get providers
-     * Returns the list of the available providers.   **Note**: Available provider keys: DropboxV2, Box, WebDav, Yandex, OneDrive, SharePoint, GoogleDrive, kDrive.
+     * Returns the list of the available providers.
      * Responses:
      *  - 200: List of provider keys
      *  - 401: Unauthorized
@@ -140,7 +140,7 @@ interface ThirdPartyIntegrationApi {
     /**
      * POST api/2.0/files/thirdparty
      * Save a third-party account
-     * Saves the third-party storage service account. For WebDav, Yandex, kDrive and SharePoint, the login and password are used for authentication. For other providers, the authentication is performed using a token received via OAuth 2.0.   **Note**: List of provider keys: DropboxV2, Box, WebDav, Yandex, OneDrive, SharePoint, GoogleDrive, kDrive.
+     * Saves the third-party storage service account. For WebDav, Yandex, kDrive and SharePoint, the login and password are used for authentication. For other providers, the authentication is performed using a token received via OAuth 2.0.
      * Responses:
      *  - 200: Connected provider folder
      *  - 401: Unauthorized
@@ -158,7 +158,7 @@ interface ThirdPartyIntegrationApi {
     /**
      * POST api/2.0/files/thirdparty/backup
      * Save a third-party account backup
-     * Saves a backup of the connected third-party account.   **Note**: List of provider keys: DropboxV2, Box, WebDav, Yandex, OneDrive, SharePoint, GoogleDrive, kDrive.
+     * Saves a backup of the connected third-party account.
      * Responses:
      *  - 200: Folder for the third-party account backup
      *  - 401: Unauthorized

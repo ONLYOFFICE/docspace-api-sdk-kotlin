@@ -46,6 +46,7 @@
 | **maxImageUploadSize** | **kotlin.Long** | The maximum image upload size. |  [optional] |
 | **logoText** | **kotlin.String** | The white label logo text. |  [optional] |
 | **externalResources** | [**CultureSpecificExternalResources**](CultureSpecificExternalResources.md) |  |  [optional] |
+| **defaultFolderType** | [**FolderType**](FolderType.md) |  |  [optional] |
 
 
 

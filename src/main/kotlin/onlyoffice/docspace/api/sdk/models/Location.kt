@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,22 +21,22 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The location context of the request.
+ * [1 - Room, 2 - Documents, 3 - Link]
  *
- * Values: _1,_2,_3
+ * Values: Room,Documents,Link
  */
 
 @JsonClass(generateAdapter = false)
 enum class Location(val value: kotlin.Int) {
 
-    @Json(name = 1)
-    _1(1),
+    @Json(name = "1")
+    Room(1),
 
-    @Json(name = 2)
-    _2(2),
+    @Json(name = "2")
+    Documents(2),
 
-    @Json(name = 3)
-    _3(3);
+    @Json(name = "3")
+    Link(3);
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use
@@ -58,7 +58,7 @@ enum class Location(val value: kotlin.Int) {
          */
         fun decode(data: kotlin.Any?): Location? = data?.let {
           val normalizedData = "$it".lowercase()
-          values().firstOrNull { value ->
+          entries.firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()
           }
         }

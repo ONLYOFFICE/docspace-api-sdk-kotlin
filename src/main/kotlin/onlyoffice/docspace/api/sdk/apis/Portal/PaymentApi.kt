@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 
 
-package onlyoffice.docspace.api.sdk.apis
+package onlyoffice.docspace.api.sdk.apis.Portal
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
@@ -30,6 +30,7 @@ import onlyoffice.docspace.api.sdk.models.CurrenciesArrayWrapper
 import onlyoffice.docspace.api.sdk.models.CustomerInfoWrapper
 import onlyoffice.docspace.api.sdk.models.CustomerOperationsReportRequestDto
 import onlyoffice.docspace.api.sdk.models.DocumentBuilderTaskWrapper
+import onlyoffice.docspace.api.sdk.models.GetPortalPrices200Response
 import onlyoffice.docspace.api.sdk.models.PaymentCalculationWrapper
 import onlyoffice.docspace.api.sdk.models.PaymentUrlRequestsDto
 import onlyoffice.docspace.api.sdk.models.QuantityRequestDto
@@ -42,8 +43,8 @@ import onlyoffice.docspace.api.sdk.models.TenantWalletService
 import onlyoffice.docspace.api.sdk.models.TenantWalletServiceSettingsWrapper
 import onlyoffice.docspace.api.sdk.models.TenantWalletSettingsWrapper
 import onlyoffice.docspace.api.sdk.models.TopUpDepositRequestDto
-import onlyoffice.docspace.api.sdk.models.UnknownWrapper
 import onlyoffice.docspace.api.sdk.models.WalletQuantityRequestDto
+import onlyoffice.docspace.api.sdk.models.WalletServiceArrayWrapper
 
 interface PaymentApi {
     /**
@@ -52,8 +53,8 @@ interface PaymentApi {
      * Calculates an amount of the wallet payment with the parameters specified in the request.
      * Responses:
      *  - 200: Payment calculation
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for calculateWalletPayment Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/calculate-wallet-payment/
@@ -71,8 +72,8 @@ interface PaymentApi {
      * Changes the wallet service state.
      * Responses:
      *  - 200: The wallet service settings
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for changeTenantWalletServiceState Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/change-tenant-wallet-service-state/
@@ -103,13 +104,13 @@ interface PaymentApi {
     fun createCustomerOperationsReport(@Body customerOperationsReportRequestDto: CustomerOperationsReportRequestDto? = null): Call<DocumentBuilderTaskWrapper>
 
     /**
-     * GET api/2.0/portal/payment/chechoutsetupurl
+     * GET api/2.0/portal/payment/checkoutsetupurl
      * Get the checkout setup page URL
      * Returns the URL to the checkout setup page.
      * Responses:
      *  - 200: The URL to the checkout setup page
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for getCheckoutSetupUrl Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-checkout-setup-url/
@@ -118,7 +119,7 @@ interface PaymentApi {
      * @param backUrl The URL where the user will be redirected after completing the setup. (optional)
      * @return [Call]<[StringWrapper]>
      */
-    @GET("api/2.0/portal/payment/chechoutsetupurl")
+    @GET("api/2.0/portal/payment/checkoutsetupurl")
     fun getCheckoutSetupUrl(@Query("BackUrl") backUrl: kotlin.String? = null): Call<StringWrapper>
 
     /**
@@ -127,8 +128,8 @@ interface PaymentApi {
      * Returns the customer balance from the accounting service.
      * Responses:
      *  - 200: The customer balance
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for getCustomerBalance Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-customer-balance/
@@ -146,8 +147,8 @@ interface PaymentApi {
      * Returns the customer information.
      * Responses:
      *  - 200: The customer info
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for getCustomerInfo Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-customer-info/
@@ -165,8 +166,8 @@ interface PaymentApi {
      * Returns the report of customer operations from the accounting service.
      * Responses:
      *  - 200: The customer operations
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for getCustomerOperations Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-customer-operations/
@@ -207,8 +208,8 @@ interface PaymentApi {
      * Returns the URL to the payment account.
      * Responses:
      *  - 200: The URL to the payment account
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for getPaymentAccount Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-payment-account/
@@ -261,8 +262,8 @@ interface PaymentApi {
      * Returns the URL to the payment page.
      * Responses:
      *  - 200: The URL to the payment page
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for getPaymentUrl Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-payment-url/
@@ -286,10 +287,10 @@ interface PaymentApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-portal-prices/
      *
      *
-     * @return [Call]<[UnknownWrapper]>
+     * @return [Call]<[GetPortalPrices200Response]>
      */
     @GET("api/2.0/portal/payment/prices")
-    fun getPortalPrices(): Call<UnknownWrapper>
+    fun getPortalPrices(): Call<GetPortalPrices200Response>
 
     /**
      * GET api/2.0/portal/payment/quota
@@ -297,8 +298,8 @@ interface PaymentApi {
      * Returns the payment information about the current portal quota.
      * Responses:
      *  - 200: Payment information about the current portal quota
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for getQuotaPaymentInformation Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-quota-payment-information/
@@ -316,8 +317,8 @@ interface PaymentApi {
      * Returns the wallet services settings.
      * Responses:
      *  - 200: The wallet services settings
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for getTenantWalletServiceSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tenant-wallet-service-settings/
@@ -334,8 +335,8 @@ interface PaymentApi {
      * Returns the wallet auto top-up settings.
      * Responses:
      *  - 200: The wallet auto top up settings
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for getTenantWalletSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tenant-wallet-settings/
@@ -376,10 +377,10 @@ interface PaymentApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-wallet-services/
      *
      *
-     * @return [Call]<[QuotaArrayWrapper]>
+     * @return [Call]<[WalletServiceArrayWrapper]>
      */
     @GET("api/2.0/portal/payment/walletservices")
-    fun getWalletServices(): Call<QuotaArrayWrapper>
+    fun getWalletServices(): Call<WalletServiceArrayWrapper>
 
     /**
      * POST api/2.0/portal/payment/request
@@ -388,8 +389,8 @@ interface PaymentApi {
      * Responses:
      *  - 200: Ok
      *  - 400: Incorrect email or message text is empty
-     *  - 401: Unauthorized
      *  - 429: Request limit is exceeded
+     *  - 401: Unauthorized
      *
      * REST API Reference for sendPaymentRequest Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/send-payment-request/
@@ -407,8 +408,8 @@ interface PaymentApi {
      * Sets the wallet auto top-up settings.
      * Responses:
      *  - 200: The wallet auto top up settings
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for setTenantWalletSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-tenant-wallet-settings/
@@ -443,8 +444,8 @@ interface PaymentApi {
      * Returns the result of putting money on deposit.
      * Responses:
      *  - 200: Boolean value: true if the operation is successful
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for topUpDeposit Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/top-up-deposit/
@@ -462,8 +463,8 @@ interface PaymentApi {
      * Updates the payment quantity with the parameters specified in the request.
      * Responses:
      *  - 200: Boolean value: true if the operation is successful
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for updatePayment Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-payment/
@@ -481,8 +482,8 @@ interface PaymentApi {
      * Updates the wallet payment quantity with the parameters specified in the request.
      * Responses:
      *  - 200: Boolean value: true if the operation is successful
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for updateWalletPayment Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-wallet-payment/

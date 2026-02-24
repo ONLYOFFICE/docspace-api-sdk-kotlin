@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 
 
-package onlyoffice.docspace.api.sdk.apis
+package onlyoffice.docspace.api.sdk.apis.Settings
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
@@ -26,6 +26,7 @@ import com.squareup.moshi.Json
 import onlyoffice.docspace.api.sdk.models.CustomColorThemesSettingsRequestsDto
 import onlyoffice.docspace.api.sdk.models.CustomColorThemesSettingsWrapper
 import onlyoffice.docspace.api.sdk.models.DeepLinkConfigurationRequestsDto
+import onlyoffice.docspace.api.sdk.models.DefaultProductRequestDto
 import onlyoffice.docspace.api.sdk.models.DnsSettingsRequestsDto
 import onlyoffice.docspace.api.sdk.models.EmailActivationSettings
 import onlyoffice.docspace.api.sdk.models.EmailActivationSettingsWrapper
@@ -35,6 +36,7 @@ import onlyoffice.docspace.api.sdk.models.PaymentSettingsWrapper
 import onlyoffice.docspace.api.sdk.models.STRINGArrayWrapper
 import onlyoffice.docspace.api.sdk.models.SettingsWrapper
 import onlyoffice.docspace.api.sdk.models.StringWrapper
+import onlyoffice.docspace.api.sdk.models.StudioDefaultPageSettingsWrapper
 import onlyoffice.docspace.api.sdk.models.TenantDeepLinkSettingsWrapper
 import onlyoffice.docspace.api.sdk.models.TenantUserInvitationSettingsRequestDto
 import onlyoffice.docspace.api.sdk.models.TenantUserInvitationSettingsWrapper
@@ -49,8 +51,8 @@ interface CommonSettingsApi {
      * Closes the administrator helper notification.
      * Responses:
      *  - 200: Ok
-     *  - 401: Unauthorized
      *  - 405: Not available
+     *  - 401: Unauthorized
      *
      * REST API Reference for closeAdminHelper Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/close-admin-helper/
@@ -68,8 +70,8 @@ interface CommonSettingsApi {
      * Responses:
      *  - 200: Wizard settings
      *  - 400: Incorrect email address/The password is empty
-     *  - 401: Unauthorized
      *  - 402: You must enter a license key or license key is not correct or license expired or user quota does not match the license
+     *  - 401: Unauthorized
      *
      * REST API Reference for completeWizard Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/complete-wizard/
@@ -285,15 +287,33 @@ interface CommonSettingsApi {
     fun getTimeZones(): Call<TimezonesRequestsArrayWrapper>
 
     /**
+     * PUT api/2.0/settings/defaultfolder
+     * Set the default folder
+     * Sets the default folder.
+     * Responses:
+     *  - 200: Message about saving settings successfully
+     *  - 401: Unauthorized
+     *
+     * REST API Reference for saveDefaultFolder Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/save-default-folder/
+     *
+     *
+     * @param defaultProductRequestDto  (optional)
+     * @return [Call]<[StudioDefaultPageSettingsWrapper]>
+     */
+    @PUT("api/2.0/settings/defaultfolder")
+    fun saveDefaultFolder(@Body defaultProductRequestDto: DefaultProductRequestDto? = null): Call<StudioDefaultPageSettingsWrapper>
+
+    /**
      * PUT api/2.0/settings/dns
      * Save the DNS settings
      * Saves the DNS settings specified in the request to the current portal.
      * Responses:
      *  - 200: Message about changing DNS
      *  - 400: Invalid domain name/incorrect length of doman name
-     *  - 401: Unauthorized
      *  - 402: Your pricing plan does not support this option
      *  - 405: Method not allowed
+     *  - 401: Unauthorized
      *
      * REST API Reference for saveDnsSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/save-dns-settings/

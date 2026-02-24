@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 
 
-package onlyoffice.docspace.api.sdk.apis
+package onlyoffice.docspace.api.sdk.apis.People
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
@@ -31,7 +31,6 @@ import onlyoffice.docspace.api.sdk.models.InviteUsersRequestDto
 import onlyoffice.docspace.api.sdk.models.MemberRequestDto
 import onlyoffice.docspace.api.sdk.models.ObjectWrapper
 import onlyoffice.docspace.api.sdk.models.SortOrder
-import onlyoffice.docspace.api.sdk.models.StringWrapper
 import onlyoffice.docspace.api.sdk.models.UpdateMemberRequestDto
 import onlyoffice.docspace.api.sdk.models.UpdateMembersRequestDto
 
@@ -42,8 +41,8 @@ interface ProfilesApi {
      * Adds a new portal user with the first name, last name, email address, and several optional parameters specified in the request.
      * Responses:
      *  - 200: Newly added user with the detailed information
-     *  - 401: Unauthorized
      *  - 403: The invitation link is invalid or its validity has expired
+     *  - 401: Unauthorized
      *
      * REST API Reference for addMember Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/add-member/
@@ -61,10 +60,9 @@ interface ProfilesApi {
      * Deletes a user with the ID specified in the request from the portal.
      * Responses:
      *  - 200: Deleted user detailed information
-     *  - 400: The user is not suspended
-     *  - 401: Unauthorized
-     *  - 403: You don't have enough permission to perform the operation
+     *  - 403: You don't have enough permission to perform the operation or user is not suspended
      *  - 404: User not found
+     *  - 401: Unauthorized
      *
      * REST API Reference for deleteMember Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-member/
@@ -82,9 +80,9 @@ interface ProfilesApi {
      * Deletes the current user profile.
      * Responses:
      *  - 200: Detailed information about my profile
-     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to perform the operation
      *  - 404: User not found
+     *  - 401: Unauthorized
      *
      * REST API Reference for deleteProfile Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-profile/
@@ -142,8 +140,8 @@ interface ProfilesApi {
      * Returns the detailed information about a profile of the user with the email specified in the request.
      * Responses:
      *  - 200: Detailed profile information
-     *  - 401: Unauthorized
      *  - 404: User not found
+     *  - 401: Unauthorized
      *
      * REST API Reference for getProfileByEmail Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-profile-by-email/
@@ -163,9 +161,9 @@ interface ProfilesApi {
      * Returns the detailed information about a profile of the user with the ID specified in the request.
      * Responses:
      *  - 200: Detailed profile information
-     *  - 400: Incorect UserId
-     *  - 401: Unauthorized
+     *  - 400: Incorrect UserId
      *  - 404: User not found
+     *  - 401: Unauthorized
      *
      * REST API Reference for getProfileByUserId Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-profile-by-user-id/
@@ -200,8 +198,10 @@ interface ProfilesApi {
      * Invites users specified in the request to the current portal.
      * Responses:
      *  - 200: List of users
-     *  - 401: Unauthorized
+     *  - 400: Incorrect email or User disabled
+     *  - 402: The number of admins exceeds the limit
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for inviteUsers Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/invite-users/
@@ -219,8 +219,10 @@ interface ProfilesApi {
      * Deletes a list of the users with the IDs specified in the request.
      * Responses:
      *  - 200: List of users with the detailed information
-     *  - 401: Unauthorized
+     *  - 400: Incorrect UserIds
+     *  - 403: No permissions to perform this action or users are not suspended
      *  - 409: Data reassign process is not complete
+     *  - 401: Unauthorized
      *
      * REST API Reference for removeUsers Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/remove-users/
@@ -238,8 +240,8 @@ interface ProfilesApi {
      * Resends emails to the users who have not activated their emails.
      * Responses:
      *  - 200: List of users with the detailed information
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for resendUserInvites Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/resend-user-invites/
@@ -252,36 +254,15 @@ interface ProfilesApi {
     fun resendUserInvites(@Body updateMembersRequestDto: UpdateMembersRequestDto? = null): Call<EmployeeFullArrayWrapper>
 
     /**
-     * POST api/2.0/people/email
-     * Send instructions to change email
-     * Sends a message to the user email with the instructions to change the email address connected to the portal.
-     * Responses:
-     *  - 200: Message text
-     *  - 400: Incorrect userId or email
-     *  - 401: Unauthorized
-     *  - 403: No permissions to perform this action
-     *  - 404: User not found
-     *
-     * REST API Reference for sendEmailChangeInstructions Operation
-     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/send-email-change-instructions/
-     *
-     *
-     * @param updateMemberRequestDto  (optional)
-     * @return [Call]<[StringWrapper]>
-     */
-    @POST("api/2.0/people/email")
-    fun sendEmailChangeInstructions(@Body updateMemberRequestDto: UpdateMemberRequestDto? = null): Call<StringWrapper>
-
-    /**
      * PUT api/2.0/people/{userid}
      * Update a user
      * Updates the data for the selected portal user with the first name, last name, email address, and/or optional parameters specified in the request.
      * Responses:
      *  - 200: Updated user with the detailed information
      *  - 400: Incorrect user name
-     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to perform the operation
      *  - 404: User not found
+     *  - 401: Unauthorized
      *
      * REST API Reference for updateMember Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-member/
@@ -296,20 +277,21 @@ interface ProfilesApi {
 
     /**
      * PUT api/2.0/people/{userid}/culture
-     * Update a user culture code
-     * Updates the user culture code with the parameters specified in the request.
+     * Update a user culture
+     * Updates the user culture with the parameters specified in the request.
      * Responses:
      *  - 200: Detailed user information
-     *  - 401: Unauthorized
+     *  - 400: The specified culture is not in the list of available ones
      *  - 403: You don't have enough permission to perform the operation
      *  - 404: User not found
+     *  - 401: Unauthorized
      *
      * REST API Reference for updateMemberCulture Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-member-culture/
      *
      *
      * @param userid The user ID.
-     * @param culture The culture code parameters. (optional)
+     * @param culture The culture name parameters. (optional)
      * @return [Call]<[EmployeeFullWrapper]>
      */
     @PUT("api/2.0/people/{userid}/culture")

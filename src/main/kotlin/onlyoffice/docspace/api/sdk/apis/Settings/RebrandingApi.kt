@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 
 
-package onlyoffice.docspace.api.sdk.apis
+package onlyoffice.docspace.api.sdk.apis.Settings
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
@@ -40,8 +40,8 @@ interface RebrandingApi {
      * Deletes the additional white label settings.
      * Responses:
      *  - 200: Default additional white label settings
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for deleteAdditionalWhiteLabelSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-additional-white-label-settings/
@@ -58,8 +58,8 @@ interface RebrandingApi {
      * Deletes the company white label settings.
      * Responses:
      *  - 200: Default company white label settings
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for deleteCompanyWhiteLabelSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-company-white-label-settings/
@@ -219,8 +219,8 @@ interface RebrandingApi {
      * Restores the white label logo text.
      * Responses:
      *  - 200: Boolean value: true if the operation is successful
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for restoreWhiteLabelLogoText Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/restore-white-label-logo-text/
@@ -239,8 +239,8 @@ interface RebrandingApi {
      * Restores the white label logos.
      * Responses:
      *  - 200: Boolean value: true if the operation is successful
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for restoreWhiteLabelLogos Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/restore-white-label-logos/
@@ -260,8 +260,8 @@ interface RebrandingApi {
      * Responses:
      *  - 200: Boolean value: true if the operation is successful
      *  - 400: Settings is empty
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for saveAdditionalWhiteLabelSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/save-additional-white-label-settings/
@@ -280,8 +280,8 @@ interface RebrandingApi {
      * Responses:
      *  - 200: Boolean value: true if the operation is successful
      *  - 400: Argument is empty or invalid
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for saveCompanyWhiteLabelSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/save-company-white-label-settings/
@@ -299,8 +299,8 @@ interface RebrandingApi {
      * Saves the white label logo text specified in the request.
      * Responses:
      *  - 200: Boolean value: true if the operation is sucessful
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for saveWhiteLabelLogoText Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/save-white-label-logo-text/
@@ -320,8 +320,8 @@ interface RebrandingApi {
      * Saves the white label logos specified in the request.
      * Responses:
      *  - 200: Boolean value: true if the operation is sucessful
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for saveWhiteLabelSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/save-white-label-settings/
@@ -341,9 +341,9 @@ interface RebrandingApi {
      * Saves the white label logos from files.
      * Responses:
      *  - 200: Boolean value: true if the operation is sucessful
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
      *  - 409: No input files
+     *  - 401: Unauthorized
      *
      * REST API Reference for saveWhiteLabelSettingsFromFiles Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/save-white-label-settings-from-files/

@@ -45,6 +45,7 @@
 | **contentLength** | **kotlin.String** | The content length of the file. |  [optional] |
 | **pureContentLength** | **kotlin.Long** | The pure content length of the file. |  [optional] |
 | **fileStatus** | [**FileStatus**](FileStatus.md) |  |  [optional] |
+| **editingBy** | **kotlin.collections.Map&lt;kotlin.String, kotlin.String&gt;** | The list of users editing the file. |  [optional] |
 | **mute** | **kotlin.Boolean** | Specifies if the file is muted or not. |  [optional] |
 | **viewUrl** | [**java.net.URI**](java.net.URI.md) | The URL link to view the file. |  [optional] |
 | **webUrl** | [**java.net.URI**](java.net.URI.md) | The Web URL link to the file. |  [optional] |

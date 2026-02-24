@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,7 @@ import com.squareup.moshi.JsonClass
  * @param providerId 
  * @param modelId 
  * @param prompt 
+ * @param `internal` 
  */
 
 
@@ -38,7 +39,10 @@ data class ChatSettings (
     val modelId: kotlin.String? = null,
 
     @Json(name = "prompt")
-    val prompt: kotlin.String? = null
+    val prompt: kotlin.String? = null,
+
+    @Json(name = "internal")
+    val `internal`: kotlin.Boolean? = null
 
 ) {
 

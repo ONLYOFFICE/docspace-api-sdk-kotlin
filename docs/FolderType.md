@@ -60,5 +60,7 @@
 
     * `AiAgents` (value: `34`)
 
+    * `DefaultTemplates` (value: `35`)
+
 
 

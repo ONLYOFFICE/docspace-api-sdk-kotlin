@@ -12,6 +12,8 @@
 | **linkType** | [**LinkType**](LinkType.md) |  |  [optional] |
 | **password** | **kotlin.String** | The link password. |  [optional] |
 | **denyDownload** | **kotlin.Boolean** | Specifies if downloading the file from the link is disabled or not. |  [optional] |
+| **maxUseCount** | **kotlin.Int** | The maximum number of times the invitation link can be used. |  [optional] |
+| **currentUseCount** | **kotlin.Int** | The current number of times the invitation link has been used. |  [optional] |
 
 
 

@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,19 +29,19 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = false)
 enum class EmployeeStatus(val value: kotlin.Int) {
 
-    @Json(name = 1)
+    @Json(name = "1")
     Active(1),
 
-    @Json(name = 2)
+    @Json(name = "2")
     Terminated(2),
 
-    @Json(name = 4)
+    @Json(name = "4")
     Pending(4),
 
-    @Json(name = 5)
+    @Json(name = "5")
     Default(5),
 
-    @Json(name = 7)
+    @Json(name = "7")
     All(7);
 
     /**
@@ -64,7 +64,7 @@ enum class EmployeeStatus(val value: kotlin.Int) {
          */
         fun decode(data: kotlin.Any?): EmployeeStatus? = data?.let {
           val normalizedData = "$it".lowercase()
-          values().firstOrNull { value ->
+          entries.firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()
           }
         }

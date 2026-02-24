@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,10 +29,10 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = false)
 enum class SubjectFilter(val value: kotlin.Int) {
 
-    @Json(name = 0)
+    @Json(name = "0")
     Owner(0),
 
-    @Json(name = 1)
+    @Json(name = "1")
     Member(1);
 
     /**
@@ -55,7 +55,7 @@ enum class SubjectFilter(val value: kotlin.Int) {
          */
         fun decode(data: kotlin.Any?): SubjectFilter? = data?.let {
           val normalizedData = "$it".lowercase()
-          values().firstOrNull { value ->
+          entries.firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()
           }
         }

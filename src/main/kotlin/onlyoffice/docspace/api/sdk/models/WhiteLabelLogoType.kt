@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,61 +21,61 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * [1 - Light small, 2 - Login page, 3 - Favicon, 4 - Docs editor, 5 - Docs editor embed, 6 - Left menu, 7 - About page, 8 - Notification, 9 - Spreadsheet editor, 10 - Spreadsheet editor embed, 11 - Presentation editor, 12 - Presentation editor embed, 13 - Pdf editor, 14 - Pdf editor embed, 15 - Diagram editor, 16 - Diagram editor embed]
  *
- * Values: _1,_2,_3,_4,_5,_6,_7,_8,_9,_10,_11,_12,_13,_14,_15,_16
+ * Values: LightSmall,LoginPage,Favicon,DocsEditor,DocsEditorEmbed,LeftMenu,AboutPage,Notification,SpreadsheetEditor,SpreadsheetEditorEmbed,PresentationEditor,PresentationEditorEmbed,PdfEditor,PdfEditorEmbed,DiagramEditor,DiagramEditorEmbed
  */
 
 @JsonClass(generateAdapter = false)
 enum class WhiteLabelLogoType(val value: kotlin.Int) {
 
-    @Json(name = 1)
-    _1(1),
+    @Json(name = "1")
+    LightSmall(1),
 
-    @Json(name = 2)
-    _2(2),
+    @Json(name = "2")
+    LoginPage(2),
 
-    @Json(name = 3)
-    _3(3),
+    @Json(name = "3")
+    Favicon(3),
 
-    @Json(name = 4)
-    _4(4),
+    @Json(name = "4")
+    DocsEditor(4),
 
-    @Json(name = 5)
-    _5(5),
+    @Json(name = "5")
+    DocsEditorEmbed(5),
 
-    @Json(name = 6)
-    _6(6),
+    @Json(name = "6")
+    LeftMenu(6),
 
-    @Json(name = 7)
-    _7(7),
+    @Json(name = "7")
+    AboutPage(7),
 
-    @Json(name = 8)
-    _8(8),
+    @Json(name = "8")
+    Notification(8),
 
-    @Json(name = 9)
-    _9(9),
+    @Json(name = "9")
+    SpreadsheetEditor(9),
 
-    @Json(name = 10)
-    _10(10),
+    @Json(name = "10")
+    SpreadsheetEditorEmbed(10),
 
-    @Json(name = 11)
-    _11(11),
+    @Json(name = "11")
+    PresentationEditor(11),
 
-    @Json(name = 12)
-    _12(12),
+    @Json(name = "12")
+    PresentationEditorEmbed(12),
 
-    @Json(name = 13)
-    _13(13),
+    @Json(name = "13")
+    PdfEditor(13),
 
-    @Json(name = 14)
-    _14(14),
+    @Json(name = "14")
+    PdfEditorEmbed(14),
 
-    @Json(name = 15)
-    _15(15),
+    @Json(name = "15")
+    DiagramEditor(15),
 
-    @Json(name = 16)
-    _16(16);
+    @Json(name = "16")
+    DiagramEditorEmbed(16);
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use
@@ -97,7 +97,7 @@ enum class WhiteLabelLogoType(val value: kotlin.Int) {
          */
         fun decode(data: kotlin.Any?): WhiteLabelLogoType? = data?.let {
           val normalizedData = "$it".lowercase()
-          values().firstOrNull { value ->
+          entries.firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()
           }
         }

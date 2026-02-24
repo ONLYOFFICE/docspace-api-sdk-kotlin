@@ -17,6 +17,8 @@
 | **fillingStatus** | **kotlin.Boolean** | The file filling status. |  [optional] |
 | **startFillingMode** | [**StartFillingMode**](StartFillingMode.md) |  |  [optional] |
 | **fillingSessionId** | **kotlin.String** | The file filling session ID. |  [optional] |
+| **quotaExceededScope** | [**QuotaScope**](QuotaScope.md) |  |  [optional] |
+| **generationToolCallState** | [**EditorToolCallStateDto**](EditorToolCallStateDto.md) |  |  [optional] |
 
 
 

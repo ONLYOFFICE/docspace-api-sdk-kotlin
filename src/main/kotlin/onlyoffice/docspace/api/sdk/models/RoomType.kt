@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,22 +29,22 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = false)
 enum class RoomType(val value: kotlin.Int) {
 
-    @Json(name = 1)
+    @Json(name = "1")
     FillingFormsRoom(1),
 
-    @Json(name = 2)
+    @Json(name = "2")
     EditingRoom(2),
 
-    @Json(name = 5)
+    @Json(name = "5")
     CustomRoom(5),
 
-    @Json(name = 6)
+    @Json(name = "6")
     PublicRoom(6),
 
-    @Json(name = 8)
+    @Json(name = "8")
     VirtualDataRoom(8),
 
-    @Json(name = 9)
+    @Json(name = "9")
     AiRoom(9);
 
     /**
@@ -67,7 +67,7 @@ enum class RoomType(val value: kotlin.Int) {
          */
         fun decode(data: kotlin.Any?): RoomType? = data?.let {
           val normalizedData = "$it".lowercase()
-          values().firstOrNull { value ->
+          entries.firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()
           }
         }

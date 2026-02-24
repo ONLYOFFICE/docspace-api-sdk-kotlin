@@ -30,6 +30,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 | [**getFilePrimaryExternalLink**](FilesFilesApi.md#getFilePrimaryExternalLink) | **GET** api/2.0/files/file/{id}/link | Get primary external link |
 | [**getFileVersionInfo**](FilesFilesApi.md#getFileVersionInfo) | **GET** api/2.0/files/file/{fileId}/history | Get file versions |
 | [**getFillResult**](FilesFilesApi.md#getFillResult) | **GET** api/2.0/files/file/fillresult | Get form-filling result |
+| [**getFormSubmissions**](FilesFilesApi.md#getFormSubmissions) | **GET** api/2.0/files/file/{fileId}/submissions | Get form submission results |
 | [**getPresignedFileUri**](FilesFilesApi.md#getPresignedFileUri) | **GET** api/2.0/files/file/{fileId}/presigned | Get file download link asynchronously |
 | [**getPresignedUri**](FilesFilesApi.md#getPresignedUri) | **GET** api/2.0/files/file/{fileId}/presigneduri | Get file download link |
 | [**getProtectedFileUsers**](FilesFilesApi.md#getProtectedFileUsers) | **GET** api/2.0/files/file/{fileId}/protectusers | Get users access rights to the protected file |
@@ -90,7 +91,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
-val fileId : kotlin.Int = 9846 // kotlin.Int | The file unique identifier.
+val fileId : kotlin.Int = 1 // kotlin.Int | The file unique identifier.
 
 val result : FileIntegerWrapper = webService.addFileToRecent(fileId)
 ```
@@ -185,7 +186,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
-val fileId : kotlin.Int = 9846 // kotlin.Int | The file Id to change its version history.
+val fileId : kotlin.Int = 1 // kotlin.Int | The file Id to change its version history.
 val changeHistory : ChangeHistory =  // ChangeHistory | The parameters for changing version history.
 
 val result : FileIntegerArrayWrapper = webService.changeVersionHistory(fileId, changeHistory)
@@ -228,7 +229,7 @@ No authorization required
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(FilesApi::class.java)
-val fileId : kotlin.Int = 9846 // kotlin.Int | The file ID of the form draft.
+val fileId : kotlin.Int = 1 // kotlin.Int | The file ID of the form draft.
 val checkFillFormDraft : CheckFillFormDraft =  // CheckFillFormDraft | The parameters for checking the form draft filling.
 
 val result : StringWrapper = webService.checkFillFormDraft(fileId, checkFillFormDraft)
@@ -277,7 +278,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
-val fileId : kotlin.Int = 9846 // kotlin.Int | The file ID to copy.
+val fileId : kotlin.Int = 1 // kotlin.Int | The file ID to copy.
 val copyAsJsonElement : CopyAsJsonElement =  // CopyAsJsonElement | The parameters for copying a file.
 
 val result : FileEntryBaseWrapper = webService.copyFileAs(fileId, copyAsJsonElement)
@@ -291,9 +292,9 @@ val result : FileEntryBaseWrapper = webService.copyFileAs(fileId, copyAsJsonElem
 
 <a id="createEditSession"></a>
 # **createEditSession**
-> ObjectWrapper createEditSession (kotlin.Int fileId, kotlin.Long fileSize)
+> ChunkedUploadSessionResponseWrapperIntegerWrapper createEditSession (kotlin.Int fileId, kotlin.Long fileSize)
 
-Creates a session to edit the existing file with multiple chunks (needed for WebDAV).   **Note**: Information about created session which includes:  <ul>  <li><b>id:</b> unique ID of this upload session,</li>  <li><b>created:</b> UTC time when the session was created,</li>  <li><b>expired:</b> UTC time when the session will expire if no chunks are sent before that time,</li>  <li><b>location:</b> URL where you should send your next chunk,</li>  <li><b>bytes_uploaded:</b> number of bytes uploaded for the specific upload ID,</li>  <li><b>bytes_total:</b> total number of bytes which will be uploaded.</li>  </ul>
+Creates a session to edit the existing file with multiple chunks (needed for WebDAV).
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-edit-session/).
 
@@ -305,7 +306,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Return type
 
-[**ObjectWrapper**](ObjectWrapper.md)
+[**ChunkedUploadSessionResponseWrapperIntegerWrapper**](ChunkedUploadSessionResponseWrapperIntegerWrapper.md)
 
 ### Authorization
 
@@ -326,10 +327,10 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
-val fileId : kotlin.Int = 9846 // kotlin.Int | The file ID.
+val fileId : kotlin.Int = 1 // kotlin.Int | The file ID.
 val fileSize : kotlin.Long = 1234 // kotlin.Long | The file size in bytes.
 
-val result : ObjectWrapper = webService.createEditSession(fileId, fileSize)
+val result : ChunkedUploadSessionResponseWrapperIntegerWrapper = webService.createEditSession(fileId, fileSize)
 ```
 
 ### HTTP request headers
@@ -342,7 +343,7 @@ val result : ObjectWrapper = webService.createEditSession(fileId, fileSize)
 # **createFile**
 > FileIntegerWrapper createFile (kotlin.Int folderId, CreateFileJsonElement createFileJsonElement)
 
-Creates a new file in the specified folder with the title specified in the request.   **Note**: If a file extension is different from DOCX/XLSX/PPTX and refers to one of the known text, spreadsheet, or presentation formats, it will be changed to DOCX/XLSX/PPTX accordingly. If the file extension is not specified or is unknown, the DOCX extension will be added to the file title.
+Creates a new file in the specified folder with the title specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-file/).
 
@@ -375,7 +376,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
-val folderId : kotlin.Int = 9846 // kotlin.Int | The folder ID for the file creation.
+val folderId : kotlin.Int = 1 // kotlin.Int | The folder ID for the file creation.
 val createFileJsonElement : CreateFileJsonElement =  // CreateFileJsonElement | The parameters for creating a file.
 
 val result : FileIntegerWrapper = webService.createFile(folderId, createFileJsonElement)
@@ -391,7 +392,7 @@ val result : FileIntegerWrapper = webService.createFile(folderId, createFileJson
 # **createFileInMyDocuments**
 > FileIntegerWrapper createFileInMyDocuments (CreateFileJsonElement createFileJsonElement)
 
-Creates a new file in the My documents section with the title specified in the request.   **Note**: If a file extension is different from DOCX/XLSX/PPTX and refers to one of the known text, spreadsheet, or presentation formats, it will be changed to DOCX/XLSX/PPTX accordingly. If the file extension is not specified or is unknown, the DOCX extension will be added to the file title.
+Creates a new file in the My documents section with the title specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-file-in-my-documents/).
 
@@ -471,7 +472,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
-val id : kotlin.Int = 9846 // kotlin.Int | The file ID.
+val id : kotlin.Int = 1 // kotlin.Int | The file ID.
 val fileLinkRequest : FileLinkRequest =  // FileLinkRequest | The file external link parameters.
 
 val result : FileShareWrapper = webService.createFilePrimaryExternalLink(id, fileLinkRequest)
@@ -520,7 +521,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
-val folderId : kotlin.Int = 9846 // kotlin.Int | The folder ID to create the text or HTML file.
+val folderId : kotlin.Int = 1 // kotlin.Int | The folder ID to create the text or HTML file.
 val createTextOrHtmlFile : CreateTextOrHtmlFile =  // CreateTextOrHtmlFile | The parameters for creating an HTML or text file.
 
 val result : FileIntegerWrapper = webService.createHtmlFile(folderId, createTextOrHtmlFile)
@@ -616,7 +617,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
-val folderId : kotlin.Int = 9846 // kotlin.Int | The folder ID to create the text or HTML file.
+val folderId : kotlin.Int = 1 // kotlin.Int | The folder ID to create the text or HTML file.
 val createTextOrHtmlFile : CreateTextOrHtmlFile =  // CreateTextOrHtmlFile | The parameters for creating an HTML or text file.
 
 val result : FileIntegerWrapper = webService.createTextFile(folderId, createTextOrHtmlFile)
@@ -753,7 +754,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
-val fileId : kotlin.Int = 9846 // kotlin.Int | The file ID to delete.
+val fileId : kotlin.Int = 1 // kotlin.Int | The file ID to delete.
 val delete : Delete =  // Delete | The parameters for deleting a file.
 
 val result : FileOperationArrayWrapper = webService.deleteFile(fileId, delete)
@@ -895,7 +896,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
-val fileId : kotlin.Int = 9846 // kotlin.Int | The file unique identifier.
+val fileId : kotlin.Int = 1 // kotlin.Int | The file unique identifier.
 
 val result : FormRoleArrayWrapper = webService.getAllFormRoles(fileId)
 ```
@@ -937,7 +938,7 @@ No authorization required
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(FilesApi::class.java)
-val fileId : kotlin.Int = 9846 // kotlin.Int | The file ID.
+val fileId : kotlin.Int = 1 // kotlin.Int | The file ID.
 val version : kotlin.Int = 1234 // kotlin.Int | The file version.
 
 val result : EditHistoryDataWrapper = webService.getEditDiffUrl(fileId, version)
@@ -979,7 +980,7 @@ No authorization required
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(FilesApi::class.java)
-val fileId : kotlin.Int = 9846 // kotlin.Int | The file unique identifier.
+val fileId : kotlin.Int = 1 // kotlin.Int | The file unique identifier.
 
 val result : EditHistoryArrayWrapper = webService.getEditHistory(fileId)
 ```
@@ -1030,7 +1031,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
-val fileId : kotlin.Int = 9846 // kotlin.Int | The file ID of the history request.
+val fileId : kotlin.Int = 1 // kotlin.Int | The file ID of the history request.
 val fromDate : ApiDateTime =  // ApiDateTime | The start date of the history.
 val toDate : ApiDateTime =  // ApiDateTime | The end date of the history.
 val count : kotlin.Int = 1234 // kotlin.Int | The number of history entries to retrieve for the file log.
@@ -1076,7 +1077,7 @@ No authorization required
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(FilesApi::class.java)
-val fileId : kotlin.Int = 9846 // kotlin.Int | The file ID.
+val fileId : kotlin.Int = 1 // kotlin.Int | The file ID.
 val version : kotlin.Int = 1234 // kotlin.Int | The file version.
 
 val result : FileIntegerWrapper = webService.getFileInfo(fileId, version)
@@ -1126,7 +1127,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
-val id : kotlin.Int = 9846 // kotlin.Int | The file unique identifier.
+val id : kotlin.Int = 1 // kotlin.Int | The file unique identifier.
 val count : kotlin.Int = 1234 // kotlin.Int | The number of items to retrieve in the request.
 val startIndex : kotlin.Int = 1234 // kotlin.Int | The starting index for the query results.
 
@@ -1171,7 +1172,7 @@ No authorization required
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(FilesApi::class.java)
-val id : kotlin.Int = 9846 // kotlin.Int | The file unique identifier.
+val id : kotlin.Int = 1 // kotlin.Int | The file unique identifier.
 val count : kotlin.Int = 1234 // kotlin.Int | The number of items to retrieve in the request.
 val startIndex : kotlin.Int = 1234 // kotlin.Int | The starting index for the query results.
 
@@ -1214,7 +1215,7 @@ No authorization required
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(FilesApi::class.java)
-val fileId : kotlin.Int = 9846 // kotlin.Int | The file unique identifier.
+val fileId : kotlin.Int = 1 // kotlin.Int | The file unique identifier.
 
 val result : FileIntegerArrayWrapper = webService.getFileVersionInfo(fileId)
 ```
@@ -1266,6 +1267,53 @@ val result : FillingFormResultIntegerWrapper = webService.getFillResult(fillingS
  - **Accept**: application/json
 
 
+<a id="getFormSubmissions"></a>
+# **getFormSubmissions**
+> FormResultsArrayWrapper getFormSubmissions (kotlin.Int fileId)
+
+Returns the results of form submissions.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-form-submissions/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **fileId** | **kotlin.Int**| The file unique identifier. | |
+
+### Return type
+
+[**FormResultsArrayWrapper**](FormResultsArrayWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(FilesApi::class.java)
+val fileId : kotlin.Int = 1 // kotlin.Int | The file unique identifier.
+
+val result : FormResultsArrayWrapper = webService.getFormSubmissions(fileId)
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
 <a id="getPresignedFileUri"></a>
 # **getPresignedFileUri**
 > FileLinkWrapper getPresignedFileUri (kotlin.Int fileId)
@@ -1302,7 +1350,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
-val fileId : kotlin.Int = 9846 // kotlin.Int | The file unique identifier.
+val fileId : kotlin.Int = 1 // kotlin.Int | The file unique identifier.
 
 val result : FileLinkWrapper = webService.getPresignedFileUri(fileId)
 ```
@@ -1349,7 +1397,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
-val fileId : kotlin.Int = 9846 // kotlin.Int | The file unique identifier.
+val fileId : kotlin.Int = 1 // kotlin.Int | The file unique identifier.
 
 val result : StringWrapper = webService.getPresignedUri(fileId)
 ```
@@ -1396,7 +1444,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
-val fileId : kotlin.Int = 9846 // kotlin.Int | The file unique identifier.
+val fileId : kotlin.Int = 1 // kotlin.Int | The file unique identifier.
 
 val result : MentionWrapperArrayWrapper = webService.getProtectedFileUsers(fileId)
 ```
@@ -1490,7 +1538,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
-val fileId : kotlin.Int = 9846 // kotlin.Int | The file unique identifier.
+val fileId : kotlin.Int = 1 // kotlin.Int | The file unique identifier.
 
 val result : BooleanWrapper = webService.isFormPDF(fileId)
 ```
@@ -1538,7 +1586,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
-val fileId : kotlin.Int = 9846 // kotlin.Int | The file ID for locking.
+val fileId : kotlin.Int = 1 // kotlin.Int | The file ID for locking.
 val lockFileParameters : LockFileParameters =  // LockFileParameters | The parameters for locking a file.
 
 val result : FileIntegerWrapper = webService.lockFile(fileId, lockFileParameters)
@@ -1634,7 +1682,7 @@ No authorization required
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(FilesApi::class.java)
-val fileId : kotlin.Int = 9846 // kotlin.Int | The file ID to open.
+val fileId : kotlin.Int = 1 // kotlin.Int | The file ID to open.
 val version : kotlin.Int = 1234 // kotlin.Int | The file version to open.
 val view : kotlin.Boolean = true // kotlin.Boolean | Specifies if the document will be opened for viewing only or not.
 val editorType : EditorType =  // EditorType | The editor type to open the file.
@@ -1682,7 +1730,7 @@ No authorization required
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(FilesApi::class.java)
-val fileId : kotlin.Int = 9846 // kotlin.Int | The file ID of the restore version.
+val fileId : kotlin.Int = 1 // kotlin.Int | The file ID of the restore version.
 val version : kotlin.Int = 1234 // kotlin.Int | The file version of the restore.
 val url : kotlin.String = some text // kotlin.String | The file version URL of the restore.
 
@@ -1735,7 +1783,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
-val fileId : kotlin.Int = 9846 // kotlin.Int | The editing file ID from the request.
+val fileId : kotlin.Int = 1 // kotlin.Int | The editing file ID from the request.
 val fileExtension : kotlin.String = fileExtension_example // kotlin.String | The editing file extension from the request.
 val downloadUri : kotlin.String = downloadUri_example // kotlin.String | The URI to download the editing file.
 val file : java.io.File = BINARY_DATA_HERE // java.io.File | The request file stream.
@@ -1787,7 +1835,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
-val id : kotlin.Int = 9846 // kotlin.Int | The file ID to save as PDF.
+val id : kotlin.Int = 1 // kotlin.Int | The file ID to save as PDF.
 val saveAsPdfInteger : SaveAsPdfInteger =  // SaveAsPdfInteger | The parameters for saving the file as PDF.
 
 val result : FileIntegerWrapper = webService.saveFileAsPdf(id, saveAsPdfInteger)
@@ -1885,7 +1933,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
-val fileId : kotlin.Int = 9846 // kotlin.Int | The file ID.
+val fileId : kotlin.Int = 1 // kotlin.Int | The file ID.
 val customFilterParameters : CustomFilterParameters =  // CustomFilterParameters | The parameters for setting the Custom Filter editing mode.
 
 val result : FileIntegerWrapper = webService.setCustomFilterTag(fileId, customFilterParameters)
@@ -1934,7 +1982,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
-val id : kotlin.Int = 9846 // kotlin.Int | The file ID.
+val id : kotlin.Int = 1 // kotlin.Int | The file ID.
 val fileLinkRequest : FileLinkRequest =  // FileLinkRequest | The file external link parameters.
 
 val result : FileShareWrapper = webService.setFileExternalLink(id, fileLinkRequest)
@@ -1983,7 +2031,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
-val fileId : kotlin.Int = 9846 // kotlin.Int | The file unique identifier.
+val fileId : kotlin.Int = 1 // kotlin.Int | The file unique identifier.
 val orderRequestDto : OrderRequestDto =  // OrderRequestDto | The file order information.
 
 val result : FileIntegerWrapper = webService.setFileOrder(fileId, orderRequestDto)
@@ -2073,7 +2121,7 @@ No authorization required
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(FilesApi::class.java)
-val fileId : kotlin.Int = 9846 // kotlin.Int | The file ID to start editing.
+val fileId : kotlin.Int = 1 // kotlin.Int | The file ID to start editing.
 val startEdit : StartEdit =  // StartEdit | The file parameters to start editing.
 
 val result : StringWrapper = webService.startEditFile(fileId, startEdit)
@@ -2121,7 +2169,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
-val fileId : kotlin.Int = 9846 // kotlin.Int | The file ID to start filling.
+val fileId : kotlin.Int = 1 // kotlin.Int | The file ID to start filling.
 
 val result : FileIntegerWrapper = webService.startFillingFile(fileId)
 ```
@@ -2169,7 +2217,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
-val fileId : kotlin.Int = 9079 // kotlin.Int | The file ID.
+val fileId : kotlin.Int = 1 // kotlin.Int | The file ID.
 val favorite : kotlin.Boolean = true // kotlin.Boolean | Specifies if the file is marked as favorite or not.
 
 val result : BooleanWrapper = webService.toggleFileFavorite(fileId, favorite)
@@ -2214,7 +2262,7 @@ No authorization required
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(FilesApi::class.java)
-val fileId : kotlin.Int = 9846 // kotlin.Int | The file ID to track editing changes.
+val fileId : kotlin.Int = 1 // kotlin.Int | The file ID to track editing changes.
 val tabId : java.util.UUID = 75a5f745-f697-4418-b38d-0fe0d277e258 // java.util.UUID | The tab ID to track editing changes.
 val docKeyForTrack : kotlin.String = some text // kotlin.String | The document key for tracking changes.
 val isFinish : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to finish file tracking or not.
@@ -2259,7 +2307,7 @@ No authorization required
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(FilesApi::class.java)
-val fileId : kotlin.Int = 9846 // kotlin.Int | The file ID to update.
+val fileId : kotlin.Int = 1 // kotlin.Int | The file ID to update.
 val updateFile : UpdateFile =  // UpdateFile | The parameters for updating a file.
 
 val result : FileIntegerWrapper = webService.updateFile(fileId, updateFile)

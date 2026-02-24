@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 
 
-package onlyoffice.docspace.api.sdk.apis
+package onlyoffice.docspace.api.sdk.apis.Files
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
@@ -27,6 +27,8 @@ import onlyoffice.docspace.api.sdk.models.AutoCleanUpDataWrapper
 import onlyoffice.docspace.api.sdk.models.AutoCleanupRequestDto
 import onlyoffice.docspace.api.sdk.models.BooleanWrapper
 import onlyoffice.docspace.api.sdk.models.CheckDocServiceUrlRequestDto
+import onlyoffice.docspace.api.sdk.models.DefaultTemplateSettingsRequestDto
+import onlyoffice.docspace.api.sdk.models.DefaultTemplateSettingsWrapper
 import onlyoffice.docspace.api.sdk.models.DisplayRequestDto
 import onlyoffice.docspace.api.sdk.models.DocServiceUrlWrapper
 import onlyoffice.docspace.api.sdk.models.FileShareArrayWrapper
@@ -35,6 +37,8 @@ import onlyoffice.docspace.api.sdk.models.HideConfirmConvertRequestDto
 import onlyoffice.docspace.api.sdk.models.ICompressWrapper
 import onlyoffice.docspace.api.sdk.models.ModuleWrapper
 import onlyoffice.docspace.api.sdk.models.SettingsRequestDto
+
+import okhttp3.MultipartBody
 
 interface SettingsApi {
     /**
@@ -170,8 +174,8 @@ interface SettingsApi {
      * Displays the Recent folder.
      * Responses:
      *  - 200: Boolean value: true if the parameter is enabled
-     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to perform the operation
+     *  - 401: Unauthorized
      *
      * REST API Reference for displayRecent Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/display-recent/
@@ -252,6 +256,24 @@ interface SettingsApi {
      */
     @GET("api/2.0/files/settings/autocleanup")
     fun getAutomaticallyCleanUp(): Call<AutoCleanUpDataWrapper>
+
+    /**
+     * GET api/2.0/files/settings/defaulttemplate
+     * Get the default template setting
+     * Returns the default template setting.
+     * Responses:
+     *  - 200: Default template settings
+     *  - 403: You don't have enough permission to perform the operation
+     *  - 401: Unauthorized
+     *
+     * REST API Reference for getDefaultTemplates Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-default-templates/
+     *
+     *
+     * @return [Call]<[DefaultTemplateSettingsWrapper]>
+     */
+    @GET("api/2.0/files/settings/defaulttemplate")
+    fun getDefaultTemplates(): Call<DefaultTemplateSettingsWrapper>
 
     /**
      * GET api/2.0/files/docservice
@@ -393,6 +415,25 @@ interface SettingsApi {
     fun keepNewFileName(@Body settingsRequestDto: SettingsRequestDto? = null): Call<BooleanWrapper>
 
     /**
+     * PUT api/2.0/files/settings/defaulttemplate
+     * Change the default template setting
+     * Changes the default template setting.
+     * Responses:
+     *  - 200: New default template settings
+     *  - 403: You don't have enough permission to perform the operation
+     *  - 401: Unauthorized
+     *
+     * REST API Reference for setDefaultTemplate Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-default-template/
+     *
+     *
+     * @param defaultTemplateSettingsRequestDto  (optional)
+     * @return [Call]<[DefaultTemplateSettingsWrapper]>
+     */
+    @PUT("api/2.0/files/settings/defaulttemplate")
+    fun setDefaultTemplate(@Body defaultTemplateSettingsRequestDto: DefaultTemplateSettingsRequestDto? = null): Call<DefaultTemplateSettingsWrapper>
+
+    /**
      * PUT api/2.0/files/settings/openeditorinsametab
      * Open document in the same browser tab
      * Changes the ability to open the document in the same browser tab.
@@ -409,6 +450,24 @@ interface SettingsApi {
      */
     @PUT("api/2.0/files/settings/openeditorinsametab")
     fun setOpenEditorInSameTab(@Body settingsRequestDto: SettingsRequestDto? = null): Call<BooleanWrapper>
+
+    /**
+     * PUT api/2.0/files/settings/organizegrouping
+     * Organize rooms grouping
+     * Changes the setting that allows the user to organize the grouping of rooms.
+     * Responses:
+     *  - 200: Boolean value: true if the parameter is enabled
+     *  - 401: Unauthorized
+     *
+     * REST API Reference for setOrganizeRoomsGrouping Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-organize-rooms-grouping/
+     *
+     *
+     * @param settingsRequestDto  (optional)
+     * @return [Call]<[BooleanWrapper]>
+     */
+    @PUT("api/2.0/files/settings/organizegrouping")
+    fun setOrganizeRoomsGrouping(@Body settingsRequestDto: SettingsRequestDto? = null): Call<BooleanWrapper>
 
     /**
      * PUT api/2.0/files/storeforcesave
@@ -462,5 +521,26 @@ interface SettingsApi {
      */
     @PUT("api/2.0/files/updateifexist")
     fun updateFileIfExist(@Body settingsRequestDto: SettingsRequestDto? = null): Call<BooleanWrapper>
+
+    /**
+     * POST api/2.0/files/settings/defaulttemplate
+     * Upload a file as the default template setting
+     * Uploads a file to use as the default template setting.
+     * Responses:
+     *  - 200: New default template settings
+     *  - 403: You don't have enough permission to perform the operation
+     *  - 401: Unauthorized
+     *
+     * REST API Reference for uploadDefaultTemplate Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-default-template/
+     *
+     *
+     * @param fileExtension File extension of a template to replace
+     * @param file File to replace template with
+     * @return [Call]<[DefaultTemplateSettingsWrapper]>
+     */
+    @Multipart
+    @POST("api/2.0/files/settings/defaulttemplate")
+    fun uploadDefaultTemplate(@Query("FileExtension") fileExtension: kotlin.String, @Part file: MultipartBody.Part): Call<DefaultTemplateSettingsWrapper>
 
 }

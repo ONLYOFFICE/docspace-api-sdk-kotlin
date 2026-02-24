@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ package onlyoffice.docspace.api.sdk.models
 import onlyoffice.docspace.api.sdk.models.CultureSpecificExternalResources
 import onlyoffice.docspace.api.sdk.models.DeepLinkDto
 import onlyoffice.docspace.api.sdk.models.FirebaseDto
+import onlyoffice.docspace.api.sdk.models.FolderType
 import onlyoffice.docspace.api.sdk.models.FormGalleryDto
 import onlyoffice.docspace.api.sdk.models.PasswordHasher
 import onlyoffice.docspace.api.sdk.models.PluginsDto
@@ -75,6 +76,7 @@ import com.squareup.moshi.JsonClass
  * @param maxImageUploadSize The maximum image upload size.
  * @param logoText The white label logo text.
  * @param externalResources 
+ * @param defaultFolderType 
  */
 
 
@@ -236,7 +238,10 @@ data class SettingsDto (
     val logoText: kotlin.String? = null,
 
     @Json(name = "externalResources")
-    val externalResources: CultureSpecificExternalResources? = null
+    val externalResources: CultureSpecificExternalResources? = null,
+
+    @Json(name = "defaultFolderType")
+    val defaultFolderType: FolderType? = null
 
 ) {
 

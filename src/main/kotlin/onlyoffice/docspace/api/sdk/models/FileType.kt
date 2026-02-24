@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,34 +29,34 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = false)
 enum class FileType(val value: kotlin.Int) {
 
-    @Json(name = 0)
+    @Json(name = "0")
     Unknown(0),
 
-    @Json(name = 1)
+    @Json(name = "1")
     Archive(1),
 
-    @Json(name = 2)
+    @Json(name = "2")
     Video(2),
 
-    @Json(name = 3)
+    @Json(name = "3")
     Audio(3),
 
-    @Json(name = 4)
+    @Json(name = "4")
     Image(4),
 
-    @Json(name = 5)
+    @Json(name = "5")
     Spreadsheet(5),
 
-    @Json(name = 6)
+    @Json(name = "6")
     Presentation(6),
 
-    @Json(name = 7)
+    @Json(name = "7")
     Document(7),
 
-    @Json(name = 10)
+    @Json(name = "10")
     Pdf(10),
 
-    @Json(name = 11)
+    @Json(name = "11")
     Diagram(11);
 
     /**
@@ -79,7 +79,7 @@ enum class FileType(val value: kotlin.Int) {
          */
         fun decode(data: kotlin.Any?): FileType? = data?.let {
           val normalizedData = "$it".lowercase()
-          values().firstOrNull { value ->
+          entries.firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()
           }
         }

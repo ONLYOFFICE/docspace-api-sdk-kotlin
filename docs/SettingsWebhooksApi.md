@@ -156,7 +156,7 @@ val result : WebhooksConfigWithStatusArrayWrapper = webService.getTenantWebhooks
 
 <a id="getWebhookTriggers"></a>
 # **getWebhookTriggers**
-> UnknownWrapper getWebhookTriggers ()
+> GetWebhookTriggers200Response getWebhookTriggers ()
 
 Returns a list of triggers for a webhook.
 
@@ -167,7 +167,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**UnknownWrapper**](UnknownWrapper.md)
+[**GetWebhookTriggers200Response**](GetWebhookTriggers200Response.md)
 
 ### Authorization
 
@@ -189,7 +189,7 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(WebhooksApi::class.java)
 
-val result : UnknownWrapper = webService.getWebhookTriggers()
+val result : GetWebhookTriggers200Response = webService.getWebhookTriggers()
 ```
 
 ### HTTP request headers
@@ -249,7 +249,7 @@ val hookUri : kotlin.String = some text // kotlin.String | The destination URL w
 val configId : kotlin.Int = 1234 // kotlin.Int | The webhook configuration identifier.
 val eventId : kotlin.Int = 1234 // kotlin.Int | The unique identifier of the event that triggered the webhook.
 val groupStatus : WebhookGroupStatus =  // WebhookGroupStatus | The status of the webhook delivery group.
-val userId : java.util.UUID = aae1e103-bca5-9fa1-ba8c-42058b4abf28 // java.util.UUID | The identifier of the user associated with the webhook event.
+val userId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The identifier of the user associated with the webhook event.
 val trigger : WebhookTrigger =  // WebhookTrigger | The type of event that triggered the webhook.
 val count : kotlin.Int = 1234 // kotlin.Int | The maximum number of webhook log records to return in the query response.
 val startIndex : kotlin.Int = 1234 // kotlin.Int | Specifies the starting index for retrieving webhook logs.  Used for pagination in the webhook delivery log queries.
@@ -299,7 +299,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(WebhooksApi::class.java)
-val id : kotlin.Int = 9846 // kotlin.Int | The ID extracted from the route parameters.
+val id : kotlin.Int = 1 // kotlin.Int | The ID extracted from the route parameters.
 
 val result : WebhooksConfigWrapper = webService.removeWebhook(id)
 ```
@@ -346,7 +346,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(WebhooksApi::class.java)
-val id : kotlin.Int = 9846 // kotlin.Int | The ID extracted from the route parameters.
+val id : kotlin.Int = 1 // kotlin.Int | The ID extracted from the route parameters.
 
 val result : WebhooksLogWrapper = webService.retryWebhook(id)
 ```

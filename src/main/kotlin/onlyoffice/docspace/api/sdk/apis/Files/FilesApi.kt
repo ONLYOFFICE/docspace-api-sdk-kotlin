@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 
 
-package onlyoffice.docspace.api.sdk.apis
+package onlyoffice.docspace.api.sdk.apis.Files
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
@@ -28,6 +28,7 @@ import onlyoffice.docspace.api.sdk.models.BaseBatchRequestDto
 import onlyoffice.docspace.api.sdk.models.BooleanWrapper
 import onlyoffice.docspace.api.sdk.models.ChangeHistory
 import onlyoffice.docspace.api.sdk.models.CheckFillFormDraft
+import onlyoffice.docspace.api.sdk.models.ChunkedUploadSessionResponseWrapperIntegerWrapper
 import onlyoffice.docspace.api.sdk.models.ConfigurationIntegerWrapper
 import onlyoffice.docspace.api.sdk.models.CopyAsJsonElement
 import onlyoffice.docspace.api.sdk.models.CreateFileJsonElement
@@ -48,6 +49,7 @@ import onlyoffice.docspace.api.sdk.models.FileReferenceWrapper
 import onlyoffice.docspace.api.sdk.models.FileShareArrayWrapper
 import onlyoffice.docspace.api.sdk.models.FileShareWrapper
 import onlyoffice.docspace.api.sdk.models.FillingFormResultIntegerWrapper
+import onlyoffice.docspace.api.sdk.models.FormResultsArrayWrapper
 import onlyoffice.docspace.api.sdk.models.FormRoleArrayWrapper
 import onlyoffice.docspace.api.sdk.models.GetReferenceDataDtoInteger
 import onlyoffice.docspace.api.sdk.models.HistoryArrayWrapper
@@ -57,7 +59,6 @@ import onlyoffice.docspace.api.sdk.models.ManageFormFillingDtoInteger
 import onlyoffice.docspace.api.sdk.models.MentionWrapperArrayWrapper
 import onlyoffice.docspace.api.sdk.models.NoContentResultWrapper
 import onlyoffice.docspace.api.sdk.models.ObjectArrayWrapper
-import onlyoffice.docspace.api.sdk.models.ObjectWrapper
 import onlyoffice.docspace.api.sdk.models.OrderRequestDto
 import onlyoffice.docspace.api.sdk.models.OrdersRequestDtoInteger
 import onlyoffice.docspace.api.sdk.models.SaveAsPdfInteger
@@ -66,8 +67,6 @@ import onlyoffice.docspace.api.sdk.models.StartEdit
 import onlyoffice.docspace.api.sdk.models.StringWrapper
 import onlyoffice.docspace.api.sdk.models.TemplatesRequestDto
 import onlyoffice.docspace.api.sdk.models.UpdateFile
-
-import onlyoffice.docspace.api.sdk.models.*
 
 import okhttp3.MultipartBody
 
@@ -114,8 +113,8 @@ interface FilesApi {
      * Changes the version history of a file with the ID specified in the request.
      * Responses:
      *  - 200: Updated information about file versions
-     *  - 401: Unauthorized
      *  - 403: You do not have enough permissions to edit the file
+     *  - 401: Unauthorized
      *
      * REST API Reference for changeVersionHistory Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/change-version-history/
@@ -154,9 +153,9 @@ interface FilesApi {
      * Responses:
      *  - 200: Copied file entry information
      *  - 400: No file id or folder id toFolderId determine provider
-     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to create
      *  - 404: File not found
+     *  - 401: Unauthorized
      *
      * REST API Reference for copyFileAs Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/copy-file-as/
@@ -172,11 +171,11 @@ interface FilesApi {
     /**
      * POST api/2.0/files/file/{fileId}/edit_session
      * Create the editing session
-     * Creates a session to edit the existing file with multiple chunks (needed for WebDAV).   **Note**: Information about created session which includes:  &lt;ul&gt;  &lt;li&gt;&lt;b&gt;id:&lt;/b&gt; unique ID of this upload session,&lt;/li&gt;  &lt;li&gt;&lt;b&gt;created:&lt;/b&gt; UTC time when the session was created,&lt;/li&gt;  &lt;li&gt;&lt;b&gt;expired:&lt;/b&gt; UTC time when the session will expire if no chunks are sent before that time,&lt;/li&gt;  &lt;li&gt;&lt;b&gt;location:&lt;/b&gt; URL where you should send your next chunk,&lt;/li&gt;  &lt;li&gt;&lt;b&gt;bytes_uploaded:&lt;/b&gt; number of bytes uploaded for the specific upload ID,&lt;/li&gt;  &lt;li&gt;&lt;b&gt;bytes_total:&lt;/b&gt; total number of bytes which will be uploaded.&lt;/li&gt;  &lt;/ul&gt;
+     * Creates a session to edit the existing file with multiple chunks (needed for WebDAV).
      * Responses:
      *  - 200: Information about created session
-     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to edit the file
+     *  - 401: Unauthorized
      *
      * REST API Reference for createEditSession Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-edit-session/
@@ -184,15 +183,15 @@ interface FilesApi {
      *
      * @param fileId The file ID.
      * @param fileSize The file size in bytes. (optional)
-     * @return [Call]<[ObjectWrapper]>
+     * @return [Call]<[ChunkedUploadSessionResponseWrapperIntegerWrapper]>
      */
     @POST("api/2.0/files/file/{fileId}/edit_session")
-    fun createEditSession(@Path("fileId") fileId: kotlin.Int, @Query("fileSize") fileSize: kotlin.Long? = null): Call<ObjectWrapper>
+    fun createEditSession(@Path("fileId") fileId: kotlin.Int, @Query("fileSize") fileSize: kotlin.Long? = null): Call<ChunkedUploadSessionResponseWrapperIntegerWrapper>
 
     /**
      * POST api/2.0/files/{folderId}/file
      * Create a file
-     * Creates a new file in the specified folder with the title specified in the request.   **Note**: If a file extension is different from DOCX/XLSX/PPTX and refers to one of the known text, spreadsheet, or presentation formats, it will be changed to DOCX/XLSX/PPTX accordingly. If the file extension is not specified or is unknown, the DOCX extension will be added to the file title.
+     * Creates a new file in the specified folder with the title specified in the request.
      * Responses:
      *  - 200: New file information
      *  - 401: Unauthorized
@@ -211,7 +210,7 @@ interface FilesApi {
     /**
      * POST api/2.0/files/@my/file
      * Create a file in the My documents section
-     * Creates a new file in the My documents section with the title specified in the request.   **Note**: If a file extension is different from DOCX/XLSX/PPTX and refers to one of the known text, spreadsheet, or presentation formats, it will be changed to DOCX/XLSX/PPTX accordingly. If the file extension is not specified or is unknown, the DOCX extension will be added to the file title.
+     * Creates a new file in the My documents section with the title specified in the request.
      * Responses:
      *  - 200: New file information
      *  - 401: Unauthorized
@@ -232,8 +231,8 @@ interface FilesApi {
      * Creates a primary external link by the identifier specified in the request.
      * Responses:
      *  - 200: File security information
-     *  - 401: Unauthorized
      *  - 404: Not Found
+     *  - 401: Unauthorized
      *
      * REST API Reference for createFilePrimaryExternalLink Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-file-primary-external-link/
@@ -252,8 +251,8 @@ interface FilesApi {
      * Creates an HTML (.html) file in the selected folder with the title and contents specified in the request.
      * Responses:
      *  - 200: New file information
-     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to create
+     *  - 401: Unauthorized
      *
      * REST API Reference for createHtmlFile Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-html-file/
@@ -272,8 +271,8 @@ interface FilesApi {
      * Creates an HTML (.html) file in the My documents section with the title and contents specified in the request.
      * Responses:
      *  - 200: New file information
-     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to create
+     *  - 401: Unauthorized
      *
      * REST API Reference for createHtmlFileInMyDocuments Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-html-file-in-my-documents/
@@ -400,8 +399,8 @@ interface FilesApi {
      * Returns all roles for the specified form.
      * Responses:
      *  - 200: Successfully retrieved all roles for the form
-     *  - 401: Unauthorized
      *  - 403: You do not have enough permissions to view the form roles
+     *  - 401: Unauthorized
      *
      * REST API Reference for getAllFormRoles Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-all-form-roles/
@@ -454,25 +453,23 @@ interface FilesApi {
      * Returns the list of actions performed on the file with the specified identifier.
      * Responses:
      *  - 200: List of actions performed on the file
-     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to perform the operation
      *  - 404: The required file was not found
+     *  - 401: Unauthorized
      *
      * REST API Reference for getFileHistory Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-file-history/
      *
      *
      * @param fileId The file ID of the history request.
-     * @param utcTime The time in UTC format. (optional)
-     * @param timeZoneOffset The time zone offset. (optional)
-     * @param utcTime The time in UTC format. (optional)
-     * @param timeZoneOffset The time zone offset. (optional)
+     * @param fromDate The start date of the history. (optional)
+     * @param toDate The end date of the history. (optional)
      * @param count The number of history entries to retrieve for the file log. (optional)
      * @param startIndex The starting index for retrieving a subset of file history entries. (optional)
      * @return [Call]<[HistoryArrayWrapper]>
      */
     @GET("api/2.0/files/file/{fileId}/log")
-    fun getFileHistory(@Path("fileId") fileId: kotlin.Int, @Query("utcTime") utcTime: java.time.OffsetDateTime? = null, @Query("timeZoneOffset") timeZoneOffset: kotlin.String? = null, @Query("utcTime") utcTime: java.time.OffsetDateTime? = null, @Query("timeZoneOffset") timeZoneOffset: kotlin.String? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null): Call<HistoryArrayWrapper>
+    fun getFileHistory(@Path("fileId") fileId: kotlin.Int, @Query("fromDate") fromDate: ApiDateTime? = null, @Query("toDate") toDate: ApiDateTime? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null): Call<HistoryArrayWrapper>
 
     /**
      * GET api/2.0/files/file/{fileId}
@@ -565,6 +562,25 @@ interface FilesApi {
      */
     @GET("api/2.0/files/file/fillresult")
     fun getFillResult(@Query("fillingSessionId") fillingSessionId: kotlin.String? = null): Call<FillingFormResultIntegerWrapper>
+
+    /**
+     * GET api/2.0/files/file/{fileId}/submissions
+     * Get form submission results
+     * Returns the results of form submissions.
+     * Responses:
+     *  - 200: Form submission results were successfully retrieved
+     *  - 403: You do not have enough permissions to perform this action
+     *  - 401: Unauthorized
+     *
+     * REST API Reference for getFormSubmissions Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-form-submissions/
+     *
+     *
+     * @param fileId The file unique identifier.
+     * @return [Call]<[FormResultsArrayWrapper]>
+     */
+    @GET("api/2.0/files/file/{fileId}/submissions")
+    fun getFormSubmissions(@Path("fileId") fileId: kotlin.Int): Call<FormResultsArrayWrapper>
 
     /**
      * GET api/2.0/files/file/{fileId}/presigned
@@ -681,8 +697,8 @@ interface FilesApi {
      * Performs the specified form filling action.
      * Responses:
      *  - 200: Successfully processed the form filling action
-     *  - 401: Unauthorized
      *  - 403: You do not have enough permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for manageFormFilling Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/manage-form-filling/
@@ -746,8 +762,8 @@ interface FilesApi {
      * Responses:
      *  - 200: Saved file parameters
      *  - 400: No file id or folder id toFolderId determine provider
-     *  - 401: Unauthorized
      *  - 403: You do not have enough permissions to edit the file
+     *  - 401: Unauthorized
      *
      * REST API Reference for saveEditingFileFromForm Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/save-editing-file-from-form/
@@ -770,8 +786,8 @@ interface FilesApi {
      * Saves a file with the identifier specified in the request as a PDF document.
      * Responses:
      *  - 200: New file information
-     *  - 401: Unauthorized
      *  - 404: File not found
+     *  - 401: Unauthorized
      *
      * REST API Reference for saveFileAsPdf Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/save-file-as-pdf/
@@ -790,8 +806,8 @@ interface FilesApi {
      * Saves the form role mapping.
      * Responses:
      *  - 200: Updated information about form role mappings
-     *  - 401: Unauthorized
      *  - 403: You do not have enough permissions to edit the file
+     *  - 401: Unauthorized
      *
      * REST API Reference for saveFormRoleMapping Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/save-form-role-mapping/
@@ -848,9 +864,9 @@ interface FilesApi {
      * Sets the order of the file with the ID specified in the request.
      * Responses:
      *  - 200: Updated file information
-     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to perform the operation
      *  - 404: Not Found
+     *  - 401: Unauthorized
      *
      * REST API Reference for setFileOrder Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-file-order/
@@ -906,8 +922,8 @@ interface FilesApi {
      * Starts filling a file with the ID specified in the request.
      * Responses:
      *  - 200: File information
-     *  - 401: Unauthorized
      *  - 403: You do not have enough permissions to edit the file
+     *  - 401: Unauthorized
      *
      * REST API Reference for startFillingFile Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/start-filling-file/
@@ -925,8 +941,8 @@ interface FilesApi {
      * Changes the favorite status of the file with the ID specified in the request.
      * Responses:
      *  - 200: Boolean value: true - the file is favorite, false - the file is not favorite
-     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to perform the operation
+     *  - 401: Unauthorized
      *
      * REST API Reference for toggleFileFavorite Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/toggle-file-favorite/

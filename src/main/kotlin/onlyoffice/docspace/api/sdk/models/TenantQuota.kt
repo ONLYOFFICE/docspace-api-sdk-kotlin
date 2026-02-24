@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,6 +30,7 @@ import com.squareup.moshi.JsonClass
  * @param priceISOCurrencySymbol The tenant price three-character ISO 4217 currency symbol.
  * @param productId The tenant product ID.
  * @param serviceName The service name.
+ * @param serviceGroup The service group.
  * @param visible Specifies if the tenant quota is visible or not.
  * @param wallet Specifies if the tenant quota applies to the wallet or not
  * @param dueDate The quota due date.
@@ -52,6 +53,7 @@ import com.squareup.moshi.JsonClass
  * @param branding Specifies if the branding settings are available or not.
  * @param customization Specifies if the customization settings are available or not.
  * @param lifetime Specifies if the license has the lifetime settings or not.
+ * @param automationApi Specifies if the Automation API is available or not.
  * @param custom Specifies if the custom domain URL is available or not.
  * @param restore Specifies if the restore is enabled or not.
  * @param oauth Specifies if Oauth is available or not.
@@ -61,6 +63,24 @@ import com.squareup.moshi.JsonClass
  * @param countFreeBackup The number of free backups within a month.
  * @param backup Specifies if the backup anabled as a wallet service or not.
  * @param countAIAgent The number of AI agents.
+ * @param aiTools Specifies if the AI tools anabled as a wallet service or not.
+ * @param aiToolsWebSearch Specifies whether the web search is enabled as a subservice of AI tools.
+ * @param aiToolsWebFetch Specifies whether the web fetch is enabled as a subservice of AI tools
+ * @param aiToolsEmbedding Specifies whether the embedding is enabled as a subservice of AI tools
+ * @param aiToolsDeepseek31Input Specifies whether the Deepseek 3.1 input tokens is enabled as a subservice of AI tools
+ * @param aiToolsDeepseek31Output Specifies whether the Deepseek 3.1 output tokens is enabled as a subservice of AI tools
+ * @param aiToolsClaude45Input Specifies whether the Claude 4.5 input tokens is enabled as a subservice of AI tools
+ * @param aiToolsClaude45Output Specifies whether the Claude 4.5 output tokens is enabled as a subservice of AI tools
+ * @param aiToolsGPT5Input Specifies whether the GPT 5 input tokens is enabled as a subservice of AI tools
+ * @param aiToolsGPT5Output Specifies whether the GPT 5 output tokens is enabled as a subservice of AI tools
+ * @param aiToolsDeepseek32Input Specifies whether the Deepseek 3.2 input tokens is enabled as a subservice of AI tools
+ * @param aiToolsDeepseek32Output Specifies whether the Deepseek 3.2 output tokens is enabled as a subservice of AI tools
+ * @param aiToolsGPT52Input Specifies whether the GPT 5.2 input tokens is enabled as a subservice of AI tools
+ * @param aiToolsGPT52Output Specifies whether the GPT 5.2 output tokens is enabled as a subservice of AI tools
+ * @param aiToolsGemini3ProInput Specifies whether the Gemini 3 Pro input tokens is enabled as a subservice of AI tools
+ * @param aiToolsGemini3ProOutput Specifies whether the Gemini 3 Pro output tokens is enabled as a subservice of AI tools
+ * @param aiToolsGemini3FlashInput Specifies whether the Gemini 3 Flash input tokens is enabled as a subservice of AI tools
+ * @param aiToolsGemini3FlashOutput Specifies whether the Gemini 3 Flash output tokens is enabled as a subservice of AI tools
  */
 
 
@@ -93,6 +113,10 @@ data class TenantQuota (
     /* The service name. */
     @Json(name = "serviceName")
     val serviceName: kotlin.String? = null,
+
+    /* The service group. */
+    @Json(name = "serviceGroup")
+    val serviceGroup: kotlin.String? = null,
 
     /* Specifies if the tenant quota is visible or not. */
     @Json(name = "visible")
@@ -182,6 +206,10 @@ data class TenantQuota (
     @Json(name = "lifetime")
     val lifetime: kotlin.Boolean? = null,
 
+    /* Specifies if the Automation API is available or not. */
+    @Json(name = "automationApi")
+    val automationApi: kotlin.Boolean? = null,
+
     /* Specifies if the custom domain URL is available or not. */
     @Json(name = "custom")
     val custom: kotlin.Boolean? = null,
@@ -216,7 +244,79 @@ data class TenantQuota (
 
     /* The number of AI agents. */
     @Json(name = "countAIAgent")
-    val countAIAgent: kotlin.Int? = null
+    val countAIAgent: kotlin.Int? = null,
+
+    /* Specifies if the AI tools anabled as a wallet service or not. */
+    @Json(name = "aiTools")
+    val aiTools: kotlin.Boolean? = null,
+
+    /* Specifies whether the web search is enabled as a subservice of AI tools. */
+    @Json(name = "aiToolsWebSearch")
+    val aiToolsWebSearch: kotlin.Boolean? = null,
+
+    /* Specifies whether the web fetch is enabled as a subservice of AI tools */
+    @Json(name = "aiToolsWebFetch")
+    val aiToolsWebFetch: kotlin.Boolean? = null,
+
+    /* Specifies whether the embedding is enabled as a subservice of AI tools */
+    @Json(name = "aiToolsEmbedding")
+    val aiToolsEmbedding: kotlin.Boolean? = null,
+
+    /* Specifies whether the Deepseek 3.1 input tokens is enabled as a subservice of AI tools */
+    @Json(name = "aiToolsDeepseek31Input")
+    val aiToolsDeepseek31Input: kotlin.Boolean? = null,
+
+    /* Specifies whether the Deepseek 3.1 output tokens is enabled as a subservice of AI tools */
+    @Json(name = "aiToolsDeepseek31Output")
+    val aiToolsDeepseek31Output: kotlin.Boolean? = null,
+
+    /* Specifies whether the Claude 4.5 input tokens is enabled as a subservice of AI tools */
+    @Json(name = "aiToolsClaude45Input")
+    val aiToolsClaude45Input: kotlin.Boolean? = null,
+
+    /* Specifies whether the Claude 4.5 output tokens is enabled as a subservice of AI tools */
+    @Json(name = "aiToolsClaude45Output")
+    val aiToolsClaude45Output: kotlin.Boolean? = null,
+
+    /* Specifies whether the GPT 5 input tokens is enabled as a subservice of AI tools */
+    @Json(name = "aiToolsGPT5Input")
+    val aiToolsGPT5Input: kotlin.Boolean? = null,
+
+    /* Specifies whether the GPT 5 output tokens is enabled as a subservice of AI tools */
+    @Json(name = "aiToolsGPT5Output")
+    val aiToolsGPT5Output: kotlin.Boolean? = null,
+
+    /* Specifies whether the Deepseek 3.2 input tokens is enabled as a subservice of AI tools */
+    @Json(name = "aiToolsDeepseek32Input")
+    val aiToolsDeepseek32Input: kotlin.Boolean? = null,
+
+    /* Specifies whether the Deepseek 3.2 output tokens is enabled as a subservice of AI tools */
+    @Json(name = "aiToolsDeepseek32Output")
+    val aiToolsDeepseek32Output: kotlin.Boolean? = null,
+
+    /* Specifies whether the GPT 5.2 input tokens is enabled as a subservice of AI tools */
+    @Json(name = "aiToolsGPT52Input")
+    val aiToolsGPT52Input: kotlin.Boolean? = null,
+
+    /* Specifies whether the GPT 5.2 output tokens is enabled as a subservice of AI tools */
+    @Json(name = "aiToolsGPT52Output")
+    val aiToolsGPT52Output: kotlin.Boolean? = null,
+
+    /* Specifies whether the Gemini 3 Pro input tokens is enabled as a subservice of AI tools */
+    @Json(name = "aiToolsGemini3ProInput")
+    val aiToolsGemini3ProInput: kotlin.Boolean? = null,
+
+    /* Specifies whether the Gemini 3 Pro output tokens is enabled as a subservice of AI tools */
+    @Json(name = "aiToolsGemini3ProOutput")
+    val aiToolsGemini3ProOutput: kotlin.Boolean? = null,
+
+    /* Specifies whether the Gemini 3 Flash input tokens is enabled as a subservice of AI tools */
+    @Json(name = "aiToolsGemini3FlashInput")
+    val aiToolsGemini3FlashInput: kotlin.Boolean? = null,
+
+    /* Specifies whether the Gemini 3 Flash output tokens is enabled as a subservice of AI tools */
+    @Json(name = "aiToolsGemini3FlashOutput")
+    val aiToolsGemini3FlashOutput: kotlin.Boolean? = null
 
 ) {
 

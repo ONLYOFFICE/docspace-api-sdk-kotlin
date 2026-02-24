@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,8 +38,11 @@ import com.squareup.moshi.JsonClass
  * @param enabled Specifies if the web plugin is enabled or not.
  * @param system Specifies if the web plugin is system or not.
  * @param url The web plugin URL.
+ * @param cssUrl The web plugin css URL.
  * @param settings The web plugin settings.
  * @param minDocSpaceVersion The minimum version of DocSpace with which the plugin is guaranteed to work.
+ * @param nameLocale The web plugin localized name.
+ * @param descriptionLocale The web plugin localized description.
  */
 
 
@@ -100,13 +103,25 @@ data class WebPluginDto (
     @Json(name = "url")
     val url: kotlin.String?,
 
+    /* The web plugin css URL. */
+    @Json(name = "cssUrl")
+    val cssUrl: kotlin.String?,
+
     /* The web plugin settings. */
     @Json(name = "settings")
     val settings: kotlin.String?,
 
     /* The minimum version of DocSpace with which the plugin is guaranteed to work. */
     @Json(name = "minDocSpaceVersion")
-    val minDocSpaceVersion: kotlin.String? = null
+    val minDocSpaceVersion: kotlin.String? = null,
+
+    /* The web plugin localized name. */
+    @Json(name = "nameLocale")
+    val nameLocale: kotlin.collections.Map<kotlin.String, kotlin.String>? = null,
+
+    /* The web plugin localized description. */
+    @Json(name = "descriptionLocale")
+    val descriptionLocale: kotlin.collections.Map<kotlin.String, kotlin.String>? = null
 
 ) {
 

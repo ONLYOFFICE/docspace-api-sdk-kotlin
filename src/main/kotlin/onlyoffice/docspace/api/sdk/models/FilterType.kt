@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,67 +29,67 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = false)
 enum class FilterType(val value: kotlin.Int) {
 
-    @Json(name = 0)
+    @Json(name = "0")
     None(0),
 
-    @Json(name = 1)
+    @Json(name = "1")
     FilesOnly(1),
 
-    @Json(name = 2)
+    @Json(name = "2")
     FoldersOnly(2),
 
-    @Json(name = 3)
+    @Json(name = "3")
     DocumentsOnly(3),
 
-    @Json(name = 4)
+    @Json(name = "4")
     PresentationsOnly(4),
 
-    @Json(name = 5)
+    @Json(name = "5")
     SpreadsheetsOnly(5),
 
-    @Json(name = 7)
+    @Json(name = "7")
     ImagesOnly(7),
 
-    @Json(name = 8)
+    @Json(name = "8")
     ByUser(8),
 
-    @Json(name = 9)
+    @Json(name = "9")
     ByDepartment(9),
 
-    @Json(name = 10)
+    @Json(name = "10")
     ArchiveOnly(10),
 
-    @Json(name = 11)
+    @Json(name = "11")
     ByExtension(11),
 
-    @Json(name = 12)
+    @Json(name = "12")
     MediaOnly(12),
 
-    @Json(name = 13)
+    @Json(name = "13")
     FillingFormsRooms(13),
 
-    @Json(name = 14)
+    @Json(name = "14")
     EditingRooms(14),
 
-    @Json(name = 17)
+    @Json(name = "17")
     CustomRooms(17),
 
-    @Json(name = 20)
+    @Json(name = "20")
     PublicRooms(20),
 
-    @Json(name = 22)
+    @Json(name = "22")
     Pdf(22),
 
-    @Json(name = 23)
+    @Json(name = "23")
     PdfForm(23),
 
-    @Json(name = 24)
+    @Json(name = "24")
     VirtualDataRooms(24),
 
-    @Json(name = 25)
+    @Json(name = "25")
     DiagramsOnly(25),
 
-    @Json(name = 26)
+    @Json(name = "26")
     AiRooms(26);
 
     /**
@@ -112,7 +112,7 @@ enum class FilterType(val value: kotlin.Int) {
          */
         fun decode(data: kotlin.Any?): FilterType? = data?.let {
           val normalizedData = "$it".lowercase()
-          values().firstOrNull { value ->
+          entries.firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()
           }
         }

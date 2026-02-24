@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,21 +24,21 @@ import com.squareup.moshi.JsonClass
 /**
  * The collection of file sharing parameters.
  *
+ * @param email The email address.
  * @param shareTo The ID of the user to whom the file will be shared.
- * @param email The user email address.
  * @param access 
  */
 
 
 data class FileShareParams (
 
+    /* The email address. */
+    @Json(name = "email")
+    val email: kotlin.String? = null,
+
     /* The ID of the user to whom the file will be shared. */
     @Json(name = "shareTo")
     val shareTo: java.util.UUID? = null,
-
-    /* The user email address. */
-    @Json(name = "email")
-    val email: kotlin.String? = null,
 
     @Json(name = "access")
     val access: FileShare? = null

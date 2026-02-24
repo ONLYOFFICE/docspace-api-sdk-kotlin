@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 
 
-package onlyoffice.docspace.api.sdk.apis
+package onlyoffice.docspace.api.sdk.apis.Security
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
@@ -51,8 +51,8 @@ interface ActiveConnectionsApi {
      * Logs out from the connection with the ID specified in the request.
      * Responses:
      *  - 200: Boolean value: true if the operation is successful
-     *  - 401: Unauthorized
      *  - 403: Method not available
+     *  - 401: Unauthorized
      *
      * REST API Reference for logOutActiveConnection Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/log-out-active-connection/
@@ -87,8 +87,8 @@ interface ActiveConnectionsApi {
      * Logs out from all the active connections for the user with the ID specified in the request.
      * Responses:
      *  - 200: Ok
-     *  - 401: Unauthorized
      *  - 403: Method not available
+     *  - 401: Unauthorized
      *
      * REST API Reference for logOutAllActiveConnectionsForUser Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/log-out-all-active-connections-for-user/

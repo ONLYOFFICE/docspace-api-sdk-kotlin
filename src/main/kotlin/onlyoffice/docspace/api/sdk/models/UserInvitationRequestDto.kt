@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,19 +24,19 @@ import com.squareup.moshi.JsonClass
 /**
  * The user invitation parameters.
  *
+ * @param email The email address.
  * @param type 
- * @param email The user email address.
  */
 
 
 data class UserInvitationRequestDto (
 
-    @Json(name = "type")
-    val type: EmployeeType? = null,
-
-    /* The user email address. */
+    /* The email address. */
     @Json(name = "email")
-    val email: kotlin.String? = null
+    val email: kotlin.String? = null,
+
+    @Json(name = "type")
+    val type: EmployeeType? = null
 
 ) {
 

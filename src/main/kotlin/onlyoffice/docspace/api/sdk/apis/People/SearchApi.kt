@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 
 
-package onlyoffice.docspace.api.sdk.apis
+package onlyoffice.docspace.api.sdk.apis.People
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
@@ -42,8 +42,8 @@ interface SearchApi {
      * Returns the account entries with their sharing settings for a file with the ID specified in request.
      * Responses:
      *  - 200: Ok
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for getAccountsEntriesWithFilesShared Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-accounts-entries-with-files-shared/
@@ -73,8 +73,8 @@ interface SearchApi {
      * Returns the account entries with their sharing settings in a folder with the ID specified in request.
      * Responses:
      *  - 200: Ok
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for getAccountsEntriesWithFoldersShared Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-accounts-entries-with-folders-shared/
@@ -104,8 +104,8 @@ interface SearchApi {
      * Returns the account entries with their sharing settings in a room with the ID specified in request.
      * Responses:
      *  - 200: Ok
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for getAccountsEntriesWithRoomsShared Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-accounts-entries-with-rooms-shared/
@@ -135,8 +135,8 @@ interface SearchApi {
      * Returns a list of users matching the search query.
      * Responses:
      *  - 200: List of users with the detailed information
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for getSearch Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-search/
@@ -154,7 +154,7 @@ interface SearchApi {
     /**
     * enum for parameter employeeTypes
     */
-    enum class EmployeeTypesGetSimpleByFilter(val value: kotlin.String) {
+    enum class EmployeeTypesGetSimpleByFilter(val value: kotlin.Int) {
         @Json(name = "0") All(0),
         @Json(name = "1") RoomAdmin(1),
         @Json(name = "2") Guest(2),
@@ -168,8 +168,8 @@ interface SearchApi {
      * Returns a list of users matching the parameters specified in the request.
      * Responses:
      *  - 200: List of users
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for getSimpleByFilter Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-simple-by-filter/
@@ -206,8 +206,8 @@ interface SearchApi {
      * Returns the users with the sharing settings in a file with the ID specified in request.
      * Responses:
      *  - 200: Ok
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for getUsersWithFilesShared Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-users-with-files-shared/
@@ -237,8 +237,8 @@ interface SearchApi {
      * Returns the users with the sharing settings in a folder with the ID specified in request.
      * Responses:
      *  - 200: Ok
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for getUsersWithFoldersShared Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-users-with-folders-shared/
@@ -268,8 +268,8 @@ interface SearchApi {
      * Returns the users with the sharing settings in a room with the ID specified in request.
      * Responses:
      *  - 200: Ok
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for getUsersWithRoomShared Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-users-with-room-shared/
@@ -297,7 +297,7 @@ interface SearchApi {
     /**
     * enum for parameter employeeTypes
     */
-    enum class EmployeeTypesSearchUsersByExtendedFilter(val value: kotlin.String) {
+    enum class EmployeeTypesSearchUsersByExtendedFilter(val value: kotlin.Int) {
         @Json(name = "0") All(0),
         @Json(name = "1") RoomAdmin(1),
         @Json(name = "2") Guest(2),
@@ -311,8 +311,8 @@ interface SearchApi {
      * Returns a list of users with full information about them matching the parameters specified in the request.
      * Responses:
      *  - 200: List of users with the detailed information
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for searchUsersByExtendedFilter Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/search-users-by-extended-filter/
@@ -367,8 +367,8 @@ interface SearchApi {
      * Returns a list of users matching the status filter and search query.
      * Responses:
      *  - 200: List of users with the detailed information
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for searchUsersByStatus Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/search-users-by-status/

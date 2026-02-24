@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,8 +18,10 @@ package onlyoffice.docspace.api.sdk.models
 
 import onlyoffice.docspace.api.sdk.models.DocumentConfigDto
 import onlyoffice.docspace.api.sdk.models.EditorConfigurationDto
+import onlyoffice.docspace.api.sdk.models.EditorToolCallStateDto
 import onlyoffice.docspace.api.sdk.models.EditorType
 import onlyoffice.docspace.api.sdk.models.FileDtoInteger
+import onlyoffice.docspace.api.sdk.models.QuotaScope
 import onlyoffice.docspace.api.sdk.models.StartFillingMode
 
 import com.squareup.moshi.Json
@@ -41,6 +43,8 @@ import com.squareup.moshi.JsonClass
  * @param fillingStatus The file filling status.
  * @param startFillingMode 
  * @param fillingSessionId The file filling session ID.
+ * @param quotaExceededScope 
+ * @param generationToolCallState 
  */
 
 
@@ -91,7 +95,13 @@ data class ConfigurationDtoInteger (
 
     /* The file filling session ID. */
     @Json(name = "fillingSessionId")
-    val fillingSessionId: kotlin.String? = null
+    val fillingSessionId: kotlin.String? = null,
+
+    @Json(name = "quotaExceededScope")
+    val quotaExceededScope: QuotaScope? = null,
+
+    @Json(name = "generationToolCallState")
+    val generationToolCallState: EditorToolCallStateDto? = null
 
 ) {
 

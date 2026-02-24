@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,7 +46,7 @@ data class TenantWalletServiceSettings (
      * Values: WebSearch,AITools,Backup,Storage
      */
     @JsonClass(generateAdapter = false)
-    enum class EnabledServices(val value: kotlin.String) {
+    enum class EnabledServices(val value: kotlin.Int) {
         @Json(name = "-14") WebSearch(-14),
         @Json(name = "-13") AITools(-13),
         @Json(name = "-12") Backup(-12),

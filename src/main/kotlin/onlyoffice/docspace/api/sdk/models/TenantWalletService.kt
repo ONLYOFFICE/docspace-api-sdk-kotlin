@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,16 +29,16 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = false)
 enum class TenantWalletService(val value: kotlin.Int) {
 
-    @Json(name = -14)
+    @Json(name = "-14")
     WebSearch(-14),
 
-    @Json(name = -13)
+    @Json(name = "-13")
     AITools(-13),
 
-    @Json(name = -12)
+    @Json(name = "-12")
     Backup(-12),
 
-    @Json(name = -11)
+    @Json(name = "-11")
     Storage(-11);
 
     /**
@@ -61,7 +61,7 @@ enum class TenantWalletService(val value: kotlin.Int) {
          */
         fun decode(data: kotlin.Any?): TenantWalletService? = data?.let {
           val normalizedData = "$it".lowercase()
-          values().firstOrNull { value ->
+          entries.firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()
           }
         }

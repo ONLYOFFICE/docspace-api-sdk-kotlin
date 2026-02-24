@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,22 +29,22 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = false)
 enum class BackupStorageType(val value: kotlin.Int) {
 
-    @Json(name = 0)
+    @Json(name = "0")
     Documents(0),
 
-    @Json(name = 1)
+    @Json(name = "1")
     ThridpartyDocuments(1),
 
-    @Json(name = 2)
+    @Json(name = "2")
     CustomCloud(2),
 
-    @Json(name = 3)
+    @Json(name = "3")
     Local(3),
 
-    @Json(name = 4)
+    @Json(name = "4")
     DataStore(4),
 
-    @Json(name = 5)
+    @Json(name = "5")
     ThirdPartyConsumer(5);
 
     /**
@@ -67,7 +67,7 @@ enum class BackupStorageType(val value: kotlin.Int) {
          */
         fun decode(data: kotlin.Any?): BackupStorageType? = data?.let {
           val normalizedData = "$it".lowercase()
-          values().firstOrNull { value ->
+          entries.firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()
           }
         }

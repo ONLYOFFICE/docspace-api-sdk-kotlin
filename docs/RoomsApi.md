@@ -30,6 +30,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 | [**getRoomsFolder**](RoomsApi.md#getRoomsFolder) | **GET** api/2.0/files/rooms | Get rooms |
 | [**getRoomsNewItems**](RoomsApi.md#getRoomsNewItems) | **GET** api/2.0/files/rooms/news | Get the room new items |
 | [**getRoomsPrimaryExternalLink**](RoomsApi.md#getRoomsPrimaryExternalLink) | **GET** api/2.0/files/rooms/{id}/link | Get the room primary external link |
+| [**hasTagLinks**](RoomsApi.md#hasTagLinks) | **GET** api/2.0/files/tags/{tagName}/haslinks | Has tag links |
 | [**pinRoom**](RoomsApi.md#pinRoom) | **PUT** api/2.0/files/rooms/{id}/pin | Pin a room |
 | [**reorderRoom**](RoomsApi.md#reorderRoom) | **PUT** api/2.0/files/rooms/{id}/reorder | Reorder the room |
 | [**resendEmailInvitations**](RoomsApi.md#resendEmailInvitations) | **POST** api/2.0/files/rooms/{id}/resend | Resend the room invitations |
@@ -41,6 +42,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 | [**unarchiveRoom**](RoomsApi.md#unarchiveRoom) | **PUT** api/2.0/files/rooms/{id}/unarchive | Unarchive a room |
 | [**unpinRoom**](RoomsApi.md#unpinRoom) | **PUT** api/2.0/files/rooms/{id}/unpin | Unpin a room |
 | [**updateRoom**](RoomsApi.md#updateRoom) | **PUT** api/2.0/files/rooms/{id} | Update a room |
+| [**updateRoomTag**](RoomsApi.md#updateRoomTag) | **PUT** api/2.0/files/tags | Update tag |
 | [**uploadRoomLogo**](RoomsApi.md#uploadRoomLogo) | **POST** api/2.0/files/logos | Upload a room logo image |
 
 
@@ -82,7 +84,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
-val id : kotlin.Int = 9846 // kotlin.Int | The room Id.
+val id : kotlin.Int = 1 // kotlin.Int | The room Id.
 val batchTagsRequestDto : BatchTagsRequestDto =  // BatchTagsRequestDto | The parameters for managing tags.
 
 val result : FolderIntegerWrapper = webService.addRoomTags(id, batchTagsRequestDto)
@@ -131,7 +133,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
-val id : kotlin.Int = 9846 // kotlin.Int | The room ID.
+val id : kotlin.Int = 1 // kotlin.Int | The room ID.
 val archiveRoomRequest : ArchiveRoomRequest =  // ArchiveRoomRequest | The parameters for archiving a room.
 
 val result : FileOperationWrapper = webService.archiveRoom(id, archiveRoomRequest)
@@ -180,7 +182,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
-val id : kotlin.Int = 9846 // kotlin.Int | The room ID.
+val id : kotlin.Int = 1 // kotlin.Int | The room ID.
 val coverRequestDto : CoverRequestDto =  // CoverRequestDto | The request parameters to change the room cover.
 
 val result : FolderIntegerWrapper = webService.changeRoomCover(id, coverRequestDto)
@@ -323,7 +325,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
-val id : kotlin.Int = 9846 // kotlin.Int | The room ID.
+val id : kotlin.Int = 1 // kotlin.Int | The room ID.
 val logoRequest : LogoRequest =  // LogoRequest | The logo request parameters.
 
 val result : FolderIntegerWrapper = webService.createRoomLogo(id, logoRequest)
@@ -337,7 +339,7 @@ val result : FolderIntegerWrapper = webService.createRoomLogo(id, logoRequest)
 
 <a id="createRoomTag"></a>
 # **createRoomTag**
-> ObjectWrapper createRoomTag (CreateTagRequestDto createTagRequestDto)
+> StringWrapper createRoomTag (CreateTagRequestDto createTagRequestDto)
 
 Creates a custom room tag with the parameters specified in the request.
 
@@ -350,7 +352,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Return type
 
-[**ObjectWrapper**](ObjectWrapper.md)
+[**StringWrapper**](StringWrapper.md)
 
 ### Authorization
 
@@ -373,7 +375,7 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
 val createTagRequestDto : CreateTagRequestDto =  // CreateTagRequestDto | 
 
-val result : ObjectWrapper = webService.createRoomTag(createTagRequestDto)
+val result : StringWrapper = webService.createRoomTag(createTagRequestDto)
 ```
 
 ### HTTP request headers
@@ -466,7 +468,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
-val id : kotlin.String = 9846 // kotlin.String | The ID of the folder in the third-party storage in which the contents of the room will be stored.
+val id : kotlin.String = 1 // kotlin.String | The ID of the folder in the third-party storage in which the contents of the room will be stored.
 val createThirdPartyRoom : CreateThirdPartyRoom =  // CreateThirdPartyRoom | The third-party room information.
 
 val result : FolderStringWrapper = webService.createRoomThirdParty(id, createThirdPartyRoom)
@@ -482,7 +484,7 @@ val result : FolderStringWrapper = webService.createRoomThirdParty(id, createThi
 # **deleteCustomTags**
 > void deleteCustomTags (BatchTagsRequestDto batchTagsRequestDto)
 
-Deletes a bunch of custom room tags specified in the request.
+Deletes a bunch of custom tags specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-custom-tags/).
 
@@ -562,7 +564,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
-val id : kotlin.Int = 9846 // kotlin.Int | The room ID.
+val id : kotlin.Int = 1 // kotlin.Int | The room ID.
 val deleteRoomRequest : DeleteRoomRequest =  // DeleteRoomRequest | The parameters for deleting a room.
 
 val result : FileOperationWrapper = webService.deleteRoom(id, deleteRoomRequest)
@@ -610,7 +612,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
-val id : kotlin.Int = 9846 // kotlin.Int | The room ID.
+val id : kotlin.Int = 1 // kotlin.Int | The room ID.
 
 val result : FolderIntegerWrapper = webService.deleteRoomLogo(id)
 ```
@@ -658,7 +660,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
-val id : kotlin.Int = 9846 // kotlin.Int | The room Id.
+val id : kotlin.Int = 1 // kotlin.Int | The room Id.
 val batchTagsRequestDto : BatchTagsRequestDto =  // BatchTagsRequestDto | The parameters for managing tags.
 
 val result : FolderIntegerWrapper = webService.deleteRoomTags(id, batchTagsRequestDto)
@@ -706,7 +708,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
-val id : kotlin.Int = 9846 // kotlin.Int | The room ID.
+val id : kotlin.Int = 1 // kotlin.Int | The room ID.
 
 val result : NewItemsFileEntryBaseArrayWrapper = webService.getNewRoomItems(id)
 ```
@@ -753,7 +755,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
-val id : kotlin.Int = 9846 // kotlin.Int | The room template ID.
+val id : kotlin.Int = 1 // kotlin.Int | The room template ID.
 
 val result : BooleanWrapper = webService.getPublicSettings(id)
 ```
@@ -926,7 +928,7 @@ No authorization required
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(RoomsApi::class.java)
-val id : kotlin.Int = 9846 // kotlin.Int | The room ID.
+val id : kotlin.Int = 1 // kotlin.Int | The room ID.
 
 val result : FolderIntegerWrapper = webService.getRoomInfo(id)
 ```
@@ -974,7 +976,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
-val id : kotlin.Int = 9846 // kotlin.Int | The room ID.
+val id : kotlin.Int = 1 // kotlin.Int | The room ID.
 val type : LinkType =  // LinkType | The link type.
 
 val result : FileShareArrayWrapper = webService.getRoomLinks(id, type)
@@ -996,7 +998,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Parameters
 | **id** | **kotlin.Int**| The room ID. | |
-| **filterType** | [**ShareFilterType**](.md)| The filter type of the access rights. | [optional] [enum: 0, 1, 2, 4, 8, 16, 32] |
+| **filterType** | [**ShareFilterType**](.md)| The filter type of the access rights. | [optional] [enum: 0, 1, 2, 4, 8, 15, 16, 32] |
 | **count** | **kotlin.Int**| The number of items to be retrieved or processed. | [optional] |
 | **startIndex** | **kotlin.Int**| The starting index of the items to retrieve in a paginated request. | [optional] |
 | Name | Type | Description  | Notes |
@@ -1026,7 +1028,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
-val id : kotlin.Int = 9846 // kotlin.Int | The room ID.
+val id : kotlin.Int = 1 // kotlin.Int | The room ID.
 val filterType : ShareFilterType =  // ShareFilterType | The filter type of the access rights.
 val count : kotlin.Int = 1234 // kotlin.Int | The number of items to be retrieved or processed.
 val startIndex : kotlin.Int = 1234 // kotlin.Int | The starting index of the items to retrieve in a paginated request.
@@ -1045,7 +1047,7 @@ val result : FileShareArrayWrapper = webService.getRoomSecurityInfo(id, filterTy
 # **getRoomTagsInfo**
 > ObjectArrayWrapper getRoomTagsInfo (kotlin.Int count, kotlin.Int startIndex, kotlin.String filterValue)
 
-Returns a list of custom room tags.
+Returns a list of custom tags.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-tags-info/).
 
@@ -1138,7 +1140,7 @@ val result : RoomTemplateStatusWrapper = webService.getRoomTemplateCreatingStatu
 
 <a id="getRoomsFolder"></a>
 # **getRoomsFolder**
-> FolderContentIntegerWrapper getRoomsFolder (kotlin.collections.List<RoomType> type, kotlin.String subjectId, SearchArea searchArea, kotlin.Boolean withoutTags, kotlin.String tags, kotlin.Boolean excludeSubject, ProviderFilter provider, SubjectFilter subjectFilter, QuotaFilter quotaFilter, StorageFilter storageFilter, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterValue)
+> FolderContentIntegerWrapper getRoomsFolder (kotlin.collections.List<RoomType> type, kotlin.String subjectId, SearchArea searchArea, kotlin.Boolean withoutTags, kotlin.String tags, kotlin.Boolean excludeSubject, ProviderFilter provider, SubjectFilter subjectFilter, QuotaFilter quotaFilter, StorageFilter storageFilter, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterValue, kotlin.Int groupId)
 
 Returns the contents of the Rooms section by the parameters specified in the request.
 
@@ -1159,9 +1161,10 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **startIndex** | **kotlin.Int**| The index from which to start retrieving the room content. | [optional] |
 | **sortBy** | **kotlin.String**| Specifies the field by which the room content should be sorted. | [optional] |
 | **sortOrder** | [**SortOrder**](.md)| The order in which the results are sorted. | [optional] [enum: 0, 1] |
+| **filterValue** | **kotlin.String**| The text filter value used to refine search or query operations. | [optional] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **filterValue** | **kotlin.String**| The text filter value used to refine search or query operations. | [optional] |
+| **groupId** | **kotlin.Int**| The group ID | [optional] |
 
 ### Return type
 
@@ -1201,8 +1204,9 @@ val startIndex : kotlin.Int = 1234 // kotlin.Int | The index from which to start
 val sortBy : kotlin.String = some text // kotlin.String | Specifies the field by which the room content should be sorted.
 val sortOrder : SortOrder =  // SortOrder | The order in which the results are sorted.
 val filterValue : kotlin.String = some text // kotlin.String | The text filter value used to refine search or query operations.
+val groupId : kotlin.Int = 1234 // kotlin.Int | The group ID
 
-val result : FolderContentIntegerWrapper = webService.getRoomsFolder(type, subjectId, searchArea, withoutTags, tags, excludeSubject, provider, subjectFilter, quotaFilter, storageFilter, count, startIndex, sortBy, sortOrder, filterValue)
+val result : FolderContentIntegerWrapper = webService.getRoomsFolder(type, subjectId, searchArea, withoutTags, tags, excludeSubject, provider, subjectFilter, quotaFilter, storageFilter, count, startIndex, sortBy, sortOrder, filterValue, groupId)
 ```
 
 ### HTTP request headers
@@ -1291,9 +1295,56 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
-val id : kotlin.Int = 9846 // kotlin.Int | The room ID.
+val id : kotlin.Int = 1 // kotlin.Int | The room ID.
 
 val result : FileShareWrapper = webService.getRoomsPrimaryExternalLink(id)
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+<a id="hasTagLinks"></a>
+# **hasTagLinks**
+> BooleanWrapper hasTagLinks (kotlin.String tagName)
+
+Checks if a specific custom tag has linked items.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/has-tag-links/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **tagName** | **kotlin.String**|  | |
+
+### Return type
+
+[**BooleanWrapper**](BooleanWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(RoomsApi::class.java)
+val tagName : kotlin.String = tagName_example // kotlin.String | 
+
+val result : BooleanWrapper = webService.hasTagLinks(tagName)
 ```
 
 ### HTTP request headers
@@ -1338,7 +1389,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
-val id : kotlin.Int = 9846 // kotlin.Int | The room ID.
+val id : kotlin.Int = 1 // kotlin.Int | The room ID.
 
 val result : FolderIntegerWrapper = webService.pinRoom(id)
 ```
@@ -1385,7 +1436,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
-val id : kotlin.Int = 9846 // kotlin.Int | The room ID.
+val id : kotlin.Int = 1 // kotlin.Int | The room ID.
 
 val result : FolderIntegerWrapper = webService.reorderRoom(id)
 ```
@@ -1433,7 +1484,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
-val id : kotlin.Int = 9846 // kotlin.Int | The room ID.
+val id : kotlin.Int = 1 // kotlin.Int | The room ID.
 val userInvitation : UserInvitation =  // UserInvitation | The user invitation parameters.
 
 webService.resendEmailInvitations(id, userInvitation)
@@ -1529,7 +1580,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
-val id : kotlin.Int = 9846 // kotlin.Int | The room ID.
+val id : kotlin.Int = 1 // kotlin.Int | The room ID.
 val roomLinkRequest : RoomLinkRequest =  // RoomLinkRequest | The room link parameters.
 
 val result : FileShareWrapper = webService.setRoomLink(id, roomLinkRequest)
@@ -1578,7 +1629,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
-val id : kotlin.Int = 9846 // kotlin.Int | The room ID.
+val id : kotlin.Int = 1 // kotlin.Int | The room ID.
 val roomInvitationRequest : RoomInvitationRequest =  // RoomInvitationRequest | The room invitation request.
 
 val result : RoomSecurityWrapper = webService.setRoomSecurity(id, roomInvitationRequest)
@@ -1626,7 +1677,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
-val id : kotlin.Int = 9079 // kotlin.Int | The room ID.
+val id : kotlin.Int = 1 // kotlin.Int | The room ID.
 
 val result : DocumentBuilderTaskWrapper = webService.startRoomIndexExport(id)
 ```
@@ -1718,7 +1769,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
-val id : kotlin.Int = 9846 // kotlin.Int | The room ID.
+val id : kotlin.Int = 1 // kotlin.Int | The room ID.
 val archiveRoomRequest : ArchiveRoomRequest =  // ArchiveRoomRequest | The parameters for archiving a room.
 
 val result : FileOperationWrapper = webService.unarchiveRoom(id, archiveRoomRequest)
@@ -1766,7 +1817,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
-val id : kotlin.Int = 9846 // kotlin.Int | The room ID.
+val id : kotlin.Int = 1 // kotlin.Int | The room ID.
 
 val result : FolderIntegerWrapper = webService.unpinRoom(id)
 ```
@@ -1814,10 +1865,57 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
-val id : kotlin.Int = 9079 // kotlin.Int | The room ID.
+val id : kotlin.Int = 1 // kotlin.Int | The room ID.
 val updateRoomRequest : UpdateRoomRequest =  // UpdateRoomRequest | The request parameters for updating a room.
 
 val result : FolderIntegerWrapper = webService.updateRoom(id, updateRoomRequest)
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+<a id="updateRoomTag"></a>
+# **updateRoomTag**
+> StringWrapper updateRoomTag (UpdateTagRequestDto updateTagRequestDto)
+
+Updates the name of a custom tag.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/update-room-tag/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **updateTagRequestDto** | [**UpdateTagRequestDto**](UpdateTagRequestDto.md)|  | [optional] |
+
+### Return type
+
+[**StringWrapper**](StringWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(RoomsApi::class.java)
+val updateTagRequestDto : UpdateTagRequestDto =  // UpdateTagRequestDto | 
+
+val result : StringWrapper = webService.updateRoomTag(updateTagRequestDto)
 ```
 
 ### HTTP request headers

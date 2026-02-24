@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 
 
-package onlyoffice.docspace.api.sdk.apis
+package onlyoffice.docspace.api.sdk.apis.Settings
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
@@ -34,8 +34,8 @@ interface OwnerApi {
      * Responses:
      *  - 200: Message about changing the portal owner
      *  - 400: Owner's email is not activated
-     *  - 401: Unauthorized
      *  - 403: Collaborator can not be an owner
+     *  - 401: Unauthorized
      *
      * REST API Reference for sendOwnerChangeInstructions Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/send-owner-change-instructions/
@@ -54,8 +54,8 @@ interface OwnerApi {
      * Responses:
      *  - 200: Ok
      *  - 400: The user could not be found
-     *  - 401: Unauthorized
      *  - 409: 
+     *  - 401: Unauthorized
      *
      * REST API Reference for updatePortalOwner Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-portal-owner/

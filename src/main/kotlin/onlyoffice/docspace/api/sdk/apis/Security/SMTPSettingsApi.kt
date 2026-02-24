@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 
 
-package onlyoffice.docspace.api.sdk.apis
+package onlyoffice.docspace.api.sdk.apis.Security
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
@@ -34,8 +34,8 @@ interface SMTPSettingsApi {
      * Returns the status of the SMTP testing process.
      * Responses:
      *  - 200: SMTP operation status
-     *  - 401: Unauthorized
      *  - 402: Your pricing plan does not support this option
+     *  - 401: Unauthorized
      *
      * REST API Reference for getSmtpOperationStatus Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-smtp-operation-status/
@@ -52,8 +52,8 @@ interface SMTPSettingsApi {
      * Returns the current portal SMTP settings.
      * Responses:
      *  - 200: SMTP settings
-     *  - 401: Unauthorized
      *  - 402: Your pricing plan does not support this option
+     *  - 401: Unauthorized
      *
      * REST API Reference for getSmtpSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-smtp-settings/
@@ -70,8 +70,8 @@ interface SMTPSettingsApi {
      * Resets the SMTP settings of the current portal.
      * Responses:
      *  - 200: Default SMTP settings
-     *  - 401: Unauthorized
      *  - 402: Your pricing plan does not support this option
+     *  - 401: Unauthorized
      *
      * REST API Reference for resetSmtpSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/reset-smtp-settings/
@@ -88,8 +88,8 @@ interface SMTPSettingsApi {
      * Saves the SMTP settings for the current portal.
      * Responses:
      *  - 200: SMTP settings
-     *  - 401: Unauthorized
      *  - 402: Your pricing plan does not support this option
+     *  - 401: Unauthorized
      *
      * REST API Reference for saveSmtpSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/save-smtp-settings/
@@ -107,8 +107,8 @@ interface SMTPSettingsApi {
      * Tests the SMTP settings for the current portal (sends test message to the user email).
      * Responses:
      *  - 200: SMTP operation status
-     *  - 401: Unauthorized
      *  - 402: Your pricing plan does not support this option
+     *  - 401: Unauthorized
      *
      * REST API Reference for testSmtpSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/test-smtp-settings/

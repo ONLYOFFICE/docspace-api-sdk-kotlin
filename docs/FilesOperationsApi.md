@@ -4,6 +4,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
+| [**abortUploadSession**](FilesOperationsApi.md#abortUploadSession) | **DELETE** api/2.0/files/{folderId}/session/{sessionId} | Aborts an in-progress file upload session. |
 | [**addFavorites**](FilesOperationsApi.md#addFavorites) | **POST** api/2.0/files/favorites | Add favorite files and folders |
 | [**bulkDownload**](FilesOperationsApi.md#bulkDownload) | **PUT** api/2.0/files/fileops/bulkdownload | Bulk download |
 | [**checkConversionStatus**](FilesOperationsApi.md#checkConversionStatus) | **GET** api/2.0/files/file/{fileId}/checkconversion | Get conversion status |
@@ -11,11 +12,13 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 | [**checkMoveOrCopyDestFolder**](FilesOperationsApi.md#checkMoveOrCopyDestFolder) | **GET** api/2.0/files/fileops/checkdestfolder | Check for moving or copying files to a folder |
 | [**copyBatchItems**](FilesOperationsApi.md#copyBatchItems) | **PUT** api/2.0/files/fileops/copy | Copy to the folder |
 | [**createUploadSession**](FilesOperationsApi.md#createUploadSession) | **POST** api/2.0/files/{folderId}/upload/create_session | Chunked upload |
+| [**createUploadSessionInFolder**](FilesOperationsApi.md#createUploadSessionInFolder) | **POST** api/2.0/files/{folderId}/session | Creates a session for uploading a file to a specific folder in chunks. |
 | [**deleteBatchItems**](FilesOperationsApi.md#deleteBatchItems) | **PUT** api/2.0/files/fileops/delete | Delete files and folders |
 | [**deleteFavoritesFromBody**](FilesOperationsApi.md#deleteFavoritesFromBody) | **DELETE** api/2.0/files/favorites | Delete favorite files and folders (using body parameters) |
 | [**deleteFileVersions**](FilesOperationsApi.md#deleteFileVersions) | **PUT** api/2.0/files/fileops/deleteversion | Delete file versions |
 | [**duplicateBatchItems**](FilesOperationsApi.md#duplicateBatchItems) | **PUT** api/2.0/files/fileops/duplicate | Duplicate files and folders |
 | [**emptyTrash**](FilesOperationsApi.md#emptyTrash) | **PUT** api/2.0/files/fileops/emptytrash | Empty the Trash folder |
+| [**finalizeSession**](FilesOperationsApi.md#finalizeSession) | **PUT** api/2.0/files/{folderId}/session/{sessionId}/finalize | Finalize an upload session |
 | [**getOperationStatuses**](FilesOperationsApi.md#getOperationStatuses) | **GET** api/2.0/files/fileops | Get active file operations |
 | [**getOperationStatusesByType**](FilesOperationsApi.md#getOperationStatusesByType) | **GET** api/2.0/files/fileops/{operationType} | Get file operation statuses |
 | [**markAsRead**](FilesOperationsApi.md#markAsRead) | **PUT** api/2.0/files/fileops/markasread | Mark as read |
@@ -23,7 +26,58 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 | [**startFileConversion**](FilesOperationsApi.md#startFileConversion) | **PUT** api/2.0/files/file/{fileId}/checkconversion | Start file conversion |
 | [**terminateTasks**](FilesOperationsApi.md#terminateTasks) | **PUT** api/2.0/files/fileops/terminate/{id} | Finish active operations |
 | [**updateFileComment**](FilesOperationsApi.md#updateFileComment) | **PUT** api/2.0/files/file/{fileId}/comment | Update a comment |
+| [**uploadAsyncSession**](FilesOperationsApi.md#uploadAsyncSession) | **POST** api/2.0/files/{folderId}/session/{sessionId}/upload | Handles the upload of a chunk for an existing upload session. |
+| [**uploadSession**](FilesOperationsApi.md#uploadSession) | **POST** api/2.0/files/{folderId}/session/{sessionId} | Resumes an ongoing file upload session for uploading additional chunks of data. |
 
+
+
+<a id="abortUploadSession"></a>
+# **abortUploadSession**
+> void abortUploadSession (kotlin.String sessionId, kotlin.Int folderId)
+
+This method allows users to cancel an ongoing upload session identified by the session ID.  Once the session is aborted, the associated resources will be cleaned up, and the session will no longer accept further uploads.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/abort-upload-session/).
+
+### Parameters
+| **sessionId** | **kotlin.String**|  | |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **folderId** | **kotlin.Int**|  | |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(OperationsApi::class.java)
+val sessionId : kotlin.String = some text // kotlin.String | 
+val folderId : kotlin.Int = 1 // kotlin.Int | 
+
+webService.abortUploadSession(sessionId, folderId)
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
 
 
 <a id="addFavorites"></a>
@@ -151,7 +205,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(OperationsApi::class.java)
-val fileId : kotlin.Int = 9846 // kotlin.Int | The file ID to check conversion status.
+val fileId : kotlin.Int = 1 // kotlin.Int | The file ID to check conversion status.
 val start : kotlin.Boolean = true // kotlin.Boolean | Specifies whether a conversion operation is started or not.
 
 val result : ConversationResultArrayWrapper = webService.checkConversionStatus(fileId, start)
@@ -306,9 +360,9 @@ val result : FileOperationArrayWrapper = webService.copyBatchItems(batchRequestD
 
 <a id="createUploadSession"></a>
 # **createUploadSession**
-> ObjectWrapper createUploadSession (kotlin.Int folderId, SessionRequest sessionRequest)
+> ChunkedUploadSessionResponseWrapperIntegerWrapper createUploadSession (kotlin.Int folderId, SessionRequest sessionRequest)
 
-Creates the session to upload large files in multiple chunks to the folder with the ID specified in the request.   **Note**: Each chunk can have different length but the length should be multiple of <b>512</b> and greater or equal to <b>10 mb</b>. Last chunk can have any size.  After the initial response to the request with the <b>200 OK</b> status, you must get the <em>location</em> field value from the response. Send all your chunks to this location.  Each chunk must be sent in the exact order the chunks appear in the file.  After receiving each chunk, the server will respond with the current information about the upload session if no errors occurred.  When the number of bytes uploaded is equal to the number of bytes you sent in the initial request, the server responds with the <b>201 Created</b> status and sends you information about the uploaded file.  Information about created session which includes:  <ul>  <li><b>id:</b> unique ID of this upload session,</li>  <li><b>created:</b> UTC time when the session was created,</li>  <li><b>expired:</b> UTC time when the session will expire if no chunks are sent before that time,</li>  <li><b>location:</b> URL where you should send your next chunk,</li>  <li><b>bytes_uploaded:</b> number of bytes uploaded for the specific upload ID,</li>  <li><b>bytes_total:</b> total number of bytes which will be uploaded.</li>  </ul>
+Creates the session to upload large files in multiple chunks to the folder with the ID specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-upload-session/).
 
@@ -320,7 +374,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Return type
 
-[**ObjectWrapper**](ObjectWrapper.md)
+[**ChunkedUploadSessionResponseWrapperIntegerWrapper**](ChunkedUploadSessionResponseWrapperIntegerWrapper.md)
 
 ### Authorization
 
@@ -341,10 +395,59 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(OperationsApi::class.java)
-val folderId : kotlin.Int = 9846 // kotlin.Int | The session folder ID.
+val folderId : kotlin.Int = 1 // kotlin.Int | The session folder ID.
 val sessionRequest : SessionRequest =  // SessionRequest | The session parameters.
 
-val result : ObjectWrapper = webService.createUploadSession(folderId, sessionRequest)
+val result : ChunkedUploadSessionResponseWrapperIntegerWrapper = webService.createUploadSession(folderId, sessionRequest)
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+<a id="createUploadSessionInFolder"></a>
+# **createUploadSessionInFolder**
+> ChunkedUploadSessionResponseIntegerWrapper createUploadSessionInFolder (kotlin.Int folderId, SessionRequest sessionRequest)
+
+The session allows the user to upload a file in smaller chunks to the folder identified by its ID.  The file information, such as name, size, and additional metadata, must be provided in the request.  This method facilitates large file upload scenarios by enabling chunked file uploads.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-upload-session-in-folder/).
+
+### Parameters
+| **folderId** | **kotlin.Int**| The session folder ID. | |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **sessionRequest** | [**SessionRequest**](SessionRequest.md)| The session parameters. | |
+
+### Return type
+
+[**ChunkedUploadSessionResponseIntegerWrapper**](ChunkedUploadSessionResponseIntegerWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(OperationsApi::class.java)
+val folderId : kotlin.Int = 1 // kotlin.Int | The session folder ID.
+val sessionRequest : SessionRequest =  // SessionRequest | The session parameters.
+
+val result : ChunkedUploadSessionResponseIntegerWrapper = webService.createUploadSessionInFolder(folderId, sessionRequest)
 ```
 
 ### HTTP request headers
@@ -588,6 +691,55 @@ val result : FileOperationArrayWrapper = webService.emptyTrash(single)
  - **Accept**: application/json
 
 
+<a id="finalizeSession"></a>
+# **finalizeSession**
+> UploadSessionResponseIntegerWrapper finalizeSession (kotlin.Int folderId, kotlin.String sessionId)
+
+Finalizes the upload session by processing the uploaded file chunks and marking the upload as complete.  This method consolidates chunked uploads into a complete file if required, sends notifications about the upload event,  and performs any additional cleanup or related actions, such as socket updates and webhook publishing.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/finalize-session/).
+
+### Parameters
+| **folderId** | **kotlin.Int**|  | |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **sessionId** | **kotlin.String**|  | |
+
+### Return type
+
+[**UploadSessionResponseIntegerWrapper**](UploadSessionResponseIntegerWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(OperationsApi::class.java)
+val folderId : kotlin.Int = 1 // kotlin.Int | 
+val sessionId : kotlin.String = some text // kotlin.String | 
+
+val result : UploadSessionResponseIntegerWrapper = webService.finalizeSession(folderId, sessionId)
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
 <a id="getOperationStatuses"></a>
 # **getOperationStatuses**
 > FileOperationArrayWrapper getOperationStatuses (kotlin.String id)
@@ -618,7 +770,7 @@ No authorization required
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(OperationsApi::class.java)
-val id : kotlin.String = 9846 // kotlin.String | The ID of the file operation.
+val id : kotlin.String = 1 // kotlin.String | The ID of the file operation.
 
 val result : FileOperationArrayWrapper = webService.getOperationStatuses(id)
 ```
@@ -661,7 +813,7 @@ No authorization required
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(OperationsApi::class.java)
 val operationType : FileOperationType =  // FileOperationType | Specifies the type of file operation to be retrieved.
-val id : kotlin.String = 9846 // kotlin.String | The ID of the file operation.
+val id : kotlin.String = 1 // kotlin.String | The ID of the file operation.
 
 val result : FileOperationArrayWrapper = webService.getOperationStatusesByType(operationType, id)
 ```
@@ -803,7 +955,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(OperationsApi::class.java)
-val fileId : kotlin.Int = 9846 // kotlin.Int | The file ID to start conversion proccess.
+val fileId : kotlin.Int = 1 // kotlin.Int | The file ID to start conversion proccess.
 val checkConversionRequestDtoInteger : CheckConversionRequestDtoInteger =  // CheckConversionRequestDtoInteger | The parameters for checking file conversion.
 
 val result : ConversationResultArrayWrapper = webService.startFileConversion(fileId, checkConversionRequestDtoInteger)
@@ -845,7 +997,7 @@ No authorization required
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(OperationsApi::class.java)
-val id : kotlin.String = 9846 // kotlin.String | The operation unique identifier.
+val id : kotlin.String = 1 // kotlin.String | The operation unique identifier.
 
 val result : FileOperationArrayWrapper = webService.terminateTasks(id)
 ```
@@ -893,7 +1045,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(OperationsApi::class.java)
-val fileId : kotlin.Int = 9846 // kotlin.Int | The file ID where the comment is located.
+val fileId : kotlin.Int = 1 // kotlin.Int | The file ID where the comment is located.
 val updateComment : UpdateComment =  // UpdateComment | The parameters for updating a comment.
 
 val result : StringWrapper = webService.updateFileComment(fileId, updateComment)
@@ -902,5 +1054,109 @@ val result : StringWrapper = webService.updateFileComment(fileId, updateComment)
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+<a id="uploadAsyncSession"></a>
+# **uploadAsyncSession**
+> ChunkedUploadSessionResponseIntegerWrapper uploadAsyncSession (kotlin.Int folderId, kotlin.String sessionId, kotlin.Int chunkNumber, java.io.File file)
+
+This method allows the caller to upload a specific chunk of a file to an ongoing upload session.  The session is identified by the session ID provided in the request. The chunk can be of any size  within the limits allowed during the session initialization. Each chunk must be uploaded in the  correct order for the server to process it appropriately.  The server updates the upload session status and stores the progress information after processing  each chunk. The updated session details are returned in the response.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-async-session/).
+
+### Parameters
+| **folderId** | **kotlin.Int**|  | |
+| **sessionId** | **kotlin.String**|  | |
+| **chunkNumber** | **kotlin.Int**|  | [optional] |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **file** | **java.io.File**|  | [optional] |
+
+### Return type
+
+[**ChunkedUploadSessionResponseIntegerWrapper**](ChunkedUploadSessionResponseIntegerWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(OperationsApi::class.java)
+val folderId : kotlin.Int = 1 // kotlin.Int | 
+val sessionId : kotlin.String = some text // kotlin.String | 
+val chunkNumber : kotlin.Int = 1234 // kotlin.Int | 
+val file : java.io.File = BINARY_DATA_HERE // java.io.File | 
+
+val result : ChunkedUploadSessionResponseIntegerWrapper = webService.uploadAsyncSession(folderId, sessionId, chunkNumber, file)
+```
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
+
+<a id="uploadSession"></a>
+# **uploadSession**
+> UploadSessionResponseIntegerWrapper uploadSession (kotlin.Int folderId, kotlin.String sessionId, java.io.File file)
+
+This method allows continuing an interrupted or partially completed file upload session by uploading subsequent data chunks.  The server will validate each uploaded chunk, update the session state, and respond with the status of the current upload. Once  the total bytes uploaded match the total file size, the file upload process is finalized and related events are triggered.  If the file is newly uploaded, the server responds with a 201 Created status upon completion. If it overwrites an existing file,  versioning information is updated accordingly. The method also triggers associated webhooks and socket notifications to reflect  the updated file state.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-session/).
+
+### Parameters
+| **folderId** | **kotlin.Int**|  | |
+| **sessionId** | **kotlin.String**|  | |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **file** | **java.io.File**|  | [optional] |
+
+### Return type
+
+[**UploadSessionResponseIntegerWrapper**](UploadSessionResponseIntegerWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(OperationsApi::class.java)
+val folderId : kotlin.Int = 1 // kotlin.Int | 
+val sessionId : kotlin.String = some text // kotlin.String | 
+val file : java.io.File = BINARY_DATA_HERE // java.io.File | 
+
+val result : UploadSessionResponseIntegerWrapper = webService.uploadSession(folderId, sessionId, file)
+```
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 

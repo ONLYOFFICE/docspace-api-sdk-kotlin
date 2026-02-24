@@ -18,12 +18,11 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 | [**getFolderLinks**](FilesFoldersApi.md#getFolderLinks) | **GET** api/2.0/files/folder/{id}/links | Get the folder links |
 | [**getFolderPath**](FilesFoldersApi.md#getFolderPath) | **GET** api/2.0/files/folder/{folderId}/path | Get the folder path |
 | [**getFolderPrimaryExternalLink**](FilesFoldersApi.md#getFolderPrimaryExternalLink) | **GET** api/2.0/files/folder/{id}/link | Get primary external link |
-| [**getFolderRecent**](FilesFoldersApi.md#getFolderRecent) | **GET** api/2.0/files/recent | Get the Recent section |
 | [**getFolders**](FilesFoldersApi.md#getFolders) | **GET** api/2.0/files/{folderId}/subfolders | Get subfolders |
 | [**getMyFolder**](FilesFoldersApi.md#getMyFolder) | **GET** api/2.0/files/@my | Get the My documents section |
 | [**getNewFolderItems**](FilesFoldersApi.md#getNewFolderItems) | **GET** api/2.0/files/{folderId}/news | Get new folder items |
 | [**getPrivacyFolder**](FilesFoldersApi.md#getPrivacyFolder) | **GET** api/2.0/files/@privacy | Get the Private Room section |
-| [**getRecentFolder**](FilesFoldersApi.md#getRecentFolder) | **GET** api/2.0/files/@recent | Get the Recent section |
+| [**getRecentFolder**](FilesFoldersApi.md#getRecentFolder) | **GET** api/2.0/files/recent | Get the Recent section |
 | [**getRootFolders**](FilesFoldersApi.md#getRootFolders) | **GET** api/2.0/files/@root | Get filtered sections |
 | [**getTrashFolder**](FilesFoldersApi.md#getTrashFolder) | **GET** api/2.0/files/@trash | Get the Trash section |
 | [**insertFile**](FilesFoldersApi.md#insertFile) | **POST** api/2.0/files/{folderId}/insert | Insert a file |
@@ -73,7 +72,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val folderId : kotlin.Int = 9846 // kotlin.Int | The folder ID.
+val folderId : kotlin.Int = 1 // kotlin.Int | The folder ID.
 val checkUploadRequest : CheckUploadRequest =  // CheckUploadRequest | The request parameters for checking file uploads.
 
 val result : STRINGArrayWrapper = webService.checkUpload(folderId, checkUploadRequest)
@@ -122,7 +121,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val folderId : kotlin.Int = 9846 // kotlin.Int | The folder ID for the folder creation.
+val folderId : kotlin.Int = 1 // kotlin.Int | The folder ID for the folder creation.
 val createFolder : CreateFolder =  // CreateFolder | The parameters for creating a folder.
 
 val result : FolderIntegerWrapper = webService.createFolder(folderId, createFolder)
@@ -171,7 +170,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val id : kotlin.Int = 9846 // kotlin.Int | The folder ID.
+val id : kotlin.Int = 1 // kotlin.Int | The folder ID.
 val folderLinkRequest : FolderLinkRequest =  // FolderLinkRequest | The folder link parameters.
 
 val result : FileShareWrapper = webService.createFolderPrimaryExternalLink(id, folderLinkRequest)
@@ -267,7 +266,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val folderId : kotlin.Int = 9846 // kotlin.Int | The folder ID to delete.
+val folderId : kotlin.Int = 1 // kotlin.Int | The folder ID to delete.
 val deleteFolder : DeleteFolder =  // DeleteFolder | The parameters for deleting a folder.
 
 val result : FileOperationArrayWrapper = webService.deleteFolder(folderId, deleteFolder)
@@ -412,7 +411,7 @@ No authorization required
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val folderId : kotlin.Int = 9846 // kotlin.Int | The folder unique identifier.
+val folderId : kotlin.Int = 1 // kotlin.Int | The folder unique identifier.
 
 val result : FormsItemArrayWrapper = webService.getFolder(folderId)
 ```
@@ -469,11 +468,11 @@ No authorization required
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val folderId : kotlin.Int = 9846 // kotlin.Int | The folder ID.
+val folderId : kotlin.Int = 1 // kotlin.Int | The folder ID.
 val userIdOrGroupId : java.util.UUID = 75a5f745-f697-4418-b38d-0fe0d277e258 // java.util.UUID | The user or group ID.
 val sharedBy : java.util.UUID = 75a5f745-f697-4418-b38d-0fe0d277e258 // java.util.UUID | The identifier of the user who shared the folder or file.
 val filterType : FilterType =  // FilterType | The filter type.
-val roomId : kotlin.Int = 9846 // kotlin.Int | The room ID.
+val roomId : kotlin.Int = 1 // kotlin.Int | The room ID.
 val excludeSubject : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to exclude search by user or group ID.
 val applyFilterOption : ApplyFilterOption =  // ApplyFilterOption | Specifies whether to return only files, only folders, or all elements from the specified folder.
 val extension : kotlin.String = .txt // kotlin.String | Specifies whether to search for the specific file extension.
@@ -536,7 +535,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val folderId : kotlin.Int = 9846 // kotlin.Int | The folder ID of the history request.
+val folderId : kotlin.Int = 1 // kotlin.Int | The folder ID of the history request.
 val fromDate : ApiDateTime =  // ApiDateTime | The start date of the history request.
 val toDate : ApiDateTime =  // ApiDateTime | The end date of the history request.
 val count : kotlin.Int = 1234 // kotlin.Int | The number of records to retrieve for the folder history.
@@ -581,7 +580,7 @@ No authorization required
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val folderId : kotlin.Int = 9846 // kotlin.Int | The folder unique identifier.
+val folderId : kotlin.Int = 1 // kotlin.Int | The folder unique identifier.
 
 val result : FolderIntegerWrapper = webService.getFolderInfo(folderId)
 ```
@@ -628,7 +627,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val id : kotlin.Int = 9846 // kotlin.Int | The folder ID.
+val id : kotlin.Int = 1 // kotlin.Int | The folder ID.
 
 val result : FileShareArrayWrapper = webService.getFolderLinks(id)
 ```
@@ -675,7 +674,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val folderId : kotlin.Int = 9846 // kotlin.Int | The folder unique identifier.
+val folderId : kotlin.Int = 1 // kotlin.Int | The folder unique identifier.
 
 val result : FileEntryBaseArrayWrapper = webService.getFolderPath(folderId)
 ```
@@ -718,78 +717,11 @@ No authorization required
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val id : kotlin.Int = 9846 // kotlin.Int | The folder unique identifier.
+val id : kotlin.Int = 1 // kotlin.Int | The folder unique identifier.
 val count : kotlin.Int = 1234 // kotlin.Int | The number of items to retrieve in the request.
 val startIndex : kotlin.Int = 1234 // kotlin.Int | The starting index for the query results.
 
 val result : FileShareWrapper = webService.getFolderPrimaryExternalLink(id, count, startIndex)
-```
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-<a id="getFolderRecent"></a>
-# **getFolderRecent**
-> FolderContentIntegerWrapper getFolderRecent (java.util.UUID userIdOrGroupId, FilterType filterType, kotlin.Boolean excludeSubject, ApplyFilterOption applyFilterOption, SearchArea searchArea, kotlin.collections.List<kotlin.String> extension, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterValue)
-
-Returns the detailed list of files located in the Recent section.
-
-For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-recent/).
-
-### Parameters
-| **userIdOrGroupId** | **java.util.UUID**| The user or group ID. | [optional] |
-| **filterType** | [**FilterType**](.md)| The filter type. | [optional] [enum: 0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 17, 20, 22, 23, 24, 25, 26] |
-| **excludeSubject** | **kotlin.Boolean**| Specifies whether to exclude search by user or group ID. | [optional] |
-| **applyFilterOption** | [**ApplyFilterOption**](.md)| Specifies whether to return only files, only folders or all elements. | [optional] [enum: 0, 1, 2] |
-| **searchArea** | [**SearchArea**](.md)| The search area. | [optional] [enum: 0, 1, 2, 3, 4, 5, 6, 7] |
-| **extension** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)| Specifies whether to search for a specific file extension in the Recent folder. | [optional] |
-| **count** | **kotlin.Int**| The maximum number of items to return. | [optional] |
-| **startIndex** | **kotlin.Int**| The starting position of the results to be returned in the query response. | [optional] |
-| **sortBy** | **kotlin.String**| Specifies the sorting criteria for the folder request. | [optional] |
-| **sortOrder** | [**SortOrder**](.md)| The order in which the results are sorted. | [optional] [enum: 0, 1] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **filterValue** | **kotlin.String**| The text used for filtering or searching folder contents. | [optional] |
-
-### Return type
-
-[**FolderContentIntegerWrapper**](FolderContentIntegerWrapper.md)
-
-### Authorization
-
-
-Configure Basic:
-    ApiClient().setCredentials("USERNAME", "PASSWORD")
-Configure Bearer:
-    ApiClient().setBearerToken("TOKEN")
-
-### Example
-```kotlin
-// Import classes:
-//import onlyoffice.docspace.api.sdk.*
-//import onlyoffice.docspace.api.sdk.infrastructure.*
-//import onlyoffice.docspace.api.sdk.models.*
-
-val apiClient = ApiClient()
-apiClient.setCredentials("USERNAME", "PASSWORD")
-apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(FoldersApi::class.java)
-val userIdOrGroupId : java.util.UUID = 75a5f745-f697-4418-b38d-0fe0d277e258 // java.util.UUID | The user or group ID.
-val filterType : FilterType =  // FilterType | The filter type.
-val excludeSubject : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to exclude search by user or group ID.
-val applyFilterOption : ApplyFilterOption =  // ApplyFilterOption | Specifies whether to return only files, only folders or all elements.
-val searchArea : SearchArea =  // SearchArea | The search area.
-val extension : kotlin.collections.List<kotlin.String> = .txt // kotlin.collections.List<kotlin.String> | Specifies whether to search for a specific file extension in the Recent folder.
-val count : kotlin.Int = 1234 // kotlin.Int | The maximum number of items to return.
-val startIndex : kotlin.Int = 1234 // kotlin.Int | The starting position of the results to be returned in the query response.
-val sortBy : kotlin.String = some text // kotlin.String | Specifies the sorting criteria for the folder request.
-val sortOrder : SortOrder =  // SortOrder | The order in which the results are sorted.
-val filterValue : kotlin.String = some text // kotlin.String | The text used for filtering or searching folder contents.
-
-val result : FolderContentIntegerWrapper = webService.getFolderRecent(userIdOrGroupId, filterType, excludeSubject, applyFilterOption, searchArea, extension, count, startIndex, sortBy, sortOrder, filterValue)
 ```
 
 ### HTTP request headers
@@ -834,7 +766,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val folderId : kotlin.Int = 9846 // kotlin.Int | The folder unique identifier.
+val folderId : kotlin.Int = 1 // kotlin.Int | The folder unique identifier.
 
 val result : FileEntryBaseArrayWrapper = webService.getFolders(folderId)
 ```
@@ -942,7 +874,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val folderId : kotlin.Int = 9846 // kotlin.Int | The folder unique identifier.
+val folderId : kotlin.Int = 1 // kotlin.Int | The folder unique identifier.
 
 val result : FileEntryBaseArrayWrapper = webService.getNewFolderItems(folderId)
 ```
@@ -1249,7 +1181,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val folderId : kotlin.Int = 9846 // kotlin.Int | The folder ID for inserting a file.
+val folderId : kotlin.Int = 1 // kotlin.Int | The folder ID for inserting a file.
 val insertFileFile : java.io.File = BINARY_DATA_HERE // java.io.File | The file to be inserted.
 val insertFileTitle : kotlin.String = insertFileTitle_example // kotlin.String | The file title to be inserted.
 val insertFileCreateNewIfExist : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to create a new file if it already exists or not.
@@ -1378,7 +1310,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val folderId : kotlin.Int = 9846 // kotlin.Int | The folder ID for the folder creation.
+val folderId : kotlin.Int = 1 // kotlin.Int | The folder ID for the folder creation.
 val createFolder : CreateFolder =  // CreateFolder | The parameters for creating a folder.
 
 val result : FolderIntegerWrapper = webService.renameFolder(folderId, createFolder)
@@ -1427,7 +1359,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val folderId : kotlin.Int = 9846 // kotlin.Int | The folder unique identifier.
+val folderId : kotlin.Int = 1 // kotlin.Int | The folder unique identifier.
 val orderRequestDto : OrderRequestDto =  // OrderRequestDto | The folder order information.
 
 val result : FolderIntegerWrapper = webService.setFolderOrder(folderId, orderRequestDto)
@@ -1476,7 +1408,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val id : kotlin.Int = 9846 // kotlin.Int | The folder ID.
+val id : kotlin.Int = 1 // kotlin.Int | The folder ID.
 val folderLinkRequest : FolderLinkRequest =  // FolderLinkRequest | The folder link parameters.
 
 val result : FileShareWrapper = webService.setFolderPrimaryExternalLink(id, folderLinkRequest)
@@ -1492,7 +1424,7 @@ val result : FileShareWrapper = webService.setFolderPrimaryExternalLink(id, fold
 # **uploadFile**
 > ObjectWrapper uploadFile (kotlin.Int folderId, UploadRequestDto uploadRequestDto)
 
-Uploads a file specified in the request to the selected folder by single file uploading or standart multipart/form-data method.   **Note**:  You can upload files in two different ways:   <ol>  <li>Using single file upload. You should set the Content-Type and Content-Disposition headers to specify a file name and content type, and send the file to the request body.</li>  <li>Using standart multipart/form-data method.</li>  </ol>
+Uploads a file specified in the request to the selected folder by single file uploading or standart multipart/form-data method.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-file/).
 
@@ -1525,7 +1457,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val folderId : kotlin.Int = 9846 // kotlin.Int | The folder ID to upload a file.
+val folderId : kotlin.Int = 1 // kotlin.Int | The folder ID to upload a file.
 val uploadRequestDto : UploadRequestDto =  // UploadRequestDto | The request parameters for uploading a file.
 
 val result : ObjectWrapper = webService.uploadFile(folderId, uploadRequestDto)
@@ -1541,7 +1473,7 @@ val result : ObjectWrapper = webService.uploadFile(folderId, uploadRequestDto)
 # **uploadFileToMy**
 > ObjectWrapper uploadFileToMy (UploadRequestDto inDto)
 
-Uploads a file specified in the request to the My documents section by single file uploading or standart multipart/form-data method.   **Note**:  You can upload files in two different ways:   <ol>  <li>Using single file upload. You should set the Content-Type and Content-Disposition headers to specify a file name and content type, and send the file to the request body.</li>  <li>Using standart multipart/form-data method.</li>  </ol>
+Uploads a file specified in the request to the My documents section by single file uploading or standart multipart/form-data method.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-file-to-my/).
 

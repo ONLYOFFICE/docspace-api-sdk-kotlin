@@ -15,9 +15,8 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 | [**inviteUsers**](PeopleProfilesApi.md#inviteUsers) | **POST** api/2.0/people/invite | Invite users |
 | [**removeUsers**](PeopleProfilesApi.md#removeUsers) | **PUT** api/2.0/people/delete | Delete users |
 | [**resendUserInvites**](PeopleProfilesApi.md#resendUserInvites) | **PUT** api/2.0/people/invite | Resend activation emails |
-| [**sendEmailChangeInstructions**](PeopleProfilesApi.md#sendEmailChangeInstructions) | **POST** api/2.0/people/email | Send instructions to change email |
 | [**updateMember**](PeopleProfilesApi.md#updateMember) | **PUT** api/2.0/people/{userid} | Update a user |
-| [**updateMemberCulture**](PeopleProfilesApi.md#updateMemberCulture) | **PUT** api/2.0/people/{userid}/culture | Update a user culture code |
+| [**updateMemberCulture**](PeopleProfilesApi.md#updateMemberCulture) | **PUT** api/2.0/people/{userid}/culture | Update a user culture |
 
 
 
@@ -104,7 +103,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ProfilesApi::class.java)
-val userid : kotlin.String = 9846 // kotlin.String | The user ID.
+val userid : kotlin.String = 1 // kotlin.String | The user ID.
 
 val result : EmployeeFullWrapper = webService.deleteMember(userid)
 ```
@@ -300,7 +299,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ProfilesApi::class.java)
-val email : kotlin.String = Sydney_Roberts4@hotmail.com // kotlin.String | The user email address.
+val email : kotlin.String = example@onlyoffice.com // kotlin.String | The user email address.
 val encemail : kotlin.String = some text // kotlin.String | The user encrypted email address.
 val culture : kotlin.String = some text // kotlin.String | Culture
 
@@ -349,7 +348,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ProfilesApi::class.java)
-val userid : kotlin.String = 9846 // kotlin.String | The user ID.
+val userid : kotlin.String = 1 // kotlin.String | The user ID.
 
 val result : EmployeeFullWrapper = webService.getProfileByUserId(userid)
 ```
@@ -545,53 +544,6 @@ val result : EmployeeFullArrayWrapper = webService.resendUserInvites(updateMembe
  - **Accept**: application/json
 
 
-<a id="sendEmailChangeInstructions"></a>
-# **sendEmailChangeInstructions**
-> StringWrapper sendEmailChangeInstructions (UpdateMemberRequestDto updateMemberRequestDto)
-
-Sends a message to the user email with the instructions to change the email address connected to the portal.
-
-For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/send-email-change-instructions/).
-
-### Parameters
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **updateMemberRequestDto** | [**UpdateMemberRequestDto**](UpdateMemberRequestDto.md)|  | [optional] |
-
-### Return type
-
-[**StringWrapper**](StringWrapper.md)
-
-### Authorization
-
-
-Configure Basic:
-    ApiClient().setCredentials("USERNAME", "PASSWORD")
-Configure Bearer:
-    ApiClient().setBearerToken("TOKEN")
-
-### Example
-```kotlin
-// Import classes:
-//import onlyoffice.docspace.api.sdk.*
-//import onlyoffice.docspace.api.sdk.infrastructure.*
-//import onlyoffice.docspace.api.sdk.models.*
-
-val apiClient = ApiClient()
-apiClient.setCredentials("USERNAME", "PASSWORD")
-apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(ProfilesApi::class.java)
-val updateMemberRequestDto : UpdateMemberRequestDto =  // UpdateMemberRequestDto | 
-
-val result : StringWrapper = webService.sendEmailChangeInstructions(updateMemberRequestDto)
-```
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
 <a id="updateMember"></a>
 # **updateMember**
 > EmployeeFullWrapper updateMember (kotlin.String userid, UpdateMemberRequestDto updateMemberRequestDto)
@@ -629,7 +581,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ProfilesApi::class.java)
-val userid : kotlin.String = 9079 // kotlin.String | The user ID.
+val userid : kotlin.String = 1 // kotlin.String | The user ID.
 val updateMemberRequestDto : UpdateMemberRequestDto =  // UpdateMemberRequestDto | The request parameters for updating the user information.
 
 val result : EmployeeFullWrapper = webService.updateMember(userid, updateMemberRequestDto)
@@ -645,7 +597,7 @@ val result : EmployeeFullWrapper = webService.updateMember(userid, updateMemberR
 # **updateMemberCulture**
 > EmployeeFullWrapper updateMemberCulture (kotlin.String userid, Culture culture)
 
-Updates the user culture code with the parameters specified in the request.
+Updates the user culture with the parameters specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/update-member-culture/).
 
@@ -653,7 +605,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **userid** | **kotlin.String**| The user ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **culture** | [**Culture**](Culture.md)| The culture code parameters. | [optional] |
+| **culture** | [**Culture**](Culture.md)| The culture name parameters. | [optional] |
 
 ### Return type
 
@@ -678,8 +630,8 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ProfilesApi::class.java)
-val userid : kotlin.String = 9846 // kotlin.String | The user ID.
-val culture : Culture =  // Culture | The culture code parameters.
+val userid : kotlin.String = 1 // kotlin.String | The user ID.
+val culture : Culture =  // Culture | The culture name parameters.
 
 val result : EmployeeFullWrapper = webService.updateMemberCulture(userid, culture)
 ```

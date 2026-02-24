@@ -97,7 +97,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(UserDataApi::class.java)
-val userid : java.util.UUID = aae1e103-bca5-9fa1-ba8c-42058b4abf28 // java.util.UUID | The user ID.
+val userid : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The user ID.
 
 val result : TaskProgressResponseWrapper = webService.getReassignProgress(userid)
 ```
@@ -144,7 +144,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(UserDataApi::class.java)
-val userid : java.util.UUID = aae1e103-bca5-9fa1-ba8c-42058b4abf28 // java.util.UUID | The user ID.
+val userid : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The user ID.
 
 val result : TaskProgressResponseWrapper = webService.getRemoveProgress(userid)
 ```
@@ -192,7 +192,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(UserDataApi::class.java)
-val userId : java.util.UUID = aae1e103-bca5-9fa1-ba8c-42058b4abf28 // java.util.UUID | The user ID.
+val userId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The user ID.
 val type : EmployeeType =  // EmployeeType | The expected user type.
 
 val result : BooleanWrapper = webService.necessaryReassign(userId, type)

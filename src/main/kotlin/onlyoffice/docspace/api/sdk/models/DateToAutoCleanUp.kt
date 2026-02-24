@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,22 +29,22 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = false)
 enum class DateToAutoCleanUp(val value: kotlin.Int) {
 
-    @Json(name = 1)
+    @Json(name = "1")
     OneWeek(1),
 
-    @Json(name = 2)
+    @Json(name = "2")
     TwoWeeks(2),
 
-    @Json(name = 3)
+    @Json(name = "3")
     OneMonth(3),
 
-    @Json(name = 4)
+    @Json(name = "4")
     ThirtyDays(4),
 
-    @Json(name = 5)
+    @Json(name = "5")
     TwoMonths(5),
 
-    @Json(name = 6)
+    @Json(name = "6")
     ThreeMonths(6);
 
     /**
@@ -67,7 +67,7 @@ enum class DateToAutoCleanUp(val value: kotlin.Int) {
          */
         fun decode(data: kotlin.Any?): DateToAutoCleanUp? = data?.let {
           val normalizedData = "$it".lowercase()
-          values().firstOrNull { value ->
+          entries.firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()
           }
         }

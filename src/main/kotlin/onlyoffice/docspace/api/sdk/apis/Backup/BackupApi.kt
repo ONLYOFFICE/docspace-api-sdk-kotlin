@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 
 
-package onlyoffice.docspace.api.sdk.apis
+package onlyoffice.docspace.api.sdk.apis.Backup
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
@@ -35,16 +35,33 @@ import onlyoffice.docspace.api.sdk.models.ScheduleWrapper
 
 interface BackupApi {
     /**
+     * POST api/2.0/backup/cancelbackup
+     * Cancel current backup
+     * Cancel current backup.
+     * Responses:
+     *  - 200: Boolean value: true if the operation is successful
+     *  - 401: Unauthorized
+     *
+     * REST API Reference for cancelBackup Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/cancel-backup/
+     *
+     *
+     * @return [Call]<[BooleanWrapper]>
+     */
+    @POST("api/2.0/backup/cancelbackup")
+    fun cancelBackup(): Call<BooleanWrapper>
+
+    /**
      * POST api/2.0/backup/createbackupschedule
      * Create the backup schedule
      * Creates the backup schedule of the current portal with the parameters specified in the request.
      * Responses:
      *  - 200: Boolean value: true if the operation is successful
      *  - 400: BackupStored must be 1 - 30 or backup can not start as dump
-     *  - 401: Unauthorized
      *  - 402: Your pricing plan does not support this option
-     *  - 403: You don't have enough permission to create
+     *  - 403: Access denied
      *  - 404: The required folder was not found
+     *  - 401: Unauthorized
      *
      * REST API Reference for createBackupSchedule Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-backup-schedule/
@@ -62,8 +79,8 @@ interface BackupApi {
      * Deletes the backup with the ID specified in the request.
      * Responses:
      *  - 200: Boolean value: true if the operation is successful
+     *  - 403: Access denied
      *  - 401: Unauthorized
-     *  - 402: Your pricing plan does not support this option
      *
      * REST API Reference for deleteBackup Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-backup/
@@ -81,8 +98,8 @@ interface BackupApi {
      * Deletes the backup history from the current portal.
      * Responses:
      *  - 200: Boolean value: true if the operation is successful
+     *  - 403: Access denied
      *  - 401: Unauthorized
-     *  - 402: Your pricing plan does not support this option
      *
      * REST API Reference for deleteBackupHistory Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-backup-history/
@@ -100,8 +117,8 @@ interface BackupApi {
      * Deletes the backup schedule of the current portal.
      * Responses:
      *  - 200: Boolean value: true if the operation is successful
+     *  - 403: Access denied
      *  - 401: Unauthorized
-     *  - 402: Your pricing plan does not support this option
      *
      * REST API Reference for deleteBackupSchedule Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-backup-schedule/
@@ -119,8 +136,8 @@ interface BackupApi {
      * Returns the history of the started backup.
      * Responses:
      *  - 200: List of backup history records
+     *  - 403: Access denied
      *  - 401: Unauthorized
-     *  - 402: Your pricing plan does not support this option
      *
      * REST API Reference for getBackupHistory Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-backup-history/
@@ -138,8 +155,8 @@ interface BackupApi {
      * Returns the progress of the started backup.
      * Responses:
      *  - 200: Backup progress: completed or not, progress percentage, error, tenant ID, backup progress item (Backup, Restore, Transfer), link
+     *  - 403: Access denied
      *  - 401: Unauthorized
-     *  - 402: Your pricing plan does not support this option
      *
      * REST API Reference for getBackupProgress Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-backup-progress/
@@ -157,8 +174,8 @@ interface BackupApi {
      * Returns the backup schedule of the current portal.
      * Responses:
      *  - 200: Backup schedule
+     *  - 403: Access denied
      *  - 401: Unauthorized
-     *  - 402: Your pricing plan does not support this option
      *
      * REST API Reference for getBackupSchedule Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-backup-schedule/
@@ -176,6 +193,8 @@ interface BackupApi {
      * Returns the number of backups for a period of time. The default is one month.
      * Responses:
      *  - 200: Number of backups
+     *  - 400: From date must be less than to date
+     *  - 403: Access denied
      *  - 401: Unauthorized
      *
      * REST API Reference for getBackupsCount Operation
@@ -231,10 +250,10 @@ interface BackupApi {
      * Responses:
      *  - 200: Backup progress: completed or not, progress percentage, error, tenant ID, backup progress item (Backup, Restore, Transfer), link
      *  - 400: Wrong folder type or backup can`t start as dump
-     *  - 401: Unauthorized
      *  - 402: Your pricing plan does not support this option
-     *  - 403: You don't have enough permission to create
+     *  - 403: Access denied
      *  - 404: The required folder was not found
+     *  - 401: Unauthorized
      *
      * REST API Reference for startBackup Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/start-backup/
@@ -253,10 +272,10 @@ interface BackupApi {
      * Responses:
      *  - 200: Backup progress: completed or not, progress percentage, error, tenant ID, backup progress item (Backup, Restore, Transfer), link
      *  - 400: Backup can not start as dump
-     *  - 401: Unauthorized
      *  - 402: Your pricing plan does not support this option
-     *  - 403: You don't have enough permission to create
+     *  - 403: Access denied
      *  - 404: The required file or folder was not found
+     *  - 401: Unauthorized
      *
      * REST API Reference for startBackupRestore Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/start-backup-restore/

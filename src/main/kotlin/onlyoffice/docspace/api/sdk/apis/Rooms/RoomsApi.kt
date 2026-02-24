@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 
 
-package onlyoffice.docspace.api.sdk.apis
+package onlyoffice.docspace.api.sdk.apis.Rooms
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
@@ -46,7 +46,6 @@ import onlyoffice.docspace.api.sdk.models.LogoRequest
 import onlyoffice.docspace.api.sdk.models.NewItemsFileEntryBaseArrayWrapper
 import onlyoffice.docspace.api.sdk.models.NewItemsRoomNewItemsArrayWrapper
 import onlyoffice.docspace.api.sdk.models.ObjectArrayWrapper
-import onlyoffice.docspace.api.sdk.models.ObjectWrapper
 import onlyoffice.docspace.api.sdk.models.ProviderFilter
 import onlyoffice.docspace.api.sdk.models.QuotaFilter
 import onlyoffice.docspace.api.sdk.models.RoomFromTemplateStatusWrapper
@@ -61,8 +60,10 @@ import onlyoffice.docspace.api.sdk.models.SetPublicDto
 import onlyoffice.docspace.api.sdk.models.ShareFilterType
 import onlyoffice.docspace.api.sdk.models.SortOrder
 import onlyoffice.docspace.api.sdk.models.StorageFilter
+import onlyoffice.docspace.api.sdk.models.StringWrapper
 import onlyoffice.docspace.api.sdk.models.SubjectFilter
 import onlyoffice.docspace.api.sdk.models.UpdateRoomRequest
+import onlyoffice.docspace.api.sdk.models.UpdateTagRequestDto
 import onlyoffice.docspace.api.sdk.models.UploadResultWrapper
 import onlyoffice.docspace.api.sdk.models.UserInvitation
 
@@ -73,8 +74,8 @@ interface RoomsApi {
      * Adds the tags to a room with the ID specified in the request.
      * Responses:
      *  - 200: Room information
-     *  - 401: Unauthorized
      *  - 403: You don't have permission to edit the room
+     *  - 401: Unauthorized
      *
      * REST API Reference for addRoomTags Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/add-room-tags/
@@ -112,9 +113,9 @@ interface RoomsApi {
      * Changes a cover of a room with the ID specified in the request.
      * Responses:
      *  - 200: Room cover
-     *  - 401: Unauthorized
      *  - 403: You don't have permission to change cover
      *  - 404: The required room was not found
+     *  - 401: Unauthorized
      *
      * REST API Reference for changeRoomCover Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/change-room-cover/
@@ -169,8 +170,8 @@ interface RoomsApi {
      * Creates a logo for a room with the ID specified in the request.
      * Responses:
      *  - 200: Room information
-     *  - 401: Unauthorized
      *  - 404: The required room was not found
+     *  - 401: Unauthorized
      *
      * REST API Reference for createRoomLogo Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-room-logo/
@@ -189,18 +190,18 @@ interface RoomsApi {
      * Creates a custom room tag with the parameters specified in the request.
      * Responses:
      *  - 200: New tag name
-     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to perform the operation
+     *  - 401: Unauthorized
      *
      * REST API Reference for createRoomTag Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-room-tag/
      *
      *
      * @param createTagRequestDto  (optional)
-     * @return [Call]<[ObjectWrapper]>
+     * @return [Call]<[StringWrapper]>
      */
     @POST("api/2.0/files/tags")
-    fun createRoomTag(@Body createTagRequestDto: CreateTagRequestDto? = null): Call<ObjectWrapper>
+    fun createRoomTag(@Body createTagRequestDto: CreateTagRequestDto? = null): Call<StringWrapper>
 
     /**
      * POST api/2.0/files/roomtemplate
@@ -242,11 +243,11 @@ interface RoomsApi {
     /**
      * DELETE api/2.0/files/tags
      * Delete the custom room tags
-     * Deletes a bunch of custom room tags specified in the request.
+     * Deletes a bunch of custom tags specified in the request.
      * Responses:
      *  - 200: Ok
-     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to perform the operation
+     *  - 401: Unauthorized
      *
      * REST API Reference for deleteCustomTags Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-custom-tags/
@@ -301,8 +302,8 @@ interface RoomsApi {
      * Removes the tags from a room with the ID specified in the request.
      * Responses:
      *  - 200: Room information
-     *  - 401: Unauthorized
      *  - 403: You don't have permission to edit the room
+     *  - 401: Unauthorized
      *
      * REST API Reference for deleteRoomTags Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-room-tags/
@@ -463,7 +464,7 @@ interface RoomsApi {
     /**
      * GET api/2.0/files/tags
      * Get the room tags
-     * Returns a list of custom room tags.
+     * Returns a list of custom tags.
      * Responses:
      *  - 200: List of tag names
      *  - 401: Unauthorized
@@ -503,8 +504,8 @@ interface RoomsApi {
      * Returns the contents of the Rooms section by the parameters specified in the request.
      * Responses:
      *  - 200: Returns the contents of the Rooms section
-     *  - 401: Unauthorized
      *  - 403: You don't have enough permission to view the room content
+     *  - 401: Unauthorized
      *
      * REST API Reference for getRoomsFolder Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-rooms-folder/
@@ -525,10 +526,11 @@ interface RoomsApi {
      * @param sortBy Specifies the field by which the room content should be sorted. (optional)
      * @param sortOrder The order in which the results are sorted. (optional)
      * @param filterValue The text filter value used to refine search or query operations. (optional)
+     * @param groupId The group ID (optional)
      * @return [Call]<[FolderContentIntegerWrapper]>
      */
     @GET("api/2.0/files/rooms")
-    fun getRoomsFolder(@Query("type") type: CSVParams? = null, @Query("subjectId") subjectId: kotlin.String? = null, @Query("searchArea") searchArea: SearchArea? = null, @Query("withoutTags") withoutTags: kotlin.Boolean? = null, @Query("tags") tags: kotlin.String? = null, @Query("excludeSubject") excludeSubject: kotlin.Boolean? = null, @Query("provider") provider: ProviderFilter? = null, @Query("subjectFilter") subjectFilter: SubjectFilter? = null, @Query("quotaFilter") quotaFilter: QuotaFilter? = null, @Query("storageFilter") storageFilter: StorageFilter? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterValue") filterValue: kotlin.String? = null): Call<FolderContentIntegerWrapper>
+    fun getRoomsFolder(@Query("type") type: CSVParams? = null, @Query("subjectId") subjectId: kotlin.String? = null, @Query("searchArea") searchArea: SearchArea? = null, @Query("withoutTags") withoutTags: kotlin.Boolean? = null, @Query("tags") tags: kotlin.String? = null, @Query("excludeSubject") excludeSubject: kotlin.Boolean? = null, @Query("provider") provider: ProviderFilter? = null, @Query("subjectFilter") subjectFilter: SubjectFilter? = null, @Query("quotaFilter") quotaFilter: QuotaFilter? = null, @Query("storageFilter") storageFilter: StorageFilter? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterValue") filterValue: kotlin.String? = null, @Query("groupId") groupId: kotlin.Int? = null): Call<FolderContentIntegerWrapper>
 
     /**
      * GET api/2.0/files/rooms/news
@@ -553,8 +555,8 @@ interface RoomsApi {
      * Returns the primary external link of the room with the ID specified in the request.
      * Responses:
      *  - 200: Room security information
-     *  - 401: Unauthorized
      *  - 404: Not Found
+     *  - 401: Unauthorized
      *
      * REST API Reference for getRoomsPrimaryExternalLink Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-rooms-primary-external-link/
@@ -565,6 +567,25 @@ interface RoomsApi {
      */
     @GET("api/2.0/files/rooms/{id}/link")
     fun getRoomsPrimaryExternalLink(@Path("id") id: kotlin.Int): Call<FileShareWrapper>
+
+    /**
+     * GET api/2.0/files/tags/{tagName}/haslinks
+     * Has tag links
+     * Checks if a specific custom tag has linked items.
+     * Responses:
+     *  - 200: True if tag has links, false otherwise
+     *  - 404: Tag not found
+     *  - 401: Unauthorized
+     *
+     * REST API Reference for hasTagLinks Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/has-tag-links/
+     *
+     *
+     * @param tagName 
+     * @return [Call]<[BooleanWrapper]>
+     */
+    @GET("api/2.0/files/tags/{tagName}/haslinks")
+    fun hasTagLinks(@Path("tagName") tagName: kotlin.String): Call<BooleanWrapper>
 
     /**
      * PUT api/2.0/files/rooms/{id}/pin
@@ -683,8 +704,8 @@ interface RoomsApi {
      * Starts the index export of a room with the ID specified in the request.
      * Responses:
      *  - 200: Ok
-     *  - 401: Unauthorized
      *  - 501: Folder indexing is turned off
+     *  - 401: Unauthorized
      *
      * REST API Reference for startRoomIndexExport Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/start-room-index-export/
@@ -770,13 +791,32 @@ interface RoomsApi {
     fun updateRoom(@Path("id") id: kotlin.Int, @Body updateRoomRequest: UpdateRoomRequest): Call<FolderIntegerWrapper>
 
     /**
+     * PUT api/2.0/files/tags
+     * Update tag
+     * Updates the name of a custom tag.
+     * Responses:
+     *  - 200: Updated tag name
+     *  - 403: You don't have enough permission to perform the operation
+     *  - 401: Unauthorized
+     *
+     * REST API Reference for updateRoomTag Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-room-tag/
+     *
+     *
+     * @param updateTagRequestDto  (optional)
+     * @return [Call]<[StringWrapper]>
+     */
+    @PUT("api/2.0/files/tags")
+    fun updateRoomTag(@Body updateTagRequestDto: UpdateTagRequestDto? = null): Call<StringWrapper>
+
+    /**
      * POST api/2.0/files/logos
      * Upload a room logo image
      * Uploads a temporary image to create a room logo.
      * Responses:
      *  - 200: Upload result
-     *  - 401: Unauthorized
      *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *
      * REST API Reference for uploadRoomLogo Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-room-logo/

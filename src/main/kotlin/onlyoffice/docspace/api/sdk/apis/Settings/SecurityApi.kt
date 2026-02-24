@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 
 
-package onlyoffice.docspace.api.sdk.apis
+package onlyoffice.docspace.api.sdk.apis.Settings
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
@@ -148,8 +148,8 @@ interface SecurityApi {
      * Sets the security settings to the modules with the IDs specified in the request.
      * Responses:
      *  - 200: Security settings
-     *  - 401: Unauthorized
      *  - 403: Security settings are disabled for an open portal
+     *  - 401: Unauthorized
      *
      * REST API Reference for setAccessToWebItems Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-access-to-web-items/
@@ -167,9 +167,9 @@ interface SecurityApi {
      * Sets the selected user as an administrator of a product with the ID specified in the request.
      * Responses:
      *  - 200: Object with the user security information: product ID, user ID, administrator or not
-     *  - 401: Unauthorized
      *  - 402: Your pricing plan does not support this option
      *  - 403: Only portal owner can set user as administrator
+     *  - 401: Unauthorized
      *
      * REST API Reference for setProductAdministrator Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-product-administrator/
@@ -187,8 +187,8 @@ interface SecurityApi {
      * Sets the security settings to the module with the ID specified in the request.
      * Responses:
      *  - 200: Security settings
-     *  - 401: Unauthorized
      *  - 403: Security settings are disabled for an open portal
+     *  - 401: Unauthorized
      *
      * REST API Reference for setWebItemSecurity Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-web-item-security/

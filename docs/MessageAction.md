@@ -398,6 +398,14 @@
 
     * `ScheduledBackupFailed` (value: `5129`)
 
+    * `ScheduledBackupDeleted` (value: `5130`)
+
+    * `BackupCancelled` (value: `5131`)
+
+    * `RestoreStarted` (value: `5132`)
+
+    * `RestoreCancelled` (value: `5133`)
+
     * `FormStartedToFill` (value: `5150`)
 
     * `FormPartiallyFilled` (value: `5151`)
@@ -417,6 +425,16 @@
     * `DeletedServerFromAgent` (value: `5158`)
 
     * `RoomChangeOwner` (value: `5159`)
+
+    * `DocumentsDefaultTemplatesSettingsUpdated` (value: `5160`)
+
+    * `FileSavedButUserQuotaExceeded` (value: `5201`)
+
+    * `FileNotSavedDueToUserQuota` (value: `5202`)
+
+    * `FileSavedButRoomQuotaExceeded` (value: `5203`)
+
+    * `FileNotSavedDueToRoomQuota` (value: `5204`)
 
     * `LdapEnabled` (value: `5501`)
 
@@ -599,6 +617,24 @@
     * `WebpluginUpdated` (value: `6086`)
 
     * `WebpluginDeleted` (value: `6087`)
+
+    * `WhiteLabelSettingsLogoTextUpdated` (value: `6088`)
+
+    * `WhiteLabelSettingsLogosUpdated` (value: `6089`)
+
+    * `WhiteLabelCompanySettingsUpdated` (value: `6090`)
+
+    * `WhiteLabelAdditionalSettingsUpdated` (value: `6091`)
+
+    * `WhiteLabelMailSettingsUpdated` (value: `6092`)
+
+    * `InvitationSettingsUpdated` (value: `6093`)
+
+    * `IPRestrictionsSettingsUpdated` (value: `6094`)
+
+    * `LoginSettingsUpdated` (value: `6095`)
+
+    * `AIDefaultProviderSet` (value: `6096`)
 
     * `ContactAdminMailSent` (value: `7000`)
 

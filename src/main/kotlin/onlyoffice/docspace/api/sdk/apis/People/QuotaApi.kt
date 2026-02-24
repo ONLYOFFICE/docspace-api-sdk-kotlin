@@ -1,5 +1,5 @@
  /*
- * (c) Copyright Ascensio System SIA 2025
+ * (c) Copyright Ascensio System SIA 2026
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 
 
-package onlyoffice.docspace.api.sdk.apis
+package onlyoffice.docspace.api.sdk.apis.People
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
@@ -33,10 +33,10 @@ interface QuotaApi {
      * Resets a quota limit of users with the IDs specified in the request.
      * Responses:
      *  - 200: User detailed information
-     *  - 401: Unauthorized
      *  - 402: Your pricing plan does not support this option
      *  - 403: The invitation link is invalid or its validity has expired
      *  - 409: Conflict - system user quota cannot be reset
+     *  - 401: Unauthorized
      *
      * REST API Reference for resetUsersQuota Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/reset-users-quota/
@@ -54,8 +54,8 @@ interface QuotaApi {
      * Changes a quota limit for the users with the IDs specified in the request.
      * Responses:
      *  - 200: List of users with the detailed information
-     *  - 401: Unauthorized
      *  - 402: Failed to set quota per user. The entered value is greater than the total DocSpace storage
+     *  - 401: Unauthorized
      *
      * REST API Reference for updateUserQuota Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-user-quota/
