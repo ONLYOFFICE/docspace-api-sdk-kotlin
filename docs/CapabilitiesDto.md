@@ -9,7 +9,7 @@
 | **ssoLabel** | **kotlin.String** | The SP login label. |  |
 | **oauthEnabled** | **kotlin.Boolean** | Specifies if OAuth is enabled or not. |  |
 | **ssoUrl** | [**java.net.URI**](java.net.URI.md) | The SSO URL. If this parameter is empty, then the SSO settings are disabled. |  |
-| **identityServerEnabled** | **kotlin.Boolean** | Specifies if identity server is enabled or not |  |
+| **identityServerEnabled** | **kotlin.Boolean** | Specifies if an identity server is enabled or not. |  |
 | **ldapDomain** | **kotlin.String** | The LDAP domain. |  [optional] |
 
 

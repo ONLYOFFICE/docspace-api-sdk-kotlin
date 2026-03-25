@@ -25,7 +25,7 @@ import com.squareup.moshi.JsonClass
  * The action performed on the file.
  *
  * @param id 
- * @param key 
+ * @param key The action performed on the file.
  */
 
 
@@ -34,6 +34,7 @@ data class HistoryAction (
     @Json(name = "id")
     val id: MessageAction? = null,
 
+    /* The action performed on the file. */
     @Json(name = "key")
     val key: kotlin.String? = null
 

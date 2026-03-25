@@ -62,5 +62,11 @@
 
     * `RoomCopied` (value: `134217728`)
 
+    * `FormSubmit` (value: `268435456`)
+
+    * `FormFilledOut` (value: `536870912`)
+
+    * `FormStopped` (value: `1073741824`)
+
 
 

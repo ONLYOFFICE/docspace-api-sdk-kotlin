@@ -21,16 +21,13 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * [-14 - WebSearch, -13 - AITools, -12 - Backup, -11 - Storage]
+ * [-13 - AITools, -12 - Backup, -11 - Storage]
  *
- * Values: WebSearch,AITools,Backup,Storage
+ * Values: AITools,Backup,Storage
  */
 
 @JsonClass(generateAdapter = false)
 enum class TenantWalletService(val value: kotlin.Int) {
-
-    @Json(name = "-14")
-    WebSearch(-14),
 
     @Json(name = "-13")
     AITools(-13),
@@ -61,7 +58,7 @@ enum class TenantWalletService(val value: kotlin.Int) {
          */
         fun decode(data: kotlin.Any?): TenantWalletService? = data?.let {
           val normalizedData = "$it".lowercase()
-          entries.firstOrNull { value ->
+          values().firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()
           }
         }

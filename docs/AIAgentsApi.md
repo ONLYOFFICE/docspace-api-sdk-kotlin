@@ -99,7 +99,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AgentsApi::class.java)
-val id : kotlin.Int = 1 // kotlin.Int | The room ID.
+val id : kotlin.Int = 10 // kotlin.Int | The room ID.
 val deleteRoomRequest : DeleteRoomRequest =  // DeleteRoomRequest | The parameters for deleting a room.
 
 val result : FileOperationWrapper = webService.deleteAgent(id, deleteRoomRequest)
@@ -204,17 +204,17 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AgentsApi::class.java)
-val subjectId : kotlin.String = some text // kotlin.String | The filter by user ID.
-val withoutTags : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to search by tags or not.
-val tags : kotlin.String = some text // kotlin.String | The tags in the serialized format.
-val excludeSubject : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to exclude search by user or group ID.
-val subjectFilter : SubjectFilter =  // SubjectFilter | The filter by user (Owner - 0, Member - 1).
-val quotaFilter : QuotaFilter =  // QuotaFilter | The filter by quota (All - 0, Default - 1, Custom - 2).
-val count : kotlin.Int = 1234 // kotlin.Int | Specifies the maximum number of items to retrieve.
-val startIndex : kotlin.Int = 1234 // kotlin.Int | The index from which to start retrieving the room content.
-val sortBy : kotlin.String = some text // kotlin.String | Specifies the field by which the room content should be sorted.
-val sortOrder : SortOrder =  // SortOrder | The order in which the results are sorted.
-val filterValue : kotlin.String = some text // kotlin.String | The text filter value used to refine search or query operations.
+val subjectId : kotlin.String = 00000000-0000-0000-0000-000000000000 // kotlin.String | The filter by user ID.
+val withoutTags : kotlin.Boolean = false // kotlin.Boolean | Specifies whether to search by tags or not.
+val tags : kotlin.String = ai,assistant // kotlin.String | The tags in the serialized format.
+val excludeSubject : kotlin.Boolean = false // kotlin.Boolean | Specifies whether to exclude search by user or group ID.
+val subjectFilter : SubjectFilter = 0 // SubjectFilter | The filter by user (Owner - 0, Member - 1).
+val quotaFilter : QuotaFilter = 0 // QuotaFilter | The filter by quota (All - 0, Default - 1, Custom - 2).
+val count : kotlin.Int = 25 // kotlin.Int | Specifies the maximum number of items to retrieve.
+val startIndex : kotlin.Int = 0 // kotlin.Int | The index from which to start retrieving the room content.
+val sortBy : kotlin.String = DateAndTime // kotlin.String | Specifies the field by which the room content should be sorted.
+val sortOrder : SortOrder = 1 // SortOrder | The order in which the results are sorted.
+val filterValue : kotlin.String = my agent // kotlin.String | The text filter value used to refine search or query operations.
 
 val result : FolderContentIntegerWrapper = webService.getAgents(subjectId, withoutTags, tags, excludeSubject, subjectFilter, quotaFilter, count, startIndex, sortBy, sortOrder, filterValue)
 ```
@@ -353,7 +353,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AgentsApi::class.java)
-val id : kotlin.Int = 1 // kotlin.Int | The room ID.
+val id : kotlin.Int = 56 // kotlin.Int | The room ID.
 val updateRoomRequest : UpdateRoomRequest =  // UpdateRoomRequest | The request parameters for updating a room.
 
 val result : FolderIntegerWrapper = webService.updateAgent(id, updateRoomRequest)

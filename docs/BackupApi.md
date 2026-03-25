@@ -147,7 +147,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(BackupApi::class.java)
-val id : java.util.UUID = 75a5f745-f697-4418-b38d-0fe0d277e258 // java.util.UUID | The backup ID.
+val id : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The backup ID.
 
 val result : BooleanWrapper = webService.deleteBackup(id)
 ```
@@ -397,7 +397,7 @@ val result : ScheduleWrapper = webService.getBackupSchedule(dump)
 # **getBackupsCount**
 > Int32Wrapper getBackupsCount (java.time.OffsetDateTime from, java.time.OffsetDateTime to, kotlin.Boolean paid)
 
-Returns the number of backups for a period of time. The default is one month.
+Returns the number of backups for a period of time. The default is the current calendar month.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-backups-count/).
 
@@ -431,9 +431,9 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(BackupApi::class.java)
-val from : java.time.OffsetDateTime = 2008-04-10T06:30+04:00 // java.time.OffsetDateTime | The from date.
-val to : java.time.OffsetDateTime = 2008-04-10T06:30+04:00 // java.time.OffsetDateTime | The to date.
-val paid : kotlin.Boolean = true // kotlin.Boolean | Specifies if the backups are paid or not.
+val from : java.time.OffsetDateTime = 2025-01-01T00:00Z // java.time.OffsetDateTime | The from date.
+val to : java.time.OffsetDateTime = 2025-12-31T23:59:59Z // java.time.OffsetDateTime | The to date.
+val paid : kotlin.Boolean = false // kotlin.Boolean | Specifies if the backups are paid or not.
 
 val result : Int32Wrapper = webService.getBackupsCount(from, to, paid)
 ```
@@ -518,7 +518,7 @@ No authorization required
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(BackupApi::class.java)
-val dump : kotlin.Boolean = true // kotlin.Boolean | Specifies if a dump will be created or not.
+val dump : kotlin.Boolean = false // kotlin.Boolean | Specifies if a dump will be created or not.
 
 val result : BackupProgressWrapper = webService.getRestoreProgress(dump)
 ```

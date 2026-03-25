@@ -92,7 +92,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ActiveConnectionsApi::class.java)
-val loginEventId : kotlin.Int = 1 // kotlin.Int | The ID of the specific login event.
+val loginEventId : kotlin.Int = 12345 // kotlin.Int | The ID of the specific login event.
 
 val result : BooleanWrapper = webService.logOutActiveConnection(loginEventId)
 ```

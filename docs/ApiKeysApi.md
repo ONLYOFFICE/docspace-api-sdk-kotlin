@@ -96,7 +96,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ApiKeysApi::class.java)
-val keyId : java.util.UUID = 38400000-8cf0-11bd-b23e-10b96e4ef00d // java.util.UUID | The API key ID.
+val keyId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The API key ID.
 
 val result : BooleanWrapper = webService.deleteApiKey(keyId)
 ```
@@ -276,7 +276,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ApiKeysApi::class.java)
-val keyId : java.util.UUID = 75a5f745-f697-4418-b38d-0fe0d277e258 // java.util.UUID | The unique identifier of the API key to update.
+val keyId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The unique identifier of the API key to update.
 val updateApiKeyRequest : UpdateApiKeyRequest =  // UpdateApiKeyRequest | The request parameters for updating an existing API key.
 
 val result : BooleanWrapper = webService.updateApiKey(keyId, updateApiKeyRequest)

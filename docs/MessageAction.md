@@ -636,6 +636,10 @@
 
     * `AIDefaultProviderSet` (value: `6096`)
 
+    * `AIAccessEnabled` (value: `6097`)
+
+    * `AIAccessDisabled` (value: `6098`)
+
     * `ContactAdminMailSent` (value: `7000`)
 
     * `RoomInviteLinkUsed` (value: `7001`)

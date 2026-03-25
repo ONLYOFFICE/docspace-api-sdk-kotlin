@@ -28,7 +28,7 @@ import com.squareup.moshi.JsonClass
 /**
  * The SSO portal settings.
  *
- * @param lastModified 
+ * @param lastModified The timestamp indicating when the settings were last modified.
  * @param enableSso Specifies if the SSO settings are enabled or not.
  * @param idpSettings 
  * @param idpCertificates The list of the IdP certificates.
@@ -45,6 +45,7 @@ import com.squareup.moshi.JsonClass
 
 data class SsoSettingsV2 (
 
+    /* The timestamp indicating when the settings were last modified. */
     @Json(name = "lastModified")
     val lastModified: java.time.OffsetDateTime? = null,
 

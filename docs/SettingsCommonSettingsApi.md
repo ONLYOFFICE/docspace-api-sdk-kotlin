@@ -16,12 +16,14 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 | [**getPortalSettings**](SettingsCommonSettingsApi.md#getPortalSettings) | **GET** api/2.0/settings | Get the portal settings |
 | [**getSocketSettings**](SettingsCommonSettingsApi.md#getSocketSettings) | **GET** api/2.0/settings/socket | Get the socket settings |
 | [**getSupportedCultures**](SettingsCommonSettingsApi.md#getSupportedCultures) | **GET** api/2.0/settings/cultures | Get supported languages |
+| [**getTenantAiAccessSettings**](SettingsCommonSettingsApi.md#getTenantAiAccessSettings) | **GET** api/2.0/settings/ai-access | Get the AI access settings for the portal |
 | [**getTenantUserInvitationSettings**](SettingsCommonSettingsApi.md#getTenantUserInvitationSettings) | **GET** api/2.0/settings/invitationsettings | Get the user invitation settings |
 | [**getTimeZones**](SettingsCommonSettingsApi.md#getTimeZones) | **GET** api/2.0/settings/timezones | Get time zones |
 | [**saveDefaultFolder**](SettingsCommonSettingsApi.md#saveDefaultFolder) | **PUT** api/2.0/settings/defaultfolder | Set the default folder |
 | [**saveDnsSettings**](SettingsCommonSettingsApi.md#saveDnsSettings) | **PUT** api/2.0/settings/dns | Save the DNS settings |
 | [**saveMailDomainSettings**](SettingsCommonSettingsApi.md#saveMailDomainSettings) | **POST** api/2.0/settings/maildomainsettings | Save the mail domain settings |
 | [**savePortalColorTheme**](SettingsCommonSettingsApi.md#savePortalColorTheme) | **PUT** api/2.0/settings/colortheme | Save a color theme |
+| [**setTenantAiAccessSettings**](SettingsCommonSettingsApi.md#setTenantAiAccessSettings) | **POST** api/2.0/settings/ai-access | Set the AI access for the portal |
 | [**updateEmailActivationSettings**](SettingsCommonSettingsApi.md#updateEmailActivationSettings) | **PUT** api/2.0/settings/emailactivation | Update the email activation settings |
 | [**updateInvitationSettings**](SettingsCommonSettingsApi.md#updateInvitationSettings) | **PUT** api/2.0/settings/invitationsettings | Update user invitation settings |
 
@@ -543,6 +545,50 @@ val result : STRINGArrayWrapper = webService.getSupportedCultures()
  - **Accept**: application/json
 
 
+<a id="getTenantAiAccessSettings"></a>
+# **getTenantAiAccessSettings**
+> TenantAiAccessSettingsWrapper getTenantAiAccessSettings ()
+
+Returns the current portal-level AI access settings that control whether all AI functionality  (chat, agents, vectorization) is available for the portal. AI is enabled by default.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tenant-ai-access-settings/).
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**TenantAiAccessSettingsWrapper**](TenantAiAccessSettingsWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(CommonSettingsApi::class.java)
+
+val result : TenantAiAccessSettingsWrapper = webService.getTenantAiAccessSettings()
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
 <a id="getTenantUserInvitationSettings"></a>
 # **getTenantUserInvitationSettings**
 > TenantUserInvitationSettingsWrapper getTenantUserInvitationSettings ()
@@ -805,6 +851,53 @@ val webService = apiClient.createWebservice(CommonSettingsApi::class.java)
 val customColorThemesSettingsRequestsDto : CustomColorThemesSettingsRequestsDto =  // CustomColorThemesSettingsRequestsDto | 
 
 val result : CustomColorThemesSettingsWrapper = webService.savePortalColorTheme(customColorThemesSettingsRequestsDto)
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+<a id="setTenantAiAccessSettings"></a>
+# **setTenantAiAccessSettings**
+> TenantAiAccessSettingsWrapper setTenantAiAccessSettings (TenantAiAccessSettingsDto tenantAiAccessSettingsDto)
+
+Updates the portal-level AI access settings. When AI is disabled, all AI features are turned off:  the AI Agents folder is hidden from root folder listings, AI status checks immediately return disabled,  and AI chat endpoints become inaccessible. Only users with the DocSpaceAdmin role  (EditPortalSettings permission) can change this setting.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/set-tenant-ai-access-settings/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **tenantAiAccessSettingsDto** | [**TenantAiAccessSettingsDto**](TenantAiAccessSettingsDto.md)|  | [optional] |
+
+### Return type
+
+[**TenantAiAccessSettingsWrapper**](TenantAiAccessSettingsWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(CommonSettingsApi::class.java)
+val tenantAiAccessSettingsDto : TenantAiAccessSettingsDto =  // TenantAiAccessSettingsDto | 
+
+val result : TenantAiAccessSettingsWrapper = webService.setTenantAiAccessSettings(tenantAiAccessSettingsDto)
 ```
 
 ### HTTP request headers

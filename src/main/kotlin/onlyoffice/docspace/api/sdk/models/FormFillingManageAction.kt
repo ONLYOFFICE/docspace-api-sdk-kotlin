@@ -21,9 +21,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * [0 - Stop, 1 - Resume]
+ * [0 - Stop, 1 - Resume, 2 - Start, 3 - Edit]
  *
- * Values: Stop,Resume
+ * Values: Stop,Resume,Start,Edit
  */
 
 @JsonClass(generateAdapter = false)
@@ -33,7 +33,13 @@ enum class FormFillingManageAction(val value: kotlin.Int) {
     Stop(0),
 
     @Json(name = "1")
-    Resume(1);
+    Resume(1),
+
+    @Json(name = "2")
+    Start(2),
+
+    @Json(name = "3")
+    Edit(3);
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use
@@ -55,7 +61,7 @@ enum class FormFillingManageAction(val value: kotlin.Int) {
          */
         fun decode(data: kotlin.Any?): FormFillingManageAction? = data?.let {
           val normalizedData = "$it".lowercase()
-          entries.firstOrNull { value ->
+          values().firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()
           }
         }

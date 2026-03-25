@@ -21,9 +21,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The AI module settings.
  *
  * @param embeddingModel The name of the embedding model used for document vectorization.
+ * @param modelAliases Mapping of model identifiers to human-readable aliases.
  * @param knowledgeSearchToolName The tool name used by the AI assistant for knowledge base search.
  * @param webSearchToolName The tool name used by the AI assistant for web search.
  * @param webCrawlingToolName The tool name used by the AI assistant for web page crawling.
@@ -37,6 +38,7 @@ import com.squareup.moshi.JsonClass
  * @param aiReady Indicates whether the AI subsystem is fully configured and operational.
  * @param aiReadyNeedReset Indicates whether the AI provider API key needs to be reconfigured.
  * @param portalMcpServerId The unique identifier of the portal-level MCP server, if configured.
+ * @param systemAiEnabled Indicates whether the system-level AI provider is enabled.
  */
 
 
@@ -45,6 +47,10 @@ data class AiSettingsDto (
     /* The name of the embedding model used for document vectorization. */
     @Json(name = "embeddingModel")
     val embeddingModel: kotlin.String?,
+
+    /* Mapping of model identifiers to human-readable aliases. */
+    @Json(name = "modelAliases")
+    val modelAliases: kotlin.collections.Map<kotlin.String, kotlin.String>?,
 
     /* The tool name used by the AI assistant for knowledge base search. */
     @Json(name = "knowledgeSearchToolName")
@@ -96,7 +102,11 @@ data class AiSettingsDto (
 
     /* The unique identifier of the portal-level MCP server, if configured. */
     @Json(name = "portalMcpServerId")
-    val portalMcpServerId: java.util.UUID? = null
+    val portalMcpServerId: java.util.UUID? = null,
+
+    /* Indicates whether the system-level AI provider is enabled. */
+    @Json(name = "systemAiEnabled")
+    val systemAiEnabled: kotlin.Boolean? = null
 
 ) {
 

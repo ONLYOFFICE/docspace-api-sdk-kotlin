@@ -44,10 +44,10 @@ No authorization required
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(ThirdPartyAccountsApi::class.java)
-val inviteView : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to return providers that are available for invitation links, i.e. the user can login or register through these providers.
-val settingsView : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to display the provider settings in a pop-up window (true) or redirect them to the desktop application (false).
-val clientCallback : kotlin.String = some text // kotlin.String | The method that is called after authentication.
-val fromOnly : kotlin.String = some text // kotlin.String | The provider name if a response is required only from this provider.
+val inviteView : kotlin.Boolean = false // kotlin.Boolean | Specifies whether to return providers that are available for invitation links, i.e. the user can login or register through these providers.
+val settingsView : kotlin.Boolean = false // kotlin.Boolean | Specifies whether to display the provider settings in a pop-up window (true) or redirect them to the desktop application (false).
+val clientCallback : kotlin.String = onAuthCallback // kotlin.String | The method that is called after authentication.
+val fromOnly : kotlin.String = Google // kotlin.String | The provider name if a response is required only from this provider.
 
 val result : AccountInfoArrayWrapper = webService.getThirdPartyAuthProviders(inviteView, settingsView, clientCallback, fromOnly)
 ```
@@ -182,7 +182,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ThirdPartyAccountsApi::class.java)
-val provider : kotlin.String = some text // kotlin.String | The provider name.
+val provider : kotlin.String = Google // kotlin.String | The provider name.
 
 webService.unlinkThirdPartyAccount(provider)
 ```

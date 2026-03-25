@@ -31,7 +31,7 @@ data class BatchTagsRequestDto (
 
     /* The list of tag names. */
     @Json(name = "names")
-    val names: kotlin.collections.List<kotlin.String>? = null
+    val names: kotlin.collections.List<kotlin.String>
 
 ) {
 

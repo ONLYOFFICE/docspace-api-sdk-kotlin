@@ -26,12 +26,12 @@ import com.squareup.moshi.JsonClass
  * The external sharing information and validation data.
  *
  * @param status 
- * @param id The external data ID.
- * @param title The external data title.
  * @param tenantId The tenant ID.
  * @param shared Specifies whether to share the external data or not.
  * @param linkId The link ID of the external data.
  * @param isAuthenticated Specifies whether the user is authenticated or not.
+ * @param id The external data ID.
+ * @param title The external data title.
  * @param type 
  * @param entityId The unique identifier of the shared entity.
  * @param entityTitle The title of the shared entity.
@@ -45,14 +45,6 @@ data class ExternalShareDto (
 
     @Json(name = "status")
     val status: Status,
-
-    /* The external data ID. */
-    @Json(name = "id")
-    val id: kotlin.String?,
-
-    /* The external data title. */
-    @Json(name = "title")
-    val title: kotlin.String?,
 
     /* The tenant ID. */
     @Json(name = "tenantId")
@@ -69,6 +61,14 @@ data class ExternalShareDto (
     /* Specifies whether the user is authenticated or not. */
     @Json(name = "isAuthenticated")
     val isAuthenticated: kotlin.Boolean,
+
+    /* The external data ID. */
+    @Json(name = "id")
+    val id: kotlin.String? = null,
+
+    /* The external data title. */
+    @Json(name = "title")
+    val title: kotlin.String? = null,
 
     @Json(name = "type")
     val type: FileEntryType? = null,

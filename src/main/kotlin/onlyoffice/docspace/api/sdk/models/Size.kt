@@ -21,18 +21,20 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * Represents dimensions with width and height values.
  *
- * @param height 
- * @param width 
+ * @param height Gets or sets the height dimension of an object, typically measured in pixels or other unit.  It defines the vertical size of the object.
+ * @param width Gets or sets the width dimension of an object, typically measured in pixels or other unit.
  */
 
 
 data class Size (
 
+    /* Gets or sets the height dimension of an object, typically measured in pixels or other unit.  It defines the vertical size of the object. */
     @Json(name = "height")
     val height: kotlin.Int? = null,
 
+    /* Gets or sets the width dimension of an object, typically measured in pixels or other unit. */
     @Json(name = "width")
     val width: kotlin.Int? = null
 

@@ -21,34 +21,40 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * Represents the response returned from a chunked upload session.
  *
- * @param id 
- * @param path 
- * @param created 
- * @param expired 
- * @param location 
- * @param bytesTotal 
+ * @param id The unique identifier for the entity.
+ * @param path Represents the hierarchical path of folders associated with a chunked upload session.
+ * @param created The timestamp indicating when the chunked upload session was created.
+ * @param expired The date and time when the chunked upload session is set to expire.
+ * @param location Represents the URI or path of the chunked upload session's current location.
+ * @param bytesTotal The total size, in bytes, of the file being uploaded in the chunked upload session.
  */
 
 
 data class ChunkedUploadSessionResponseInteger (
 
+    /* The unique identifier for the entity. */
     @Json(name = "id")
     val id: kotlin.String? = null,
 
+    /* Represents the hierarchical path of folders associated with a chunked upload session. */
     @Json(name = "path")
     val path: kotlin.collections.List<kotlin.Int>? = null,
 
+    /* The timestamp indicating when the chunked upload session was created. */
     @Json(name = "created")
     val created: java.time.OffsetDateTime? = null,
 
+    /* The date and time when the chunked upload session is set to expire. */
     @Json(name = "expired")
     val expired: java.time.OffsetDateTime? = null,
 
+    /* Represents the URI or path of the chunked upload session's current location. */
     @Json(name = "location")
     val location: kotlin.String? = null,
 
+    /* The total size, in bytes, of the file being uploaded in the chunked upload session. */
     @Json(name = "bytes_total")
     val bytesTotal: kotlin.Long? = null
 

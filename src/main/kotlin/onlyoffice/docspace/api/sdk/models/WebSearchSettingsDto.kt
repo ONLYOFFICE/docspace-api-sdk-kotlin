@@ -22,7 +22,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The web search settings.
  *
  * @param enabled Indicates whether web search is currently enabled.
  * @param type 

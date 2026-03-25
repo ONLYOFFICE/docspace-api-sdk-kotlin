@@ -17,7 +17,7 @@
 package onlyoffice.docspace.api.sdk.models
 
 import onlyoffice.docspace.api.sdk.models.ApiDateTime
-import onlyoffice.docspace.api.sdk.models.ChatSettings
+import onlyoffice.docspace.api.sdk.models.ChatSettingsDto
 import onlyoffice.docspace.api.sdk.models.EmployeeDto
 import onlyoffice.docspace.api.sdk.models.FileEntryDtoIntegerAllOfAvailableShareRights
 import onlyoffice.docspace.api.sdk.models.FileEntryDtoIntegerAllOfSecurity
@@ -95,6 +95,8 @@ import com.squareup.moshi.JsonClass
  * @param expired Specifies if an external link to the folder is expired or not.
  * @param chatSettings 
  * @param rootRoomType 
+ * @param saveFormAsXLSX Specifies whether to save form data as XLSX file.
+ * @param sendFormToExternalDB Specifies whether to send form data to external database.
  */
 
 
@@ -310,10 +312,18 @@ data class FolderDtoInteger (
     val expired: kotlin.Boolean? = null,
 
     @Json(name = "chatSettings")
-    val chatSettings: ChatSettings? = null,
+    val chatSettings: ChatSettingsDto? = null,
 
     @Json(name = "rootRoomType")
-    val rootRoomType: RoomType? = null
+    val rootRoomType: RoomType? = null,
+
+    /* Specifies whether to save form data as XLSX file. */
+    @Json(name = "saveFormAsXLSX")
+    val saveFormAsXLSX: kotlin.Boolean? = null,
+
+    /* Specifies whether to send form data to external database. */
+    @Json(name = "sendFormToExternalDB")
+    val sendFormToExternalDB: kotlin.Boolean? = null
 
 ) {
 

@@ -21,9 +21,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * []
+ * [0 - Text, 1 - Tool, 2 - Attachment]
  *
- * Values: Text,Tool,Attachment
+ * Values: Text,Tool,Attachment,Data
  */
 
 @JsonClass(generateAdapter = false)
@@ -36,7 +36,10 @@ enum class MessageContentType(val value: kotlin.Int) {
     Tool(1),
 
     @Json(name = "2")
-    Attachment(2);
+    Attachment(2),
+
+    @Json(name = "3")
+    Data(3);
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use
@@ -58,7 +61,7 @@ enum class MessageContentType(val value: kotlin.Int) {
          */
         fun decode(data: kotlin.Any?): MessageContentType? = data?.let {
           val normalizedData = "$it".lowercase()
-          entries.firstOrNull { value ->
+          values().firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()
           }
         }

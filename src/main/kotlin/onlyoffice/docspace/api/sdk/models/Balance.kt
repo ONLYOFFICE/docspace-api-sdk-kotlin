@@ -17,6 +17,7 @@
 package onlyoffice.docspace.api.sdk.models
 
 import onlyoffice.docspace.api.sdk.models.SubAccount
+import onlyoffice.docspace.api.sdk.models.TransactionInfo
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -25,7 +26,11 @@ import com.squareup.moshi.JsonClass
  * Represents a balance with an account number and a list of sub-accounts.
  *
  * @param accountNumber The account number.
+ * @param subAccountNumber The sub-account number.
+ * @param accountName The account name.
+ * @param accountCurrency The account currency.
  * @param subAccounts A list of sub-accounts.
+ * @param lastCredit 
  */
 
 
@@ -35,9 +40,24 @@ data class Balance (
     @Json(name = "accountNumber")
     val accountNumber: kotlin.Int? = null,
 
+    /* The sub-account number. */
+    @Json(name = "subAccountNumber")
+    val subAccountNumber: kotlin.Int? = null,
+
+    /* The account name. */
+    @Json(name = "accountName")
+    val accountName: kotlin.String? = null,
+
+    /* The account currency. */
+    @Json(name = "accountCurrency")
+    val accountCurrency: kotlin.String? = null,
+
     /* A list of sub-accounts. */
     @Json(name = "subAccounts")
-    val subAccounts: kotlin.collections.List<SubAccount>? = null
+    val subAccounts: kotlin.collections.List<SubAccount>? = null,
+
+    @Json(name = "lastCredit")
+    val lastCredit: TransactionInfo? = null
 
 ) {
 

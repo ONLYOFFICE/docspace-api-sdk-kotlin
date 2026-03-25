@@ -58,7 +58,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(MCPApi::class.java)
-val roomId : kotlin.Int = 1 // kotlin.Int | Identifier of the room to which MCP servers will be assigned.
+val roomId : kotlin.Int = 42 // kotlin.Int | Identifier of the room to which MCP servers will be assigned.
 val addRoomServersRequestBody : AddRoomServersRequestBody =  // AddRoomServersRequestBody | Server identifiers to assign.
 
 val result : McpServerStatusArrayWrapper = webService.addRoomServers(roomId, addRoomServersRequestBody)
@@ -130,7 +130,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **serverId** | **java.util.UUID**| Unique identifier of the MCP server to connect. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **connectServerRequestBody** | [**ConnectServerRequestBody**](ConnectServerRequestBody.md)| OAuth authorization parameters. | |
+| **connectServerRequestBody** | [**ConnectServerRequestBody**](ConnectServerRequestBody.md)| The request body containing additional data necessary for connecting to the server,  such as authentication or operation-specific information. | |
 
 ### Return type
 
@@ -155,9 +155,9 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(MCPApi::class.java)
-val roomId : kotlin.Int = 1 // kotlin.Int | Identifier of the room containing the MCP server.
-val serverId : java.util.UUID = 75a5f745-f697-4418-b38d-0fe0d277e258 // java.util.UUID | Unique identifier of the MCP server to connect.
-val connectServerRequestBody : ConnectServerRequestBody =  // ConnectServerRequestBody | OAuth authorization parameters.
+val roomId : kotlin.Int = 42 // kotlin.Int | Identifier of the room containing the MCP server.
+val serverId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | Unique identifier of the MCP server to connect.
+val connectServerRequestBody : ConnectServerRequestBody =  // ConnectServerRequestBody | The request body containing additional data necessary for connecting to the server,  such as authentication or operation-specific information.
 
 val result : McpServerStatusWrapper = webService.connectServer(roomId, serverId, connectServerRequestBody)
 ```
@@ -205,7 +205,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(MCPApi::class.java)
-val roomId : kotlin.Int = 1 // kotlin.Int | Identifier of the room from which MCP servers will be removed.
+val roomId : kotlin.Int = 42 // kotlin.Int | Identifier of the room from which MCP servers will be removed.
 val deleteRoomServersRequestBody : DeleteRoomServersRequestBody =  // DeleteRoomServersRequestBody | Server identifiers to remove.
 
 webService.deleteRoomServers(roomId, deleteRoomServersRequestBody)
@@ -301,8 +301,8 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(MCPApi::class.java)
-val roomId : kotlin.Int = 1 // kotlin.Int | Identifier of the room containing the MCP server.
-val serverId : java.util.UUID = 75a5f745-f697-4418-b38d-0fe0d277e258 // java.util.UUID | Unique identifier of the MCP server to disconnect from.
+val roomId : kotlin.Int = 42 // kotlin.Int | Identifier of the room containing the MCP server.
+val serverId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | Unique identifier of the MCP server to disconnect from.
 
 val result : McpServerStatusWrapper = webService.disconnectServer(roomId, serverId)
 ```
@@ -350,8 +350,8 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(MCPApi::class.java)
-val startIndex : kotlin.Int = 1234 // kotlin.Int | The number of items to skip before returning results (zero-based offset). Defaults to 0.
-val count : kotlin.Int = 1234 // kotlin.Int | The maximum number of items to return per page. Defaults to 100.
+val startIndex : kotlin.Int = 0 // kotlin.Int | The number of items to skip before returning results (zero-based offset). Defaults to 0.
+val count : kotlin.Int = 100 // kotlin.Int | The maximum number of items to return per page. Defaults to 100.
 
 val result : McpServerShortArrayWrapper = webService.getAvailableServers(startIndex, count)
 ```
@@ -398,7 +398,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(MCPApi::class.java)
-val roomId : kotlin.Int = 1 // kotlin.Int | Identifier of the room whose assigned MCP servers are being retrieved.
+val roomId : kotlin.Int = 42 // kotlin.Int | Identifier of the room whose assigned MCP servers are being retrieved.
 
 val result : McpServerStatusArrayWrapper = webService.getRoomServers(roomId)
 ```
@@ -493,8 +493,8 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(MCPApi::class.java)
-val startIndex : kotlin.Int = 1234 // kotlin.Int | The number of items to skip before returning results (zero-based offset). Defaults to 0.
-val count : kotlin.Int = 1234 // kotlin.Int | The maximum number of items to return per page. Defaults to 100.
+val startIndex : kotlin.Int = 0 // kotlin.Int | The number of items to skip before returning results (zero-based offset). Defaults to 0.
+val count : kotlin.Int = 100 // kotlin.Int | The maximum number of items to return per page. Defaults to 100.
 
 val result : McpServerArrayWrapper = webService.getServers(startIndex, count)
 ```
@@ -542,8 +542,8 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(MCPApi::class.java)
-val roomId : kotlin.Int = 1 // kotlin.Int | Identifier of the room containing the MCP server.
-val serverId : java.util.UUID = 75a5f745-f697-4418-b38d-0fe0d277e258 // java.util.UUID | Unique identifier of the MCP server whose tools are being retrieved.
+val roomId : kotlin.Int = 42 // kotlin.Int | Identifier of the room containing the MCP server.
+val serverId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | Unique identifier of the MCP server whose tools are being retrieved.
 
 val result : McpToolArrayWrapper = webService.getTools(roomId, serverId)
 ```
@@ -641,8 +641,8 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(MCPApi::class.java)
-val roomId : kotlin.Int = 1 // kotlin.Int | Identifier of the room containing the MCP server.
-val serverId : java.util.UUID = 75a5f745-f697-4418-b38d-0fe0d277e258 // java.util.UUID | Unique identifier of the MCP server whose tools are being configured.
+val roomId : kotlin.Int = 42 // kotlin.Int | Identifier of the room containing the MCP server.
+val serverId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | Unique identifier of the MCP server whose tools are being configured.
 val setMcpToolsRequestBody : SetMcpToolsRequestBody =  // SetMcpToolsRequestBody | Tool configuration parameters.
 
 val result : McpToolArrayWrapper = webService.setTools(roomId, serverId, setMcpToolsRequestBody)

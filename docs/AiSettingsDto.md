@@ -5,6 +5,7 @@
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
 | **embeddingModel** | **kotlin.String** | The name of the embedding model used for document vectorization. |  |
+| **modelAliases** | **kotlin.collections.Map&lt;kotlin.String, kotlin.String&gt;** | Mapping of model identifiers to human-readable aliases. |  |
 | **knowledgeSearchToolName** | **kotlin.String** | The tool name used by the AI assistant for knowledge base search. |  |
 | **webSearchToolName** | **kotlin.String** | The tool name used by the AI assistant for web search. |  |
 | **webCrawlingToolName** | **kotlin.String** | The tool name used by the AI assistant for web page crawling. |  |
@@ -18,6 +19,7 @@
 | **aiReady** | **kotlin.Boolean** | Indicates whether the AI subsystem is fully configured and operational. |  [optional] |
 | **aiReadyNeedReset** | **kotlin.Boolean** | Indicates whether the AI provider API key needs to be reconfigured. |  [optional] |
 | **portalMcpServerId** | [**java.util.UUID**](java.util.UUID.md) | The unique identifier of the portal-level MCP server, if configured. |  [optional] |
+| **systemAiEnabled** | **kotlin.Boolean** | Indicates whether the system-level AI provider is enabled. |  [optional] |
 
 
 

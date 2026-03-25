@@ -25,7 +25,8 @@ import com.squareup.moshi.JsonClass
  * Parameters for continuing an AI chat session.
  *
  * @param message The user message to append to the conversation.
- * @param files The optional collection of file identifiers to attach as context for the AI model.
+ * @param contextFolderId The optional collection of file identifiers to attach as context for the AI model.
+ * @param files The list of attached files.
  */
 
 
@@ -36,6 +37,10 @@ data class ContinueChatBody (
     val message: kotlin.String?,
 
     /* The optional collection of file identifiers to attach as context for the AI model. */
+    @Json(name = "contextFolderId")
+    val contextFolderId: kotlin.Int? = null,
+
+    /* The list of attached files. */
     @Json(name = "files")
     val files: kotlin.collections.List<ContinueChatBodyFilesInner>? = null
 

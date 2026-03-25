@@ -92,7 +92,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(NotificationsApi::class.java)
-val type : NotificationType =  // NotificationType | The type of notification to query, specified in the route.
+val type : NotificationType = 0 // NotificationType | The type of notification to query, specified in the route.
 
 val result : NotificationSettingsWrapper = webService.getNotificationSettings(type)
 ```

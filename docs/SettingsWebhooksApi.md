@@ -214,7 +214,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **eventId** | **kotlin.Int**| The unique identifier of the event that triggered the webhook. | [optional] |
 | **groupStatus** | [**WebhookGroupStatus**](.md)| The status of the webhook delivery group. | [optional] [enum: 0, 1, 2, 4, 8, 16] |
 | **userId** | **java.util.UUID**| The identifier of the user associated with the webhook event. | [optional] |
-| **trigger** | [**WebhookTrigger**](.md)| The type of event that triggered the webhook. | [optional] [enum: 0, 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072, 262144, 524288, 1048576, 2097152, 4194304, 8388608, 16777216, 33554432, 67108864, 134217728] |
+| **trigger** | [**WebhookTrigger**](.md)| The type of event that triggered the webhook. | [optional] [enum: 0, 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072, 262144, 524288, 1048576, 2097152, 4194304, 8388608, 16777216, 33554432, 67108864, 134217728, 268435456, 536870912, 1073741824] |
 | **count** | **kotlin.Int**| The maximum number of webhook log records to return in the query response. | [optional] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
@@ -243,16 +243,16 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(WebhooksApi::class.java)
-val deliveryFrom : java.time.OffsetDateTime = 2008-04-10T06:30+04:00 // java.time.OffsetDateTime | The delivery start time for filtering webhook logs.
-val deliveryTo : java.time.OffsetDateTime = 2008-04-10T06:30+04:00 // java.time.OffsetDateTime | The delivery end time for filtering webhook logs.
-val hookUri : kotlin.String = some text // kotlin.String | The destination URL where webhooks are delivered.
-val configId : kotlin.Int = 1234 // kotlin.Int | The webhook configuration identifier.
-val eventId : kotlin.Int = 1234 // kotlin.Int | The unique identifier of the event that triggered the webhook.
-val groupStatus : WebhookGroupStatus =  // WebhookGroupStatus | The status of the webhook delivery group.
-val userId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The identifier of the user associated with the webhook event.
-val trigger : WebhookTrigger =  // WebhookTrigger | The type of event that triggered the webhook.
-val count : kotlin.Int = 1234 // kotlin.Int | The maximum number of webhook log records to return in the query response.
-val startIndex : kotlin.Int = 1234 // kotlin.Int | Specifies the starting index for retrieving webhook logs.  Used for pagination in the webhook delivery log queries.
+val deliveryFrom : java.time.OffsetDateTime = 2024-01-15T10:30Z // java.time.OffsetDateTime | The delivery start time for filtering webhook logs.
+val deliveryTo : java.time.OffsetDateTime = 2024-01-15T10:30Z // java.time.OffsetDateTime | The delivery end time for filtering webhook logs.
+val hookUri : kotlin.String = https://example.com/webhook // kotlin.String | The destination URL where webhooks are delivered.
+val configId : kotlin.Int = 1 // kotlin.Int | The webhook configuration identifier.
+val eventId : kotlin.Int = 1 // kotlin.Int | The unique identifier of the event that triggered the webhook.
+val groupStatus : WebhookGroupStatus = NotSent // WebhookGroupStatus | The status of the webhook delivery group.
+val userId : java.util.UUID = 38400000-8cf0-11bd-b23e-10b96e4ef00d // java.util.UUID | The identifier of the user associated with the webhook event.
+val trigger : WebhookTrigger = 0 // WebhookTrigger | The type of event that triggered the webhook.
+val count : kotlin.Int = 1 // kotlin.Int | The maximum number of webhook log records to return in the query response.
+val startIndex : kotlin.Int = 1 // kotlin.Int | Specifies the starting index for retrieving webhook logs.  Used for pagination in the webhook delivery log queries.
 
 val result : WebhooksLogArrayWrapper = webService.getWebhooksLogs(deliveryFrom, deliveryTo, hookUri, configId, eventId, groupStatus, userId, trigger, count, startIndex)
 ```

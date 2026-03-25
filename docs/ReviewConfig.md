@@ -4,7 +4,7 @@
 ## Properties
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
-| **reviewDisplay** | **kotlin.String** |  |  [optional] [readonly] |
+| **reviewDisplay** | **kotlin.String** | The review display string representation. |  [optional] [readonly] |
 
 
 

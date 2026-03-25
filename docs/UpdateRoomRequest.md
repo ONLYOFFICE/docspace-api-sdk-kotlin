@@ -15,6 +15,8 @@
 | **color** | **kotlin.String** | The room color. |  [optional] |
 | **cover** | **kotlin.String** | The room cover. |  [optional] |
 | **chatSettings** | [**ChatSettings**](ChatSettings.md) |  |  [optional] |
+| **sendFormToExternalDB** | **kotlin.Boolean** | Specifies whether to send form data to external database. |  [optional] |
+| **saveFormAsXLSX** | **kotlin.Boolean** | Specifies whether to save form data as XLSX file. |  [optional] |
 
 
 

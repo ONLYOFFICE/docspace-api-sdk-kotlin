@@ -45,7 +45,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(MessagesApi::class.java)
-val messageId : kotlin.Int = 1234 // kotlin.Int | The unique identifier of the AI chat message to export.
+val messageId : kotlin.Int = 1 // kotlin.Int | The unique identifier of the AI chat message to export.
 val exportMessageRequestBodyInteger : ExportMessageRequestBodyInteger =  // ExportMessageRequestBodyInteger | The export parameters including destination folder and file title.
 
 webService.exportMessage(messageId, exportMessageRequestBodyInteger)

@@ -22,35 +22,41 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The upload session response parameters.
  *
- * @param id 
- * @param folderId 
- * @param version 
- * @param title 
- * @param providerKey 
- * @param uploaded 
+ * @param id The upload session ID.
+ * @param folderId The folder ID where the file is being uploaded.
+ * @param version The file version number.
+ * @param title The file title.
+ * @param providerKey The third-party provider key.
+ * @param uploaded Specifies whether the file has been uploaded.
  * @param file 
  */
 
 
 data class UploadSessionResponseDtoInteger (
 
+    /* The upload session ID. */
     @Json(name = "id")
     val id: kotlin.Int? = null,
 
+    /* The folder ID where the file is being uploaded. */
     @Json(name = "folderId")
     val folderId: kotlin.Int? = null,
 
+    /* The file version number. */
     @Json(name = "version")
     val version: kotlin.Int? = null,
 
+    /* The file title. */
     @Json(name = "title")
     val title: kotlin.String? = null,
 
+    /* The third-party provider key. */
     @Json(name = "providerKey")
     val providerKey: kotlin.String? = null,
 
+    /* Specifies whether the file has been uploaded. */
     @Json(name = "uploaded")
     val uploaded: kotlin.Boolean? = null,
 

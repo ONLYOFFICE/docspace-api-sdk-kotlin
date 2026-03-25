@@ -51,7 +51,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ThirdPartyIntegrationApi::class.java)
-val providerId : kotlin.Int = 1234 // kotlin.Int | The provider ID.
+val providerId : kotlin.Int = 1 // kotlin.Int | The provider ID.
 
 val result : StringWrapper = webService.deleteThirdParty(providerId)
 ```
@@ -98,7 +98,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ThirdPartyIntegrationApi::class.java)
-val excludewebdav : kotlin.Boolean = true // kotlin.Boolean | Specifies whether WebDAV resources should be excluded from the result..
+val excludewebdav : kotlin.Boolean = false // kotlin.Boolean | Specifies whether WebDAV resources should be excluded from the result..
 
 val result : ProviderArrayWrapper = webService.getAllProviders(excludewebdav)
 ```

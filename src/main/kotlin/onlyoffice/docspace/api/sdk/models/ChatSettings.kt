@@ -21,26 +21,30 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The chat settings.
  *
- * @param providerId 
- * @param modelId 
- * @param prompt 
- * @param `internal` 
+ * @param providerId The provider ID.
+ * @param modelId The model ID.
+ * @param prompt The prompt.
+ * @param `internal` Specifies whether the provider is internal or not.
  */
 
 
 data class ChatSettings (
 
+    /* The provider ID. */
     @Json(name = "providerId")
     val providerId: kotlin.Int? = null,
 
+    /* The model ID. */
     @Json(name = "modelId")
     val modelId: kotlin.String? = null,
 
+    /* The prompt. */
     @Json(name = "prompt")
     val prompt: kotlin.String? = null,
 
+    /* Specifies whether the provider is internal or not. */
     @Json(name = "internal")
     val `internal`: kotlin.Boolean? = null
 

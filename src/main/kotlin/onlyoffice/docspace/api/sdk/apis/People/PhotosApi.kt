@@ -24,10 +24,11 @@ import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
 import onlyoffice.docspace.api.sdk.models.FileUploadResultWrapper
-import onlyoffice.docspace.api.sdk.models.KeyValuePairStringStringValues
 import onlyoffice.docspace.api.sdk.models.ThumbnailsDataWrapper
 import onlyoffice.docspace.api.sdk.models.ThumbnailsRequest
 import onlyoffice.docspace.api.sdk.models.UpdatePhotoMemberRequest
+
+import okhttp3.MultipartBody
 
 interface PhotosApi {
     /**
@@ -129,11 +130,12 @@ interface PhotosApi {
      *
      *
      * @param userid The user ID.
-     * @param formCollection The image data.
+     * @param file The image data.
+     * @param autosave  (optional)
      * @return [Call]<[FileUploadResultWrapper]>
      */
     @Multipart
     @POST("api/2.0/people/{userid}/photo")
-    fun uploadMemberPhoto(@Path("userid") userid: kotlin.String, @Part("formCollection") formCollection: kotlin.collections.List<KeyValuePairStringStringValues>): Call<FileUploadResultWrapper>
+    fun uploadMemberPhoto(@Path("userid") userid: kotlin.String, @Part file: MultipartBody.Part, @Part("Autosave") autosave: kotlin.Boolean? = null): Call<FileUploadResultWrapper>
 
 }

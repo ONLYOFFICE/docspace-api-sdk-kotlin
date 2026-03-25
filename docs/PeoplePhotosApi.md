@@ -49,7 +49,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PhotosApi::class.java)
-val userid : kotlin.String = 1 // kotlin.String | The user ID.
+val userid : kotlin.String = 00000000-0000-0000-0000-000000000000 // kotlin.String | The user ID.
 val thumbnailsRequest : ThumbnailsRequest =  // ThumbnailsRequest | The thumbnail request.
 
 val result : ThumbnailsDataWrapper = webService.createMemberPhotoThumbnails(userid, thumbnailsRequest)
@@ -97,7 +97,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PhotosApi::class.java)
-val userid : kotlin.String = 1 // kotlin.String | The user ID.
+val userid : kotlin.String = 00000000-0000-0000-0000-000000000000 // kotlin.String | The user ID.
 
 val result : ThumbnailsDataWrapper = webService.deleteMemberPhoto(userid)
 ```
@@ -144,7 +144,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PhotosApi::class.java)
-val userid : kotlin.String = 1 // kotlin.String | The user ID.
+val userid : kotlin.String = 00000000-0000-0000-0000-000000000000 // kotlin.String | The user ID.
 
 val result : ThumbnailsDataWrapper = webService.getMemberPhoto(userid)
 ```
@@ -192,7 +192,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PhotosApi::class.java)
-val userid : kotlin.String = 1 // kotlin.String | The user ID.
+val userid : kotlin.String = 00000000-0000-0000-0000-000000000000 // kotlin.String | The user ID.
 val updatePhotoMemberRequest : UpdatePhotoMemberRequest =  // UpdatePhotoMemberRequest | The request parameters for updating a photo.
 
 val result : ThumbnailsDataWrapper = webService.updateMemberPhoto(userid, updatePhotoMemberRequest)
@@ -206,7 +206,7 @@ val result : ThumbnailsDataWrapper = webService.updateMemberPhoto(userid, update
 
 <a id="uploadMemberPhoto"></a>
 # **uploadMemberPhoto**
-> FileUploadResultWrapper uploadMemberPhoto (kotlin.String userid, kotlin.collections.List<KeyValuePairStringStringValues> formCollection)
+> FileUploadResultWrapper uploadMemberPhoto (kotlin.String userid, java.io.File file, kotlin.Boolean autosave)
 
 Uploads a photo of the user with the ID specified in the request.
 
@@ -214,9 +214,10 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Parameters
 | **userid** | **kotlin.String**| The user ID. | |
+| **file** | **java.io.File**| The image data. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **formCollection** | [**kotlin.collections.List&lt;KeyValuePairStringStringValues&gt;**](KeyValuePairStringStringValues.md)| The image data. | |
+| **autosave** | **kotlin.Boolean**|  | [optional] |
 
 ### Return type
 
@@ -241,10 +242,11 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PhotosApi::class.java)
-val userid : kotlin.String = 1 // kotlin.String | The user ID.
-val formCollection : kotlin.collections.List<KeyValuePairStringStringValues> =  // kotlin.collections.List<KeyValuePairStringStringValues> | The image data.
+val userid : kotlin.String = 00000000-0000-0000-0000-000000000000 // kotlin.String | The user ID.
+val file : java.io.File = BINARY_DATA_HERE // java.io.File | The image data.
+val autosave : kotlin.Boolean = true // kotlin.Boolean | 
 
-val result : FileUploadResultWrapper = webService.uploadMemberPhoto(userid, formCollection)
+val result : FileUploadResultWrapper = webService.uploadMemberPhoto(userid, file, autosave)
 ```
 
 ### HTTP request headers

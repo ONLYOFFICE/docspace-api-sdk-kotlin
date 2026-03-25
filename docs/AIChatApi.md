@@ -56,7 +56,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ChatApi::class.java)
-val chatId : java.util.UUID = 75a5f745-f697-4418-b38d-0fe0d277e258 // java.util.UUID | The unique identifier of the existing AI chat session to continue.
+val chatId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The unique identifier of the existing AI chat session to continue.
 val continueChatBody : ContinueChatBody =  // ContinueChatBody | The message and optional file attachments.
 
 webService.continueChat(chatId, continueChatBody)
@@ -104,7 +104,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ChatApi::class.java)
-val chatId : java.util.UUID = 75a5f745-f697-4418-b38d-0fe0d277e258 // java.util.UUID | The unique identifier of the AI chat session to delete.
+val chatId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The unique identifier of the AI chat session to delete.
 
 webService.deleteChat(chatId)
 ```
@@ -152,7 +152,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ChatApi::class.java)
-val chatId : java.util.UUID = 75a5f745-f697-4418-b38d-0fe0d277e258 // java.util.UUID | The unique identifier of the AI chat session to export.
+val chatId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The unique identifier of the AI chat session to export.
 val exportChatRequestBodyInteger : ExportChatRequestBodyInteger =  // ExportChatRequestBodyInteger | The export parameters including destination folder and file title.
 
 webService.exportChat(chatId, exportChatRequestBodyInteger)
@@ -200,7 +200,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ChatApi::class.java)
-val chatId : java.util.UUID = 75a5f745-f697-4418-b38d-0fe0d277e258 // java.util.UUID | The unique identifier of the AI chat session to retrieve.
+val chatId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The unique identifier of the AI chat session to retrieve.
 
 val result : ChatWrapper = webService.getChat(chatId)
 ```
@@ -247,7 +247,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ChatApi::class.java)
-val provider : kotlin.Int = 1234 // kotlin.Int | The optional AI provider identifier to filter models by. When set to 0, models from all providers are returned.
+val provider : kotlin.Int = 1 // kotlin.Int | The optional AI provider identifier to filter models by. When set to 0, models from all providers are returned.
 
 val result : ModelArrayWrapper = webService.getChatModels(provider)
 ```
@@ -296,9 +296,9 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ChatApi::class.java)
-val roomId : kotlin.Int = 1 // kotlin.Int | The identifier of the room whose AI chat sessions are to be listed.
-val startIndex : kotlin.Int = 1234 // kotlin.Int | The number of items to skip before returning results (zero-based offset). Defaults to 0.
-val count : kotlin.Int = 1234 // kotlin.Int | The maximum number of items to return per page. Defaults to 100.
+val roomId : kotlin.Int = 42 // kotlin.Int | The identifier of the room whose AI chat sessions are to be listed.
+val startIndex : kotlin.Int = 0 // kotlin.Int | The number of items to skip before returning results (zero-based offset). Defaults to 0.
+val count : kotlin.Int = 100 // kotlin.Int | The maximum number of items to return per page. Defaults to 100.
 
 val result : ChatArrayWrapper = webService.getChats(roomId, startIndex, count)
 ```
@@ -347,9 +347,9 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ChatApi::class.java)
-val chatId : java.util.UUID = 75a5f745-f697-4418-b38d-0fe0d277e258 // java.util.UUID | The unique identifier of the AI chat session whose messages are to be listed.
-val startIndex : kotlin.Int = 1234 // kotlin.Int | The number of items to skip before returning results (zero-based offset). Defaults to 0.
-val count : kotlin.Int = 1234 // kotlin.Int | The maximum number of items to return per page. Defaults to 100.
+val chatId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The unique identifier of the AI chat session whose messages are to be listed.
+val startIndex : kotlin.Int = 0 // kotlin.Int | The number of items to skip before returning results (zero-based offset). Defaults to 0.
+val count : kotlin.Int = 100 // kotlin.Int | The maximum number of items to return per page. Defaults to 100.
 
 val result : MessageArrayWrapper = webService.getMessages(chatId, startIndex, count)
 ```
@@ -396,7 +396,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ChatApi::class.java)
-val roomId : kotlin.Int = 1 // kotlin.Int | The identifier of the room whose chat settings are to be retrieved.
+val roomId : kotlin.Int = 42 // kotlin.Int | The identifier of the room whose chat settings are to be retrieved.
 
 val result : UserChatSettingsWrapper = webService.getUserChatsSettings(roomId)
 ```
@@ -444,7 +444,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ChatApi::class.java)
-val callId : kotlin.String = some text // kotlin.String | The unique identifier of the pending tool execution call awaiting a permission decision.
+val callId : kotlin.String = call_abc123 // kotlin.String | The unique identifier of the pending tool execution call awaiting a permission decision.
 val toolDecisionRequestBody : ToolDecisionRequestBody =  // ToolDecisionRequestBody | The permission decision parameters.
 
 webService.providePermission(callId, toolDecisionRequestBody)
@@ -493,7 +493,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ChatApi::class.java)
-val chatId : java.util.UUID = 75a5f745-f697-4418-b38d-0fe0d277e258 // java.util.UUID | The unique identifier of the AI chat session to rename.
+val chatId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The unique identifier of the AI chat session to rename.
 val renameChatBody : RenameChatBody =  // RenameChatBody | The new chat name.
 
 val result : ChatWrapper = webService.renameChat(chatId, renameChatBody)
@@ -542,7 +542,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ChatApi::class.java)
-val roomId : kotlin.Int = 1 // kotlin.Int | The identifier of the room whose chat settings are to be updated.
+val roomId : kotlin.Int = 42 // kotlin.Int | The identifier of the room whose chat settings are to be updated.
 val setUserChatSettingsRequestBody : SetUserChatSettingsRequestBody =  // SetUserChatSettingsRequestBody | The chat settings to apply.
 
 val result : UserChatSettingsWrapper = webService.setUserChatsSettings(roomId, setUserChatSettingsRequestBody)
@@ -591,7 +591,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ChatApi::class.java)
-val roomId : kotlin.Int = 1 // kotlin.Int | The identifier of the room in which to create the new AI chat session.
+val roomId : kotlin.Int = 42 // kotlin.Int | The identifier of the room in which to create the new AI chat session.
 val startNewChatBody : StartNewChatBody =  // StartNewChatBody | The initial message and optional file attachments.
 
 webService.startNewChat(roomId, startNewChatBody)

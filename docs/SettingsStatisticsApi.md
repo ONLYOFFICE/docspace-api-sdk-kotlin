@@ -44,7 +44,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(StatisticsApi::class.java)
-val id : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The ID extracted from the route parameters.
+val id : java.util.UUID = 38400000-8cf0-11bd-b23e-10b96e4ef00d // java.util.UUID | The ID extracted from the route parameters.
 
 val result : UsageSpaceStatItemArrayWrapper = webService.getSpaceUsageStatistics(id)
 ```

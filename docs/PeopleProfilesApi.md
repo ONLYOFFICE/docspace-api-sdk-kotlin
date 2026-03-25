@@ -5,6 +5,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
 | [**addMember**](PeopleProfilesApi.md#addMember) | **POST** api/2.0/people | Add a user |
+| [**checkUserExistsByEmail**](PeopleProfilesApi.md#checkUserExistsByEmail) | **GET** api/2.0/people/exists | Check if a user exists by email |
 | [**deleteMember**](PeopleProfilesApi.md#deleteMember) | **DELETE** api/2.0/people/{userid} | Delete a user |
 | [**deleteProfile**](PeopleProfilesApi.md#deleteProfile) | **DELETE** api/2.0/people/@self | Delete my profile |
 | [**getAllProfiles**](PeopleProfilesApi.md#getAllProfiles) | **GET** api/2.0/people | Get profiles |
@@ -67,6 +68,57 @@ val result : EmployeeFullWrapper = webService.addMember(memberRequestDto)
  - **Accept**: application/json
 
 
+<a id="checkUserExistsByEmail"></a>
+# **checkUserExistsByEmail**
+> BooleanWrapper checkUserExistsByEmail (kotlin.String email, kotlin.String encemail, kotlin.String culture)
+
+Returns a boolean indicating whether a user with the specified email exists on the portal.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/check-user-exists-by-email/).
+
+### Parameters
+| **email** | **kotlin.String**| The user email address. | [optional] |
+| **encemail** | **kotlin.String**| The user encrypted email address. | [optional] |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **culture** | **kotlin.String**| Culture | [optional] |
+
+### Return type
+
+[**BooleanWrapper**](BooleanWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(ProfilesApi::class.java)
+val email : kotlin.String = john.doe@example.com // kotlin.String | The user email address.
+val encemail : kotlin.String = encrypted_email_string // kotlin.String | The user encrypted email address.
+val culture : kotlin.String = en-US // kotlin.String | Culture
+
+val result : BooleanWrapper = webService.checkUserExistsByEmail(email, encemail, culture)
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
 <a id="deleteMember"></a>
 # **deleteMember**
 > EmployeeFullWrapper deleteMember (kotlin.String userid)
@@ -103,7 +155,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ProfilesApi::class.java)
-val userid : kotlin.String = 1 // kotlin.String | The user ID.
+val userid : kotlin.String = 00000000-0000-0000-0000-000000000000 // kotlin.String | The user ID.
 
 val result : EmployeeFullWrapper = webService.deleteMember(userid)
 ```
@@ -200,13 +252,13 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ProfilesApi::class.java)
-val count : kotlin.Int = 1234 // kotlin.Int | The maximum number of items to be retrieved in the response.
-val startIndex : kotlin.Int = 1234 // kotlin.Int | The zero-based index of the first item to be retrieved in a filtered result set.
-val filterBy : kotlin.String = some text // kotlin.String | Specifies the filter criteria for user-related queries.
-val sortBy : kotlin.String = some text // kotlin.String | Specifies the property or field name by which the results should be sorted.
-val sortOrder : SortOrder =  // SortOrder | The order in which the results are sorted.
-val filterSeparator : kotlin.String = some text // kotlin.String | The character or string used to separate multiple filter values in a filtering query.
-val filterValue : kotlin.String = some text // kotlin.String | The text value used as an additional filter criterion for profiles retrieval.
+val count : kotlin.Int = 25 // kotlin.Int | The maximum number of items to be retrieved in the response.
+val startIndex : kotlin.Int = 0 // kotlin.Int | The zero-based index of the first item to be retrieved in a filtered result set.
+val filterBy : kotlin.String = displayName // kotlin.String | Specifies the filter criteria for user-related queries.
+val sortBy : kotlin.String = displayName // kotlin.String | Specifies the property or field name by which the results should be sorted.
+val sortOrder : SortOrder = 0 // SortOrder | The order in which the results are sorted.
+val filterSeparator : kotlin.String = , // kotlin.String | The character or string used to separate multiple filter values in a filtering query.
+val filterValue : kotlin.String = John // kotlin.String | The text value used as an additional filter criterion for profiles retrieval.
 
 val result : EmployeeFullArrayWrapper = webService.getAllProfiles(count, startIndex, filterBy, sortBy, sortOrder, filterSeparator, filterValue)
 ```
@@ -299,9 +351,9 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ProfilesApi::class.java)
-val email : kotlin.String = example@onlyoffice.com // kotlin.String | The user email address.
-val encemail : kotlin.String = some text // kotlin.String | The user encrypted email address.
-val culture : kotlin.String = some text // kotlin.String | Culture
+val email : kotlin.String = john.doe@example.com // kotlin.String | The user email address.
+val encemail : kotlin.String = encrypted_email_string // kotlin.String | The user encrypted email address.
+val culture : kotlin.String = en-US // kotlin.String | Culture
 
 val result : EmployeeFullWrapper = webService.getProfileByEmail(email, encemail, culture)
 ```
@@ -348,7 +400,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ProfilesApi::class.java)
-val userid : kotlin.String = 1 // kotlin.String | The user ID.
+val userid : kotlin.String = 00000000-0000-0000-0000-000000000000 // kotlin.String | The user ID.
 
 val result : EmployeeFullWrapper = webService.getProfileByUserId(userid)
 ```
@@ -581,7 +633,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ProfilesApi::class.java)
-val userid : kotlin.String = 1 // kotlin.String | The user ID.
+val userid : kotlin.String = 00000000-0000-0000-0000-000000000000 // kotlin.String | The user ID.
 val updateMemberRequestDto : UpdateMemberRequestDto =  // UpdateMemberRequestDto | The request parameters for updating the user information.
 
 val result : EmployeeFullWrapper = webService.updateMember(userid, updateMemberRequestDto)
@@ -630,7 +682,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ProfilesApi::class.java)
-val userid : kotlin.String = 1 // kotlin.String | The user ID.
+val userid : kotlin.String = 00000000-0000-0000-0000-000000000000 // kotlin.String | The user ID.
 val culture : Culture =  // Culture | The culture name parameters.
 
 val result : EmployeeFullWrapper = webService.updateMemberCulture(userid, culture)

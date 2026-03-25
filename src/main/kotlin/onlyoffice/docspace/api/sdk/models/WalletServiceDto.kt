@@ -17,7 +17,6 @@
 package onlyoffice.docspace.api.sdk.models
 
 import onlyoffice.docspace.api.sdk.models.PriceDto
-import onlyoffice.docspace.api.sdk.models.QuotaDto
 import onlyoffice.docspace.api.sdk.models.TenantEntityQuotaSettings
 import onlyoffice.docspace.api.sdk.models.TenantQuotaFeatureDto
 import onlyoffice.docspace.api.sdk.models.TenantQuotaSettings
@@ -41,6 +40,7 @@ import com.squareup.moshi.JsonClass
  * @param tenantCustomQuota 
  * @param dueDate The due date.
  * @param innerServices The list of inner services.
+ * @param serviceName The service name.
  */
 
 
@@ -91,7 +91,11 @@ data class WalletServiceDto (
 
     /* The list of inner services. */
     @Json(name = "innerServices")
-    val innerServices: kotlin.collections.List<QuotaDto>? = null
+    val innerServices: kotlin.collections.List<WalletServiceDto>? = null,
+
+    /* The service name. */
+    @Json(name = "serviceName")
+    val serviceName: kotlin.String? = null
 
 ) {
 

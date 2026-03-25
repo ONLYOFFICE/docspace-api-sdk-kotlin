@@ -8,7 +8,7 @@
 | **name** | **kotlin.String** | The full name of the user. |  [optional] |
 | **image** | **kotlin.String** | The path to the user&#39;s avatar. |  [optional] |
 | **roles** | **kotlin.collections.List&lt;kotlin.String&gt;** | Roles |  [optional] |
-| **customerId** | **kotlin.String** |  |  [optional] |
+| **customerId** | **kotlin.String** | Customer identifier associated with the user. |  [optional] |
 
 
 

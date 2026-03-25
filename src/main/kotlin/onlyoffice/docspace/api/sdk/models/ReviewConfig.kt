@@ -21,14 +21,15 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * Configuration for review display settings.
  *
- * @param reviewDisplay 
+ * @param reviewDisplay The review display string representation.
  */
 
 
 data class ReviewConfig (
 
+    /* The review display string representation. */
     @Json(name = "reviewDisplay")
     val reviewDisplay: kotlin.String? = null
 

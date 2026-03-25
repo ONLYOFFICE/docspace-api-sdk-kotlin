@@ -24,6 +24,7 @@ import com.squareup.moshi.JsonClass
  * The request parameters for validating the two-factor authentication codes.
  *
  * @param code The verification code provided by the user.
+ * @param session Specifies whether the authentication is session-based.
  */
 
 
@@ -31,7 +32,11 @@ data class TfaValidateRequestsDto (
 
     /* The verification code provided by the user. */
     @Json(name = "code")
-    val code: kotlin.String?
+    val code: kotlin.String?,
+
+    /* Specifies whether the authentication is session-based. */
+    @Json(name = "session")
+    val session: kotlin.Boolean? = null
 
 ) {
 

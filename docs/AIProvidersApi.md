@@ -233,8 +233,8 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ProvidersApi::class.java)
-val startIndex : kotlin.Int = 1234 // kotlin.Int | The number of items to skip before returning results (zero-based offset). Defaults to 0.
-val count : kotlin.Int = 1234 // kotlin.Int | The maximum number of items to return per page. Defaults to 100.
+val startIndex : kotlin.Int = 0 // kotlin.Int | The number of items to skip before returning results (zero-based offset). Defaults to 0.
+val count : kotlin.Int = 100 // kotlin.Int | The maximum number of items to return per page. Defaults to 100.
 
 val result : AiProviderArrayWrapper = webService.getProviders(startIndex, count)
 ```

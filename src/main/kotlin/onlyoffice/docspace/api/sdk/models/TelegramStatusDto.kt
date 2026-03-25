@@ -22,10 +22,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The Telegram connection status parameters.
  *
  * @param status 
- * @param username 
+ * @param username The Telegram username.
  */
 
 
@@ -34,6 +34,7 @@ data class TelegramStatusDto (
     @Json(name = "status")
     val status: RegStatus,
 
+    /* The Telegram username. */
     @Json(name = "username")
     val username: kotlin.String? = null
 

@@ -12,7 +12,7 @@
 ## Enum: enabledServices
 | Name | Value |
 | ---- | ----- |
-| enabledServices | -14, -13, -12, -11 |
+| enabledServices | -13, -12, -11 |
 
 
 

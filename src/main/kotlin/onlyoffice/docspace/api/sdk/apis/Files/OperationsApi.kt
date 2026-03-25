@@ -61,8 +61,8 @@ interface OperationsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/abort-upload-session/
      *
      *
-     * @param sessionId 
-     * @param folderId 
+     * @param sessionId The session ID.
+     * @param folderId The folder ID.
      * @return [Call]<[Unit]>
      */
     @DELETE("api/2.0/files/{folderId}/session/{sessionId}")
@@ -325,8 +325,8 @@ interface OperationsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/finalize-session/
      *
      *
-     * @param folderId 
-     * @param sessionId 
+     * @param folderId The folder ID.
+     * @param sessionId The session ID.
      * @return [Call]<[UploadSessionResponseIntegerWrapper]>
      */
     @PUT("api/2.0/files/{folderId}/session/{sessionId}/finalize")
@@ -471,10 +471,10 @@ interface OperationsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-async-session/
      *
      *
-     * @param folderId 
-     * @param sessionId 
-     * @param chunkNumber  (optional)
-     * @param file  (optional)
+     * @param folderId The folder ID.
+     * @param sessionId The upload session ID.
+     * @param chunkNumber The chunk number. (optional)
+     * @param file The file chunk to be uploaded as part of the multipart/form-data request.  This property represents the uploaded file chunk content from the HTTP request form for chunked upload operations.  The file chunk is accessed via the IFormFile interface which provides access to the chunk content and length. (optional)
      * @return [Call]<[ChunkedUploadSessionResponseIntegerWrapper]>
      */
     @Multipart
@@ -493,9 +493,9 @@ interface OperationsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-session/
      *
      *
-     * @param folderId 
-     * @param sessionId 
-     * @param file  (optional)
+     * @param folderId The folder ID.
+     * @param sessionId The upload session ID.
+     * @param file The file to be uploaded as part of the multipart/form-data request.  This property represents the uploaded file content from the HTTP request form.  The file is accessed via the IFormFile interface which provides access to the file name, content type, length, and stream. (optional)
      * @return [Call]<[UploadSessionResponseIntegerWrapper]>
      */
     @Multipart

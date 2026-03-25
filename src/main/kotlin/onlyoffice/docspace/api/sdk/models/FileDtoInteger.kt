@@ -98,6 +98,7 @@ import com.squareup.moshi.JsonClass
  * @param customFilterEnabled Specifies if the Custom Filter editing mode is enabled for a file or not.
  * @param customFilterEnabledBy The name of the user who enabled a Custom Filter editing mode for a file.
  * @param startFilling Specifies if the filling has started or not.
+ * @param isFillingPreparing Specifies if the form filling has started but the file is still being saved by the document editor. Filling and editing are not allowed.
  * @param inProcessFolderId The InProcess folder ID of the file.
  * @param inProcessFolderTitle The InProcess folder title of the file.
  * @param draftLocation 
@@ -327,6 +328,10 @@ data class FileDtoInteger (
     /* Specifies if the filling has started or not. */
     @Json(name = "startFilling")
     val startFilling: kotlin.Boolean? = null,
+
+    /* Specifies if the form filling has started but the file is still being saved by the document editor. Filling and editing are not allowed. */
+    @Json(name = "isFillingPreparing")
+    val isFillingPreparing: kotlin.Boolean? = null,
 
     /* The InProcess folder ID of the file. */
     @Json(name = "inProcessFolderId")

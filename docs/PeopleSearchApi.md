@@ -66,19 +66,19 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SearchApi::class.java)
-val id : kotlin.Int = 1 // kotlin.Int | The user ID.
-val employeeStatus : EmployeeStatus =  // EmployeeStatus | The user status.
-val activationStatus : EmployeeActivationStatus =  // EmployeeActivationStatus | The user activation status.
-val excludeShared : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to exclude the account sharing settings from the response.
-val includeShared : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to include the account sharing settings in the response.
-val invitedByMe : kotlin.Boolean = true // kotlin.Boolean | Specifies whether the user is invited by the current user or not.
-val inviterId : java.util.UUID = 75a5f745-f697-4418-b38d-0fe0d277e258 // java.util.UUID | The inviter ID.
-val area : Area =  // Area | The area of the account entries.
-val employeeTypes : kotlin.collections.List<EmployeeType> =  // kotlin.collections.List<EmployeeType> | The list of the user types.
-val count : kotlin.Int = 1234 // kotlin.Int | The number of items to retrieve in a request.
-val startIndex : kotlin.Int = 1234 // kotlin.Int | The starting index for the query results.
-val filterSeparator : kotlin.String = some text // kotlin.String | Specifies the separator used in filter expressions.
-val filterValue : kotlin.String = some text // kotlin.String | The text filter applied to the accounts search query.
+val id : kotlin.Int = 56 // kotlin.Int | The user ID.
+val employeeStatus : EmployeeStatus = 1 // EmployeeStatus | The user status.
+val activationStatus : EmployeeActivationStatus = 1 // EmployeeActivationStatus | The user activation status.
+val excludeShared : kotlin.Boolean = false // kotlin.Boolean | Specifies whether to exclude the account sharing settings from the response.
+val includeShared : kotlin.Boolean = false // kotlin.Boolean | Specifies whether to include the account sharing settings in the response.
+val invitedByMe : kotlin.Boolean = false // kotlin.Boolean | Specifies whether the user is invited by the current user or not.
+val inviterId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The inviter ID.
+val area : Area = 0 // Area | The area of the account entries.
+val employeeTypes : kotlin.collections.List<EmployeeType> = [1,2] // kotlin.collections.List<EmployeeType> | The list of the user types.
+val count : kotlin.Int = 25 // kotlin.Int | The number of items to retrieve in a request.
+val startIndex : kotlin.Int = 0 // kotlin.Int | The starting index for the query results.
+val filterSeparator : kotlin.String = , // kotlin.String | Specifies the separator used in filter expressions.
+val filterValue : kotlin.String = John // kotlin.String | The text filter applied to the accounts search query.
 
 val result : ObjectArrayWrapper = webService.getAccountsEntriesWithFilesShared(id, employeeStatus, activationStatus, excludeShared, includeShared, invitedByMe, inviterId, area, employeeTypes, count, startIndex, filterSeparator, filterValue)
 ```
@@ -137,19 +137,19 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SearchApi::class.java)
-val id : kotlin.Int = 1 // kotlin.Int | The user ID.
-val employeeStatus : EmployeeStatus =  // EmployeeStatus | The user status.
-val activationStatus : EmployeeActivationStatus =  // EmployeeActivationStatus | The user activation status.
-val excludeShared : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to exclude the account sharing settings from the response.
-val includeShared : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to include the account sharing settings in the response.
-val invitedByMe : kotlin.Boolean = true // kotlin.Boolean | Specifies whether the user is invited by the current user or not.
-val inviterId : java.util.UUID = 75a5f745-f697-4418-b38d-0fe0d277e258 // java.util.UUID | The inviter ID.
-val area : Area =  // Area | The area of the account entries.
-val employeeTypes : kotlin.collections.List<EmployeeType> =  // kotlin.collections.List<EmployeeType> | The list of the user types.
-val count : kotlin.Int = 1234 // kotlin.Int | The number of items to retrieve in a request.
-val startIndex : kotlin.Int = 1234 // kotlin.Int | The starting index for the query results.
-val filterSeparator : kotlin.String = some text // kotlin.String | Specifies the separator used in filter expressions.
-val filterValue : kotlin.String = some text // kotlin.String | The text filter applied to the accounts search query.
+val id : kotlin.Int = 56 // kotlin.Int | The user ID.
+val employeeStatus : EmployeeStatus = 1 // EmployeeStatus | The user status.
+val activationStatus : EmployeeActivationStatus = 1 // EmployeeActivationStatus | The user activation status.
+val excludeShared : kotlin.Boolean = false // kotlin.Boolean | Specifies whether to exclude the account sharing settings from the response.
+val includeShared : kotlin.Boolean = false // kotlin.Boolean | Specifies whether to include the account sharing settings in the response.
+val invitedByMe : kotlin.Boolean = false // kotlin.Boolean | Specifies whether the user is invited by the current user or not.
+val inviterId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The inviter ID.
+val area : Area = 0 // Area | The area of the account entries.
+val employeeTypes : kotlin.collections.List<EmployeeType> = [1,2] // kotlin.collections.List<EmployeeType> | The list of the user types.
+val count : kotlin.Int = 25 // kotlin.Int | The number of items to retrieve in a request.
+val startIndex : kotlin.Int = 0 // kotlin.Int | The starting index for the query results.
+val filterSeparator : kotlin.String = , // kotlin.String | Specifies the separator used in filter expressions.
+val filterValue : kotlin.String = John // kotlin.String | The text filter applied to the accounts search query.
 
 val result : ObjectArrayWrapper = webService.getAccountsEntriesWithFoldersShared(id, employeeStatus, activationStatus, excludeShared, includeShared, invitedByMe, inviterId, area, employeeTypes, count, startIndex, filterSeparator, filterValue)
 ```
@@ -208,19 +208,19 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SearchApi::class.java)
-val id : kotlin.Int = 1 // kotlin.Int | The user ID.
-val employeeStatus : EmployeeStatus =  // EmployeeStatus | The user status.
-val activationStatus : EmployeeActivationStatus =  // EmployeeActivationStatus | The user activation status.
-val excludeShared : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to exclude the account sharing settings from the response.
-val includeShared : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to include the account sharing settings in the response.
-val invitedByMe : kotlin.Boolean = true // kotlin.Boolean | Specifies whether the user is invited by the current user or not.
-val inviterId : java.util.UUID = 75a5f745-f697-4418-b38d-0fe0d277e258 // java.util.UUID | The inviter ID.
-val area : Area =  // Area | The area of the account entries.
-val employeeTypes : kotlin.collections.List<EmployeeType> =  // kotlin.collections.List<EmployeeType> | The list of the user types.
-val count : kotlin.Int = 1234 // kotlin.Int | The number of items to retrieve in a request.
-val startIndex : kotlin.Int = 1234 // kotlin.Int | The starting index for the query results.
-val filterSeparator : kotlin.String = some text // kotlin.String | Specifies the separator used in filter expressions.
-val filterValue : kotlin.String = some text // kotlin.String | The text filter applied to the accounts search query.
+val id : kotlin.Int = 56 // kotlin.Int | The user ID.
+val employeeStatus : EmployeeStatus = 1 // EmployeeStatus | The user status.
+val activationStatus : EmployeeActivationStatus = 1 // EmployeeActivationStatus | The user activation status.
+val excludeShared : kotlin.Boolean = false // kotlin.Boolean | Specifies whether to exclude the account sharing settings from the response.
+val includeShared : kotlin.Boolean = false // kotlin.Boolean | Specifies whether to include the account sharing settings in the response.
+val invitedByMe : kotlin.Boolean = false // kotlin.Boolean | Specifies whether the user is invited by the current user or not.
+val inviterId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The inviter ID.
+val area : Area = 0 // Area | The area of the account entries.
+val employeeTypes : kotlin.collections.List<EmployeeType> = [1,2] // kotlin.collections.List<EmployeeType> | The list of the user types.
+val count : kotlin.Int = 25 // kotlin.Int | The number of items to retrieve in a request.
+val startIndex : kotlin.Int = 0 // kotlin.Int | The starting index for the query results.
+val filterSeparator : kotlin.String = , // kotlin.String | Specifies the separator used in filter expressions.
+val filterValue : kotlin.String = John // kotlin.String | The text filter applied to the accounts search query.
 
 val result : ObjectArrayWrapper = webService.getAccountsEntriesWithRoomsShared(id, employeeStatus, activationStatus, excludeShared, includeShared, invitedByMe, inviterId, area, employeeTypes, count, startIndex, filterSeparator, filterValue)
 ```
@@ -269,9 +269,9 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SearchApi::class.java)
-val query : kotlin.String = some text // kotlin.String | The search query.
-val filterBy : kotlin.String = some text // kotlin.String | Specifies a filter criteria for the user search query.
-val filterValue : kotlin.String = some text // kotlin.String | The value used for filtering users, allowing additional constraints for the query.
+val query : kotlin.String = John // kotlin.String | The search query.
+val filterBy : kotlin.String = displayName // kotlin.String | Specifies a filter criteria for the user search query.
+val filterValue : kotlin.String = John // kotlin.String | The value used for filtering users, allowing additional constraints for the query.
 
 val result : EmployeeFullArrayWrapper = webService.getSearch(query, filterBy, filterValue)
 ```
@@ -337,26 +337,26 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SearchApi::class.java)
-val employeeStatus : EmployeeStatus =  // EmployeeStatus | The user status.
-val groupId : java.util.UUID = 75a5f745-f697-4418-b38d-0fe0d277e258 // java.util.UUID | The group ID.
-val activationStatus : EmployeeActivationStatus =  // EmployeeActivationStatus | The user activation status.
-val employeeType : EmployeeType =  // EmployeeType | The user type.
-val employeeTypes : kotlin.collections.List<kotlin.Int> =  // kotlin.collections.List<kotlin.Int> | The list of user types.
-val isAdministrator : kotlin.Boolean = true // kotlin.Boolean | Specifies if the user is an administrator or not.
-val payments : Payments =  // Payments | The user payment status.
-val accountLoginType : AccountLoginType =  // AccountLoginType | The account login type.
-val quotaFilter : QuotaFilter =  // QuotaFilter | The quota filter (All - 0, Default - 1, Custom - 2).
-val withoutGroup : kotlin.Boolean = true // kotlin.Boolean | Specifies whether the user should be a member of a group or not.
-val excludeGroup : kotlin.Boolean = true // kotlin.Boolean | Specifies whether the user should be a member of the group with the specified ID.
-val invitedByMe : kotlin.Boolean = true // kotlin.Boolean | Specifies whether the user is invited by the current user or not.
-val inviterId : java.util.UUID = 75a5f745-f697-4418-b38d-0fe0d277e258 // java.util.UUID | The inviter ID.
-val area : Area =  // Area | The filter area.
-val count : kotlin.Int = 1234 // kotlin.Int | The maximum number of items to be retrieved in the response.
-val startIndex : kotlin.Int = 1234 // kotlin.Int | The zero-based index of the first item to be retrieved in a filtered result set.
-val sortBy : kotlin.String = some text // kotlin.String | Specifies the property or field name by which the results should be sorted.
-val sortOrder : SortOrder =  // SortOrder | The order in which the results are sorted.
-val filterSeparator : kotlin.String = some text // kotlin.String | Represents the separator used to split filter criteria in query parameters.
-val filterValue : kotlin.String = some text // kotlin.String | The search text used to filter results based on user input.
+val employeeStatus : EmployeeStatus = 1 // EmployeeStatus | The user status.
+val groupId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The group ID.
+val activationStatus : EmployeeActivationStatus = 1 // EmployeeActivationStatus | The user activation status.
+val employeeType : EmployeeType = 1 // EmployeeType | The user type.
+val employeeTypes : kotlin.collections.List<kotlin.Int> = [1,2] // kotlin.collections.List<kotlin.Int> | The list of user types.
+val isAdministrator : kotlin.Boolean = false // kotlin.Boolean | Specifies if the user is an administrator or not.
+val payments : Payments = 0 // Payments | The user payment status.
+val accountLoginType : AccountLoginType = 0 // AccountLoginType | The account login type.
+val quotaFilter : QuotaFilter = 0 // QuotaFilter | The quota filter (All - 0, Default - 1, Custom - 2).
+val withoutGroup : kotlin.Boolean = false // kotlin.Boolean | Specifies whether the user should be a member of a group or not.
+val excludeGroup : kotlin.Boolean = false // kotlin.Boolean | Specifies whether the user should be a member of the group with the specified ID.
+val invitedByMe : kotlin.Boolean = false // kotlin.Boolean | Specifies whether the user is invited by the current user or not.
+val inviterId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The inviter ID.
+val area : Area = 0 // Area | The filter area.
+val count : kotlin.Int = 25 // kotlin.Int | The maximum number of items to be retrieved in the response.
+val startIndex : kotlin.Int = 0 // kotlin.Int | The zero-based index of the first item to be retrieved in a filtered result set.
+val sortBy : kotlin.String = displayName // kotlin.String | Specifies the property or field name by which the results should be sorted.
+val sortOrder : SortOrder = 0 // SortOrder | The order in which the results are sorted.
+val filterSeparator : kotlin.String = , // kotlin.String | Represents the separator used to split filter criteria in query parameters.
+val filterValue : kotlin.String = John // kotlin.String | The search text used to filter results based on user input.
 
 val result : EmployeeArrayWrapper = webService.getSimpleByFilter(employeeStatus, groupId, activationStatus, employeeType, employeeTypes, isAdministrator, payments, accountLoginType, quotaFilter, withoutGroup, excludeGroup, invitedByMe, inviterId, area, count, startIndex, sortBy, sortOrder, filterSeparator, filterValue)
 ```
@@ -415,19 +415,19 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SearchApi::class.java)
-val id : kotlin.Int = 1 // kotlin.Int | The user ID.
-val employeeStatus : EmployeeStatus =  // EmployeeStatus | The user status.
-val activationStatus : EmployeeActivationStatus =  // EmployeeActivationStatus | The user activation status.
-val excludeShared : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to exclude the user sharing settings or not.
-val includeShared : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to include the user sharing settings or not.
-val invitedByMe : kotlin.Boolean = true // kotlin.Boolean | Specifies whether the user was invited by the current user or not.
-val inviterId : java.util.UUID = 75a5f745-f697-4418-b38d-0fe0d277e258 // java.util.UUID | The inviter ID.
-val area : Area =  // Area | The user area.
-val employeeTypes : kotlin.collections.List<EmployeeType> =  // kotlin.collections.List<EmployeeType> | The list of user types.
-val count : kotlin.Int = 1234 // kotlin.Int | The maximum number of users to be retrieved in the request.
-val startIndex : kotlin.Int = 1234 // kotlin.Int | The zero-based index of the first record to retrieve in a paged query.
-val filterSeparator : kotlin.String = some text // kotlin.String | The character or string used to separate multiple filter values in a filtering query.
-val filterValue : kotlin.String = some text // kotlin.String | The filter text value used for searching or filtering user results.
+val id : kotlin.Int = 56 // kotlin.Int | The user ID.
+val employeeStatus : EmployeeStatus = 1 // EmployeeStatus | The user status.
+val activationStatus : EmployeeActivationStatus = 1 // EmployeeActivationStatus | The user activation status.
+val excludeShared : kotlin.Boolean = false // kotlin.Boolean | Specifies whether to exclude the user sharing settings or not.
+val includeShared : kotlin.Boolean = false // kotlin.Boolean | Specifies whether to include the user sharing settings or not.
+val invitedByMe : kotlin.Boolean = false // kotlin.Boolean | Specifies whether the user was invited by the current user or not.
+val inviterId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The inviter ID.
+val area : Area = 0 // Area | The user area.
+val employeeTypes : kotlin.collections.List<EmployeeType> = [1,2] // kotlin.collections.List<EmployeeType> | The list of user types.
+val count : kotlin.Int = 25 // kotlin.Int | The maximum number of users to be retrieved in the request.
+val startIndex : kotlin.Int = 0 // kotlin.Int | The zero-based index of the first record to retrieve in a paged query.
+val filterSeparator : kotlin.String = , // kotlin.String | The character or string used to separate multiple filter values in a filtering query.
+val filterValue : kotlin.String = John // kotlin.String | The filter text value used for searching or filtering user results.
 
 val result : EmployeeFullArrayWrapper = webService.getUsersWithFilesShared(id, employeeStatus, activationStatus, excludeShared, includeShared, invitedByMe, inviterId, area, employeeTypes, count, startIndex, filterSeparator, filterValue)
 ```
@@ -486,19 +486,19 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SearchApi::class.java)
-val id : kotlin.Int = 1 // kotlin.Int | The user ID.
-val employeeStatus : EmployeeStatus =  // EmployeeStatus | The user status.
-val activationStatus : EmployeeActivationStatus =  // EmployeeActivationStatus | The user activation status.
-val excludeShared : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to exclude the user sharing settings or not.
-val includeShared : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to include the user sharing settings or not.
-val invitedByMe : kotlin.Boolean = true // kotlin.Boolean | Specifies whether the user was invited by the current user or not.
-val inviterId : java.util.UUID = 75a5f745-f697-4418-b38d-0fe0d277e258 // java.util.UUID | The inviter ID.
-val area : Area =  // Area | The user area.
-val employeeTypes : kotlin.collections.List<EmployeeType> =  // kotlin.collections.List<EmployeeType> | The list of user types.
-val count : kotlin.Int = 1234 // kotlin.Int | The maximum number of users to be retrieved in the request.
-val startIndex : kotlin.Int = 1234 // kotlin.Int | The zero-based index of the first record to retrieve in a paged query.
-val filterSeparator : kotlin.String = some text // kotlin.String | The character or string used to separate multiple filter values in a filtering query.
-val filterValue : kotlin.String = some text // kotlin.String | The filter text value used for searching or filtering user results.
+val id : kotlin.Int = 56 // kotlin.Int | The user ID.
+val employeeStatus : EmployeeStatus = 1 // EmployeeStatus | The user status.
+val activationStatus : EmployeeActivationStatus = 1 // EmployeeActivationStatus | The user activation status.
+val excludeShared : kotlin.Boolean = false // kotlin.Boolean | Specifies whether to exclude the user sharing settings or not.
+val includeShared : kotlin.Boolean = false // kotlin.Boolean | Specifies whether to include the user sharing settings or not.
+val invitedByMe : kotlin.Boolean = false // kotlin.Boolean | Specifies whether the user was invited by the current user or not.
+val inviterId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The inviter ID.
+val area : Area = 0 // Area | The user area.
+val employeeTypes : kotlin.collections.List<EmployeeType> = [1,2] // kotlin.collections.List<EmployeeType> | The list of user types.
+val count : kotlin.Int = 25 // kotlin.Int | The maximum number of users to be retrieved in the request.
+val startIndex : kotlin.Int = 0 // kotlin.Int | The zero-based index of the first record to retrieve in a paged query.
+val filterSeparator : kotlin.String = , // kotlin.String | The character or string used to separate multiple filter values in a filtering query.
+val filterValue : kotlin.String = John // kotlin.String | The filter text value used for searching or filtering user results.
 
 val result : EmployeeFullArrayWrapper = webService.getUsersWithFoldersShared(id, employeeStatus, activationStatus, excludeShared, includeShared, invitedByMe, inviterId, area, employeeTypes, count, startIndex, filterSeparator, filterValue)
 ```
@@ -557,19 +557,19 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SearchApi::class.java)
-val id : kotlin.Int = 1 // kotlin.Int | The user ID.
-val employeeStatus : EmployeeStatus =  // EmployeeStatus | The user status.
-val activationStatus : EmployeeActivationStatus =  // EmployeeActivationStatus | The user activation status.
-val excludeShared : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to exclude the user sharing settings or not.
-val includeShared : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to include the user sharing settings or not.
-val invitedByMe : kotlin.Boolean = true // kotlin.Boolean | Specifies whether the user was invited by the current user or not.
-val inviterId : java.util.UUID = 75a5f745-f697-4418-b38d-0fe0d277e258 // java.util.UUID | The inviter ID.
-val area : Area =  // Area | The user area.
-val employeeTypes : kotlin.collections.List<EmployeeType> =  // kotlin.collections.List<EmployeeType> | The list of user types.
-val count : kotlin.Int = 1234 // kotlin.Int | The maximum number of users to be retrieved in the request.
-val startIndex : kotlin.Int = 1234 // kotlin.Int | The zero-based index of the first record to retrieve in a paged query.
-val filterSeparator : kotlin.String = some text // kotlin.String | The character or string used to separate multiple filter values in a filtering query.
-val filterValue : kotlin.String = some text // kotlin.String | The filter text value used for searching or filtering user results.
+val id : kotlin.Int = 56 // kotlin.Int | The user ID.
+val employeeStatus : EmployeeStatus = 1 // EmployeeStatus | The user status.
+val activationStatus : EmployeeActivationStatus = 1 // EmployeeActivationStatus | The user activation status.
+val excludeShared : kotlin.Boolean = false // kotlin.Boolean | Specifies whether to exclude the user sharing settings or not.
+val includeShared : kotlin.Boolean = false // kotlin.Boolean | Specifies whether to include the user sharing settings or not.
+val invitedByMe : kotlin.Boolean = false // kotlin.Boolean | Specifies whether the user was invited by the current user or not.
+val inviterId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The inviter ID.
+val area : Area = 0 // Area | The user area.
+val employeeTypes : kotlin.collections.List<EmployeeType> = [1,2] // kotlin.collections.List<EmployeeType> | The list of user types.
+val count : kotlin.Int = 25 // kotlin.Int | The maximum number of users to be retrieved in the request.
+val startIndex : kotlin.Int = 0 // kotlin.Int | The zero-based index of the first record to retrieve in a paged query.
+val filterSeparator : kotlin.String = , // kotlin.String | The character or string used to separate multiple filter values in a filtering query.
+val filterValue : kotlin.String = John // kotlin.String | The filter text value used for searching or filtering user results.
 
 val result : EmployeeFullArrayWrapper = webService.getUsersWithRoomShared(id, employeeStatus, activationStatus, excludeShared, includeShared, invitedByMe, inviterId, area, employeeTypes, count, startIndex, filterSeparator, filterValue)
 ```
@@ -635,26 +635,26 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SearchApi::class.java)
-val employeeStatus : EmployeeStatus =  // EmployeeStatus | The user status.
-val groupId : java.util.UUID = 75a5f745-f697-4418-b38d-0fe0d277e258 // java.util.UUID | The group ID.
-val activationStatus : EmployeeActivationStatus =  // EmployeeActivationStatus | The user activation status.
-val employeeType : EmployeeType =  // EmployeeType | The user type.
-val employeeTypes : kotlin.collections.List<kotlin.Int> =  // kotlin.collections.List<kotlin.Int> | The list of user types.
-val isAdministrator : kotlin.Boolean = true // kotlin.Boolean | Specifies if the user is an administrator or not.
-val payments : Payments =  // Payments | The user payment status.
-val accountLoginType : AccountLoginType =  // AccountLoginType | The account login type.
-val quotaFilter : QuotaFilter =  // QuotaFilter | The quota filter (All - 0, Default - 1, Custom - 2).
-val withoutGroup : kotlin.Boolean = true // kotlin.Boolean | Specifies whether the user should be a member of a group or not.
-val excludeGroup : kotlin.Boolean = true // kotlin.Boolean | Specifies whether the user should be a member of the group with the specified ID.
-val invitedByMe : kotlin.Boolean = true // kotlin.Boolean | Specifies whether the user is invited by the current user or not.
-val inviterId : java.util.UUID = 75a5f745-f697-4418-b38d-0fe0d277e258 // java.util.UUID | The inviter ID.
-val area : Area =  // Area | The filter area.
-val count : kotlin.Int = 1234 // kotlin.Int | The maximum number of items to be retrieved in the response.
-val startIndex : kotlin.Int = 1234 // kotlin.Int | The zero-based index of the first item to be retrieved in a filtered result set.
-val sortBy : kotlin.String = some text // kotlin.String | Specifies the property or field name by which the results should be sorted.
-val sortOrder : SortOrder =  // SortOrder | The order in which the results are sorted.
-val filterSeparator : kotlin.String = some text // kotlin.String | Represents the separator used to split filter criteria in query parameters.
-val filterValue : kotlin.String = some text // kotlin.String | The search text used to filter results based on user input.
+val employeeStatus : EmployeeStatus = 1 // EmployeeStatus | The user status.
+val groupId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The group ID.
+val activationStatus : EmployeeActivationStatus = 1 // EmployeeActivationStatus | The user activation status.
+val employeeType : EmployeeType = 1 // EmployeeType | The user type.
+val employeeTypes : kotlin.collections.List<kotlin.Int> = [1,2] // kotlin.collections.List<kotlin.Int> | The list of user types.
+val isAdministrator : kotlin.Boolean = false // kotlin.Boolean | Specifies if the user is an administrator or not.
+val payments : Payments = 0 // Payments | The user payment status.
+val accountLoginType : AccountLoginType = 0 // AccountLoginType | The account login type.
+val quotaFilter : QuotaFilter = 0 // QuotaFilter | The quota filter (All - 0, Default - 1, Custom - 2).
+val withoutGroup : kotlin.Boolean = false // kotlin.Boolean | Specifies whether the user should be a member of a group or not.
+val excludeGroup : kotlin.Boolean = false // kotlin.Boolean | Specifies whether the user should be a member of the group with the specified ID.
+val invitedByMe : kotlin.Boolean = false // kotlin.Boolean | Specifies whether the user is invited by the current user or not.
+val inviterId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The inviter ID.
+val area : Area = 0 // Area | The filter area.
+val count : kotlin.Int = 25 // kotlin.Int | The maximum number of items to be retrieved in the response.
+val startIndex : kotlin.Int = 0 // kotlin.Int | The zero-based index of the first item to be retrieved in a filtered result set.
+val sortBy : kotlin.String = displayName // kotlin.String | Specifies the property or field name by which the results should be sorted.
+val sortOrder : SortOrder = 0 // SortOrder | The order in which the results are sorted.
+val filterSeparator : kotlin.String = , // kotlin.String | Represents the separator used to split filter criteria in query parameters.
+val filterValue : kotlin.String = John // kotlin.String | The search text used to filter results based on user input.
 
 val result : EmployeeFullArrayWrapper = webService.searchUsersByExtendedFilter(employeeStatus, groupId, activationStatus, employeeType, employeeTypes, isAdministrator, payments, accountLoginType, quotaFilter, withoutGroup, excludeGroup, invitedByMe, inviterId, area, count, startIndex, sortBy, sortOrder, filterSeparator, filterValue)
 ```
@@ -701,7 +701,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SearchApi::class.java)
-val query : kotlin.String = some text // kotlin.String | The search query.
+val query : kotlin.String = John // kotlin.String | The search query.
 
 val result : EmployeeArrayWrapper = webService.searchUsersByQuery(query)
 ```
@@ -751,10 +751,10 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SearchApi::class.java)
-val status : EmployeeStatus =  // EmployeeStatus | The user status.
-val query : kotlin.String = some text // kotlin.String | The advanced search query.
-val filterBy : kotlin.String = some text // kotlin.String | Specifies the criteria used to filter search results in advanced queries.
-val filterValue : kotlin.String = some text // kotlin.String | The value used to filter the search query.
+val status : EmployeeStatus = 1 // EmployeeStatus | The user status.
+val query : kotlin.String = John // kotlin.String | The advanced search query.
+val filterBy : kotlin.String = displayName // kotlin.String | Specifies the criteria used to filter search results in advanced queries.
+val filterValue : kotlin.String = John // kotlin.String | The value used to filter the search query.
 
 val result : EmployeeFullArrayWrapper = webService.searchUsersByStatus(status, query, filterBy, filterValue)
 ```

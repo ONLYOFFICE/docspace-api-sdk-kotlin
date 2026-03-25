@@ -40,7 +40,6 @@ import onlyoffice.docspace.api.sdk.models.FileShareWrapper
 import onlyoffice.docspace.api.sdk.models.FolderContentIntegerWrapper
 import onlyoffice.docspace.api.sdk.models.FolderIntegerWrapper
 import onlyoffice.docspace.api.sdk.models.FolderStringWrapper
-import onlyoffice.docspace.api.sdk.models.KeyValuePairStringStringValues
 import onlyoffice.docspace.api.sdk.models.LinkType
 import onlyoffice.docspace.api.sdk.models.LogoRequest
 import onlyoffice.docspace.api.sdk.models.NewItemsFileEntryBaseArrayWrapper
@@ -66,6 +65,8 @@ import onlyoffice.docspace.api.sdk.models.UpdateRoomRequest
 import onlyoffice.docspace.api.sdk.models.UpdateTagRequestDto
 import onlyoffice.docspace.api.sdk.models.UploadResultWrapper
 import onlyoffice.docspace.api.sdk.models.UserInvitation
+
+import okhttp3.MultipartBody
 
 interface RoomsApi {
     /**
@@ -581,11 +582,12 @@ interface RoomsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/has-tag-links/
      *
      *
-     * @param tagName 
+     * @param tagName2 
+     * @param tagName Represents the name of a tag (optional)
      * @return [Call]<[BooleanWrapper]>
      */
     @GET("api/2.0/files/tags/{tagName}/haslinks")
-    fun hasTagLinks(@Path("tagName") tagName: kotlin.String): Call<BooleanWrapper>
+    fun hasTagLinks(@Path("tagName") tagName2: kotlin.String, @Query("tagName") tagName: kotlin.String? = null): Call<BooleanWrapper>
 
     /**
      * PUT api/2.0/files/rooms/{id}/pin
@@ -822,11 +824,11 @@ interface RoomsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-room-logo/
      *
      *
-     * @param formCollection The image data. (optional)
+     * @param file The image data. (optional)
      * @return [Call]<[UploadResultWrapper]>
      */
     @Multipart
     @POST("api/2.0/files/logos")
-    fun uploadRoomLogo(@Part("FormCollection") formCollection: kotlin.collections.List<KeyValuePairStringStringValues>? = null): Call<UploadResultWrapper>
+    fun uploadRoomLogo(@Part file: MultipartBody.Part? = null): Call<UploadResultWrapper>
 
 }

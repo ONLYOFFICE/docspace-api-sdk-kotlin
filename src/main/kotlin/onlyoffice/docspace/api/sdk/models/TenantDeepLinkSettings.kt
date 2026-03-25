@@ -25,7 +25,7 @@ import com.squareup.moshi.JsonClass
  * The deep link settings.
  *
  * @param handlingMode 
- * @param lastModified 
+ * @param lastModified The timestamp indicating when the settings were last modified.
  */
 
 
@@ -34,6 +34,7 @@ data class TenantDeepLinkSettings (
     @Json(name = "handlingMode")
     val handlingMode: DeepLinkHandlingMode? = null,
 
+    /* The timestamp indicating when the settings were last modified. */
     @Json(name = "lastModified")
     val lastModified: java.time.OffsetDateTime? = null
 

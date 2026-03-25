@@ -24,6 +24,7 @@ import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
 import onlyoffice.docspace.api.sdk.models.AuthRequestsDto
+import onlyoffice.docspace.api.sdk.models.AuthWithCodeRequestsDto
 import onlyoffice.docspace.api.sdk.models.AuthenticationTokenWrapper
 import onlyoffice.docspace.api.sdk.models.BooleanWrapper
 import onlyoffice.docspace.api.sdk.models.ConfirmWrapper
@@ -69,11 +70,11 @@ interface AuthenticationApi {
      *
      *
      * @param code 
-     * @param authRequestsDto  (optional)
+     * @param authWithCodeRequestsDto  (optional)
      * @return [Call]<[AuthenticationTokenWrapper]>
      */
     @POST("api/2.0/authentication/{code}")
-    fun authenticateMeFromBodyWithCode(@Path("code") code: kotlin.String, @Body authRequestsDto: AuthRequestsDto? = null): Call<AuthenticationTokenWrapper>
+    fun authenticateMeFromBodyWithCode(@Path("code") code: kotlin.String, @Body authWithCodeRequestsDto: AuthWithCodeRequestsDto? = null): Call<AuthenticationTokenWrapper>
 
     /**
      * POST api/2.0/authentication/confirm

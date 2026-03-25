@@ -26,7 +26,7 @@ import com.squareup.moshi.JsonClass
  * @param enableQuota Specifies if the tenant quota is enabled or not.
  * @param quota The tenant quota.
  * @param lastRecalculateDate The date of the last tenant quota recalculation.
- * @param lastModified 
+ * @param lastModified The timestamp indicating when the settings were last modified.
  */
 
 
@@ -44,6 +44,7 @@ data class TenantQuotaSettings (
     @Json(name = "lastRecalculateDate")
     val lastRecalculateDate: java.time.OffsetDateTime? = null,
 
+    /* The timestamp indicating when the settings were last modified. */
     @Json(name = "lastModified")
     val lastModified: java.time.OffsetDateTime? = null
 

@@ -27,8 +27,8 @@ import com.squareup.moshi.JsonClass
  * The user information.
  *
  * @param id The user ID.
- * @param firstName The user first name.
- * @param lastName The user last name.
+ * @param firstName The user's first name.
+ * @param lastName The user's last name.
  * @param userName The user username.
  * @param birthDate The user birthday.
  * @param sex The user sex (male or female).
@@ -49,14 +49,14 @@ import com.squareup.moshi.JsonClass
  * @param cultureName The user culture code.
  * @param mobilePhone The user mobile phone.
  * @param mobilePhoneActivationStatus 
- * @param sid The LDAP user identificator.
+ * @param sid The LDAP user identifier.
  * @param ldapQouta The LDAP user quota attribute.
- * @param ssoNameId The SSO SAML user identificator.
- * @param ssoSessionId The SSO SAML user session identificator.
+ * @param ssoNameId The SSO SAML user identifier.
+ * @param ssoSessionId The SSO SAML user session identifier.
  * @param createDate The date and time when the user account was created.
  * @param createdBy The ID of the user who created the current user account.
  * @param spam Specifies if tips, updates and offers are allowed to be sent to the user or not.
- * @param checkActivation 
+ * @param checkActivation Indicates whether the activation status of the employee or recipient is unchecked or inactive.  Depending on the context, this property evaluates the activation or eligibility status accordingly.
  */
 
 
@@ -66,11 +66,11 @@ data class UserInfo (
     @Json(name = "id")
     val id: java.util.UUID? = null,
 
-    /* The user first name. */
+    /* The user's first name. */
     @Json(name = "firstName")
     val firstName: kotlin.String? = null,
 
-    /* The user last name. */
+    /* The user's last name. */
     @Json(name = "lastName")
     val lastName: kotlin.String? = null,
 
@@ -151,7 +151,7 @@ data class UserInfo (
     @Json(name = "mobilePhoneActivationStatus")
     val mobilePhoneActivationStatus: MobilePhoneActivationStatus? = null,
 
-    /* The LDAP user identificator. */
+    /* The LDAP user identifier. */
     @Json(name = "sid")
     val sid: kotlin.String? = null,
 
@@ -159,11 +159,11 @@ data class UserInfo (
     @Json(name = "ldapQouta")
     val ldapQouta: kotlin.Long? = null,
 
-    /* The SSO SAML user identificator. */
+    /* The SSO SAML user identifier. */
     @Json(name = "ssoNameId")
     val ssoNameId: kotlin.String? = null,
 
-    /* The SSO SAML user session identificator. */
+    /* The SSO SAML user session identifier. */
     @Json(name = "ssoSessionId")
     val ssoSessionId: kotlin.String? = null,
 
@@ -179,6 +179,7 @@ data class UserInfo (
     @Json(name = "spam")
     val spam: kotlin.Boolean? = null,
 
+    /* Indicates whether the activation status of the employee or recipient is unchecked or inactive.  Depending on the context, this property evaluates the activation or eligibility status accordingly. */
     @Json(name = "checkActivation")
     val checkActivation: kotlin.Boolean? = null
 

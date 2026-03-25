@@ -64,7 +64,7 @@ enum class EmployeeType(val value: kotlin.String) {
          */
         fun decode(data: kotlin.Any?): EmployeeType? = data?.let {
           val normalizedData = "$it".lowercase()
-          entries.firstOrNull { value ->
+          values().firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()
           }
         }

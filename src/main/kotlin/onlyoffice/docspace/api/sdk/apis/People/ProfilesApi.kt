@@ -23,6 +23,7 @@ import retrofit2.Call
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
+import onlyoffice.docspace.api.sdk.models.BooleanWrapper
 import onlyoffice.docspace.api.sdk.models.Culture
 import onlyoffice.docspace.api.sdk.models.EmployeeArrayWrapper
 import onlyoffice.docspace.api.sdk.models.EmployeeFullArrayWrapper
@@ -53,6 +54,27 @@ interface ProfilesApi {
      */
     @POST("api/2.0/people")
     fun addMember(@Body memberRequestDto: MemberRequestDto? = null): Call<EmployeeFullWrapper>
+
+    /**
+     * GET api/2.0/people/exists
+     * Check if a user exists by email
+     * Returns a boolean indicating whether a user with the specified email exists on the portal.
+     * Responses:
+     *  - 200: Boolean result
+     *  - 400: Incorrect email
+     *  - 401: Unauthorized
+     *
+     * REST API Reference for checkUserExistsByEmail Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/check-user-exists-by-email/
+     *
+     *
+     * @param email The user email address. (optional)
+     * @param encemail The user encrypted email address. (optional)
+     * @param culture Culture (optional)
+     * @return [Call]<[BooleanWrapper]>
+     */
+    @GET("api/2.0/people/exists")
+    fun checkUserExistsByEmail(@Query("email") email: kotlin.String? = null, @Query("encemail") encemail: kotlin.String? = null, @Query("culture") culture: kotlin.String? = null): Call<BooleanWrapper>
 
     /**
      * DELETE api/2.0/people/{userid}
@@ -140,6 +162,8 @@ interface ProfilesApi {
      * Returns the detailed information about a profile of the user with the email specified in the request.
      * Responses:
      *  - 200: Detailed profile information
+     *  - 400: Incorrect email
+     *  - 403: No permissions to perform this action
      *  - 404: User not found
      *  - 401: Unauthorized
      *

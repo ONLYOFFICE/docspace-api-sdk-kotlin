@@ -190,7 +190,7 @@ interface BackupApi {
     /**
      * GET api/2.0/backup/getbackupscount
      * Get the number of backups
-     * Returns the number of backups for a period of time. The default is one month.
+     * Returns the number of backups for a period of time. The default is the current calendar month.
      * Responses:
      *  - 200: Number of backups
      *  - 400: From date must be less than to date

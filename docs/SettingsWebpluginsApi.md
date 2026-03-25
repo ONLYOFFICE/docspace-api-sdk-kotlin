@@ -48,7 +48,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(WebpluginsApi::class.java)
-val system : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to load the system plugins or not.
+val system : kotlin.Boolean = false // kotlin.Boolean | Specifies whether to load the system plugins or not.
 
 val result : WebPluginWrapper = webService.addWebPluginFromFile(system)
 ```
@@ -95,7 +95,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(WebpluginsApi::class.java)
-val name : kotlin.String = John Doe // kotlin.String | The web plugin name.
+val name : kotlin.String = example-plugin // kotlin.String | The web plugin name.
 
 webService.deleteWebPlugin(name)
 ```
@@ -142,7 +142,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(WebpluginsApi::class.java)
-val name : kotlin.String = John Doe // kotlin.String | The web plugin name.
+val name : kotlin.String = example-plugin // kotlin.String | The web plugin name.
 
 val result : WebPluginWrapper = webService.getWebPlugin(name)
 ```
@@ -237,7 +237,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(WebpluginsApi::class.java)
-val name : kotlin.String = John Doe // kotlin.String | The web plugin name.
+val name : kotlin.String = example-plugin // kotlin.String | The web plugin name.
 val webPluginRequests : WebPluginRequests =  // WebPluginRequests | The configuration settings for the web plugin instance.
 
 webService.updateWebPlugin(name, webPluginRequests)

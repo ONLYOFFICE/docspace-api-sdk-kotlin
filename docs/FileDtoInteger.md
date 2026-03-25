@@ -63,6 +63,7 @@
 | **customFilterEnabled** | **kotlin.Boolean** | Specifies if the Custom Filter editing mode is enabled for a file or not. |  [optional] |
 | **customFilterEnabledBy** | **kotlin.String** | The name of the user who enabled a Custom Filter editing mode for a file. |  [optional] |
 | **startFilling** | **kotlin.Boolean** | Specifies if the filling has started or not. |  [optional] |
+| **isFillingPreparing** | **kotlin.Boolean** | Specifies if the form filling has started but the file is still being saved by the document editor. Filling and editing are not allowed. |  [optional] |
 | **inProcessFolderId** | **kotlin.Int** | The InProcess folder ID of the file. |  [optional] |
 | **inProcessFolderTitle** | **kotlin.String** | The InProcess folder title of the file. |  [optional] |
 | **draftLocation** | [**DraftLocationInteger**](DraftLocationInteger.md) |  |  [optional] |

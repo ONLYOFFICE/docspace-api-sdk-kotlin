@@ -40,10 +40,10 @@ This method allows users to cancel an ongoing upload session identified by the s
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/abort-upload-session/).
 
 ### Parameters
-| **sessionId** | **kotlin.String**|  | |
+| **sessionId** | **kotlin.String**| The session ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **folderId** | **kotlin.Int**|  | |
+| **folderId** | **kotlin.Int**| The folder ID. | |
 
 ### Return type
 
@@ -68,8 +68,8 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(OperationsApi::class.java)
-val sessionId : kotlin.String = some text // kotlin.String | 
-val folderId : kotlin.Int = 1 // kotlin.Int | 
+val sessionId : kotlin.String = session-123-abc // kotlin.String | The session ID.
+val folderId : kotlin.Int = 1 // kotlin.Int | The folder ID.
 
 webService.abortUploadSession(sessionId, folderId)
 ```
@@ -206,7 +206,7 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(OperationsApi::class.java)
 val fileId : kotlin.Int = 1 // kotlin.Int | The file ID to check conversion status.
-val start : kotlin.Boolean = true // kotlin.Boolean | Specifies whether a conversion operation is started or not.
+val start : kotlin.Boolean = false // kotlin.Boolean | Specifies whether a conversion operation is started or not.
 
 val result : ConversationResultArrayWrapper = webService.checkConversionStatus(fileId, start)
 ```
@@ -680,7 +680,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(OperationsApi::class.java)
-val single : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to return only the current operation
+val single : kotlin.Boolean = false // kotlin.Boolean | Specifies whether to return only the current operation
 
 val result : FileOperationArrayWrapper = webService.emptyTrash(single)
 ```
@@ -700,10 +700,10 @@ Finalizes the upload session by processing the uploaded file chunks and marking 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/finalize-session/).
 
 ### Parameters
-| **folderId** | **kotlin.Int**|  | |
+| **folderId** | **kotlin.Int**| The folder ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **sessionId** | **kotlin.String**|  | |
+| **sessionId** | **kotlin.String**| The session ID. | |
 
 ### Return type
 
@@ -728,8 +728,8 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(OperationsApi::class.java)
-val folderId : kotlin.Int = 1 // kotlin.Int | 
-val sessionId : kotlin.String = some text // kotlin.String | 
+val folderId : kotlin.Int = 1 // kotlin.Int | The folder ID.
+val sessionId : kotlin.String = doc_key_123 // kotlin.String | The session ID.
 
 val result : UploadSessionResponseIntegerWrapper = webService.finalizeSession(folderId, sessionId)
 ```
@@ -770,7 +770,7 @@ No authorization required
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(OperationsApi::class.java)
-val id : kotlin.String = 1 // kotlin.String | The ID of the file operation.
+val id : kotlin.String = operation-123-abc // kotlin.String | The ID of the file operation.
 
 val result : FileOperationArrayWrapper = webService.getOperationStatuses(id)
 ```
@@ -812,8 +812,8 @@ No authorization required
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(OperationsApi::class.java)
-val operationType : FileOperationType =  // FileOperationType | Specifies the type of file operation to be retrieved.
-val id : kotlin.String = 1 // kotlin.String | The ID of the file operation.
+val operationType : FileOperationType = 0 // FileOperationType | Specifies the type of file operation to be retrieved.
+val id : kotlin.String = operation-123-abc // kotlin.String | The ID of the file operation.
 
 val result : FileOperationArrayWrapper = webService.getOperationStatusesByType(operationType, id)
 ```
@@ -997,7 +997,7 @@ No authorization required
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(OperationsApi::class.java)
-val id : kotlin.String = 1 // kotlin.String | The operation unique identifier.
+val id : kotlin.String = some-operation-id // kotlin.String | The operation unique identifier.
 
 val result : FileOperationArrayWrapper = webService.terminateTasks(id)
 ```
@@ -1066,12 +1066,12 @@ This method allows the caller to upload a specific chunk of a file to an ongoing
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-async-session/).
 
 ### Parameters
-| **folderId** | **kotlin.Int**|  | |
-| **sessionId** | **kotlin.String**|  | |
-| **chunkNumber** | **kotlin.Int**|  | [optional] |
+| **folderId** | **kotlin.Int**| The folder ID. | |
+| **sessionId** | **kotlin.String**| The upload session ID. | |
+| **chunkNumber** | **kotlin.Int**| The chunk number. | [optional] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **file** | **java.io.File**|  | [optional] |
+| **file** | **java.io.File**| The file chunk to be uploaded as part of the multipart/form-data request.  This property represents the uploaded file chunk content from the HTTP request form for chunked upload operations.  The file chunk is accessed via the IFormFile interface which provides access to the chunk content and length. | [optional] |
 
 ### Return type
 
@@ -1096,10 +1096,10 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(OperationsApi::class.java)
-val folderId : kotlin.Int = 1 // kotlin.Int | 
-val sessionId : kotlin.String = some text // kotlin.String | 
-val chunkNumber : kotlin.Int = 1234 // kotlin.Int | 
-val file : java.io.File = BINARY_DATA_HERE // java.io.File | 
+val folderId : kotlin.Int = 1 // kotlin.Int | The folder ID.
+val sessionId : kotlin.String = session_abc123 // kotlin.String | The upload session ID.
+val chunkNumber : kotlin.Int = 1 // kotlin.Int | The chunk number.
+val file : java.io.File = BINARY_DATA_HERE // java.io.File | The file chunk to be uploaded as part of the multipart/form-data request.  This property represents the uploaded file chunk content from the HTTP request form for chunked upload operations.  The file chunk is accessed via the IFormFile interface which provides access to the chunk content and length.
 
 val result : ChunkedUploadSessionResponseIntegerWrapper = webService.uploadAsyncSession(folderId, sessionId, chunkNumber, file)
 ```
@@ -1119,11 +1119,11 @@ This method allows continuing an interrupted or partially completed file upload 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-session/).
 
 ### Parameters
-| **folderId** | **kotlin.Int**|  | |
-| **sessionId** | **kotlin.String**|  | |
+| **folderId** | **kotlin.Int**| The folder ID. | |
+| **sessionId** | **kotlin.String**| The upload session ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **file** | **java.io.File**|  | [optional] |
+| **file** | **java.io.File**| The file to be uploaded as part of the multipart/form-data request.  This property represents the uploaded file content from the HTTP request form.  The file is accessed via the IFormFile interface which provides access to the file name, content type, length, and stream. | [optional] |
 
 ### Return type
 
@@ -1148,9 +1148,9 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(OperationsApi::class.java)
-val folderId : kotlin.Int = 1 // kotlin.Int | 
-val sessionId : kotlin.String = some text // kotlin.String | 
-val file : java.io.File = BINARY_DATA_HERE // java.io.File | 
+val folderId : kotlin.Int = 1 // kotlin.Int | The folder ID.
+val sessionId : kotlin.String = session_abc123 // kotlin.String | The upload session ID.
+val file : java.io.File = BINARY_DATA_HERE // java.io.File | The file to be uploaded as part of the multipart/form-data request.  This property represents the uploaded file content from the HTTP request form.  The file is accessed via the IFormFile interface which provides access to the file name, content type, length, and stream.
 
 val result : UploadSessionResponseIntegerWrapper = webService.uploadSession(folderId, sessionId, file)
 ```

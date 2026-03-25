@@ -25,7 +25,7 @@ import com.squareup.moshi.JsonClass
  *
  * @param loginHistoryLifeTime The login history lifetime.
  * @param auditTrailLifeTime The audit trail lifetime.
- * @param lastModified 
+ * @param lastModified The timestamp indicating when the settings were last modified.
  */
 
 
@@ -39,6 +39,7 @@ data class TenantAuditSettings (
     @Json(name = "auditTrailLifeTime")
     val auditTrailLifeTime: kotlin.Int? = null,
 
+    /* The timestamp indicating when the settings were last modified. */
     @Json(name = "lastModified")
     val lastModified: java.time.OffsetDateTime? = null
 

@@ -10,7 +10,6 @@
 | **provider** | **kotlin.String** | The type of authentication provider (e.g., internal, Google, Azure). |  [optional] |
 | **accessToken** | **kotlin.String** | The access token used for authentication with external providers. |  [optional] |
 | **serializedProfile** | **kotlin.String** | The serialized user profile data, if applicable. |  [optional] |
-| **code** | **kotlin.String** | The code for two-factor authentication. |  [optional] |
 | **codeOAuth** | **kotlin.String** | The authorization code used for obtaining OAuth tokens. |  [optional] |
 | **session** | **kotlin.Boolean** | Specifies whether the authentication is session-based. |  [optional] |
 | **confirmData** | [**ConfirmData**](ConfirmData.md) |  |  [optional] |

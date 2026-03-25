@@ -468,7 +468,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
-val id : kotlin.String = 1 // kotlin.String | The ID of the folder in the third-party storage in which the contents of the room will be stored.
+val id : kotlin.String = folder-123-abc // kotlin.String | The ID of the folder in the third-party storage in which the contents of the room will be stored.
 val createThirdPartyRoom : CreateThirdPartyRoom =  // CreateThirdPartyRoom | The third-party room information.
 
 val result : FolderStringWrapper = webService.createRoomThirdParty(id, createThirdPartyRoom)
@@ -564,7 +564,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
-val id : kotlin.Int = 1 // kotlin.Int | The room ID.
+val id : kotlin.Int = 10 // kotlin.Int | The room ID.
 val deleteRoomRequest : DeleteRoomRequest =  // DeleteRoomRequest | The parameters for deleting a room.
 
 val result : FileOperationWrapper = webService.deleteRoom(id, deleteRoomRequest)
@@ -977,7 +977,7 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
 val id : kotlin.Int = 1 // kotlin.Int | The room ID.
-val type : LinkType =  // LinkType | The link type.
+val type : LinkType = 1 // LinkType | The link type.
 
 val result : FileShareArrayWrapper = webService.getRoomLinks(id, type)
 ```
@@ -1029,10 +1029,10 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
 val id : kotlin.Int = 1 // kotlin.Int | The room ID.
-val filterType : ShareFilterType =  // ShareFilterType | The filter type of the access rights.
-val count : kotlin.Int = 1234 // kotlin.Int | The number of items to be retrieved or processed.
-val startIndex : kotlin.Int = 1234 // kotlin.Int | The starting index of the items to retrieve in a paginated request.
-val filterValue : kotlin.String = some text // kotlin.String | The text filter value used for filtering room security information.
+val filterType : ShareFilterType = 1 // ShareFilterType | The filter type of the access rights.
+val count : kotlin.Int = 25 // kotlin.Int | The number of items to be retrieved or processed.
+val startIndex : kotlin.Int = 0 // kotlin.Int | The starting index of the items to retrieve in a paginated request.
+val filterValue : kotlin.String = Sample filter // kotlin.String | The text filter value used for filtering room security information.
 
 val result : FileShareArrayWrapper = webService.getRoomSecurityInfo(id, filterType, count, startIndex, filterValue)
 ```
@@ -1081,9 +1081,9 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
-val count : kotlin.Int = 1234 // kotlin.Int | Gets or sets the number of tag results to retrieve.  This property specifies the maximum amount of tag data to be included in the result set.
-val startIndex : kotlin.Int = 1234 // kotlin.Int | Represents the starting index from which the tags' information will be retrieved.  This property is used to define the offset for pagination when retrieving a list of tags. It determines  the point in the data set from which the retrieval begins.
-val filterValue : kotlin.String = some text // kotlin.String | Gets or sets the text value used for searching tags.  This property is typically used as a filter value when retrieving tag information.
+val count : kotlin.Int = 25 // kotlin.Int | Gets or sets the number of tag results to retrieve.  This property specifies the maximum amount of tag data to be included in the result set.
+val startIndex : kotlin.Int = 0 // kotlin.Int | Represents the starting index from which the tags' information will be retrieved.  This property is used to define the offset for pagination when retrieving a list of tags. It determines  the point in the data set from which the retrieval begins.
+val filterValue : kotlin.String = My Document // kotlin.String | Gets or sets the text value used for searching tags.  This property is typically used as a filter value when retrieving tag information.
 
 val result : ObjectArrayWrapper = webService.getRoomTagsInfo(count, startIndex, filterValue)
 ```
@@ -1189,22 +1189,22 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
-val type : kotlin.collections.List<RoomType> =  // kotlin.collections.List<RoomType> | The filter by room type.
-val subjectId : kotlin.String = some text // kotlin.String | The filter by user ID.
-val searchArea : SearchArea =  // SearchArea | The room search area (Active, Archive, Any, Recent by links).
-val withoutTags : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to search by tags or not.
-val tags : kotlin.String = some text // kotlin.String | The tags in the serialized format.
-val excludeSubject : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to exclude search by user or group ID.
-val provider : ProviderFilter =  // ProviderFilter | The filter by provider name (None, Box, DropBox, GoogleDrive, kDrive, OneDrive, SharePoint, WebDav, Yandex, Storage).
-val subjectFilter : SubjectFilter =  // SubjectFilter | The filter by user (Owner - 0, Member - 1).
-val quotaFilter : QuotaFilter =  // QuotaFilter | The filter by quota (All - 0, Default - 1, Custom - 2).
-val storageFilter : StorageFilter =  // StorageFilter | The filter by storage (None - 0, Internal - 1, ThirdParty - 2).
-val count : kotlin.Int = 1234 // kotlin.Int | Specifies the maximum number of items to retrieve.
-val startIndex : kotlin.Int = 1234 // kotlin.Int | The index from which to start retrieving the room content.
-val sortBy : kotlin.String = some text // kotlin.String | Specifies the field by which the room content should be sorted.
-val sortOrder : SortOrder =  // SortOrder | The order in which the results are sorted.
-val filterValue : kotlin.String = some text // kotlin.String | The text filter value used to refine search or query operations.
-val groupId : kotlin.Int = 1234 // kotlin.Int | The group ID
+val type : kotlin.collections.List<RoomType> = 1 // kotlin.collections.List<RoomType> | The filter by room type.
+val subjectId : kotlin.String = 00000000-0000-0000-0000-000000000000 // kotlin.String | The filter by user ID.
+val searchArea : SearchArea = 1 // SearchArea | The room search area (Active, Archive, Any, Recent by links).
+val withoutTags : kotlin.Boolean = false // kotlin.Boolean | Specifies whether to search by tags or not.
+val tags : kotlin.String = tag1 // kotlin.String | The tags in the serialized format.
+val excludeSubject : kotlin.Boolean = false // kotlin.Boolean | Specifies whether to exclude search by user or group ID.
+val provider : ProviderFilter = 1 // ProviderFilter | The filter by provider name (None, Box, DropBox, GoogleDrive, kDrive, OneDrive, SharePoint, WebDav, Yandex, Storage).
+val subjectFilter : SubjectFilter = 1 // SubjectFilter | The filter by user (Owner - 0, Member - 1).
+val quotaFilter : QuotaFilter = 1 // QuotaFilter | The filter by quota (All - 0, Default - 1, Custom - 2).
+val storageFilter : StorageFilter = 1 // StorageFilter | The filter by storage (None - 0, Internal - 1, ThirdParty - 2).
+val count : kotlin.Int = 25 // kotlin.Int | Specifies the maximum number of items to retrieve.
+val startIndex : kotlin.Int = 0 // kotlin.Int | The index from which to start retrieving the room content.
+val sortBy : kotlin.String = DateAndTime // kotlin.String | Specifies the field by which the room content should be sorted.
+val sortOrder : SortOrder = 1 // SortOrder | The order in which the results are sorted.
+val filterValue : kotlin.String = My Document // kotlin.String | The text filter value used to refine search or query operations.
+val groupId : kotlin.Int = 1 // kotlin.Int | The group ID
 
 val result : FolderContentIntegerWrapper = webService.getRoomsFolder(type, subjectId, searchArea, withoutTags, tags, excludeSubject, provider, subjectFilter, quotaFilter, storageFilter, count, startIndex, sortBy, sortOrder, filterValue, groupId)
 ```
@@ -1308,16 +1308,17 @@ val result : FileShareWrapper = webService.getRoomsPrimaryExternalLink(id)
 
 <a id="hasTagLinks"></a>
 # **hasTagLinks**
-> BooleanWrapper hasTagLinks (kotlin.String tagName)
+> BooleanWrapper hasTagLinks (kotlin.String tagName2, kotlin.String tagName)
 
 Checks if a specific custom tag has linked items.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/has-tag-links/).
 
 ### Parameters
+| **tagName2** | **kotlin.String**|  | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **tagName** | **kotlin.String**|  | |
+| **tagName** | **kotlin.String**| Represents the name of a tag | [optional] |
 
 ### Return type
 
@@ -1342,9 +1343,10 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
-val tagName : kotlin.String = tagName_example // kotlin.String | 
+val tagName2 : kotlin.String = tagName_example // kotlin.String | 
+val tagName : kotlin.String = tag1 // kotlin.String | Represents the name of a tag
 
-val result : BooleanWrapper = webService.hasTagLinks(tagName)
+val result : BooleanWrapper = webService.hasTagLinks(tagName2, tagName)
 ```
 
 ### HTTP request headers
@@ -1865,7 +1867,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
-val id : kotlin.Int = 1 // kotlin.Int | The room ID.
+val id : kotlin.Int = 56 // kotlin.Int | The room ID.
 val updateRoomRequest : UpdateRoomRequest =  // UpdateRoomRequest | The request parameters for updating a room.
 
 val result : FolderIntegerWrapper = webService.updateRoom(id, updateRoomRequest)
@@ -1926,7 +1928,7 @@ val result : StringWrapper = webService.updateRoomTag(updateTagRequestDto)
 
 <a id="uploadRoomLogo"></a>
 # **uploadRoomLogo**
-> UploadResultWrapper uploadRoomLogo (kotlin.collections.List<KeyValuePairStringStringValues> formCollection)
+> UploadResultWrapper uploadRoomLogo (java.io.File file)
 
 Uploads a temporary image to create a room logo.
 
@@ -1935,7 +1937,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **formCollection** | [**kotlin.collections.List&lt;KeyValuePairStringStringValues&gt;**](KeyValuePairStringStringValues.md)| The image data. | [optional] |
+| **file** | **java.io.File**| The image data. | [optional] |
 
 ### Return type
 
@@ -1960,9 +1962,9 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
-val formCollection : kotlin.collections.List<KeyValuePairStringStringValues> =  // kotlin.collections.List<KeyValuePairStringStringValues> | The image data.
+val file : java.io.File = BINARY_DATA_HERE // java.io.File | The image data.
 
-val result : UploadResultWrapper = webService.uploadRoomLogo(formCollection)
+val result : UploadResultWrapper = webService.uploadRoomLogo(file)
 ```
 
 ### HTTP request headers

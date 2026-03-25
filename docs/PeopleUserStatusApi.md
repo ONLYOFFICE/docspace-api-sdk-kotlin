@@ -53,14 +53,14 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(UserStatusApi::class.java)
-val status : EmployeeStatus =  // EmployeeStatus | The user status.
-val filterBy : kotlin.String = some text // kotlin.String | Specifies the criteria used to filter the profiles in the request.
-val count : kotlin.Int = 1234 // kotlin.Int | The maximum number of user profiles to retrieve.
-val startIndex : kotlin.Int = 1234 // kotlin.Int | The starting index for retrieving data in a paginated request.
-val sortBy : kotlin.String = some text // kotlin.String | Specifies the property or field name by which the results should be sorted.
-val sortOrder : SortOrder =  // SortOrder | The order in which the results are sorted.
-val filterSeparator : kotlin.String = some text // kotlin.String | Represents the separator used to split multiple filter criteria in a query string.
-val filterValue : kotlin.String = some text // kotlin.String | A string value representing additional filter criteria used in query parameters.
+val status : EmployeeStatus = 1 // EmployeeStatus | The user status.
+val filterBy : kotlin.String = displayName // kotlin.String | Specifies the criteria used to filter the profiles in the request.
+val count : kotlin.Int = 25 // kotlin.Int | The maximum number of user profiles to retrieve.
+val startIndex : kotlin.Int = 0 // kotlin.Int | The starting index for retrieving data in a paginated request.
+val sortBy : kotlin.String = displayName // kotlin.String | Specifies the property or field name by which the results should be sorted.
+val sortOrder : SortOrder = 0 // SortOrder | The order in which the results are sorted.
+val filterSeparator : kotlin.String = , // kotlin.String | Represents the separator used to split multiple filter criteria in a query string.
+val filterValue : kotlin.String = John // kotlin.String | A string value representing additional filter criteria used in query parameters.
 
 val result : EmployeeFullArrayWrapper = webService.getByStatus(status, filterBy, count, startIndex, sortBy, sortOrder, filterSeparator, filterValue)
 ```
@@ -108,7 +108,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(UserStatusApi::class.java)
-val activationstatus : EmployeeActivationStatus =  // EmployeeActivationStatus | The new user activation status.
+val activationstatus : EmployeeActivationStatus = 1 // EmployeeActivationStatus | The new user activation status.
 val updateMembersRequestDto : UpdateMembersRequestDto =  // UpdateMembersRequestDto | The request parameters for updating the user information.
 
 val result : EmployeeFullArrayWrapper = webService.updateUserActivationStatus(activationstatus, updateMembersRequestDto)
@@ -157,7 +157,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(UserStatusApi::class.java)
-val status : EmployeeStatus =  // EmployeeStatus | The new user status.
+val status : EmployeeStatus = 1 // EmployeeStatus | The new user status.
 val updateMembersRequestDto : UpdateMembersRequestDto =  // UpdateMembersRequestDto | The request parameters for updating the user information.
 
 val result : EmployeeFullArrayWrapper = webService.updateUserStatus(status, updateMembersRequestDto)

@@ -22,11 +22,11 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The backup cron parameters.
  *
  * @param period 
- * @param hour 
- * @param day 
+ * @param hour The time of the day to start the backup process.
+ * @param day The day of the week to start the backup process.
  */
 
 
@@ -35,9 +35,11 @@ data class CronParams (
     @Json(name = "period")
     val period: BackupPeriod? = null,
 
+    /* The time of the day to start the backup process. */
     @Json(name = "hour")
     val hour: kotlin.Int? = null,
 
+    /* The day of the week to start the backup process. */
     @Json(name = "day")
     val day: kotlin.Int? = null
 

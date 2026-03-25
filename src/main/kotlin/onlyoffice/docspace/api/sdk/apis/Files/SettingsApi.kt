@@ -28,6 +28,7 @@ import onlyoffice.docspace.api.sdk.models.AutoCleanupRequestDto
 import onlyoffice.docspace.api.sdk.models.BooleanWrapper
 import onlyoffice.docspace.api.sdk.models.CheckDocServiceUrlRequestDto
 import onlyoffice.docspace.api.sdk.models.DefaultTemplateSettingsRequestDto
+import onlyoffice.docspace.api.sdk.models.DefaultTemplateSettingsResetRequestDto
 import onlyoffice.docspace.api.sdk.models.DefaultTemplateSettingsWrapper
 import onlyoffice.docspace.api.sdk.models.DisplayRequestDto
 import onlyoffice.docspace.api.sdk.models.DocServiceUrlWrapper
@@ -356,10 +357,10 @@ interface SettingsApi {
      *
      *
      * @param hideConfirmConvertRequestDto  (optional)
-     * @return [Call]<[ModuleWrapper]>
+     * @return [Call]<[BooleanWrapper]>
      */
     @PUT("api/2.0/files/hideconfirmconvert")
-    fun hideConfirmConvert(@Body hideConfirmConvertRequestDto: HideConfirmConvertRequestDto? = null): Call<ModuleWrapper>
+    fun hideConfirmConvert(@Body hideConfirmConvertRequestDto: HideConfirmConvertRequestDto? = null): Call<BooleanWrapper>
 
     /**
      * PUT api/2.0/files/hideconfirmroomlifetime
@@ -415,11 +416,31 @@ interface SettingsApi {
     fun keepNewFileName(@Body settingsRequestDto: SettingsRequestDto? = null): Call<BooleanWrapper>
 
     /**
+     * DELETE api/2.0/files/settings/defaulttemplate
+     * Reset the default template setting
+     * Resets the default template setting.
+     * Responses:
+     *  - 200: New default template settings
+     *  - 403: You don't have enough permission to perform the operation
+     *  - 401: Unauthorized
+     *
+     * REST API Reference for resetDefaultTemplate Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/reset-default-template/
+     *
+     *
+     * @param defaultTemplateSettingsResetRequestDto  (optional)
+     * @return [Call]<[DefaultTemplateSettingsWrapper]>
+     */
+    @DELETE("api/2.0/files/settings/defaulttemplate")
+    fun resetDefaultTemplate(@Body defaultTemplateSettingsResetRequestDto: DefaultTemplateSettingsResetRequestDto? = null): Call<DefaultTemplateSettingsWrapper>
+
+    /**
      * PUT api/2.0/files/settings/defaulttemplate
      * Change the default template setting
      * Changes the default template setting.
      * Responses:
      *  - 200: New default template settings
+     *  - 400: Incorrect or missing file
      *  - 403: You don't have enough permission to perform the operation
      *  - 401: Unauthorized
      *
@@ -528,6 +549,7 @@ interface SettingsApi {
      * Uploads a file to use as the default template setting.
      * Responses:
      *  - 200: New default template settings
+     *  - 400: Incorrect or missing file
      *  - 403: You don't have enough permission to perform the operation
      *  - 401: Unauthorized
      *

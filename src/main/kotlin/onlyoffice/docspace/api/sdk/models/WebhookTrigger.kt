@@ -21,9 +21,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * [0 - *, 1 - user.created, 2 - user.invited, 4 - user.updated, 8 - user.deleted, 16 - group.created, 32 - group.updated, 64 - group.deleted, 128 - file.created, 256 - file.uploaded, 512 - file.updated, 1024 - file.trashed, 2048 - file.deleted, 4096 - file.restored, 8192 - file.copied, 16384 - file.moved, 32768 - folder.created, 65536 - folder.updated, 131072 - folder.trashed, 262144 - folder.deleted, 524288 - folder.restored, 1048576 - folder.copied, 2097152 - folder.moved, 4194304 - room.created, 8388608 - room.updated, 16777216 - room.archived, 33554432 - room.deleted, 67108864 - room.restored, 134217728 - room.copied]
+ * [0 - *, 1 - user.created, 2 - user.invited, 4 - user.updated, 8 - user.deleted, 16 - group.created, 32 - group.updated, 64 - group.deleted, 128 - file.created, 256 - file.uploaded, 512 - file.updated, 1024 - file.trashed, 2048 - file.deleted, 4096 - file.restored, 8192 - file.copied, 16384 - file.moved, 32768 - folder.created, 65536 - folder.updated, 131072 - folder.trashed, 262144 - folder.deleted, 524288 - folder.restored, 1048576 - folder.copied, 2097152 - folder.moved, 4194304 - room.created, 8388608 - room.updated, 16777216 - room.archived, 33554432 - room.deleted, 67108864 - room.restored, 134217728 - room.copied, 268435456 - form.submit, 536870912 - form.filled.out, 1073741824 - form.stopped]
  *
- * Values: All,UserCreated,UserInvited,UserUpdated,UserDeleted,GroupCreated,GroupUpdated,GroupDeleted,FileCreated,FileUploaded,FileUpdated,FileTrashed,FileDeleted,FileRestored,FileCopied,FileMoved,FolderCreated,FolderUpdated,FolderTrashed,FolderDeleted,FolderRestored,FolderCopied,FolderMoved,RoomCreated,RoomUpdated,RoomArchived,RoomDeleted,RoomRestored,RoomCopied
+ * Values: All,UserCreated,UserInvited,UserUpdated,UserDeleted,GroupCreated,GroupUpdated,GroupDeleted,FileCreated,FileUploaded,FileUpdated,FileTrashed,FileDeleted,FileRestored,FileCopied,FileMoved,FolderCreated,FolderUpdated,FolderTrashed,FolderDeleted,FolderRestored,FolderCopied,FolderMoved,RoomCreated,RoomUpdated,RoomArchived,RoomDeleted,RoomRestored,RoomCopied,FormSubmit,FormFilledOut,FormStopped
  */
 
 @JsonClass(generateAdapter = false)
@@ -114,7 +114,16 @@ enum class WebhookTrigger(val value: kotlin.Int) {
     RoomRestored(67108864),
 
     @Json(name = "134217728")
-    RoomCopied(134217728);
+    RoomCopied(134217728),
+
+    @Json(name = "268435456")
+    FormSubmit(268435456),
+
+    @Json(name = "536870912")
+    FormFilledOut(536870912),
+
+    @Json(name = "1073741824")
+    FormStopped(1073741824);
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use
@@ -136,7 +145,7 @@ enum class WebhookTrigger(val value: kotlin.Int) {
          */
         fun decode(data: kotlin.Any?): WebhookTrigger? = data?.let {
           val normalizedData = "$it".lowercase()
-          entries.firstOrNull { value ->
+          values().firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()
           }
         }

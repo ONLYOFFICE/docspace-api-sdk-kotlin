@@ -23,7 +23,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The chat session information.
  *
  * @param id The unique identifier of the AI chat session.
  * @param title The display title of the chat session.

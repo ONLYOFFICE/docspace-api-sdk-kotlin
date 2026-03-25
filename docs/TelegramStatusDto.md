@@ -5,7 +5,7 @@
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
 | **status** | [**RegStatus**](RegStatus.md) |  |  |
-| **username** | **kotlin.String** |  |  [optional] |
+| **username** | **kotlin.String** | The Telegram username. |  [optional] |
 
 
 

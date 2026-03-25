@@ -182,7 +182,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SettingsApi::class.java)
-val virtualPath : kotlin.String = some text // kotlin.String | The virtual path for the portal resource access.
+val virtualPath : kotlin.String = /portal/documents // kotlin.String | The virtual path for the portal resource access.
 
 val result : ObjectWrapper = webService.getPortalPath(virtualPath)
 ```

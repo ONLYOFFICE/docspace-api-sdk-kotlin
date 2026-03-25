@@ -4,31 +4,83 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
+| [**buyWalletService**](PortalPaymentApi.md#buyWalletService) | **POST** api/2.0/portal/payment/buywalletservice | Purchases a wallet service with the specified quantity. |
 | [**calculateWalletPayment**](PortalPaymentApi.md#calculateWalletPayment) | **PUT** api/2.0/portal/payment/calculatewallet | Calculate the wallet payment amount |
-| [**changeTenantWalletServiceState**](PortalPaymentApi.md#changeTenantWalletServiceState) | **POST** api/2.0/portal/payment/servicestate | Change wallet service state |
+| [**changeTenantWalletServiceState**](PortalPaymentApi.md#changeTenantWalletServiceState) | **POST** api/2.0/portal/payment/servicestate | Change tenant wallet service state |
 | [**createCustomerOperationsReport**](PortalPaymentApi.md#createCustomerOperationsReport) | **POST** api/2.0/portal/payment/customer/operationsreport | Start the customer operations report generation |
+| [**getAiPrices**](PortalPaymentApi.md#getAiPrices) | **GET** api/2.0/portal/payment/ai-prices | Get AI model prices |
 | [**getCheckoutSetupUrl**](PortalPaymentApi.md#getCheckoutSetupUrl) | **GET** api/2.0/portal/payment/checkoutsetupurl | Get the checkout setup page URL |
 | [**getCustomerBalance**](PortalPaymentApi.md#getCustomerBalance) | **GET** api/2.0/portal/payment/customer/balance | Get the customer balance |
 | [**getCustomerInfo**](PortalPaymentApi.md#getCustomerInfo) | **GET** api/2.0/portal/payment/customerinfo | Get the customer information |
 | [**getCustomerOperations**](PortalPaymentApi.md#getCustomerOperations) | **GET** api/2.0/portal/payment/customer/operations | Get the customer operations |
 | [**getCustomerOperationsReport**](PortalPaymentApi.md#getCustomerOperationsReport) | **GET** api/2.0/portal/payment/customer/operationsreport | Get the status of the customer operations report generation |
+| [**getCustomerServiceQuota**](PortalPaymentApi.md#getCustomerServiceQuota) | **GET** api/2.0/portal/payment/customer/servicequota | Get the service quota |
 | [**getPaymentAccount**](PortalPaymentApi.md#getPaymentAccount) | **GET** api/2.0/portal/payment/account | Get the payment account |
 | [**getPaymentCurrencies**](PortalPaymentApi.md#getPaymentCurrencies) | **GET** api/2.0/portal/payment/currencies | Get currencies |
 | [**getPaymentQuotas**](PortalPaymentApi.md#getPaymentQuotas) | **GET** api/2.0/portal/payment/quotas | Get quotas |
 | [**getPaymentUrl**](PortalPaymentApi.md#getPaymentUrl) | **PUT** api/2.0/portal/payment/url | Get the payment page URL |
 | [**getPortalPrices**](PortalPaymentApi.md#getPortalPrices) | **GET** api/2.0/portal/payment/prices | Get prices |
 | [**getQuotaPaymentInformation**](PortalPaymentApi.md#getQuotaPaymentInformation) | **GET** api/2.0/portal/payment/quota | Get quota payment information |
-| [**getTenantWalletServiceSettings**](PortalPaymentApi.md#getTenantWalletServiceSettings) | **GET** api/2.0/portal/payment/servicessettings | Get wallet services settings |
-| [**getTenantWalletSettings**](PortalPaymentApi.md#getTenantWalletSettings) | **GET** api/2.0/portal/payment/topupsettings | Get wallet auto top-up settings |
+| [**getRestrictedAiModels**](PortalPaymentApi.md#getRestrictedAiModels) | **GET** api/2.0/portal/payment/ai-model/restrictions | Get restricted AI models |
+| [**getTenantWalletServiceSettings**](PortalPaymentApi.md#getTenantWalletServiceSettings) | **GET** api/2.0/portal/payment/servicessettings | Gets the wallet service settings for the tenant. |
+| [**getTenantWalletSettings**](PortalPaymentApi.md#getTenantWalletSettings) | **GET** api/2.0/portal/payment/topupsettings | Gets the tenant wallet auto top up settings |
 | [**getWalletService**](PortalPaymentApi.md#getWalletService) | **GET** api/2.0/portal/payment/walletservice | Get wallet service |
 | [**getWalletServices**](PortalPaymentApi.md#getWalletServices) | **GET** api/2.0/portal/payment/walletservices | Get wallet services |
 | [**sendPaymentRequest**](PortalPaymentApi.md#sendPaymentRequest) | **POST** api/2.0/portal/payment/request | Send a payment request |
-| [**setTenantWalletSettings**](PortalPaymentApi.md#setTenantWalletSettings) | **POST** api/2.0/portal/payment/topupsettings | Set wallet auto top-up settings |
+| [**setRestrictedAiModels**](PortalPaymentApi.md#setRestrictedAiModels) | **PUT** api/2.0/portal/payment/ai-model/restrictions | Set restricted AI models |
+| [**setTenantWalletSettings**](PortalPaymentApi.md#setTenantWalletSettings) | **POST** api/2.0/portal/payment/topupsettings | Set the wallet auto top up settings |
 | [**terminateCustomerOperationsReport**](PortalPaymentApi.md#terminateCustomerOperationsReport) | **DELETE** api/2.0/portal/payment/customer/operationsreport | Terminate the customer operations report generation |
 | [**topUpDeposit**](PortalPaymentApi.md#topUpDeposit) | **POST** api/2.0/portal/payment/deposit | Put money on deposit |
 | [**updatePayment**](PortalPaymentApi.md#updatePayment) | **PUT** api/2.0/portal/payment/update | Update the payment quantity |
 | [**updateWalletPayment**](PortalPaymentApi.md#updateWalletPayment) | **PUT** api/2.0/portal/payment/updatewallet | Update the wallet payment quantity |
 
+
+
+<a id="buyWalletService"></a>
+# **buyWalletService**
+> ServicePaymentWrapper buyWalletService (BuyWalletServiceRequestDto buyWalletServiceRequestDto)
+
+This method processes a payment for a wallet service using the configured payment method.  Requires the tariff service to be configured and a valid payment method to be set for the customer.  Rate limiting is applied according to the payments API policy.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/buy-wallet-service/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **buyWalletServiceRequestDto** | [**BuyWalletServiceRequestDto**](BuyWalletServiceRequestDto.md)|  | [optional] |
+
+### Return type
+
+[**ServicePaymentWrapper**](ServicePaymentWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(PaymentApi::class.java)
+val buyWalletServiceRequestDto : BuyWalletServiceRequestDto =  // BuyWalletServiceRequestDto | 
+
+val result : ServicePaymentWrapper = webService.buyWalletService(buyWalletServiceRequestDto)
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
 <a id="calculateWalletPayment"></a>
@@ -82,7 +134,7 @@ val result : PaymentCalculationWrapper = webService.calculateWalletPayment(walle
 # **changeTenantWalletServiceState**
 > TenantWalletServiceSettingsWrapper changeTenantWalletServiceState (ChangeWalletServiceStateRequestDto changeWalletServiceStateRequestDto)
 
-Changes the wallet service state.
+Changes the state of a wallet service for the current tenant.  Requires permission to edit portal settings and a configured tariff service.  Adds or removes the specified service from the enabled services list based on the enabled flag.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/change-tenant-wallet-service-state/).
 
@@ -172,6 +224,50 @@ val result : DocumentBuilderTaskWrapper = webService.createCustomerOperationsRep
  - **Accept**: application/json
 
 
+<a id="getAiPrices"></a>
+# **getAiPrices**
+> AiPricesResponseWrapper getAiPrices ()
+
+Retrieves the pricing information for AI models including chat, embedding, and web search services.  The prices are returned in the configured currency and normalized per million tokens.  Requires administrator permissions to access.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-ai-prices/).
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**AiPricesResponseWrapper**](AiPricesResponseWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(PaymentApi::class.java)
+
+val result : AiPricesResponseWrapper = webService.getAiPrices()
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
 <a id="getCheckoutSetupUrl"></a>
 # **getCheckoutSetupUrl**
 > StringWrapper getCheckoutSetupUrl (kotlin.String backUrl)
@@ -208,7 +304,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PaymentApi::class.java)
-val backUrl : kotlin.String = some text // kotlin.String | The URL where the user will be redirected after completing the setup.
+val backUrl : kotlin.String = https://example.com/setup/complete // kotlin.String | The URL where the user will be redirected after completing the setup.
 
 val result : StringWrapper = webService.getCheckoutSetupUrl(backUrl)
 ```
@@ -315,22 +411,28 @@ val result : CustomerInfoWrapper = webService.getCustomerInfo(refresh)
 
 <a id="getCustomerOperations"></a>
 # **getCustomerOperations**
-> ReportWrapper getCustomerOperations (java.time.OffsetDateTime startDate, java.time.OffsetDateTime endDate, kotlin.String participantName, kotlin.Boolean credit, kotlin.Boolean debit, kotlin.Int offset, kotlin.Int limit)
+> ReportWrapper getCustomerOperations (kotlin.Int offset, kotlin.Int limit, kotlin.String serviceName, kotlin.Boolean writeOffServiceQuota, java.time.OffsetDateTime startDate, java.time.OffsetDateTime endDate, kotlin.String participantName, kotlin.Boolean credit, kotlin.Boolean debit, OperationType types, OperationStatus status, kotlin.String orderBy, OperationOrderType orderType)
 
 Returns the report of customer operations from the accounting service.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-customer-operations/).
 
 ### Parameters
+| **offset** | **kotlin.Int**| The number of items to skip for pagination. The default value is 0. | [optional] |
+| **limit** | **kotlin.Int**| The maximum number of items to return for pagination. The default value is 25. | [optional] |
+| **serviceName** | **kotlin.String**| The service name. | [optional] |
+| **writeOffServiceQuota** | **kotlin.Boolean**| Write-off of the quota for the service | [optional] |
 | **startDate** | **java.time.OffsetDateTime**| The report start date. | [optional] |
 | **endDate** | **java.time.OffsetDateTime**| The report end date. | [optional] |
 | **participantName** | **kotlin.String**| The participant name. | [optional] |
-| **credit** | **kotlin.Boolean**| Specifies whether to include credit operations in the report. The default value is true. | [optional] |
-| **debit** | **kotlin.Boolean**| Specifies whether to include debit operations in the report. The default value is true. | [optional] |
-| **offset** | **kotlin.Int**| The number of items to skip for pagination. The default value is 0. | [optional] |
+| **credit** | **kotlin.Boolean**| Specifies whether to include credit operations in the report. | [optional] |
+| **debit** | **kotlin.Boolean**| Specifies whether to include debit operations in the report. | [optional] |
+| **types** | [**OperationType**](.md)| List of operation types to filter by. | [optional] [enum: 0, 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072] |
+| **status** | [**OperationStatus**](.md)| List of operation status to filter by. | [optional] [enum: 0, 1, 2, 4, 8] |
+| **orderBy** | **kotlin.String**| The field to order by. | [optional] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **limit** | **kotlin.Int**| The maximum number of items to return for pagination. The default value is 25. | [optional] |
+| **orderType** | [**OperationOrderType**](.md)| Order direction: Ascending or Descending. | [optional] [enum: 0, 1] |
 
 ### Return type
 
@@ -355,15 +457,21 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PaymentApi::class.java)
-val startDate : java.time.OffsetDateTime = 2008-04-10T06:30+04:00 // java.time.OffsetDateTime | The report start date.
-val endDate : java.time.OffsetDateTime = 2008-04-10T06:30+04:00 // java.time.OffsetDateTime | The report end date.
-val participantName : kotlin.String = some text // kotlin.String | The participant name.
-val credit : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to include credit operations in the report. The default value is true.
-val debit : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to include debit operations in the report. The default value is true.
-val offset : kotlin.Int = 1234 // kotlin.Int | The number of items to skip for pagination. The default value is 0.
-val limit : kotlin.Int = 1234 // kotlin.Int | The maximum number of items to return for pagination. The default value is 25.
+val offset : kotlin.Int = 0 // kotlin.Int | The number of items to skip for pagination. The default value is 0.
+val limit : kotlin.Int = 25 // kotlin.Int | The maximum number of items to return for pagination. The default value is 25.
+val serviceName : kotlin.String = backup // kotlin.String | The service name.
+val writeOffServiceQuota : kotlin.Boolean = false // kotlin.Boolean | Write-off of the quota for the service
+val startDate : java.time.OffsetDateTime = 2024-01-01T00:00Z // java.time.OffsetDateTime | The report start date.
+val endDate : java.time.OffsetDateTime = 2024-01-31T23:59:59Z // java.time.OffsetDateTime | The report end date.
+val participantName : kotlin.String = ACME Corp // kotlin.String | The participant name.
+val credit : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to include credit operations in the report.
+val debit : kotlin.Boolean = false // kotlin.Boolean | Specifies whether to include debit operations in the report.
+val types : OperationType = Any // OperationType | List of operation types to filter by.
+val status : OperationStatus = Any // OperationStatus | List of operation status to filter by.
+val orderBy : kotlin.String = StartDate // kotlin.String | The field to order by.
+val orderType : OperationOrderType = Descending // OperationOrderType | Order direction: Ascending or Descending.
 
-val result : ReportWrapper = webService.getCustomerOperations(startDate, endDate, participantName, credit, debit, offset, limit)
+val result : ReportWrapper = webService.getCustomerOperations(offset, limit, serviceName, writeOffServiceQuota, startDate, endDate, participantName, credit, debit, types, status, orderBy, orderType)
 ```
 
 ### HTTP request headers
@@ -416,6 +524,55 @@ val result : DocumentBuilderTaskWrapper = webService.getCustomerOperationsReport
  - **Accept**: application/json
 
 
+<a id="getCustomerServiceQuota"></a>
+# **getCustomerServiceQuota**
+> BalanceWrapper getCustomerServiceQuota (kotlin.String serviceName, kotlin.Boolean refresh)
+
+Returns the service quota from the accounting service.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-customer-service-quota/).
+
+### Parameters
+| **serviceName** | **kotlin.String**| The service name. | [optional] |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **refresh** | **kotlin.Boolean**| Specifies whether to refresh the payment information cache or not. | [optional] |
+
+### Return type
+
+[**BalanceWrapper**](BalanceWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(PaymentApi::class.java)
+val serviceName : kotlin.String = backup // kotlin.String | The service name.
+val refresh : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to refresh the payment information cache or not.
+
+val result : BalanceWrapper = webService.getCustomerServiceQuota(serviceName, refresh)
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
 <a id="getPaymentAccount"></a>
 # **getPaymentAccount**
 > StringWrapper getPaymentAccount (kotlin.String backUrl)
@@ -452,7 +609,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PaymentApi::class.java)
-val backUrl : kotlin.String = some text // kotlin.String | The URL where the user will be redirected after payment processing.
+val backUrl : kotlin.String = https://example.com // kotlin.String | The URL where the user will be redirected after payment processing.
 
 val result : StringWrapper = webService.getPaymentAccount(backUrl)
 ```
@@ -556,7 +713,7 @@ val result : QuotaArrayWrapper = webService.getPaymentQuotas(wallet)
 
 <a id="getPaymentUrl"></a>
 # **getPaymentUrl**
-> StringWrapper getPaymentUrl (PaymentUrlRequestsDto paymentUrlRequestsDto)
+> StringWrapper getPaymentUrl (PaymentUrlRequestDto paymentUrlRequestDto)
 
 Returns the URL to the payment page.
 
@@ -565,7 +722,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **paymentUrlRequestsDto** | [**PaymentUrlRequestsDto**](PaymentUrlRequestsDto.md)|  | [optional] |
+| **paymentUrlRequestDto** | [**PaymentUrlRequestDto**](PaymentUrlRequestDto.md)|  | [optional] |
 
 ### Return type
 
@@ -590,9 +747,9 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PaymentApi::class.java)
-val paymentUrlRequestsDto : PaymentUrlRequestsDto =  // PaymentUrlRequestsDto | 
+val paymentUrlRequestDto : PaymentUrlRequestDto =  // PaymentUrlRequestDto | 
 
-val result : StringWrapper = webService.getPaymentUrl(paymentUrlRequestsDto)
+val result : StringWrapper = webService.getPaymentUrl(paymentUrlRequestDto)
 ```
 
 ### HTTP request headers
@@ -692,11 +849,55 @@ val result : QuotaWrapper = webService.getQuotaPaymentInformation(refresh)
  - **Accept**: application/json
 
 
+<a id="getRestrictedAiModels"></a>
+# **getRestrictedAiModels**
+> RestrictedModelsResponseWrapper getRestrictedAiModels ()
+
+Returns the list of AI chat model IDs that are restricted (disabled) for the current tenant.  Restricted models cannot be used for AI chat conversations by any user within the portal.  Only DocSpace administrators can access this endpoint.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-restricted-ai-models/).
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**RestrictedModelsResponseWrapper**](RestrictedModelsResponseWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(PaymentApi::class.java)
+
+val result : RestrictedModelsResponseWrapper = webService.getRestrictedAiModels()
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
 <a id="getTenantWalletServiceSettings"></a>
 # **getTenantWalletServiceSettings**
 > TenantWalletServiceSettingsWrapper getTenantWalletServiceSettings ()
 
-Returns the wallet services settings.
+Retrieves configuration settings related to the wallet service associated with the current tenant.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tenant-wallet-service-settings/).
 
@@ -740,7 +941,7 @@ val result : TenantWalletServiceSettingsWrapper = webService.getTenantWalletServ
 # **getTenantWalletSettings**
 > TenantWalletSettingsWrapper getTenantWalletSettings ()
 
-Returns the wallet auto top-up settings.
+Returns the wallet auto top up settings for the current tenant.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tenant-wallet-settings/).
 
@@ -782,7 +983,7 @@ val result : TenantWalletSettingsWrapper = webService.getTenantWalletSettings()
 
 <a id="getWalletService"></a>
 # **getWalletService**
-> QuotaWrapper getWalletService (TenantWalletService service)
+> WalletServiceWrapper getWalletService (TenantWalletService service)
 
 Returns the specified wallet service.
 
@@ -791,11 +992,11 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **service** | [**TenantWalletService**](.md)| The wallet service type. | [enum: -14, -13, -12, -11] |
+| **service** | [**TenantWalletService**](.md)| The wallet service type. | [enum: -13, -12, -11] |
 
 ### Return type
 
-[**QuotaWrapper**](QuotaWrapper.md)
+[**WalletServiceWrapper**](WalletServiceWrapper.md)
 
 ### Authorization
 
@@ -816,9 +1017,9 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PaymentApi::class.java)
-val service : TenantWalletService =  // TenantWalletService | The wallet service type.
+val service : TenantWalletService = Storage // TenantWalletService | The wallet service type.
 
-val result : QuotaWrapper = webService.getWalletService(service)
+val result : WalletServiceWrapper = webService.getWalletService(service)
 ```
 
 ### HTTP request headers
@@ -918,11 +1119,58 @@ webService.sendPaymentRequest(salesRequestsDto)
  - **Accept**: Not defined
 
 
+<a id="setRestrictedAiModels"></a>
+# **setRestrictedAiModels**
+> RestrictedModelsResponseWrapper setRestrictedAiModels (SetRestrictedAiModelsRequestDto setRestrictedAiModelsRequestDto)
+
+Overwrites the entire set of restricted AI model IDs for the current tenant.  The request body must contain the complete desired set — to add a restriction, include the new model alongside existing ones;  to remove one, omit it. An empty set lifts all restrictions. Only the portal payer can perform this action.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/set-restricted-ai-models/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **setRestrictedAiModelsRequestDto** | [**SetRestrictedAiModelsRequestDto**](SetRestrictedAiModelsRequestDto.md)|  | [optional] |
+
+### Return type
+
+[**RestrictedModelsResponseWrapper**](RestrictedModelsResponseWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(PaymentApi::class.java)
+val setRestrictedAiModelsRequestDto : SetRestrictedAiModelsRequestDto =  // SetRestrictedAiModelsRequestDto | 
+
+val result : RestrictedModelsResponseWrapper = webService.setRestrictedAiModels(setRestrictedAiModelsRequestDto)
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
 <a id="setTenantWalletSettings"></a>
 # **setTenantWalletSettings**
 > TenantWalletSettingsWrapper setTenantWalletSettings (TenantWalletSettingsWrapper tenantWalletSettingsWrapper)
 
-Sets the wallet auto top-up settings.
+Updates the wallet auto top up settings for the current tenant.  Requires the tariff service to be configured and the user to be authorized as a payer.  Returns null if the tariff service is not configured or customer information/balance cannot be retrieved.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/set-tenant-wallet-settings/).
 

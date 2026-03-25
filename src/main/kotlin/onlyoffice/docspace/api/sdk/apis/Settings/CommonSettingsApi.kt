@@ -37,6 +37,8 @@ import onlyoffice.docspace.api.sdk.models.STRINGArrayWrapper
 import onlyoffice.docspace.api.sdk.models.SettingsWrapper
 import onlyoffice.docspace.api.sdk.models.StringWrapper
 import onlyoffice.docspace.api.sdk.models.StudioDefaultPageSettingsWrapper
+import onlyoffice.docspace.api.sdk.models.TenantAiAccessSettingsDto
+import onlyoffice.docspace.api.sdk.models.TenantAiAccessSettingsWrapper
 import onlyoffice.docspace.api.sdk.models.TenantDeepLinkSettingsWrapper
 import onlyoffice.docspace.api.sdk.models.TenantUserInvitationSettingsRequestDto
 import onlyoffice.docspace.api.sdk.models.TenantUserInvitationSettingsWrapper
@@ -254,6 +256,23 @@ interface CommonSettingsApi {
     fun getSupportedCultures(): Call<STRINGArrayWrapper>
 
     /**
+     * GET api/2.0/settings/ai-access
+     * Get the AI access settings for the portal
+     * Returns the current portal-level AI access settings that control whether all AI functionality  (chat, agents, vectorization) is available for the portal. AI is enabled by default.
+     * Responses:
+     *  - 200: AI access settings
+     *  - 401: Unauthorized
+     *
+     * REST API Reference for getTenantAiAccessSettings Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tenant-ai-access-settings/
+     *
+     *
+     * @return [Call]<[TenantAiAccessSettingsWrapper]>
+     */
+    @GET("api/2.0/settings/ai-access")
+    fun getTenantAiAccessSettings(): Call<TenantAiAccessSettingsWrapper>
+
+    /**
      * GET api/2.0/settings/invitationsettings
      * Get the user invitation settings
      * Returns the portal user invitation settings.
@@ -360,6 +379,25 @@ interface CommonSettingsApi {
      */
     @PUT("api/2.0/settings/colortheme")
     fun savePortalColorTheme(@Body customColorThemesSettingsRequestsDto: CustomColorThemesSettingsRequestsDto? = null): Call<CustomColorThemesSettingsWrapper>
+
+    /**
+     * POST api/2.0/settings/ai-access
+     * Set the AI access for the portal
+     * Updates the portal-level AI access settings. When AI is disabled, all AI features are turned off:  the AI Agents folder is hidden from root folder listings, AI status checks immediately return disabled,  and AI chat endpoints become inaccessible. Only users with the DocSpaceAdmin role  (EditPortalSettings permission) can change this setting.
+     * Responses:
+     *  - 200: Updated AI access settings
+     *  - 403: You don't have enough permission to change the AI access settings
+     *  - 401: Unauthorized
+     *
+     * REST API Reference for setTenantAiAccessSettings Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-tenant-ai-access-settings/
+     *
+     *
+     * @param tenantAiAccessSettingsDto  (optional)
+     * @return [Call]<[TenantAiAccessSettingsWrapper]>
+     */
+    @POST("api/2.0/settings/ai-access")
+    fun setTenantAiAccessSettings(@Body tenantAiAccessSettingsDto: TenantAiAccessSettingsDto? = null): Call<TenantAiAccessSettingsWrapper>
 
     /**
      * PUT api/2.0/settings/emailactivation

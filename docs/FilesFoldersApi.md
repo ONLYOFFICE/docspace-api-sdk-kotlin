@@ -266,7 +266,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val folderId : kotlin.Int = 1 // kotlin.Int | The folder ID to delete.
+val folderId : kotlin.Int = 10 // kotlin.Int | The folder ID to delete.
 val deleteFolder : DeleteFolder =  // DeleteFolder | The parameters for deleting a folder.
 
 val result : FileOperationArrayWrapper = webService.deleteFolder(folderId, deleteFolder)
@@ -320,13 +320,13 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val userIdOrGroupId : java.util.UUID = 75a5f745-f697-4418-b38d-0fe0d277e258 // java.util.UUID | The user or group ID.
-val filterType : FilterType =  // FilterType | The filter type.
-val count : kotlin.Int = 1234 // kotlin.Int | The maximum number of items to retrieve in the request.
-val startIndex : kotlin.Int = 1234 // kotlin.Int | The zero-based index of the first item to retrieve in a paginated list.
-val sortBy : kotlin.String = some text // kotlin.String | Specifies the field by which the folder content should be sorted.
-val sortOrder : SortOrder =  // SortOrder | The order in which the results are sorted.
-val filterValue : kotlin.String = some text // kotlin.String | The text used as a filter or search criterion for folder content queries.
+val userIdOrGroupId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The user or group ID.
+val filterType : FilterType = 1 // FilterType | The filter type.
+val count : kotlin.Int = 25 // kotlin.Int | The maximum number of items to retrieve in the request.
+val startIndex : kotlin.Int = 0 // kotlin.Int | The zero-based index of the first item to retrieve in a paginated list.
+val sortBy : kotlin.String = DateAndTime // kotlin.String | Specifies the field by which the folder content should be sorted.
+val sortOrder : SortOrder = 1 // SortOrder | The order in which the results are sorted.
+val filterValue : kotlin.String = My Document // kotlin.String | The text used as a filter or search criterion for folder content queries.
 
 val result : FolderContentIntegerWrapper = webService.getFavoritesFolder(userIdOrGroupId, filterType, count, startIndex, sortBy, sortOrder, filterValue)
 ```
@@ -469,22 +469,22 @@ No authorization required
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(FoldersApi::class.java)
 val folderId : kotlin.Int = 1 // kotlin.Int | The folder ID.
-val userIdOrGroupId : java.util.UUID = 75a5f745-f697-4418-b38d-0fe0d277e258 // java.util.UUID | The user or group ID.
-val sharedBy : java.util.UUID = 75a5f745-f697-4418-b38d-0fe0d277e258 // java.util.UUID | The identifier of the user who shared the folder or file.
-val filterType : FilterType =  // FilterType | The filter type.
+val userIdOrGroupId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The user or group ID.
+val sharedBy : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The identifier of the user who shared the folder or file.
+val filterType : FilterType = 1 // FilterType | The filter type.
 val roomId : kotlin.Int = 1 // kotlin.Int | The room ID.
-val excludeSubject : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to exclude search by user or group ID.
-val applyFilterOption : ApplyFilterOption =  // ApplyFilterOption | Specifies whether to return only files, only folders, or all elements from the specified folder.
-val extension : kotlin.String = .txt // kotlin.String | Specifies whether to search for the specific file extension.
-val searchArea : SearchArea =  // SearchArea | The search area.
-val formsItemKey : kotlin.String = some text // kotlin.String | The forms item key.
-val formsItemType : kotlin.String = some text // kotlin.String | The forms item type.
-val count : kotlin.Int = 1234 // kotlin.Int | The maximum number of items to retrieve in the request.
-val startIndex : kotlin.Int = 1234 // kotlin.Int | The zero-based index of the first item to retrieve in a paginated request.
-val sortBy : kotlin.String = some text // kotlin.String | The property used for sorting the folder request results.
-val sortOrder : SortOrder =  // SortOrder | The order in which the results are sorted.
-val filterValue : kotlin.String = some text // kotlin.String | The text value used as a filter parameter for folder content queries.
-val location : Location =  // Location | The location context of the request, specifying the area  where the operation is performed, such as a room, documents, or a link.
+val excludeSubject : kotlin.Boolean = false // kotlin.Boolean | Specifies whether to exclude search by user or group ID.
+val applyFilterOption : ApplyFilterOption = 1 // ApplyFilterOption | Specifies whether to return only files, only folders, or all elements from the specified folder.
+val extension : kotlin.String = .docx // kotlin.String | Specifies whether to search for the specific file extension.
+val searchArea : SearchArea = 1 // SearchArea | The search area.
+val formsItemKey : kotlin.String = doc_key_123 // kotlin.String | The forms item key.
+val formsItemType : kotlin.String = text // kotlin.String | The forms item type.
+val count : kotlin.Int = 25 // kotlin.Int | The maximum number of items to retrieve in the request.
+val startIndex : kotlin.Int = 0 // kotlin.Int | The zero-based index of the first item to retrieve in a paginated request.
+val sortBy : kotlin.String = DateAndTime // kotlin.String | The property used for sorting the folder request results.
+val sortOrder : SortOrder = 1 // SortOrder | The order in which the results are sorted.
+val filterValue : kotlin.String = My Document // kotlin.String | The text value used as a filter parameter for folder content queries.
+val location : Location = 1 // Location | The location context of the request, specifying the area  where the operation is performed, such as a room, documents, or a link.
 
 val result : FolderContentIntegerWrapper = webService.getFolderByFolderId(folderId, userIdOrGroupId, sharedBy, filterType, roomId, excludeSubject, applyFilterOption, extension, searchArea, formsItemKey, formsItemType, count, startIndex, sortBy, sortOrder, filterValue, location)
 ```
@@ -536,10 +536,10 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
 val folderId : kotlin.Int = 1 // kotlin.Int | The folder ID of the history request.
-val fromDate : ApiDateTime =  // ApiDateTime | The start date of the history request.
-val toDate : ApiDateTime =  // ApiDateTime | The end date of the history request.
-val count : kotlin.Int = 1234 // kotlin.Int | The number of records to retrieve for the folder history.
-val startIndex : kotlin.Int = 1234 // kotlin.Int | The starting index from which the history records are retrieved in the request.
+val fromDate : ApiDateTime = 2025-01-01T00:00:00.0000000Z // ApiDateTime | The start date of the history request.
+val toDate : ApiDateTime = 2025-12-31T23:59:59.0000000Z // ApiDateTime | The end date of the history request.
+val count : kotlin.Int = 25 // kotlin.Int | The number of records to retrieve for the folder history.
+val startIndex : kotlin.Int = 0 // kotlin.Int | The starting index from which the history records are retrieved in the request.
 
 val result : HistoryArrayWrapper = webService.getFolderHistory(folderId, fromDate, toDate, count, startIndex)
 ```
@@ -717,9 +717,9 @@ No authorization required
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val id : kotlin.Int = 1 // kotlin.Int | The folder unique identifier.
-val count : kotlin.Int = 1234 // kotlin.Int | The number of items to retrieve in the request.
-val startIndex : kotlin.Int = 1234 // kotlin.Int | The starting index for the query results.
+val id : kotlin.Int = 10 // kotlin.Int | The folder unique identifier.
+val count : kotlin.Int = 25 // kotlin.Int | The number of items to retrieve in the request.
+val startIndex : kotlin.Int = 0 // kotlin.Int | The starting index for the query results.
 
 val result : FileShareWrapper = webService.getFolderPrimaryExternalLink(id, count, startIndex)
 ```
@@ -820,14 +820,14 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val userIdOrGroupId : java.util.UUID = 75a5f745-f697-4418-b38d-0fe0d277e258 // java.util.UUID | The user or group ID.
-val filterType : FilterType =  // FilterType | The filter type.
-val applyFilterOption : ApplyFilterOption =  // ApplyFilterOption | Specifies whether to return only files, only folders or all elements.
-val count : kotlin.Int = 1234 // kotlin.Int | The maximum number of items to retrieve in the response.
-val startIndex : kotlin.Int = 1234 // kotlin.Int | The starting position of the items to be retrieved.
-val sortBy : kotlin.String = some text // kotlin.String | The property used to specify the sorting criteria for folder contents.
-val sortOrder : SortOrder =  // SortOrder | The order in which the results are sorted.
-val filterValue : kotlin.String = some text // kotlin.String | The text used for filtering or searching folder contents.
+val userIdOrGroupId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The user or group ID.
+val filterType : FilterType = 1 // FilterType | The filter type.
+val applyFilterOption : ApplyFilterOption = 1 // ApplyFilterOption | Specifies whether to return only files, only folders or all elements.
+val count : kotlin.Int = 25 // kotlin.Int | The maximum number of items to retrieve in the response.
+val startIndex : kotlin.Int = 0 // kotlin.Int | The starting position of the items to be retrieved.
+val sortBy : kotlin.String = DateAndTime // kotlin.String | The property used to specify the sorting criteria for folder contents.
+val sortOrder : SortOrder = 1 // SortOrder | The order in which the results are sorted.
+val filterValue : kotlin.String = My Document // kotlin.String | The text used for filtering or searching folder contents.
 
 val result : FolderContentIntegerWrapper = webService.getMyFolder(userIdOrGroupId, filterType, applyFilterOption, count, startIndex, sortBy, sortOrder, filterValue)
 ```
@@ -927,13 +927,13 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val userIdOrGroupId : java.util.UUID = 75a5f745-f697-4418-b38d-0fe0d277e258 // java.util.UUID | The user or group ID.
-val filterType : FilterType =  // FilterType | The filter type.
-val count : kotlin.Int = 1234 // kotlin.Int | The maximum number of items to retrieve in the request.
-val startIndex : kotlin.Int = 1234 // kotlin.Int | The zero-based index of the first item to retrieve in a paginated list.
-val sortBy : kotlin.String = some text // kotlin.String | Specifies the field by which the folder content should be sorted.
-val sortOrder : SortOrder =  // SortOrder | The order in which the results are sorted.
-val filterValue : kotlin.String = some text // kotlin.String | The text used as a filter or search criterion for folder content queries.
+val userIdOrGroupId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The user or group ID.
+val filterType : FilterType = 1 // FilterType | The filter type.
+val count : kotlin.Int = 25 // kotlin.Int | The maximum number of items to retrieve in the request.
+val startIndex : kotlin.Int = 0 // kotlin.Int | The zero-based index of the first item to retrieve in a paginated list.
+val sortBy : kotlin.String = DateAndTime // kotlin.String | Specifies the field by which the folder content should be sorted.
+val sortOrder : SortOrder = 1 // SortOrder | The order in which the results are sorted.
+val filterValue : kotlin.String = My Document // kotlin.String | The text used as a filter or search criterion for folder content queries.
 
 val result : FolderContentIntegerWrapper = webService.getPrivacyFolder(userIdOrGroupId, filterType, count, startIndex, sortBy, sortOrder, filterValue)
 ```
@@ -990,17 +990,17 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val userIdOrGroupId : java.util.UUID = 75a5f745-f697-4418-b38d-0fe0d277e258 // java.util.UUID | The user or group ID.
-val filterType : FilterType =  // FilterType | The filter type.
-val excludeSubject : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to exclude search by user or group ID.
-val applyFilterOption : ApplyFilterOption =  // ApplyFilterOption | Specifies whether to return only files, only folders or all elements.
-val searchArea : SearchArea =  // SearchArea | The search area.
-val extension : kotlin.collections.List<kotlin.String> = .txt // kotlin.collections.List<kotlin.String> | Specifies whether to search for a specific file extension in the Recent folder.
-val count : kotlin.Int = 1234 // kotlin.Int | The maximum number of items to return.
-val startIndex : kotlin.Int = 1234 // kotlin.Int | The starting position of the results to be returned in the query response.
-val sortBy : kotlin.String = some text // kotlin.String | Specifies the sorting criteria for the folder request.
-val sortOrder : SortOrder =  // SortOrder | The order in which the results are sorted.
-val filterValue : kotlin.String = some text // kotlin.String | The text used for filtering or searching folder contents.
+val userIdOrGroupId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The user or group ID.
+val filterType : FilterType = 1 // FilterType | The filter type.
+val excludeSubject : kotlin.Boolean = false // kotlin.Boolean | Specifies whether to exclude search by user or group ID.
+val applyFilterOption : ApplyFilterOption = 1 // ApplyFilterOption | Specifies whether to return only files, only folders or all elements.
+val searchArea : SearchArea = 1 // SearchArea | The search area.
+val extension : kotlin.collections.List<kotlin.String> = .docx // kotlin.collections.List<kotlin.String> | Specifies whether to search for a specific file extension in the Recent folder.
+val count : kotlin.Int = 25 // kotlin.Int | The maximum number of items to return.
+val startIndex : kotlin.Int = 0 // kotlin.Int | The starting position of the results to be returned in the query response.
+val sortBy : kotlin.String = DateAndTime // kotlin.String | Specifies the sorting criteria for the folder request.
+val sortOrder : SortOrder = 1 // SortOrder | The order in which the results are sorted.
+val filterValue : kotlin.String = My Document // kotlin.String | The text used for filtering or searching folder contents.
 
 val result : FolderContentIntegerWrapper = webService.getRecentFolder(userIdOrGroupId, filterType, excludeSubject, applyFilterOption, searchArea, extension, count, startIndex, sortBy, sortOrder, filterValue)
 ```
@@ -1054,14 +1054,14 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val userIdOrGroupId : java.util.UUID = 75a5f745-f697-4418-b38d-0fe0d277e258 // java.util.UUID | The user or group ID.
-val filterType : FilterType =  // FilterType | The filter type.
-val withoutTrash : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to return the Trash section or not.
-val count : kotlin.Int = 1234 // kotlin.Int | The maximum number of items to retrieve in the response.
-val startIndex : kotlin.Int = 1234 // kotlin.Int | The starting position of the items to be retrieved.
-val sortBy : kotlin.String = some text // kotlin.String | Specifies the field by which the folder content should be sorted.
-val sortOrder : SortOrder =  // SortOrder | The order in which the results are sorted.
-val filterValue : kotlin.String = some text // kotlin.String | The text used as a filter for searching or retrieving folder contents.
+val userIdOrGroupId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The user or group ID.
+val filterType : FilterType = 1 // FilterType | The filter type.
+val withoutTrash : kotlin.Boolean = false // kotlin.Boolean | Specifies whether to return the Trash section or not.
+val count : kotlin.Int = 25 // kotlin.Int | The maximum number of items to retrieve in the response.
+val startIndex : kotlin.Int = 0 // kotlin.Int | The starting position of the items to be retrieved.
+val sortBy : kotlin.String = DateAndTime // kotlin.String | Specifies the field by which the folder content should be sorted.
+val sortOrder : SortOrder = 1 // SortOrder | The order in which the results are sorted.
+val filterValue : kotlin.String = My Document // kotlin.String | The text used as a filter for searching or retrieving folder contents.
 
 val result : FolderContentIntegerArrayWrapper = webService.getRootFolders(userIdOrGroupId, filterType, withoutTrash, count, startIndex, sortBy, sortOrder, filterValue)
 ```
@@ -1115,14 +1115,14 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val userIdOrGroupId : java.util.UUID = 75a5f745-f697-4418-b38d-0fe0d277e258 // java.util.UUID | The user or group ID.
-val filterType : FilterType =  // FilterType | The filter type.
-val applyFilterOption : ApplyFilterOption =  // ApplyFilterOption | Specifies whether to return only files, only folders or all elements.
-val count : kotlin.Int = 1234 // kotlin.Int | The maximum number of items to retrieve in the response.
-val startIndex : kotlin.Int = 1234 // kotlin.Int | The starting position of the items to be retrieved.
-val sortBy : kotlin.String = some text // kotlin.String | The property used to specify the sorting criteria for folder contents.
-val sortOrder : SortOrder =  // SortOrder | The order in which the results are sorted.
-val filterValue : kotlin.String = some text // kotlin.String | The text used for filtering or searching folder contents.
+val userIdOrGroupId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The user or group ID.
+val filterType : FilterType = 1 // FilterType | The filter type.
+val applyFilterOption : ApplyFilterOption = 1 // ApplyFilterOption | Specifies whether to return only files, only folders or all elements.
+val count : kotlin.Int = 25 // kotlin.Int | The maximum number of items to retrieve in the response.
+val startIndex : kotlin.Int = 0 // kotlin.Int | The starting position of the items to be retrieved.
+val sortBy : kotlin.String = DateAndTime // kotlin.String | The property used to specify the sorting criteria for folder contents.
+val sortOrder : SortOrder = 1 // SortOrder | The order in which the results are sorted.
+val filterValue : kotlin.String = My Document // kotlin.String | The text used for filtering or searching folder contents.
 
 val result : FolderContentIntegerWrapper = webService.getTrashFolder(userIdOrGroupId, filterType, applyFilterOption, count, startIndex, sortBy, sortOrder, filterValue)
 ```

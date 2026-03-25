@@ -99,7 +99,7 @@ interface MCPApi {
      *
      * @param roomId Identifier of the room containing the MCP server.
      * @param serverId Unique identifier of the MCP server to connect.
-     * @param connectServerRequestBody OAuth authorization parameters.
+     * @param connectServerRequestBody The request body containing additional data necessary for connecting to the server,  such as authentication or operation-specific information.
      * @return [Call]<[McpServerStatusWrapper]>
      */
     @POST("api/2.0/ai/rooms/{roomId}/servers/{serverId}/connect")

@@ -24,7 +24,7 @@ import com.squareup.moshi.JsonClass
  * The Wizard settings.
  *
  * @param completed Specifies if the Wizard settings are completed or not
- * @param lastModified 
+ * @param lastModified The timestamp indicating when the settings were last modified.
  */
 
 
@@ -34,6 +34,7 @@ data class WizardSettings (
     @Json(name = "completed")
     val completed: kotlin.Boolean? = null,
 
+    /* The timestamp indicating when the settings were last modified. */
     @Json(name = "lastModified")
     val lastModified: java.time.OffsetDateTime? = null
 

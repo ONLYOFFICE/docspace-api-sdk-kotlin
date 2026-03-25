@@ -10,7 +10,7 @@
 | **userForumEnabled** | **kotlin.Boolean** | Specifies if the user forum is available or not. |  [optional] |
 | **videoGuidesEnabled** | **kotlin.Boolean** | Specifies if the Video Guides link is available or not. |  [optional] |
 | **licenseAgreementsEnabled** | **kotlin.Boolean** | Specifies if the License Agreements link is available or not. |  [optional] |
-| **lastModified** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] |
+| **lastModified** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) | The timestamp indicating when the settings were last modified. |  [optional] |
 
 
 

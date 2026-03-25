@@ -21,9 +21,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * [0 - None, 1 - Exa]
+ * [0 - None, 1 - Exa, 2 - PortalAi]
  *
- * Values: None,Exa
+ * Values: None,Exa,PortalAi
  */
 
 @JsonClass(generateAdapter = false)
@@ -33,7 +33,10 @@ enum class EngineType(val value: kotlin.Int) {
     None(0),
 
     @Json(name = "1")
-    Exa(1);
+    Exa(1),
+
+    @Json(name = "2")
+    PortalAi(2);
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use
@@ -55,7 +58,7 @@ enum class EngineType(val value: kotlin.Int) {
          */
         fun decode(data: kotlin.Any?): EngineType? = data?.let {
           val normalizedData = "$it".lowercase()
-          entries.firstOrNull { value ->
+          values().firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()
           }
         }

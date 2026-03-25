@@ -10,5 +10,7 @@
 
     * `OpenRouter` (value: `2`)
 
+    * `PortalAi` (value: `3`)
+
 
 

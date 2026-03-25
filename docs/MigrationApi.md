@@ -365,7 +365,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(MigrationApi::class.java)
-val migratorName : kotlin.String = some text // kotlin.String | The migrator name extracted from the route parameters.
+val migratorName : kotlin.String = GoogleWorkspace // kotlin.String | The migrator name extracted from the route parameters.
 
 webService.uploadAndInitializeMigration(migratorName)
 ```

@@ -39,6 +39,7 @@
 | **limitedAccessSpace** | **kotlin.Boolean** | Specifies whether the access to the space management is limited or not. |  [optional] |
 | **limitedAccessDevToolsForUsers** | **kotlin.Boolean** | Specifies whether the access to the Developer Tools is limited for users or not. |  [optional] |
 | **displayBanners** | **kotlin.Boolean** | Specifies whether to display the promotional banners. |  [optional] |
+| **aiEnabled** | **kotlin.Boolean** | Specifies whether AI functionality (chat, agents, vectorization) is enabled for the current tenant.  When &#x60;false&#x60;, all AI features are disabled and the AI Agents folder is hidden. |  [optional] |
 | **userNameRegex** | **kotlin.String** | The user name validation regex. |  [optional] |
 | **invitationLimit** | **kotlin.Int** | The maximum number of invitations to the portal. |  [optional] |
 | **plugins** | [**PluginsDto**](PluginsDto.md) |  |  [optional] |
@@ -47,6 +48,7 @@
 | **logoText** | **kotlin.String** | The white label logo text. |  [optional] |
 | **externalResources** | [**CultureSpecificExternalResources**](CultureSpecificExternalResources.md) |  |  [optional] |
 | **defaultFolderType** | [**FolderType**](FolderType.md) |  |  [optional] |
+| **externalDbEnabled** | **kotlin.Boolean** | Specifies if an external database is connected for storing form results. |  [optional] |
 
 
 

@@ -23,16 +23,18 @@ import com.squareup.moshi.JsonClass
 /**
  * The forms item information.
  *
- * @param key 
- * @param type 
+ * @param key The form item key.              <example>field_name</example>
+ * @param type The form item type.              <example>text</example>
  */
 
 
 data class FormsItemDto (
 
+    /* The form item key.              <example>field_name</example> */
     @Json(name = "key")
     val key: kotlin.String? = null,
 
+    /* The form item type.              <example>text</example> */
     @Json(name = "type")
     val type: kotlin.String? = null
 

@@ -26,7 +26,7 @@ import com.squareup.moshi.JsonClass
  * @param attemptCount The maximum number of consecutive failed login attempts allowed before triggering account suspension.
  * @param blockTime The duration (in minutes) for which an account remains suspended after exceeding maximum login attempts.
  * @param checkPeriod The maximum time (in seconds) allowed for server to process and respond to login requests.
- * @param isDefault Specifies if these settings are default or not
+ * @param isDefault Specifies whether the login settings are default or not.
  */
 
 
@@ -44,7 +44,7 @@ data class LoginSettingsDto (
     @Json(name = "checkPeriod")
     val checkPeriod: kotlin.Int,
 
-    /* Specifies if these settings are default or not */
+    /* Specifies whether the login settings are default or not. */
     @Json(name = "isDefault")
     val isDefault: kotlin.Boolean
 

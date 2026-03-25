@@ -33,7 +33,6 @@ import com.squareup.moshi.JsonClass
  *
  * @param lang The language of the editor configuration.
  * @param mode The mode of the editor configuration.
- * @param user 
  * @param callbackUrl The callback URL of the editor.
  * @param coEditing 
  * @param createUrl The creation URL of the editor.
@@ -44,6 +43,7 @@ import com.squareup.moshi.JsonClass
  * @param plugins 
  * @param recent The recent configuration of the editor.
  * @param templates The templates of the editor configuration.
+ * @param user 
  */
 
 
@@ -56,9 +56,6 @@ data class EditorConfigurationDto (
     /* The mode of the editor configuration. */
     @Json(name = "mode")
     val mode: kotlin.String?,
-
-    @Json(name = "user")
-    val user: UserConfig,
 
     /* The callback URL of the editor. */
     @Json(name = "callbackUrl")
@@ -93,7 +90,10 @@ data class EditorConfigurationDto (
 
     /* The templates of the editor configuration. */
     @Json(name = "templates")
-    val templates: kotlin.collections.List<TemplatesConfig>? = null
+    val templates: kotlin.collections.List<TemplatesConfig>? = null,
+
+    @Json(name = "user")
+    val user: UserConfig? = null
 
 ) {
 

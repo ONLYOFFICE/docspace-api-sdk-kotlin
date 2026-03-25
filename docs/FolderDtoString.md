@@ -61,8 +61,10 @@
 | **usedSpace** | **kotlin.Long** | How much folder space is used (counter). |  [optional] |
 | **passwordProtected** | **kotlin.Boolean** | Specifies if the folder is password protected or not. |  [optional] |
 | **expired** | **kotlin.Boolean** | Specifies if an external link to the folder is expired or not. |  [optional] |
-| **chatSettings** | [**ChatSettings**](ChatSettings.md) |  |  [optional] |
+| **chatSettings** | [**ChatSettingsDto**](ChatSettingsDto.md) |  |  [optional] |
 | **rootRoomType** | [**RoomType**](RoomType.md) |  |  [optional] |
+| **saveFormAsXLSX** | **kotlin.Boolean** | Specifies whether to save form data as XLSX file. |  [optional] |
+| **sendFormToExternalDB** | **kotlin.Boolean** | Specifies whether to send form data to external database. |  [optional] |
 
 
 

@@ -28,7 +28,7 @@ import com.squareup.moshi.JsonClass
  * @param ssoLabel The SP login label.
  * @param oauthEnabled Specifies if OAuth is enabled or not.
  * @param ssoUrl The SSO URL. If this parameter is empty, then the SSO settings are disabled.
- * @param identityServerEnabled Specifies if identity server is enabled or not
+ * @param identityServerEnabled Specifies if an identity server is enabled or not.
  * @param ldapDomain The LDAP domain.
  */
 
@@ -55,7 +55,7 @@ data class CapabilitiesDto (
     @Json(name = "ssoUrl")
     val ssoUrl: java.net.URI?,
 
-    /* Specifies if identity server is enabled or not */
+    /* Specifies if an identity server is enabled or not. */
     @Json(name = "identityServerEnabled")
     val identityServerEnabled: kotlin.Boolean,
 

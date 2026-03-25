@@ -23,14 +23,14 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The backup schedule parameters.
  *
  * @param storageType 
- * @param storageParams 
+ * @param storageParams The backup storage parameters.
  * @param cronParams 
- * @param lastBackupTime 
- * @param dump 
- * @param backupsStored 
+ * @param lastBackupTime The date and time when the last backup was reated.
+ * @param dump Specifies if a dump will be created or not.
+ * @param backupsStored The maximum number of the stored backup copies.
  */
 
 
@@ -39,18 +39,22 @@ data class ScheduleDto (
     @Json(name = "storageType")
     val storageType: BackupStorageType,
 
+    /* The backup storage parameters. */
     @Json(name = "storageParams")
     val storageParams: kotlin.collections.Map<kotlin.String, kotlin.String>?,
 
     @Json(name = "cronParams")
     val cronParams: CronParams,
 
+    /* The date and time when the last backup was reated. */
     @Json(name = "lastBackupTime")
     val lastBackupTime: java.time.OffsetDateTime,
 
+    /* Specifies if a dump will be created or not. */
     @Json(name = "dump")
     val dump: kotlin.Boolean,
 
+    /* The maximum number of the stored backup copies. */
     @Json(name = "backupsStored")
     val backupsStored: kotlin.Int? = null
 

@@ -16,14 +16,16 @@
 
 package onlyoffice.docspace.api.sdk.models
 
+import onlyoffice.docspace.api.sdk.models.ChatReasoningEffort
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The user chat settings.
  *
  * @param webSearchEnabled Indicates whether the AI assistant is allowed to perform web searches when generating responses in this room.
+ * @param reasoningEffort 
  */
 
 
@@ -31,7 +33,10 @@ data class UserChatSettingsDto (
 
     /* Indicates whether the AI assistant is allowed to perform web searches when generating responses in this room. */
     @Json(name = "webSearchEnabled")
-    val webSearchEnabled: kotlin.Boolean? = null
+    val webSearchEnabled: kotlin.Boolean? = null,
+
+    @Json(name = "reasoningEffort")
+    val reasoningEffort: ChatReasoningEffort? = null
 
 ) {
 

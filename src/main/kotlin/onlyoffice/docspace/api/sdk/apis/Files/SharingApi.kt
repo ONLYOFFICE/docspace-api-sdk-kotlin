@@ -238,6 +238,9 @@ interface SharingApi {
      * Sends a message to the users who are mentioned in the file with the ID specified in the request.
      * Responses:
      *  - 200: List of access rights information
+     *  - 400: The list of email addresses is empty
+     *  - 403: You don't have enough permission to perform the operation
+     *  - 404: The required file was not found
      *  - 401: Unauthorized
      *
      * REST API Reference for sendEditorNotify Operation

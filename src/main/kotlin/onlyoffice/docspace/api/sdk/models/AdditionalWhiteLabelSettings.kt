@@ -29,7 +29,7 @@ import com.squareup.moshi.JsonClass
  * @param userForumEnabled Specifies if the user forum is available or not.
  * @param videoGuidesEnabled Specifies if the Video Guides link is available or not.
  * @param licenseAgreementsEnabled Specifies if the License Agreements link is available or not.
- * @param lastModified 
+ * @param lastModified The timestamp indicating when the settings were last modified.
  */
 
 
@@ -59,6 +59,7 @@ data class AdditionalWhiteLabelSettings (
     @Json(name = "licenseAgreementsEnabled")
     val licenseAgreementsEnabled: kotlin.Boolean? = null,
 
+    /* The timestamp indicating when the settings were last modified. */
     @Json(name = "lastModified")
     val lastModified: java.time.OffsetDateTime? = null
 

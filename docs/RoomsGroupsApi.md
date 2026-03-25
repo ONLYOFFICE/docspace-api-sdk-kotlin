@@ -146,7 +146,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(GroupsApi::class.java)
-val id : kotlin.Int = 1 // kotlin.Int | The group unique identifier.
+val id : kotlin.Int = 10 // kotlin.Int | The group unique identifier.
 val includeMembers : kotlin.Boolean = true // kotlin.Boolean | Whether to include group members.
 
 webService.deleteRoomGroup(id, includeMembers)
@@ -195,7 +195,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(GroupsApi::class.java)
-val id : kotlin.Int = 1 // kotlin.Int | The group unique identifier.
+val id : kotlin.Int = 10 // kotlin.Int | The group unique identifier.
 val includeMembers : kotlin.Boolean = true // kotlin.Boolean | Whether to include group members.
 
 val result : RoomGroupWrapper = webService.getRoomGroupInfo(id, includeMembers)
@@ -244,7 +244,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(GroupsApi::class.java)
-val id : kotlin.Int = 1 // kotlin.Int | The group unique identifier.
+val id : kotlin.Int = 10 // kotlin.Int | The group unique identifier.
 val includeMembers : kotlin.Boolean = true // kotlin.Boolean | Whether to include group members.
 
 val result : RoomGroupArrayWrapper = webService.getRoomGroups(id, includeMembers)

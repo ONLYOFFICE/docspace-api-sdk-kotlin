@@ -5,7 +5,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
 | [**getUserTypeUpdateProgress**](PeopleUserTypeApi.md#getUserTypeUpdateProgress) | **GET** api/2.0/people/type/progress/{userid} | Get the progress of updating user type |
-| [**starUserTypetUpdate**](PeopleUserTypeApi.md#starUserTypetUpdate) | **POST** api/2.0/people/type | Start updating user type |
+| [**startUserTypeUpdate**](PeopleUserTypeApi.md#startUserTypeUpdate) | **POST** api/2.0/people/type | Start updating user type |
 | [**terminateUserTypeUpdate**](PeopleUserTypeApi.md#terminateUserTypeUpdate) | **PUT** api/2.0/people/type/terminate | Terminate updating user type |
 | [**updateUserType**](PeopleUserTypeApi.md#updateUserType) | **PUT** api/2.0/people/type/{type} | Change a user type |
 
@@ -58,13 +58,13 @@ val result : TaskProgressResponseWrapper = webService.getUserTypeUpdateProgress(
  - **Accept**: application/json
 
 
-<a id="starUserTypetUpdate"></a>
-# **starUserTypetUpdate**
-> TaskProgressResponseWrapper starUserTypetUpdate (StartUpdateUserTypeDto startUpdateUserTypeDto)
+<a id="startUserTypeUpdate"></a>
+# **startUserTypeUpdate**
+> TaskProgressResponseWrapper startUserTypeUpdate (StartUpdateUserTypeDto startUpdateUserTypeDto)
 
 Starts updating the type of the user or guest when reassigning rooms and shared files.
 
-For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/star-user-typet-update/).
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/start-user-type-update/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
@@ -96,7 +96,7 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(UserTypeApi::class.java)
 val startUpdateUserTypeDto : StartUpdateUserTypeDto =  // StartUpdateUserTypeDto | 
 
-val result : TaskProgressResponseWrapper = webService.starUserTypetUpdate(startUpdateUserTypeDto)
+val result : TaskProgressResponseWrapper = webService.startUserTypeUpdate(startUpdateUserTypeDto)
 ```
 
 ### HTTP request headers
@@ -189,7 +189,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(UserTypeApi::class.java)
-val type : EmployeeType =  // EmployeeType | The new user type.
+val type : EmployeeType = 1 // EmployeeType | The new user type.
 val updateMembersRequestDto : UpdateMembersRequestDto =  // UpdateMembersRequestDto | The request parameters for updating the user information.
 
 val result : EmployeeFullArrayWrapper = webService.updateUserType(type, updateMembersRequestDto)

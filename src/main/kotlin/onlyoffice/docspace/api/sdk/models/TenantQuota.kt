@@ -61,26 +61,9 @@ import com.squareup.moshi.JsonClass
  * @param thirdParty Specifies if the third-party accounts linking is available or not.
  * @param year Specifies if the tenant quota is yearly subscription or not.
  * @param countFreeBackup The number of free backups within a month.
- * @param backup Specifies if the backup anabled as a wallet service or not.
+ * @param backup Specifies if the backup enabled as a wallet service or not.
  * @param countAIAgent The number of AI agents.
- * @param aiTools Specifies if the AI tools anabled as a wallet service or not.
- * @param aiToolsWebSearch Specifies whether the web search is enabled as a subservice of AI tools.
- * @param aiToolsWebFetch Specifies whether the web fetch is enabled as a subservice of AI tools
- * @param aiToolsEmbedding Specifies whether the embedding is enabled as a subservice of AI tools
- * @param aiToolsDeepseek31Input Specifies whether the Deepseek 3.1 input tokens is enabled as a subservice of AI tools
- * @param aiToolsDeepseek31Output Specifies whether the Deepseek 3.1 output tokens is enabled as a subservice of AI tools
- * @param aiToolsClaude45Input Specifies whether the Claude 4.5 input tokens is enabled as a subservice of AI tools
- * @param aiToolsClaude45Output Specifies whether the Claude 4.5 output tokens is enabled as a subservice of AI tools
- * @param aiToolsGPT5Input Specifies whether the GPT 5 input tokens is enabled as a subservice of AI tools
- * @param aiToolsGPT5Output Specifies whether the GPT 5 output tokens is enabled as a subservice of AI tools
- * @param aiToolsDeepseek32Input Specifies whether the Deepseek 3.2 input tokens is enabled as a subservice of AI tools
- * @param aiToolsDeepseek32Output Specifies whether the Deepseek 3.2 output tokens is enabled as a subservice of AI tools
- * @param aiToolsGPT52Input Specifies whether the GPT 5.2 input tokens is enabled as a subservice of AI tools
- * @param aiToolsGPT52Output Specifies whether the GPT 5.2 output tokens is enabled as a subservice of AI tools
- * @param aiToolsGemini3ProInput Specifies whether the Gemini 3 Pro input tokens is enabled as a subservice of AI tools
- * @param aiToolsGemini3ProOutput Specifies whether the Gemini 3 Pro output tokens is enabled as a subservice of AI tools
- * @param aiToolsGemini3FlashInput Specifies whether the Gemini 3 Flash input tokens is enabled as a subservice of AI tools
- * @param aiToolsGemini3FlashOutput Specifies whether the Gemini 3 Flash output tokens is enabled as a subservice of AI tools
+ * @param aiTools Specifies if the AI tools enabled as a wallet service or not.
  */
 
 
@@ -238,7 +221,7 @@ data class TenantQuota (
     @Json(name = "countFreeBackup")
     val countFreeBackup: kotlin.Int? = null,
 
-    /* Specifies if the backup anabled as a wallet service or not. */
+    /* Specifies if the backup enabled as a wallet service or not. */
     @Json(name = "backup")
     val backup: kotlin.Boolean? = null,
 
@@ -246,77 +229,9 @@ data class TenantQuota (
     @Json(name = "countAIAgent")
     val countAIAgent: kotlin.Int? = null,
 
-    /* Specifies if the AI tools anabled as a wallet service or not. */
+    /* Specifies if the AI tools enabled as a wallet service or not. */
     @Json(name = "aiTools")
-    val aiTools: kotlin.Boolean? = null,
-
-    /* Specifies whether the web search is enabled as a subservice of AI tools. */
-    @Json(name = "aiToolsWebSearch")
-    val aiToolsWebSearch: kotlin.Boolean? = null,
-
-    /* Specifies whether the web fetch is enabled as a subservice of AI tools */
-    @Json(name = "aiToolsWebFetch")
-    val aiToolsWebFetch: kotlin.Boolean? = null,
-
-    /* Specifies whether the embedding is enabled as a subservice of AI tools */
-    @Json(name = "aiToolsEmbedding")
-    val aiToolsEmbedding: kotlin.Boolean? = null,
-
-    /* Specifies whether the Deepseek 3.1 input tokens is enabled as a subservice of AI tools */
-    @Json(name = "aiToolsDeepseek31Input")
-    val aiToolsDeepseek31Input: kotlin.Boolean? = null,
-
-    /* Specifies whether the Deepseek 3.1 output tokens is enabled as a subservice of AI tools */
-    @Json(name = "aiToolsDeepseek31Output")
-    val aiToolsDeepseek31Output: kotlin.Boolean? = null,
-
-    /* Specifies whether the Claude 4.5 input tokens is enabled as a subservice of AI tools */
-    @Json(name = "aiToolsClaude45Input")
-    val aiToolsClaude45Input: kotlin.Boolean? = null,
-
-    /* Specifies whether the Claude 4.5 output tokens is enabled as a subservice of AI tools */
-    @Json(name = "aiToolsClaude45Output")
-    val aiToolsClaude45Output: kotlin.Boolean? = null,
-
-    /* Specifies whether the GPT 5 input tokens is enabled as a subservice of AI tools */
-    @Json(name = "aiToolsGPT5Input")
-    val aiToolsGPT5Input: kotlin.Boolean? = null,
-
-    /* Specifies whether the GPT 5 output tokens is enabled as a subservice of AI tools */
-    @Json(name = "aiToolsGPT5Output")
-    val aiToolsGPT5Output: kotlin.Boolean? = null,
-
-    /* Specifies whether the Deepseek 3.2 input tokens is enabled as a subservice of AI tools */
-    @Json(name = "aiToolsDeepseek32Input")
-    val aiToolsDeepseek32Input: kotlin.Boolean? = null,
-
-    /* Specifies whether the Deepseek 3.2 output tokens is enabled as a subservice of AI tools */
-    @Json(name = "aiToolsDeepseek32Output")
-    val aiToolsDeepseek32Output: kotlin.Boolean? = null,
-
-    /* Specifies whether the GPT 5.2 input tokens is enabled as a subservice of AI tools */
-    @Json(name = "aiToolsGPT52Input")
-    val aiToolsGPT52Input: kotlin.Boolean? = null,
-
-    /* Specifies whether the GPT 5.2 output tokens is enabled as a subservice of AI tools */
-    @Json(name = "aiToolsGPT52Output")
-    val aiToolsGPT52Output: kotlin.Boolean? = null,
-
-    /* Specifies whether the Gemini 3 Pro input tokens is enabled as a subservice of AI tools */
-    @Json(name = "aiToolsGemini3ProInput")
-    val aiToolsGemini3ProInput: kotlin.Boolean? = null,
-
-    /* Specifies whether the Gemini 3 Pro output tokens is enabled as a subservice of AI tools */
-    @Json(name = "aiToolsGemini3ProOutput")
-    val aiToolsGemini3ProOutput: kotlin.Boolean? = null,
-
-    /* Specifies whether the Gemini 3 Flash input tokens is enabled as a subservice of AI tools */
-    @Json(name = "aiToolsGemini3FlashInput")
-    val aiToolsGemini3FlashInput: kotlin.Boolean? = null,
-
-    /* Specifies whether the Gemini 3 Flash output tokens is enabled as a subservice of AI tools */
-    @Json(name = "aiToolsGemini3FlashOutput")
-    val aiToolsGemini3FlashOutput: kotlin.Boolean? = null
+    val aiTools: kotlin.Boolean? = null
 
 ) {
 

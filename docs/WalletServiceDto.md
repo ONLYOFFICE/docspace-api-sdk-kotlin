@@ -16,7 +16,8 @@
 | **aiAgentsQuota** | [**TenantEntityQuotaSettings**](TenantEntityQuotaSettings.md) |  |  [optional] |
 | **tenantCustomQuota** | [**TenantQuotaSettings**](TenantQuotaSettings.md) |  |  [optional] |
 | **dueDate** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) | The due date. |  [optional] |
-| **innerServices** | [**kotlin.collections.List&lt;QuotaDto&gt;**](QuotaDto.md) | The list of inner services. |  [optional] |
+| **innerServices** | [**kotlin.collections.List&lt;WalletServiceDto&gt;**](WalletServiceDto.md) | The list of inner services. |  [optional] |
+| **serviceName** | **kotlin.String** | The service name. |  [optional] |
 
 
 

@@ -69,6 +69,7 @@ import com.squareup.moshi.JsonClass
  * @param limitedAccessSpace Specifies whether the access to the space management is limited or not.
  * @param limitedAccessDevToolsForUsers Specifies whether the access to the Developer Tools is limited for users or not.
  * @param displayBanners Specifies whether to display the promotional banners.
+ * @param aiEnabled Specifies whether AI functionality (chat, agents, vectorization) is enabled for the current tenant.  When `false`, all AI features are disabled and the AI Agents folder is hidden.
  * @param userNameRegex The user name validation regex.
  * @param invitationLimit The maximum number of invitations to the portal.
  * @param plugins 
@@ -77,6 +78,7 @@ import com.squareup.moshi.JsonClass
  * @param logoText The white label logo text.
  * @param externalResources 
  * @param defaultFolderType 
+ * @param externalDbEnabled Specifies if an external database is connected for storing form results.
  */
 
 
@@ -215,6 +217,10 @@ data class SettingsDto (
     @Json(name = "displayBanners")
     val displayBanners: kotlin.Boolean? = null,
 
+    /* Specifies whether AI functionality (chat, agents, vectorization) is enabled for the current tenant.  When `false`, all AI features are disabled and the AI Agents folder is hidden. */
+    @Json(name = "aiEnabled")
+    val aiEnabled: kotlin.Boolean? = null,
+
     /* The user name validation regex. */
     @Json(name = "userNameRegex")
     val userNameRegex: kotlin.String? = null,
@@ -241,7 +247,11 @@ data class SettingsDto (
     val externalResources: CultureSpecificExternalResources? = null,
 
     @Json(name = "defaultFolderType")
-    val defaultFolderType: FolderType? = null
+    val defaultFolderType: FolderType? = null,
+
+    /* Specifies if an external database is connected for storing form results. */
+    @Json(name = "externalDbEnabled")
+    val externalDbEnabled: kotlin.Boolean? = null
 
 ) {
 

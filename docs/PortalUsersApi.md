@@ -146,7 +146,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(UsersApi::class.java)
-val employeeType : EmployeeType =  // EmployeeType | The type of employee role for the invitation link (DocSpaceAdmin, RoomAdmin or User).
+val employeeType : EmployeeType = 1 // EmployeeType | The type of employee role for the invitation link (DocSpaceAdmin, RoomAdmin or User).
 
 val result : StringWrapper = webService.getInvitationLink(employeeType)
 ```
@@ -193,7 +193,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(UsersApi::class.java)
-val employeeType : EmployeeType =  // EmployeeType | The type of employee role for the invitation link (DocSpaceAdmin, RoomAdmin or User).
+val employeeType : EmployeeType = 1 // EmployeeType | The type of employee role for the invitation link (DocSpaceAdmin, RoomAdmin or User).
 
 val result : InvitationLinkWrapper = webService.getInvitationLinkByEmployeeType(employeeType)
 ```
@@ -370,8 +370,8 @@ No authorization required
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(UsersApi::class.java)
-val userid : java.util.UUID = 75a5f745-f697-4418-b38d-0fe0d277e258 // java.util.UUID | The user ID to receive the congratulatory message.
-val key : kotlin.String = some text // kotlin.String | The template identifier or email configuration key.
+val userid : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The user ID to receive the congratulatory message.
+val key : kotlin.String = birthday // kotlin.String | The template identifier or email configuration key.
 
 webService.sendCongratulations(userid, key)
 ```

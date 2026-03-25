@@ -4,15 +4,15 @@
 ## Properties
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
-| **isCompleted** | **kotlin.Boolean** |  |  [optional] |
-| **progress** | **kotlin.Int** |  |  [optional] |
-| **error** | **kotlin.String** |  |  [optional] |
-| **warning** | **kotlin.String** |  |  [optional] |
-| **link** | **kotlin.String** |  |  [optional] |
-| **tenantId** | **kotlin.Int** |  |  [optional] |
+| **isCompleted** | **kotlin.Boolean** | Specifies if the backup is completed or not. |  [optional] |
+| **progress** | **kotlin.Int** | The backup progress in percentage. |  [optional] |
+| **error** | **kotlin.String** | The backup error message. |  [optional] |
+| **warning** | **kotlin.String** | The backup warning message. |  [optional] |
+| **link** | **kotlin.String** | The backup link. |  [optional] |
+| **tenantId** | **kotlin.Int** | The tenant ID. |  [optional] |
 | **backupProgressEnum** | [**BackupProgressEnum**](BackupProgressEnum.md) |  |  [optional] |
 | **status** | [**DistributedTaskStatus**](DistributedTaskStatus.md) |  |  [optional] |
-| **taskId** | **kotlin.String** |  |  [optional] |
+| **taskId** | **kotlin.String** | The task ID. |  [optional] |
 
 
 

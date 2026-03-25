@@ -6,6 +6,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 | ------------- | ------------- | ------------- |
 | [**getAuthServices**](SettingsAuthorizationApi.md#getAuthServices) | **GET** api/2.0/settings/authservice | Get the authorization services |
 | [**saveAuthKeys**](SettingsAuthorizationApi.md#saveAuthKeys) | **POST** api/2.0/settings/authservice | Save the authorization keys |
+| [**testExternalDatabaseConnection**](SettingsAuthorizationApi.md#testExternalDatabaseConnection) | **POST** api/2.0/settings/authservice/externaldb/test | Test external database connection |
 
 
 
@@ -92,6 +93,53 @@ val webService = apiClient.createWebservice(AuthorizationApi::class.java)
 val authServiceRequestsDto : AuthServiceRequestsDto =  // AuthServiceRequestsDto | 
 
 val result : BooleanWrapper = webService.saveAuthKeys(authServiceRequestsDto)
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+<a id="testExternalDatabaseConnection"></a>
+# **testExternalDatabaseConnection**
+> ConnectionTestResultWrapper testExternalDatabaseConnection (ExternalDatabaseSettings externalDatabaseSettings)
+
+Tests an external database connection with the provided settings without saving them.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/test-external-database-connection/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **externalDatabaseSettings** | [**ExternalDatabaseSettings**](ExternalDatabaseSettings.md)|  | [optional] |
+
+### Return type
+
+[**ConnectionTestResultWrapper**](ConnectionTestResultWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(AuthorizationApi::class.java)
+val externalDatabaseSettings : ExternalDatabaseSettings =  // ExternalDatabaseSettings | 
+
+val result : ConnectionTestResultWrapper = webService.testExternalDatabaseConnection(externalDatabaseSettings)
 ```
 
 ### HTTP request headers

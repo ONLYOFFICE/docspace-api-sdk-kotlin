@@ -22,15 +22,16 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * Represents a wrapper for the response of a chunked upload session operation.
  *
- * @param success 
+ * @param success Gets or sets a value indicating whether the operation was successful.
  * @param `data` 
  */
 
 
 data class ChunkedUploadSessionResponseWrapperInteger (
 
+    /* Gets or sets a value indicating whether the operation was successful. */
     @Json(name = "success")
     val success: kotlin.Boolean? = null,
 

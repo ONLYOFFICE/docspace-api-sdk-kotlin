@@ -26,6 +26,10 @@ import com.squareup.moshi.JsonClass
  * @param name The authorization key name.
  * @param `value` The authorization key value.
  * @param title The authorization key title.
+ * @param type The field type: text, password, select, toggle.
+ * @param options The list of options for select type fields.
+ * @param dependsOn The name of another key this field depends on for visibility.
+ * @param dependsOnValue The value of ASC.Web.Studio.UserControls.Management.AuthKey.DependsOn key that makes this field visible.
  */
 
 
@@ -41,7 +45,23 @@ data class AuthKey (
 
     /* The authorization key title. */
     @Json(name = "title")
-    val title: kotlin.String? = null
+    val title: kotlin.String? = null,
+
+    /* The field type: text, password, select, toggle. */
+    @Json(name = "type")
+    val type: kotlin.String? = null,
+
+    /* The list of options for select type fields. */
+    @Json(name = "options")
+    val options: kotlin.collections.List<kotlin.String>? = null,
+
+    /* The name of another key this field depends on for visibility. */
+    @Json(name = "dependsOn")
+    val dependsOn: kotlin.String? = null,
+
+    /* The value of ASC.Web.Studio.UserControls.Management.AuthKey.DependsOn key that makes this field visible. */
+    @Json(name = "dependsOnValue")
+    val dependsOnValue: kotlin.String? = null
 
 ) {
 

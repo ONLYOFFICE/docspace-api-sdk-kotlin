@@ -8,5 +8,7 @@
 
     * `Exa` (value: `1`)
 
+    * `PortalAi` (value: `2`)
+
 
 

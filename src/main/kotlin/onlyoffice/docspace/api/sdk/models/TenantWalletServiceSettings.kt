@@ -43,11 +43,10 @@ data class TenantWalletServiceSettings (
     /**
      * The list of the enabled wallet services.
      *
-     * Values: WebSearch,AITools,Backup,Storage
+     * Values: AITools,Backup,Storage
      */
     @JsonClass(generateAdapter = false)
     enum class EnabledServices(val value: kotlin.Int) {
-        @Json(name = "-14") WebSearch(-14),
         @Json(name = "-13") AITools(-13),
         @Json(name = "-12") Backup(-12),
         @Json(name = "-11") Storage(-11);

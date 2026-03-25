@@ -22,30 +22,34 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The backup history parameters.
  *
- * @param id 
- * @param fileName 
+ * @param id The backup ID.
+ * @param fileName The backup file name.
  * @param storageType 
- * @param createdOn 
- * @param expiresOn 
+ * @param createdOn The backup creation date.
+ * @param expiresOn The backup expiration date.
  */
 
 
 data class BackupHistoryRecord (
 
+    /* The backup ID. */
     @Json(name = "id")
     val id: java.util.UUID,
 
+    /* The backup file name. */
     @Json(name = "fileName")
     val fileName: kotlin.String?,
 
     @Json(name = "storageType")
     val storageType: BackupStorageType,
 
+    /* The backup creation date. */
     @Json(name = "createdOn")
     val createdOn: java.time.OffsetDateTime,
 
+    /* The backup expiration date. */
     @Json(name = "expiresOn")
     val expiresOn: java.time.OffsetDateTime
 

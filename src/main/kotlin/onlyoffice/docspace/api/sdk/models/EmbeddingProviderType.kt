@@ -21,9 +21,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * [0 - None, 1 - OpenAi, 2 - OpenRouter]
+ * [0 - None, 1 - OpenAi, 2 - OpenRouter, 3 - PortalAi]
  *
- * Values: None,OpenAi,OpenRouter
+ * Values: None,OpenAi,OpenRouter,PortalAi
  */
 
 @JsonClass(generateAdapter = false)
@@ -36,7 +36,10 @@ enum class EmbeddingProviderType(val value: kotlin.Int) {
     OpenAi(1),
 
     @Json(name = "2")
-    OpenRouter(2);
+    OpenRouter(2),
+
+    @Json(name = "3")
+    PortalAi(3);
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use
@@ -58,7 +61,7 @@ enum class EmbeddingProviderType(val value: kotlin.Int) {
          */
         fun decode(data: kotlin.Any?): EmbeddingProviderType? = data?.let {
           val normalizedData = "$it".lowercase()
-          entries.firstOrNull { value ->
+          values().firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()
           }
         }

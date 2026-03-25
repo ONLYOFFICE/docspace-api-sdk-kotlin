@@ -58,15 +58,15 @@ interface UserTypeApi {
      *  - 400: Can not update user type
      *  - 401: Unauthorized
      *
-     * REST API Reference for starUserTypetUpdate Operation
-     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/star-user-typet-update/
+     * REST API Reference for startUserTypeUpdate Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/start-user-type-update/
      *
      *
      * @param startUpdateUserTypeDto  (optional)
      * @return [Call]<[TaskProgressResponseWrapper]>
      */
     @POST("api/2.0/people/type")
-    fun starUserTypetUpdate(@Body startUpdateUserTypeDto: StartUpdateUserTypeDto? = null): Call<TaskProgressResponseWrapper>
+    fun startUserTypeUpdate(@Body startUpdateUserTypeDto: StartUpdateUserTypeDto? = null): Call<TaskProgressResponseWrapper>
 
     /**
      * PUT api/2.0/people/type/terminate

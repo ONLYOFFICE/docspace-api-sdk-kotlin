@@ -31,7 +31,6 @@ import com.squareup.moshi.JsonClass
  * @param provider The type of authentication provider (e.g., internal, Google, Azure).
  * @param accessToken The access token used for authentication with external providers.
  * @param serializedProfile The serialized user profile data, if applicable.
- * @param code The code for two-factor authentication.
  * @param codeOAuth The authorization code used for obtaining OAuth tokens.
  * @param session Specifies whether the authentication is session-based.
  * @param confirmData 
@@ -66,10 +65,6 @@ data class AuthRequestsDto (
     /* The serialized user profile data, if applicable. */
     @Json(name = "serializedProfile")
     val serializedProfile: kotlin.String? = null,
-
-    /* The code for two-factor authentication. */
-    @Json(name = "code")
-    val code: kotlin.String? = null,
 
     /* The authorization code used for obtaining OAuth tokens. */
     @Json(name = "codeOAuth")

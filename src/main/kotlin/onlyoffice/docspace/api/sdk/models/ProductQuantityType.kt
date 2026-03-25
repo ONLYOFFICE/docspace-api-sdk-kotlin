@@ -61,7 +61,7 @@ enum class ProductQuantityType(val value: kotlin.Int) {
          */
         fun decode(data: kotlin.Any?): ProductQuantityType? = data?.let {
           val normalizedData = "$it".lowercase()
-          entries.firstOrNull { value ->
+          values().firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()
           }
         }

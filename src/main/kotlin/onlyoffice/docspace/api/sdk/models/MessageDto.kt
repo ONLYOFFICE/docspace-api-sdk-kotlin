@@ -24,7 +24,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The chat message information.
  *
  * @param id The unique identifier of the message.
  * @param role 

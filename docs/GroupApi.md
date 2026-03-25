@@ -300,12 +300,12 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(GroupApi::class.java)
 val userId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The user ID.
-val manager : kotlin.Boolean = true // kotlin.Boolean | Specifies if the user is a manager or not.
-val count : kotlin.Int = 1234 // kotlin.Int | The number of records to retrieve.
-val startIndex : kotlin.Int = 1234 // kotlin.Int | The starting index for paginated results.
-val sortBy : kotlin.String = some text // kotlin.String | Specifies the property used to sort the query results.
-val sortOrder : SortOrder =  // SortOrder | The order in which the results are sorted.
-val filterValue : kotlin.String = some text // kotlin.String | The text used for filtering or searching group data.
+val manager : kotlin.Boolean = false // kotlin.Boolean | Specifies if the user is a manager or not.
+val count : kotlin.Int = 25 // kotlin.Int | The number of records to retrieve.
+val startIndex : kotlin.Int = 0 // kotlin.Int | The starting index for paginated results.
+val sortBy : kotlin.String = displayName // kotlin.String | Specifies the property used to sort the query results.
+val sortOrder : SortOrder = 0 // SortOrder | The order in which the results are sorted.
+val filterValue : kotlin.String = John // kotlin.String | The text used for filtering or searching group data.
 
 val result : GroupArrayWrapper = webService.getGroups(userId, manager, count, startIndex, sortBy, sortOrder, filterValue)
 ```
@@ -353,8 +353,8 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(GroupApi::class.java)
-val fromId : java.util.UUID = 75a5f745-f697-4418-b38d-0fe0d277e258 // java.util.UUID | The group ID to move from.
-val toId : java.util.UUID = 75a5f745-f697-4418-b38d-0fe0d277e258 // java.util.UUID | The group ID to move to.
+val fromId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The group ID to move from.
+val toId : java.util.UUID = 11111111-1111-1111-1111-111111111111 // java.util.UUID | The group ID to move to.
 
 val result : GroupWrapper = webService.moveMembersTo(fromId, toId)
 ```

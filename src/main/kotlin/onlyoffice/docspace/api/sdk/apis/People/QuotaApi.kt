@@ -54,7 +54,8 @@ interface QuotaApi {
      * Changes a quota limit for the users with the IDs specified in the request.
      * Responses:
      *  - 200: List of users with the detailed information
-     *  - 402: Failed to set quota per user. The entered value is greater than the total DocSpace storage
+     *  - 400: The entered quota value is invalid or greater than the total storage size
+     *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *
      * REST API Reference for updateUserQuota Operation

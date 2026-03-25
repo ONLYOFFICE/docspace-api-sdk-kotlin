@@ -22,7 +22,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The vectorization settings.
  *
  * @param type 
  * @param needReset Indicates whether the embedding provider API key needs to be reconfigured.

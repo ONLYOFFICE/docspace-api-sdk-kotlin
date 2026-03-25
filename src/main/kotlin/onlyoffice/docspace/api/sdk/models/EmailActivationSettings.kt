@@ -24,7 +24,7 @@ import com.squareup.moshi.JsonClass
  * The email activation settings.
  *
  * @param show Specifies whether the email activation settings are shown or hidden.
- * @param lastModified 
+ * @param lastModified The timestamp indicating when the settings were last modified.
  */
 
 
@@ -34,6 +34,7 @@ data class EmailActivationSettings (
     @Json(name = "show")
     val show: kotlin.Boolean? = null,
 
+    /* The timestamp indicating when the settings were last modified. */
     @Json(name = "lastModified")
     val lastModified: java.time.OffsetDateTime? = null
 

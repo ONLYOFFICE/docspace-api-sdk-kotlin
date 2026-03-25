@@ -27,7 +27,7 @@ import com.squareup.moshi.JsonClass
  * @param name The full name of the user.
  * @param image The path to the user's avatar.
  * @param roles Roles
- * @param customerId 
+ * @param customerId Customer identifier associated with the user.
  */
 
 
@@ -49,6 +49,7 @@ data class UserConfig (
     @Json(name = "roles")
     val roles: kotlin.collections.List<kotlin.String>? = null,
 
+    /* Customer identifier associated with the user. */
     @Json(name = "customerId")
     val customerId: kotlin.String? = null
 

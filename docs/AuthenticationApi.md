@@ -57,7 +57,7 @@ val result : AuthenticationTokenWrapper = webService.authenticateMe(authRequests
 
 <a id="authenticateMeFromBodyWithCode"></a>
 # **authenticateMeFromBodyWithCode**
-> AuthenticationTokenWrapper authenticateMeFromBodyWithCode (kotlin.String code, AuthRequestsDto authRequestsDto)
+> AuthenticationTokenWrapper authenticateMeFromBodyWithCode (kotlin.String code, AuthWithCodeRequestsDto authWithCodeRequestsDto)
 
 Authenticates the current user by SMS or two-factor authentication code.
 
@@ -67,7 +67,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **code** | **kotlin.String**|  | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **authRequestsDto** | [**AuthRequestsDto**](AuthRequestsDto.md)|  | [optional] |
+| **authWithCodeRequestsDto** | [**AuthWithCodeRequestsDto**](AuthWithCodeRequestsDto.md)|  | [optional] |
 
 ### Return type
 
@@ -87,9 +87,9 @@ No authorization required
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(AuthenticationApi::class.java)
 val code : kotlin.String = code_example // kotlin.String | 
-val authRequestsDto : AuthRequestsDto =  // AuthRequestsDto | 
+val authWithCodeRequestsDto : AuthWithCodeRequestsDto =  // AuthWithCodeRequestsDto | 
 
-val result : AuthenticationTokenWrapper = webService.authenticateMeFromBodyWithCode(code, authRequestsDto)
+val result : AuthenticationTokenWrapper = webService.authenticateMeFromBodyWithCode(code, authWithCodeRequestsDto)
 ```
 
 ### HTTP request headers

@@ -39,6 +39,7 @@ interface ProvidersApi {
      * Registers a new AI provider for the current tenant by specifying its type, display title, API endpoint URL, and authentication key.  The provider becomes available for AI chat conversations after creation. This action is rate-limited.
      * Responses:
      *  - 200: Created AI provider details
+     *  - 400: Invalid connection data or provider with this name already exists
      *  - 403: You don't have enough permission to manage providers
      *  - 401: Unauthorized
      *
@@ -150,6 +151,7 @@ interface ProvidersApi {
      * Updates the configuration of an existing AI provider, including its display title, API endpoint URL, and authentication key.  Only the fields provided in the request body will be updated. This action is rate-limited.
      * Responses:
      *  - 200: Updated AI provider details
+     *  - 400: Invalid connection data or provider with this name already exists
      *  - 403: You don't have enough permission to manage providers
      *  - 404: The provider with the specified ID was not found
      *  - 401: Unauthorized

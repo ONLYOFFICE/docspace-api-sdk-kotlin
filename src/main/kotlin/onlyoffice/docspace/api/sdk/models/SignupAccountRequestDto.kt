@@ -27,10 +27,6 @@ import com.squareup.moshi.JsonClass
  * @param key The user link key.
  * @param serializedProfile The third-party profile in the serialized format
  * @param employeeType 
- * @param firstName The user first name.
- * @param lastName The user last name.
- * @param email The user email address.
- * @param passwordHash The user password hash.
  * @param culture The user culture code.
  */
 
@@ -47,22 +43,6 @@ data class SignupAccountRequestDto (
 
     @Json(name = "employeeType")
     val employeeType: EmployeeType? = null,
-
-    /* The user first name. */
-    @Json(name = "firstName")
-    val firstName: kotlin.String? = null,
-
-    /* The user last name. */
-    @Json(name = "lastName")
-    val lastName: kotlin.String? = null,
-
-    /* The user email address. */
-    @Json(name = "email")
-    val email: kotlin.String? = null,
-
-    /* The user password hash. */
-    @Json(name = "passwordHash")
-    val passwordHash: kotlin.String? = null,
 
     /* The user culture code. */
     @Json(name = "culture")

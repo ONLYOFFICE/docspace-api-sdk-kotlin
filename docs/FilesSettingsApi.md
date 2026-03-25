@@ -25,6 +25,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 | [**hideConfirmRoomLifetime**](FilesSettingsApi.md#hideConfirmRoomLifetime) | **PUT** api/2.0/files/hideconfirmroomlifetime | Hide confirmation dialog when changing room lifetime settings |
 | [**isAvailablePrivacyRoomSettings**](FilesSettingsApi.md#isAvailablePrivacyRoomSettings) | **GET** api/2.0/files/@privacy/available | Check the Private Room availability |
 | [**keepNewFileName**](FilesSettingsApi.md#keepNewFileName) | **PUT** api/2.0/files/keepnewfilename | Ask a new file name |
+| [**resetDefaultTemplate**](FilesSettingsApi.md#resetDefaultTemplate) | **DELETE** api/2.0/files/settings/defaulttemplate | Reset the default template setting |
 | [**setDefaultTemplate**](FilesSettingsApi.md#setDefaultTemplate) | **PUT** api/2.0/files/settings/defaulttemplate | Change the default template setting |
 | [**setOpenEditorInSameTab**](FilesSettingsApi.md#setOpenEditorInSameTab) | **PUT** api/2.0/files/settings/openeditorinsametab | Open document in the same browser tab |
 | [**setOrganizeRoomsGrouping**](FilesSettingsApi.md#setOrganizeRoomsGrouping) | **PUT** api/2.0/files/settings/organizegrouping | Organize rooms grouping |
@@ -809,7 +810,7 @@ val result : BooleanWrapper = webService.hideConfirmCancelOperation(settingsRequ
 
 <a id="hideConfirmConvert"></a>
 # **hideConfirmConvert**
-> ModuleWrapper hideConfirmConvert (HideConfirmConvertRequestDto hideConfirmConvertRequestDto)
+> BooleanWrapper hideConfirmConvert (HideConfirmConvertRequestDto hideConfirmConvertRequestDto)
 
 Hides the confirmation dialog for saving the file copy in the original format when converting a file.
 
@@ -822,7 +823,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Return type
 
-[**ModuleWrapper**](ModuleWrapper.md)
+[**BooleanWrapper**](BooleanWrapper.md)
 
 ### Authorization
 
@@ -845,7 +846,7 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SettingsApi::class.java)
 val hideConfirmConvertRequestDto : HideConfirmConvertRequestDto =  // HideConfirmConvertRequestDto | 
 
-val result : ModuleWrapper = webService.hideConfirmConvert(hideConfirmConvertRequestDto)
+val result : BooleanWrapper = webService.hideConfirmConvert(hideConfirmConvertRequestDto)
 ```
 
 ### HTTP request headers
@@ -984,6 +985,53 @@ val webService = apiClient.createWebservice(SettingsApi::class.java)
 val settingsRequestDto : SettingsRequestDto =  // SettingsRequestDto | 
 
 val result : BooleanWrapper = webService.keepNewFileName(settingsRequestDto)
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+<a id="resetDefaultTemplate"></a>
+# **resetDefaultTemplate**
+> DefaultTemplateSettingsWrapper resetDefaultTemplate (DefaultTemplateSettingsResetRequestDto defaultTemplateSettingsResetRequestDto)
+
+Resets the default template setting.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/reset-default-template/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **defaultTemplateSettingsResetRequestDto** | [**DefaultTemplateSettingsResetRequestDto**](DefaultTemplateSettingsResetRequestDto.md)|  | [optional] |
+
+### Return type
+
+[**DefaultTemplateSettingsWrapper**](DefaultTemplateSettingsWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(SettingsApi::class.java)
+val defaultTemplateSettingsResetRequestDto : DefaultTemplateSettingsResetRequestDto =  // DefaultTemplateSettingsResetRequestDto | 
+
+val result : DefaultTemplateSettingsWrapper = webService.resetDefaultTemplate(defaultTemplateSettingsResetRequestDto)
 ```
 
 ### HTTP request headers
@@ -1308,7 +1356,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SettingsApi::class.java)
-val fileExtension : kotlin.String = .txt // kotlin.String | File extension of a template to replace
+val fileExtension : kotlin.String = .docx // kotlin.String | File extension of a template to replace
 val file : java.io.File = BINARY_DATA_HERE // java.io.File | File to replace template with
 
 val result : DefaultTemplateSettingsWrapper = webService.uploadDefaultTemplate(fileExtension, file)

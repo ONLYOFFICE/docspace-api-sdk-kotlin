@@ -16,6 +16,7 @@
 
 package onlyoffice.docspace.api.sdk.models
 
+import onlyoffice.docspace.api.sdk.models.DefaultTemplateSettingsRequestDtoSelectedFile
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -23,20 +24,19 @@ import com.squareup.moshi.JsonClass
 /**
  * Default templates settings request parameters.
  *
+ * @param selectedFile 
  * @param fileExtension File extension of a template to replace
- * @param selectedFile File id to replace template with (or null to use default template)
  */
 
 
 data class DefaultTemplateSettingsRequestDto (
 
+    @Json(name = "selectedFile")
+    val selectedFile: DefaultTemplateSettingsRequestDtoSelectedFile,
+
     /* File extension of a template to replace */
     @Json(name = "fileExtension")
-    val fileExtension: kotlin.String?,
-
-    /* File id to replace template with (or null to use default template) */
-    @Json(name = "selectedFile")
-    val selectedFile: kotlin.Int? = null
+    val fileExtension: kotlin.String?
 
 ) {
 

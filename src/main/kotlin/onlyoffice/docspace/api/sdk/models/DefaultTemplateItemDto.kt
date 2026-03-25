@@ -27,6 +27,7 @@ import com.squareup.moshi.JsonClass
  * @param selectedFile File id to use as a default template
  * @param fileTitle Title of a default template
  * @param lastModified Last modified date of a default template
+ * @param fileSize Filesize (in bytes) of a default template
  * @param viewUrl View url of a default template
  */
 
@@ -48,6 +49,10 @@ data class DefaultTemplateItemDto (
     /* Last modified date of a default template */
     @Json(name = "lastModified")
     val lastModified: java.time.OffsetDateTime? = null,
+
+    /* Filesize (in bytes) of a default template */
+    @Json(name = "fileSize")
+    val fileSize: kotlin.Long? = null,
 
     /* View url of a default template */
     @Json(name = "viewUrl")

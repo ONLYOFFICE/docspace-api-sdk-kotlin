@@ -24,7 +24,7 @@ import com.squareup.moshi.JsonClass
  * The Developer Tools access settings.
  *
  * @param limitedAccessForUsers Specifies if the Developer Tools access are limited for users or not.
- * @param lastModified 
+ * @param lastModified The timestamp indicating when the settings were last modified.
  */
 
 
@@ -34,6 +34,7 @@ data class TenantDevToolsAccessSettings (
     @Json(name = "limitedAccessForUsers")
     val limitedAccessForUsers: kotlin.Boolean? = null,
 
+    /* The timestamp indicating when the settings were last modified. */
     @Json(name = "lastModified")
     val lastModified: java.time.OffsetDateTime? = null
 

@@ -24,19 +24,19 @@ import com.squareup.moshi.JsonClass
 /**
  * Available AI provider type settings.
  *
- * @param url Default API endpoint URL for the provider type.
  * @param type 
+ * @param url Default API endpoint URL for the provider type.
  */
 
 
 data class ProviderSettingsDto (
 
+    @Json(name = "type")
+    val type: ProviderType? = null,
+
     /* Default API endpoint URL for the provider type. */
     @Json(name = "url")
-    val url: kotlin.String?,
-
-    @Json(name = "type")
-    val type: ProviderType? = null
+    val url: kotlin.String? = null
 
 ) {
 

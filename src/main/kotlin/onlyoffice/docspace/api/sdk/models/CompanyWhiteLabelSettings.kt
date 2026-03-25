@@ -30,7 +30,7 @@ import com.squareup.moshi.JsonClass
  * @param phone The company phone number.
  * @param isLicensor Specifies if a company is a licensor or not.
  * @param hideAbout Specifies if the About page is visible or not
- * @param lastModified 
+ * @param lastModified The timestamp indicating when the settings were last modified.
  */
 
 
@@ -64,6 +64,7 @@ data class CompanyWhiteLabelSettings (
     @Json(name = "hideAbout")
     val hideAbout: kotlin.Boolean? = null,
 
+    /* The timestamp indicating when the settings were last modified. */
     @Json(name = "lastModified")
     val lastModified: java.time.OffsetDateTime? = null
 

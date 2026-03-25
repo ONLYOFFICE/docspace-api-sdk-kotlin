@@ -42,26 +42,9 @@
 | **thirdParty** | **kotlin.Boolean** | Specifies if the third-party accounts linking is available or not. |  [optional] |
 | **year** | **kotlin.Boolean** | Specifies if the tenant quota is yearly subscription or not. |  [optional] |
 | **countFreeBackup** | **kotlin.Int** | The number of free backups within a month. |  [optional] |
-| **backup** | **kotlin.Boolean** | Specifies if the backup anabled as a wallet service or not. |  [optional] |
+| **backup** | **kotlin.Boolean** | Specifies if the backup enabled as a wallet service or not. |  [optional] |
 | **countAIAgent** | **kotlin.Int** | The number of AI agents. |  [optional] |
-| **aiTools** | **kotlin.Boolean** | Specifies if the AI tools anabled as a wallet service or not. |  [optional] |
-| **aiToolsWebSearch** | **kotlin.Boolean** | Specifies whether the web search is enabled as a subservice of AI tools. |  [optional] |
-| **aiToolsWebFetch** | **kotlin.Boolean** | Specifies whether the web fetch is enabled as a subservice of AI tools |  [optional] |
-| **aiToolsEmbedding** | **kotlin.Boolean** | Specifies whether the embedding is enabled as a subservice of AI tools |  [optional] |
-| **aiToolsDeepseek31Input** | **kotlin.Boolean** | Specifies whether the Deepseek 3.1 input tokens is enabled as a subservice of AI tools |  [optional] |
-| **aiToolsDeepseek31Output** | **kotlin.Boolean** | Specifies whether the Deepseek 3.1 output tokens is enabled as a subservice of AI tools |  [optional] |
-| **aiToolsClaude45Input** | **kotlin.Boolean** | Specifies whether the Claude 4.5 input tokens is enabled as a subservice of AI tools |  [optional] |
-| **aiToolsClaude45Output** | **kotlin.Boolean** | Specifies whether the Claude 4.5 output tokens is enabled as a subservice of AI tools |  [optional] |
-| **aiToolsGPT5Input** | **kotlin.Boolean** | Specifies whether the GPT 5 input tokens is enabled as a subservice of AI tools |  [optional] |
-| **aiToolsGPT5Output** | **kotlin.Boolean** | Specifies whether the GPT 5 output tokens is enabled as a subservice of AI tools |  [optional] |
-| **aiToolsDeepseek32Input** | **kotlin.Boolean** | Specifies whether the Deepseek 3.2 input tokens is enabled as a subservice of AI tools |  [optional] |
-| **aiToolsDeepseek32Output** | **kotlin.Boolean** | Specifies whether the Deepseek 3.2 output tokens is enabled as a subservice of AI tools |  [optional] |
-| **aiToolsGPT52Input** | **kotlin.Boolean** | Specifies whether the GPT 5.2 input tokens is enabled as a subservice of AI tools |  [optional] |
-| **aiToolsGPT52Output** | **kotlin.Boolean** | Specifies whether the GPT 5.2 output tokens is enabled as a subservice of AI tools |  [optional] |
-| **aiToolsGemini3ProInput** | **kotlin.Boolean** | Specifies whether the Gemini 3 Pro input tokens is enabled as a subservice of AI tools |  [optional] |
-| **aiToolsGemini3ProOutput** | **kotlin.Boolean** | Specifies whether the Gemini 3 Pro output tokens is enabled as a subservice of AI tools |  [optional] |
-| **aiToolsGemini3FlashInput** | **kotlin.Boolean** | Specifies whether the Gemini 3 Flash input tokens is enabled as a subservice of AI tools |  [optional] |
-| **aiToolsGemini3FlashOutput** | **kotlin.Boolean** | Specifies whether the Gemini 3 Flash output tokens is enabled as a subservice of AI tools |  [optional] |
+| **aiTools** | **kotlin.Boolean** | Specifies if the AI tools enabled as a wallet service or not. |  [optional] |
 
 
 

@@ -49,8 +49,8 @@ import onlyoffice.docspace.api.sdk.models.FileReferenceWrapper
 import onlyoffice.docspace.api.sdk.models.FileShareArrayWrapper
 import onlyoffice.docspace.api.sdk.models.FileShareWrapper
 import onlyoffice.docspace.api.sdk.models.FillingFormResultIntegerWrapper
-import onlyoffice.docspace.api.sdk.models.FormResultsArrayWrapper
 import onlyoffice.docspace.api.sdk.models.FormRoleArrayWrapper
+import onlyoffice.docspace.api.sdk.models.FormSubmissionsWrapper
 import onlyoffice.docspace.api.sdk.models.GetReferenceDataDtoInteger
 import onlyoffice.docspace.api.sdk.models.HistoryArrayWrapper
 import onlyoffice.docspace.api.sdk.models.KeyValuePairBooleanStringWrapper
@@ -352,10 +352,11 @@ interface FilesApi {
      *
      * @param fileId The file ID to delete.
      * @param delete The parameters for deleting a file.
+     * @param returnSingleOperation Specifies whether to return only the current operation (optional)
      * @return [Call]<[FileOperationArrayWrapper]>
      */
     @DELETE("api/2.0/files/file/{fileId}")
-    fun deleteFile(@Path("fileId") fileId: kotlin.Int, @Body delete: Delete): Call<FileOperationArrayWrapper>
+    fun deleteFile(@Path("fileId") fileId: kotlin.Int, @Body delete: Delete, @Query("ReturnSingleOperation") returnSingleOperation: kotlin.Boolean? = null): Call<FileOperationArrayWrapper>
 
     /**
      * DELETE api/2.0/files/recent
@@ -392,6 +393,26 @@ interface FilesApi {
      */
     @DELETE("api/2.0/files/templates")
     fun deleteTemplates(@Body requestBody: kotlin.collections.List<kotlin.Int>? = null): Call<BooleanWrapper>
+
+    /**
+     * POST api/2.0/files/file/{fileId}/xlsx
+     * Generate XLSX report
+     * Triggers asynchronous XLSX report generation for the specified form file.
+     * Responses:
+     *  - 200: XLSX report generation has been queued
+     *  - 403: You do not have enough permissions to perform this action
+     *  - 404: Form file not found
+     *  - 401: Unauthorized
+     *
+     * REST API Reference for generateXlsx Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/generate-xlsx/
+     *
+     *
+     * @param fileId The file unique identifier.
+     * @return [Call]<[Unit]>
+     */
+    @POST("api/2.0/files/file/{fileId}/xlsx")
+    fun generateXlsx(@Path("fileId") fileId: kotlin.Int): Call<Unit>
 
     /**
      * GET api/2.0/files/file/{fileId}/formroles
@@ -577,10 +598,10 @@ interface FilesApi {
      *
      *
      * @param fileId The file unique identifier.
-     * @return [Call]<[FormResultsArrayWrapper]>
+     * @return [Call]<[FormSubmissionsWrapper]>
      */
     @GET("api/2.0/files/file/{fileId}/submissions")
-    fun getFormSubmissions(@Path("fileId") fileId: kotlin.Int): Call<FormResultsArrayWrapper>
+    fun getFormSubmissions(@Path("fileId") fileId: kotlin.Int): Call<FormSubmissionsWrapper>
 
     /**
      * GET api/2.0/files/file/{fileId}/presigned
@@ -770,15 +791,15 @@ interface FilesApi {
      *
      *
      * @param fileId The editing file ID from the request.
-     * @param fileExtension The editing file extension from the request. (optional)
      * @param downloadUri The URI to download the editing file. (optional)
-     * @param file The request file stream. (optional)
+     * @param fileExtension The editing file extension from the request. (optional)
+     * @param file The edited file to be saved, uploaded as part of the multipart/form-data request.  This property represents the modified file content from the HTTP request form after editing operations.  The file is accessed via the IFormFile interface which provides access to the file name, content type, length, and stream. (optional)
      * @param forcesave Specifies whether to force save the file or not. (optional)
      * @return [Call]<[FileIntegerWrapper]>
      */
     @Multipart
     @PUT("api/2.0/files/file/{fileId}/saveediting")
-    fun saveEditingFileFromForm(@Path("fileId") fileId: kotlin.Int, @Part("FileExtension") fileExtension: kotlin.String? = null, @Part("DownloadUri") downloadUri: kotlin.String? = null, @Part file: MultipartBody.Part? = null, @Part("Forcesave") forcesave: kotlin.Boolean? = null): Call<FileIntegerWrapper>
+    fun saveEditingFileFromForm(@Path("fileId") fileId: kotlin.Int, @Query("DownloadUri") downloadUri: kotlin.String? = null, @Part("FileExtension") fileExtension: kotlin.String? = null, @Part file: MultipartBody.Part? = null, @Part("Forcesave") forcesave: kotlin.Boolean? = null): Call<FileIntegerWrapper>
 
     /**
      * POST api/2.0/files/file/{id}/saveaspdf

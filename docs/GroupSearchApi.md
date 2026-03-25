@@ -50,11 +50,11 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SearchApi::class.java)
-val id : kotlin.Int = 1 // kotlin.Int | The group ID.
-val excludeShared : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to exclude the group sharing settings from the response.
-val count : kotlin.Int = 1234 // kotlin.Int | The number of groups to retrieve in the request.
-val startIndex : kotlin.Int = 1234 // kotlin.Int | The starting index from which to begin retrieving groups with their sharing settings.
-val filterValue : kotlin.String = some text // kotlin.String | The text used as a filter for retrieving groups with their sharing settings.
+val id : kotlin.Int = 56 // kotlin.Int | The group ID.
+val excludeShared : kotlin.Boolean = false // kotlin.Boolean | Specifies whether to exclude the group sharing settings from the response.
+val count : kotlin.Int = 25 // kotlin.Int | The number of groups to retrieve in the request.
+val startIndex : kotlin.Int = 0 // kotlin.Int | The starting index from which to begin retrieving groups with their sharing settings.
+val filterValue : kotlin.String = John // kotlin.String | The text used as a filter for retrieving groups with their sharing settings.
 
 val result : GroupArrayWrapper = webService.getGroupsWithFilesShared(id, excludeShared, count, startIndex, filterValue)
 ```
@@ -105,11 +105,11 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SearchApi::class.java)
-val id : kotlin.Int = 1 // kotlin.Int | The group ID.
-val excludeShared : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to exclude the group sharing settings from the response.
-val count : kotlin.Int = 1234 // kotlin.Int | The number of groups to retrieve in the request.
-val startIndex : kotlin.Int = 1234 // kotlin.Int | The starting index from which to begin retrieving groups with their sharing settings.
-val filterValue : kotlin.String = some text // kotlin.String | The text used as a filter for retrieving groups with their sharing settings.
+val id : kotlin.Int = 56 // kotlin.Int | The group ID.
+val excludeShared : kotlin.Boolean = false // kotlin.Boolean | Specifies whether to exclude the group sharing settings from the response.
+val count : kotlin.Int = 25 // kotlin.Int | The number of groups to retrieve in the request.
+val startIndex : kotlin.Int = 0 // kotlin.Int | The starting index from which to begin retrieving groups with their sharing settings.
+val filterValue : kotlin.String = John // kotlin.String | The text used as a filter for retrieving groups with their sharing settings.
 
 val result : GroupArrayWrapper = webService.getGroupsWithFoldersShared(id, excludeShared, count, startIndex, filterValue)
 ```
@@ -160,11 +160,11 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SearchApi::class.java)
-val id : kotlin.Int = 1 // kotlin.Int | The group ID.
-val excludeShared : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to exclude the group sharing settings from the response.
-val count : kotlin.Int = 1234 // kotlin.Int | The number of groups to retrieve in the request.
-val startIndex : kotlin.Int = 1234 // kotlin.Int | The starting index from which to begin retrieving groups with their sharing settings.
-val filterValue : kotlin.String = some text // kotlin.String | The text used as a filter for retrieving groups with their sharing settings.
+val id : kotlin.Int = 56 // kotlin.Int | The group ID.
+val excludeShared : kotlin.Boolean = false // kotlin.Boolean | Specifies whether to exclude the group sharing settings from the response.
+val count : kotlin.Int = 25 // kotlin.Int | The number of groups to retrieve in the request.
+val startIndex : kotlin.Int = 0 // kotlin.Int | The starting index from which to begin retrieving groups with their sharing settings.
+val filterValue : kotlin.String = John // kotlin.String | The text used as a filter for retrieving groups with their sharing settings.
 
 val result : GroupArrayWrapper = webService.getGroupsWithRoomsShared(id, excludeShared, count, startIndex, filterValue)
 ```
