@@ -61,7 +61,9 @@ val webService = apiClient.createWebservice(AIMCPApi::class.java)
 val roomId : kotlin.Int = 42 // kotlin.Int | Identifier of the room to which MCP servers will be assigned.
 val addRoomServersRequestBody : AddRoomServersRequestBody =  // AddRoomServersRequestBody | Server identifiers to assign.
 
-val result : McpServerStatusArrayWrapper = webService.addRoomServers(roomId, addRoomServersRequestBody)
+launch(Dispatchers.IO) {
+    val result : McpServerStatusArrayWrapper = webService.addRoomServers(roomId, addRoomServersRequestBody)
+}
 ```
 
 ### HTTP request headers
@@ -108,7 +110,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIMCPApi::class.java)
 val addMcpServerRequestBody : AddMcpServerRequestBody =  // AddMcpServerRequestBody | MCP server registration parameters.
 
-val result : McpServerWrapper = webService.addServer(addMcpServerRequestBody)
+launch(Dispatchers.IO) {
+    val result : McpServerWrapper = webService.addServer(addMcpServerRequestBody)
+}
 ```
 
 ### HTTP request headers
@@ -159,7 +163,9 @@ val roomId : kotlin.Int = 42 // kotlin.Int | Identifier of the room containing t
 val serverId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | Unique identifier of the MCP server to connect.
 val connectServerRequestBody : ConnectServerRequestBody =  // ConnectServerRequestBody | The request body containing additional data necessary for connecting to the server,  such as authentication or operation-specific information.
 
-val result : McpServerStatusWrapper = webService.connectServer(roomId, serverId, connectServerRequestBody)
+launch(Dispatchers.IO) {
+    val result : McpServerStatusWrapper = webService.connectServer(roomId, serverId, connectServerRequestBody)
+}
 ```
 
 ### HTTP request headers
@@ -208,7 +214,9 @@ val webService = apiClient.createWebservice(AIMCPApi::class.java)
 val roomId : kotlin.Int = 42 // kotlin.Int | Identifier of the room from which MCP servers will be removed.
 val deleteRoomServersRequestBody : DeleteRoomServersRequestBody =  // DeleteRoomServersRequestBody | Server identifiers to remove.
 
-webService.deleteRoomServers(roomId, deleteRoomServersRequestBody)
+launch(Dispatchers.IO) {
+    webService.deleteRoomServers(roomId, deleteRoomServersRequestBody)
+}
 ```
 
 ### HTTP request headers
@@ -255,7 +263,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIMCPApi::class.java)
 val deleteServersRequestBody : DeleteServersRequestBody =  // DeleteServersRequestBody | Server identifiers to delete.
 
-webService.deleteServer(deleteServersRequestBody)
+launch(Dispatchers.IO) {
+    webService.deleteServer(deleteServersRequestBody)
+}
 ```
 
 ### HTTP request headers
@@ -304,7 +314,9 @@ val webService = apiClient.createWebservice(AIMCPApi::class.java)
 val roomId : kotlin.Int = 42 // kotlin.Int | Identifier of the room containing the MCP server.
 val serverId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | Unique identifier of the MCP server to disconnect from.
 
-val result : McpServerStatusWrapper = webService.disconnectServer(roomId, serverId)
+launch(Dispatchers.IO) {
+    val result : McpServerStatusWrapper = webService.disconnectServer(roomId, serverId)
+}
 ```
 
 ### HTTP request headers
@@ -353,7 +365,9 @@ val webService = apiClient.createWebservice(AIMCPApi::class.java)
 val startIndex : kotlin.Int = 0 // kotlin.Int | The number of items to skip before returning results (zero-based offset). Defaults to 0.
 val count : kotlin.Int = 100 // kotlin.Int | The maximum number of items to return per page. Defaults to 100.
 
-val result : McpServerShortArrayWrapper = webService.getAvailableServers(startIndex, count)
+launch(Dispatchers.IO) {
+    val result : McpServerShortArrayWrapper = webService.getAvailableServers(startIndex, count)
+}
 ```
 
 ### HTTP request headers
@@ -400,7 +414,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIMCPApi::class.java)
 val roomId : kotlin.Int = 42 // kotlin.Int | Identifier of the room whose assigned MCP servers are being retrieved.
 
-val result : McpServerStatusArrayWrapper = webService.getRoomServers(roomId)
+launch(Dispatchers.IO) {
+    val result : McpServerStatusArrayWrapper = webService.getRoomServers(roomId)
+}
 ```
 
 ### HTTP request headers
@@ -447,7 +463,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIMCPApi::class.java)
 val id : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | Unique identifier of the MCP server to retrieve.
 
-val result : McpServerShortWrapper = webService.getServer(id)
+launch(Dispatchers.IO) {
+    val result : McpServerShortWrapper = webService.getServer(id)
+}
 ```
 
 ### HTTP request headers
@@ -496,7 +514,9 @@ val webService = apiClient.createWebservice(AIMCPApi::class.java)
 val startIndex : kotlin.Int = 0 // kotlin.Int | The number of items to skip before returning results (zero-based offset). Defaults to 0.
 val count : kotlin.Int = 100 // kotlin.Int | The maximum number of items to return per page. Defaults to 100.
 
-val result : McpServerArrayWrapper = webService.getServers(startIndex, count)
+launch(Dispatchers.IO) {
+    val result : McpServerArrayWrapper = webService.getServers(startIndex, count)
+}
 ```
 
 ### HTTP request headers
@@ -545,7 +565,9 @@ val webService = apiClient.createWebservice(AIMCPApi::class.java)
 val roomId : kotlin.Int = 42 // kotlin.Int | Identifier of the room containing the MCP server.
 val serverId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | Unique identifier of the MCP server whose tools are being retrieved.
 
-val result : McpToolArrayWrapper = webService.getTools(roomId, serverId)
+launch(Dispatchers.IO) {
+    val result : McpToolArrayWrapper = webService.getTools(roomId, serverId)
+}
 ```
 
 ### HTTP request headers
@@ -594,7 +616,9 @@ val webService = apiClient.createWebservice(AIMCPApi::class.java)
 val id : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | Unique identifier of the MCP server whose status is being changed.
 val setServerStatusRequestBody : SetServerStatusRequestBody =  // SetServerStatusRequestBody | New status value.
 
-val result : McpServerWrapper = webService.setServerStatus(id, setServerStatusRequestBody)
+launch(Dispatchers.IO) {
+    val result : McpServerWrapper = webService.setServerStatus(id, setServerStatusRequestBody)
+}
 ```
 
 ### HTTP request headers
@@ -645,7 +669,9 @@ val roomId : kotlin.Int = 42 // kotlin.Int | Identifier of the room containing t
 val serverId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | Unique identifier of the MCP server whose tools are being configured.
 val setMcpToolsRequestBody : SetMcpToolsRequestBody =  // SetMcpToolsRequestBody | Tool configuration parameters.
 
-val result : McpToolArrayWrapper = webService.setTools(roomId, serverId, setMcpToolsRequestBody)
+launch(Dispatchers.IO) {
+    val result : McpToolArrayWrapper = webService.setTools(roomId, serverId, setMcpToolsRequestBody)
+}
 ```
 
 ### HTTP request headers
@@ -694,7 +720,9 @@ val webService = apiClient.createWebservice(AIMCPApi::class.java)
 val id : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | Unique identifier of the MCP server to update.
 val updateServerRequestBody : UpdateServerRequestBody =  // UpdateServerRequestBody | Updated server configuration fields.
 
-val result : McpServerWrapper = webService.updateServer(id, updateServerRequestBody)
+launch(Dispatchers.IO) {
+    val result : McpServerWrapper = webService.updateServer(id, updateServerRequestBody)
+}
 ```
 
 ### HTTP request headers

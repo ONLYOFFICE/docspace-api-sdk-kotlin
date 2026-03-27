@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.AI
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -42,9 +42,9 @@ interface AIMessagesApi {
      *
      * @param messageId The unique identifier of the AI chat message to export.
      * @param exportMessageRequestBodyInteger The export parameters including destination folder and file title.
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @POST("api/2.0/ai/messages/{messageId}/export")
-    fun exportMessage(@Path("messageId") messageId: kotlin.Int, @Body exportMessageRequestBodyInteger: ExportMessageRequestBodyInteger): Call<Unit>
+    suspend fun exportMessage(@Path("messageId") messageId: kotlin.Int, @Body exportMessageRequestBodyInteger: ExportMessageRequestBodyInteger): Response<Unit>
 
 }

@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Security
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -41,10 +41,10 @@ interface SMTPSettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-smtp-operation-status/
      *
      *
-     * @return [Call]<[SmtpOperationStatusRequestsWrapper]>
+     * @return [SmtpOperationStatusRequestsWrapper]
      */
     @GET("api/2.0/smtpsettings/smtp/test/status")
-    fun getSmtpOperationStatus(): Call<SmtpOperationStatusRequestsWrapper>
+    suspend fun getSmtpOperationStatus(): Response<SmtpOperationStatusRequestsWrapper>
 
     /**
      * GET api/2.0/smtpsettings/smtp
@@ -59,10 +59,10 @@ interface SMTPSettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-smtp-settings/
      *
      *
-     * @return [Call]<[SmtpSettingsWrapper]>
+     * @return [SmtpSettingsWrapper]
      */
     @GET("api/2.0/smtpsettings/smtp")
-    fun getSmtpSettings(): Call<SmtpSettingsWrapper>
+    suspend fun getSmtpSettings(): Response<SmtpSettingsWrapper>
 
     /**
      * DELETE api/2.0/smtpsettings/smtp
@@ -77,10 +77,10 @@ interface SMTPSettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/reset-smtp-settings/
      *
      *
-     * @return [Call]<[SmtpSettingsWrapper]>
+     * @return [SmtpSettingsWrapper]
      */
     @DELETE("api/2.0/smtpsettings/smtp")
-    fun resetSmtpSettings(): Call<SmtpSettingsWrapper>
+    suspend fun resetSmtpSettings(): Response<SmtpSettingsWrapper>
 
     /**
      * POST api/2.0/smtpsettings/smtp
@@ -96,10 +96,10 @@ interface SMTPSettingsApi {
      *
      *
      * @param smtpSettingsDto  (optional)
-     * @return [Call]<[SmtpSettingsWrapper]>
+     * @return [SmtpSettingsWrapper]
      */
     @POST("api/2.0/smtpsettings/smtp")
-    fun saveSmtpSettings(@Body smtpSettingsDto: SmtpSettingsDto? = null): Call<SmtpSettingsWrapper>
+    suspend fun saveSmtpSettings(@Body smtpSettingsDto: SmtpSettingsDto? = null): Response<SmtpSettingsWrapper>
 
     /**
      * GET api/2.0/smtpsettings/smtp/test
@@ -114,9 +114,9 @@ interface SMTPSettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/test-smtp-settings/
      *
      *
-     * @return [Call]<[SmtpOperationStatusRequestsWrapper]>
+     * @return [SmtpOperationStatusRequestsWrapper]
      */
     @GET("api/2.0/smtpsettings/smtp/test")
-    fun testSmtpSettings(): Call<SmtpOperationStatusRequestsWrapper>
+    suspend fun testSmtpSettings(): Response<SmtpOperationStatusRequestsWrapper>
 
 }

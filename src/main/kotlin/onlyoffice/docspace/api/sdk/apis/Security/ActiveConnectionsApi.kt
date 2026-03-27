@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Security
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -40,10 +40,10 @@ interface ActiveConnectionsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-all-active-connections/
      *
      *
-     * @return [Call]<[ActiveConnectionsWrapper]>
+     * @return [ActiveConnectionsWrapper]
      */
     @GET("api/2.0/security/activeconnections")
-    fun getAllActiveConnections(): Call<ActiveConnectionsWrapper>
+    suspend fun getAllActiveConnections(): Response<ActiveConnectionsWrapper>
 
     /**
      * PUT api/2.0/security/activeconnections/logout/{loginEventId}
@@ -59,10 +59,10 @@ interface ActiveConnectionsApi {
      *
      *
      * @param loginEventId The ID of the specific login event.
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @PUT("api/2.0/security/activeconnections/logout/{loginEventId}")
-    fun logOutActiveConnection(@Path("loginEventId") loginEventId: kotlin.Int): Call<BooleanWrapper>
+    suspend fun logOutActiveConnection(@Path("loginEventId") loginEventId: kotlin.Int): Response<BooleanWrapper>
 
     /**
      * PUT api/2.0/security/activeconnections/logoutallchangepassword
@@ -76,10 +76,10 @@ interface ActiveConnectionsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/log-out-all-active-connections-change-password/
      *
      *
-     * @return [Call]<[StringWrapper]>
+     * @return [StringWrapper]
      */
     @PUT("api/2.0/security/activeconnections/logoutallchangepassword")
-    fun logOutAllActiveConnectionsChangePassword(): Call<StringWrapper>
+    suspend fun logOutAllActiveConnectionsChangePassword(): Response<StringWrapper>
 
     /**
      * PUT api/2.0/security/activeconnections/logoutall/{userId}
@@ -95,10 +95,10 @@ interface ActiveConnectionsApi {
      *
      *
      * @param userId The user ID extracted from the route parameters.
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @PUT("api/2.0/security/activeconnections/logoutall/{userId}")
-    fun logOutAllActiveConnectionsForUser(@Path("userId") userId: java.util.UUID): Call<Unit>
+    suspend fun logOutAllActiveConnectionsForUser(@Path("userId") userId: java.util.UUID): Response<Unit>
 
     /**
      * PUT api/2.0/security/activeconnections/logoutallexceptthis
@@ -112,9 +112,9 @@ interface ActiveConnectionsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/log-out-all-except-this-connection/
      *
      *
-     * @return [Call]<[StringWrapper]>
+     * @return [StringWrapper]
      */
     @PUT("api/2.0/security/activeconnections/logoutallexceptthis")
-    fun logOutAllExceptThisConnection(): Call<StringWrapper>
+    suspend fun logOutAllExceptThisConnection(): Response<StringWrapper>
 
 }

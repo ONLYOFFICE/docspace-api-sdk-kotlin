@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Settings
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -40,10 +40,10 @@ interface CookiesApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-cookie-settings/
      *
      *
-     * @return [Call]<[CookieSettingsWrapper]>
+     * @return [CookieSettingsWrapper]
      */
     @GET("api/2.0/settings/cookiesettings")
-    fun getCookieSettings(): Call<CookieSettingsWrapper>
+    suspend fun getCookieSettings(): Response<CookieSettingsWrapper>
 
     /**
      * PUT api/2.0/settings/cookiesettings
@@ -59,9 +59,9 @@ interface CookiesApi {
      *
      *
      * @param cookieSettingsRequestsDto  (optional)
-     * @return [Call]<[StringWrapper]>
+     * @return [StringWrapper]
      */
     @PUT("api/2.0/settings/cookiesettings")
-    fun updateCookieSettings(@Body cookieSettingsRequestsDto: CookieSettingsRequestsDto? = null): Call<StringWrapper>
+    suspend fun updateCookieSettings(@Body cookieSettingsRequestsDto: CookieSettingsRequestsDto? = null): Response<StringWrapper>
 
 }

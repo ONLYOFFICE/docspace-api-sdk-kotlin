@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Security
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -38,9 +38,9 @@ interface OAuth2Api {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/generate-jwt-token/
      *
      *
-     * @return [Call]<[StringWrapper]>
+     * @return [StringWrapper]
      */
     @GET("api/2.0/security/oauth2/token")
-    fun generateJwtToken(): Call<StringWrapper>
+    suspend fun generateJwtToken(): Response<StringWrapper>
 
 }

@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Authentication
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -49,10 +49,10 @@ interface AuthenticationApi {
      *
      *
      * @param authRequestsDto  (optional)
-     * @return [Call]<[AuthenticationTokenWrapper]>
+     * @return [AuthenticationTokenWrapper]
      */
     @POST("api/2.0/authentication")
-    fun authenticateMe(@Body authRequestsDto: AuthRequestsDto? = null): Call<AuthenticationTokenWrapper>
+    suspend fun authenticateMe(@Body authRequestsDto: AuthRequestsDto? = null): Response<AuthenticationTokenWrapper>
 
     /**
      * POST api/2.0/authentication/{code}
@@ -71,10 +71,10 @@ interface AuthenticationApi {
      *
      * @param code 
      * @param authWithCodeRequestsDto  (optional)
-     * @return [Call]<[AuthenticationTokenWrapper]>
+     * @return [AuthenticationTokenWrapper]
      */
     @POST("api/2.0/authentication/{code}")
-    fun authenticateMeFromBodyWithCode(@Path("code") code: kotlin.String, @Body authWithCodeRequestsDto: AuthWithCodeRequestsDto? = null): Call<AuthenticationTokenWrapper>
+    suspend fun authenticateMeFromBodyWithCode(@Path("code") code: kotlin.String, @Body authWithCodeRequestsDto: AuthWithCodeRequestsDto? = null): Response<AuthenticationTokenWrapper>
 
     /**
      * POST api/2.0/authentication/confirm
@@ -88,10 +88,10 @@ interface AuthenticationApi {
      *
      *
      * @param emailValidationKeyModel  (optional)
-     * @return [Call]<[ConfirmWrapper]>
+     * @return [ConfirmWrapper]
      */
     @POST("api/2.0/authentication/confirm")
-    fun checkConfirm(@Body emailValidationKeyModel: EmailValidationKeyModel? = null): Call<ConfirmWrapper>
+    suspend fun checkConfirm(@Body emailValidationKeyModel: EmailValidationKeyModel? = null): Response<ConfirmWrapper>
 
     /**
      * GET api/2.0/authentication
@@ -104,10 +104,10 @@ interface AuthenticationApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-is-authentificated/
      *
      *
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @GET("api/2.0/authentication")
-    fun getIsAuthentificated(): Call<BooleanWrapper>
+    suspend fun getIsAuthentificated(): Response<BooleanWrapper>
 
     /**
      * POST api/2.0/authentication/logout
@@ -120,10 +120,10 @@ interface AuthenticationApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/logout/
      *
      *
-     * @return [Call]<[StringWrapper]>
+     * @return [StringWrapper]
      */
     @POST("api/2.0/authentication/logout")
-    fun logout(): Call<StringWrapper>
+    suspend fun logout(): Response<StringWrapper>
 
     /**
      * POST api/2.0/authentication/setphone
@@ -138,10 +138,10 @@ interface AuthenticationApi {
      *
      *
      * @param mobileRequestsDto  (optional)
-     * @return [Call]<[AuthenticationTokenWrapper]>
+     * @return [AuthenticationTokenWrapper]
      */
     @POST("api/2.0/authentication/setphone")
-    fun saveMobilePhone(@Body mobileRequestsDto: MobileRequestsDto? = null): Call<AuthenticationTokenWrapper>
+    suspend fun saveMobilePhone(@Body mobileRequestsDto: MobileRequestsDto? = null): Response<AuthenticationTokenWrapper>
 
     /**
      * POST api/2.0/authentication/sendsms
@@ -157,9 +157,9 @@ interface AuthenticationApi {
      *
      *
      * @param authRequestsDto  (optional)
-     * @return [Call]<[AuthenticationTokenWrapper]>
+     * @return [AuthenticationTokenWrapper]
      */
     @POST("api/2.0/authentication/sendsms")
-    fun sendSmsCode(@Body authRequestsDto: AuthRequestsDto? = null): Call<AuthenticationTokenWrapper>
+    suspend fun sendSmsCode(@Body authRequestsDto: AuthRequestsDto? = null): Response<AuthenticationTokenWrapper>
 
 }

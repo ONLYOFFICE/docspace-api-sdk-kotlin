@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.OAuth20
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -48,10 +48,10 @@ interface ClientQueryingApi {
      *
      *
      * @param clientId The client identifier.
-     * @return [Call]<[ClientResponse]>
+     * @return [ClientResponse]
      */
     @GET("api/2.0/clients/{clientId}")
-    fun getClient(@Path("clientId") clientId: kotlin.String): Call<ClientResponse>
+    suspend fun getClient(@Path("clientId") clientId: kotlin.String): Response<ClientResponse>
 
     /**
      * GET api/2.0/clients/{clientId}/info
@@ -68,10 +68,10 @@ interface ClientQueryingApi {
      *
      *
      * @param clientId The client identifier.
-     * @return [Call]<[ClientInfoResponse]>
+     * @return [ClientInfoResponse]
      */
     @GET("api/2.0/clients/{clientId}/info")
-    fun getClientInfo(@Path("clientId") clientId: kotlin.String): Call<ClientInfoResponse>
+    suspend fun getClientInfo(@Path("clientId") clientId: kotlin.String): Response<ClientInfoResponse>
 
     /**
      * GET api/2.0/clients
@@ -91,10 +91,10 @@ interface ClientQueryingApi {
      * @param limit The maximum number of results returned per page.
      * @param lastClientId The ID of the last retrieved client. (optional)
      * @param lastCreatedOn The creation date of the last retrieved client. (optional)
-     * @return [Call]<[PageableResponse]>
+     * @return [PageableResponse]
      */
     @GET("api/2.0/clients")
-    fun getClients(@Query("limit") limit: kotlin.Int, @Query("last_client_id") lastClientId: kotlin.String? = null, @Query("last_created_on") lastCreatedOn: java.time.OffsetDateTime? = null): Call<PageableResponse>
+    suspend fun getClients(@Query("limit") limit: kotlin.Int, @Query("last_client_id") lastClientId: kotlin.String? = null, @Query("last_created_on") lastCreatedOn: java.time.OffsetDateTime? = null): Response<PageableResponse>
 
     /**
      * GET api/2.0/clients/info
@@ -113,10 +113,10 @@ interface ClientQueryingApi {
      * @param limit The maximum number of results returned per page.
      * @param lastClientId The identifier of the last retrieved client. (optional)
      * @param lastCreatedOn The creation date of the last retrieved client. (optional)
-     * @return [Call]<[PageableResponseClientInfoResponse]>
+     * @return [PageableResponseClientInfoResponse]
      */
     @GET("api/2.0/clients/info")
-    fun getClientsInfo(@Query("limit") limit: kotlin.Int, @Query("last_client_id") lastClientId: kotlin.String? = null, @Query("last_created_on") lastCreatedOn: java.time.OffsetDateTime? = null): Call<PageableResponseClientInfoResponse>
+    suspend fun getClientsInfo(@Query("limit") limit: kotlin.Int, @Query("last_client_id") lastClientId: kotlin.String? = null, @Query("last_created_on") lastCreatedOn: java.time.OffsetDateTime? = null): Response<PageableResponseClientInfoResponse>
 
     /**
      * GET api/2.0/clients/consents
@@ -131,10 +131,10 @@ interface ClientQueryingApi {
      *
      * @param limit The maximum number of results returned per page.
      * @param lastModifiedOn The date when the user consent was last modified. (optional)
-     * @return [Call]<[PageableModificationResponse]>
+     * @return [PageableModificationResponse]
      */
     @GET("api/2.0/clients/consents")
-    fun getConsents(@Query("limit") limit: kotlin.Int, @Query("last_modified_on") lastModifiedOn: java.time.OffsetDateTime? = null): Call<PageableModificationResponse>
+    suspend fun getConsents(@Query("limit") limit: kotlin.Int, @Query("last_modified_on") lastModifiedOn: java.time.OffsetDateTime? = null): Response<PageableModificationResponse>
 
     /**
      * GET api/2.0/clients/{clientId}/public/info
@@ -151,9 +151,9 @@ interface ClientQueryingApi {
      *
      *
      * @param clientId The client identifier.
-     * @return [Call]<[ClientInfoResponse]>
+     * @return [ClientInfoResponse]
      */
     @GET("api/2.0/clients/{clientId}/public/info")
-    fun getPublicClientInfo(@Path("clientId") clientId: kotlin.String): Call<ClientInfoResponse>
+    suspend fun getPublicClientInfo(@Path("clientId") clientId: kotlin.String): Response<ClientInfoResponse>
 
 }

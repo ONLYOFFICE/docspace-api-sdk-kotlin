@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.AI
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -39,9 +39,9 @@ interface AIVectorizationApi {
      *
      *
      * @param vectorizationStartRequestBody The vectorization parameters including file identifiers.
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @POST("api/2.0/ai/vectorization/tasks")
-    fun startTask(@Body vectorizationStartRequestBody: VectorizationStartRequestBody): Call<Unit>
+    suspend fun startTask(@Body vectorizationStartRequestBody: VectorizationStartRequestBody): Response<Unit>
 
 }

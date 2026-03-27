@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Settings
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -41,10 +41,10 @@ interface GreetingSettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-greeting-settings/
      *
      *
-     * @return [Call]<[ObjectWrapper]>
+     * @return [ObjectWrapper]
      */
     @GET("api/2.0/settings/greetingsettings")
-    fun getGreetingSettings(): Call<ObjectWrapper>
+    suspend fun getGreetingSettings(): Response<ObjectWrapper>
 
     /**
      * GET api/2.0/settings/greetingsettings/isdefault
@@ -58,10 +58,10 @@ interface GreetingSettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-is-default-greeting-settings/
      *
      *
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @GET("api/2.0/settings/greetingsettings/isdefault")
-    fun getIsDefaultGreetingSettings(): Call<BooleanWrapper>
+    suspend fun getIsDefaultGreetingSettings(): Response<BooleanWrapper>
 
     /**
      * POST api/2.0/settings/greetingsettings/restore
@@ -75,10 +75,10 @@ interface GreetingSettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/restore-greeting-settings/
      *
      *
-     * @return [Call]<[StringWrapper]>
+     * @return [StringWrapper]
      */
     @POST("api/2.0/settings/greetingsettings/restore")
-    fun restoreGreetingSettings(): Call<StringWrapper>
+    suspend fun restoreGreetingSettings(): Response<StringWrapper>
 
     /**
      * POST api/2.0/settings/greetingsettings
@@ -93,9 +93,9 @@ interface GreetingSettingsApi {
      *
      *
      * @param greetingSettingsRequestsDto  (optional)
-     * @return [Call]<[StringWrapper]>
+     * @return [StringWrapper]
      */
     @POST("api/2.0/settings/greetingsettings")
-    fun saveGreetingSettings(@Body greetingSettingsRequestsDto: GreetingSettingsRequestsDto? = null): Call<StringWrapper>
+    suspend fun saveGreetingSettings(@Body greetingSettingsRequestsDto: GreetingSettingsRequestsDto? = null): Response<StringWrapper>
 
 }

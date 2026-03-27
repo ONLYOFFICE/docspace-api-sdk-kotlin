@@ -74,7 +74,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SettingsApi::class.java)
 val settingsRequestDto : SettingsRequestDto =  // SettingsRequestDto | 
 
-val result : BooleanWrapper = webService.changeAccessToThirdparty(settingsRequestDto)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.changeAccessToThirdparty(settingsRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -121,7 +123,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SettingsApi::class.java)
 val autoCleanupRequestDto : AutoCleanupRequestDto =  // AutoCleanupRequestDto | 
 
-val result : AutoCleanUpDataWrapper = webService.changeAutomaticallyCleanUp(autoCleanupRequestDto)
+launch(Dispatchers.IO) {
+    val result : AutoCleanUpDataWrapper = webService.changeAutomaticallyCleanUp(autoCleanupRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -168,7 +172,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SettingsApi::class.java)
 val requestBody : kotlin.collections.List<kotlin.Int> =  // kotlin.collections.List<kotlin.Int> | Sharing rights (None, ReadWrite, Read, Restrict, Varies, Review, Comment, FillForms, CustomFilter, RoomAdmin, Editing, Collaborator).
 
-val result : FileShareArrayWrapper = webService.changeDefaultAccessRights(requestBody)
+launch(Dispatchers.IO) {
+    val result : FileShareArrayWrapper = webService.changeDefaultAccessRights(requestBody)
+}
 ```
 
 ### HTTP request headers
@@ -215,7 +221,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SettingsApi::class.java)
 val settingsRequestDto : SettingsRequestDto =  // SettingsRequestDto | 
 
-val result : BooleanWrapper = webService.changeDeleteConfirm(settingsRequestDto)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.changeDeleteConfirm(settingsRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -262,7 +270,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SettingsApi::class.java)
 val displayRequestDto : DisplayRequestDto =  // DisplayRequestDto | 
 
-val result : ICompressWrapper = webService.changeDownloadZipFromBody(displayRequestDto)
+launch(Dispatchers.IO) {
+    val result : ICompressWrapper = webService.changeDownloadZipFromBody(displayRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -309,7 +319,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SettingsApi::class.java)
 val checkDocServiceUrlRequestDto : CheckDocServiceUrlRequestDto =  // CheckDocServiceUrlRequestDto | 
 
-val result : DocServiceUrlWrapper = webService.checkDocServiceUrl(checkDocServiceUrlRequestDto)
+launch(Dispatchers.IO) {
+    val result : DocServiceUrlWrapper = webService.checkDocServiceUrl(checkDocServiceUrlRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -356,7 +368,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SettingsApi::class.java)
 val settingsRequestDto : SettingsRequestDto =  // SettingsRequestDto | 
 
-val result : BooleanWrapper = webService.displayFileExtension(settingsRequestDto)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.displayFileExtension(settingsRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -403,7 +417,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SettingsApi::class.java)
 val displayRequestDto : DisplayRequestDto =  // DisplayRequestDto | 
 
-val result : BooleanWrapper = webService.displayRecent(displayRequestDto)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.displayRecent(displayRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -450,7 +466,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SettingsApi::class.java)
 val displayRequestDto : DisplayRequestDto =  // DisplayRequestDto | 
 
-val result : BooleanWrapper = webService.externalShare(displayRequestDto)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.externalShare(displayRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -497,7 +515,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SettingsApi::class.java)
 val displayRequestDto : DisplayRequestDto =  // DisplayRequestDto | 
 
-val result : BooleanWrapper = webService.externalShareSocialMedia(displayRequestDto)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.externalShareSocialMedia(displayRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -541,7 +561,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SettingsApi::class.java)
 
-val result : BooleanWrapper = webService.forcesave()
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.forcesave()
+}
 ```
 
 ### HTTP request headers
@@ -585,7 +607,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SettingsApi::class.java)
 
-val result : AutoCleanUpDataWrapper = webService.getAutomaticallyCleanUp()
+launch(Dispatchers.IO) {
+    val result : AutoCleanUpDataWrapper = webService.getAutomaticallyCleanUp()
+}
 ```
 
 ### HTTP request headers
@@ -629,7 +653,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SettingsApi::class.java)
 
-val result : DefaultTemplateSettingsWrapper = webService.getDefaultTemplates()
+launch(Dispatchers.IO) {
+    val result : DefaultTemplateSettingsWrapper = webService.getDefaultTemplates()
+}
 ```
 
 ### HTTP request headers
@@ -670,7 +696,9 @@ val apiClient = ApiClient()
 val webService = apiClient.createWebservice(SettingsApi::class.java)
 val version : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to return the editor version or not.
 
-val result : DocServiceUrlWrapper = webService.getDocServiceUrl(version)
+launch(Dispatchers.IO) {
+    val result : DocServiceUrlWrapper = webService.getDocServiceUrl(version)
+}
 ```
 
 ### HTTP request headers
@@ -714,7 +742,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SettingsApi::class.java)
 
-val result : ModuleWrapper = webService.getFilesModule()
+launch(Dispatchers.IO) {
+    val result : ModuleWrapper = webService.getFilesModule()
+}
 ```
 
 ### HTTP request headers
@@ -752,7 +782,9 @@ No authorization required
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(SettingsApi::class.java)
 
-val result : FilesSettingsWrapper = webService.getFilesSettings()
+launch(Dispatchers.IO) {
+    val result : FilesSettingsWrapper = webService.getFilesSettings()
+}
 ```
 
 ### HTTP request headers
@@ -799,7 +831,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SettingsApi::class.java)
 val settingsRequestDto : SettingsRequestDto =  // SettingsRequestDto | 
 
-val result : BooleanWrapper = webService.hideConfirmCancelOperation(settingsRequestDto)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.hideConfirmCancelOperation(settingsRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -846,7 +880,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SettingsApi::class.java)
 val hideConfirmConvertRequestDto : HideConfirmConvertRequestDto =  // HideConfirmConvertRequestDto | 
 
-val result : BooleanWrapper = webService.hideConfirmConvert(hideConfirmConvertRequestDto)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.hideConfirmConvert(hideConfirmConvertRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -893,7 +929,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SettingsApi::class.java)
 val settingsRequestDto : SettingsRequestDto =  // SettingsRequestDto | 
 
-val result : BooleanWrapper = webService.hideConfirmRoomLifetime(settingsRequestDto)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.hideConfirmRoomLifetime(settingsRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -937,7 +975,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SettingsApi::class.java)
 
-val result : BooleanWrapper = webService.isAvailablePrivacyRoomSettings()
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.isAvailablePrivacyRoomSettings()
+}
 ```
 
 ### HTTP request headers
@@ -984,7 +1024,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SettingsApi::class.java)
 val settingsRequestDto : SettingsRequestDto =  // SettingsRequestDto | 
 
-val result : BooleanWrapper = webService.keepNewFileName(settingsRequestDto)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.keepNewFileName(settingsRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -1031,7 +1073,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SettingsApi::class.java)
 val defaultTemplateSettingsResetRequestDto : DefaultTemplateSettingsResetRequestDto =  // DefaultTemplateSettingsResetRequestDto | 
 
-val result : DefaultTemplateSettingsWrapper = webService.resetDefaultTemplate(defaultTemplateSettingsResetRequestDto)
+launch(Dispatchers.IO) {
+    val result : DefaultTemplateSettingsWrapper = webService.resetDefaultTemplate(defaultTemplateSettingsResetRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -1078,7 +1122,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SettingsApi::class.java)
 val defaultTemplateSettingsRequestDto : DefaultTemplateSettingsRequestDto =  // DefaultTemplateSettingsRequestDto | 
 
-val result : DefaultTemplateSettingsWrapper = webService.setDefaultTemplate(defaultTemplateSettingsRequestDto)
+launch(Dispatchers.IO) {
+    val result : DefaultTemplateSettingsWrapper = webService.setDefaultTemplate(defaultTemplateSettingsRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -1125,7 +1171,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SettingsApi::class.java)
 val settingsRequestDto : SettingsRequestDto =  // SettingsRequestDto | 
 
-val result : BooleanWrapper = webService.setOpenEditorInSameTab(settingsRequestDto)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.setOpenEditorInSameTab(settingsRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -1172,7 +1220,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SettingsApi::class.java)
 val settingsRequestDto : SettingsRequestDto =  // SettingsRequestDto | 
 
-val result : BooleanWrapper = webService.setOrganizeRoomsGrouping(settingsRequestDto)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.setOrganizeRoomsGrouping(settingsRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -1216,7 +1266,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SettingsApi::class.java)
 
-val result : BooleanWrapper = webService.storeForcesave()
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.storeForcesave()
+}
 ```
 
 ### HTTP request headers
@@ -1263,7 +1315,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SettingsApi::class.java)
 val settingsRequestDto : SettingsRequestDto =  // SettingsRequestDto | 
 
-val result : BooleanWrapper = webService.storeOriginal(settingsRequestDto)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.storeOriginal(settingsRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -1310,7 +1364,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SettingsApi::class.java)
 val settingsRequestDto : SettingsRequestDto =  // SettingsRequestDto | 
 
-val result : BooleanWrapper = webService.updateFileIfExist(settingsRequestDto)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.updateFileIfExist(settingsRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -1359,7 +1415,9 @@ val webService = apiClient.createWebservice(SettingsApi::class.java)
 val fileExtension : kotlin.String = .docx // kotlin.String | File extension of a template to replace
 val file : java.io.File = BINARY_DATA_HERE // java.io.File | File to replace template with
 
-val result : DefaultTemplateSettingsWrapper = webService.uploadDefaultTemplate(fileExtension, file)
+launch(Dispatchers.IO) {
+    val result : DefaultTemplateSettingsWrapper = webService.uploadDefaultTemplate(fileExtension, file)
+}
 ```
 
 ### HTTP request headers

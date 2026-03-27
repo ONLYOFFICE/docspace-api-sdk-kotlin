@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Files
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -63,10 +63,10 @@ interface OperationsApi {
      *
      * @param sessionId The session ID.
      * @param folderId The folder ID.
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @DELETE("api/2.0/files/{folderId}/session/{sessionId}")
-    fun abortUploadSession(@Path("sessionId") sessionId: kotlin.String, @Path("folderId") folderId: kotlin.Int): Call<Unit>
+    suspend fun abortUploadSession(@Path("sessionId") sessionId: kotlin.String, @Path("folderId") folderId: kotlin.Int): Response<Unit>
 
     /**
      * POST api/2.0/files/favorites
@@ -82,10 +82,10 @@ interface OperationsApi {
      *
      *
      * @param baseBatchRequestDto  (optional)
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @POST("api/2.0/files/favorites")
-    fun addFavorites(@Body baseBatchRequestDto: BaseBatchRequestDto? = null): Call<BooleanWrapper>
+    suspend fun addFavorites(@Body baseBatchRequestDto: BaseBatchRequestDto? = null): Response<BooleanWrapper>
 
     /**
      * PUT api/2.0/files/fileops/bulkdownload
@@ -100,10 +100,10 @@ interface OperationsApi {
      *
      *
      * @param downloadRequestDto  (optional)
-     * @return [Call]<[FileOperationArrayWrapper]>
+     * @return [FileOperationArrayWrapper]
      */
     @PUT("api/2.0/files/fileops/bulkdownload")
-    fun bulkDownload(@Body downloadRequestDto: DownloadRequestDto? = null): Call<FileOperationArrayWrapper>
+    suspend fun bulkDownload(@Body downloadRequestDto: DownloadRequestDto? = null): Response<FileOperationArrayWrapper>
 
     /**
      * GET api/2.0/files/file/{fileId}/checkconversion
@@ -119,10 +119,10 @@ interface OperationsApi {
      *
      * @param fileId The file ID to check conversion status.
      * @param start Specifies whether a conversion operation is started or not. (optional)
-     * @return [Call]<[ConversationResultArrayWrapper]>
+     * @return [ConversationResultArrayWrapper]
      */
     @GET("api/2.0/files/file/{fileId}/checkconversion")
-    fun checkConversionStatus(@Path("fileId") fileId: kotlin.Int, @Query("start") start: kotlin.Boolean? = null): Call<ConversationResultArrayWrapper>
+    suspend fun checkConversionStatus(@Path("fileId") fileId: kotlin.Int, @Query("start") start: kotlin.Boolean? = null): Response<ConversationResultArrayWrapper>
 
     /**
      * GET api/2.0/files/fileops/move
@@ -138,10 +138,10 @@ interface OperationsApi {
      *
      *
      * @param inDto The request parameters for copying/moving files. (optional)
-     * @return [Call]<[FileEntryBaseArrayWrapper]>
+     * @return [FileEntryBaseArrayWrapper]
      */
     @GET("api/2.0/files/fileops/move")
-    fun checkMoveOrCopyBatchItems(@Query("inDto") inDto: BatchRequestDto? = null): Call<FileEntryBaseArrayWrapper>
+    suspend fun checkMoveOrCopyBatchItems(@Query("inDto") inDto: BatchRequestDto? = null): Response<FileEntryBaseArrayWrapper>
 
     /**
      * GET api/2.0/files/fileops/checkdestfolder
@@ -157,10 +157,10 @@ interface OperationsApi {
      *
      *
      * @param inDto The request parameters for copying/moving files. (optional)
-     * @return [Call]<[CheckDestFolderWrapper]>
+     * @return [CheckDestFolderWrapper]
      */
     @GET("api/2.0/files/fileops/checkdestfolder")
-    fun checkMoveOrCopyDestFolder(@Query("inDto") inDto: BatchRequestDto? = null): Call<CheckDestFolderWrapper>
+    suspend fun checkMoveOrCopyDestFolder(@Query("inDto") inDto: BatchRequestDto? = null): Response<CheckDestFolderWrapper>
 
     /**
      * PUT api/2.0/files/fileops/copy
@@ -176,10 +176,10 @@ interface OperationsApi {
      *
      *
      * @param batchRequestDto  (optional)
-     * @return [Call]<[FileOperationArrayWrapper]>
+     * @return [FileOperationArrayWrapper]
      */
     @PUT("api/2.0/files/fileops/copy")
-    fun copyBatchItems(@Body batchRequestDto: BatchRequestDto? = null): Call<FileOperationArrayWrapper>
+    suspend fun copyBatchItems(@Body batchRequestDto: BatchRequestDto? = null): Response<FileOperationArrayWrapper>
 
     /**
      * POST api/2.0/files/{folderId}/upload/create_session
@@ -196,11 +196,11 @@ interface OperationsApi {
      *
      * @param folderId The session folder ID.
      * @param sessionRequest The session parameters.
-     * @return [Call]<[ChunkedUploadSessionResponseWrapperIntegerWrapper]>
+     * @return [ChunkedUploadSessionResponseWrapperIntegerWrapper]
      */
     @Deprecated("This api was deprecated")
     @POST("api/2.0/files/{folderId}/upload/create_session")
-    fun createUploadSession(@Path("folderId") folderId: kotlin.Int, @Body sessionRequest: SessionRequest): Call<ChunkedUploadSessionResponseWrapperIntegerWrapper>
+    suspend fun createUploadSession(@Path("folderId") folderId: kotlin.Int, @Body sessionRequest: SessionRequest): Response<ChunkedUploadSessionResponseWrapperIntegerWrapper>
 
     /**
      * POST api/2.0/files/{folderId}/session
@@ -216,10 +216,10 @@ interface OperationsApi {
      *
      * @param folderId The session folder ID.
      * @param sessionRequest The session parameters.
-     * @return [Call]<[ChunkedUploadSessionResponseIntegerWrapper]>
+     * @return [ChunkedUploadSessionResponseIntegerWrapper]
      */
     @POST("api/2.0/files/{folderId}/session")
-    fun createUploadSessionInFolder(@Path("folderId") folderId: kotlin.Int, @Body sessionRequest: SessionRequest): Call<ChunkedUploadSessionResponseIntegerWrapper>
+    suspend fun createUploadSessionInFolder(@Path("folderId") folderId: kotlin.Int, @Body sessionRequest: SessionRequest): Response<ChunkedUploadSessionResponseIntegerWrapper>
 
     /**
      * PUT api/2.0/files/fileops/delete
@@ -235,10 +235,10 @@ interface OperationsApi {
      *
      *
      * @param deleteBatchRequestDto  (optional)
-     * @return [Call]<[FileOperationArrayWrapper]>
+     * @return [FileOperationArrayWrapper]
      */
     @PUT("api/2.0/files/fileops/delete")
-    fun deleteBatchItems(@Body deleteBatchRequestDto: DeleteBatchRequestDto? = null): Call<FileOperationArrayWrapper>
+    suspend fun deleteBatchItems(@Body deleteBatchRequestDto: DeleteBatchRequestDto? = null): Response<FileOperationArrayWrapper>
 
     /**
      * DELETE api/2.0/files/favorites
@@ -253,10 +253,10 @@ interface OperationsApi {
      *
      *
      * @param baseBatchRequestDto  (optional)
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @DELETE("api/2.0/files/favorites")
-    fun deleteFavoritesFromBody(@Body baseBatchRequestDto: BaseBatchRequestDto? = null): Call<BooleanWrapper>
+    suspend fun deleteFavoritesFromBody(@Body baseBatchRequestDto: BaseBatchRequestDto? = null): Response<BooleanWrapper>
 
     /**
      * PUT api/2.0/files/fileops/deleteversion
@@ -271,10 +271,10 @@ interface OperationsApi {
      *
      *
      * @param deleteVersionBatchRequestDto  (optional)
-     * @return [Call]<[FileOperationWrapper]>
+     * @return [FileOperationWrapper]
      */
     @PUT("api/2.0/files/fileops/deleteversion")
-    fun deleteFileVersions(@Body deleteVersionBatchRequestDto: DeleteVersionBatchRequestDto? = null): Call<FileOperationWrapper>
+    suspend fun deleteFileVersions(@Body deleteVersionBatchRequestDto: DeleteVersionBatchRequestDto? = null): Response<FileOperationWrapper>
 
     /**
      * PUT api/2.0/files/fileops/duplicate
@@ -290,10 +290,10 @@ interface OperationsApi {
      *
      *
      * @param duplicateRequestDto  (optional)
-     * @return [Call]<[FileOperationArrayWrapper]>
+     * @return [FileOperationArrayWrapper]
      */
     @PUT("api/2.0/files/fileops/duplicate")
-    fun duplicateBatchItems(@Body duplicateRequestDto: DuplicateRequestDto? = null): Call<FileOperationArrayWrapper>
+    suspend fun duplicateBatchItems(@Body duplicateRequestDto: DuplicateRequestDto? = null): Response<FileOperationArrayWrapper>
 
     /**
      * PUT api/2.0/files/fileops/emptytrash
@@ -308,10 +308,10 @@ interface OperationsApi {
      *
      *
      * @param single Specifies whether to return only the current operation (optional)
-     * @return [Call]<[FileOperationArrayWrapper]>
+     * @return [FileOperationArrayWrapper]
      */
     @PUT("api/2.0/files/fileops/emptytrash")
-    fun emptyTrash(@Query("Single") single: kotlin.Boolean? = null): Call<FileOperationArrayWrapper>
+    suspend fun emptyTrash(@Query("Single") single: kotlin.Boolean? = null): Response<FileOperationArrayWrapper>
 
     /**
      * PUT api/2.0/files/{folderId}/session/{sessionId}/finalize
@@ -327,10 +327,10 @@ interface OperationsApi {
      *
      * @param folderId The folder ID.
      * @param sessionId The session ID.
-     * @return [Call]<[UploadSessionResponseIntegerWrapper]>
+     * @return [UploadSessionResponseIntegerWrapper]
      */
     @PUT("api/2.0/files/{folderId}/session/{sessionId}/finalize")
-    fun finalizeSession(@Path("folderId") folderId: kotlin.Int, @Path("sessionId") sessionId: kotlin.String): Call<UploadSessionResponseIntegerWrapper>
+    suspend fun finalizeSession(@Path("folderId") folderId: kotlin.Int, @Path("sessionId") sessionId: kotlin.String): Response<UploadSessionResponseIntegerWrapper>
 
     /**
      * GET api/2.0/files/fileops
@@ -344,10 +344,10 @@ interface OperationsApi {
      *
      *
      * @param id The ID of the file operation. (optional)
-     * @return [Call]<[FileOperationArrayWrapper]>
+     * @return [FileOperationArrayWrapper]
      */
     @GET("api/2.0/files/fileops")
-    fun getOperationStatuses(@Query("id") id: kotlin.String? = null): Call<FileOperationArrayWrapper>
+    suspend fun getOperationStatuses(@Query("id") id: kotlin.String? = null): Response<FileOperationArrayWrapper>
 
     /**
      * GET api/2.0/files/fileops/{operationType}
@@ -362,10 +362,10 @@ interface OperationsApi {
      *
      * @param operationType Specifies the type of file operation to be retrieved.
      * @param id The ID of the file operation. (optional)
-     * @return [Call]<[FileOperationArrayWrapper]>
+     * @return [FileOperationArrayWrapper]
      */
     @GET("api/2.0/files/fileops/{operationType}")
-    fun getOperationStatusesByType(@Path("operationType") operationType: FileOperationType, @Query("id") id: kotlin.String? = null): Call<FileOperationArrayWrapper>
+    suspend fun getOperationStatusesByType(@Path("operationType") operationType: FileOperationType, @Query("id") id: kotlin.String? = null): Response<FileOperationArrayWrapper>
 
     /**
      * PUT api/2.0/files/fileops/markasread
@@ -380,10 +380,10 @@ interface OperationsApi {
      *
      *
      * @param baseBatchRequestDto  (optional)
-     * @return [Call]<[FileOperationArrayWrapper]>
+     * @return [FileOperationArrayWrapper]
      */
     @PUT("api/2.0/files/fileops/markasread")
-    fun markAsRead(@Body baseBatchRequestDto: BaseBatchRequestDto? = null): Call<FileOperationArrayWrapper>
+    suspend fun markAsRead(@Body baseBatchRequestDto: BaseBatchRequestDto? = null): Response<FileOperationArrayWrapper>
 
     /**
      * PUT api/2.0/files/fileops/move
@@ -399,10 +399,10 @@ interface OperationsApi {
      *
      *
      * @param batchRequestDto  (optional)
-     * @return [Call]<[FileOperationArrayWrapper]>
+     * @return [FileOperationArrayWrapper]
      */
     @PUT("api/2.0/files/fileops/move")
-    fun moveBatchItems(@Body batchRequestDto: BatchRequestDto? = null): Call<FileOperationArrayWrapper>
+    suspend fun moveBatchItems(@Body batchRequestDto: BatchRequestDto? = null): Response<FileOperationArrayWrapper>
 
     /**
      * PUT api/2.0/files/file/{fileId}/checkconversion
@@ -418,10 +418,10 @@ interface OperationsApi {
      *
      * @param fileId The file ID to start conversion proccess.
      * @param checkConversionRequestDtoInteger The parameters for checking file conversion. (optional)
-     * @return [Call]<[ConversationResultArrayWrapper]>
+     * @return [ConversationResultArrayWrapper]
      */
     @PUT("api/2.0/files/file/{fileId}/checkconversion")
-    fun startFileConversion(@Path("fileId") fileId: kotlin.Int, @Body checkConversionRequestDtoInteger: CheckConversionRequestDtoInteger? = null): Call<ConversationResultArrayWrapper>
+    suspend fun startFileConversion(@Path("fileId") fileId: kotlin.Int, @Body checkConversionRequestDtoInteger: CheckConversionRequestDtoInteger? = null): Response<ConversationResultArrayWrapper>
 
     /**
      * PUT api/2.0/files/fileops/terminate/{id}
@@ -435,10 +435,10 @@ interface OperationsApi {
      *
      *
      * @param id The operation unique identifier.
-     * @return [Call]<[FileOperationArrayWrapper]>
+     * @return [FileOperationArrayWrapper]
      */
     @PUT("api/2.0/files/fileops/terminate/{id}")
-    fun terminateTasks(@Path("id") id: kotlin.String): Call<FileOperationArrayWrapper>
+    suspend fun terminateTasks(@Path("id") id: kotlin.String): Response<FileOperationArrayWrapper>
 
     /**
      * PUT api/2.0/files/file/{fileId}/comment
@@ -454,10 +454,10 @@ interface OperationsApi {
      *
      * @param fileId The file ID where the comment is located.
      * @param updateComment The parameters for updating a comment.
-     * @return [Call]<[StringWrapper]>
+     * @return [StringWrapper]
      */
     @PUT("api/2.0/files/file/{fileId}/comment")
-    fun updateFileComment(@Path("fileId") fileId: kotlin.Int, @Body updateComment: UpdateComment): Call<StringWrapper>
+    suspend fun updateFileComment(@Path("fileId") fileId: kotlin.Int, @Body updateComment: UpdateComment): Response<StringWrapper>
 
     /**
      * POST api/2.0/files/{folderId}/session/{sessionId}/upload
@@ -475,11 +475,11 @@ interface OperationsApi {
      * @param sessionId The upload session ID.
      * @param chunkNumber The chunk number. (optional)
      * @param file The file chunk to be uploaded as part of the multipart/form-data request.  This property represents the uploaded file chunk content from the HTTP request form for chunked upload operations.  The file chunk is accessed via the IFormFile interface which provides access to the chunk content and length. (optional)
-     * @return [Call]<[ChunkedUploadSessionResponseIntegerWrapper]>
+     * @return [ChunkedUploadSessionResponseIntegerWrapper]
      */
     @Multipart
     @POST("api/2.0/files/{folderId}/session/{sessionId}/upload")
-    fun uploadAsyncSession(@Path("folderId") folderId: kotlin.Int, @Path("sessionId") sessionId: kotlin.String, @Query("ChunkNumber") chunkNumber: kotlin.Int? = null, @Part file: MultipartBody.Part? = null): Call<ChunkedUploadSessionResponseIntegerWrapper>
+    suspend fun uploadAsyncSession(@Path("folderId") folderId: kotlin.Int, @Path("sessionId") sessionId: kotlin.String, @Query("ChunkNumber") chunkNumber: kotlin.Int? = null, @Part file: MultipartBody.Part? = null): Response<ChunkedUploadSessionResponseIntegerWrapper>
 
     /**
      * POST api/2.0/files/{folderId}/session/{sessionId}
@@ -496,10 +496,10 @@ interface OperationsApi {
      * @param folderId The folder ID.
      * @param sessionId The upload session ID.
      * @param file The file to be uploaded as part of the multipart/form-data request.  This property represents the uploaded file content from the HTTP request form.  The file is accessed via the IFormFile interface which provides access to the file name, content type, length, and stream. (optional)
-     * @return [Call]<[UploadSessionResponseIntegerWrapper]>
+     * @return [UploadSessionResponseIntegerWrapper]
      */
     @Multipart
     @POST("api/2.0/files/{folderId}/session/{sessionId}")
-    fun uploadSession(@Path("folderId") folderId: kotlin.Int, @Path("sessionId") sessionId: kotlin.String, @Part file: MultipartBody.Part? = null): Call<UploadSessionResponseIntegerWrapper>
+    suspend fun uploadSession(@Path("folderId") folderId: kotlin.Int, @Path("sessionId") sessionId: kotlin.String, @Part file: MultipartBody.Part? = null): Response<UploadSessionResponseIntegerWrapper>
 
 }

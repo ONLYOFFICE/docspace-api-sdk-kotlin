@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Settings
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -41,10 +41,10 @@ interface LicenseApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/accept-license/
      *
      *
-     * @return [Call]<[StringWrapper]>
+     * @return [StringWrapper]
      */
     @POST("api/2.0/settings/license/accept")
-    fun acceptLicense(): Call<StringWrapper>
+    suspend fun acceptLicense(): Response<StringWrapper>
 
     /**
      * GET api/2.0/settings/license/required
@@ -57,10 +57,10 @@ interface LicenseApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-is-license-required/
      *
      *
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @GET("api/2.0/settings/license/required")
-    fun getIsLicenseRequired(): Call<BooleanWrapper>
+    suspend fun getIsLicenseRequired(): Response<BooleanWrapper>
 
     /**
      * GET api/2.0/settings/license/refresh
@@ -74,10 +74,10 @@ interface LicenseApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/refresh-license/
      *
      *
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @GET("api/2.0/settings/license/refresh")
-    fun refreshLicense(): Call<BooleanWrapper>
+    suspend fun refreshLicense(): Response<BooleanWrapper>
 
     /**
      * POST api/2.0/settings/license
@@ -95,10 +95,10 @@ interface LicenseApi {
      *
      *
      * @param files The list of license files to be uploaded.
-     * @return [Call]<[StringWrapper]>
+     * @return [StringWrapper]
      */
     @Multipart
     @POST("api/2.0/settings/license")
-    fun uploadLicense(@Part files: List<MultipartBody.Part>): Call<StringWrapper>
+    suspend fun uploadLicense(@Part files: List<MultipartBody.Part>): Response<StringWrapper>
 
 }

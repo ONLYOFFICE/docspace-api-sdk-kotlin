@@ -52,7 +52,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(UserDataApi::class.java)
 
-val result : TaskProgressResponseWrapper = webService.getDeletePersonalFolderProgress()
+launch(Dispatchers.IO) {
+    val result : TaskProgressResponseWrapper = webService.getDeletePersonalFolderProgress()
+}
 ```
 
 ### HTTP request headers
@@ -99,7 +101,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(UserDataApi::class.java)
 val userid : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The user ID.
 
-val result : TaskProgressResponseWrapper = webService.getReassignProgress(userid)
+launch(Dispatchers.IO) {
+    val result : TaskProgressResponseWrapper = webService.getReassignProgress(userid)
+}
 ```
 
 ### HTTP request headers
@@ -146,7 +150,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(UserDataApi::class.java)
 val userid : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The user ID.
 
-val result : TaskProgressResponseWrapper = webService.getRemoveProgress(userid)
+launch(Dispatchers.IO) {
+    val result : TaskProgressResponseWrapper = webService.getRemoveProgress(userid)
+}
 ```
 
 ### HTTP request headers
@@ -195,7 +201,9 @@ val webService = apiClient.createWebservice(UserDataApi::class.java)
 val userId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The user ID.
 val type : EmployeeType = 1 // EmployeeType | The expected user type.
 
-val result : BooleanWrapper = webService.necessaryReassign(userId, type)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.necessaryReassign(userId, type)
+}
 ```
 
 ### HTTP request headers
@@ -239,7 +247,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(UserDataApi::class.java)
 
-val result : StringWrapper = webService.sendInstructionsToDelete()
+launch(Dispatchers.IO) {
+    val result : StringWrapper = webService.sendInstructionsToDelete()
+}
 ```
 
 ### HTTP request headers
@@ -283,7 +293,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(UserDataApi::class.java)
 
-val result : TaskProgressResponseWrapper = webService.startDeletePersonalFolder()
+launch(Dispatchers.IO) {
+    val result : TaskProgressResponseWrapper = webService.startDeletePersonalFolder()
+}
 ```
 
 ### HTTP request headers
@@ -330,7 +342,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(UserDataApi::class.java)
 val startReassignRequestDto : StartReassignRequestDto =  // StartReassignRequestDto | 
 
-val result : TaskProgressResponseWrapper = webService.startReassign(startReassignRequestDto)
+launch(Dispatchers.IO) {
+    val result : TaskProgressResponseWrapper = webService.startReassign(startReassignRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -377,7 +391,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(UserDataApi::class.java)
 val terminateRequestDto : TerminateRequestDto =  // TerminateRequestDto | 
 
-val result : TaskProgressResponseWrapper = webService.startRemove(terminateRequestDto)
+launch(Dispatchers.IO) {
+    val result : TaskProgressResponseWrapper = webService.startRemove(terminateRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -424,7 +440,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(UserDataApi::class.java)
 val terminateRequestDto : TerminateRequestDto =  // TerminateRequestDto | 
 
-val result : TaskProgressResponseWrapper = webService.terminateReassign(terminateRequestDto)
+launch(Dispatchers.IO) {
+    val result : TaskProgressResponseWrapper = webService.terminateReassign(terminateRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -471,7 +489,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(UserDataApi::class.java)
 val terminateRequestDto : TerminateRequestDto =  // TerminateRequestDto | 
 
-webService.terminateRemove(terminateRequestDto)
+launch(Dispatchers.IO) {
+    webService.terminateRemove(terminateRequestDto)
+}
 ```
 
 ### HTTP request headers

@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.People
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -50,10 +50,10 @@ interface ProfilesApi {
      *
      *
      * @param memberRequestDto  (optional)
-     * @return [Call]<[EmployeeFullWrapper]>
+     * @return [EmployeeFullWrapper]
      */
     @POST("api/2.0/people")
-    fun addMember(@Body memberRequestDto: MemberRequestDto? = null): Call<EmployeeFullWrapper>
+    suspend fun addMember(@Body memberRequestDto: MemberRequestDto? = null): Response<EmployeeFullWrapper>
 
     /**
      * GET api/2.0/people/exists
@@ -71,10 +71,10 @@ interface ProfilesApi {
      * @param email The user email address. (optional)
      * @param encemail The user encrypted email address. (optional)
      * @param culture Culture (optional)
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @GET("api/2.0/people/exists")
-    fun checkUserExistsByEmail(@Query("email") email: kotlin.String? = null, @Query("encemail") encemail: kotlin.String? = null, @Query("culture") culture: kotlin.String? = null): Call<BooleanWrapper>
+    suspend fun checkUserExistsByEmail(@Query("email") email: kotlin.String? = null, @Query("encemail") encemail: kotlin.String? = null, @Query("culture") culture: kotlin.String? = null): Response<BooleanWrapper>
 
     /**
      * DELETE api/2.0/people/{userid}
@@ -91,10 +91,10 @@ interface ProfilesApi {
      *
      *
      * @param userid The user ID.
-     * @return [Call]<[EmployeeFullWrapper]>
+     * @return [EmployeeFullWrapper]
      */
     @DELETE("api/2.0/people/{userid}")
-    fun deleteMember(@Path("userid") userid: kotlin.String): Call<EmployeeFullWrapper>
+    suspend fun deleteMember(@Path("userid") userid: kotlin.String): Response<EmployeeFullWrapper>
 
     /**
      * DELETE api/2.0/people/@self
@@ -110,10 +110,10 @@ interface ProfilesApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-profile/
      *
      *
-     * @return [Call]<[EmployeeFullWrapper]>
+     * @return [EmployeeFullWrapper]
      */
     @DELETE("api/2.0/people/@self")
-    fun deleteProfile(): Call<EmployeeFullWrapper>
+    suspend fun deleteProfile(): Response<EmployeeFullWrapper>
 
     /**
      * GET api/2.0/people
@@ -134,10 +134,10 @@ interface ProfilesApi {
      * @param sortOrder The order in which the results are sorted. (optional)
      * @param filterSeparator The character or string used to separate multiple filter values in a filtering query. (optional)
      * @param filterValue The text value used as an additional filter criterion for profiles retrieval. (optional)
-     * @return [Call]<[EmployeeFullArrayWrapper]>
+     * @return [EmployeeFullArrayWrapper]
      */
     @GET("api/2.0/people")
-    fun getAllProfiles(@Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterBy") filterBy: kotlin.String? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Call<EmployeeFullArrayWrapper>
+    suspend fun getAllProfiles(@Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterBy") filterBy: kotlin.String? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<EmployeeFullArrayWrapper>
 
     /**
      * GET api/2.0/people/tokendiagnostics
@@ -151,10 +151,10 @@ interface ProfilesApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-claims/
      *
      *
-     * @return [Call]<[ObjectWrapper]>
+     * @return [ObjectWrapper]
      */
     @GET("api/2.0/people/tokendiagnostics")
-    fun getClaims(): Call<ObjectWrapper>
+    suspend fun getClaims(): Response<ObjectWrapper>
 
     /**
      * GET api/2.0/people/email
@@ -174,10 +174,10 @@ interface ProfilesApi {
      * @param email The user email address. (optional)
      * @param encemail The user encrypted email address. (optional)
      * @param culture Culture (optional)
-     * @return [Call]<[EmployeeFullWrapper]>
+     * @return [EmployeeFullWrapper]
      */
     @GET("api/2.0/people/email")
-    fun getProfileByEmail(@Query("email") email: kotlin.String? = null, @Query("encemail") encemail: kotlin.String? = null, @Query("culture") culture: kotlin.String? = null): Call<EmployeeFullWrapper>
+    suspend fun getProfileByEmail(@Query("email") email: kotlin.String? = null, @Query("encemail") encemail: kotlin.String? = null, @Query("culture") culture: kotlin.String? = null): Response<EmployeeFullWrapper>
 
     /**
      * GET api/2.0/people/{userid}
@@ -194,10 +194,10 @@ interface ProfilesApi {
      *
      *
      * @param userid The user ID.
-     * @return [Call]<[EmployeeFullWrapper]>
+     * @return [EmployeeFullWrapper]
      */
     @GET("api/2.0/people/{userid}")
-    fun getProfileByUserId(@Path("userid") userid: kotlin.String): Call<EmployeeFullWrapper>
+    suspend fun getProfileByUserId(@Path("userid") userid: kotlin.String): Response<EmployeeFullWrapper>
 
     /**
      * GET api/2.0/people/@self
@@ -211,10 +211,10 @@ interface ProfilesApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-self-profile/
      *
      *
-     * @return [Call]<[EmployeeFullWrapper]>
+     * @return [EmployeeFullWrapper]
      */
     @GET("api/2.0/people/@self")
-    fun getSelfProfile(): Call<EmployeeFullWrapper>
+    suspend fun getSelfProfile(): Response<EmployeeFullWrapper>
 
     /**
      * POST api/2.0/people/invite
@@ -232,10 +232,10 @@ interface ProfilesApi {
      *
      *
      * @param inviteUsersRequestDto  (optional)
-     * @return [Call]<[EmployeeArrayWrapper]>
+     * @return [EmployeeArrayWrapper]
      */
     @POST("api/2.0/people/invite")
-    fun inviteUsers(@Body inviteUsersRequestDto: InviteUsersRequestDto? = null): Call<EmployeeArrayWrapper>
+    suspend fun inviteUsers(@Body inviteUsersRequestDto: InviteUsersRequestDto? = null): Response<EmployeeArrayWrapper>
 
     /**
      * PUT api/2.0/people/delete
@@ -253,10 +253,10 @@ interface ProfilesApi {
      *
      *
      * @param updateMembersRequestDto  (optional)
-     * @return [Call]<[EmployeeFullArrayWrapper]>
+     * @return [EmployeeFullArrayWrapper]
      */
     @PUT("api/2.0/people/delete")
-    fun removeUsers(@Body updateMembersRequestDto: UpdateMembersRequestDto? = null): Call<EmployeeFullArrayWrapper>
+    suspend fun removeUsers(@Body updateMembersRequestDto: UpdateMembersRequestDto? = null): Response<EmployeeFullArrayWrapper>
 
     /**
      * PUT api/2.0/people/invite
@@ -272,10 +272,10 @@ interface ProfilesApi {
      *
      *
      * @param updateMembersRequestDto  (optional)
-     * @return [Call]<[EmployeeFullArrayWrapper]>
+     * @return [EmployeeFullArrayWrapper]
      */
     @PUT("api/2.0/people/invite")
-    fun resendUserInvites(@Body updateMembersRequestDto: UpdateMembersRequestDto? = null): Call<EmployeeFullArrayWrapper>
+    suspend fun resendUserInvites(@Body updateMembersRequestDto: UpdateMembersRequestDto? = null): Response<EmployeeFullArrayWrapper>
 
     /**
      * PUT api/2.0/people/{userid}
@@ -294,10 +294,10 @@ interface ProfilesApi {
      *
      * @param userid The user ID.
      * @param updateMemberRequestDto The request parameters for updating the user information.
-     * @return [Call]<[EmployeeFullWrapper]>
+     * @return [EmployeeFullWrapper]
      */
     @PUT("api/2.0/people/{userid}")
-    fun updateMember(@Path("userid") userid: kotlin.String, @Body updateMemberRequestDto: UpdateMemberRequestDto): Call<EmployeeFullWrapper>
+    suspend fun updateMember(@Path("userid") userid: kotlin.String, @Body updateMemberRequestDto: UpdateMemberRequestDto): Response<EmployeeFullWrapper>
 
     /**
      * PUT api/2.0/people/{userid}/culture
@@ -316,9 +316,9 @@ interface ProfilesApi {
      *
      * @param userid The user ID.
      * @param culture The culture name parameters. (optional)
-     * @return [Call]<[EmployeeFullWrapper]>
+     * @return [EmployeeFullWrapper]
      */
     @PUT("api/2.0/people/{userid}/culture")
-    fun updateMemberCulture(@Path("userid") userid: kotlin.String, @Body culture: Culture? = null): Call<EmployeeFullWrapper>
+    suspend fun updateMemberCulture(@Path("userid") userid: kotlin.String, @Body culture: Culture? = null): Response<EmployeeFullWrapper>
 
 }

@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Settings
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -43,10 +43,10 @@ interface QuotaApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-user-quota-settings/
      *
      *
-     * @return [Call]<[TenantUserQuotaSettingsWrapper]>
+     * @return [TenantUserQuotaSettingsWrapper]
      */
     @GET("api/2.0/settings/userquotasettings")
-    fun getUserQuotaSettings(): Call<TenantUserQuotaSettingsWrapper>
+    suspend fun getUserQuotaSettings(): Response<TenantUserQuotaSettingsWrapper>
 
     /**
      * POST api/2.0/settings/aiagentquotasettings
@@ -62,10 +62,10 @@ interface QuotaApi {
      *
      *
      * @param quotaSettingsRequestsDto  (optional)
-     * @return [Call]<[TenantAiAgentQuotaSettingsWrapper]>
+     * @return [TenantAiAgentQuotaSettingsWrapper]
      */
     @POST("api/2.0/settings/aiagentquotasettings")
-    fun saveAiAgentQuotaSettings(@Body quotaSettingsRequestsDto: QuotaSettingsRequestsDto? = null): Call<TenantAiAgentQuotaSettingsWrapper>
+    suspend fun saveAiAgentQuotaSettings(@Body quotaSettingsRequestsDto: QuotaSettingsRequestsDto? = null): Response<TenantAiAgentQuotaSettingsWrapper>
 
     /**
      * POST api/2.0/settings/roomquotasettings
@@ -81,10 +81,10 @@ interface QuotaApi {
      *
      *
      * @param quotaSettingsRequestsDto  (optional)
-     * @return [Call]<[TenantRoomQuotaSettingsWrapper]>
+     * @return [TenantRoomQuotaSettingsWrapper]
      */
     @POST("api/2.0/settings/roomquotasettings")
-    fun saveRoomQuotaSettings(@Body quotaSettingsRequestsDto: QuotaSettingsRequestsDto? = null): Call<TenantRoomQuotaSettingsWrapper>
+    suspend fun saveRoomQuotaSettings(@Body quotaSettingsRequestsDto: QuotaSettingsRequestsDto? = null): Response<TenantRoomQuotaSettingsWrapper>
 
     /**
      * PUT api/2.0/settings/tenantquotasettings
@@ -101,9 +101,9 @@ interface QuotaApi {
      *
      *
      * @param tenantQuotaSettingsRequestsDto  (optional)
-     * @return [Call]<[TenantQuotaSettingsWrapper]>
+     * @return [TenantQuotaSettingsWrapper]
      */
     @PUT("api/2.0/settings/tenantquotasettings")
-    fun setTenantQuotaSettings(@Body tenantQuotaSettingsRequestsDto: TenantQuotaSettingsRequestsDto? = null): Call<TenantQuotaSettingsWrapper>
+    suspend fun setTenantQuotaSettings(@Body tenantQuotaSettingsRequestsDto: TenantQuotaSettingsRequestsDto? = null): Response<TenantQuotaSettingsWrapper>
 
 }

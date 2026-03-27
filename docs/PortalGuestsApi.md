@@ -46,7 +46,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(GuestsApi::class.java)
 val userid : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The user ID.
 
-val result : StringWrapper = webService.getGuestSharingLink(userid)
+launch(Dispatchers.IO) {
+    val result : StringWrapper = webService.getGuestSharingLink(userid)
+}
 ```
 
 ### HTTP request headers

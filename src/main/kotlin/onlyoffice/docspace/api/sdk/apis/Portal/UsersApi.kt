@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Portal
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -46,10 +46,10 @@ interface UsersApi {
      *
      *
      * @param invitationLinkCreateRequestDto  (optional)
-     * @return [Call]<[InvitationLinkWrapper]>
+     * @return [InvitationLinkWrapper]
      */
     @POST("api/2.0/portal/users/invitationlink")
-    fun createInvitationLink(@Body invitationLinkCreateRequestDto: InvitationLinkCreateRequestDto? = null): Call<InvitationLinkWrapper>
+    suspend fun createInvitationLink(@Body invitationLinkCreateRequestDto: InvitationLinkCreateRequestDto? = null): Response<InvitationLinkWrapper>
 
     /**
      * DELETE api/2.0/portal/users/invitationlink
@@ -64,10 +64,10 @@ interface UsersApi {
      *
      *
      * @param invitationLinkDeleteRequestDto The data transfer object containing the details of the invitation link to be deleted. (optional)
-     * @return [Call]<[StringWrapper]>
+     * @return [StringWrapper]
      */
     @DELETE("api/2.0/portal/users/invitationlink")
-    fun deleteInvitationLink(@Body invitationLinkDeleteRequestDto: InvitationLinkDeleteRequestDto? = null): Call<StringWrapper>
+    suspend fun deleteInvitationLink(@Body invitationLinkDeleteRequestDto: InvitationLinkDeleteRequestDto? = null): Response<StringWrapper>
 
     /**
      * GET api/2.0/portal/users/invite/{employeeType}
@@ -82,11 +82,11 @@ interface UsersApi {
      *
      *
      * @param employeeType The type of employee role for the invitation link (DocSpaceAdmin, RoomAdmin or User).
-     * @return [Call]<[StringWrapper]>
+     * @return [StringWrapper]
      */
     @Deprecated("This api was deprecated")
     @GET("api/2.0/portal/users/invite/{employeeType}")
-    fun getInvitationLink(@Path("employeeType") employeeType: EmployeeType): Call<StringWrapper>
+    suspend fun getInvitationLink(@Path("employeeType") employeeType: EmployeeType): Response<StringWrapper>
 
     /**
      * GET api/2.0/portal/users/invitationlink/{employeeType}
@@ -101,10 +101,10 @@ interface UsersApi {
      *
      *
      * @param employeeType The type of employee role for the invitation link (DocSpaceAdmin, RoomAdmin or User).
-     * @return [Call]<[InvitationLinkWrapper]>
+     * @return [InvitationLinkWrapper]
      */
     @GET("api/2.0/portal/users/invitationlink/{employeeType}")
-    fun getInvitationLinkByEmployeeType(@Path("employeeType") employeeType: EmployeeType): Call<InvitationLinkWrapper>
+    suspend fun getInvitationLinkByEmployeeType(@Path("employeeType") employeeType: EmployeeType): Response<InvitationLinkWrapper>
 
     /**
      * GET api/2.0/portal/userscount
@@ -118,10 +118,10 @@ interface UsersApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-portal-users-count/
      *
      *
-     * @return [Call]<[Int64Wrapper]>
+     * @return [Int64Wrapper]
      */
     @GET("api/2.0/portal/userscount")
-    fun getPortalUsersCount(): Call<Int64Wrapper>
+    suspend fun getPortalUsersCount(): Response<Int64Wrapper>
 
     /**
      * GET api/2.0/portal/users/{userID}
@@ -136,10 +136,10 @@ interface UsersApi {
      *
      *
      * @param userID The user ID extracted from the route parameters.
-     * @return [Call]<[UserInfoWrapper]>
+     * @return [UserInfoWrapper]
      */
     @GET("api/2.0/portal/users/{userID}")
-    fun getUserById(@Path("userID") userID: java.util.UUID): Call<UserInfoWrapper>
+    suspend fun getUserById(@Path("userID") userID: java.util.UUID): Response<UserInfoWrapper>
 
     /**
      * POST api/2.0/portal/present/mark
@@ -153,10 +153,10 @@ interface UsersApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/mark-gift-message-as-read/
      *
      *
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @POST("api/2.0/portal/present/mark")
-    fun markGiftMessageAsRead(): Call<Unit>
+    suspend fun markGiftMessageAsRead(): Response<Unit>
 
     /**
      * POST api/2.0/portal/sendcongratulations
@@ -172,10 +172,10 @@ interface UsersApi {
      *
      * @param userid The user ID to receive the congratulatory message.
      * @param key The template identifier or email configuration key.
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @POST("api/2.0/portal/sendcongratulations")
-    fun sendCongratulations(@Query("Userid") userid: java.util.UUID, @Query("Key") key: kotlin.String): Call<Unit>
+    suspend fun sendCongratulations(@Query("Userid") userid: java.util.UUID, @Query("Key") key: kotlin.String): Response<Unit>
 
     /**
      * PUT api/2.0/portal/users/invitationlink
@@ -190,9 +190,9 @@ interface UsersApi {
      *
      *
      * @param invitationLinkUpdateRequestDto  (optional)
-     * @return [Call]<[InvitationLinkWrapper]>
+     * @return [InvitationLinkWrapper]
      */
     @PUT("api/2.0/portal/users/invitationlink")
-    fun updateInvitationLink(@Body invitationLinkUpdateRequestDto: InvitationLinkUpdateRequestDto? = null): Call<InvitationLinkWrapper>
+    suspend fun updateInvitationLink(@Body invitationLinkUpdateRequestDto: InvitationLinkUpdateRequestDto? = null): Response<InvitationLinkWrapper>
 
 }

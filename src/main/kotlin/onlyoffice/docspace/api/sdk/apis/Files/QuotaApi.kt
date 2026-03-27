@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Files
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -41,10 +41,10 @@ interface QuotaApi {
      *
      *
      * @param updateRoomsRoomIdsRequestDtoInteger  (optional)
-     * @return [Call]<[FolderIntegerArrayWrapper]>
+     * @return [FolderIntegerArrayWrapper]
      */
     @PUT("api/2.0/files/rooms/resetquota")
-    fun resetRoomQuota(@Body updateRoomsRoomIdsRequestDtoInteger: UpdateRoomsRoomIdsRequestDtoInteger? = null): Call<FolderIntegerArrayWrapper>
+    suspend fun resetRoomQuota(@Body updateRoomsRoomIdsRequestDtoInteger: UpdateRoomsRoomIdsRequestDtoInteger? = null): Response<FolderIntegerArrayWrapper>
 
     /**
      * PUT api/2.0/files/rooms/roomquota
@@ -59,9 +59,9 @@ interface QuotaApi {
      *
      *
      * @param updateRoomsQuotaRequestDtoInteger  (optional)
-     * @return [Call]<[FolderIntegerArrayWrapper]>
+     * @return [FolderIntegerArrayWrapper]
      */
     @PUT("api/2.0/files/rooms/roomquota")
-    fun updateRoomsQuota(@Body updateRoomsQuotaRequestDtoInteger: UpdateRoomsQuotaRequestDtoInteger? = null): Call<FolderIntegerArrayWrapper>
+    suspend fun updateRoomsQuota(@Body updateRoomsQuotaRequestDtoInteger: UpdateRoomsQuotaRequestDtoInteger? = null): Response<FolderIntegerArrayWrapper>
 
 }

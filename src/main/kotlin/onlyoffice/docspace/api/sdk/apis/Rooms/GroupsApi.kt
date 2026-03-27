@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Rooms
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -43,10 +43,10 @@ interface GroupsApi {
      *
      *
      * @param roomGroupRequestDto  (optional)
-     * @return [Call]<[RoomGroupWrapper]>
+     * @return [RoomGroupWrapper]
      */
     @POST("api/2.0/files/group")
-    fun addRoomGroup(@Body roomGroupRequestDto: RoomGroupRequestDto? = null): Call<RoomGroupWrapper>
+    suspend fun addRoomGroup(@Body roomGroupRequestDto: RoomGroupRequestDto? = null): Response<RoomGroupWrapper>
 
     /**
      * POST api/2.0/files/group/{id}/icon
@@ -62,10 +62,10 @@ interface GroupsApi {
      *
      * @param id Group id
      * @param iconRequest Icon update data. (optional)
-     * @return [Call]<[RoomGroupWrapper]>
+     * @return [RoomGroupWrapper]
      */
     @POST("api/2.0/files/group/{id}/icon")
-    fun changeRoomGroupIcon(@Path("id") id: kotlin.Int, @Body iconRequest: IconRequest? = null): Call<RoomGroupWrapper>
+    suspend fun changeRoomGroupIcon(@Path("id") id: kotlin.Int, @Body iconRequest: IconRequest? = null): Response<RoomGroupWrapper>
 
     /**
      * DELETE api/2.0/files/group/{id}
@@ -81,10 +81,10 @@ interface GroupsApi {
      *
      * @param id The group unique identifier.
      * @param includeMembers Whether to include group members. (optional)
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @DELETE("api/2.0/files/group/{id}")
-    fun deleteRoomGroup(@Path("id") id: kotlin.Int, @Query("includeMembers") includeMembers: kotlin.Boolean? = null): Call<Unit>
+    suspend fun deleteRoomGroup(@Path("id") id: kotlin.Int, @Query("includeMembers") includeMembers: kotlin.Boolean? = null): Response<Unit>
 
     /**
      * GET api/2.0/files/group/{id}
@@ -100,10 +100,10 @@ interface GroupsApi {
      *
      * @param id The group unique identifier.
      * @param includeMembers Whether to include group members. (optional)
-     * @return [Call]<[RoomGroupWrapper]>
+     * @return [RoomGroupWrapper]
      */
     @GET("api/2.0/files/group/{id}")
-    fun getRoomGroupInfo(@Path("id") id: kotlin.Int, @Query("includeMembers") includeMembers: kotlin.Boolean? = null): Call<RoomGroupWrapper>
+    suspend fun getRoomGroupInfo(@Path("id") id: kotlin.Int, @Query("includeMembers") includeMembers: kotlin.Boolean? = null): Response<RoomGroupWrapper>
 
     /**
      * GET api/2.0/files/group
@@ -119,10 +119,10 @@ interface GroupsApi {
      *
      * @param id The group unique identifier.
      * @param includeMembers Whether to include group members. (optional)
-     * @return [Call]<[RoomGroupArrayWrapper]>
+     * @return [RoomGroupArrayWrapper]
      */
     @GET("api/2.0/files/group")
-    fun getRoomGroups(@Path("id") id: kotlin.Int, @Query("includeMembers") includeMembers: kotlin.Boolean? = null): Call<RoomGroupArrayWrapper>
+    suspend fun getRoomGroups(@Path("id") id: kotlin.Int, @Query("includeMembers") includeMembers: kotlin.Boolean? = null): Response<RoomGroupArrayWrapper>
 
     /**
      * PUT api/2.0/files/group/{id}
@@ -138,9 +138,9 @@ interface GroupsApi {
      *
      * @param id The group ID.
      * @param updateRoomGroupRequest The request for updating a group.
-     * @return [Call]<[RoomGroupWrapper]>
+     * @return [RoomGroupWrapper]
      */
     @PUT("api/2.0/files/group/{id}")
-    fun updateRoomGroup(@Path("id") id: kotlin.Int, @Body updateRoomGroupRequest: UpdateRoomGroupRequest): Call<RoomGroupWrapper>
+    suspend fun updateRoomGroup(@Path("id") id: kotlin.Int, @Body updateRoomGroupRequest: UpdateRoomGroupRequest): Response<RoomGroupWrapper>
 
 }

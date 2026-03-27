@@ -43,7 +43,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(OAuth2Api::class.java)
 
-val result : StringWrapper = webService.generateJwtToken()
+launch(Dispatchers.IO) {
+    val result : StringWrapper = webService.generateJwtToken()
+}
 ```
 
 ### HTTP request headers

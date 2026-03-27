@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Security
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -42,10 +42,10 @@ interface LoginHistoryApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-login-history-report/
      *
      *
-     * @return [Call]<[StringWrapper]>
+     * @return [StringWrapper]
      */
     @POST("api/2.0/security/audit/login/report")
-    fun createLoginHistoryReport(): Call<StringWrapper>
+    suspend fun createLoginHistoryReport(): Response<StringWrapper>
 
     /**
      * GET api/2.0/security/audit/login/last
@@ -60,10 +60,10 @@ interface LoginHistoryApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-last-login-events/
      *
      *
-     * @return [Call]<[LoginEventArrayWrapper]>
+     * @return [LoginEventArrayWrapper]
      */
     @GET("api/2.0/security/audit/login/last")
-    fun getLastLoginEvents(): Call<LoginEventArrayWrapper>
+    suspend fun getLastLoginEvents(): Response<LoginEventArrayWrapper>
 
     /**
      * GET api/2.0/security/audit/login/filter
@@ -84,9 +84,9 @@ interface LoginHistoryApi {
      * @param to The ending date and time for filtering login events. (optional)
      * @param count The number of login events to retrieve in the query. (optional)
      * @param startIndex The starting index for fetching a subset of login events from the query results. (optional)
-     * @return [Call]<[LoginEventArrayWrapper]>
+     * @return [LoginEventArrayWrapper]
      */
     @GET("api/2.0/security/audit/login/filter")
-    fun getLoginEventsByFilter(@Query("userId") userId: java.util.UUID? = null, @Query("action") action: MessageAction? = null, @Query("from") from: ApiDateTime? = null, @Query("to") to: ApiDateTime? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null): Call<LoginEventArrayWrapper>
+    suspend fun getLoginEventsByFilter(@Query("userId") userId: java.util.UUID? = null, @Query("action") action: MessageAction? = null, @Query("from") from: ApiDateTime? = null, @Query("to") to: ApiDateTime? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null): Response<LoginEventArrayWrapper>
 
 }

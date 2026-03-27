@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Portal
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -71,10 +71,10 @@ interface PaymentApi {
      *
      *
      * @param buyWalletServiceRequestDto  (optional)
-     * @return [Call]<[ServicePaymentWrapper]>
+     * @return [ServicePaymentWrapper]
      */
     @POST("api/2.0/portal/payment/buywalletservice")
-    fun buyWalletService(@Body buyWalletServiceRequestDto: BuyWalletServiceRequestDto? = null): Call<ServicePaymentWrapper>
+    suspend fun buyWalletService(@Body buyWalletServiceRequestDto: BuyWalletServiceRequestDto? = null): Response<ServicePaymentWrapper>
 
     /**
      * PUT api/2.0/portal/payment/calculatewallet
@@ -90,10 +90,10 @@ interface PaymentApi {
      *
      *
      * @param walletQuantityRequestDto  (optional)
-     * @return [Call]<[PaymentCalculationWrapper]>
+     * @return [PaymentCalculationWrapper]
      */
     @PUT("api/2.0/portal/payment/calculatewallet")
-    fun calculateWalletPayment(@Body walletQuantityRequestDto: WalletQuantityRequestDto? = null): Call<PaymentCalculationWrapper>
+    suspend fun calculateWalletPayment(@Body walletQuantityRequestDto: WalletQuantityRequestDto? = null): Response<PaymentCalculationWrapper>
 
     /**
      * POST api/2.0/portal/payment/servicestate
@@ -109,10 +109,10 @@ interface PaymentApi {
      *
      *
      * @param changeWalletServiceStateRequestDto  (optional)
-     * @return [Call]<[TenantWalletServiceSettingsWrapper]>
+     * @return [TenantWalletServiceSettingsWrapper]
      */
     @POST("api/2.0/portal/payment/servicestate")
-    fun changeTenantWalletServiceState(@Body changeWalletServiceStateRequestDto: ChangeWalletServiceStateRequestDto? = null): Call<TenantWalletServiceSettingsWrapper>
+    suspend fun changeTenantWalletServiceState(@Body changeWalletServiceStateRequestDto: ChangeWalletServiceStateRequestDto? = null): Response<TenantWalletServiceSettingsWrapper>
 
     /**
      * POST api/2.0/portal/payment/customer/operationsreport
@@ -129,10 +129,10 @@ interface PaymentApi {
      *
      *
      * @param customerOperationsReportRequestDto  (optional)
-     * @return [Call]<[DocumentBuilderTaskWrapper]>
+     * @return [DocumentBuilderTaskWrapper]
      */
     @POST("api/2.0/portal/payment/customer/operationsreport")
-    fun createCustomerOperationsReport(@Body customerOperationsReportRequestDto: CustomerOperationsReportRequestDto? = null): Call<DocumentBuilderTaskWrapper>
+    suspend fun createCustomerOperationsReport(@Body customerOperationsReportRequestDto: CustomerOperationsReportRequestDto? = null): Response<DocumentBuilderTaskWrapper>
 
     /**
      * GET api/2.0/portal/payment/ai-prices
@@ -147,10 +147,10 @@ interface PaymentApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-ai-prices/
      *
      *
-     * @return [Call]<[AiPricesResponseWrapper]>
+     * @return [AiPricesResponseWrapper]
      */
     @GET("api/2.0/portal/payment/ai-prices")
-    fun getAiPrices(): Call<AiPricesResponseWrapper>
+    suspend fun getAiPrices(): Response<AiPricesResponseWrapper>
 
     /**
      * GET api/2.0/portal/payment/checkoutsetupurl
@@ -166,10 +166,10 @@ interface PaymentApi {
      *
      *
      * @param backUrl The URL where the user will be redirected after completing the setup. (optional)
-     * @return [Call]<[StringWrapper]>
+     * @return [StringWrapper]
      */
     @GET("api/2.0/portal/payment/checkoutsetupurl")
-    fun getCheckoutSetupUrl(@Query("BackUrl") backUrl: kotlin.String? = null): Call<StringWrapper>
+    suspend fun getCheckoutSetupUrl(@Query("BackUrl") backUrl: kotlin.String? = null): Response<StringWrapper>
 
     /**
      * GET api/2.0/portal/payment/customer/balance
@@ -185,10 +185,10 @@ interface PaymentApi {
      *
      *
      * @param refresh Specifies whether to refresh the payment information cache or not. (optional)
-     * @return [Call]<[BalanceWrapper]>
+     * @return [BalanceWrapper]
      */
     @GET("api/2.0/portal/payment/customer/balance")
-    fun getCustomerBalance(@Query("refresh") refresh: kotlin.Boolean? = null): Call<BalanceWrapper>
+    suspend fun getCustomerBalance(@Query("refresh") refresh: kotlin.Boolean? = null): Response<BalanceWrapper>
 
     /**
      * GET api/2.0/portal/payment/customerinfo
@@ -204,10 +204,10 @@ interface PaymentApi {
      *
      *
      * @param refresh Specifies whether to refresh the payment information cache or not. (optional)
-     * @return [Call]<[CustomerInfoWrapper]>
+     * @return [CustomerInfoWrapper]
      */
     @GET("api/2.0/portal/payment/customerinfo")
-    fun getCustomerInfo(@Query("refresh") refresh: kotlin.Boolean? = null): Call<CustomerInfoWrapper>
+    suspend fun getCustomerInfo(@Query("refresh") refresh: kotlin.Boolean? = null): Response<CustomerInfoWrapper>
 
     /**
      * GET api/2.0/portal/payment/customer/operations
@@ -236,10 +236,10 @@ interface PaymentApi {
      * @param status List of operation status to filter by. (optional)
      * @param orderBy The field to order by. (optional)
      * @param orderType Order direction: Ascending or Descending. (optional)
-     * @return [Call]<[ReportWrapper]>
+     * @return [ReportWrapper]
      */
     @GET("api/2.0/portal/payment/customer/operations")
-    fun getCustomerOperations(@Query("offset") offset: kotlin.Int? = null, @Query("limit") limit: kotlin.Int? = null, @Query("ServiceName") serviceName: kotlin.String? = null, @Query("WriteOffServiceQuota") writeOffServiceQuota: kotlin.Boolean? = null, @Query("StartDate") startDate: java.time.OffsetDateTime? = null, @Query("EndDate") endDate: java.time.OffsetDateTime? = null, @Query("ParticipantName") participantName: kotlin.String? = null, @Query("Credit") credit: kotlin.Boolean? = null, @Query("Debit") debit: kotlin.Boolean? = null, @Query("Types") types: OperationType? = null, @Query("Status") status: OperationStatus? = null, @Query("OrderBy") orderBy: kotlin.String? = null, @Query("OrderType") orderType: OperationOrderType? = null): Call<ReportWrapper>
+    suspend fun getCustomerOperations(@Query("offset") offset: kotlin.Int? = null, @Query("limit") limit: kotlin.Int? = null, @Query("ServiceName") serviceName: kotlin.String? = null, @Query("WriteOffServiceQuota") writeOffServiceQuota: kotlin.Boolean? = null, @Query("StartDate") startDate: java.time.OffsetDateTime? = null, @Query("EndDate") endDate: java.time.OffsetDateTime? = null, @Query("ParticipantName") participantName: kotlin.String? = null, @Query("Credit") credit: kotlin.Boolean? = null, @Query("Debit") debit: kotlin.Boolean? = null, @Query("Types") types: OperationType? = null, @Query("Status") status: OperationStatus? = null, @Query("OrderBy") orderBy: kotlin.String? = null, @Query("OrderType") orderType: OperationOrderType? = null): Response<ReportWrapper>
 
     /**
      * GET api/2.0/portal/payment/customer/operationsreport
@@ -253,10 +253,10 @@ interface PaymentApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-customer-operations-report/
      *
      *
-     * @return [Call]<[DocumentBuilderTaskWrapper]>
+     * @return [DocumentBuilderTaskWrapper]
      */
     @GET("api/2.0/portal/payment/customer/operationsreport")
-    fun getCustomerOperationsReport(): Call<DocumentBuilderTaskWrapper>
+    suspend fun getCustomerOperationsReport(): Response<DocumentBuilderTaskWrapper>
 
     /**
      * GET api/2.0/portal/payment/customer/servicequota
@@ -274,10 +274,10 @@ interface PaymentApi {
      *
      * @param serviceName The service name. (optional)
      * @param refresh Specifies whether to refresh the payment information cache or not. (optional)
-     * @return [Call]<[BalanceWrapper]>
+     * @return [BalanceWrapper]
      */
     @GET("api/2.0/portal/payment/customer/servicequota")
-    fun getCustomerServiceQuota(@Query("serviceName") serviceName: kotlin.String? = null, @Query("refresh") refresh: kotlin.Boolean? = null): Call<BalanceWrapper>
+    suspend fun getCustomerServiceQuota(@Query("serviceName") serviceName: kotlin.String? = null, @Query("refresh") refresh: kotlin.Boolean? = null): Response<BalanceWrapper>
 
     /**
      * GET api/2.0/portal/payment/account
@@ -293,10 +293,10 @@ interface PaymentApi {
      *
      *
      * @param backUrl The URL where the user will be redirected after payment processing. (optional)
-     * @return [Call]<[StringWrapper]>
+     * @return [StringWrapper]
      */
     @GET("api/2.0/portal/payment/account")
-    fun getPaymentAccount(@Query("backUrl") backUrl: kotlin.String? = null): Call<StringWrapper>
+    suspend fun getPaymentAccount(@Query("backUrl") backUrl: kotlin.String? = null): Response<StringWrapper>
 
     /**
      * GET api/2.0/portal/payment/currencies
@@ -310,10 +310,10 @@ interface PaymentApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-payment-currencies/
      *
      *
-     * @return [Call]<[CurrenciesArrayWrapper]>
+     * @return [CurrenciesArrayWrapper]
      */
     @GET("api/2.0/portal/payment/currencies")
-    fun getPaymentCurrencies(): Call<CurrenciesArrayWrapper>
+    suspend fun getPaymentCurrencies(): Response<CurrenciesArrayWrapper>
 
     /**
      * GET api/2.0/portal/payment/quotas
@@ -328,10 +328,10 @@ interface PaymentApi {
      *
      *
      * @param wallet Specifies whether to return the wallet quotas only. (optional)
-     * @return [Call]<[QuotaArrayWrapper]>
+     * @return [QuotaArrayWrapper]
      */
     @GET("api/2.0/portal/payment/quotas")
-    fun getPaymentQuotas(@Query("wallet") wallet: kotlin.Boolean? = null): Call<QuotaArrayWrapper>
+    suspend fun getPaymentQuotas(@Query("wallet") wallet: kotlin.Boolean? = null): Response<QuotaArrayWrapper>
 
     /**
      * PUT api/2.0/portal/payment/url
@@ -347,10 +347,10 @@ interface PaymentApi {
      *
      *
      * @param paymentUrlRequestDto  (optional)
-     * @return [Call]<[StringWrapper]>
+     * @return [StringWrapper]
      */
     @PUT("api/2.0/portal/payment/url")
-    fun getPaymentUrl(@Body paymentUrlRequestDto: PaymentUrlRequestDto? = null): Call<StringWrapper>
+    suspend fun getPaymentUrl(@Body paymentUrlRequestDto: PaymentUrlRequestDto? = null): Response<StringWrapper>
 
     /**
      * GET api/2.0/portal/payment/prices
@@ -364,10 +364,10 @@ interface PaymentApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-portal-prices/
      *
      *
-     * @return [Call]<[GetPortalPrices200Response]>
+     * @return [GetPortalPrices200Response]
      */
     @GET("api/2.0/portal/payment/prices")
-    fun getPortalPrices(): Call<GetPortalPrices200Response>
+    suspend fun getPortalPrices(): Response<GetPortalPrices200Response>
 
     /**
      * GET api/2.0/portal/payment/quota
@@ -383,10 +383,10 @@ interface PaymentApi {
      *
      *
      * @param refresh Specifies whether to refresh the payment information cache or not. (optional)
-     * @return [Call]<[QuotaWrapper]>
+     * @return [QuotaWrapper]
      */
     @GET("api/2.0/portal/payment/quota")
-    fun getQuotaPaymentInformation(@Query("refresh") refresh: kotlin.Boolean? = null): Call<QuotaWrapper>
+    suspend fun getQuotaPaymentInformation(@Query("refresh") refresh: kotlin.Boolean? = null): Response<QuotaWrapper>
 
     /**
      * GET api/2.0/portal/payment/ai-model/restrictions
@@ -401,10 +401,10 @@ interface PaymentApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-restricted-ai-models/
      *
      *
-     * @return [Call]<[RestrictedModelsResponseWrapper]>
+     * @return [RestrictedModelsResponseWrapper]
      */
     @GET("api/2.0/portal/payment/ai-model/restrictions")
-    fun getRestrictedAiModels(): Call<RestrictedModelsResponseWrapper>
+    suspend fun getRestrictedAiModels(): Response<RestrictedModelsResponseWrapper>
 
     /**
      * GET api/2.0/portal/payment/servicessettings
@@ -419,10 +419,10 @@ interface PaymentApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tenant-wallet-service-settings/
      *
      *
-     * @return [Call]<[TenantWalletServiceSettingsWrapper]>
+     * @return [TenantWalletServiceSettingsWrapper]
      */
     @GET("api/2.0/portal/payment/servicessettings")
-    fun getTenantWalletServiceSettings(): Call<TenantWalletServiceSettingsWrapper>
+    suspend fun getTenantWalletServiceSettings(): Response<TenantWalletServiceSettingsWrapper>
 
     /**
      * GET api/2.0/portal/payment/topupsettings
@@ -437,10 +437,10 @@ interface PaymentApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tenant-wallet-settings/
      *
      *
-     * @return [Call]<[TenantWalletSettingsWrapper]>
+     * @return [TenantWalletSettingsWrapper]
      */
     @GET("api/2.0/portal/payment/topupsettings")
-    fun getTenantWalletSettings(): Call<TenantWalletSettingsWrapper>
+    suspend fun getTenantWalletSettings(): Response<TenantWalletSettingsWrapper>
 
     /**
      * GET api/2.0/portal/payment/walletservice
@@ -455,10 +455,10 @@ interface PaymentApi {
      *
      *
      * @param service The wallet service type.
-     * @return [Call]<[WalletServiceWrapper]>
+     * @return [WalletServiceWrapper]
      */
     @GET("api/2.0/portal/payment/walletservice")
-    fun getWalletService(@Query("service") service: TenantWalletService): Call<WalletServiceWrapper>
+    suspend fun getWalletService(@Query("service") service: TenantWalletService): Response<WalletServiceWrapper>
 
     /**
      * GET api/2.0/portal/payment/walletservices
@@ -472,10 +472,10 @@ interface PaymentApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-wallet-services/
      *
      *
-     * @return [Call]<[WalletServiceArrayWrapper]>
+     * @return [WalletServiceArrayWrapper]
      */
     @GET("api/2.0/portal/payment/walletservices")
-    fun getWalletServices(): Call<WalletServiceArrayWrapper>
+    suspend fun getWalletServices(): Response<WalletServiceArrayWrapper>
 
     /**
      * POST api/2.0/portal/payment/request
@@ -492,10 +492,10 @@ interface PaymentApi {
      *
      *
      * @param salesRequestsDto  (optional)
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @POST("api/2.0/portal/payment/request")
-    fun sendPaymentRequest(@Body salesRequestsDto: SalesRequestsDto? = null): Call<Unit>
+    suspend fun sendPaymentRequest(@Body salesRequestsDto: SalesRequestsDto? = null): Response<Unit>
 
     /**
      * PUT api/2.0/portal/payment/ai-model/restrictions
@@ -511,10 +511,10 @@ interface PaymentApi {
      *
      *
      * @param setRestrictedAiModelsRequestDto  (optional)
-     * @return [Call]<[RestrictedModelsResponseWrapper]>
+     * @return [RestrictedModelsResponseWrapper]
      */
     @PUT("api/2.0/portal/payment/ai-model/restrictions")
-    fun setRestrictedAiModels(@Body setRestrictedAiModelsRequestDto: SetRestrictedAiModelsRequestDto? = null): Call<RestrictedModelsResponseWrapper>
+    suspend fun setRestrictedAiModels(@Body setRestrictedAiModelsRequestDto: SetRestrictedAiModelsRequestDto? = null): Response<RestrictedModelsResponseWrapper>
 
     /**
      * POST api/2.0/portal/payment/topupsettings
@@ -530,10 +530,10 @@ interface PaymentApi {
      *
      *
      * @param tenantWalletSettingsWrapper  (optional)
-     * @return [Call]<[TenantWalletSettingsWrapper]>
+     * @return [TenantWalletSettingsWrapper]
      */
     @POST("api/2.0/portal/payment/topupsettings")
-    fun setTenantWalletSettings(@Body tenantWalletSettingsWrapper: TenantWalletSettingsWrapper? = null): Call<TenantWalletSettingsWrapper>
+    suspend fun setTenantWalletSettings(@Body tenantWalletSettingsWrapper: TenantWalletSettingsWrapper? = null): Response<TenantWalletSettingsWrapper>
 
     /**
      * DELETE api/2.0/portal/payment/customer/operationsreport
@@ -547,10 +547,10 @@ interface PaymentApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/terminate-customer-operations-report/
      *
      *
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @DELETE("api/2.0/portal/payment/customer/operationsreport")
-    fun terminateCustomerOperationsReport(): Call<Unit>
+    suspend fun terminateCustomerOperationsReport(): Response<Unit>
 
     /**
      * POST api/2.0/portal/payment/deposit
@@ -566,10 +566,10 @@ interface PaymentApi {
      *
      *
      * @param topUpDepositRequestDto  (optional)
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @POST("api/2.0/portal/payment/deposit")
-    fun topUpDeposit(@Body topUpDepositRequestDto: TopUpDepositRequestDto? = null): Call<BooleanWrapper>
+    suspend fun topUpDeposit(@Body topUpDepositRequestDto: TopUpDepositRequestDto? = null): Response<BooleanWrapper>
 
     /**
      * PUT api/2.0/portal/payment/update
@@ -585,10 +585,10 @@ interface PaymentApi {
      *
      *
      * @param quantityRequestDto  (optional)
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @PUT("api/2.0/portal/payment/update")
-    fun updatePayment(@Body quantityRequestDto: QuantityRequestDto? = null): Call<BooleanWrapper>
+    suspend fun updatePayment(@Body quantityRequestDto: QuantityRequestDto? = null): Response<BooleanWrapper>
 
     /**
      * PUT api/2.0/portal/payment/updatewallet
@@ -604,9 +604,9 @@ interface PaymentApi {
      *
      *
      * @param walletQuantityRequestDto  (optional)
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @PUT("api/2.0/portal/payment/updatewallet")
-    fun updateWalletPayment(@Body walletQuantityRequestDto: WalletQuantityRequestDto? = null): Call<BooleanWrapper>
+    suspend fun updateWalletPayment(@Body walletQuantityRequestDto: WalletQuantityRequestDto? = null): Response<BooleanWrapper>
 
 }

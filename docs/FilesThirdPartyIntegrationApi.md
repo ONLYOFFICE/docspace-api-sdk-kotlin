@@ -53,7 +53,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ThirdPartyIntegrationApi::class.java)
 val providerId : kotlin.Int = 1 // kotlin.Int | The provider ID.
 
-val result : StringWrapper = webService.deleteThirdParty(providerId)
+launch(Dispatchers.IO) {
+    val result : StringWrapper = webService.deleteThirdParty(providerId)
+}
 ```
 
 ### HTTP request headers
@@ -100,7 +102,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ThirdPartyIntegrationApi::class.java)
 val excludewebdav : kotlin.Boolean = false // kotlin.Boolean | Specifies whether WebDAV resources should be excluded from the result..
 
-val result : ProviderArrayWrapper = webService.getAllProviders(excludewebdav)
+launch(Dispatchers.IO) {
+    val result : ProviderArrayWrapper = webService.getAllProviders(excludewebdav)
+}
 ```
 
 ### HTTP request headers
@@ -144,7 +148,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ThirdPartyIntegrationApi::class.java)
 
-val result : FolderStringWrapper = webService.getBackupThirdPartyAccount()
+launch(Dispatchers.IO) {
+    val result : FolderStringWrapper = webService.getBackupThirdPartyAccount()
+}
 ```
 
 ### HTTP request headers
@@ -188,7 +194,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ThirdPartyIntegrationApi::class.java)
 
-val result : ArrayArrayWrapper = webService.getCapabilities()
+launch(Dispatchers.IO) {
+    val result : ArrayArrayWrapper = webService.getCapabilities()
+}
 ```
 
 ### HTTP request headers
@@ -232,7 +240,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ThirdPartyIntegrationApi::class.java)
 
-val result : FolderStringArrayWrapper = webService.getCommonThirdPartyFolders()
+launch(Dispatchers.IO) {
+    val result : FolderStringArrayWrapper = webService.getCommonThirdPartyFolders()
+}
 ```
 
 ### HTTP request headers
@@ -276,7 +286,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ThirdPartyIntegrationApi::class.java)
 
-val result : ThirdPartyParamsArrayWrapper = webService.getThirdPartyAccounts()
+launch(Dispatchers.IO) {
+    val result : ThirdPartyParamsArrayWrapper = webService.getThirdPartyAccounts()
+}
 ```
 
 ### HTTP request headers
@@ -323,7 +335,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ThirdPartyIntegrationApi::class.java)
 val thirdPartyRequestDto : ThirdPartyRequestDto =  // ThirdPartyRequestDto | 
 
-val result : FolderStringWrapper = webService.saveThirdParty(thirdPartyRequestDto)
+launch(Dispatchers.IO) {
+    val result : FolderStringWrapper = webService.saveThirdParty(thirdPartyRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -370,7 +384,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ThirdPartyIntegrationApi::class.java)
 val thirdPartyBackupRequestDto : ThirdPartyBackupRequestDto =  // ThirdPartyBackupRequestDto | 
 
-val result : FolderStringWrapper = webService.saveThirdPartyBackup(thirdPartyBackupRequestDto)
+launch(Dispatchers.IO) {
+    val result : FolderStringWrapper = webService.saveThirdPartyBackup(thirdPartyBackupRequestDto)
+}
 ```
 
 ### HTTP request headers

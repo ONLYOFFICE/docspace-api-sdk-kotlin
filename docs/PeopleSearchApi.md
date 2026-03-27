@@ -80,7 +80,9 @@ val startIndex : kotlin.Int = 0 // kotlin.Int | The starting index for the query
 val filterSeparator : kotlin.String = , // kotlin.String | Specifies the separator used in filter expressions.
 val filterValue : kotlin.String = John // kotlin.String | The text filter applied to the accounts search query.
 
-val result : ObjectArrayWrapper = webService.getAccountsEntriesWithFilesShared(id, employeeStatus, activationStatus, excludeShared, includeShared, invitedByMe, inviterId, area, employeeTypes, count, startIndex, filterSeparator, filterValue)
+launch(Dispatchers.IO) {
+    val result : ObjectArrayWrapper = webService.getAccountsEntriesWithFilesShared(id, employeeStatus, activationStatus, excludeShared, includeShared, invitedByMe, inviterId, area, employeeTypes, count, startIndex, filterSeparator, filterValue)
+}
 ```
 
 ### HTTP request headers
@@ -151,7 +153,9 @@ val startIndex : kotlin.Int = 0 // kotlin.Int | The starting index for the query
 val filterSeparator : kotlin.String = , // kotlin.String | Specifies the separator used in filter expressions.
 val filterValue : kotlin.String = John // kotlin.String | The text filter applied to the accounts search query.
 
-val result : ObjectArrayWrapper = webService.getAccountsEntriesWithFoldersShared(id, employeeStatus, activationStatus, excludeShared, includeShared, invitedByMe, inviterId, area, employeeTypes, count, startIndex, filterSeparator, filterValue)
+launch(Dispatchers.IO) {
+    val result : ObjectArrayWrapper = webService.getAccountsEntriesWithFoldersShared(id, employeeStatus, activationStatus, excludeShared, includeShared, invitedByMe, inviterId, area, employeeTypes, count, startIndex, filterSeparator, filterValue)
+}
 ```
 
 ### HTTP request headers
@@ -222,7 +226,9 @@ val startIndex : kotlin.Int = 0 // kotlin.Int | The starting index for the query
 val filterSeparator : kotlin.String = , // kotlin.String | Specifies the separator used in filter expressions.
 val filterValue : kotlin.String = John // kotlin.String | The text filter applied to the accounts search query.
 
-val result : ObjectArrayWrapper = webService.getAccountsEntriesWithRoomsShared(id, employeeStatus, activationStatus, excludeShared, includeShared, invitedByMe, inviterId, area, employeeTypes, count, startIndex, filterSeparator, filterValue)
+launch(Dispatchers.IO) {
+    val result : ObjectArrayWrapper = webService.getAccountsEntriesWithRoomsShared(id, employeeStatus, activationStatus, excludeShared, includeShared, invitedByMe, inviterId, area, employeeTypes, count, startIndex, filterSeparator, filterValue)
+}
 ```
 
 ### HTTP request headers
@@ -273,7 +279,9 @@ val query : kotlin.String = John // kotlin.String | The search query.
 val filterBy : kotlin.String = displayName // kotlin.String | Specifies a filter criteria for the user search query.
 val filterValue : kotlin.String = John // kotlin.String | The value used for filtering users, allowing additional constraints for the query.
 
-val result : EmployeeFullArrayWrapper = webService.getSearch(query, filterBy, filterValue)
+launch(Dispatchers.IO) {
+    val result : EmployeeFullArrayWrapper = webService.getSearch(query, filterBy, filterValue)
+}
 ```
 
 ### HTTP request headers
@@ -358,7 +366,9 @@ val sortOrder : SortOrder = 0 // SortOrder | The order in which the results are 
 val filterSeparator : kotlin.String = , // kotlin.String | Represents the separator used to split filter criteria in query parameters.
 val filterValue : kotlin.String = John // kotlin.String | The search text used to filter results based on user input.
 
-val result : EmployeeArrayWrapper = webService.getSimpleByFilter(employeeStatus, groupId, activationStatus, employeeType, employeeTypes, isAdministrator, payments, accountLoginType, quotaFilter, withoutGroup, excludeGroup, invitedByMe, inviterId, area, count, startIndex, sortBy, sortOrder, filterSeparator, filterValue)
+launch(Dispatchers.IO) {
+    val result : EmployeeArrayWrapper = webService.getSimpleByFilter(employeeStatus, groupId, activationStatus, employeeType, employeeTypes, isAdministrator, payments, accountLoginType, quotaFilter, withoutGroup, excludeGroup, invitedByMe, inviterId, area, count, startIndex, sortBy, sortOrder, filterSeparator, filterValue)
+}
 ```
 
 ### HTTP request headers
@@ -429,7 +439,9 @@ val startIndex : kotlin.Int = 0 // kotlin.Int | The zero-based index of the firs
 val filterSeparator : kotlin.String = , // kotlin.String | The character or string used to separate multiple filter values in a filtering query.
 val filterValue : kotlin.String = John // kotlin.String | The filter text value used for searching or filtering user results.
 
-val result : EmployeeFullArrayWrapper = webService.getUsersWithFilesShared(id, employeeStatus, activationStatus, excludeShared, includeShared, invitedByMe, inviterId, area, employeeTypes, count, startIndex, filterSeparator, filterValue)
+launch(Dispatchers.IO) {
+    val result : EmployeeFullArrayWrapper = webService.getUsersWithFilesShared(id, employeeStatus, activationStatus, excludeShared, includeShared, invitedByMe, inviterId, area, employeeTypes, count, startIndex, filterSeparator, filterValue)
+}
 ```
 
 ### HTTP request headers
@@ -500,7 +512,9 @@ val startIndex : kotlin.Int = 0 // kotlin.Int | The zero-based index of the firs
 val filterSeparator : kotlin.String = , // kotlin.String | The character or string used to separate multiple filter values in a filtering query.
 val filterValue : kotlin.String = John // kotlin.String | The filter text value used for searching or filtering user results.
 
-val result : EmployeeFullArrayWrapper = webService.getUsersWithFoldersShared(id, employeeStatus, activationStatus, excludeShared, includeShared, invitedByMe, inviterId, area, employeeTypes, count, startIndex, filterSeparator, filterValue)
+launch(Dispatchers.IO) {
+    val result : EmployeeFullArrayWrapper = webService.getUsersWithFoldersShared(id, employeeStatus, activationStatus, excludeShared, includeShared, invitedByMe, inviterId, area, employeeTypes, count, startIndex, filterSeparator, filterValue)
+}
 ```
 
 ### HTTP request headers
@@ -571,7 +585,9 @@ val startIndex : kotlin.Int = 0 // kotlin.Int | The zero-based index of the firs
 val filterSeparator : kotlin.String = , // kotlin.String | The character or string used to separate multiple filter values in a filtering query.
 val filterValue : kotlin.String = John // kotlin.String | The filter text value used for searching or filtering user results.
 
-val result : EmployeeFullArrayWrapper = webService.getUsersWithRoomShared(id, employeeStatus, activationStatus, excludeShared, includeShared, invitedByMe, inviterId, area, employeeTypes, count, startIndex, filterSeparator, filterValue)
+launch(Dispatchers.IO) {
+    val result : EmployeeFullArrayWrapper = webService.getUsersWithRoomShared(id, employeeStatus, activationStatus, excludeShared, includeShared, invitedByMe, inviterId, area, employeeTypes, count, startIndex, filterSeparator, filterValue)
+}
 ```
 
 ### HTTP request headers
@@ -656,7 +672,9 @@ val sortOrder : SortOrder = 0 // SortOrder | The order in which the results are 
 val filterSeparator : kotlin.String = , // kotlin.String | Represents the separator used to split filter criteria in query parameters.
 val filterValue : kotlin.String = John // kotlin.String | The search text used to filter results based on user input.
 
-val result : EmployeeFullArrayWrapper = webService.searchUsersByExtendedFilter(employeeStatus, groupId, activationStatus, employeeType, employeeTypes, isAdministrator, payments, accountLoginType, quotaFilter, withoutGroup, excludeGroup, invitedByMe, inviterId, area, count, startIndex, sortBy, sortOrder, filterSeparator, filterValue)
+launch(Dispatchers.IO) {
+    val result : EmployeeFullArrayWrapper = webService.searchUsersByExtendedFilter(employeeStatus, groupId, activationStatus, employeeType, employeeTypes, isAdministrator, payments, accountLoginType, quotaFilter, withoutGroup, excludeGroup, invitedByMe, inviterId, area, count, startIndex, sortBy, sortOrder, filterSeparator, filterValue)
+}
 ```
 
 ### HTTP request headers
@@ -703,7 +721,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SearchApi::class.java)
 val query : kotlin.String = John // kotlin.String | The search query.
 
-val result : EmployeeArrayWrapper = webService.searchUsersByQuery(query)
+launch(Dispatchers.IO) {
+    val result : EmployeeArrayWrapper = webService.searchUsersByQuery(query)
+}
 ```
 
 ### HTTP request headers
@@ -756,7 +776,9 @@ val query : kotlin.String = John // kotlin.String | The advanced search query.
 val filterBy : kotlin.String = displayName // kotlin.String | Specifies the criteria used to filter search results in advanced queries.
 val filterValue : kotlin.String = John // kotlin.String | The value used to filter the search query.
 
-val result : EmployeeFullArrayWrapper = webService.searchUsersByStatus(status, query, filterBy, filterValue)
+launch(Dispatchers.IO) {
+    val result : EmployeeFullArrayWrapper = webService.searchUsersByStatus(status, query, filterBy, filterValue)
+}
 ```
 
 ### HTTP request headers

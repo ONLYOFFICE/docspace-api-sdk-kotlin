@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Security
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -40,9 +40,9 @@ interface BannersVisibilityApi {
      *
      *
      * @param tenantBannerSettingsDto  (optional)
-     * @return [Call]<[TenantBannerSettingsWrapper]>
+     * @return [TenantBannerSettingsWrapper]
      */
     @POST("api/2.0/settings/banner")
-    fun setTenantBannerSettings(@Body tenantBannerSettingsDto: TenantBannerSettingsDto? = null): Call<TenantBannerSettingsWrapper>
+    suspend fun setTenantBannerSettings(@Body tenantBannerSettingsDto: TenantBannerSettingsDto? = null): Response<TenantBannerSettingsWrapper>
 
 }

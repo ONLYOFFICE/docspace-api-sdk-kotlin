@@ -50,7 +50,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(MigrationApi::class.java)
 
-webService.cancelMigration()
+launch(Dispatchers.IO) {
+    webService.cancelMigration()
+}
 ```
 
 ### HTTP request headers
@@ -94,7 +96,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(MigrationApi::class.java)
 
-webService.clearMigration()
+launch(Dispatchers.IO) {
+    webService.clearMigration()
+}
 ```
 
 ### HTTP request headers
@@ -141,7 +145,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(MigrationApi::class.java)
 val finishDto : FinishDto =  // FinishDto | 
 
-webService.finishMigration(finishDto)
+launch(Dispatchers.IO) {
+    webService.finishMigration(finishDto)
+}
 ```
 
 ### HTTP request headers
@@ -185,7 +191,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(MigrationApi::class.java)
 
-webService.getMigrationLogs()
+launch(Dispatchers.IO) {
+    webService.getMigrationLogs()
+}
 ```
 
 ### HTTP request headers
@@ -229,7 +237,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(MigrationApi::class.java)
 
-val result : MigrationStatusWrapper = webService.getMigrationStatus()
+launch(Dispatchers.IO) {
+    val result : MigrationStatusWrapper = webService.getMigrationStatus()
+}
 ```
 
 ### HTTP request headers
@@ -273,7 +283,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(MigrationApi::class.java)
 
-val result : STRINGArrayWrapper = webService.listMigrations()
+launch(Dispatchers.IO) {
+    val result : STRINGArrayWrapper = webService.listMigrations()
+}
 ```
 
 ### HTTP request headers
@@ -320,7 +332,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(MigrationApi::class.java)
 val migrationApiInfo : MigrationApiInfo =  // MigrationApiInfo | 
 
-webService.startMigration(migrationApiInfo)
+launch(Dispatchers.IO) {
+    webService.startMigration(migrationApiInfo)
+}
 ```
 
 ### HTTP request headers
@@ -367,7 +381,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(MigrationApi::class.java)
 val migratorName : kotlin.String = GoogleWorkspace // kotlin.String | The migrator name extracted from the route parameters.
 
-webService.uploadAndInitializeMigration(migratorName)
+launch(Dispatchers.IO) {
+    webService.uploadAndInitializeMigration(migratorName)
+}
 ```
 
 ### HTTP request headers

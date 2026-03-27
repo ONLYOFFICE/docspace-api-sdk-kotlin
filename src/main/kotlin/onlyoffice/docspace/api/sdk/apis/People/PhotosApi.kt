@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.People
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -47,10 +47,10 @@ interface PhotosApi {
      *
      * @param userid The user ID.
      * @param thumbnailsRequest The thumbnail request.
-     * @return [Call]<[ThumbnailsDataWrapper]>
+     * @return [ThumbnailsDataWrapper]
      */
     @POST("api/2.0/people/{userid}/photo/thumbnails")
-    fun createMemberPhotoThumbnails(@Path("userid") userid: kotlin.String, @Body thumbnailsRequest: ThumbnailsRequest): Call<ThumbnailsDataWrapper>
+    suspend fun createMemberPhotoThumbnails(@Path("userid") userid: kotlin.String, @Body thumbnailsRequest: ThumbnailsRequest): Response<ThumbnailsDataWrapper>
 
     /**
      * DELETE api/2.0/people/{userid}/photo
@@ -67,10 +67,10 @@ interface PhotosApi {
      *
      *
      * @param userid The user ID.
-     * @return [Call]<[ThumbnailsDataWrapper]>
+     * @return [ThumbnailsDataWrapper]
      */
     @DELETE("api/2.0/people/{userid}/photo")
-    fun deleteMemberPhoto(@Path("userid") userid: kotlin.String): Call<ThumbnailsDataWrapper>
+    suspend fun deleteMemberPhoto(@Path("userid") userid: kotlin.String): Response<ThumbnailsDataWrapper>
 
     /**
      * GET api/2.0/people/{userid}/photo
@@ -87,10 +87,10 @@ interface PhotosApi {
      *
      *
      * @param userid The user ID.
-     * @return [Call]<[ThumbnailsDataWrapper]>
+     * @return [ThumbnailsDataWrapper]
      */
     @GET("api/2.0/people/{userid}/photo")
-    fun getMemberPhoto(@Path("userid") userid: kotlin.String): Call<ThumbnailsDataWrapper>
+    suspend fun getMemberPhoto(@Path("userid") userid: kotlin.String): Response<ThumbnailsDataWrapper>
 
     /**
      * PUT api/2.0/people/{userid}/photo
@@ -108,10 +108,10 @@ interface PhotosApi {
      *
      * @param userid The user ID.
      * @param updatePhotoMemberRequest The request parameters for updating a photo.
-     * @return [Call]<[ThumbnailsDataWrapper]>
+     * @return [ThumbnailsDataWrapper]
      */
     @PUT("api/2.0/people/{userid}/photo")
-    fun updateMemberPhoto(@Path("userid") userid: kotlin.String, @Body updatePhotoMemberRequest: UpdatePhotoMemberRequest): Call<ThumbnailsDataWrapper>
+    suspend fun updateMemberPhoto(@Path("userid") userid: kotlin.String, @Body updatePhotoMemberRequest: UpdatePhotoMemberRequest): Response<ThumbnailsDataWrapper>
 
     /**
      * POST api/2.0/people/{userid}/photo
@@ -132,10 +132,10 @@ interface PhotosApi {
      * @param userid The user ID.
      * @param file The image data.
      * @param autosave  (optional)
-     * @return [Call]<[FileUploadResultWrapper]>
+     * @return [FileUploadResultWrapper]
      */
     @Multipart
     @POST("api/2.0/people/{userid}/photo")
-    fun uploadMemberPhoto(@Path("userid") userid: kotlin.String, @Part file: MultipartBody.Part, @Part("Autosave") autosave: kotlin.Boolean? = null): Call<FileUploadResultWrapper>
+    suspend fun uploadMemberPhoto(@Path("userid") userid: kotlin.String, @Part file: MultipartBody.Part, @Part("Autosave") autosave: kotlin.Boolean? = null): Response<FileUploadResultWrapper>
 
 }

@@ -48,7 +48,9 @@ val webService = apiClient.createWebservice(AIMessagesApi::class.java)
 val messageId : kotlin.Int = 1 // kotlin.Int | The unique identifier of the AI chat message to export.
 val exportMessageRequestBodyInteger : ExportMessageRequestBodyInteger =  // ExportMessageRequestBodyInteger | The export parameters including destination folder and file title.
 
-webService.exportMessage(messageId, exportMessageRequestBodyInteger)
+launch(Dispatchers.IO) {
+    webService.exportMessage(messageId, exportMessageRequestBodyInteger)
+}
 ```
 
 ### HTTP request headers

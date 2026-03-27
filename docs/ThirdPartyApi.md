@@ -46,7 +46,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ThirdPartyApi::class.java)
 val provider : LoginProvider =  // LoginProvider | The identity provider used for authentication.
 
-val result : ObjectWrapper = webService.getThirdPartyCode(provider)
+launch(Dispatchers.IO) {
+    val result : ObjectWrapper = webService.getThirdPartyCode(provider)
+}
 ```
 
 ### HTTP request headers

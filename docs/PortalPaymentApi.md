@@ -74,7 +74,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PaymentApi::class.java)
 val buyWalletServiceRequestDto : BuyWalletServiceRequestDto =  // BuyWalletServiceRequestDto | 
 
-val result : ServicePaymentWrapper = webService.buyWalletService(buyWalletServiceRequestDto)
+launch(Dispatchers.IO) {
+    val result : ServicePaymentWrapper = webService.buyWalletService(buyWalletServiceRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -121,7 +123,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PaymentApi::class.java)
 val walletQuantityRequestDto : WalletQuantityRequestDto =  // WalletQuantityRequestDto | 
 
-val result : PaymentCalculationWrapper = webService.calculateWalletPayment(walletQuantityRequestDto)
+launch(Dispatchers.IO) {
+    val result : PaymentCalculationWrapper = webService.calculateWalletPayment(walletQuantityRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -168,7 +172,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PaymentApi::class.java)
 val changeWalletServiceStateRequestDto : ChangeWalletServiceStateRequestDto =  // ChangeWalletServiceStateRequestDto | 
 
-val result : TenantWalletServiceSettingsWrapper = webService.changeTenantWalletServiceState(changeWalletServiceStateRequestDto)
+launch(Dispatchers.IO) {
+    val result : TenantWalletServiceSettingsWrapper = webService.changeTenantWalletServiceState(changeWalletServiceStateRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -215,7 +221,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PaymentApi::class.java)
 val customerOperationsReportRequestDto : CustomerOperationsReportRequestDto =  // CustomerOperationsReportRequestDto | 
 
-val result : DocumentBuilderTaskWrapper = webService.createCustomerOperationsReport(customerOperationsReportRequestDto)
+launch(Dispatchers.IO) {
+    val result : DocumentBuilderTaskWrapper = webService.createCustomerOperationsReport(customerOperationsReportRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -259,7 +267,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PaymentApi::class.java)
 
-val result : AiPricesResponseWrapper = webService.getAiPrices()
+launch(Dispatchers.IO) {
+    val result : AiPricesResponseWrapper = webService.getAiPrices()
+}
 ```
 
 ### HTTP request headers
@@ -306,7 +316,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PaymentApi::class.java)
 val backUrl : kotlin.String = https://example.com/setup/complete // kotlin.String | The URL where the user will be redirected after completing the setup.
 
-val result : StringWrapper = webService.getCheckoutSetupUrl(backUrl)
+launch(Dispatchers.IO) {
+    val result : StringWrapper = webService.getCheckoutSetupUrl(backUrl)
+}
 ```
 
 ### HTTP request headers
@@ -353,7 +365,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PaymentApi::class.java)
 val refresh : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to refresh the payment information cache or not.
 
-val result : BalanceWrapper = webService.getCustomerBalance(refresh)
+launch(Dispatchers.IO) {
+    val result : BalanceWrapper = webService.getCustomerBalance(refresh)
+}
 ```
 
 ### HTTP request headers
@@ -400,7 +414,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PaymentApi::class.java)
 val refresh : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to refresh the payment information cache or not.
 
-val result : CustomerInfoWrapper = webService.getCustomerInfo(refresh)
+launch(Dispatchers.IO) {
+    val result : CustomerInfoWrapper = webService.getCustomerInfo(refresh)
+}
 ```
 
 ### HTTP request headers
@@ -471,7 +487,9 @@ val status : OperationStatus = Any // OperationStatus | List of operation status
 val orderBy : kotlin.String = StartDate // kotlin.String | The field to order by.
 val orderType : OperationOrderType = Descending // OperationOrderType | Order direction: Ascending or Descending.
 
-val result : ReportWrapper = webService.getCustomerOperations(offset, limit, serviceName, writeOffServiceQuota, startDate, endDate, participantName, credit, debit, types, status, orderBy, orderType)
+launch(Dispatchers.IO) {
+    val result : ReportWrapper = webService.getCustomerOperations(offset, limit, serviceName, writeOffServiceQuota, startDate, endDate, participantName, credit, debit, types, status, orderBy, orderType)
+}
 ```
 
 ### HTTP request headers
@@ -515,7 +533,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PaymentApi::class.java)
 
-val result : DocumentBuilderTaskWrapper = webService.getCustomerOperationsReport()
+launch(Dispatchers.IO) {
+    val result : DocumentBuilderTaskWrapper = webService.getCustomerOperationsReport()
+}
 ```
 
 ### HTTP request headers
@@ -564,7 +584,9 @@ val webService = apiClient.createWebservice(PaymentApi::class.java)
 val serviceName : kotlin.String = backup // kotlin.String | The service name.
 val refresh : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to refresh the payment information cache or not.
 
-val result : BalanceWrapper = webService.getCustomerServiceQuota(serviceName, refresh)
+launch(Dispatchers.IO) {
+    val result : BalanceWrapper = webService.getCustomerServiceQuota(serviceName, refresh)
+}
 ```
 
 ### HTTP request headers
@@ -611,7 +633,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PaymentApi::class.java)
 val backUrl : kotlin.String = https://example.com // kotlin.String | The URL where the user will be redirected after payment processing.
 
-val result : StringWrapper = webService.getPaymentAccount(backUrl)
+launch(Dispatchers.IO) {
+    val result : StringWrapper = webService.getPaymentAccount(backUrl)
+}
 ```
 
 ### HTTP request headers
@@ -655,7 +679,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PaymentApi::class.java)
 
-val result : CurrenciesArrayWrapper = webService.getPaymentCurrencies()
+launch(Dispatchers.IO) {
+    val result : CurrenciesArrayWrapper = webService.getPaymentCurrencies()
+}
 ```
 
 ### HTTP request headers
@@ -702,7 +728,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PaymentApi::class.java)
 val wallet : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to return the wallet quotas only.
 
-val result : QuotaArrayWrapper = webService.getPaymentQuotas(wallet)
+launch(Dispatchers.IO) {
+    val result : QuotaArrayWrapper = webService.getPaymentQuotas(wallet)
+}
 ```
 
 ### HTTP request headers
@@ -749,7 +777,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PaymentApi::class.java)
 val paymentUrlRequestDto : PaymentUrlRequestDto =  // PaymentUrlRequestDto | 
 
-val result : StringWrapper = webService.getPaymentUrl(paymentUrlRequestDto)
+launch(Dispatchers.IO) {
+    val result : StringWrapper = webService.getPaymentUrl(paymentUrlRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -793,7 +823,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PaymentApi::class.java)
 
-val result : GetPortalPrices200Response = webService.getPortalPrices()
+launch(Dispatchers.IO) {
+    val result : GetPortalPrices200Response = webService.getPortalPrices()
+}
 ```
 
 ### HTTP request headers
@@ -840,7 +872,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PaymentApi::class.java)
 val refresh : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to refresh the payment information cache or not.
 
-val result : QuotaWrapper = webService.getQuotaPaymentInformation(refresh)
+launch(Dispatchers.IO) {
+    val result : QuotaWrapper = webService.getQuotaPaymentInformation(refresh)
+}
 ```
 
 ### HTTP request headers
@@ -884,7 +918,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PaymentApi::class.java)
 
-val result : RestrictedModelsResponseWrapper = webService.getRestrictedAiModels()
+launch(Dispatchers.IO) {
+    val result : RestrictedModelsResponseWrapper = webService.getRestrictedAiModels()
+}
 ```
 
 ### HTTP request headers
@@ -928,7 +964,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PaymentApi::class.java)
 
-val result : TenantWalletServiceSettingsWrapper = webService.getTenantWalletServiceSettings()
+launch(Dispatchers.IO) {
+    val result : TenantWalletServiceSettingsWrapper = webService.getTenantWalletServiceSettings()
+}
 ```
 
 ### HTTP request headers
@@ -972,7 +1010,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PaymentApi::class.java)
 
-val result : TenantWalletSettingsWrapper = webService.getTenantWalletSettings()
+launch(Dispatchers.IO) {
+    val result : TenantWalletSettingsWrapper = webService.getTenantWalletSettings()
+}
 ```
 
 ### HTTP request headers
@@ -1019,7 +1059,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PaymentApi::class.java)
 val service : TenantWalletService = Storage // TenantWalletService | The wallet service type.
 
-val result : WalletServiceWrapper = webService.getWalletService(service)
+launch(Dispatchers.IO) {
+    val result : WalletServiceWrapper = webService.getWalletService(service)
+}
 ```
 
 ### HTTP request headers
@@ -1063,7 +1105,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PaymentApi::class.java)
 
-val result : WalletServiceArrayWrapper = webService.getWalletServices()
+launch(Dispatchers.IO) {
+    val result : WalletServiceArrayWrapper = webService.getWalletServices()
+}
 ```
 
 ### HTTP request headers
@@ -1110,7 +1154,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PaymentApi::class.java)
 val salesRequestsDto : SalesRequestsDto =  // SalesRequestsDto | 
 
-webService.sendPaymentRequest(salesRequestsDto)
+launch(Dispatchers.IO) {
+    webService.sendPaymentRequest(salesRequestsDto)
+}
 ```
 
 ### HTTP request headers
@@ -1157,7 +1203,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PaymentApi::class.java)
 val setRestrictedAiModelsRequestDto : SetRestrictedAiModelsRequestDto =  // SetRestrictedAiModelsRequestDto | 
 
-val result : RestrictedModelsResponseWrapper = webService.setRestrictedAiModels(setRestrictedAiModelsRequestDto)
+launch(Dispatchers.IO) {
+    val result : RestrictedModelsResponseWrapper = webService.setRestrictedAiModels(setRestrictedAiModelsRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -1204,7 +1252,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PaymentApi::class.java)
 val tenantWalletSettingsWrapper : TenantWalletSettingsWrapper =  // TenantWalletSettingsWrapper | 
 
-val result : TenantWalletSettingsWrapper = webService.setTenantWalletSettings(tenantWalletSettingsWrapper)
+launch(Dispatchers.IO) {
+    val result : TenantWalletSettingsWrapper = webService.setTenantWalletSettings(tenantWalletSettingsWrapper)
+}
 ```
 
 ### HTTP request headers
@@ -1248,7 +1298,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PaymentApi::class.java)
 
-webService.terminateCustomerOperationsReport()
+launch(Dispatchers.IO) {
+    webService.terminateCustomerOperationsReport()
+}
 ```
 
 ### HTTP request headers
@@ -1295,7 +1347,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PaymentApi::class.java)
 val topUpDepositRequestDto : TopUpDepositRequestDto =  // TopUpDepositRequestDto | 
 
-val result : BooleanWrapper = webService.topUpDeposit(topUpDepositRequestDto)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.topUpDeposit(topUpDepositRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -1342,7 +1396,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PaymentApi::class.java)
 val quantityRequestDto : QuantityRequestDto =  // QuantityRequestDto | 
 
-val result : BooleanWrapper = webService.updatePayment(quantityRequestDto)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.updatePayment(quantityRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -1389,7 +1445,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PaymentApi::class.java)
 val walletQuantityRequestDto : WalletQuantityRequestDto =  // WalletQuantityRequestDto | 
 
-val result : BooleanWrapper = webService.updateWalletPayment(walletQuantityRequestDto)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.updateWalletPayment(walletQuantityRequestDto)
+}
 ```
 
 ### HTTP request headers

@@ -37,7 +37,9 @@ This endpoint does not need any parameter.
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(ScopeManagementApi::class.java)
 
-val result : ScopeResponse = webService.getScopes()
+launch(Dispatchers.IO) {
+    val result : ScopeResponse = webService.getScopes()
+}
 ```
 
 ### HTTP request headers

@@ -46,7 +46,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AccessToDevToolsApi::class.java)
 val tenantDevToolsAccessSettingsDto : TenantDevToolsAccessSettingsDto =  // TenantDevToolsAccessSettingsDto | 
 
-val result : TenantDevToolsAccessSettingsWrapper = webService.setTenantDevToolsAccessSettings(tenantDevToolsAccessSettingsDto)
+launch(Dispatchers.IO) {
+    val result : TenantDevToolsAccessSettingsWrapper = webService.setTenantDevToolsAccessSettings(tenantDevToolsAccessSettingsDto)
+}
 ```
 
 ### HTTP request headers

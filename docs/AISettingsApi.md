@@ -47,7 +47,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AISettingsApi::class.java)
 
-val result : AiSettingsWrapper = webService.getAiSettings()
+launch(Dispatchers.IO) {
+    val result : AiSettingsWrapper = webService.getAiSettings()
+}
 ```
 
 ### HTTP request headers
@@ -91,7 +93,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AISettingsApi::class.java)
 
-val result : VectorizationSettingsWrapper = webService.getVectorizationSettings()
+launch(Dispatchers.IO) {
+    val result : VectorizationSettingsWrapper = webService.getVectorizationSettings()
+}
 ```
 
 ### HTTP request headers
@@ -135,7 +139,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AISettingsApi::class.java)
 
-val result : WebSearchSettingsWrapper = webService.getWebSearchSettings()
+launch(Dispatchers.IO) {
+    val result : WebSearchSettingsWrapper = webService.getWebSearchSettings()
+}
 ```
 
 ### HTTP request headers
@@ -182,7 +188,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AISettingsApi::class.java)
 val setEmbeddingConfigRequestBody : SetEmbeddingConfigRequestBody =  // SetEmbeddingConfigRequestBody | The embedding provider configuration parameters.
 
-val result : VectorizationSettingsWrapper = webService.setVectorizationSettings(setEmbeddingConfigRequestBody)
+launch(Dispatchers.IO) {
+    val result : VectorizationSettingsWrapper = webService.setVectorizationSettings(setEmbeddingConfigRequestBody)
+}
 ```
 
 ### HTTP request headers
@@ -229,7 +237,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AISettingsApi::class.java)
 val setWebSearchSettingsRequestBody : SetWebSearchSettingsRequestBody =  // SetWebSearchSettingsRequestBody | The web search configuration parameters.
 
-val result : WebSearchSettingsWrapper = webService.setWebSearchSettings(setWebSearchSettingsRequestBody)
+launch(Dispatchers.IO) {
+    val result : WebSearchSettingsWrapper = webService.setWebSearchSettings(setWebSearchSettingsRequestBody)
+}
 ```
 
 ### HTTP request headers

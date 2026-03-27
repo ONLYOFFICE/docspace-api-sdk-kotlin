@@ -47,7 +47,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(QuotaApi::class.java)
 val updateMembersQuotaRequestDto : UpdateMembersQuotaRequestDto =  // UpdateMembersQuotaRequestDto | 
 
-val result : EmployeeFullArrayWrapper = webService.resetUsersQuota(updateMembersQuotaRequestDto)
+launch(Dispatchers.IO) {
+    val result : EmployeeFullArrayWrapper = webService.resetUsersQuota(updateMembersQuotaRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -94,7 +96,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(QuotaApi::class.java)
 val updateMembersQuotaRequestDto : UpdateMembersQuotaRequestDto =  // UpdateMembersQuotaRequestDto | 
 
-val result : EmployeeFullArrayWrapper = webService.updateUserQuota(updateMembersQuotaRequestDto)
+launch(Dispatchers.IO) {
+    val result : EmployeeFullArrayWrapper = webService.updateUserQuota(updateMembersQuotaRequestDto)
+}
 ```
 
 ### HTTP request headers

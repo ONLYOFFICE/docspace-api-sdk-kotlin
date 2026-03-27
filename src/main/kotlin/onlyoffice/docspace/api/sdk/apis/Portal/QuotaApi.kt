@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Portal
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -41,10 +41,10 @@ interface QuotaApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-portal-quota/
      *
      *
-     * @return [Call]<[TenantQuotaWrapper]>
+     * @return [TenantQuotaWrapper]
      */
     @GET("api/2.0/portal/quota")
-    fun getPortalQuota(): Call<TenantQuotaWrapper>
+    suspend fun getPortalQuota(): Response<TenantQuotaWrapper>
 
     /**
      * GET api/2.0/portal/tariff
@@ -59,10 +59,10 @@ interface QuotaApi {
      *
      *
      * @param refresh The value indicating whether the current portal tariff information should be refreshed. (optional)
-     * @return [Call]<[TariffWrapper]>
+     * @return [TariffWrapper]
      */
     @GET("api/2.0/portal/tariff")
-    fun getPortalTariff(@Query("refresh") refresh: kotlin.Boolean? = null): Call<TariffWrapper>
+    suspend fun getPortalTariff(@Query("refresh") refresh: kotlin.Boolean? = null): Response<TariffWrapper>
 
     /**
      * GET api/2.0/portal/usedspace
@@ -76,10 +76,10 @@ interface QuotaApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-portal-used-space/
      *
      *
-     * @return [Call]<[DoubleWrapper]>
+     * @return [DoubleWrapper]
      */
     @GET("api/2.0/portal/usedspace")
-    fun getPortalUsedSpace(): Call<DoubleWrapper>
+    suspend fun getPortalUsedSpace(): Response<DoubleWrapper>
 
     /**
      * GET api/2.0/portal/quota/right
@@ -93,9 +93,9 @@ interface QuotaApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-right-quota/
      *
      *
-     * @return [Call]<[TenantQuotaWrapper]>
+     * @return [TenantQuotaWrapper]
      */
     @GET("api/2.0/portal/quota/right")
-    fun getRightQuota(): Call<TenantQuotaWrapper>
+    suspend fun getRightQuota(): Response<TenantQuotaWrapper>
 
 }

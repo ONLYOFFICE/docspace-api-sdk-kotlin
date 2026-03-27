@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Files
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -46,10 +46,10 @@ interface ThirdPartyIntegrationApi {
      *
      *
      * @param providerId The provider ID.
-     * @return [Call]<[StringWrapper]>
+     * @return [StringWrapper]
      */
     @DELETE("api/2.0/files/thirdparty/{providerId}")
-    fun deleteThirdParty(@Path("providerId") providerId: kotlin.Int): Call<StringWrapper>
+    suspend fun deleteThirdParty(@Path("providerId") providerId: kotlin.Int): Response<StringWrapper>
 
     /**
      * GET api/2.0/files/thirdparty/providers
@@ -64,10 +64,10 @@ interface ThirdPartyIntegrationApi {
      *
      *
      * @param excludewebdav Specifies whether WebDAV resources should be excluded from the result.. (optional)
-     * @return [Call]<[ProviderArrayWrapper]>
+     * @return [ProviderArrayWrapper]
      */
     @GET("api/2.0/files/thirdparty/providers")
-    fun getAllProviders(@Query("excludewebdav") excludewebdav: kotlin.Boolean? = null): Call<ProviderArrayWrapper>
+    suspend fun getAllProviders(@Query("excludewebdav") excludewebdav: kotlin.Boolean? = null): Response<ProviderArrayWrapper>
 
     /**
      * GET api/2.0/files/thirdparty/backup
@@ -81,10 +81,10 @@ interface ThirdPartyIntegrationApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-backup-third-party-account/
      *
      *
-     * @return [Call]<[FolderStringWrapper]>
+     * @return [FolderStringWrapper]
      */
     @GET("api/2.0/files/thirdparty/backup")
-    fun getBackupThirdPartyAccount(): Call<FolderStringWrapper>
+    suspend fun getBackupThirdPartyAccount(): Response<FolderStringWrapper>
 
     /**
      * GET api/2.0/files/thirdparty/capabilities
@@ -98,10 +98,10 @@ interface ThirdPartyIntegrationApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-capabilities/
      *
      *
-     * @return [Call]<[ArrayArrayWrapper]>
+     * @return [ArrayArrayWrapper]
      */
     @GET("api/2.0/files/thirdparty/capabilities")
-    fun getCapabilities(): Call<ArrayArrayWrapper>
+    suspend fun getCapabilities(): Response<ArrayArrayWrapper>
 
     /**
      * GET api/2.0/files/thirdparty/common
@@ -115,10 +115,10 @@ interface ThirdPartyIntegrationApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-common-third-party-folders/
      *
      *
-     * @return [Call]<[FolderStringArrayWrapper]>
+     * @return [FolderStringArrayWrapper]
      */
     @GET("api/2.0/files/thirdparty/common")
-    fun getCommonThirdPartyFolders(): Call<FolderStringArrayWrapper>
+    suspend fun getCommonThirdPartyFolders(): Response<FolderStringArrayWrapper>
 
     /**
      * GET api/2.0/files/thirdparty
@@ -132,10 +132,10 @@ interface ThirdPartyIntegrationApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-third-party-accounts/
      *
      *
-     * @return [Call]<[ThirdPartyParamsArrayWrapper]>
+     * @return [ThirdPartyParamsArrayWrapper]
      */
     @GET("api/2.0/files/thirdparty")
-    fun getThirdPartyAccounts(): Call<ThirdPartyParamsArrayWrapper>
+    suspend fun getThirdPartyAccounts(): Response<ThirdPartyParamsArrayWrapper>
 
     /**
      * POST api/2.0/files/thirdparty
@@ -150,10 +150,10 @@ interface ThirdPartyIntegrationApi {
      *
      *
      * @param thirdPartyRequestDto  (optional)
-     * @return [Call]<[FolderStringWrapper]>
+     * @return [FolderStringWrapper]
      */
     @POST("api/2.0/files/thirdparty")
-    fun saveThirdParty(@Body thirdPartyRequestDto: ThirdPartyRequestDto? = null): Call<FolderStringWrapper>
+    suspend fun saveThirdParty(@Body thirdPartyRequestDto: ThirdPartyRequestDto? = null): Response<FolderStringWrapper>
 
     /**
      * POST api/2.0/files/thirdparty/backup
@@ -168,9 +168,9 @@ interface ThirdPartyIntegrationApi {
      *
      *
      * @param thirdPartyBackupRequestDto  (optional)
-     * @return [Call]<[FolderStringWrapper]>
+     * @return [FolderStringWrapper]
      */
     @POST("api/2.0/files/thirdparty/backup")
-    fun saveThirdPartyBackup(@Body thirdPartyBackupRequestDto: ThirdPartyBackupRequestDto? = null): Call<FolderStringWrapper>
+    suspend fun saveThirdPartyBackup(@Body thirdPartyBackupRequestDto: ThirdPartyBackupRequestDto? = null): Response<FolderStringWrapper>
 
 }

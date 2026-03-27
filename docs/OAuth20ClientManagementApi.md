@@ -47,7 +47,9 @@ val webService = apiClient.createWebservice(ClientManagementApi::class.java)
 val clientId : kotlin.String = 6c7cf17b-1bd3-47d5-94c6-be2d3570e168 // kotlin.String | The client identifier.
 val changeClientActivationRequest : ChangeClientActivationRequest =  // ChangeClientActivationRequest | 
 
-val result : kotlin.Any = webService.changeActivation(clientId, changeClientActivationRequest)
+launch(Dispatchers.IO) {
+    val result : kotlin.Any = webService.changeActivation(clientId, changeClientActivationRequest)
+}
 ```
 
 ### HTTP request headers
@@ -88,7 +90,9 @@ val apiClient = ApiClient()
 val webService = apiClient.createWebservice(ClientManagementApi::class.java)
 val createClientRequest : CreateClientRequest =  // CreateClientRequest | 
 
-val result : ClientResponse = webService.createClient(createClientRequest)
+launch(Dispatchers.IO) {
+    val result : ClientResponse = webService.createClient(createClientRequest)
+}
 ```
 
 ### HTTP request headers
@@ -129,7 +133,9 @@ val apiClient = ApiClient()
 val webService = apiClient.createWebservice(ClientManagementApi::class.java)
 val clientId : kotlin.String = 6c7cf17b-1bd3-47d5-94c6-be2d3570e168 // kotlin.String | The client identifier.
 
-val result : kotlin.Any = webService.deleteClient(clientId)
+launch(Dispatchers.IO) {
+    val result : kotlin.Any = webService.deleteClient(clientId)
+}
 ```
 
 ### HTTP request headers
@@ -170,7 +176,9 @@ val apiClient = ApiClient()
 val webService = apiClient.createWebservice(ClientManagementApi::class.java)
 val clientId : kotlin.String = 6c7cf17b-1bd3-47d5-94c6-be2d3570e168 // kotlin.String | The client identifier.
 
-val result : ClientSecretResponse = webService.regenerateSecret(clientId)
+launch(Dispatchers.IO) {
+    val result : ClientSecretResponse = webService.regenerateSecret(clientId)
+}
 ```
 
 ### HTTP request headers
@@ -211,7 +219,9 @@ val apiClient = ApiClient()
 val webService = apiClient.createWebservice(ClientManagementApi::class.java)
 val clientId : kotlin.String = 6c7cf17b-1bd3-47d5-94c6-be2d3570e168 // kotlin.String | The client identifier.
 
-val result : kotlin.Any = webService.revokeUserClient(clientId)
+launch(Dispatchers.IO) {
+    val result : kotlin.Any = webService.revokeUserClient(clientId)
+}
 ```
 
 ### HTTP request headers
@@ -254,7 +264,9 @@ val webService = apiClient.createWebservice(ClientManagementApi::class.java)
 val clientId : kotlin.String = 6c7cf17b-1bd3-47d5-94c6-be2d3570e168 // kotlin.String | The client identifier.
 val updateClientRequest : UpdateClientRequest =  // UpdateClientRequest | 
 
-val result : kotlin.Any = webService.updateClient(clientId, updateClientRequest)
+launch(Dispatchers.IO) {
+    val result : kotlin.Any = webService.updateClient(clientId, updateClientRequest)
+}
 ```
 
 ### HTTP request headers

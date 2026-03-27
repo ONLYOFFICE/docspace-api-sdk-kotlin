@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.People
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -44,10 +44,10 @@ interface UserTypeApi {
      *
      *
      * @param userid The user ID.
-     * @return [Call]<[TaskProgressResponseWrapper]>
+     * @return [TaskProgressResponseWrapper]
      */
     @GET("api/2.0/people/type/progress/{userid}")
-    fun getUserTypeUpdateProgress(@Path("userid") userid: java.util.UUID): Call<TaskProgressResponseWrapper>
+    suspend fun getUserTypeUpdateProgress(@Path("userid") userid: java.util.UUID): Response<TaskProgressResponseWrapper>
 
     /**
      * POST api/2.0/people/type
@@ -63,10 +63,10 @@ interface UserTypeApi {
      *
      *
      * @param startUpdateUserTypeDto  (optional)
-     * @return [Call]<[TaskProgressResponseWrapper]>
+     * @return [TaskProgressResponseWrapper]
      */
     @POST("api/2.0/people/type")
-    fun startUserTypeUpdate(@Body startUpdateUserTypeDto: StartUpdateUserTypeDto? = null): Call<TaskProgressResponseWrapper>
+    suspend fun startUserTypeUpdate(@Body startUpdateUserTypeDto: StartUpdateUserTypeDto? = null): Response<TaskProgressResponseWrapper>
 
     /**
      * PUT api/2.0/people/type/terminate
@@ -81,10 +81,10 @@ interface UserTypeApi {
      *
      *
      * @param terminateRequestDto  (optional)
-     * @return [Call]<[TaskProgressResponseWrapper]>
+     * @return [TaskProgressResponseWrapper]
      */
     @PUT("api/2.0/people/type/terminate")
-    fun terminateUserTypeUpdate(@Body terminateRequestDto: TerminateRequestDto? = null): Call<TaskProgressResponseWrapper>
+    suspend fun terminateUserTypeUpdate(@Body terminateRequestDto: TerminateRequestDto? = null): Response<TaskProgressResponseWrapper>
 
     /**
      * PUT api/2.0/people/type/{type}
@@ -101,9 +101,9 @@ interface UserTypeApi {
      *
      * @param type The new user type.
      * @param updateMembersRequestDto The request parameters for updating the user information.
-     * @return [Call]<[EmployeeFullArrayWrapper]>
+     * @return [EmployeeFullArrayWrapper]
      */
     @PUT("api/2.0/people/type/{type}")
-    fun updateUserType(@Path("type") type: EmployeeType, @Body updateMembersRequestDto: UpdateMembersRequestDto): Call<EmployeeFullArrayWrapper>
+    suspend fun updateUserType(@Path("type") type: EmployeeType, @Body updateMembersRequestDto: UpdateMembersRequestDto): Response<EmployeeFullArrayWrapper>
 
 }

@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.People
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -62,10 +62,10 @@ interface SearchApi {
      * @param startIndex The starting index for the query results. (optional)
      * @param filterSeparator Specifies the separator used in filter expressions. (optional)
      * @param filterValue The text filter applied to the accounts search query. (optional)
-     * @return [Call]<[ObjectArrayWrapper]>
+     * @return [ObjectArrayWrapper]
      */
     @GET("api/2.0/accounts/file/{id}/search")
-    fun getAccountsEntriesWithFilesShared(@Path("id") id: kotlin.Int, @Query("employeeStatus") employeeStatus: EmployeeStatus? = null, @Query("activationStatus") activationStatus: EmployeeActivationStatus? = null, @Query("excludeShared") excludeShared: kotlin.Boolean? = null, @Query("includeShared") includeShared: kotlin.Boolean? = null, @Query("invitedByMe") invitedByMe: kotlin.Boolean? = null, @Query("inviterId") inviterId: java.util.UUID? = null, @Query("area") area: Area? = null, @Query("employeeTypes") employeeTypes: CSVParams? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Call<ObjectArrayWrapper>
+    suspend fun getAccountsEntriesWithFilesShared(@Path("id") id: kotlin.Int, @Query("employeeStatus") employeeStatus: EmployeeStatus? = null, @Query("activationStatus") activationStatus: EmployeeActivationStatus? = null, @Query("excludeShared") excludeShared: kotlin.Boolean? = null, @Query("includeShared") includeShared: kotlin.Boolean? = null, @Query("invitedByMe") invitedByMe: kotlin.Boolean? = null, @Query("inviterId") inviterId: java.util.UUID? = null, @Query("area") area: Area? = null, @Query("employeeTypes") employeeTypes: CSVParams? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<ObjectArrayWrapper>
 
     /**
      * GET api/2.0/accounts/folder/{id}/search
@@ -93,10 +93,10 @@ interface SearchApi {
      * @param startIndex The starting index for the query results. (optional)
      * @param filterSeparator Specifies the separator used in filter expressions. (optional)
      * @param filterValue The text filter applied to the accounts search query. (optional)
-     * @return [Call]<[ObjectArrayWrapper]>
+     * @return [ObjectArrayWrapper]
      */
     @GET("api/2.0/accounts/folder/{id}/search")
-    fun getAccountsEntriesWithFoldersShared(@Path("id") id: kotlin.Int, @Query("employeeStatus") employeeStatus: EmployeeStatus? = null, @Query("activationStatus") activationStatus: EmployeeActivationStatus? = null, @Query("excludeShared") excludeShared: kotlin.Boolean? = null, @Query("includeShared") includeShared: kotlin.Boolean? = null, @Query("invitedByMe") invitedByMe: kotlin.Boolean? = null, @Query("inviterId") inviterId: java.util.UUID? = null, @Query("area") area: Area? = null, @Query("employeeTypes") employeeTypes: CSVParams? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Call<ObjectArrayWrapper>
+    suspend fun getAccountsEntriesWithFoldersShared(@Path("id") id: kotlin.Int, @Query("employeeStatus") employeeStatus: EmployeeStatus? = null, @Query("activationStatus") activationStatus: EmployeeActivationStatus? = null, @Query("excludeShared") excludeShared: kotlin.Boolean? = null, @Query("includeShared") includeShared: kotlin.Boolean? = null, @Query("invitedByMe") invitedByMe: kotlin.Boolean? = null, @Query("inviterId") inviterId: java.util.UUID? = null, @Query("area") area: Area? = null, @Query("employeeTypes") employeeTypes: CSVParams? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<ObjectArrayWrapper>
 
     /**
      * GET api/2.0/accounts/room/{id}/search
@@ -124,10 +124,10 @@ interface SearchApi {
      * @param startIndex The starting index for the query results. (optional)
      * @param filterSeparator Specifies the separator used in filter expressions. (optional)
      * @param filterValue The text filter applied to the accounts search query. (optional)
-     * @return [Call]<[ObjectArrayWrapper]>
+     * @return [ObjectArrayWrapper]
      */
     @GET("api/2.0/accounts/room/{id}/search")
-    fun getAccountsEntriesWithRoomsShared(@Path("id") id: kotlin.Int, @Query("employeeStatus") employeeStatus: EmployeeStatus? = null, @Query("activationStatus") activationStatus: EmployeeActivationStatus? = null, @Query("excludeShared") excludeShared: kotlin.Boolean? = null, @Query("includeShared") includeShared: kotlin.Boolean? = null, @Query("invitedByMe") invitedByMe: kotlin.Boolean? = null, @Query("inviterId") inviterId: java.util.UUID? = null, @Query("area") area: Area? = null, @Query("employeeTypes") employeeTypes: CSVParams? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Call<ObjectArrayWrapper>
+    suspend fun getAccountsEntriesWithRoomsShared(@Path("id") id: kotlin.Int, @Query("employeeStatus") employeeStatus: EmployeeStatus? = null, @Query("activationStatus") activationStatus: EmployeeActivationStatus? = null, @Query("excludeShared") excludeShared: kotlin.Boolean? = null, @Query("includeShared") includeShared: kotlin.Boolean? = null, @Query("invitedByMe") invitedByMe: kotlin.Boolean? = null, @Query("inviterId") inviterId: java.util.UUID? = null, @Query("area") area: Area? = null, @Query("employeeTypes") employeeTypes: CSVParams? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<ObjectArrayWrapper>
 
     /**
      * GET api/2.0/people/@search/{query}
@@ -145,10 +145,10 @@ interface SearchApi {
      * @param query The search query.
      * @param filterBy Specifies a filter criteria for the user search query. (optional)
      * @param filterValue The value used for filtering users, allowing additional constraints for the query. (optional)
-     * @return [Call]<[EmployeeFullArrayWrapper]>
+     * @return [EmployeeFullArrayWrapper]
      */
     @GET("api/2.0/people/@search/{query}")
-    fun getSearch(@Path("query") query: kotlin.String, @Query("filterBy") filterBy: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Call<EmployeeFullArrayWrapper>
+    suspend fun getSearch(@Path("query") query: kotlin.String, @Query("filterBy") filterBy: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<EmployeeFullArrayWrapper>
 
 
     /**
@@ -195,10 +195,10 @@ interface SearchApi {
      * @param sortOrder The order in which the results are sorted. (optional)
      * @param filterSeparator Represents the separator used to split filter criteria in query parameters. (optional)
      * @param filterValue The search text used to filter results based on user input. (optional)
-     * @return [Call]<[EmployeeArrayWrapper]>
+     * @return [EmployeeArrayWrapper]
      */
     @GET("api/2.0/people/simple/filter")
-    fun getSimpleByFilter(@Query("employeeStatus") employeeStatus: EmployeeStatus? = null, @Query("groupId") groupId: java.util.UUID? = null, @Query("activationStatus") activationStatus: EmployeeActivationStatus? = null, @Query("employeeType") employeeType: EmployeeType? = null, @Query("employeeTypes") employeeTypes: CSVParams? = null, @Query("isAdministrator") isAdministrator: kotlin.Boolean? = null, @Query("payments") payments: Payments? = null, @Query("accountLoginType") accountLoginType: AccountLoginType? = null, @Query("quotaFilter") quotaFilter: QuotaFilter? = null, @Query("withoutGroup") withoutGroup: kotlin.Boolean? = null, @Query("excludeGroup") excludeGroup: kotlin.Boolean? = null, @Query("invitedByMe") invitedByMe: kotlin.Boolean? = null, @Query("inviterId") inviterId: java.util.UUID? = null, @Query("area") area: Area? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Call<EmployeeArrayWrapper>
+    suspend fun getSimpleByFilter(@Query("employeeStatus") employeeStatus: EmployeeStatus? = null, @Query("groupId") groupId: java.util.UUID? = null, @Query("activationStatus") activationStatus: EmployeeActivationStatus? = null, @Query("employeeType") employeeType: EmployeeType? = null, @Query("employeeTypes") employeeTypes: CSVParams? = null, @Query("isAdministrator") isAdministrator: kotlin.Boolean? = null, @Query("payments") payments: Payments? = null, @Query("accountLoginType") accountLoginType: AccountLoginType? = null, @Query("quotaFilter") quotaFilter: QuotaFilter? = null, @Query("withoutGroup") withoutGroup: kotlin.Boolean? = null, @Query("excludeGroup") excludeGroup: kotlin.Boolean? = null, @Query("invitedByMe") invitedByMe: kotlin.Boolean? = null, @Query("inviterId") inviterId: java.util.UUID? = null, @Query("area") area: Area? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<EmployeeArrayWrapper>
 
     /**
      * GET api/2.0/people/file/{id}
@@ -226,10 +226,10 @@ interface SearchApi {
      * @param startIndex The zero-based index of the first record to retrieve in a paged query. (optional)
      * @param filterSeparator The character or string used to separate multiple filter values in a filtering query. (optional)
      * @param filterValue The filter text value used for searching or filtering user results. (optional)
-     * @return [Call]<[EmployeeFullArrayWrapper]>
+     * @return [EmployeeFullArrayWrapper]
      */
     @GET("api/2.0/people/file/{id}")
-    fun getUsersWithFilesShared(@Path("id") id: kotlin.Int, @Query("employeeStatus") employeeStatus: EmployeeStatus? = null, @Query("activationStatus") activationStatus: EmployeeActivationStatus? = null, @Query("excludeShared") excludeShared: kotlin.Boolean? = null, @Query("includeShared") includeShared: kotlin.Boolean? = null, @Query("invitedByMe") invitedByMe: kotlin.Boolean? = null, @Query("inviterId") inviterId: java.util.UUID? = null, @Query("area") area: Area? = null, @Query("employeeTypes") employeeTypes: CSVParams? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Call<EmployeeFullArrayWrapper>
+    suspend fun getUsersWithFilesShared(@Path("id") id: kotlin.Int, @Query("employeeStatus") employeeStatus: EmployeeStatus? = null, @Query("activationStatus") activationStatus: EmployeeActivationStatus? = null, @Query("excludeShared") excludeShared: kotlin.Boolean? = null, @Query("includeShared") includeShared: kotlin.Boolean? = null, @Query("invitedByMe") invitedByMe: kotlin.Boolean? = null, @Query("inviterId") inviterId: java.util.UUID? = null, @Query("area") area: Area? = null, @Query("employeeTypes") employeeTypes: CSVParams? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<EmployeeFullArrayWrapper>
 
     /**
      * GET api/2.0/people/folder/{id}
@@ -257,10 +257,10 @@ interface SearchApi {
      * @param startIndex The zero-based index of the first record to retrieve in a paged query. (optional)
      * @param filterSeparator The character or string used to separate multiple filter values in a filtering query. (optional)
      * @param filterValue The filter text value used for searching or filtering user results. (optional)
-     * @return [Call]<[EmployeeFullArrayWrapper]>
+     * @return [EmployeeFullArrayWrapper]
      */
     @GET("api/2.0/people/folder/{id}")
-    fun getUsersWithFoldersShared(@Path("id") id: kotlin.Int, @Query("employeeStatus") employeeStatus: EmployeeStatus? = null, @Query("activationStatus") activationStatus: EmployeeActivationStatus? = null, @Query("excludeShared") excludeShared: kotlin.Boolean? = null, @Query("includeShared") includeShared: kotlin.Boolean? = null, @Query("invitedByMe") invitedByMe: kotlin.Boolean? = null, @Query("inviterId") inviterId: java.util.UUID? = null, @Query("area") area: Area? = null, @Query("employeeTypes") employeeTypes: CSVParams? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Call<EmployeeFullArrayWrapper>
+    suspend fun getUsersWithFoldersShared(@Path("id") id: kotlin.Int, @Query("employeeStatus") employeeStatus: EmployeeStatus? = null, @Query("activationStatus") activationStatus: EmployeeActivationStatus? = null, @Query("excludeShared") excludeShared: kotlin.Boolean? = null, @Query("includeShared") includeShared: kotlin.Boolean? = null, @Query("invitedByMe") invitedByMe: kotlin.Boolean? = null, @Query("inviterId") inviterId: java.util.UUID? = null, @Query("area") area: Area? = null, @Query("employeeTypes") employeeTypes: CSVParams? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<EmployeeFullArrayWrapper>
 
     /**
      * GET api/2.0/people/room/{id}
@@ -288,10 +288,10 @@ interface SearchApi {
      * @param startIndex The zero-based index of the first record to retrieve in a paged query. (optional)
      * @param filterSeparator The character or string used to separate multiple filter values in a filtering query. (optional)
      * @param filterValue The filter text value used for searching or filtering user results. (optional)
-     * @return [Call]<[EmployeeFullArrayWrapper]>
+     * @return [EmployeeFullArrayWrapper]
      */
     @GET("api/2.0/people/room/{id}")
-    fun getUsersWithRoomShared(@Path("id") id: kotlin.Int, @Query("employeeStatus") employeeStatus: EmployeeStatus? = null, @Query("activationStatus") activationStatus: EmployeeActivationStatus? = null, @Query("excludeShared") excludeShared: kotlin.Boolean? = null, @Query("includeShared") includeShared: kotlin.Boolean? = null, @Query("invitedByMe") invitedByMe: kotlin.Boolean? = null, @Query("inviterId") inviterId: java.util.UUID? = null, @Query("area") area: Area? = null, @Query("employeeTypes") employeeTypes: CSVParams? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Call<EmployeeFullArrayWrapper>
+    suspend fun getUsersWithRoomShared(@Path("id") id: kotlin.Int, @Query("employeeStatus") employeeStatus: EmployeeStatus? = null, @Query("activationStatus") activationStatus: EmployeeActivationStatus? = null, @Query("excludeShared") excludeShared: kotlin.Boolean? = null, @Query("includeShared") includeShared: kotlin.Boolean? = null, @Query("invitedByMe") invitedByMe: kotlin.Boolean? = null, @Query("inviterId") inviterId: java.util.UUID? = null, @Query("area") area: Area? = null, @Query("employeeTypes") employeeTypes: CSVParams? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<EmployeeFullArrayWrapper>
 
 
     /**
@@ -338,10 +338,10 @@ interface SearchApi {
      * @param sortOrder The order in which the results are sorted. (optional)
      * @param filterSeparator Represents the separator used to split filter criteria in query parameters. (optional)
      * @param filterValue The search text used to filter results based on user input. (optional)
-     * @return [Call]<[EmployeeFullArrayWrapper]>
+     * @return [EmployeeFullArrayWrapper]
      */
     @GET("api/2.0/people/filter")
-    fun searchUsersByExtendedFilter(@Query("employeeStatus") employeeStatus: EmployeeStatus? = null, @Query("groupId") groupId: java.util.UUID? = null, @Query("activationStatus") activationStatus: EmployeeActivationStatus? = null, @Query("employeeType") employeeType: EmployeeType? = null, @Query("employeeTypes") employeeTypes: CSVParams? = null, @Query("isAdministrator") isAdministrator: kotlin.Boolean? = null, @Query("payments") payments: Payments? = null, @Query("accountLoginType") accountLoginType: AccountLoginType? = null, @Query("quotaFilter") quotaFilter: QuotaFilter? = null, @Query("withoutGroup") withoutGroup: kotlin.Boolean? = null, @Query("excludeGroup") excludeGroup: kotlin.Boolean? = null, @Query("invitedByMe") invitedByMe: kotlin.Boolean? = null, @Query("inviterId") inviterId: java.util.UUID? = null, @Query("area") area: Area? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Call<EmployeeFullArrayWrapper>
+    suspend fun searchUsersByExtendedFilter(@Query("employeeStatus") employeeStatus: EmployeeStatus? = null, @Query("groupId") groupId: java.util.UUID? = null, @Query("activationStatus") activationStatus: EmployeeActivationStatus? = null, @Query("employeeType") employeeType: EmployeeType? = null, @Query("employeeTypes") employeeTypes: CSVParams? = null, @Query("isAdministrator") isAdministrator: kotlin.Boolean? = null, @Query("payments") payments: Payments? = null, @Query("accountLoginType") accountLoginType: AccountLoginType? = null, @Query("quotaFilter") quotaFilter: QuotaFilter? = null, @Query("withoutGroup") withoutGroup: kotlin.Boolean? = null, @Query("excludeGroup") excludeGroup: kotlin.Boolean? = null, @Query("invitedByMe") invitedByMe: kotlin.Boolean? = null, @Query("inviterId") inviterId: java.util.UUID? = null, @Query("area") area: Area? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<EmployeeFullArrayWrapper>
 
     /**
      * GET api/2.0/people/search
@@ -356,10 +356,10 @@ interface SearchApi {
      *
      *
      * @param query The search query. (optional)
-     * @return [Call]<[EmployeeArrayWrapper]>
+     * @return [EmployeeArrayWrapper]
      */
     @GET("api/2.0/people/search")
-    fun searchUsersByQuery(@Query("query") query: kotlin.String? = null): Call<EmployeeArrayWrapper>
+    suspend fun searchUsersByQuery(@Query("query") query: kotlin.String? = null): Response<EmployeeArrayWrapper>
 
     /**
      * GET api/2.0/people/status/{status}/search
@@ -378,9 +378,9 @@ interface SearchApi {
      * @param query The advanced search query. (optional)
      * @param filterBy Specifies the criteria used to filter search results in advanced queries. (optional)
      * @param filterValue The value used to filter the search query. (optional)
-     * @return [Call]<[EmployeeFullArrayWrapper]>
+     * @return [EmployeeFullArrayWrapper]
      */
     @GET("api/2.0/people/status/{status}/search")
-    fun searchUsersByStatus(@Path("status") status: EmployeeStatus, @Query("query") query: kotlin.String? = null, @Query("filterBy") filterBy: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Call<EmployeeFullArrayWrapper>
+    suspend fun searchUsersByStatus(@Path("status") status: EmployeeStatus, @Query("query") query: kotlin.String? = null, @Query("filterBy") filterBy: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<EmployeeFullArrayWrapper>
 
 }

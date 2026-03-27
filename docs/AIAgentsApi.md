@@ -53,7 +53,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIAgentsApi::class.java)
 val createAgentRequestDto : CreateAgentRequestDto =  // CreateAgentRequestDto | 
 
-val result : FolderIntegerWrapper = webService.createAgent(createAgentRequestDto)
+launch(Dispatchers.IO) {
+    val result : FolderIntegerWrapper = webService.createAgent(createAgentRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -102,7 +104,9 @@ val webService = apiClient.createWebservice(AIAgentsApi::class.java)
 val id : kotlin.Int = 10 // kotlin.Int | The room ID.
 val deleteRoomRequest : DeleteRoomRequest =  // DeleteRoomRequest | The parameters for deleting a room.
 
-val result : FileOperationWrapper = webService.deleteAgent(id, deleteRoomRequest)
+launch(Dispatchers.IO) {
+    val result : FileOperationWrapper = webService.deleteAgent(id, deleteRoomRequest)
+}
 ```
 
 ### HTTP request headers
@@ -149,7 +153,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIAgentsApi::class.java)
 val id : kotlin.Int = 1 // kotlin.Int | The room ID.
 
-val result : FolderIntegerWrapper = webService.getAgentInfo(id)
+launch(Dispatchers.IO) {
+    val result : FolderIntegerWrapper = webService.getAgentInfo(id)
+}
 ```
 
 ### HTTP request headers
@@ -216,7 +222,9 @@ val sortBy : kotlin.String = DateAndTime // kotlin.String | Specifies the field 
 val sortOrder : SortOrder = 1 // SortOrder | The order in which the results are sorted.
 val filterValue : kotlin.String = my agent // kotlin.String | The text filter value used to refine search or query operations.
 
-val result : FolderContentIntegerWrapper = webService.getAgents(subjectId, withoutTags, tags, excludeSubject, subjectFilter, quotaFilter, count, startIndex, sortBy, sortOrder, filterValue)
+launch(Dispatchers.IO) {
+    val result : FolderContentIntegerWrapper = webService.getAgents(subjectId, withoutTags, tags, excludeSubject, subjectFilter, quotaFilter, count, startIndex, sortBy, sortOrder, filterValue)
+}
 ```
 
 ### HTTP request headers
@@ -260,7 +268,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIAgentsApi::class.java)
 
-val result : NewItemsAgentNewItemsArrayWrapper = webService.getAgentsNewItems()
+launch(Dispatchers.IO) {
+    val result : NewItemsAgentNewItemsArrayWrapper = webService.getAgentsNewItems()
+}
 ```
 
 ### HTTP request headers
@@ -307,7 +317,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIAgentsApi::class.java)
 val updateRoomsRoomIdsRequestDtoInteger : UpdateRoomsRoomIdsRequestDtoInteger =  // UpdateRoomsRoomIdsRequestDtoInteger | 
 
-val result : FolderIntegerArrayWrapper = webService.resetAgentsQuota(updateRoomsRoomIdsRequestDtoInteger)
+launch(Dispatchers.IO) {
+    val result : FolderIntegerArrayWrapper = webService.resetAgentsQuota(updateRoomsRoomIdsRequestDtoInteger)
+}
 ```
 
 ### HTTP request headers
@@ -356,7 +368,9 @@ val webService = apiClient.createWebservice(AIAgentsApi::class.java)
 val id : kotlin.Int = 56 // kotlin.Int | The room ID.
 val updateRoomRequest : UpdateRoomRequest =  // UpdateRoomRequest | The request parameters for updating a room.
 
-val result : FolderIntegerWrapper = webService.updateAgent(id, updateRoomRequest)
+launch(Dispatchers.IO) {
+    val result : FolderIntegerWrapper = webService.updateAgent(id, updateRoomRequest)
+}
 ```
 
 ### HTTP request headers
@@ -403,7 +417,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIAgentsApi::class.java)
 val updateRoomsQuotaRequestDtoInteger : UpdateRoomsQuotaRequestDtoInteger =  // UpdateRoomsQuotaRequestDtoInteger | 
 
-val result : FolderIntegerArrayWrapper = webService.updateAgentsQuota(updateRoomsQuotaRequestDtoInteger)
+launch(Dispatchers.IO) {
+    val result : FolderIntegerArrayWrapper = webService.updateAgentsQuota(updateRoomsQuotaRequestDtoInteger)
+}
 ```
 
 ### HTTP request headers

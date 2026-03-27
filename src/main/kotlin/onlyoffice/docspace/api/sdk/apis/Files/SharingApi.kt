@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Files
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -52,10 +52,10 @@ interface SharingApi {
      *
      * @param key The unique document identifier.
      * @param externalShareRequestParam The external data share request parameters.
-     * @return [Call]<[ExternalShareWrapper]>
+     * @return [ExternalShareWrapper]
      */
     @POST("api/2.0/files/share/{key}/password")
-    fun applyExternalSharePassword(@Path("key") key: kotlin.String, @Body externalShareRequestParam: ExternalShareRequestParam): Call<ExternalShareWrapper>
+    suspend fun applyExternalSharePassword(@Path("key") key: kotlin.String, @Body externalShareRequestParam: ExternalShareRequestParam): Response<ExternalShareWrapper>
 
     /**
      * POST api/2.0/files/owner
@@ -70,10 +70,10 @@ interface SharingApi {
      *
      *
      * @param changeOwnerRequestDto  (optional)
-     * @return [Call]<[FileEntryBaseArrayWrapper]>
+     * @return [FileEntryBaseArrayWrapper]
      */
     @POST("api/2.0/files/owner")
-    fun changeFileOwner(@Body changeOwnerRequestDto: ChangeOwnerRequestDto? = null): Call<FileEntryBaseArrayWrapper>
+    suspend fun changeFileOwner(@Body changeOwnerRequestDto: ChangeOwnerRequestDto? = null): Response<FileEntryBaseArrayWrapper>
 
     /**
      * GET api/2.0/files/share/{key}
@@ -89,10 +89,10 @@ interface SharingApi {
      * @param key The unique key of the external shared data.
      * @param fileId The unique document identifier. (optional)
      * @param folderId The unique folder identifier. (optional)
-     * @return [Call]<[ExternalShareWrapper]>
+     * @return [ExternalShareWrapper]
      */
     @GET("api/2.0/files/share/{key}")
-    fun getExternalShareData(@Path("key") key: kotlin.String, @Query("fileId") fileId: kotlin.String? = null, @Query("folderId") folderId: kotlin.String? = null): Call<ExternalShareWrapper>
+    suspend fun getExternalShareData(@Path("key") key: kotlin.String, @Query("fileId") fileId: kotlin.String? = null, @Query("folderId") folderId: kotlin.String? = null): Response<ExternalShareWrapper>
 
     /**
      * GET api/2.0/files/file/{id}/share
@@ -109,10 +109,10 @@ interface SharingApi {
      * @param id The file unique identifier.
      * @param count The number of items to retrieve in the request. (optional)
      * @param startIndex The starting index for the query results. (optional)
-     * @return [Call]<[FileShareArrayWrapper]>
+     * @return [FileShareArrayWrapper]
      */
     @GET("api/2.0/files/file/{id}/share")
-    fun getFileSecurityInfo(@Path("id") id: kotlin.Int, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null): Call<FileShareArrayWrapper>
+    suspend fun getFileSecurityInfo(@Path("id") id: kotlin.Int, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null): Response<FileShareArrayWrapper>
 
     /**
      * GET api/2.0/files/folder/{id}/share
@@ -129,10 +129,10 @@ interface SharingApi {
      * @param id The folder unique identifier.
      * @param count The number of items to retrieve in the request. (optional)
      * @param startIndex The starting index for the query results. (optional)
-     * @return [Call]<[FileShareArrayWrapper]>
+     * @return [FileShareArrayWrapper]
      */
     @GET("api/2.0/files/folder/{id}/share")
-    fun getFolderSecurityInfo(@Path("id") id: kotlin.Int, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null): Call<FileShareArrayWrapper>
+    suspend fun getFolderSecurityInfo(@Path("id") id: kotlin.Int, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null): Response<FileShareArrayWrapper>
 
     /**
      * GET api/2.0/files/file/{fileId}/group/{groupId}/share
@@ -151,10 +151,10 @@ interface SharingApi {
      * @param count The number of items to be retrieved in the current query. (optional)
      * @param startIndex The starting index for the query result set. (optional)
      * @param filterValue The filter value used for searching or querying group members based on text input. (optional)
-     * @return [Call]<[GroupMemberSecurityRequestArrayWrapper]>
+     * @return [GroupMemberSecurityRequestArrayWrapper]
      */
     @GET("api/2.0/files/file/{fileId}/group/{groupId}/share")
-    fun getGroupsMembersWithFileSecurity(@Path("fileId") fileId: kotlin.Int, @Path("groupId") groupId: java.util.UUID, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterValue") filterValue: kotlin.String? = null): Call<GroupMemberSecurityRequestArrayWrapper>
+    suspend fun getGroupsMembersWithFileSecurity(@Path("fileId") fileId: kotlin.Int, @Path("groupId") groupId: java.util.UUID, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<GroupMemberSecurityRequestArrayWrapper>
 
     /**
      * GET api/2.0/files/folder/{folderId}/group/{groupId}/share
@@ -173,10 +173,10 @@ interface SharingApi {
      * @param count The number of items to be retrieved in the current query. (optional)
      * @param startIndex The starting index for the query result set. (optional)
      * @param filterValue The filter value used for searching or querying group members based on text input. (optional)
-     * @return [Call]<[GroupMemberSecurityRequestArrayWrapper]>
+     * @return [GroupMemberSecurityRequestArrayWrapper]
      */
     @GET("api/2.0/files/folder/{folderId}/group/{groupId}/share")
-    fun getGroupsMembersWithFolderSecurity(@Path("folderId") folderId: kotlin.Int, @Path("groupId") groupId: java.util.UUID, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterValue") filterValue: kotlin.String? = null): Call<GroupMemberSecurityRequestArrayWrapper>
+    suspend fun getGroupsMembersWithFolderSecurity(@Path("folderId") folderId: kotlin.Int, @Path("groupId") groupId: java.util.UUID, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<GroupMemberSecurityRequestArrayWrapper>
 
     /**
      * POST api/2.0/files/share
@@ -191,10 +191,10 @@ interface SharingApi {
      *
      *
      * @param baseBatchRequestDto  (optional)
-     * @return [Call]<[FileShareArrayWrapper]>
+     * @return [FileShareArrayWrapper]
      */
     @POST("api/2.0/files/share")
-    fun getSecurityInfo(@Body baseBatchRequestDto: BaseBatchRequestDto? = null): Call<FileShareArrayWrapper>
+    suspend fun getSecurityInfo(@Body baseBatchRequestDto: BaseBatchRequestDto? = null): Response<FileShareArrayWrapper>
 
     /**
      * GET api/2.0/files/file/{fileId}/sharedusers
@@ -209,10 +209,10 @@ interface SharingApi {
      *
      *
      * @param fileId The file unique identifier.
-     * @return [Call]<[MentionWrapperArrayWrapper]>
+     * @return [MentionWrapperArrayWrapper]
      */
     @GET("api/2.0/files/file/{fileId}/sharedusers")
-    fun getSharedUsers(@Path("fileId") fileId: kotlin.Int): Call<MentionWrapperArrayWrapper>
+    suspend fun getSharedUsers(@Path("fileId") fileId: kotlin.Int): Response<MentionWrapperArrayWrapper>
 
     /**
      * DELETE api/2.0/files/share
@@ -227,10 +227,10 @@ interface SharingApi {
      *
      *
      * @param baseBatchRequestDto  (optional)
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @DELETE("api/2.0/files/share")
-    fun removeSecurityInfo(@Body baseBatchRequestDto: BaseBatchRequestDto? = null): Call<BooleanWrapper>
+    suspend fun removeSecurityInfo(@Body baseBatchRequestDto: BaseBatchRequestDto? = null): Response<BooleanWrapper>
 
     /**
      * POST api/2.0/files/file/{fileId}/sendeditornotify
@@ -249,10 +249,10 @@ interface SharingApi {
      *
      * @param fileId The file ID with the mention message.
      * @param mentionMessageWrapper The mention message. (optional)
-     * @return [Call]<[AceShortWrapperArrayWrapper]>
+     * @return [AceShortWrapperArrayWrapper]
      */
     @POST("api/2.0/files/file/{fileId}/sendeditornotify")
-    fun sendEditorNotify(@Path("fileId") fileId: kotlin.Int, @Body mentionMessageWrapper: MentionMessageWrapper? = null): Call<AceShortWrapperArrayWrapper>
+    suspend fun sendEditorNotify(@Path("fileId") fileId: kotlin.Int, @Body mentionMessageWrapper: MentionMessageWrapper? = null): Response<AceShortWrapperArrayWrapper>
 
     /**
      * PUT api/2.0/files/file/{fileId}/share
@@ -268,10 +268,10 @@ interface SharingApi {
      *
      * @param fileId The file ID.
      * @param securityInfoSimpleRequestDto The parameters of the security information simple request.
-     * @return [Call]<[FileShareArrayWrapper]>
+     * @return [FileShareArrayWrapper]
      */
     @PUT("api/2.0/files/file/{fileId}/share")
-    fun setFileSecurityInfo(@Path("fileId") fileId: kotlin.Int, @Body securityInfoSimpleRequestDto: SecurityInfoSimpleRequestDto): Call<FileShareArrayWrapper>
+    suspend fun setFileSecurityInfo(@Path("fileId") fileId: kotlin.Int, @Body securityInfoSimpleRequestDto: SecurityInfoSimpleRequestDto): Response<FileShareArrayWrapper>
 
     /**
      * PUT api/2.0/files/folder/{folderId}/share
@@ -287,10 +287,10 @@ interface SharingApi {
      *
      * @param folderId The folder ID.
      * @param securityInfoSimpleRequestDto The parameters of the security information simple request.
-     * @return [Call]<[FileShareArrayWrapper]>
+     * @return [FileShareArrayWrapper]
      */
     @PUT("api/2.0/files/folder/{folderId}/share")
-    fun setFolderSecurityInfo(@Path("folderId") folderId: kotlin.Int, @Body securityInfoSimpleRequestDto: SecurityInfoSimpleRequestDto): Call<FileShareArrayWrapper>
+    suspend fun setFolderSecurityInfo(@Path("folderId") folderId: kotlin.Int, @Body securityInfoSimpleRequestDto: SecurityInfoSimpleRequestDto): Response<FileShareArrayWrapper>
 
     /**
      * PUT api/2.0/files/share
@@ -305,9 +305,9 @@ interface SharingApi {
      *
      *
      * @param securityInfoRequestDto  (optional)
-     * @return [Call]<[FileShareArrayWrapper]>
+     * @return [FileShareArrayWrapper]
      */
     @PUT("api/2.0/files/share")
-    fun setSecurityInfo(@Body securityInfoRequestDto: SecurityInfoRequestDto? = null): Call<FileShareArrayWrapper>
+    suspend fun setSecurityInfo(@Body securityInfoRequestDto: SecurityInfoRequestDto? = null): Response<FileShareArrayWrapper>
 
 }

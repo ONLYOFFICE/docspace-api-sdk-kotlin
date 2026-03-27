@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Settings
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -48,10 +48,10 @@ interface WebhooksApi {
      *
      *
      * @param createWebhooksConfigRequestsDto  (optional)
-     * @return [Call]<[WebhooksConfigWrapper]>
+     * @return [WebhooksConfigWrapper]
      */
     @POST("api/2.0/settings/webhook")
-    fun createWebhook(@Body createWebhooksConfigRequestsDto: CreateWebhooksConfigRequestsDto? = null): Call<WebhooksConfigWrapper>
+    suspend fun createWebhook(@Body createWebhooksConfigRequestsDto: CreateWebhooksConfigRequestsDto? = null): Response<WebhooksConfigWrapper>
 
     /**
      * PUT api/2.0/settings/webhook/enable
@@ -66,10 +66,10 @@ interface WebhooksApi {
      *
      *
      * @param updateWebhooksConfigRequestsDto  (optional)
-     * @return [Call]<[WebhooksConfigWrapper]>
+     * @return [WebhooksConfigWrapper]
      */
     @PUT("api/2.0/settings/webhook/enable")
-    fun enableWebhook(@Body updateWebhooksConfigRequestsDto: UpdateWebhooksConfigRequestsDto? = null): Call<WebhooksConfigWrapper>
+    suspend fun enableWebhook(@Body updateWebhooksConfigRequestsDto: UpdateWebhooksConfigRequestsDto? = null): Response<WebhooksConfigWrapper>
 
     /**
      * GET api/2.0/settings/webhook
@@ -83,10 +83,10 @@ interface WebhooksApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tenant-webhooks/
      *
      *
-     * @return [Call]<[WebhooksConfigWithStatusArrayWrapper]>
+     * @return [WebhooksConfigWithStatusArrayWrapper]
      */
     @GET("api/2.0/settings/webhook")
-    fun getTenantWebhooks(): Call<WebhooksConfigWithStatusArrayWrapper>
+    suspend fun getTenantWebhooks(): Response<WebhooksConfigWithStatusArrayWrapper>
 
     /**
      * GET api/2.0/settings/webhook/triggers
@@ -100,10 +100,10 @@ interface WebhooksApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-webhook-triggers/
      *
      *
-     * @return [Call]<[GetWebhookTriggers200Response]>
+     * @return [GetWebhookTriggers200Response]
      */
     @GET("api/2.0/settings/webhook/triggers")
-    fun getWebhookTriggers(): Call<GetWebhookTriggers200Response>
+    suspend fun getWebhookTriggers(): Response<GetWebhookTriggers200Response>
 
     /**
      * GET api/2.0/settings/webhooks/log
@@ -127,10 +127,10 @@ interface WebhooksApi {
      * @param trigger The type of event that triggered the webhook. (optional)
      * @param count The maximum number of webhook log records to return in the query response. (optional)
      * @param startIndex Specifies the starting index for retrieving webhook logs.  Used for pagination in the webhook delivery log queries. (optional)
-     * @return [Call]<[WebhooksLogArrayWrapper]>
+     * @return [WebhooksLogArrayWrapper]
      */
     @GET("api/2.0/settings/webhooks/log")
-    fun getWebhooksLogs(@Query("deliveryFrom") deliveryFrom: java.time.OffsetDateTime? = null, @Query("deliveryTo") deliveryTo: java.time.OffsetDateTime? = null, @Query("hookUri") hookUri: kotlin.String? = null, @Query("configId") configId: kotlin.Int? = null, @Query("eventId") eventId: kotlin.Int? = null, @Query("groupStatus") groupStatus: WebhookGroupStatus? = null, @Query("userId") userId: java.util.UUID? = null, @Query("trigger") trigger: WebhookTrigger? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null): Call<WebhooksLogArrayWrapper>
+    suspend fun getWebhooksLogs(@Query("deliveryFrom") deliveryFrom: java.time.OffsetDateTime? = null, @Query("deliveryTo") deliveryTo: java.time.OffsetDateTime? = null, @Query("hookUri") hookUri: kotlin.String? = null, @Query("configId") configId: kotlin.Int? = null, @Query("eventId") eventId: kotlin.Int? = null, @Query("groupStatus") groupStatus: WebhookGroupStatus? = null, @Query("userId") userId: java.util.UUID? = null, @Query("trigger") trigger: WebhookTrigger? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null): Response<WebhooksLogArrayWrapper>
 
     /**
      * DELETE api/2.0/settings/webhook/{id}
@@ -145,10 +145,10 @@ interface WebhooksApi {
      *
      *
      * @param id The ID extracted from the route parameters.
-     * @return [Call]<[WebhooksConfigWrapper]>
+     * @return [WebhooksConfigWrapper]
      */
     @DELETE("api/2.0/settings/webhook/{id}")
-    fun removeWebhook(@Path("id") id: kotlin.Int): Call<WebhooksConfigWrapper>
+    suspend fun removeWebhook(@Path("id") id: kotlin.Int): Response<WebhooksConfigWrapper>
 
     /**
      * PUT api/2.0/settings/webhook/{id}/retry
@@ -165,10 +165,10 @@ interface WebhooksApi {
      *
      *
      * @param id The ID extracted from the route parameters.
-     * @return [Call]<[WebhooksLogWrapper]>
+     * @return [WebhooksLogWrapper]
      */
     @PUT("api/2.0/settings/webhook/{id}/retry")
-    fun retryWebhook(@Path("id") id: kotlin.Int): Call<WebhooksLogWrapper>
+    suspend fun retryWebhook(@Path("id") id: kotlin.Int): Response<WebhooksLogWrapper>
 
     /**
      * PUT api/2.0/settings/webhook/retry
@@ -183,10 +183,10 @@ interface WebhooksApi {
      *
      *
      * @param webhookRetryRequestsDto  (optional)
-     * @return [Call]<[WebhooksLogArrayWrapper]>
+     * @return [WebhooksLogArrayWrapper]
      */
     @PUT("api/2.0/settings/webhook/retry")
-    fun retryWebhooks(@Body webhookRetryRequestsDto: WebhookRetryRequestsDto? = null): Call<WebhooksLogArrayWrapper>
+    suspend fun retryWebhooks(@Body webhookRetryRequestsDto: WebhookRetryRequestsDto? = null): Response<WebhooksLogArrayWrapper>
 
     /**
      * PUT api/2.0/settings/webhook
@@ -201,9 +201,9 @@ interface WebhooksApi {
      *
      *
      * @param updateWebhooksConfigRequestsDto  (optional)
-     * @return [Call]<[WebhooksConfigWrapper]>
+     * @return [WebhooksConfigWrapper]
      */
     @PUT("api/2.0/settings/webhook")
-    fun updateWebhook(@Body updateWebhooksConfigRequestsDto: UpdateWebhooksConfigRequestsDto? = null): Call<WebhooksConfigWrapper>
+    suspend fun updateWebhook(@Body updateWebhooksConfigRequestsDto: UpdateWebhooksConfigRequestsDto? = null): Response<WebhooksConfigWrapper>
 
 }

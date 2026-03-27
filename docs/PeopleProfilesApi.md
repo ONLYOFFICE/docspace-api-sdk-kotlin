@@ -59,7 +59,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ProfilesApi::class.java)
 val memberRequestDto : MemberRequestDto =  // MemberRequestDto | 
 
-val result : EmployeeFullWrapper = webService.addMember(memberRequestDto)
+launch(Dispatchers.IO) {
+    val result : EmployeeFullWrapper = webService.addMember(memberRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -110,7 +112,9 @@ val email : kotlin.String = john.doe@example.com // kotlin.String | The user ema
 val encemail : kotlin.String = encrypted_email_string // kotlin.String | The user encrypted email address.
 val culture : kotlin.String = en-US // kotlin.String | Culture
 
-val result : BooleanWrapper = webService.checkUserExistsByEmail(email, encemail, culture)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.checkUserExistsByEmail(email, encemail, culture)
+}
 ```
 
 ### HTTP request headers
@@ -157,7 +161,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ProfilesApi::class.java)
 val userid : kotlin.String = 00000000-0000-0000-0000-000000000000 // kotlin.String | The user ID.
 
-val result : EmployeeFullWrapper = webService.deleteMember(userid)
+launch(Dispatchers.IO) {
+    val result : EmployeeFullWrapper = webService.deleteMember(userid)
+}
 ```
 
 ### HTTP request headers
@@ -201,7 +207,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ProfilesApi::class.java)
 
-val result : EmployeeFullWrapper = webService.deleteProfile()
+launch(Dispatchers.IO) {
+    val result : EmployeeFullWrapper = webService.deleteProfile()
+}
 ```
 
 ### HTTP request headers
@@ -260,7 +268,9 @@ val sortOrder : SortOrder = 0 // SortOrder | The order in which the results are 
 val filterSeparator : kotlin.String = , // kotlin.String | The character or string used to separate multiple filter values in a filtering query.
 val filterValue : kotlin.String = John // kotlin.String | The text value used as an additional filter criterion for profiles retrieval.
 
-val result : EmployeeFullArrayWrapper = webService.getAllProfiles(count, startIndex, filterBy, sortBy, sortOrder, filterSeparator, filterValue)
+launch(Dispatchers.IO) {
+    val result : EmployeeFullArrayWrapper = webService.getAllProfiles(count, startIndex, filterBy, sortBy, sortOrder, filterSeparator, filterValue)
+}
 ```
 
 ### HTTP request headers
@@ -304,7 +314,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ProfilesApi::class.java)
 
-val result : ObjectWrapper = webService.getClaims()
+launch(Dispatchers.IO) {
+    val result : ObjectWrapper = webService.getClaims()
+}
 ```
 
 ### HTTP request headers
@@ -355,7 +367,9 @@ val email : kotlin.String = john.doe@example.com // kotlin.String | The user ema
 val encemail : kotlin.String = encrypted_email_string // kotlin.String | The user encrypted email address.
 val culture : kotlin.String = en-US // kotlin.String | Culture
 
-val result : EmployeeFullWrapper = webService.getProfileByEmail(email, encemail, culture)
+launch(Dispatchers.IO) {
+    val result : EmployeeFullWrapper = webService.getProfileByEmail(email, encemail, culture)
+}
 ```
 
 ### HTTP request headers
@@ -402,7 +416,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ProfilesApi::class.java)
 val userid : kotlin.String = 00000000-0000-0000-0000-000000000000 // kotlin.String | The user ID.
 
-val result : EmployeeFullWrapper = webService.getProfileByUserId(userid)
+launch(Dispatchers.IO) {
+    val result : EmployeeFullWrapper = webService.getProfileByUserId(userid)
+}
 ```
 
 ### HTTP request headers
@@ -446,7 +462,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ProfilesApi::class.java)
 
-val result : EmployeeFullWrapper = webService.getSelfProfile()
+launch(Dispatchers.IO) {
+    val result : EmployeeFullWrapper = webService.getSelfProfile()
+}
 ```
 
 ### HTTP request headers
@@ -493,7 +511,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ProfilesApi::class.java)
 val inviteUsersRequestDto : InviteUsersRequestDto =  // InviteUsersRequestDto | 
 
-val result : EmployeeArrayWrapper = webService.inviteUsers(inviteUsersRequestDto)
+launch(Dispatchers.IO) {
+    val result : EmployeeArrayWrapper = webService.inviteUsers(inviteUsersRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -540,7 +560,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ProfilesApi::class.java)
 val updateMembersRequestDto : UpdateMembersRequestDto =  // UpdateMembersRequestDto | 
 
-val result : EmployeeFullArrayWrapper = webService.removeUsers(updateMembersRequestDto)
+launch(Dispatchers.IO) {
+    val result : EmployeeFullArrayWrapper = webService.removeUsers(updateMembersRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -587,7 +609,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ProfilesApi::class.java)
 val updateMembersRequestDto : UpdateMembersRequestDto =  // UpdateMembersRequestDto | 
 
-val result : EmployeeFullArrayWrapper = webService.resendUserInvites(updateMembersRequestDto)
+launch(Dispatchers.IO) {
+    val result : EmployeeFullArrayWrapper = webService.resendUserInvites(updateMembersRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -636,7 +660,9 @@ val webService = apiClient.createWebservice(ProfilesApi::class.java)
 val userid : kotlin.String = 00000000-0000-0000-0000-000000000000 // kotlin.String | The user ID.
 val updateMemberRequestDto : UpdateMemberRequestDto =  // UpdateMemberRequestDto | The request parameters for updating the user information.
 
-val result : EmployeeFullWrapper = webService.updateMember(userid, updateMemberRequestDto)
+launch(Dispatchers.IO) {
+    val result : EmployeeFullWrapper = webService.updateMember(userid, updateMemberRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -685,7 +711,9 @@ val webService = apiClient.createWebservice(ProfilesApi::class.java)
 val userid : kotlin.String = 00000000-0000-0000-0000-000000000000 // kotlin.String | The user ID.
 val culture : Culture =  // Culture | The culture name parameters.
 
-val result : EmployeeFullWrapper = webService.updateMemberCulture(userid, culture)
+launch(Dispatchers.IO) {
+    val result : EmployeeFullWrapper = webService.updateMemberCulture(userid, culture)
+}
 ```
 
 ### HTTP request headers

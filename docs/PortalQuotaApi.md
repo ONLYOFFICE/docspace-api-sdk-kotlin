@@ -46,7 +46,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(QuotaApi::class.java)
 
-val result : TenantQuotaWrapper = webService.getPortalQuota()
+launch(Dispatchers.IO) {
+    val result : TenantQuotaWrapper = webService.getPortalQuota()
+}
 ```
 
 ### HTTP request headers
@@ -93,7 +95,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(QuotaApi::class.java)
 val refresh : kotlin.Boolean = true // kotlin.Boolean | The value indicating whether the current portal tariff information should be refreshed.
 
-val result : TariffWrapper = webService.getPortalTariff(refresh)
+launch(Dispatchers.IO) {
+    val result : TariffWrapper = webService.getPortalTariff(refresh)
+}
 ```
 
 ### HTTP request headers
@@ -137,7 +141,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(QuotaApi::class.java)
 
-val result : DoubleWrapper = webService.getPortalUsedSpace()
+launch(Dispatchers.IO) {
+    val result : DoubleWrapper = webService.getPortalUsedSpace()
+}
 ```
 
 ### HTTP request headers
@@ -181,7 +187,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(QuotaApi::class.java)
 
-val result : TenantQuotaWrapper = webService.getRightQuota()
+launch(Dispatchers.IO) {
+    val result : TenantQuotaWrapper = webService.getRightQuota()
+}
 ```
 
 ### HTTP request headers

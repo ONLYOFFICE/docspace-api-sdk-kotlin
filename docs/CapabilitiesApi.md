@@ -37,7 +37,9 @@ No authorization required
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(CapabilitiesApi::class.java)
 
-val result : CapabilitiesWrapper = webService.getPortalCapabilities()
+launch(Dispatchers.IO) {
+    val result : CapabilitiesWrapper = webService.getPortalCapabilities()
+}
 ```
 
 ### HTTP request headers

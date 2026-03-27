@@ -45,7 +45,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(TelegramApi::class.java)
 
-val result : TelegramStatusWrapper = webService.checkTelegram()
+launch(Dispatchers.IO) {
+    val result : TelegramStatusWrapper = webService.checkTelegram()
+}
 ```
 
 ### HTTP request headers
@@ -89,7 +91,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(TelegramApi::class.java)
 
-val result : StringWrapper = webService.linkTelegram()
+launch(Dispatchers.IO) {
+    val result : StringWrapper = webService.linkTelegram()
+}
 ```
 
 ### HTTP request headers
@@ -133,7 +137,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(TelegramApi::class.java)
 
-val result : BooleanWrapper = webService.unlinkTelegram()
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.unlinkTelegram()
+}
 ```
 
 ### HTTP request headers

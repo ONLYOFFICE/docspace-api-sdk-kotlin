@@ -56,7 +56,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(GroupApi::class.java)
 val groupRequestDto : GroupRequestDto =  // GroupRequestDto | 
 
-val result : GroupWrapper = webService.addGroup(groupRequestDto)
+launch(Dispatchers.IO) {
+    val result : GroupWrapper = webService.addGroup(groupRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -105,7 +107,9 @@ val webService = apiClient.createWebservice(GroupApi::class.java)
 val id : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The group ID.
 val membersRequest : MembersRequest =  // MembersRequest | The member request.
 
-val result : GroupWrapper = webService.addMembersTo(id, membersRequest)
+launch(Dispatchers.IO) {
+    val result : GroupWrapper = webService.addMembersTo(id, membersRequest)
+}
 ```
 
 ### HTTP request headers
@@ -152,7 +156,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(GroupApi::class.java)
 val id : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The group ID.
 
-val result : NoContentResultWrapper = webService.deleteGroup(id)
+launch(Dispatchers.IO) {
+    val result : NoContentResultWrapper = webService.deleteGroup(id)
+}
 ```
 
 ### HTTP request headers
@@ -201,7 +207,9 @@ val webService = apiClient.createWebservice(GroupApi::class.java)
 val id : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The group ID.
 val includeMembers : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to include the group members or not.
 
-val result : GroupWrapper = webService.getGroup(id, includeMembers)
+launch(Dispatchers.IO) {
+    val result : GroupWrapper = webService.getGroup(id, includeMembers)
+}
 ```
 
 ### HTTP request headers
@@ -248,7 +256,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(GroupApi::class.java)
 val userid : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The user ID.
 
-val result : GroupSummaryArrayWrapper = webService.getGroupByUserId(userid)
+launch(Dispatchers.IO) {
+    val result : GroupSummaryArrayWrapper = webService.getGroupByUserId(userid)
+}
 ```
 
 ### HTTP request headers
@@ -307,7 +317,9 @@ val sortBy : kotlin.String = displayName // kotlin.String | Specifies the proper
 val sortOrder : SortOrder = 0 // SortOrder | The order in which the results are sorted.
 val filterValue : kotlin.String = John // kotlin.String | The text used for filtering or searching group data.
 
-val result : GroupArrayWrapper = webService.getGroups(userId, manager, count, startIndex, sortBy, sortOrder, filterValue)
+launch(Dispatchers.IO) {
+    val result : GroupArrayWrapper = webService.getGroups(userId, manager, count, startIndex, sortBy, sortOrder, filterValue)
+}
 ```
 
 ### HTTP request headers
@@ -356,7 +368,9 @@ val webService = apiClient.createWebservice(GroupApi::class.java)
 val fromId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The group ID to move from.
 val toId : java.util.UUID = 11111111-1111-1111-1111-111111111111 // java.util.UUID | The group ID to move to.
 
-val result : GroupWrapper = webService.moveMembersTo(fromId, toId)
+launch(Dispatchers.IO) {
+    val result : GroupWrapper = webService.moveMembersTo(fromId, toId)
+}
 ```
 
 ### HTTP request headers
@@ -405,7 +419,9 @@ val webService = apiClient.createWebservice(GroupApi::class.java)
 val id : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The group ID.
 val membersRequest : MembersRequest =  // MembersRequest | The member request.
 
-val result : GroupWrapper = webService.removeMembersFrom(id, membersRequest)
+launch(Dispatchers.IO) {
+    val result : GroupWrapper = webService.removeMembersFrom(id, membersRequest)
+}
 ```
 
 ### HTTP request headers
@@ -454,7 +470,9 @@ val webService = apiClient.createWebservice(GroupApi::class.java)
 val id : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The group ID.
 val setManagerRequest : SetManagerRequest =  // SetManagerRequest | The request for setting a group manager.
 
-val result : GroupWrapper = webService.setGroupManager(id, setManagerRequest)
+launch(Dispatchers.IO) {
+    val result : GroupWrapper = webService.setGroupManager(id, setManagerRequest)
+}
 ```
 
 ### HTTP request headers
@@ -503,7 +521,9 @@ val webService = apiClient.createWebservice(GroupApi::class.java)
 val id : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The group ID.
 val membersRequest : MembersRequest =  // MembersRequest | The member request.
 
-val result : GroupWrapper = webService.setMembersTo(id, membersRequest)
+launch(Dispatchers.IO) {
+    val result : GroupWrapper = webService.setMembersTo(id, membersRequest)
+}
 ```
 
 ### HTTP request headers
@@ -552,7 +572,9 @@ val webService = apiClient.createWebservice(GroupApi::class.java)
 val id : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The group ID.
 val updateGroupRequest : UpdateGroupRequest =  // UpdateGroupRequest | The request for updating a group.
 
-val result : GroupWrapper = webService.updateGroup(id, updateGroupRequest)
+launch(Dispatchers.IO) {
+    val result : GroupWrapper = webService.updateGroup(id, updateGroupRequest)
+}
 ```
 
 ### HTTP request headers

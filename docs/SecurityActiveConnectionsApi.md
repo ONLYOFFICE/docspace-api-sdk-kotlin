@@ -47,7 +47,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ActiveConnectionsApi::class.java)
 
-val result : ActiveConnectionsWrapper = webService.getAllActiveConnections()
+launch(Dispatchers.IO) {
+    val result : ActiveConnectionsWrapper = webService.getAllActiveConnections()
+}
 ```
 
 ### HTTP request headers
@@ -94,7 +96,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ActiveConnectionsApi::class.java)
 val loginEventId : kotlin.Int = 12345 // kotlin.Int | The ID of the specific login event.
 
-val result : BooleanWrapper = webService.logOutActiveConnection(loginEventId)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.logOutActiveConnection(loginEventId)
+}
 ```
 
 ### HTTP request headers
@@ -138,7 +142,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ActiveConnectionsApi::class.java)
 
-val result : StringWrapper = webService.logOutAllActiveConnectionsChangePassword()
+launch(Dispatchers.IO) {
+    val result : StringWrapper = webService.logOutAllActiveConnectionsChangePassword()
+}
 ```
 
 ### HTTP request headers
@@ -185,7 +191,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ActiveConnectionsApi::class.java)
 val userId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The user ID extracted from the route parameters.
 
-webService.logOutAllActiveConnectionsForUser(userId)
+launch(Dispatchers.IO) {
+    webService.logOutAllActiveConnectionsForUser(userId)
+}
 ```
 
 ### HTTP request headers
@@ -229,7 +237,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ActiveConnectionsApi::class.java)
 
-val result : StringWrapper = webService.logOutAllExceptThisConnection()
+launch(Dispatchers.IO) {
+    val result : StringWrapper = webService.logOutAllExceptThisConnection()
+}
 ```
 
 ### HTTP request headers

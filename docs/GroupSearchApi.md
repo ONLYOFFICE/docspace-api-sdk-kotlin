@@ -56,7 +56,9 @@ val count : kotlin.Int = 25 // kotlin.Int | The number of groups to retrieve in 
 val startIndex : kotlin.Int = 0 // kotlin.Int | The starting index from which to begin retrieving groups with their sharing settings.
 val filterValue : kotlin.String = John // kotlin.String | The text used as a filter for retrieving groups with their sharing settings.
 
-val result : GroupArrayWrapper = webService.getGroupsWithFilesShared(id, excludeShared, count, startIndex, filterValue)
+launch(Dispatchers.IO) {
+    val result : GroupArrayWrapper = webService.getGroupsWithFilesShared(id, excludeShared, count, startIndex, filterValue)
+}
 ```
 
 ### HTTP request headers
@@ -111,7 +113,9 @@ val count : kotlin.Int = 25 // kotlin.Int | The number of groups to retrieve in 
 val startIndex : kotlin.Int = 0 // kotlin.Int | The starting index from which to begin retrieving groups with their sharing settings.
 val filterValue : kotlin.String = John // kotlin.String | The text used as a filter for retrieving groups with their sharing settings.
 
-val result : GroupArrayWrapper = webService.getGroupsWithFoldersShared(id, excludeShared, count, startIndex, filterValue)
+launch(Dispatchers.IO) {
+    val result : GroupArrayWrapper = webService.getGroupsWithFoldersShared(id, excludeShared, count, startIndex, filterValue)
+}
 ```
 
 ### HTTP request headers
@@ -166,7 +170,9 @@ val count : kotlin.Int = 25 // kotlin.Int | The number of groups to retrieve in 
 val startIndex : kotlin.Int = 0 // kotlin.Int | The starting index from which to begin retrieving groups with their sharing settings.
 val filterValue : kotlin.String = John // kotlin.String | The text used as a filter for retrieving groups with their sharing settings.
 
-val result : GroupArrayWrapper = webService.getGroupsWithRoomsShared(id, excludeShared, count, startIndex, filterValue)
+launch(Dispatchers.IO) {
+    val result : GroupArrayWrapper = webService.getGroupsWithRoomsShared(id, excludeShared, count, startIndex, filterValue)
+}
 ```
 
 ### HTTP request headers

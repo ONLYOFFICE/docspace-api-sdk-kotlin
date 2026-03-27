@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Settings
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -40,10 +40,10 @@ interface TelegramApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/check-telegram/
      *
      *
-     * @return [Call]<[TelegramStatusWrapper]>
+     * @return [TelegramStatusWrapper]
      */
     @GET("api/2.0/settings/telegram/check")
-    fun checkTelegram(): Call<TelegramStatusWrapper>
+    suspend fun checkTelegram(): Response<TelegramStatusWrapper>
 
     /**
      * GET api/2.0/settings/telegram/link
@@ -57,10 +57,10 @@ interface TelegramApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/link-telegram/
      *
      *
-     * @return [Call]<[StringWrapper]>
+     * @return [StringWrapper]
      */
     @GET("api/2.0/settings/telegram/link")
-    fun linkTelegram(): Call<StringWrapper>
+    suspend fun linkTelegram(): Response<StringWrapper>
 
     /**
      * DELETE api/2.0/settings/telegram/link
@@ -74,9 +74,9 @@ interface TelegramApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/unlink-telegram/
      *
      *
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @DELETE("api/2.0/settings/telegram/link")
-    fun unlinkTelegram(): Call<BooleanWrapper>
+    suspend fun unlinkTelegram(): Response<BooleanWrapper>
 
 }

@@ -55,7 +55,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(BackupApi::class.java)
 
-val result : BooleanWrapper = webService.cancelBackup()
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.cancelBackup()
+}
 ```
 
 ### HTTP request headers
@@ -102,7 +104,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(BackupApi::class.java)
 val backupScheduleDto : BackupScheduleDto =  // BackupScheduleDto | 
 
-val result : BooleanWrapper = webService.createBackupSchedule(backupScheduleDto)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.createBackupSchedule(backupScheduleDto)
+}
 ```
 
 ### HTTP request headers
@@ -149,7 +153,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(BackupApi::class.java)
 val id : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The backup ID.
 
-val result : BooleanWrapper = webService.deleteBackup(id)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.deleteBackup(id)
+}
 ```
 
 ### HTTP request headers
@@ -196,7 +202,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(BackupApi::class.java)
 val dump : kotlin.Boolean = true // kotlin.Boolean | Specifies if a dump will be created or not.
 
-val result : BooleanWrapper = webService.deleteBackupHistory(dump)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.deleteBackupHistory(dump)
+}
 ```
 
 ### HTTP request headers
@@ -243,7 +251,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(BackupApi::class.java)
 val dump : kotlin.Boolean = true // kotlin.Boolean | Specifies if a dump will be created or not.
 
-val result : BooleanWrapper = webService.deleteBackupSchedule(dump)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.deleteBackupSchedule(dump)
+}
 ```
 
 ### HTTP request headers
@@ -290,7 +300,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(BackupApi::class.java)
 val dump : kotlin.Boolean = true // kotlin.Boolean | Specifies if a dump will be created or not.
 
-val result : BackupHistoryRecordArrayWrapper = webService.getBackupHistory(dump)
+launch(Dispatchers.IO) {
+    val result : BackupHistoryRecordArrayWrapper = webService.getBackupHistory(dump)
+}
 ```
 
 ### HTTP request headers
@@ -337,7 +349,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(BackupApi::class.java)
 val dump : kotlin.Boolean = true // kotlin.Boolean | Specifies if a dump will be created or not.
 
-val result : BackupProgressWrapper = webService.getBackupProgress(dump)
+launch(Dispatchers.IO) {
+    val result : BackupProgressWrapper = webService.getBackupProgress(dump)
+}
 ```
 
 ### HTTP request headers
@@ -384,7 +398,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(BackupApi::class.java)
 val dump : kotlin.Boolean = true // kotlin.Boolean | Specifies if a dump will be created or not.
 
-val result : ScheduleWrapper = webService.getBackupSchedule(dump)
+launch(Dispatchers.IO) {
+    val result : ScheduleWrapper = webService.getBackupSchedule(dump)
+}
 ```
 
 ### HTTP request headers
@@ -435,7 +451,9 @@ val from : java.time.OffsetDateTime = 2025-01-01T00:00Z // java.time.OffsetDateT
 val to : java.time.OffsetDateTime = 2025-12-31T23:59:59Z // java.time.OffsetDateTime | The to date.
 val paid : kotlin.Boolean = false // kotlin.Boolean | Specifies if the backups are paid or not.
 
-val result : Int32Wrapper = webService.getBackupsCount(from, to, paid)
+launch(Dispatchers.IO) {
+    val result : Int32Wrapper = webService.getBackupsCount(from, to, paid)
+}
 ```
 
 ### HTTP request headers
@@ -479,7 +497,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(BackupApi::class.java)
 
-val result : BackupServiceStateWrapper = webService.getBackupsServiceState()
+launch(Dispatchers.IO) {
+    val result : BackupServiceStateWrapper = webService.getBackupsServiceState()
+}
 ```
 
 ### HTTP request headers
@@ -520,7 +540,9 @@ val apiClient = ApiClient()
 val webService = apiClient.createWebservice(BackupApi::class.java)
 val dump : kotlin.Boolean = false // kotlin.Boolean | Specifies if a dump will be created or not.
 
-val result : BackupProgressWrapper = webService.getRestoreProgress(dump)
+launch(Dispatchers.IO) {
+    val result : BackupProgressWrapper = webService.getRestoreProgress(dump)
+}
 ```
 
 ### HTTP request headers
@@ -567,7 +589,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(BackupApi::class.java)
 val backupDto : BackupDto =  // BackupDto | 
 
-val result : BackupProgressWrapper = webService.startBackup(backupDto)
+launch(Dispatchers.IO) {
+    val result : BackupProgressWrapper = webService.startBackup(backupDto)
+}
 ```
 
 ### HTTP request headers
@@ -614,7 +638,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(BackupApi::class.java)
 val backupRestoreDto : BackupRestoreDto =  // BackupRestoreDto | 
 
-val result : BackupProgressWrapper = webService.startBackupRestore(backupRestoreDto)
+launch(Dispatchers.IO) {
+    val result : BackupProgressWrapper = webService.startBackupRestore(backupRestoreDto)
+}
 ```
 
 ### HTTP request headers

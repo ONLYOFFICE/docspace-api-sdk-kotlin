@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.People
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -40,10 +40,10 @@ interface ThemeApi {
      *
      *
      * @param darkThemeSettingsRequestDto  (optional)
-     * @return [Call]<[DarkThemeSettingsWrapper]>
+     * @return [DarkThemeSettingsWrapper]
      */
     @PUT("api/2.0/people/theme")
-    fun changePortalTheme(@Body darkThemeSettingsRequestDto: DarkThemeSettingsRequestDto? = null): Call<DarkThemeSettingsWrapper>
+    suspend fun changePortalTheme(@Body darkThemeSettingsRequestDto: DarkThemeSettingsRequestDto? = null): Response<DarkThemeSettingsWrapper>
 
     /**
      * GET api/2.0/people/theme
@@ -57,9 +57,9 @@ interface ThemeApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-portal-theme/
      *
      *
-     * @return [Call]<[DarkThemeSettingsWrapper]>
+     * @return [DarkThemeSettingsWrapper]
      */
     @GET("api/2.0/people/theme")
-    fun getPortalTheme(): Call<DarkThemeSettingsWrapper>
+    suspend fun getPortalTheme(): Response<DarkThemeSettingsWrapper>
 
 }

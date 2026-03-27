@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.People
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -43,10 +43,10 @@ interface GuestsApi {
      *
      *
      * @param emailMemberRequestDto  (optional)
-     * @return [Call]<[EmployeeFullWrapper]>
+     * @return [EmployeeFullWrapper]
      */
     @POST("api/2.0/people/guests/share/approve")
-    fun approveGuestShareLink(@Body emailMemberRequestDto: EmailMemberRequestDto? = null): Call<EmployeeFullWrapper>
+    suspend fun approveGuestShareLink(@Body emailMemberRequestDto: EmailMemberRequestDto? = null): Response<EmployeeFullWrapper>
 
     /**
      * DELETE api/2.0/people/guests
@@ -62,9 +62,9 @@ interface GuestsApi {
      *
      *
      * @param updateMembersRequestDto  (optional)
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @DELETE("api/2.0/people/guests")
-    fun deleteGuests(@Body updateMembersRequestDto: UpdateMembersRequestDto? = null): Call<Unit>
+    suspend fun deleteGuests(@Body updateMembersRequestDto: UpdateMembersRequestDto? = null): Response<Unit>
 
 }

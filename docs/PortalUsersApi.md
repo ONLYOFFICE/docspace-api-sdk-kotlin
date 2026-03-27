@@ -54,7 +54,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(UsersApi::class.java)
 val invitationLinkCreateRequestDto : InvitationLinkCreateRequestDto =  // InvitationLinkCreateRequestDto | 
 
-val result : InvitationLinkWrapper = webService.createInvitationLink(invitationLinkCreateRequestDto)
+launch(Dispatchers.IO) {
+    val result : InvitationLinkWrapper = webService.createInvitationLink(invitationLinkCreateRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -101,7 +103,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(UsersApi::class.java)
 val invitationLinkDeleteRequestDto : InvitationLinkDeleteRequestDto =  // InvitationLinkDeleteRequestDto | The data transfer object containing the details of the invitation link to be deleted.
 
-val result : StringWrapper = webService.deleteInvitationLink(invitationLinkDeleteRequestDto)
+launch(Dispatchers.IO) {
+    val result : StringWrapper = webService.deleteInvitationLink(invitationLinkDeleteRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -148,7 +152,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(UsersApi::class.java)
 val employeeType : EmployeeType = 1 // EmployeeType | The type of employee role for the invitation link (DocSpaceAdmin, RoomAdmin or User).
 
-val result : StringWrapper = webService.getInvitationLink(employeeType)
+launch(Dispatchers.IO) {
+    val result : StringWrapper = webService.getInvitationLink(employeeType)
+}
 ```
 
 ### HTTP request headers
@@ -195,7 +201,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(UsersApi::class.java)
 val employeeType : EmployeeType = 1 // EmployeeType | The type of employee role for the invitation link (DocSpaceAdmin, RoomAdmin or User).
 
-val result : InvitationLinkWrapper = webService.getInvitationLinkByEmployeeType(employeeType)
+launch(Dispatchers.IO) {
+    val result : InvitationLinkWrapper = webService.getInvitationLinkByEmployeeType(employeeType)
+}
 ```
 
 ### HTTP request headers
@@ -239,7 +247,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(UsersApi::class.java)
 
-val result : Int64Wrapper = webService.getPortalUsersCount()
+launch(Dispatchers.IO) {
+    val result : Int64Wrapper = webService.getPortalUsersCount()
+}
 ```
 
 ### HTTP request headers
@@ -286,7 +296,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(UsersApi::class.java)
 val userID : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The user ID extracted from the route parameters.
 
-val result : UserInfoWrapper = webService.getUserById(userID)
+launch(Dispatchers.IO) {
+    val result : UserInfoWrapper = webService.getUserById(userID)
+}
 ```
 
 ### HTTP request headers
@@ -330,7 +342,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(UsersApi::class.java)
 
-webService.markGiftMessageAsRead()
+launch(Dispatchers.IO) {
+    webService.markGiftMessageAsRead()
+}
 ```
 
 ### HTTP request headers
@@ -373,7 +387,9 @@ val webService = apiClient.createWebservice(UsersApi::class.java)
 val userid : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The user ID to receive the congratulatory message.
 val key : kotlin.String = birthday // kotlin.String | The template identifier or email configuration key.
 
-webService.sendCongratulations(userid, key)
+launch(Dispatchers.IO) {
+    webService.sendCongratulations(userid, key)
+}
 ```
 
 ### HTTP request headers
@@ -420,7 +436,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(UsersApi::class.java)
 val invitationLinkUpdateRequestDto : InvitationLinkUpdateRequestDto =  // InvitationLinkUpdateRequestDto | 
 
-val result : InvitationLinkWrapper = webService.updateInvitationLink(invitationLinkUpdateRequestDto)
+launch(Dispatchers.IO) {
+    val result : InvitationLinkWrapper = webService.updateInvitationLink(invitationLinkUpdateRequestDto)
+}
 ```
 
 ### HTTP request headers

@@ -46,7 +46,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(QuotaApi::class.java)
 
-val result : TenantUserQuotaSettingsWrapper = webService.getUserQuotaSettings()
+launch(Dispatchers.IO) {
+    val result : TenantUserQuotaSettingsWrapper = webService.getUserQuotaSettings()
+}
 ```
 
 ### HTTP request headers
@@ -93,7 +95,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(QuotaApi::class.java)
 val quotaSettingsRequestsDto : QuotaSettingsRequestsDto =  // QuotaSettingsRequestsDto | 
 
-val result : TenantAiAgentQuotaSettingsWrapper = webService.saveAiAgentQuotaSettings(quotaSettingsRequestsDto)
+launch(Dispatchers.IO) {
+    val result : TenantAiAgentQuotaSettingsWrapper = webService.saveAiAgentQuotaSettings(quotaSettingsRequestsDto)
+}
 ```
 
 ### HTTP request headers
@@ -140,7 +144,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(QuotaApi::class.java)
 val quotaSettingsRequestsDto : QuotaSettingsRequestsDto =  // QuotaSettingsRequestsDto | 
 
-val result : TenantRoomQuotaSettingsWrapper = webService.saveRoomQuotaSettings(quotaSettingsRequestsDto)
+launch(Dispatchers.IO) {
+    val result : TenantRoomQuotaSettingsWrapper = webService.saveRoomQuotaSettings(quotaSettingsRequestsDto)
+}
 ```
 
 ### HTTP request headers
@@ -187,7 +193,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(QuotaApi::class.java)
 val tenantQuotaSettingsRequestsDto : TenantQuotaSettingsRequestsDto =  // TenantQuotaSettingsRequestsDto | 
 
-val result : TenantQuotaSettingsWrapper = webService.setTenantQuotaSettings(tenantQuotaSettingsRequestsDto)
+launch(Dispatchers.IO) {
+    val result : TenantQuotaSettingsWrapper = webService.setTenantQuotaSettings(tenantQuotaSettingsRequestsDto)
+}
 ```
 
 ### HTTP request headers

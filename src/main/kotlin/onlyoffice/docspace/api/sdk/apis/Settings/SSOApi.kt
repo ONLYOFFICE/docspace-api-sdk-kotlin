@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Settings
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -40,10 +40,10 @@ interface SSOApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-default-sso-settings-v2/
      *
      *
-     * @return [Call]<[SsoSettingsV2Wrapper]>
+     * @return [SsoSettingsV2Wrapper]
      */
     @GET("api/2.0/settings/ssov2/default")
-    fun getDefaultSsoSettingsV2(): Call<SsoSettingsV2Wrapper>
+    suspend fun getDefaultSsoSettingsV2(): Response<SsoSettingsV2Wrapper>
 
     /**
      * GET api/2.0/settings/ssov2
@@ -56,10 +56,10 @@ interface SSOApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-sso-settings-v2/
      *
      *
-     * @return [Call]<[SsoSettingsV2Wrapper]>
+     * @return [SsoSettingsV2Wrapper]
      */
     @GET("api/2.0/settings/ssov2")
-    fun getSsoSettingsV2(): Call<SsoSettingsV2Wrapper>
+    suspend fun getSsoSettingsV2(): Response<SsoSettingsV2Wrapper>
 
     /**
      * GET api/2.0/settings/ssov2/constants
@@ -73,10 +73,10 @@ interface SSOApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-sso-settings-v2-constants/
      *
      *
-     * @return [Call]<[ObjectWrapper]>
+     * @return [ObjectWrapper]
      */
     @GET("api/2.0/settings/ssov2/constants")
-    fun getSsoSettingsV2Constants(): Call<ObjectWrapper>
+    suspend fun getSsoSettingsV2Constants(): Response<ObjectWrapper>
 
     /**
      * DELETE api/2.0/settings/ssov2
@@ -90,10 +90,10 @@ interface SSOApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/reset-sso-settings-v2/
      *
      *
-     * @return [Call]<[SsoSettingsV2Wrapper]>
+     * @return [SsoSettingsV2Wrapper]
      */
     @DELETE("api/2.0/settings/ssov2")
-    fun resetSsoSettingsV2(): Call<SsoSettingsV2Wrapper>
+    suspend fun resetSsoSettingsV2(): Response<SsoSettingsV2Wrapper>
 
     /**
      * POST api/2.0/settings/ssov2
@@ -109,9 +109,9 @@ interface SSOApi {
      *
      *
      * @param ssoSettingsRequestsDto  (optional)
-     * @return [Call]<[SsoSettingsV2Wrapper]>
+     * @return [SsoSettingsV2Wrapper]
      */
     @POST("api/2.0/settings/ssov2")
-    fun saveSsoSettingsV2(@Body ssoSettingsRequestsDto: SsoSettingsRequestsDto? = null): Call<SsoSettingsV2Wrapper>
+    suspend fun saveSsoSettingsV2(@Body ssoSettingsRequestsDto: SsoSettingsRequestsDto? = null): Response<SsoSettingsV2Wrapper>
 
 }

@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Files
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -67,10 +67,10 @@ interface FoldersApi {
      *
      * @param folderId The folder ID.
      * @param checkUploadRequest The request parameters for checking file uploads.
-     * @return [Call]<[STRINGArrayWrapper]>
+     * @return [STRINGArrayWrapper]
      */
     @POST("api/2.0/files/{folderId}/upload/check")
-    fun checkUpload(@Path("folderId") folderId: kotlin.Int, @Body checkUploadRequest: CheckUploadRequest): Call<STRINGArrayWrapper>
+    suspend fun checkUpload(@Path("folderId") folderId: kotlin.Int, @Body checkUploadRequest: CheckUploadRequest): Response<STRINGArrayWrapper>
 
     /**
      * POST api/2.0/files/folder/{folderId}
@@ -86,10 +86,10 @@ interface FoldersApi {
      *
      * @param folderId The folder ID for the folder creation.
      * @param createFolder The parameters for creating a folder.
-     * @return [Call]<[FolderIntegerWrapper]>
+     * @return [FolderIntegerWrapper]
      */
     @POST("api/2.0/files/folder/{folderId}")
-    fun createFolder(@Path("folderId") folderId: kotlin.Int, @Body createFolder: CreateFolder): Call<FolderIntegerWrapper>
+    suspend fun createFolder(@Path("folderId") folderId: kotlin.Int, @Body createFolder: CreateFolder): Response<FolderIntegerWrapper>
 
     /**
      * POST api/2.0/files/folder/{id}/link
@@ -106,10 +106,10 @@ interface FoldersApi {
      *
      * @param id The folder ID.
      * @param folderLinkRequest The folder link parameters.
-     * @return [Call]<[FileShareWrapper]>
+     * @return [FileShareWrapper]
      */
     @POST("api/2.0/files/folder/{id}/link")
-    fun createFolderPrimaryExternalLink(@Path("id") id: kotlin.Int, @Body folderLinkRequest: FolderLinkRequest): Call<FileShareWrapper>
+    suspend fun createFolderPrimaryExternalLink(@Path("id") id: kotlin.Int, @Body folderLinkRequest: FolderLinkRequest): Response<FileShareWrapper>
 
     /**
      * POST api/2.0/files/folder/{folderId}/log/report
@@ -126,10 +126,10 @@ interface FoldersApi {
      *
      *
      * @param folderId 
-     * @return [Call]<[StringWrapper]>
+     * @return [StringWrapper]
      */
     @POST("api/2.0/files/folder/{folderId}/log/report")
-    fun createReportFolderHistory(@Path("folderId") folderId: kotlin.Int): Call<StringWrapper>
+    suspend fun createReportFolderHistory(@Path("folderId") folderId: kotlin.Int): Response<StringWrapper>
 
     /**
      * DELETE api/2.0/files/folder/{folderId}
@@ -145,10 +145,10 @@ interface FoldersApi {
      *
      * @param folderId The folder ID to delete.
      * @param deleteFolder The parameters for deleting a folder.
-     * @return [Call]<[FileOperationArrayWrapper]>
+     * @return [FileOperationArrayWrapper]
      */
     @DELETE("api/2.0/files/folder/{folderId}")
-    fun deleteFolder(@Path("folderId") folderId: kotlin.Int, @Body deleteFolder: DeleteFolder): Call<FileOperationArrayWrapper>
+    suspend fun deleteFolder(@Path("folderId") folderId: kotlin.Int, @Body deleteFolder: DeleteFolder): Response<FileOperationArrayWrapper>
 
     /**
      * GET api/2.0/files/@favorites
@@ -171,10 +171,10 @@ interface FoldersApi {
      * @param sortBy Specifies the field by which the folder content should be sorted. (optional)
      * @param sortOrder The order in which the results are sorted. (optional)
      * @param filterValue The text used as a filter or search criterion for folder content queries. (optional)
-     * @return [Call]<[FolderContentIntegerWrapper]>
+     * @return [FolderContentIntegerWrapper]
      */
     @GET("api/2.0/files/@favorites")
-    fun getFavoritesFolder(@Query("userIdOrGroupId") userIdOrGroupId: java.util.UUID? = null, @Query("filterType") filterType: FilterType? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterValue") filterValue: kotlin.String? = null): Call<FolderContentIntegerWrapper>
+    suspend fun getFavoritesFolder(@Query("userIdOrGroupId") userIdOrGroupId: java.util.UUID? = null, @Query("filterType") filterType: FilterType? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<FolderContentIntegerWrapper>
 
     /**
      * GET api/2.0/files/filesusedspace
@@ -188,10 +188,10 @@ interface FoldersApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-files-used-space/
      *
      *
-     * @return [Call]<[FilesStatisticsResultWrapper]>
+     * @return [FilesStatisticsResultWrapper]
      */
     @GET("api/2.0/files/filesusedspace")
-    fun getFilesUsedSpace(): Call<FilesStatisticsResultWrapper>
+    suspend fun getFilesUsedSpace(): Response<FilesStatisticsResultWrapper>
 
     /**
      * GET api/2.0/files/{folderId}/formfilter
@@ -205,10 +205,10 @@ interface FoldersApi {
      *
      *
      * @param folderId The folder unique identifier.
-     * @return [Call]<[FormsItemArrayWrapper]>
+     * @return [FormsItemArrayWrapper]
      */
     @GET("api/2.0/files/{folderId}/formfilter")
-    fun getFolder(@Path("folderId") folderId: kotlin.Int): Call<FormsItemArrayWrapper>
+    suspend fun getFolder(@Path("folderId") folderId: kotlin.Int): Response<FormsItemArrayWrapper>
 
     /**
      * GET api/2.0/files/{folderId}
@@ -240,10 +240,10 @@ interface FoldersApi {
      * @param sortOrder The order in which the results are sorted. (optional)
      * @param filterValue The text value used as a filter parameter for folder content queries. (optional)
      * @param location The location context of the request, specifying the area  where the operation is performed, such as a room, documents, or a link. (optional)
-     * @return [Call]<[FolderContentIntegerWrapper]>
+     * @return [FolderContentIntegerWrapper]
      */
     @GET("api/2.0/files/{folderId}")
-    fun getFolderByFolderId(@Path("folderId") folderId: kotlin.Int, @Query("userIdOrGroupId") userIdOrGroupId: java.util.UUID? = null, @Query("sharedBy") sharedBy: java.util.UUID? = null, @Query("filterType") filterType: FilterType? = null, @Query("roomId") roomId: kotlin.Int? = null, @Query("excludeSubject") excludeSubject: kotlin.Boolean? = null, @Query("applyFilterOption") applyFilterOption: ApplyFilterOption? = null, @Query("extension") extension: kotlin.String? = null, @Query("searchArea") searchArea: SearchArea? = null, @Query("formsItemKey") formsItemKey: kotlin.String? = null, @Query("formsItemType") formsItemType: kotlin.String? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterValue") filterValue: kotlin.String? = null, @Query("Location") location: Location? = null): Call<FolderContentIntegerWrapper>
+    suspend fun getFolderByFolderId(@Path("folderId") folderId: kotlin.Int, @Query("userIdOrGroupId") userIdOrGroupId: java.util.UUID? = null, @Query("sharedBy") sharedBy: java.util.UUID? = null, @Query("filterType") filterType: FilterType? = null, @Query("roomId") roomId: kotlin.Int? = null, @Query("excludeSubject") excludeSubject: kotlin.Boolean? = null, @Query("applyFilterOption") applyFilterOption: ApplyFilterOption? = null, @Query("extension") extension: kotlin.String? = null, @Query("searchArea") searchArea: SearchArea? = null, @Query("formsItemKey") formsItemKey: kotlin.String? = null, @Query("formsItemType") formsItemType: kotlin.String? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterValue") filterValue: kotlin.String? = null, @Query("Location") location: Location? = null): Response<FolderContentIntegerWrapper>
 
     /**
      * GET api/2.0/files/folder/{folderId}/log
@@ -264,10 +264,10 @@ interface FoldersApi {
      * @param toDate The end date of the history request. (optional)
      * @param count The number of records to retrieve for the folder history. (optional)
      * @param startIndex The starting index from which the history records are retrieved in the request. (optional)
-     * @return [Call]<[HistoryArrayWrapper]>
+     * @return [HistoryArrayWrapper]
      */
     @GET("api/2.0/files/folder/{folderId}/log")
-    fun getFolderHistory(@Path("folderId") folderId: kotlin.Int, @Query("fromDate") fromDate: ApiDateTime? = null, @Query("toDate") toDate: ApiDateTime? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null): Call<HistoryArrayWrapper>
+    suspend fun getFolderHistory(@Path("folderId") folderId: kotlin.Int, @Query("fromDate") fromDate: ApiDateTime? = null, @Query("toDate") toDate: ApiDateTime? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null): Response<HistoryArrayWrapper>
 
     /**
      * GET api/2.0/files/folder/{folderId}
@@ -281,10 +281,10 @@ interface FoldersApi {
      *
      *
      * @param folderId The folder unique identifier.
-     * @return [Call]<[FolderIntegerWrapper]>
+     * @return [FolderIntegerWrapper]
      */
     @GET("api/2.0/files/folder/{folderId}")
-    fun getFolderInfo(@Path("folderId") folderId: kotlin.Int): Call<FolderIntegerWrapper>
+    suspend fun getFolderInfo(@Path("folderId") folderId: kotlin.Int): Response<FolderIntegerWrapper>
 
     /**
      * GET api/2.0/files/folder/{id}/links
@@ -299,10 +299,10 @@ interface FoldersApi {
      *
      *
      * @param id The folder ID.
-     * @return [Call]<[FileShareArrayWrapper]>
+     * @return [FileShareArrayWrapper]
      */
     @GET("api/2.0/files/folder/{id}/links")
-    fun getFolderLinks(@Path("id") id: kotlin.Int): Call<FileShareArrayWrapper>
+    suspend fun getFolderLinks(@Path("id") id: kotlin.Int): Response<FileShareArrayWrapper>
 
     /**
      * GET api/2.0/files/folder/{folderId}/path
@@ -318,10 +318,10 @@ interface FoldersApi {
      *
      *
      * @param folderId The folder unique identifier.
-     * @return [Call]<[FileEntryBaseArrayWrapper]>
+     * @return [FileEntryBaseArrayWrapper]
      */
     @GET("api/2.0/files/folder/{folderId}/path")
-    fun getFolderPath(@Path("folderId") folderId: kotlin.Int): Call<FileEntryBaseArrayWrapper>
+    suspend fun getFolderPath(@Path("folderId") folderId: kotlin.Int): Response<FileEntryBaseArrayWrapper>
 
     /**
      * GET api/2.0/files/folder/{id}/link
@@ -338,10 +338,10 @@ interface FoldersApi {
      * @param id The folder unique identifier.
      * @param count The number of items to retrieve in the request. (optional)
      * @param startIndex The starting index for the query results. (optional)
-     * @return [Call]<[FileShareWrapper]>
+     * @return [FileShareWrapper]
      */
     @GET("api/2.0/files/folder/{id}/link")
-    fun getFolderPrimaryExternalLink(@Path("id") id: kotlin.Int, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null): Call<FileShareWrapper>
+    suspend fun getFolderPrimaryExternalLink(@Path("id") id: kotlin.Int, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null): Response<FileShareWrapper>
 
     /**
      * GET api/2.0/files/{folderId}/subfolders
@@ -357,10 +357,10 @@ interface FoldersApi {
      *
      *
      * @param folderId The folder unique identifier.
-     * @return [Call]<[FileEntryBaseArrayWrapper]>
+     * @return [FileEntryBaseArrayWrapper]
      */
     @GET("api/2.0/files/{folderId}/subfolders")
-    fun getFolders(@Path("folderId") folderId: kotlin.Int): Call<FileEntryBaseArrayWrapper>
+    suspend fun getFolders(@Path("folderId") folderId: kotlin.Int): Response<FileEntryBaseArrayWrapper>
 
     /**
      * GET api/2.0/files/@my
@@ -384,10 +384,10 @@ interface FoldersApi {
      * @param sortBy The property used to specify the sorting criteria for folder contents. (optional)
      * @param sortOrder The order in which the results are sorted. (optional)
      * @param filterValue The text used for filtering or searching folder contents. (optional)
-     * @return [Call]<[FolderContentIntegerWrapper]>
+     * @return [FolderContentIntegerWrapper]
      */
     @GET("api/2.0/files/@my")
-    fun getMyFolder(@Query("userIdOrGroupId") userIdOrGroupId: java.util.UUID? = null, @Query("filterType") filterType: FilterType? = null, @Query("applyFilterOption") applyFilterOption: ApplyFilterOption? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterValue") filterValue: kotlin.String? = null): Call<FolderContentIntegerWrapper>
+    suspend fun getMyFolder(@Query("userIdOrGroupId") userIdOrGroupId: java.util.UUID? = null, @Query("filterType") filterType: FilterType? = null, @Query("applyFilterOption") applyFilterOption: ApplyFilterOption? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<FolderContentIntegerWrapper>
 
     /**
      * GET api/2.0/files/{folderId}/news
@@ -403,10 +403,10 @@ interface FoldersApi {
      *
      *
      * @param folderId The folder unique identifier.
-     * @return [Call]<[FileEntryBaseArrayWrapper]>
+     * @return [FileEntryBaseArrayWrapper]
      */
     @GET("api/2.0/files/{folderId}/news")
-    fun getNewFolderItems(@Path("folderId") folderId: kotlin.Int): Call<FileEntryBaseArrayWrapper>
+    suspend fun getNewFolderItems(@Path("folderId") folderId: kotlin.Int): Response<FileEntryBaseArrayWrapper>
 
     /**
      * GET api/2.0/files/@privacy
@@ -429,10 +429,10 @@ interface FoldersApi {
      * @param sortBy Specifies the field by which the folder content should be sorted. (optional)
      * @param sortOrder The order in which the results are sorted. (optional)
      * @param filterValue The text used as a filter or search criterion for folder content queries. (optional)
-     * @return [Call]<[FolderContentIntegerWrapper]>
+     * @return [FolderContentIntegerWrapper]
      */
     @GET("api/2.0/files/@privacy")
-    fun getPrivacyFolder(@Query("userIdOrGroupId") userIdOrGroupId: java.util.UUID? = null, @Query("filterType") filterType: FilterType? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterValue") filterValue: kotlin.String? = null): Call<FolderContentIntegerWrapper>
+    suspend fun getPrivacyFolder(@Query("userIdOrGroupId") userIdOrGroupId: java.util.UUID? = null, @Query("filterType") filterType: FilterType? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<FolderContentIntegerWrapper>
 
     /**
      * GET api/2.0/files/recent
@@ -459,10 +459,10 @@ interface FoldersApi {
      * @param sortBy Specifies the sorting criteria for the folder request. (optional)
      * @param sortOrder The order in which the results are sorted. (optional)
      * @param filterValue The text used for filtering or searching folder contents. (optional)
-     * @return [Call]<[FolderContentIntegerWrapper]>
+     * @return [FolderContentIntegerWrapper]
      */
     @GET("api/2.0/files/recent")
-    fun getRecentFolder(@Query("userIdOrGroupId") userIdOrGroupId: java.util.UUID? = null, @Query("filterType") filterType: FilterType? = null, @Query("excludeSubject") excludeSubject: kotlin.Boolean? = null, @Query("applyFilterOption") applyFilterOption: ApplyFilterOption? = null, @Query("searchArea") searchArea: SearchArea? = null, @Query("extension") extension: CSVParams? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterValue") filterValue: kotlin.String? = null): Call<FolderContentIntegerWrapper>
+    suspend fun getRecentFolder(@Query("userIdOrGroupId") userIdOrGroupId: java.util.UUID? = null, @Query("filterType") filterType: FilterType? = null, @Query("excludeSubject") excludeSubject: kotlin.Boolean? = null, @Query("applyFilterOption") applyFilterOption: ApplyFilterOption? = null, @Query("searchArea") searchArea: SearchArea? = null, @Query("extension") extension: CSVParams? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<FolderContentIntegerWrapper>
 
     /**
      * GET api/2.0/files/@root
@@ -486,10 +486,10 @@ interface FoldersApi {
      * @param sortBy Specifies the field by which the folder content should be sorted. (optional)
      * @param sortOrder The order in which the results are sorted. (optional)
      * @param filterValue The text used as a filter for searching or retrieving folder contents. (optional)
-     * @return [Call]<[FolderContentIntegerArrayWrapper]>
+     * @return [FolderContentIntegerArrayWrapper]
      */
     @GET("api/2.0/files/@root")
-    fun getRootFolders(@Query("userIdOrGroupId") userIdOrGroupId: java.util.UUID? = null, @Query("filterType") filterType: FilterType? = null, @Query("withoutTrash") withoutTrash: kotlin.Boolean? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterValue") filterValue: kotlin.String? = null): Call<FolderContentIntegerArrayWrapper>
+    suspend fun getRootFolders(@Query("userIdOrGroupId") userIdOrGroupId: java.util.UUID? = null, @Query("filterType") filterType: FilterType? = null, @Query("withoutTrash") withoutTrash: kotlin.Boolean? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<FolderContentIntegerArrayWrapper>
 
     /**
      * GET api/2.0/files/@trash
@@ -513,10 +513,10 @@ interface FoldersApi {
      * @param sortBy The property used to specify the sorting criteria for folder contents. (optional)
      * @param sortOrder The order in which the results are sorted. (optional)
      * @param filterValue The text used for filtering or searching folder contents. (optional)
-     * @return [Call]<[FolderContentIntegerWrapper]>
+     * @return [FolderContentIntegerWrapper]
      */
     @GET("api/2.0/files/@trash")
-    fun getTrashFolder(@Query("userIdOrGroupId") userIdOrGroupId: java.util.UUID? = null, @Query("filterType") filterType: FilterType? = null, @Query("applyFilterOption") applyFilterOption: ApplyFilterOption? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterValue") filterValue: kotlin.String? = null): Call<FolderContentIntegerWrapper>
+    suspend fun getTrashFolder(@Query("userIdOrGroupId") userIdOrGroupId: java.util.UUID? = null, @Query("filterType") filterType: FilterType? = null, @Query("applyFilterOption") applyFilterOption: ApplyFilterOption? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<FolderContentIntegerWrapper>
 
     /**
      * POST api/2.0/files/{folderId}/insert
@@ -545,11 +545,11 @@ interface FoldersApi {
      * @param insertFileStreamPosition  (optional)
      * @param insertFileStreamReadTimeout  (optional)
      * @param insertFileStreamWriteTimeout  (optional)
-     * @return [Call]<[FileIntegerWrapper]>
+     * @return [FileIntegerWrapper]
      */
     @Multipart
     @POST("api/2.0/files/{folderId}/insert")
-    fun insertFile(@Path("folderId") folderId: kotlin.Int, @Part insertFileFile: MultipartBody.Part? = null, @Part("InsertFile.Title") insertFileTitle: kotlin.String? = null, @Part("InsertFile.CreateNewIfExist") insertFileCreateNewIfExist: kotlin.Boolean? = null, @Part("InsertFile.KeepConvertStatus") insertFileKeepConvertStatus: kotlin.Boolean? = null, @Part("InsertFile.Stream.CanRead") insertFileStreamCanRead: kotlin.Boolean? = null, @Part("InsertFile.Stream.CanWrite") insertFileStreamCanWrite: kotlin.Boolean? = null, @Part("InsertFile.Stream.CanSeek") insertFileStreamCanSeek: kotlin.Boolean? = null, @Part("InsertFile.Stream.CanTimeout") insertFileStreamCanTimeout: kotlin.Boolean? = null, @Part("InsertFile.Stream.Length") insertFileStreamLength: kotlin.Long? = null, @Part("InsertFile.Stream.Position") insertFileStreamPosition: kotlin.Long? = null, @Part("InsertFile.Stream.ReadTimeout") insertFileStreamReadTimeout: kotlin.Int? = null, @Part("InsertFile.Stream.WriteTimeout") insertFileStreamWriteTimeout: kotlin.Int? = null): Call<FileIntegerWrapper>
+    suspend fun insertFile(@Path("folderId") folderId: kotlin.Int, @Part insertFileFile: MultipartBody.Part? = null, @Part("InsertFile.Title") insertFileTitle: kotlin.String? = null, @Part("InsertFile.CreateNewIfExist") insertFileCreateNewIfExist: kotlin.Boolean? = null, @Part("InsertFile.KeepConvertStatus") insertFileKeepConvertStatus: kotlin.Boolean? = null, @Part("InsertFile.Stream.CanRead") insertFileStreamCanRead: kotlin.Boolean? = null, @Part("InsertFile.Stream.CanWrite") insertFileStreamCanWrite: kotlin.Boolean? = null, @Part("InsertFile.Stream.CanSeek") insertFileStreamCanSeek: kotlin.Boolean? = null, @Part("InsertFile.Stream.CanTimeout") insertFileStreamCanTimeout: kotlin.Boolean? = null, @Part("InsertFile.Stream.Length") insertFileStreamLength: kotlin.Long? = null, @Part("InsertFile.Stream.Position") insertFileStreamPosition: kotlin.Long? = null, @Part("InsertFile.Stream.ReadTimeout") insertFileStreamReadTimeout: kotlin.Int? = null, @Part("InsertFile.Stream.WriteTimeout") insertFileStreamWriteTimeout: kotlin.Int? = null): Response<FileIntegerWrapper>
 
     /**
      * POST api/2.0/files/@my/insert
@@ -577,11 +577,11 @@ interface FoldersApi {
      * @param streamPosition  (optional)
      * @param streamReadTimeout  (optional)
      * @param streamWriteTimeout  (optional)
-     * @return [Call]<[FileIntegerWrapper]>
+     * @return [FileIntegerWrapper]
      */
     @Multipart
     @POST("api/2.0/files/@my/insert")
-    fun insertFileToMyFromBody(@Part file: MultipartBody.Part? = null, @Part("Title") title: kotlin.String? = null, @Part("CreateNewIfExist") createNewIfExist: kotlin.Boolean? = null, @Part("KeepConvertStatus") keepConvertStatus: kotlin.Boolean? = null, @Part("Stream.CanRead") streamCanRead: kotlin.Boolean? = null, @Part("Stream.CanWrite") streamCanWrite: kotlin.Boolean? = null, @Part("Stream.CanSeek") streamCanSeek: kotlin.Boolean? = null, @Part("Stream.CanTimeout") streamCanTimeout: kotlin.Boolean? = null, @Part("Stream.Length") streamLength: kotlin.Long? = null, @Part("Stream.Position") streamPosition: kotlin.Long? = null, @Part("Stream.ReadTimeout") streamReadTimeout: kotlin.Int? = null, @Part("Stream.WriteTimeout") streamWriteTimeout: kotlin.Int? = null): Call<FileIntegerWrapper>
+    suspend fun insertFileToMyFromBody(@Part file: MultipartBody.Part? = null, @Part("Title") title: kotlin.String? = null, @Part("CreateNewIfExist") createNewIfExist: kotlin.Boolean? = null, @Part("KeepConvertStatus") keepConvertStatus: kotlin.Boolean? = null, @Part("Stream.CanRead") streamCanRead: kotlin.Boolean? = null, @Part("Stream.CanWrite") streamCanWrite: kotlin.Boolean? = null, @Part("Stream.CanSeek") streamCanSeek: kotlin.Boolean? = null, @Part("Stream.CanTimeout") streamCanTimeout: kotlin.Boolean? = null, @Part("Stream.Length") streamLength: kotlin.Long? = null, @Part("Stream.Position") streamPosition: kotlin.Long? = null, @Part("Stream.ReadTimeout") streamReadTimeout: kotlin.Int? = null, @Part("Stream.WriteTimeout") streamWriteTimeout: kotlin.Int? = null): Response<FileIntegerWrapper>
 
     /**
      * PUT api/2.0/files/folder/{folderId}
@@ -598,10 +598,10 @@ interface FoldersApi {
      *
      * @param folderId The folder ID for the folder creation.
      * @param createFolder The parameters for creating a folder.
-     * @return [Call]<[FolderIntegerWrapper]>
+     * @return [FolderIntegerWrapper]
      */
     @PUT("api/2.0/files/folder/{folderId}")
-    fun renameFolder(@Path("folderId") folderId: kotlin.Int, @Body createFolder: CreateFolder): Call<FolderIntegerWrapper>
+    suspend fun renameFolder(@Path("folderId") folderId: kotlin.Int, @Body createFolder: CreateFolder): Response<FolderIntegerWrapper>
 
     /**
      * PUT api/2.0/files/folder/{folderId}/order
@@ -617,10 +617,10 @@ interface FoldersApi {
      *
      * @param folderId The folder unique identifier.
      * @param orderRequestDto The folder order information. (optional)
-     * @return [Call]<[FolderIntegerWrapper]>
+     * @return [FolderIntegerWrapper]
      */
     @PUT("api/2.0/files/folder/{folderId}/order")
-    fun setFolderOrder(@Path("folderId") folderId: kotlin.Int, @Body orderRequestDto: OrderRequestDto? = null): Call<FolderIntegerWrapper>
+    suspend fun setFolderOrder(@Path("folderId") folderId: kotlin.Int, @Body orderRequestDto: OrderRequestDto? = null): Response<FolderIntegerWrapper>
 
     /**
      * PUT api/2.0/files/folder/{id}/links
@@ -636,10 +636,10 @@ interface FoldersApi {
      *
      * @param id The folder ID.
      * @param folderLinkRequest The folder link parameters.
-     * @return [Call]<[FileShareWrapper]>
+     * @return [FileShareWrapper]
      */
     @PUT("api/2.0/files/folder/{id}/links")
-    fun setFolderPrimaryExternalLink(@Path("id") id: kotlin.Int, @Body folderLinkRequest: FolderLinkRequest): Call<FileShareWrapper>
+    suspend fun setFolderPrimaryExternalLink(@Path("id") id: kotlin.Int, @Body folderLinkRequest: FolderLinkRequest): Response<FileShareWrapper>
 
     /**
      * POST api/2.0/files/{folderId}/upload
@@ -657,10 +657,10 @@ interface FoldersApi {
      *
      * @param folderId The folder ID to upload a file.
      * @param uploadRequestDto The request parameters for uploading a file. (optional)
-     * @return [Call]<[ObjectWrapper]>
+     * @return [ObjectWrapper]
      */
     @POST("api/2.0/files/{folderId}/upload")
-    fun uploadFile(@Path("folderId") folderId: kotlin.Int, @Body uploadRequestDto: UploadRequestDto? = null): Call<ObjectWrapper>
+    suspend fun uploadFile(@Path("folderId") folderId: kotlin.Int, @Body uploadRequestDto: UploadRequestDto? = null): Response<ObjectWrapper>
 
     /**
      * POST api/2.0/files/@my/upload
@@ -677,9 +677,9 @@ interface FoldersApi {
      *
      *
      * @param inDto The request parameters for uploading a file. (optional)
-     * @return [Call]<[ObjectWrapper]>
+     * @return [ObjectWrapper]
      */
     @POST("api/2.0/files/@my/upload")
-    fun uploadFileToMy(@Query("inDto") inDto: UploadRequestDto? = null): Call<ObjectWrapper>
+    suspend fun uploadFileToMy(@Query("inDto") inDto: UploadRequestDto? = null): Response<ObjectWrapper>
 
 }

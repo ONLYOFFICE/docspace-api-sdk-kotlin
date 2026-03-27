@@ -59,7 +59,9 @@ val webService = apiClient.createWebservice(AIChatApi::class.java)
 val chatId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The unique identifier of the existing AI chat session to continue.
 val continueChatBody : ContinueChatBody =  // ContinueChatBody | The message and optional file attachments.
 
-webService.continueChat(chatId, continueChatBody)
+launch(Dispatchers.IO) {
+    webService.continueChat(chatId, continueChatBody)
+}
 ```
 
 ### HTTP request headers
@@ -106,7 +108,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIChatApi::class.java)
 val chatId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The unique identifier of the AI chat session to delete.
 
-webService.deleteChat(chatId)
+launch(Dispatchers.IO) {
+    webService.deleteChat(chatId)
+}
 ```
 
 ### HTTP request headers
@@ -155,7 +159,9 @@ val webService = apiClient.createWebservice(AIChatApi::class.java)
 val chatId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The unique identifier of the AI chat session to export.
 val exportChatRequestBodyInteger : ExportChatRequestBodyInteger =  // ExportChatRequestBodyInteger | The export parameters including destination folder and file title.
 
-webService.exportChat(chatId, exportChatRequestBodyInteger)
+launch(Dispatchers.IO) {
+    webService.exportChat(chatId, exportChatRequestBodyInteger)
+}
 ```
 
 ### HTTP request headers
@@ -202,7 +208,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIChatApi::class.java)
 val chatId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The unique identifier of the AI chat session to retrieve.
 
-val result : ChatWrapper = webService.getChat(chatId)
+launch(Dispatchers.IO) {
+    val result : ChatWrapper = webService.getChat(chatId)
+}
 ```
 
 ### HTTP request headers
@@ -249,7 +257,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIChatApi::class.java)
 val provider : kotlin.Int = 1 // kotlin.Int | The optional AI provider identifier to filter models by. When set to 0, models from all providers are returned.
 
-val result : ModelArrayWrapper = webService.getChatModels(provider)
+launch(Dispatchers.IO) {
+    val result : ModelArrayWrapper = webService.getChatModels(provider)
+}
 ```
 
 ### HTTP request headers
@@ -300,7 +310,9 @@ val roomId : kotlin.Int = 42 // kotlin.Int | The identifier of the room whose AI
 val startIndex : kotlin.Int = 0 // kotlin.Int | The number of items to skip before returning results (zero-based offset). Defaults to 0.
 val count : kotlin.Int = 100 // kotlin.Int | The maximum number of items to return per page. Defaults to 100.
 
-val result : ChatArrayWrapper = webService.getChats(roomId, startIndex, count)
+launch(Dispatchers.IO) {
+    val result : ChatArrayWrapper = webService.getChats(roomId, startIndex, count)
+}
 ```
 
 ### HTTP request headers
@@ -351,7 +363,9 @@ val chatId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.
 val startIndex : kotlin.Int = 0 // kotlin.Int | The number of items to skip before returning results (zero-based offset). Defaults to 0.
 val count : kotlin.Int = 100 // kotlin.Int | The maximum number of items to return per page. Defaults to 100.
 
-val result : MessageArrayWrapper = webService.getMessages(chatId, startIndex, count)
+launch(Dispatchers.IO) {
+    val result : MessageArrayWrapper = webService.getMessages(chatId, startIndex, count)
+}
 ```
 
 ### HTTP request headers
@@ -398,7 +412,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIChatApi::class.java)
 val roomId : kotlin.Int = 42 // kotlin.Int | The identifier of the room whose chat settings are to be retrieved.
 
-val result : UserChatSettingsWrapper = webService.getUserChatsSettings(roomId)
+launch(Dispatchers.IO) {
+    val result : UserChatSettingsWrapper = webService.getUserChatsSettings(roomId)
+}
 ```
 
 ### HTTP request headers
@@ -447,7 +463,9 @@ val webService = apiClient.createWebservice(AIChatApi::class.java)
 val callId : kotlin.String = call_abc123 // kotlin.String | The unique identifier of the pending tool execution call awaiting a permission decision.
 val toolDecisionRequestBody : ToolDecisionRequestBody =  // ToolDecisionRequestBody | The permission decision parameters.
 
-webService.providePermission(callId, toolDecisionRequestBody)
+launch(Dispatchers.IO) {
+    webService.providePermission(callId, toolDecisionRequestBody)
+}
 ```
 
 ### HTTP request headers
@@ -496,7 +514,9 @@ val webService = apiClient.createWebservice(AIChatApi::class.java)
 val chatId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The unique identifier of the AI chat session to rename.
 val renameChatBody : RenameChatBody =  // RenameChatBody | The new chat name.
 
-val result : ChatWrapper = webService.renameChat(chatId, renameChatBody)
+launch(Dispatchers.IO) {
+    val result : ChatWrapper = webService.renameChat(chatId, renameChatBody)
+}
 ```
 
 ### HTTP request headers
@@ -545,7 +565,9 @@ val webService = apiClient.createWebservice(AIChatApi::class.java)
 val roomId : kotlin.Int = 42 // kotlin.Int | The identifier of the room whose chat settings are to be updated.
 val setUserChatSettingsRequestBody : SetUserChatSettingsRequestBody =  // SetUserChatSettingsRequestBody | The chat settings to apply.
 
-val result : UserChatSettingsWrapper = webService.setUserChatsSettings(roomId, setUserChatSettingsRequestBody)
+launch(Dispatchers.IO) {
+    val result : UserChatSettingsWrapper = webService.setUserChatsSettings(roomId, setUserChatSettingsRequestBody)
+}
 ```
 
 ### HTTP request headers
@@ -594,7 +616,9 @@ val webService = apiClient.createWebservice(AIChatApi::class.java)
 val roomId : kotlin.Int = 42 // kotlin.Int | The identifier of the room in which to create the new AI chat session.
 val startNewChatBody : StartNewChatBody =  // StartNewChatBody | The initial message and optional file attachments.
 
-webService.startNewChat(roomId, startNewChatBody)
+launch(Dispatchers.IO) {
+    webService.startNewChat(roomId, startNewChatBody)
+}
 ```
 
 ### HTTP request headers

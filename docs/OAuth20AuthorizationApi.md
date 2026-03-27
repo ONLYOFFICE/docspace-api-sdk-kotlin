@@ -48,7 +48,9 @@ val clientId : kotlin.String = 6c7cf17b-1bd3-47d5-94c6-be2d3570e168 // kotlin.St
 val redirectUri : kotlin.String = https://example.com // kotlin.String | The URL to redirect to after authorization is complete.
 val scope : kotlin.String = files:read // kotlin.String | The space-separated list of requested scope permissions.
 
-webService.authorizeOAuth(responseType, clientId, redirectUri, scope)
+launch(Dispatchers.IO) {
+    webService.authorizeOAuth(responseType, clientId, redirectUri, scope)
+}
 ```
 
 ### HTTP request headers
@@ -97,7 +99,9 @@ val redirectUri : kotlin.String = redirectUri_example // kotlin.String | The URL
 val clientId : kotlin.String = clientId_example // kotlin.String | The client identifier issued to the client during registration.
 val clientSecret : kotlin.String = clientSecret_example // kotlin.String | The client secret issued to the client during registration.
 
-val result : ExchangeToken200Response = webService.exchangeToken(grantType, code, redirectUri, clientId, clientSecret)
+launch(Dispatchers.IO) {
+    val result : ExchangeToken200Response = webService.exchangeToken(grantType, code, redirectUri, clientId, clientSecret)
+}
 ```
 
 ### HTTP request headers
@@ -142,7 +146,9 @@ val clientId : kotlin.String = clientId_example // kotlin.String | The client id
 val state : kotlin.String = state_example // kotlin.String | The random string used to solve the CSRF vulnerability problem.
 val scope : kotlin.String = scope_example // kotlin.String | The space-separated list of requested scope permissions.
 
-webService.submitConsent(clientId, state, scope)
+launch(Dispatchers.IO) {
+    webService.submitConsent(clientId, state, scope)
+}
 ```
 
 ### HTTP request headers

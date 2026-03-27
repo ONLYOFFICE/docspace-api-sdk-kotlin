@@ -47,7 +47,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ThemeApi::class.java)
 val darkThemeSettingsRequestDto : DarkThemeSettingsRequestDto =  // DarkThemeSettingsRequestDto | 
 
-val result : DarkThemeSettingsWrapper = webService.changePortalTheme(darkThemeSettingsRequestDto)
+launch(Dispatchers.IO) {
+    val result : DarkThemeSettingsWrapper = webService.changePortalTheme(darkThemeSettingsRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -91,7 +93,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ThemeApi::class.java)
 
-val result : DarkThemeSettingsWrapper = webService.getPortalTheme()
+launch(Dispatchers.IO) {
+    val result : DarkThemeSettingsWrapper = webService.getPortalTheme()
+}
 ```
 
 ### HTTP request headers

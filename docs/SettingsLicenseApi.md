@@ -46,7 +46,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(LicenseApi::class.java)
 
-val result : StringWrapper = webService.acceptLicense()
+launch(Dispatchers.IO) {
+    val result : StringWrapper = webService.acceptLicense()
+}
 ```
 
 ### HTTP request headers
@@ -84,7 +86,9 @@ No authorization required
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(LicenseApi::class.java)
 
-val result : BooleanWrapper = webService.getIsLicenseRequired()
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.getIsLicenseRequired()
+}
 ```
 
 ### HTTP request headers
@@ -128,7 +132,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(LicenseApi::class.java)
 
-val result : BooleanWrapper = webService.refreshLicense()
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.refreshLicense()
+}
 ```
 
 ### HTTP request headers
@@ -175,7 +181,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(LicenseApi::class.java)
 val files : kotlin.collections.List<java.io.File> = /path/to/file.txt // kotlin.collections.List<java.io.File> | The list of license files to be uploaded.
 
-val result : StringWrapper = webService.uploadLicense(files)
+launch(Dispatchers.IO) {
+    val result : StringWrapper = webService.uploadLicense(files)
+}
 ```
 
 ### HTTP request headers

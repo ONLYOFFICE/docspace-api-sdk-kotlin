@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.AI
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -57,10 +57,10 @@ interface AIMCPApi {
      *
      * @param roomId Identifier of the room to which MCP servers will be assigned.
      * @param addRoomServersRequestBody Server identifiers to assign.
-     * @return [Call]<[McpServerStatusArrayWrapper]>
+     * @return [McpServerStatusArrayWrapper]
      */
     @POST("api/2.0/ai/rooms/{roomId}/servers")
-    fun addRoomServers(@Path("roomId") roomId: kotlin.Int, @Body addRoomServersRequestBody: AddRoomServersRequestBody): Call<McpServerStatusArrayWrapper>
+    suspend fun addRoomServers(@Path("roomId") roomId: kotlin.Int, @Body addRoomServersRequestBody: AddRoomServersRequestBody): Response<McpServerStatusArrayWrapper>
 
     /**
      * POST api/2.0/ai/servers
@@ -77,10 +77,10 @@ interface AIMCPApi {
      *
      *
      * @param addMcpServerRequestBody MCP server registration parameters.
-     * @return [Call]<[McpServerWrapper]>
+     * @return [McpServerWrapper]
      */
     @POST("api/2.0/ai/servers")
-    fun addServer(@Body addMcpServerRequestBody: AddMcpServerRequestBody): Call<McpServerWrapper>
+    suspend fun addServer(@Body addMcpServerRequestBody: AddMcpServerRequestBody): Response<McpServerWrapper>
 
     /**
      * POST api/2.0/ai/rooms/{roomId}/servers/{serverId}/connect
@@ -100,10 +100,10 @@ interface AIMCPApi {
      * @param roomId Identifier of the room containing the MCP server.
      * @param serverId Unique identifier of the MCP server to connect.
      * @param connectServerRequestBody The request body containing additional data necessary for connecting to the server,  such as authentication or operation-specific information.
-     * @return [Call]<[McpServerStatusWrapper]>
+     * @return [McpServerStatusWrapper]
      */
     @POST("api/2.0/ai/rooms/{roomId}/servers/{serverId}/connect")
-    fun connectServer(@Path("roomId") roomId: kotlin.Int, @Path("serverId") serverId: java.util.UUID, @Body connectServerRequestBody: ConnectServerRequestBody): Call<McpServerStatusWrapper>
+    suspend fun connectServer(@Path("roomId") roomId: kotlin.Int, @Path("serverId") serverId: java.util.UUID, @Body connectServerRequestBody: ConnectServerRequestBody): Response<McpServerStatusWrapper>
 
     /**
      * DELETE api/2.0/ai/rooms/{roomId}/servers
@@ -121,10 +121,10 @@ interface AIMCPApi {
      *
      * @param roomId Identifier of the room from which MCP servers will be removed.
      * @param deleteRoomServersRequestBody Server identifiers to remove.
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @DELETE("api/2.0/ai/rooms/{roomId}/servers")
-    fun deleteRoomServers(@Path("roomId") roomId: kotlin.Int, @Body deleteRoomServersRequestBody: DeleteRoomServersRequestBody): Call<Unit>
+    suspend fun deleteRoomServers(@Path("roomId") roomId: kotlin.Int, @Body deleteRoomServersRequestBody: DeleteRoomServersRequestBody): Response<Unit>
 
     /**
      * DELETE api/2.0/ai/servers
@@ -140,10 +140,10 @@ interface AIMCPApi {
      *
      *
      * @param deleteServersRequestBody Server identifiers to delete.
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @DELETE("api/2.0/ai/servers")
-    fun deleteServer(@Body deleteServersRequestBody: DeleteServersRequestBody): Call<Unit>
+    suspend fun deleteServer(@Body deleteServersRequestBody: DeleteServersRequestBody): Response<Unit>
 
     /**
      * POST api/2.0/ai/rooms/{roomId}/servers/{serverId}/disconnect
@@ -161,10 +161,10 @@ interface AIMCPApi {
      *
      * @param roomId Identifier of the room containing the MCP server.
      * @param serverId Unique identifier of the MCP server to disconnect from.
-     * @return [Call]<[McpServerStatusWrapper]>
+     * @return [McpServerStatusWrapper]
      */
     @POST("api/2.0/ai/rooms/{roomId}/servers/{serverId}/disconnect")
-    fun disconnectServer(@Path("roomId") roomId: kotlin.Int, @Path("serverId") serverId: java.util.UUID): Call<McpServerStatusWrapper>
+    suspend fun disconnectServer(@Path("roomId") roomId: kotlin.Int, @Path("serverId") serverId: java.util.UUID): Response<McpServerStatusWrapper>
 
     /**
      * GET api/2.0/ai/servers/available
@@ -180,10 +180,10 @@ interface AIMCPApi {
      *
      * @param startIndex The number of items to skip before returning results (zero-based offset). Defaults to 0. (optional)
      * @param count The maximum number of items to return per page. Defaults to 100. (optional)
-     * @return [Call]<[McpServerShortArrayWrapper]>
+     * @return [McpServerShortArrayWrapper]
      */
     @GET("api/2.0/ai/servers/available")
-    fun getAvailableServers(@Query("startIndex") startIndex: kotlin.Int? = null, @Query("count") count: kotlin.Int? = null): Call<McpServerShortArrayWrapper>
+    suspend fun getAvailableServers(@Query("startIndex") startIndex: kotlin.Int? = null, @Query("count") count: kotlin.Int? = null): Response<McpServerShortArrayWrapper>
 
     /**
      * GET api/2.0/ai/rooms/{roomId}/servers
@@ -200,10 +200,10 @@ interface AIMCPApi {
      *
      *
      * @param roomId Identifier of the room whose assigned MCP servers are being retrieved.
-     * @return [Call]<[McpServerStatusArrayWrapper]>
+     * @return [McpServerStatusArrayWrapper]
      */
     @GET("api/2.0/ai/rooms/{roomId}/servers")
-    fun getRoomServers(@Path("roomId") roomId: kotlin.Int): Call<McpServerStatusArrayWrapper>
+    suspend fun getRoomServers(@Path("roomId") roomId: kotlin.Int): Response<McpServerStatusArrayWrapper>
 
     /**
      * GET api/2.0/ai/servers/{id}
@@ -220,10 +220,10 @@ interface AIMCPApi {
      *
      *
      * @param id Unique identifier of the MCP server to retrieve.
-     * @return [Call]<[McpServerShortWrapper]>
+     * @return [McpServerShortWrapper]
      */
     @GET("api/2.0/ai/servers/{id}")
-    fun getServer(@Path("id") id: java.util.UUID): Call<McpServerShortWrapper>
+    suspend fun getServer(@Path("id") id: java.util.UUID): Response<McpServerShortWrapper>
 
     /**
      * GET api/2.0/ai/servers
@@ -240,10 +240,10 @@ interface AIMCPApi {
      *
      * @param startIndex The number of items to skip before returning results (zero-based offset). Defaults to 0. (optional)
      * @param count The maximum number of items to return per page. Defaults to 100. (optional)
-     * @return [Call]<[McpServerArrayWrapper]>
+     * @return [McpServerArrayWrapper]
      */
     @GET("api/2.0/ai/servers")
-    fun getServers(@Query("startIndex") startIndex: kotlin.Int? = null, @Query("count") count: kotlin.Int? = null): Call<McpServerArrayWrapper>
+    suspend fun getServers(@Query("startIndex") startIndex: kotlin.Int? = null, @Query("count") count: kotlin.Int? = null): Response<McpServerArrayWrapper>
 
     /**
      * GET api/2.0/ai/rooms/{roomId}/servers/{serverId}/tools
@@ -261,10 +261,10 @@ interface AIMCPApi {
      *
      * @param roomId Identifier of the room containing the MCP server.
      * @param serverId Unique identifier of the MCP server whose tools are being retrieved.
-     * @return [Call]<[McpToolArrayWrapper]>
+     * @return [McpToolArrayWrapper]
      */
     @GET("api/2.0/ai/rooms/{roomId}/servers/{serverId}/tools")
-    fun getTools(@Path("roomId") roomId: kotlin.Int, @Path("serverId") serverId: java.util.UUID): Call<McpToolArrayWrapper>
+    suspend fun getTools(@Path("roomId") roomId: kotlin.Int, @Path("serverId") serverId: java.util.UUID): Response<McpToolArrayWrapper>
 
     /**
      * PUT api/2.0/ai/servers/{id}/status
@@ -282,10 +282,10 @@ interface AIMCPApi {
      *
      * @param id Unique identifier of the MCP server whose status is being changed.
      * @param setServerStatusRequestBody New status value.
-     * @return [Call]<[McpServerWrapper]>
+     * @return [McpServerWrapper]
      */
     @PUT("api/2.0/ai/servers/{id}/status")
-    fun setServerStatus(@Path("id") id: java.util.UUID, @Body setServerStatusRequestBody: SetServerStatusRequestBody): Call<McpServerWrapper>
+    suspend fun setServerStatus(@Path("id") id: java.util.UUID, @Body setServerStatusRequestBody: SetServerStatusRequestBody): Response<McpServerWrapper>
 
     /**
      * PUT api/2.0/ai/rooms/{roomId}/servers/{serverId}/tools
@@ -304,10 +304,10 @@ interface AIMCPApi {
      * @param roomId Identifier of the room containing the MCP server.
      * @param serverId Unique identifier of the MCP server whose tools are being configured.
      * @param setMcpToolsRequestBody Tool configuration parameters.
-     * @return [Call]<[McpToolArrayWrapper]>
+     * @return [McpToolArrayWrapper]
      */
     @PUT("api/2.0/ai/rooms/{roomId}/servers/{serverId}/tools")
-    fun setTools(@Path("roomId") roomId: kotlin.Int, @Path("serverId") serverId: java.util.UUID, @Body setMcpToolsRequestBody: SetMcpToolsRequestBody): Call<McpToolArrayWrapper>
+    suspend fun setTools(@Path("roomId") roomId: kotlin.Int, @Path("serverId") serverId: java.util.UUID, @Body setMcpToolsRequestBody: SetMcpToolsRequestBody): Response<McpToolArrayWrapper>
 
     /**
      * PUT api/2.0/ai/servers/{id}
@@ -326,9 +326,9 @@ interface AIMCPApi {
      *
      * @param id Unique identifier of the MCP server to update.
      * @param updateServerRequestBody Updated server configuration fields.
-     * @return [Call]<[McpServerWrapper]>
+     * @return [McpServerWrapper]
      */
     @PUT("api/2.0/ai/servers/{id}")
-    fun updateServer(@Path("id") id: java.util.UUID, @Body updateServerRequestBody: UpdateServerRequestBody): Call<McpServerWrapper>
+    suspend fun updateServer(@Path("id") id: java.util.UUID, @Body updateServerRequestBody: UpdateServerRequestBody): Response<McpServerWrapper>
 
 }

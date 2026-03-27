@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Settings
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -41,10 +41,10 @@ interface IPRestrictionsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-ip-restrictions/
      *
      *
-     * @return [Call]<[IPRestrictionArrayWrapper]>
+     * @return [IPRestrictionArrayWrapper]
      */
     @GET("api/2.0/settings/iprestrictions")
-    fun getIpRestrictions(): Call<IPRestrictionArrayWrapper>
+    suspend fun getIpRestrictions(): Response<IPRestrictionArrayWrapper>
 
     /**
      * GET api/2.0/settings/iprestrictions/settings
@@ -58,10 +58,10 @@ interface IPRestrictionsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/read-ip-restrictions-settings/
      *
      *
-     * @return [Call]<[IPRestrictionsSettingsWrapper]>
+     * @return [IPRestrictionsSettingsWrapper]
      */
     @GET("api/2.0/settings/iprestrictions/settings")
-    fun readIpRestrictionsSettings(): Call<IPRestrictionsSettingsWrapper>
+    suspend fun readIpRestrictionsSettings(): Response<IPRestrictionsSettingsWrapper>
 
     /**
      * PUT api/2.0/settings/iprestrictions
@@ -76,10 +76,10 @@ interface IPRestrictionsApi {
      *
      *
      * @param ipRestrictionsDto  (optional)
-     * @return [Call]<[IpRestrictionsWrapper]>
+     * @return [IpRestrictionsWrapper]
      */
     @PUT("api/2.0/settings/iprestrictions")
-    fun saveIpRestrictions(@Body ipRestrictionsDto: IpRestrictionsDto? = null): Call<IpRestrictionsWrapper>
+    suspend fun saveIpRestrictions(@Body ipRestrictionsDto: IpRestrictionsDto? = null): Response<IpRestrictionsWrapper>
 
     /**
      * PUT api/2.0/settings/iprestrictions/settings
@@ -94,9 +94,9 @@ interface IPRestrictionsApi {
      *
      *
      * @param ipRestrictionsDto  (optional)
-     * @return [Call]<[IpRestrictionsWrapper]>
+     * @return [IpRestrictionsWrapper]
      */
     @PUT("api/2.0/settings/iprestrictions/settings")
-    fun updateIpRestrictionsSettings(@Body ipRestrictionsDto: IpRestrictionsDto? = null): Call<IpRestrictionsWrapper>
+    suspend fun updateIpRestrictionsSettings(@Body ipRestrictionsDto: IpRestrictionsDto? = null): Response<IpRestrictionsWrapper>
 
 }

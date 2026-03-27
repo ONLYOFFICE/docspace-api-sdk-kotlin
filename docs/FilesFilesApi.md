@@ -94,7 +94,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.Int = 1 // kotlin.Int | The file unique identifier.
 
-val result : FileIntegerWrapper = webService.addFileToRecent(fileId)
+launch(Dispatchers.IO) {
+    val result : FileIntegerWrapper = webService.addFileToRecent(fileId)
+}
 ```
 
 ### HTTP request headers
@@ -141,7 +143,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val templatesRequestDto : TemplatesRequestDto =  // TemplatesRequestDto | 
 
-val result : BooleanWrapper = webService.addTemplates(templatesRequestDto)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.addTemplates(templatesRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -190,7 +194,9 @@ val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.Int = 1 // kotlin.Int | The file Id to change its version history.
 val changeHistory : ChangeHistory =  // ChangeHistory | The parameters for changing version history.
 
-val result : FileIntegerArrayWrapper = webService.changeVersionHistory(fileId, changeHistory)
+launch(Dispatchers.IO) {
+    val result : FileIntegerArrayWrapper = webService.changeVersionHistory(fileId, changeHistory)
+}
 ```
 
 ### HTTP request headers
@@ -233,7 +239,9 @@ val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.Int = 1 // kotlin.Int | The file ID of the form draft.
 val checkFillFormDraft : CheckFillFormDraft =  // CheckFillFormDraft | The parameters for checking the form draft filling.
 
-val result : StringWrapper = webService.checkFillFormDraft(fileId, checkFillFormDraft)
+launch(Dispatchers.IO) {
+    val result : StringWrapper = webService.checkFillFormDraft(fileId, checkFillFormDraft)
+}
 ```
 
 ### HTTP request headers
@@ -282,7 +290,9 @@ val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.Int = 1 // kotlin.Int | The file ID to copy.
 val copyAsJsonElement : CopyAsJsonElement =  // CopyAsJsonElement | The parameters for copying a file.
 
-val result : FileEntryBaseWrapper = webService.copyFileAs(fileId, copyAsJsonElement)
+launch(Dispatchers.IO) {
+    val result : FileEntryBaseWrapper = webService.copyFileAs(fileId, copyAsJsonElement)
+}
 ```
 
 ### HTTP request headers
@@ -331,7 +341,9 @@ val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.Int = 1 // kotlin.Int | The file ID.
 val fileSize : kotlin.Long = 1024 // kotlin.Long | The file size in bytes.
 
-val result : ChunkedUploadSessionResponseWrapperIntegerWrapper = webService.createEditSession(fileId, fileSize)
+launch(Dispatchers.IO) {
+    val result : ChunkedUploadSessionResponseWrapperIntegerWrapper = webService.createEditSession(fileId, fileSize)
+}
 ```
 
 ### HTTP request headers
@@ -380,7 +392,9 @@ val webService = apiClient.createWebservice(FilesApi::class.java)
 val folderId : kotlin.Int = 1 // kotlin.Int | The folder ID for the file creation.
 val createFileJsonElement : CreateFileJsonElement =  // CreateFileJsonElement | The parameters for creating a file.
 
-val result : FileIntegerWrapper = webService.createFile(folderId, createFileJsonElement)
+launch(Dispatchers.IO) {
+    val result : FileIntegerWrapper = webService.createFile(folderId, createFileJsonElement)
+}
 ```
 
 ### HTTP request headers
@@ -427,7 +441,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val createFileJsonElement : CreateFileJsonElement =  // CreateFileJsonElement | 
 
-val result : FileIntegerWrapper = webService.createFileInMyDocuments(createFileJsonElement)
+launch(Dispatchers.IO) {
+    val result : FileIntegerWrapper = webService.createFileInMyDocuments(createFileJsonElement)
+}
 ```
 
 ### HTTP request headers
@@ -476,7 +492,9 @@ val webService = apiClient.createWebservice(FilesApi::class.java)
 val id : kotlin.Int = 1 // kotlin.Int | The file ID.
 val fileLinkRequest : FileLinkRequest =  // FileLinkRequest | The file external link parameters.
 
-val result : FileShareWrapper = webService.createFilePrimaryExternalLink(id, fileLinkRequest)
+launch(Dispatchers.IO) {
+    val result : FileShareWrapper = webService.createFilePrimaryExternalLink(id, fileLinkRequest)
+}
 ```
 
 ### HTTP request headers
@@ -525,7 +543,9 @@ val webService = apiClient.createWebservice(FilesApi::class.java)
 val folderId : kotlin.Int = 1 // kotlin.Int | The folder ID to create the text or HTML file.
 val createTextOrHtmlFile : CreateTextOrHtmlFile =  // CreateTextOrHtmlFile | The parameters for creating an HTML or text file.
 
-val result : FileIntegerWrapper = webService.createHtmlFile(folderId, createTextOrHtmlFile)
+launch(Dispatchers.IO) {
+    val result : FileIntegerWrapper = webService.createHtmlFile(folderId, createTextOrHtmlFile)
+}
 ```
 
 ### HTTP request headers
@@ -572,7 +592,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val createTextOrHtmlFile : CreateTextOrHtmlFile =  // CreateTextOrHtmlFile | 
 
-val result : FileIntegerWrapper = webService.createHtmlFileInMyDocuments(createTextOrHtmlFile)
+launch(Dispatchers.IO) {
+    val result : FileIntegerWrapper = webService.createHtmlFileInMyDocuments(createTextOrHtmlFile)
+}
 ```
 
 ### HTTP request headers
@@ -621,7 +643,9 @@ val webService = apiClient.createWebservice(FilesApi::class.java)
 val folderId : kotlin.Int = 1 // kotlin.Int | The folder ID to create the text or HTML file.
 val createTextOrHtmlFile : CreateTextOrHtmlFile =  // CreateTextOrHtmlFile | The parameters for creating an HTML or text file.
 
-val result : FileIntegerWrapper = webService.createTextFile(folderId, createTextOrHtmlFile)
+launch(Dispatchers.IO) {
+    val result : FileIntegerWrapper = webService.createTextFile(folderId, createTextOrHtmlFile)
+}
 ```
 
 ### HTTP request headers
@@ -668,7 +692,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val createTextOrHtmlFile : CreateTextOrHtmlFile =  // CreateTextOrHtmlFile | 
 
-val result : FileIntegerWrapper = webService.createTextFileInMyDocuments(createTextOrHtmlFile)
+launch(Dispatchers.IO) {
+    val result : FileIntegerWrapper = webService.createTextFileInMyDocuments(createTextOrHtmlFile)
+}
 ```
 
 ### HTTP request headers
@@ -709,7 +735,9 @@ val apiClient = ApiClient()
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val baseBatchRequestDto : BaseBatchRequestDto =  // BaseBatchRequestDto | 
 
-val result : ObjectArrayWrapper = webService.createThumbnails(baseBatchRequestDto)
+launch(Dispatchers.IO) {
+    val result : ObjectArrayWrapper = webService.createThumbnails(baseBatchRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -760,7 +788,9 @@ val fileId : kotlin.Int = 1 // kotlin.Int | The file ID to delete.
 val delete : Delete =  // Delete | The parameters for deleting a file.
 val returnSingleOperation : kotlin.Boolean = false // kotlin.Boolean | Specifies whether to return only the current operation
 
-val result : FileOperationArrayWrapper = webService.deleteFile(fileId, delete, returnSingleOperation)
+launch(Dispatchers.IO) {
+    val result : FileOperationArrayWrapper = webService.deleteFile(fileId, delete, returnSingleOperation)
+}
 ```
 
 ### HTTP request headers
@@ -807,7 +837,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val baseBatchRequestDto : BaseBatchRequestDto =  // BaseBatchRequestDto | 
 
-val result : NoContentResultWrapper = webService.deleteRecent(baseBatchRequestDto)
+launch(Dispatchers.IO) {
+    val result : NoContentResultWrapper = webService.deleteRecent(baseBatchRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -854,7 +886,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val requestBody : kotlin.collections.List<kotlin.Int> =  // kotlin.collections.List<kotlin.Int> | The file IDs.
 
-val result : BooleanWrapper = webService.deleteTemplates(requestBody)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.deleteTemplates(requestBody)
+}
 ```
 
 ### HTTP request headers
@@ -901,7 +935,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.Int = 1 // kotlin.Int | The file unique identifier.
 
-webService.generateXlsx(fileId)
+launch(Dispatchers.IO) {
+    webService.generateXlsx(fileId)
+}
 ```
 
 ### HTTP request headers
@@ -948,7 +984,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.Int = 1 // kotlin.Int | The file unique identifier.
 
-val result : FormRoleArrayWrapper = webService.getAllFormRoles(fileId)
+launch(Dispatchers.IO) {
+    val result : FormRoleArrayWrapper = webService.getAllFormRoles(fileId)
+}
 ```
 
 ### HTTP request headers
@@ -991,7 +1029,9 @@ val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.Int = 1 // kotlin.Int | The file ID.
 val version : kotlin.Int = 1 // kotlin.Int | The file version.
 
-val result : EditHistoryDataWrapper = webService.getEditDiffUrl(fileId, version)
+launch(Dispatchers.IO) {
+    val result : EditHistoryDataWrapper = webService.getEditDiffUrl(fileId, version)
+}
 ```
 
 ### HTTP request headers
@@ -1032,7 +1072,9 @@ val apiClient = ApiClient()
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.Int = 1 // kotlin.Int | The file unique identifier.
 
-val result : EditHistoryArrayWrapper = webService.getEditHistory(fileId)
+launch(Dispatchers.IO) {
+    val result : EditHistoryArrayWrapper = webService.getEditHistory(fileId)
+}
 ```
 
 ### HTTP request headers
@@ -1087,7 +1129,9 @@ val toDate : ApiDateTime = 2025-12-31T23:59:59.0000000Z // ApiDateTime | The end
 val count : kotlin.Int = 25 // kotlin.Int | The number of history entries to retrieve for the file log.
 val startIndex : kotlin.Int = 0 // kotlin.Int | The starting index for retrieving a subset of file history entries.
 
-val result : HistoryArrayWrapper = webService.getFileHistory(fileId, fromDate, toDate, count, startIndex)
+launch(Dispatchers.IO) {
+    val result : HistoryArrayWrapper = webService.getFileHistory(fileId, fromDate, toDate, count, startIndex)
+}
 ```
 
 ### HTTP request headers
@@ -1130,7 +1174,9 @@ val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.Int = 1 // kotlin.Int | The file ID.
 val version : kotlin.Int = 1 // kotlin.Int | The file version.
 
-val result : FileIntegerWrapper = webService.getFileInfo(fileId, version)
+launch(Dispatchers.IO) {
+    val result : FileIntegerWrapper = webService.getFileInfo(fileId, version)
+}
 ```
 
 ### HTTP request headers
@@ -1181,7 +1227,9 @@ val id : kotlin.Int = 10 // kotlin.Int | The file unique identifier.
 val count : kotlin.Int = 25 // kotlin.Int | The number of items to retrieve in the request.
 val startIndex : kotlin.Int = 0 // kotlin.Int | The starting index for the query results.
 
-val result : FileShareArrayWrapper = webService.getFileLinks(id, count, startIndex)
+launch(Dispatchers.IO) {
+    val result : FileShareArrayWrapper = webService.getFileLinks(id, count, startIndex)
+}
 ```
 
 ### HTTP request headers
@@ -1226,7 +1274,9 @@ val id : kotlin.Int = 10 // kotlin.Int | The file unique identifier.
 val count : kotlin.Int = 25 // kotlin.Int | The number of items to retrieve in the request.
 val startIndex : kotlin.Int = 0 // kotlin.Int | The starting index for the query results.
 
-val result : FileShareWrapper = webService.getFilePrimaryExternalLink(id, count, startIndex)
+launch(Dispatchers.IO) {
+    val result : FileShareWrapper = webService.getFilePrimaryExternalLink(id, count, startIndex)
+}
 ```
 
 ### HTTP request headers
@@ -1267,7 +1317,9 @@ val apiClient = ApiClient()
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.Int = 1 // kotlin.Int | The file unique identifier.
 
-val result : FileIntegerArrayWrapper = webService.getFileVersionInfo(fileId)
+launch(Dispatchers.IO) {
+    val result : FileIntegerArrayWrapper = webService.getFileVersionInfo(fileId)
+}
 ```
 
 ### HTTP request headers
@@ -1308,7 +1360,9 @@ val apiClient = ApiClient()
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val fillingSessionId : kotlin.String = doc_key_123 // kotlin.String | The form-filling session ID.
 
-val result : FillingFormResultIntegerWrapper = webService.getFillResult(fillingSessionId)
+launch(Dispatchers.IO) {
+    val result : FillingFormResultIntegerWrapper = webService.getFillResult(fillingSessionId)
+}
 ```
 
 ### HTTP request headers
@@ -1355,7 +1409,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.Int = 1 // kotlin.Int | The file unique identifier.
 
-val result : FormSubmissionsWrapper = webService.getFormSubmissions(fileId)
+launch(Dispatchers.IO) {
+    val result : FormSubmissionsWrapper = webService.getFormSubmissions(fileId)
+}
 ```
 
 ### HTTP request headers
@@ -1402,7 +1458,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.Int = 1 // kotlin.Int | The file unique identifier.
 
-val result : FileLinkWrapper = webService.getPresignedFileUri(fileId)
+launch(Dispatchers.IO) {
+    val result : FileLinkWrapper = webService.getPresignedFileUri(fileId)
+}
 ```
 
 ### HTTP request headers
@@ -1449,7 +1507,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.Int = 1 // kotlin.Int | The file unique identifier.
 
-val result : StringWrapper = webService.getPresignedUri(fileId)
+launch(Dispatchers.IO) {
+    val result : StringWrapper = webService.getPresignedUri(fileId)
+}
 ```
 
 ### HTTP request headers
@@ -1496,7 +1556,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.Int = 1 // kotlin.Int | The file unique identifier.
 
-val result : MentionWrapperArrayWrapper = webService.getProtectedFileUsers(fileId)
+launch(Dispatchers.IO) {
+    val result : MentionWrapperArrayWrapper = webService.getProtectedFileUsers(fileId)
+}
 ```
 
 ### HTTP request headers
@@ -1543,7 +1605,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val getReferenceDataDtoInteger : GetReferenceDataDtoInteger =  // GetReferenceDataDtoInteger | 
 
-val result : FileReferenceWrapper = webService.getReferenceData(getReferenceDataDtoInteger)
+launch(Dispatchers.IO) {
+    val result : FileReferenceWrapper = webService.getReferenceData(getReferenceDataDtoInteger)
+}
 ```
 
 ### HTTP request headers
@@ -1590,7 +1654,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.Int = 1 // kotlin.Int | The file unique identifier.
 
-val result : BooleanWrapper = webService.isFormPDF(fileId)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.isFormPDF(fileId)
+}
 ```
 
 ### HTTP request headers
@@ -1639,7 +1705,9 @@ val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.Int = 1 // kotlin.Int | The file ID for locking.
 val lockFileParameters : LockFileParameters =  // LockFileParameters | The parameters for locking a file.
 
-val result : FileIntegerWrapper = webService.lockFile(fileId, lockFileParameters)
+launch(Dispatchers.IO) {
+    val result : FileIntegerWrapper = webService.lockFile(fileId, lockFileParameters)
+}
 ```
 
 ### HTTP request headers
@@ -1688,7 +1756,9 @@ val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.String = fileId_example // kotlin.String | 
 val manageFormFillingDtoInteger : ManageFormFillingDtoInteger =  // ManageFormFillingDtoInteger | 
 
-webService.manageFormFilling(fileId, manageFormFillingDtoInteger)
+launch(Dispatchers.IO) {
+    webService.manageFormFilling(fileId, manageFormFillingDtoInteger)
+}
 ```
 
 ### HTTP request headers
@@ -1739,7 +1809,9 @@ val editorType : EditorType = 1 // EditorType | The editor type to open the file
 val edit : kotlin.Boolean = false // kotlin.Boolean | Specifies if the document is opened in the editing mode or not.
 val fill : kotlin.Boolean = false // kotlin.Boolean | Specifies if the document is opened in the form-filling mode or not.
 
-val result : ConfigurationIntegerWrapper = webService.openEditFile(fileId, version, view, editorType, edit, fill)
+launch(Dispatchers.IO) {
+    val result : ConfigurationIntegerWrapper = webService.openEditFile(fileId, version, view, editorType, edit, fill)
+}
 ```
 
 ### HTTP request headers
@@ -1784,7 +1856,9 @@ val fileId : kotlin.Int = 1 // kotlin.Int | The file ID of the restore version.
 val version : kotlin.Int = 1 // kotlin.Int | The file version of the restore.
 val url : kotlin.String = https://example.com // kotlin.String | The file version URL of the restore.
 
-val result : EditHistoryArrayWrapper = webService.restoreFileVersion(fileId, version, url)
+launch(Dispatchers.IO) {
+    val result : EditHistoryArrayWrapper = webService.restoreFileVersion(fileId, version, url)
+}
 ```
 
 ### HTTP request headers
@@ -1839,7 +1913,9 @@ val fileExtension : kotlin.String = fileExtension_example // kotlin.String | The
 val file : java.io.File = BINARY_DATA_HERE // java.io.File | The edited file to be saved, uploaded as part of the multipart/form-data request.  This property represents the modified file content from the HTTP request form after editing operations.  The file is accessed via the IFormFile interface which provides access to the file name, content type, length, and stream.
 val forcesave : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to force save the file or not.
 
-val result : FileIntegerWrapper = webService.saveEditingFileFromForm(fileId, downloadUri, fileExtension, file, forcesave)
+launch(Dispatchers.IO) {
+    val result : FileIntegerWrapper = webService.saveEditingFileFromForm(fileId, downloadUri, fileExtension, file, forcesave)
+}
 ```
 
 ### HTTP request headers
@@ -1888,7 +1964,9 @@ val webService = apiClient.createWebservice(FilesApi::class.java)
 val id : kotlin.Int = 1 // kotlin.Int | The file ID to save as PDF.
 val saveAsPdfInteger : SaveAsPdfInteger =  // SaveAsPdfInteger | The parameters for saving the file as PDF.
 
-val result : FileIntegerWrapper = webService.saveFileAsPdf(id, saveAsPdfInteger)
+launch(Dispatchers.IO) {
+    val result : FileIntegerWrapper = webService.saveFileAsPdf(id, saveAsPdfInteger)
+}
 ```
 
 ### HTTP request headers
@@ -1937,7 +2015,9 @@ val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.String = fileId_example // kotlin.String | 
 val saveFormRoleMappingDtoInteger : SaveFormRoleMappingDtoInteger =  // SaveFormRoleMappingDtoInteger | 
 
-webService.saveFormRoleMapping(fileId, saveFormRoleMappingDtoInteger)
+launch(Dispatchers.IO) {
+    webService.saveFormRoleMapping(fileId, saveFormRoleMappingDtoInteger)
+}
 ```
 
 ### HTTP request headers
@@ -1986,7 +2066,9 @@ val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.Int = 1 // kotlin.Int | The file ID.
 val customFilterParameters : CustomFilterParameters =  // CustomFilterParameters | The parameters for setting the Custom Filter editing mode.
 
-val result : FileIntegerWrapper = webService.setCustomFilterTag(fileId, customFilterParameters)
+launch(Dispatchers.IO) {
+    val result : FileIntegerWrapper = webService.setCustomFilterTag(fileId, customFilterParameters)
+}
 ```
 
 ### HTTP request headers
@@ -2035,7 +2117,9 @@ val webService = apiClient.createWebservice(FilesApi::class.java)
 val id : kotlin.Int = 1 // kotlin.Int | The file ID.
 val fileLinkRequest : FileLinkRequest =  // FileLinkRequest | The file external link parameters.
 
-val result : FileShareWrapper = webService.setFileExternalLink(id, fileLinkRequest)
+launch(Dispatchers.IO) {
+    val result : FileShareWrapper = webService.setFileExternalLink(id, fileLinkRequest)
+}
 ```
 
 ### HTTP request headers
@@ -2084,7 +2168,9 @@ val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.Int = 1 // kotlin.Int | The file unique identifier.
 val orderRequestDto : OrderRequestDto =  // OrderRequestDto | The file order information.
 
-val result : FileIntegerWrapper = webService.setFileOrder(fileId, orderRequestDto)
+launch(Dispatchers.IO) {
+    val result : FileIntegerWrapper = webService.setFileOrder(fileId, orderRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -2131,7 +2217,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val ordersRequestDtoInteger : OrdersRequestDtoInteger =  // OrdersRequestDtoInteger | 
 
-val result : FileEntryIntegerArrayWrapper = webService.setFilesOrder(ordersRequestDtoInteger)
+launch(Dispatchers.IO) {
+    val result : FileEntryIntegerArrayWrapper = webService.setFilesOrder(ordersRequestDtoInteger)
+}
 ```
 
 ### HTTP request headers
@@ -2174,7 +2262,9 @@ val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.Int = 1 // kotlin.Int | The file ID to start editing.
 val startEdit : StartEdit =  // StartEdit | The file parameters to start editing.
 
-val result : StringWrapper = webService.startEditFile(fileId, startEdit)
+launch(Dispatchers.IO) {
+    val result : StringWrapper = webService.startEditFile(fileId, startEdit)
+}
 ```
 
 ### HTTP request headers
@@ -2221,7 +2311,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.Int = 1 // kotlin.Int | The file ID to start filling.
 
-val result : FileIntegerWrapper = webService.startFillingFile(fileId)
+launch(Dispatchers.IO) {
+    val result : FileIntegerWrapper = webService.startFillingFile(fileId)
+}
 ```
 
 ### HTTP request headers
@@ -2270,7 +2362,9 @@ val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.Int = 1 // kotlin.Int | The file ID.
 val favorite : kotlin.Boolean = true // kotlin.Boolean | Specifies if the file is marked as favorite or not.
 
-val result : BooleanWrapper = webService.toggleFileFavorite(fileId, favorite)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.toggleFileFavorite(fileId, favorite)
+}
 ```
 
 ### HTTP request headers
@@ -2317,7 +2411,9 @@ val tabId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.U
 val docKeyForTrack : kotlin.String = abc123 // kotlin.String | The document key for tracking changes.
 val isFinish : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to finish file tracking or not.
 
-val result : KeyValuePairBooleanStringWrapper = webService.trackEditFile(fileId, tabId, docKeyForTrack, isFinish)
+launch(Dispatchers.IO) {
+    val result : KeyValuePairBooleanStringWrapper = webService.trackEditFile(fileId, tabId, docKeyForTrack, isFinish)
+}
 ```
 
 ### HTTP request headers
@@ -2360,7 +2456,9 @@ val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.Int = 1 // kotlin.Int | The file ID to update.
 val updateFile : UpdateFile =  // UpdateFile | The parameters for updating a file.
 
-val result : FileIntegerWrapper = webService.updateFile(fileId, updateFile)
+launch(Dispatchers.IO) {
+    val result : FileIntegerWrapper = webService.updateFile(fileId, updateFile)
+}
 ```
 
 ### HTTP request headers

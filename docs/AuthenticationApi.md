@@ -46,7 +46,9 @@ val apiClient = ApiClient()
 val webService = apiClient.createWebservice(AuthenticationApi::class.java)
 val authRequestsDto : AuthRequestsDto =  // AuthRequestsDto | 
 
-val result : AuthenticationTokenWrapper = webService.authenticateMe(authRequestsDto)
+launch(Dispatchers.IO) {
+    val result : AuthenticationTokenWrapper = webService.authenticateMe(authRequestsDto)
+}
 ```
 
 ### HTTP request headers
@@ -89,7 +91,9 @@ val webService = apiClient.createWebservice(AuthenticationApi::class.java)
 val code : kotlin.String = code_example // kotlin.String | 
 val authWithCodeRequestsDto : AuthWithCodeRequestsDto =  // AuthWithCodeRequestsDto | 
 
-val result : AuthenticationTokenWrapper = webService.authenticateMeFromBodyWithCode(code, authWithCodeRequestsDto)
+launch(Dispatchers.IO) {
+    val result : AuthenticationTokenWrapper = webService.authenticateMeFromBodyWithCode(code, authWithCodeRequestsDto)
+}
 ```
 
 ### HTTP request headers
@@ -130,7 +134,9 @@ val apiClient = ApiClient()
 val webService = apiClient.createWebservice(AuthenticationApi::class.java)
 val emailValidationKeyModel : EmailValidationKeyModel =  // EmailValidationKeyModel | 
 
-val result : ConfirmWrapper = webService.checkConfirm(emailValidationKeyModel)
+launch(Dispatchers.IO) {
+    val result : ConfirmWrapper = webService.checkConfirm(emailValidationKeyModel)
+}
 ```
 
 ### HTTP request headers
@@ -168,7 +174,9 @@ No authorization required
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(AuthenticationApi::class.java)
 
-val result : BooleanWrapper = webService.getIsAuthentificated()
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.getIsAuthentificated()
+}
 ```
 
 ### HTTP request headers
@@ -206,7 +214,9 @@ No authorization required
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(AuthenticationApi::class.java)
 
-val result : StringWrapper = webService.logout()
+launch(Dispatchers.IO) {
+    val result : StringWrapper = webService.logout()
+}
 ```
 
 ### HTTP request headers
@@ -253,7 +263,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AuthenticationApi::class.java)
 val mobileRequestsDto : MobileRequestsDto =  // MobileRequestsDto | 
 
-val result : AuthenticationTokenWrapper = webService.saveMobilePhone(mobileRequestsDto)
+launch(Dispatchers.IO) {
+    val result : AuthenticationTokenWrapper = webService.saveMobilePhone(mobileRequestsDto)
+}
 ```
 
 ### HTTP request headers
@@ -294,7 +306,9 @@ val apiClient = ApiClient()
 val webService = apiClient.createWebservice(AuthenticationApi::class.java)
 val authRequestsDto : AuthRequestsDto =  // AuthRequestsDto | 
 
-val result : AuthenticationTokenWrapper = webService.sendSmsCode(authRequestsDto)
+launch(Dispatchers.IO) {
+    val result : AuthenticationTokenWrapper = webService.sendSmsCode(authRequestsDto)
+}
 ```
 
 ### HTTP request headers

@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.AI
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -53,10 +53,10 @@ interface AIChatApi {
      *
      * @param chatId The unique identifier of the existing AI chat session to continue.
      * @param continueChatBody The message and optional file attachments.
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @POST("api/2.0/ai/chats/{chatId}/messages")
-    fun continueChat(@Path("chatId") chatId: java.util.UUID, @Body continueChatBody: ContinueChatBody): Call<Unit>
+    suspend fun continueChat(@Path("chatId") chatId: java.util.UUID, @Body continueChatBody: ContinueChatBody): Response<Unit>
 
     /**
      * DELETE api/2.0/ai/chats/{chatId}
@@ -72,10 +72,10 @@ interface AIChatApi {
      *
      *
      * @param chatId The unique identifier of the AI chat session to delete.
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @DELETE("api/2.0/ai/chats/{chatId}")
-    fun deleteChat(@Path("chatId") chatId: java.util.UUID): Call<Unit>
+    suspend fun deleteChat(@Path("chatId") chatId: java.util.UUID): Response<Unit>
 
     /**
      * POST api/2.0/ai/chats/{chatId}/messages/export
@@ -92,10 +92,10 @@ interface AIChatApi {
      *
      * @param chatId The unique identifier of the AI chat session to export.
      * @param exportChatRequestBodyInteger The export parameters including destination folder and file title.
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @POST("api/2.0/ai/chats/{chatId}/messages/export")
-    fun exportChat(@Path("chatId") chatId: java.util.UUID, @Body exportChatRequestBodyInteger: ExportChatRequestBodyInteger): Call<Unit>
+    suspend fun exportChat(@Path("chatId") chatId: java.util.UUID, @Body exportChatRequestBodyInteger: ExportChatRequestBodyInteger): Response<Unit>
 
     /**
      * GET api/2.0/ai/chats/{chatId}
@@ -111,10 +111,10 @@ interface AIChatApi {
      *
      *
      * @param chatId The unique identifier of the AI chat session to retrieve.
-     * @return [Call]<[ChatWrapper]>
+     * @return [ChatWrapper]
      */
     @GET("api/2.0/ai/chats/{chatId}")
-    fun getChat(@Path("chatId") chatId: java.util.UUID): Call<ChatWrapper>
+    suspend fun getChat(@Path("chatId") chatId: java.util.UUID): Response<ChatWrapper>
 
     /**
      * GET api/2.0/ai/chats/models
@@ -129,10 +129,10 @@ interface AIChatApi {
      *
      *
      * @param provider The optional AI provider identifier to filter models by. When set to 0, models from all providers are returned. (optional)
-     * @return [Call]<[ModelArrayWrapper]>
+     * @return [ModelArrayWrapper]
      */
     @GET("api/2.0/ai/chats/models")
-    fun getChatModels(@Query("provider") provider: kotlin.Int? = null): Call<ModelArrayWrapper>
+    suspend fun getChatModels(@Query("provider") provider: kotlin.Int? = null): Response<ModelArrayWrapper>
 
     /**
      * GET api/2.0/ai/rooms/{roomId}/chats
@@ -151,10 +151,10 @@ interface AIChatApi {
      * @param roomId The identifier of the room whose AI chat sessions are to be listed.
      * @param startIndex The number of items to skip before returning results (zero-based offset). Defaults to 0. (optional)
      * @param count The maximum number of items to return per page. Defaults to 100. (optional)
-     * @return [Call]<[ChatArrayWrapper]>
+     * @return [ChatArrayWrapper]
      */
     @GET("api/2.0/ai/rooms/{roomId}/chats")
-    fun getChats(@Path("roomId") roomId: kotlin.Int, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("count") count: kotlin.Int? = null): Call<ChatArrayWrapper>
+    suspend fun getChats(@Path("roomId") roomId: kotlin.Int, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("count") count: kotlin.Int? = null): Response<ChatArrayWrapper>
 
     /**
      * GET api/2.0/ai/chats/{chatId}/messages
@@ -172,10 +172,10 @@ interface AIChatApi {
      * @param chatId The unique identifier of the AI chat session whose messages are to be listed.
      * @param startIndex The number of items to skip before returning results (zero-based offset). Defaults to 0. (optional)
      * @param count The maximum number of items to return per page. Defaults to 100. (optional)
-     * @return [Call]<[MessageArrayWrapper]>
+     * @return [MessageArrayWrapper]
      */
     @GET("api/2.0/ai/chats/{chatId}/messages")
-    fun getMessages(@Path("chatId") chatId: java.util.UUID, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("count") count: kotlin.Int? = null): Call<MessageArrayWrapper>
+    suspend fun getMessages(@Path("chatId") chatId: java.util.UUID, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("count") count: kotlin.Int? = null): Response<MessageArrayWrapper>
 
     /**
      * GET api/2.0/ai/rooms/{roomId}/chats/config
@@ -192,10 +192,10 @@ interface AIChatApi {
      *
      *
      * @param roomId The identifier of the room whose chat settings are to be retrieved.
-     * @return [Call]<[UserChatSettingsWrapper]>
+     * @return [UserChatSettingsWrapper]
      */
     @GET("api/2.0/ai/rooms/{roomId}/chats/config")
-    fun getUserChatsSettings(@Path("roomId") roomId: kotlin.Int): Call<UserChatSettingsWrapper>
+    suspend fun getUserChatsSettings(@Path("roomId") roomId: kotlin.Int): Response<UserChatSettingsWrapper>
 
     /**
      * POST api/2.0/ai/chats/tool-permissions/{callId}/decision
@@ -211,10 +211,10 @@ interface AIChatApi {
      *
      * @param callId The unique identifier of the pending tool execution call awaiting a permission decision.
      * @param toolDecisionRequestBody The permission decision parameters.
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @POST("api/2.0/ai/chats/tool-permissions/{callId}/decision")
-    fun providePermission(@Path("callId") callId: kotlin.String, @Body toolDecisionRequestBody: ToolDecisionRequestBody): Call<Unit>
+    suspend fun providePermission(@Path("callId") callId: kotlin.String, @Body toolDecisionRequestBody: ToolDecisionRequestBody): Response<Unit>
 
     /**
      * PUT api/2.0/ai/chats/{chatId}
@@ -231,10 +231,10 @@ interface AIChatApi {
      *
      * @param chatId The unique identifier of the AI chat session to rename.
      * @param renameChatBody The new chat name.
-     * @return [Call]<[ChatWrapper]>
+     * @return [ChatWrapper]
      */
     @PUT("api/2.0/ai/chats/{chatId}")
-    fun renameChat(@Path("chatId") chatId: java.util.UUID, @Body renameChatBody: RenameChatBody): Call<ChatWrapper>
+    suspend fun renameChat(@Path("chatId") chatId: java.util.UUID, @Body renameChatBody: RenameChatBody): Response<ChatWrapper>
 
     /**
      * PUT api/2.0/ai/rooms/{roomId}/chats/config
@@ -252,10 +252,10 @@ interface AIChatApi {
      *
      * @param roomId The identifier of the room whose chat settings are to be updated.
      * @param setUserChatSettingsRequestBody The chat settings to apply.
-     * @return [Call]<[UserChatSettingsWrapper]>
+     * @return [UserChatSettingsWrapper]
      */
     @PUT("api/2.0/ai/rooms/{roomId}/chats/config")
-    fun setUserChatsSettings(@Path("roomId") roomId: kotlin.Int, @Body setUserChatSettingsRequestBody: SetUserChatSettingsRequestBody): Call<UserChatSettingsWrapper>
+    suspend fun setUserChatsSettings(@Path("roomId") roomId: kotlin.Int, @Body setUserChatSettingsRequestBody: SetUserChatSettingsRequestBody): Response<UserChatSettingsWrapper>
 
     /**
      * POST api/2.0/ai/rooms/{roomId}/chats
@@ -274,9 +274,9 @@ interface AIChatApi {
      *
      * @param roomId The identifier of the room in which to create the new AI chat session.
      * @param startNewChatBody The initial message and optional file attachments.
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @POST("api/2.0/ai/rooms/{roomId}/chats")
-    fun startNewChat(@Path("roomId") roomId: kotlin.Int, @Body startNewChatBody: StartNewChatBody): Call<Unit>
+    suspend fun startNewChat(@Path("roomId") roomId: kotlin.Int, @Body startNewChatBody: StartNewChatBody): Response<Unit>
 
 }

@@ -47,7 +47,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(GuestsApi::class.java)
 val emailMemberRequestDto : EmailMemberRequestDto =  // EmailMemberRequestDto | 
 
-val result : EmployeeFullWrapper = webService.approveGuestShareLink(emailMemberRequestDto)
+launch(Dispatchers.IO) {
+    val result : EmployeeFullWrapper = webService.approveGuestShareLink(emailMemberRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -94,7 +96,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(GuestsApi::class.java)
 val updateMembersRequestDto : UpdateMembersRequestDto =  // UpdateMembersRequestDto | 
 
-webService.deleteGuests(updateMembersRequestDto)
+launch(Dispatchers.IO) {
+    webService.deleteGuests(updateMembersRequestDto)
+}
 ```
 
 ### HTTP request headers

@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.ThirdParty
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -40,9 +40,9 @@ interface ThirdPartyApi {
      *
      *
      * @param provider The identity provider used for authentication.
-     * @return [Call]<[ObjectWrapper]>
+     * @return [ObjectWrapper]
      */
     @GET("api/2.0/thirdparty/{provider}")
-    fun getThirdPartyCode(@Path("provider") provider: LoginProvider): Call<ObjectWrapper>
+    suspend fun getThirdPartyCode(@Path("provider") provider: LoginProvider): Response<ObjectWrapper>
 
 }

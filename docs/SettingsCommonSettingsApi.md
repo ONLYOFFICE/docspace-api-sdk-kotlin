@@ -64,7 +64,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(CommonSettingsApi::class.java)
 
-webService.closeAdminHelper()
+launch(Dispatchers.IO) {
+    webService.closeAdminHelper()
+}
 ```
 
 ### HTTP request headers
@@ -111,7 +113,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(CommonSettingsApi::class.java)
 val wizardRequestsDto : WizardRequestsDto =  // WizardRequestsDto | 
 
-val result : WizardSettingsWrapper = webService.completeWizard(wizardRequestsDto)
+launch(Dispatchers.IO) {
+    val result : WizardSettingsWrapper = webService.completeWizard(wizardRequestsDto)
+}
 ```
 
 ### HTTP request headers
@@ -158,7 +162,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(CommonSettingsApi::class.java)
 val deepLinkConfigurationRequestsDto : DeepLinkConfigurationRequestsDto =  // DeepLinkConfigurationRequestsDto | 
 
-val result : TenantDeepLinkSettingsWrapper = webService.configureDeepLink(deepLinkConfigurationRequestsDto)
+launch(Dispatchers.IO) {
+    val result : TenantDeepLinkSettingsWrapper = webService.configureDeepLink(deepLinkConfigurationRequestsDto)
+}
 ```
 
 ### HTTP request headers
@@ -205,7 +211,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(CommonSettingsApi::class.java)
 val id : kotlin.Int = 1 // kotlin.Int | The ID of the portal theme to delete.
 
-val result : CustomColorThemesSettingsWrapper = webService.deletePortalColorTheme(id)
+launch(Dispatchers.IO) {
+    val result : CustomColorThemesSettingsWrapper = webService.deletePortalColorTheme(id)
+}
 ```
 
 ### HTTP request headers
@@ -243,7 +251,9 @@ No authorization required
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(CommonSettingsApi::class.java)
 
-val result : TenantDeepLinkSettingsWrapper = webService.getDeepLinkSettings()
+launch(Dispatchers.IO) {
+    val result : TenantDeepLinkSettingsWrapper = webService.getDeepLinkSettings()
+}
 ```
 
 ### HTTP request headers
@@ -287,7 +297,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(CommonSettingsApi::class.java)
 
-val result : PaymentSettingsWrapper = webService.getPaymentSettings()
+launch(Dispatchers.IO) {
+    val result : PaymentSettingsWrapper = webService.getPaymentSettings()
+}
 ```
 
 ### HTTP request headers
@@ -325,7 +337,9 @@ No authorization required
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(CommonSettingsApi::class.java)
 
-val result : CustomColorThemesSettingsWrapper = webService.getPortalColorTheme()
+launch(Dispatchers.IO) {
+    val result : CustomColorThemesSettingsWrapper = webService.getPortalColorTheme()
+}
 ```
 
 ### HTTP request headers
@@ -369,7 +383,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(CommonSettingsApi::class.java)
 
-val result : ObjectWrapper = webService.getPortalHostname()
+launch(Dispatchers.IO) {
+    val result : ObjectWrapper = webService.getPortalHostname()
+}
 ```
 
 ### HTTP request headers
@@ -413,7 +429,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(CommonSettingsApi::class.java)
 
-val result : StringWrapper = webService.getPortalLogo()
+launch(Dispatchers.IO) {
+    val result : StringWrapper = webService.getPortalLogo()
+}
 ```
 
 ### HTTP request headers
@@ -454,7 +472,9 @@ val apiClient = ApiClient()
 val webService = apiClient.createWebservice(CommonSettingsApi::class.java)
 val withpassword : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to include the password hashing configuration in the response.
 
-val result : SettingsWrapper = webService.getPortalSettings(withpassword)
+launch(Dispatchers.IO) {
+    val result : SettingsWrapper = webService.getPortalSettings(withpassword)
+}
 ```
 
 ### HTTP request headers
@@ -498,7 +518,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(CommonSettingsApi::class.java)
 
-val result : ObjectWrapper = webService.getSocketSettings()
+launch(Dispatchers.IO) {
+    val result : ObjectWrapper = webService.getSocketSettings()
+}
 ```
 
 ### HTTP request headers
@@ -536,7 +558,9 @@ No authorization required
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(CommonSettingsApi::class.java)
 
-val result : STRINGArrayWrapper = webService.getSupportedCultures()
+launch(Dispatchers.IO) {
+    val result : STRINGArrayWrapper = webService.getSupportedCultures()
+}
 ```
 
 ### HTTP request headers
@@ -580,7 +604,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(CommonSettingsApi::class.java)
 
-val result : TenantAiAccessSettingsWrapper = webService.getTenantAiAccessSettings()
+launch(Dispatchers.IO) {
+    val result : TenantAiAccessSettingsWrapper = webService.getTenantAiAccessSettings()
+}
 ```
 
 ### HTTP request headers
@@ -618,7 +644,9 @@ No authorization required
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(CommonSettingsApi::class.java)
 
-val result : TenantUserInvitationSettingsWrapper = webService.getTenantUserInvitationSettings()
+launch(Dispatchers.IO) {
+    val result : TenantUserInvitationSettingsWrapper = webService.getTenantUserInvitationSettings()
+}
 ```
 
 ### HTTP request headers
@@ -662,7 +690,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(CommonSettingsApi::class.java)
 
-val result : TimezonesRequestsArrayWrapper = webService.getTimeZones()
+launch(Dispatchers.IO) {
+    val result : TimezonesRequestsArrayWrapper = webService.getTimeZones()
+}
 ```
 
 ### HTTP request headers
@@ -709,7 +739,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(CommonSettingsApi::class.java)
 val defaultProductRequestDto : DefaultProductRequestDto =  // DefaultProductRequestDto | 
 
-val result : StudioDefaultPageSettingsWrapper = webService.saveDefaultFolder(defaultProductRequestDto)
+launch(Dispatchers.IO) {
+    val result : StudioDefaultPageSettingsWrapper = webService.saveDefaultFolder(defaultProductRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -756,7 +788,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(CommonSettingsApi::class.java)
 val dnsSettingsRequestsDto : DnsSettingsRequestsDto =  // DnsSettingsRequestsDto | 
 
-val result : StringWrapper = webService.saveDnsSettings(dnsSettingsRequestsDto)
+launch(Dispatchers.IO) {
+    val result : StringWrapper = webService.saveDnsSettings(dnsSettingsRequestsDto)
+}
 ```
 
 ### HTTP request headers
@@ -803,7 +837,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(CommonSettingsApi::class.java)
 val mailDomainSettingsRequestsDto : MailDomainSettingsRequestsDto =  // MailDomainSettingsRequestsDto | 
 
-val result : StringWrapper = webService.saveMailDomainSettings(mailDomainSettingsRequestsDto)
+launch(Dispatchers.IO) {
+    val result : StringWrapper = webService.saveMailDomainSettings(mailDomainSettingsRequestsDto)
+}
 ```
 
 ### HTTP request headers
@@ -850,7 +886,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(CommonSettingsApi::class.java)
 val customColorThemesSettingsRequestsDto : CustomColorThemesSettingsRequestsDto =  // CustomColorThemesSettingsRequestsDto | 
 
-val result : CustomColorThemesSettingsWrapper = webService.savePortalColorTheme(customColorThemesSettingsRequestsDto)
+launch(Dispatchers.IO) {
+    val result : CustomColorThemesSettingsWrapper = webService.savePortalColorTheme(customColorThemesSettingsRequestsDto)
+}
 ```
 
 ### HTTP request headers
@@ -897,7 +935,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(CommonSettingsApi::class.java)
 val tenantAiAccessSettingsDto : TenantAiAccessSettingsDto =  // TenantAiAccessSettingsDto | 
 
-val result : TenantAiAccessSettingsWrapper = webService.setTenantAiAccessSettings(tenantAiAccessSettingsDto)
+launch(Dispatchers.IO) {
+    val result : TenantAiAccessSettingsWrapper = webService.setTenantAiAccessSettings(tenantAiAccessSettingsDto)
+}
 ```
 
 ### HTTP request headers
@@ -944,7 +984,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(CommonSettingsApi::class.java)
 val emailActivationSettings : EmailActivationSettings =  // EmailActivationSettings | 
 
-val result : EmailActivationSettingsWrapper = webService.updateEmailActivationSettings(emailActivationSettings)
+launch(Dispatchers.IO) {
+    val result : EmailActivationSettingsWrapper = webService.updateEmailActivationSettings(emailActivationSettings)
+}
 ```
 
 ### HTTP request headers
@@ -991,7 +1033,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(CommonSettingsApi::class.java)
 val tenantUserInvitationSettingsRequestDto : TenantUserInvitationSettingsRequestDto =  // TenantUserInvitationSettingsRequestDto | 
 
-val result : TenantUserInvitationSettingsWrapper = webService.updateInvitationSettings(tenantUserInvitationSettingsRequestDto)
+launch(Dispatchers.IO) {
+    val result : TenantUserInvitationSettingsWrapper = webService.updateInvitationSettings(tenantUserInvitationSettingsRequestDto)
+}
 ```
 
 ### HTTP request headers

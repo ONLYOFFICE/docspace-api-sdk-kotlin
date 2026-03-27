@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Settings
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -47,10 +47,10 @@ interface RebrandingApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-additional-white-label-settings/
      *
      *
-     * @return [Call]<[AdditionalWhiteLabelSettingsWrapper]>
+     * @return [AdditionalWhiteLabelSettingsWrapper]
      */
     @DELETE("api/2.0/settings/rebranding/additional")
-    fun deleteAdditionalWhiteLabelSettings(): Call<AdditionalWhiteLabelSettingsWrapper>
+    suspend fun deleteAdditionalWhiteLabelSettings(): Response<AdditionalWhiteLabelSettingsWrapper>
 
     /**
      * DELETE api/2.0/settings/rebranding/company
@@ -65,10 +65,10 @@ interface RebrandingApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-company-white-label-settings/
      *
      *
-     * @return [Call]<[CompanyWhiteLabelSettingsWrapper]>
+     * @return [CompanyWhiteLabelSettingsWrapper]
      */
     @DELETE("api/2.0/settings/rebranding/company")
-    fun deleteCompanyWhiteLabelSettings(): Call<CompanyWhiteLabelSettingsWrapper>
+    suspend fun deleteCompanyWhiteLabelSettings(): Response<CompanyWhiteLabelSettingsWrapper>
 
     /**
      * GET api/2.0/settings/rebranding/additional
@@ -82,10 +82,10 @@ interface RebrandingApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-additional-white-label-settings/
      *
      *
-     * @return [Call]<[AdditionalWhiteLabelSettingsWrapper]>
+     * @return [AdditionalWhiteLabelSettingsWrapper]
      */
     @GET("api/2.0/settings/rebranding/additional")
-    fun getAdditionalWhiteLabelSettings(): Call<AdditionalWhiteLabelSettingsWrapper>
+    suspend fun getAdditionalWhiteLabelSettings(): Response<AdditionalWhiteLabelSettingsWrapper>
 
     /**
      * GET api/2.0/settings/rebranding/company
@@ -99,10 +99,10 @@ interface RebrandingApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-company-white-label-settings/
      *
      *
-     * @return [Call]<[CompanyWhiteLabelSettingsWrapper]>
+     * @return [CompanyWhiteLabelSettingsWrapper]
      */
     @GET("api/2.0/settings/rebranding/company")
-    fun getCompanyWhiteLabelSettings(): Call<CompanyWhiteLabelSettingsWrapper>
+    suspend fun getCompanyWhiteLabelSettings(): Response<CompanyWhiteLabelSettingsWrapper>
 
     /**
      * GET api/2.0/settings/enablewhitelabel
@@ -116,10 +116,10 @@ interface RebrandingApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-enable-whitelabel/
      *
      *
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @GET("api/2.0/settings/enablewhitelabel")
-    fun getEnableWhitelabel(): Call<BooleanWrapper>
+    suspend fun getEnableWhitelabel(): Response<BooleanWrapper>
 
     /**
      * GET api/2.0/settings/whitelabel/logotext/isdefault
@@ -135,10 +135,10 @@ interface RebrandingApi {
      *
      * @param isDark Specifies if the white label logo is for the dark theme or not. (optional)
      * @param isDefault Specifies if the logo is for a default tenant or not. (optional)
-     * @return [Call]<[IsDefaultWhiteLabelLogosWrapper]>
+     * @return [IsDefaultWhiteLabelLogosWrapper]
      */
     @GET("api/2.0/settings/whitelabel/logotext/isdefault")
-    fun getIsDefaultWhiteLabelLogoText(@Query("IsDark") isDark: kotlin.Boolean? = null, @Query("IsDefault") isDefault: kotlin.Boolean? = null): Call<IsDefaultWhiteLabelLogosWrapper>
+    suspend fun getIsDefaultWhiteLabelLogoText(@Query("IsDark") isDark: kotlin.Boolean? = null, @Query("IsDefault") isDefault: kotlin.Boolean? = null): Response<IsDefaultWhiteLabelLogosWrapper>
 
     /**
      * GET api/2.0/settings/whitelabel/logos/isdefault
@@ -154,10 +154,10 @@ interface RebrandingApi {
      *
      * @param isDark Specifies if the white label logo is for the dark theme or not. (optional)
      * @param isDefault Specifies if the logo is for a default tenant or not. (optional)
-     * @return [Call]<[IsDefaultWhiteLabelLogosArrayWrapper]>
+     * @return [IsDefaultWhiteLabelLogosArrayWrapper]
      */
     @GET("api/2.0/settings/whitelabel/logos/isdefault")
-    fun getIsDefaultWhiteLabelLogos(@Query("IsDark") isDark: kotlin.Boolean? = null, @Query("IsDefault") isDefault: kotlin.Boolean? = null): Call<IsDefaultWhiteLabelLogosArrayWrapper>
+    suspend fun getIsDefaultWhiteLabelLogos(@Query("IsDark") isDark: kotlin.Boolean? = null, @Query("IsDefault") isDefault: kotlin.Boolean? = null): Response<IsDefaultWhiteLabelLogosArrayWrapper>
 
     /**
      * GET api/2.0/settings/companywhitelabel
@@ -171,10 +171,10 @@ interface RebrandingApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-licensor-data/
      *
      *
-     * @return [Call]<[CompanyWhiteLabelSettingsArrayWrapper]>
+     * @return [CompanyWhiteLabelSettingsArrayWrapper]
      */
     @GET("api/2.0/settings/companywhitelabel")
-    fun getLicensorData(): Call<CompanyWhiteLabelSettingsArrayWrapper>
+    suspend fun getLicensorData(): Response<CompanyWhiteLabelSettingsArrayWrapper>
 
     /**
      * GET api/2.0/settings/whitelabel/logotext
@@ -190,10 +190,10 @@ interface RebrandingApi {
      *
      * @param isDark Specifies if the white label logo is for the dark theme or not. (optional)
      * @param isDefault Specifies if the logo is for a default tenant or not. (optional)
-     * @return [Call]<[StringWrapper]>
+     * @return [StringWrapper]
      */
     @GET("api/2.0/settings/whitelabel/logotext")
-    fun getWhiteLabelLogoText(@Query("IsDark") isDark: kotlin.Boolean? = null, @Query("IsDefault") isDefault: kotlin.Boolean? = null): Call<StringWrapper>
+    suspend fun getWhiteLabelLogoText(@Query("IsDark") isDark: kotlin.Boolean? = null, @Query("IsDefault") isDefault: kotlin.Boolean? = null): Response<StringWrapper>
 
     /**
      * GET api/2.0/settings/whitelabel/logos
@@ -208,10 +208,10 @@ interface RebrandingApi {
      *
      * @param isDark Specifies if the white label logo is for the dark theme or not. (optional)
      * @param isDefault Specifies if the logo is for a default tenant or not. (optional)
-     * @return [Call]<[WhiteLabelItemArrayWrapper]>
+     * @return [WhiteLabelItemArrayWrapper]
      */
     @GET("api/2.0/settings/whitelabel/logos")
-    fun getWhiteLabelLogos(@Query("IsDark") isDark: kotlin.Boolean? = null, @Query("IsDefault") isDefault: kotlin.Boolean? = null): Call<WhiteLabelItemArrayWrapper>
+    suspend fun getWhiteLabelLogos(@Query("IsDark") isDark: kotlin.Boolean? = null, @Query("IsDefault") isDefault: kotlin.Boolean? = null): Response<WhiteLabelItemArrayWrapper>
 
     /**
      * PUT api/2.0/settings/whitelabel/logotext/restore
@@ -228,10 +228,10 @@ interface RebrandingApi {
      *
      * @param isDark Specifies if the white label logo is for the dark theme or not. (optional)
      * @param isDefault Specifies if the logo is for a default tenant or not. (optional)
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @PUT("api/2.0/settings/whitelabel/logotext/restore")
-    fun restoreWhiteLabelLogoText(@Query("IsDark") isDark: kotlin.Boolean? = null, @Query("IsDefault") isDefault: kotlin.Boolean? = null): Call<BooleanWrapper>
+    suspend fun restoreWhiteLabelLogoText(@Query("IsDark") isDark: kotlin.Boolean? = null, @Query("IsDefault") isDefault: kotlin.Boolean? = null): Response<BooleanWrapper>
 
     /**
      * PUT api/2.0/settings/whitelabel/logos/restore
@@ -248,10 +248,10 @@ interface RebrandingApi {
      *
      * @param isDark Specifies if the white label logo is for the dark theme or not. (optional)
      * @param isDefault Specifies if the logo is for a default tenant or not. (optional)
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @PUT("api/2.0/settings/whitelabel/logos/restore")
-    fun restoreWhiteLabelLogos(@Query("IsDark") isDark: kotlin.Boolean? = null, @Query("IsDefault") isDefault: kotlin.Boolean? = null): Call<BooleanWrapper>
+    suspend fun restoreWhiteLabelLogos(@Query("IsDark") isDark: kotlin.Boolean? = null, @Query("IsDefault") isDefault: kotlin.Boolean? = null): Response<BooleanWrapper>
 
     /**
      * POST api/2.0/settings/rebranding/additional
@@ -268,10 +268,10 @@ interface RebrandingApi {
      *
      *
      * @param additionalWhiteLabelSettingsWrapper  (optional)
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @POST("api/2.0/settings/rebranding/additional")
-    fun saveAdditionalWhiteLabelSettings(@Body additionalWhiteLabelSettingsWrapper: AdditionalWhiteLabelSettingsWrapper? = null): Call<BooleanWrapper>
+    suspend fun saveAdditionalWhiteLabelSettings(@Body additionalWhiteLabelSettingsWrapper: AdditionalWhiteLabelSettingsWrapper? = null): Response<BooleanWrapper>
 
     /**
      * POST api/2.0/settings/rebranding/company
@@ -288,10 +288,10 @@ interface RebrandingApi {
      *
      *
      * @param companyWhiteLabelSettingsWrapper  (optional)
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @POST("api/2.0/settings/rebranding/company")
-    fun saveCompanyWhiteLabelSettings(@Body companyWhiteLabelSettingsWrapper: CompanyWhiteLabelSettingsWrapper? = null): Call<BooleanWrapper>
+    suspend fun saveCompanyWhiteLabelSettings(@Body companyWhiteLabelSettingsWrapper: CompanyWhiteLabelSettingsWrapper? = null): Response<BooleanWrapper>
 
     /**
      * POST api/2.0/settings/whitelabel/logotext/save
@@ -309,10 +309,10 @@ interface RebrandingApi {
      * @param isDark Specifies if the white label logo is for the dark theme or not. (optional)
      * @param isDefault Specifies if the logo is for a default tenant or not. (optional)
      * @param whiteLabelRequestsDto  (optional)
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @POST("api/2.0/settings/whitelabel/logotext/save")
-    fun saveWhiteLabelLogoText(@Query("IsDark") isDark: kotlin.Boolean? = null, @Query("IsDefault") isDefault: kotlin.Boolean? = null, @Body whiteLabelRequestsDto: WhiteLabelRequestsDto? = null): Call<BooleanWrapper>
+    suspend fun saveWhiteLabelLogoText(@Query("IsDark") isDark: kotlin.Boolean? = null, @Query("IsDefault") isDefault: kotlin.Boolean? = null, @Body whiteLabelRequestsDto: WhiteLabelRequestsDto? = null): Response<BooleanWrapper>
 
     /**
      * POST api/2.0/settings/whitelabel/logos/save
@@ -330,10 +330,10 @@ interface RebrandingApi {
      * @param isDark Specifies if the white label logo is for the dark theme or not. (optional)
      * @param isDefault Specifies if the logo is for a default tenant or not. (optional)
      * @param whiteLabelRequestsDto  (optional)
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @POST("api/2.0/settings/whitelabel/logos/save")
-    fun saveWhiteLabelSettings(@Query("IsDark") isDark: kotlin.Boolean? = null, @Query("IsDefault") isDefault: kotlin.Boolean? = null, @Body whiteLabelRequestsDto: WhiteLabelRequestsDto? = null): Call<BooleanWrapper>
+    suspend fun saveWhiteLabelSettings(@Query("IsDark") isDark: kotlin.Boolean? = null, @Query("IsDefault") isDefault: kotlin.Boolean? = null, @Body whiteLabelRequestsDto: WhiteLabelRequestsDto? = null): Response<BooleanWrapper>
 
     /**
      * POST api/2.0/settings/whitelabel/logos/savefromfiles
@@ -351,9 +351,9 @@ interface RebrandingApi {
      *
      * @param isDark Specifies if the white label logo is for the dark theme or not. (optional)
      * @param isDefault Specifies if the logo is for a default tenant or not. (optional)
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @POST("api/2.0/settings/whitelabel/logos/savefromfiles")
-    fun saveWhiteLabelSettingsFromFiles(@Query("IsDark") isDark: kotlin.Boolean? = null, @Query("IsDefault") isDefault: kotlin.Boolean? = null): Call<BooleanWrapper>
+    suspend fun saveWhiteLabelSettingsFromFiles(@Query("IsDark") isDark: kotlin.Boolean? = null, @Query("IsDefault") isDefault: kotlin.Boolean? = null): Response<BooleanWrapper>
 
 }

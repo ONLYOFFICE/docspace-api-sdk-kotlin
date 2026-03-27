@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Files
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -84,10 +84,10 @@ interface FilesApi {
      *
      *
      * @param fileId The file unique identifier.
-     * @return [Call]<[FileIntegerWrapper]>
+     * @return [FileIntegerWrapper]
      */
     @POST("api/2.0/files/file/{fileId}/recent")
-    fun addFileToRecent(@Path("fileId") fileId: kotlin.Int): Call<FileIntegerWrapper>
+    suspend fun addFileToRecent(@Path("fileId") fileId: kotlin.Int): Response<FileIntegerWrapper>
 
     /**
      * POST api/2.0/files/templates
@@ -102,10 +102,10 @@ interface FilesApi {
      *
      *
      * @param templatesRequestDto  (optional)
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @POST("api/2.0/files/templates")
-    fun addTemplates(@Body templatesRequestDto: TemplatesRequestDto? = null): Call<BooleanWrapper>
+    suspend fun addTemplates(@Body templatesRequestDto: TemplatesRequestDto? = null): Response<BooleanWrapper>
 
     /**
      * PUT api/2.0/files/file/{fileId}/history
@@ -122,10 +122,10 @@ interface FilesApi {
      *
      * @param fileId The file Id to change its version history.
      * @param changeHistory The parameters for changing version history.
-     * @return [Call]<[FileIntegerArrayWrapper]>
+     * @return [FileIntegerArrayWrapper]
      */
     @PUT("api/2.0/files/file/{fileId}/history")
-    fun changeVersionHistory(@Path("fileId") fileId: kotlin.Int, @Body changeHistory: ChangeHistory): Call<FileIntegerArrayWrapper>
+    suspend fun changeVersionHistory(@Path("fileId") fileId: kotlin.Int, @Body changeHistory: ChangeHistory): Response<FileIntegerArrayWrapper>
 
     /**
      * POST api/2.0/files/masterform/{fileId}/checkfillformdraft
@@ -141,10 +141,10 @@ interface FilesApi {
      *
      * @param fileId The file ID of the form draft.
      * @param checkFillFormDraft The parameters for checking the form draft filling.
-     * @return [Call]<[StringWrapper]>
+     * @return [StringWrapper]
      */
     @POST("api/2.0/files/masterform/{fileId}/checkfillformdraft")
-    fun checkFillFormDraft(@Path("fileId") fileId: kotlin.Int, @Body checkFillFormDraft: CheckFillFormDraft): Call<StringWrapper>
+    suspend fun checkFillFormDraft(@Path("fileId") fileId: kotlin.Int, @Body checkFillFormDraft: CheckFillFormDraft): Response<StringWrapper>
 
     /**
      * POST api/2.0/files/file/{fileId}/copyas
@@ -163,10 +163,10 @@ interface FilesApi {
      *
      * @param fileId The file ID to copy.
      * @param copyAsJsonElement The parameters for copying a file.
-     * @return [Call]<[FileEntryBaseWrapper]>
+     * @return [FileEntryBaseWrapper]
      */
     @POST("api/2.0/files/file/{fileId}/copyas")
-    fun copyFileAs(@Path("fileId") fileId: kotlin.Int, @Body copyAsJsonElement: CopyAsJsonElement): Call<FileEntryBaseWrapper>
+    suspend fun copyFileAs(@Path("fileId") fileId: kotlin.Int, @Body copyAsJsonElement: CopyAsJsonElement): Response<FileEntryBaseWrapper>
 
     /**
      * POST api/2.0/files/file/{fileId}/edit_session
@@ -183,10 +183,10 @@ interface FilesApi {
      *
      * @param fileId The file ID.
      * @param fileSize The file size in bytes. (optional)
-     * @return [Call]<[ChunkedUploadSessionResponseWrapperIntegerWrapper]>
+     * @return [ChunkedUploadSessionResponseWrapperIntegerWrapper]
      */
     @POST("api/2.0/files/file/{fileId}/edit_session")
-    fun createEditSession(@Path("fileId") fileId: kotlin.Int, @Query("fileSize") fileSize: kotlin.Long? = null): Call<ChunkedUploadSessionResponseWrapperIntegerWrapper>
+    suspend fun createEditSession(@Path("fileId") fileId: kotlin.Int, @Query("fileSize") fileSize: kotlin.Long? = null): Response<ChunkedUploadSessionResponseWrapperIntegerWrapper>
 
     /**
      * POST api/2.0/files/{folderId}/file
@@ -202,10 +202,10 @@ interface FilesApi {
      *
      * @param folderId The folder ID for the file creation.
      * @param createFileJsonElement The parameters for creating a file.
-     * @return [Call]<[FileIntegerWrapper]>
+     * @return [FileIntegerWrapper]
      */
     @POST("api/2.0/files/{folderId}/file")
-    fun createFile(@Path("folderId") folderId: kotlin.Int, @Body createFileJsonElement: CreateFileJsonElement): Call<FileIntegerWrapper>
+    suspend fun createFile(@Path("folderId") folderId: kotlin.Int, @Body createFileJsonElement: CreateFileJsonElement): Response<FileIntegerWrapper>
 
     /**
      * POST api/2.0/files/@my/file
@@ -220,10 +220,10 @@ interface FilesApi {
      *
      *
      * @param createFileJsonElement  (optional)
-     * @return [Call]<[FileIntegerWrapper]>
+     * @return [FileIntegerWrapper]
      */
     @POST("api/2.0/files/@my/file")
-    fun createFileInMyDocuments(@Body createFileJsonElement: CreateFileJsonElement? = null): Call<FileIntegerWrapper>
+    suspend fun createFileInMyDocuments(@Body createFileJsonElement: CreateFileJsonElement? = null): Response<FileIntegerWrapper>
 
     /**
      * POST api/2.0/files/file/{id}/link
@@ -240,10 +240,10 @@ interface FilesApi {
      *
      * @param id The file ID.
      * @param fileLinkRequest The file external link parameters.
-     * @return [Call]<[FileShareWrapper]>
+     * @return [FileShareWrapper]
      */
     @POST("api/2.0/files/file/{id}/link")
-    fun createFilePrimaryExternalLink(@Path("id") id: kotlin.Int, @Body fileLinkRequest: FileLinkRequest): Call<FileShareWrapper>
+    suspend fun createFilePrimaryExternalLink(@Path("id") id: kotlin.Int, @Body fileLinkRequest: FileLinkRequest): Response<FileShareWrapper>
 
     /**
      * POST api/2.0/files/{folderId}/html
@@ -260,10 +260,10 @@ interface FilesApi {
      *
      * @param folderId The folder ID to create the text or HTML file.
      * @param createTextOrHtmlFile The parameters for creating an HTML or text file.
-     * @return [Call]<[FileIntegerWrapper]>
+     * @return [FileIntegerWrapper]
      */
     @POST("api/2.0/files/{folderId}/html")
-    fun createHtmlFile(@Path("folderId") folderId: kotlin.Int, @Body createTextOrHtmlFile: CreateTextOrHtmlFile): Call<FileIntegerWrapper>
+    suspend fun createHtmlFile(@Path("folderId") folderId: kotlin.Int, @Body createTextOrHtmlFile: CreateTextOrHtmlFile): Response<FileIntegerWrapper>
 
     /**
      * POST api/2.0/files/@my/html
@@ -279,10 +279,10 @@ interface FilesApi {
      *
      *
      * @param createTextOrHtmlFile  (optional)
-     * @return [Call]<[FileIntegerWrapper]>
+     * @return [FileIntegerWrapper]
      */
     @POST("api/2.0/files/@my/html")
-    fun createHtmlFileInMyDocuments(@Body createTextOrHtmlFile: CreateTextOrHtmlFile? = null): Call<FileIntegerWrapper>
+    suspend fun createHtmlFileInMyDocuments(@Body createTextOrHtmlFile: CreateTextOrHtmlFile? = null): Response<FileIntegerWrapper>
 
     /**
      * POST api/2.0/files/{folderId}/text
@@ -298,10 +298,10 @@ interface FilesApi {
      *
      * @param folderId The folder ID to create the text or HTML file.
      * @param createTextOrHtmlFile The parameters for creating an HTML or text file.
-     * @return [Call]<[FileIntegerWrapper]>
+     * @return [FileIntegerWrapper]
      */
     @POST("api/2.0/files/{folderId}/text")
-    fun createTextFile(@Path("folderId") folderId: kotlin.Int, @Body createTextOrHtmlFile: CreateTextOrHtmlFile): Call<FileIntegerWrapper>
+    suspend fun createTextFile(@Path("folderId") folderId: kotlin.Int, @Body createTextOrHtmlFile: CreateTextOrHtmlFile): Response<FileIntegerWrapper>
 
     /**
      * POST api/2.0/files/@my/text
@@ -316,10 +316,10 @@ interface FilesApi {
      *
      *
      * @param createTextOrHtmlFile  (optional)
-     * @return [Call]<[FileIntegerWrapper]>
+     * @return [FileIntegerWrapper]
      */
     @POST("api/2.0/files/@my/text")
-    fun createTextFileInMyDocuments(@Body createTextOrHtmlFile: CreateTextOrHtmlFile? = null): Call<FileIntegerWrapper>
+    suspend fun createTextFileInMyDocuments(@Body createTextOrHtmlFile: CreateTextOrHtmlFile? = null): Response<FileIntegerWrapper>
 
     /**
      * POST api/2.0/files/thumbnails
@@ -333,10 +333,10 @@ interface FilesApi {
      *
      *
      * @param baseBatchRequestDto  (optional)
-     * @return [Call]<[ObjectArrayWrapper]>
+     * @return [ObjectArrayWrapper]
      */
     @POST("api/2.0/files/thumbnails")
-    fun createThumbnails(@Body baseBatchRequestDto: BaseBatchRequestDto? = null): Call<ObjectArrayWrapper>
+    suspend fun createThumbnails(@Body baseBatchRequestDto: BaseBatchRequestDto? = null): Response<ObjectArrayWrapper>
 
     /**
      * DELETE api/2.0/files/file/{fileId}
@@ -353,10 +353,10 @@ interface FilesApi {
      * @param fileId The file ID to delete.
      * @param delete The parameters for deleting a file.
      * @param returnSingleOperation Specifies whether to return only the current operation (optional)
-     * @return [Call]<[FileOperationArrayWrapper]>
+     * @return [FileOperationArrayWrapper]
      */
     @DELETE("api/2.0/files/file/{fileId}")
-    fun deleteFile(@Path("fileId") fileId: kotlin.Int, @Body delete: Delete, @Query("ReturnSingleOperation") returnSingleOperation: kotlin.Boolean? = null): Call<FileOperationArrayWrapper>
+    suspend fun deleteFile(@Path("fileId") fileId: kotlin.Int, @Body delete: Delete, @Query("ReturnSingleOperation") returnSingleOperation: kotlin.Boolean? = null): Response<FileOperationArrayWrapper>
 
     /**
      * DELETE api/2.0/files/recent
@@ -371,10 +371,10 @@ interface FilesApi {
      *
      *
      * @param baseBatchRequestDto  (optional)
-     * @return [Call]<[NoContentResultWrapper]>
+     * @return [NoContentResultWrapper]
      */
     @DELETE("api/2.0/files/recent")
-    fun deleteRecent(@Body baseBatchRequestDto: BaseBatchRequestDto? = null): Call<NoContentResultWrapper>
+    suspend fun deleteRecent(@Body baseBatchRequestDto: BaseBatchRequestDto? = null): Response<NoContentResultWrapper>
 
     /**
      * DELETE api/2.0/files/templates
@@ -389,10 +389,10 @@ interface FilesApi {
      *
      *
      * @param requestBody The file IDs. (optional)
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @DELETE("api/2.0/files/templates")
-    fun deleteTemplates(@Body requestBody: kotlin.collections.List<kotlin.Int>? = null): Call<BooleanWrapper>
+    suspend fun deleteTemplates(@Body requestBody: kotlin.collections.List<kotlin.Int>? = null): Response<BooleanWrapper>
 
     /**
      * POST api/2.0/files/file/{fileId}/xlsx
@@ -409,10 +409,10 @@ interface FilesApi {
      *
      *
      * @param fileId The file unique identifier.
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @POST("api/2.0/files/file/{fileId}/xlsx")
-    fun generateXlsx(@Path("fileId") fileId: kotlin.Int): Call<Unit>
+    suspend fun generateXlsx(@Path("fileId") fileId: kotlin.Int): Response<Unit>
 
     /**
      * GET api/2.0/files/file/{fileId}/formroles
@@ -428,10 +428,10 @@ interface FilesApi {
      *
      *
      * @param fileId The file unique identifier.
-     * @return [Call]<[FormRoleArrayWrapper]>
+     * @return [FormRoleArrayWrapper]
      */
     @GET("api/2.0/files/file/{fileId}/formroles")
-    fun getAllFormRoles(@Path("fileId") fileId: kotlin.Int): Call<FormRoleArrayWrapper>
+    suspend fun getAllFormRoles(@Path("fileId") fileId: kotlin.Int): Response<FormRoleArrayWrapper>
 
     /**
      * GET api/2.0/files/file/{fileId}/edit/diff
@@ -446,10 +446,10 @@ interface FilesApi {
      *
      * @param fileId The file ID.
      * @param version The file version. (optional)
-     * @return [Call]<[EditHistoryDataWrapper]>
+     * @return [EditHistoryDataWrapper]
      */
     @GET("api/2.0/files/file/{fileId}/edit/diff")
-    fun getEditDiffUrl(@Path("fileId") fileId: kotlin.Int, @Query("version") version: kotlin.Int? = null): Call<EditHistoryDataWrapper>
+    suspend fun getEditDiffUrl(@Path("fileId") fileId: kotlin.Int, @Query("version") version: kotlin.Int? = null): Response<EditHistoryDataWrapper>
 
     /**
      * GET api/2.0/files/file/{fileId}/edit/history
@@ -463,10 +463,10 @@ interface FilesApi {
      *
      *
      * @param fileId The file unique identifier.
-     * @return [Call]<[EditHistoryArrayWrapper]>
+     * @return [EditHistoryArrayWrapper]
      */
     @GET("api/2.0/files/file/{fileId}/edit/history")
-    fun getEditHistory(@Path("fileId") fileId: kotlin.Int): Call<EditHistoryArrayWrapper>
+    suspend fun getEditHistory(@Path("fileId") fileId: kotlin.Int): Response<EditHistoryArrayWrapper>
 
     /**
      * GET api/2.0/files/file/{fileId}/log
@@ -487,10 +487,10 @@ interface FilesApi {
      * @param toDate The end date of the history. (optional)
      * @param count The number of history entries to retrieve for the file log. (optional)
      * @param startIndex The starting index for retrieving a subset of file history entries. (optional)
-     * @return [Call]<[HistoryArrayWrapper]>
+     * @return [HistoryArrayWrapper]
      */
     @GET("api/2.0/files/file/{fileId}/log")
-    fun getFileHistory(@Path("fileId") fileId: kotlin.Int, @Query("fromDate") fromDate: ApiDateTime? = null, @Query("toDate") toDate: ApiDateTime? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null): Call<HistoryArrayWrapper>
+    suspend fun getFileHistory(@Path("fileId") fileId: kotlin.Int, @Query("fromDate") fromDate: ApiDateTime? = null, @Query("toDate") toDate: ApiDateTime? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null): Response<HistoryArrayWrapper>
 
     /**
      * GET api/2.0/files/file/{fileId}
@@ -505,10 +505,10 @@ interface FilesApi {
      *
      * @param fileId The file ID.
      * @param version The file version. (optional)
-     * @return [Call]<[FileIntegerWrapper]>
+     * @return [FileIntegerWrapper]
      */
     @GET("api/2.0/files/file/{fileId}")
-    fun getFileInfo(@Path("fileId") fileId: kotlin.Int, @Query("version") version: kotlin.Int? = null): Call<FileIntegerWrapper>
+    suspend fun getFileInfo(@Path("fileId") fileId: kotlin.Int, @Query("version") version: kotlin.Int? = null): Response<FileIntegerWrapper>
 
     /**
      * GET api/2.0/files/file/{id}/links
@@ -525,10 +525,10 @@ interface FilesApi {
      * @param id The file unique identifier.
      * @param count The number of items to retrieve in the request. (optional)
      * @param startIndex The starting index for the query results. (optional)
-     * @return [Call]<[FileShareArrayWrapper]>
+     * @return [FileShareArrayWrapper]
      */
     @GET("api/2.0/files/file/{id}/links")
-    fun getFileLinks(@Path("id") id: kotlin.Int, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null): Call<FileShareArrayWrapper>
+    suspend fun getFileLinks(@Path("id") id: kotlin.Int, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null): Response<FileShareArrayWrapper>
 
     /**
      * GET api/2.0/files/file/{id}/link
@@ -545,10 +545,10 @@ interface FilesApi {
      * @param id The file unique identifier.
      * @param count The number of items to retrieve in the request. (optional)
      * @param startIndex The starting index for the query results. (optional)
-     * @return [Call]<[FileShareWrapper]>
+     * @return [FileShareWrapper]
      */
     @GET("api/2.0/files/file/{id}/link")
-    fun getFilePrimaryExternalLink(@Path("id") id: kotlin.Int, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null): Call<FileShareWrapper>
+    suspend fun getFilePrimaryExternalLink(@Path("id") id: kotlin.Int, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null): Response<FileShareWrapper>
 
     /**
      * GET api/2.0/files/file/{fileId}/history
@@ -562,10 +562,10 @@ interface FilesApi {
      *
      *
      * @param fileId The file unique identifier.
-     * @return [Call]<[FileIntegerArrayWrapper]>
+     * @return [FileIntegerArrayWrapper]
      */
     @GET("api/2.0/files/file/{fileId}/history")
-    fun getFileVersionInfo(@Path("fileId") fileId: kotlin.Int): Call<FileIntegerArrayWrapper>
+    suspend fun getFileVersionInfo(@Path("fileId") fileId: kotlin.Int): Response<FileIntegerArrayWrapper>
 
     /**
      * GET api/2.0/files/file/fillresult
@@ -579,10 +579,10 @@ interface FilesApi {
      *
      *
      * @param fillingSessionId The form-filling session ID. (optional)
-     * @return [Call]<[FillingFormResultIntegerWrapper]>
+     * @return [FillingFormResultIntegerWrapper]
      */
     @GET("api/2.0/files/file/fillresult")
-    fun getFillResult(@Query("fillingSessionId") fillingSessionId: kotlin.String? = null): Call<FillingFormResultIntegerWrapper>
+    suspend fun getFillResult(@Query("fillingSessionId") fillingSessionId: kotlin.String? = null): Response<FillingFormResultIntegerWrapper>
 
     /**
      * GET api/2.0/files/file/{fileId}/submissions
@@ -598,10 +598,10 @@ interface FilesApi {
      *
      *
      * @param fileId The file unique identifier.
-     * @return [Call]<[FormSubmissionsWrapper]>
+     * @return [FormSubmissionsWrapper]
      */
     @GET("api/2.0/files/file/{fileId}/submissions")
-    fun getFormSubmissions(@Path("fileId") fileId: kotlin.Int): Call<FormSubmissionsWrapper>
+    suspend fun getFormSubmissions(@Path("fileId") fileId: kotlin.Int): Response<FormSubmissionsWrapper>
 
     /**
      * GET api/2.0/files/file/{fileId}/presigned
@@ -616,10 +616,10 @@ interface FilesApi {
      *
      *
      * @param fileId The file unique identifier.
-     * @return [Call]<[FileLinkWrapper]>
+     * @return [FileLinkWrapper]
      */
     @GET("api/2.0/files/file/{fileId}/presigned")
-    fun getPresignedFileUri(@Path("fileId") fileId: kotlin.Int): Call<FileLinkWrapper>
+    suspend fun getPresignedFileUri(@Path("fileId") fileId: kotlin.Int): Response<FileLinkWrapper>
 
     /**
      * GET api/2.0/files/file/{fileId}/presigneduri
@@ -634,10 +634,10 @@ interface FilesApi {
      *
      *
      * @param fileId The file unique identifier.
-     * @return [Call]<[StringWrapper]>
+     * @return [StringWrapper]
      */
     @GET("api/2.0/files/file/{fileId}/presigneduri")
-    fun getPresignedUri(@Path("fileId") fileId: kotlin.Int): Call<StringWrapper>
+    suspend fun getPresignedUri(@Path("fileId") fileId: kotlin.Int): Response<StringWrapper>
 
     /**
      * GET api/2.0/files/file/{fileId}/protectusers
@@ -652,10 +652,10 @@ interface FilesApi {
      *
      *
      * @param fileId The file unique identifier.
-     * @return [Call]<[MentionWrapperArrayWrapper]>
+     * @return [MentionWrapperArrayWrapper]
      */
     @GET("api/2.0/files/file/{fileId}/protectusers")
-    fun getProtectedFileUsers(@Path("fileId") fileId: kotlin.Int): Call<MentionWrapperArrayWrapper>
+    suspend fun getProtectedFileUsers(@Path("fileId") fileId: kotlin.Int): Response<MentionWrapperArrayWrapper>
 
     /**
      * POST api/2.0/files/file/referencedata
@@ -670,10 +670,10 @@ interface FilesApi {
      *
      *
      * @param getReferenceDataDtoInteger  (optional)
-     * @return [Call]<[FileReferenceWrapper]>
+     * @return [FileReferenceWrapper]
      */
     @POST("api/2.0/files/file/referencedata")
-    fun getReferenceData(@Body getReferenceDataDtoInteger: GetReferenceDataDtoInteger? = null): Call<FileReferenceWrapper>
+    suspend fun getReferenceData(@Body getReferenceDataDtoInteger: GetReferenceDataDtoInteger? = null): Response<FileReferenceWrapper>
 
     /**
      * GET api/2.0/files/file/{fileId}/isformpdf
@@ -688,10 +688,10 @@ interface FilesApi {
      *
      *
      * @param fileId The file unique identifier.
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @GET("api/2.0/files/file/{fileId}/isformpdf")
-    fun isFormPDF(@Path("fileId") fileId: kotlin.Int): Call<BooleanWrapper>
+    suspend fun isFormPDF(@Path("fileId") fileId: kotlin.Int): Response<BooleanWrapper>
 
     /**
      * PUT api/2.0/files/file/{fileId}/lock
@@ -707,10 +707,10 @@ interface FilesApi {
      *
      * @param fileId The file ID for locking.
      * @param lockFileParameters The parameters for locking a file.
-     * @return [Call]<[FileIntegerWrapper]>
+     * @return [FileIntegerWrapper]
      */
     @PUT("api/2.0/files/file/{fileId}/lock")
-    fun lockFile(@Path("fileId") fileId: kotlin.Int, @Body lockFileParameters: LockFileParameters): Call<FileIntegerWrapper>
+    suspend fun lockFile(@Path("fileId") fileId: kotlin.Int, @Body lockFileParameters: LockFileParameters): Response<FileIntegerWrapper>
 
     /**
      * PUT api/2.0/files/file/{fileId}/manageformfilling
@@ -727,10 +727,10 @@ interface FilesApi {
      *
      * @param fileId 
      * @param manageFormFillingDtoInteger  (optional)
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @PUT("api/2.0/files/file/{fileId}/manageformfilling")
-    fun manageFormFilling(@Path("fileId") fileId: kotlin.String, @Body manageFormFillingDtoInteger: ManageFormFillingDtoInteger? = null): Call<Unit>
+    suspend fun manageFormFilling(@Path("fileId") fileId: kotlin.String, @Body manageFormFillingDtoInteger: ManageFormFillingDtoInteger? = null): Response<Unit>
 
     /**
      * GET api/2.0/files/file/{fileId}/openedit
@@ -750,10 +750,10 @@ interface FilesApi {
      * @param editorType The editor type to open the file. (optional)
      * @param edit Specifies if the document is opened in the editing mode or not. (optional)
      * @param fill Specifies if the document is opened in the form-filling mode or not. (optional)
-     * @return [Call]<[ConfigurationIntegerWrapper]>
+     * @return [ConfigurationIntegerWrapper]
      */
     @GET("api/2.0/files/file/{fileId}/openedit")
-    fun openEditFile(@Path("fileId") fileId: kotlin.Int, @Query("version") version: kotlin.Int? = null, @Query("view") view: kotlin.Boolean? = null, @Query("editorType") editorType: EditorType? = null, @Query("edit") edit: kotlin.Boolean? = null, @Query("fill") fill: kotlin.Boolean? = null): Call<ConfigurationIntegerWrapper>
+    suspend fun openEditFile(@Path("fileId") fileId: kotlin.Int, @Query("version") version: kotlin.Int? = null, @Query("view") view: kotlin.Boolean? = null, @Query("editorType") editorType: EditorType? = null, @Query("edit") edit: kotlin.Boolean? = null, @Query("fill") fill: kotlin.Boolean? = null): Response<ConfigurationIntegerWrapper>
 
     /**
      * POST api/2.0/files/file/{fileId}/restoreversion
@@ -771,10 +771,10 @@ interface FilesApi {
      * @param fileId The file ID of the restore version.
      * @param version The file version of the restore. (optional)
      * @param url The file version URL of the restore. (optional)
-     * @return [Call]<[EditHistoryArrayWrapper]>
+     * @return [EditHistoryArrayWrapper]
      */
     @POST("api/2.0/files/file/{fileId}/restoreversion")
-    fun restoreFileVersion(@Path("fileId") fileId: kotlin.Int, @Query("version") version: kotlin.Int? = null, @Query("url") url: kotlin.String? = null): Call<EditHistoryArrayWrapper>
+    suspend fun restoreFileVersion(@Path("fileId") fileId: kotlin.Int, @Query("version") version: kotlin.Int? = null, @Query("url") url: kotlin.String? = null): Response<EditHistoryArrayWrapper>
 
     /**
      * PUT api/2.0/files/file/{fileId}/saveediting
@@ -795,11 +795,11 @@ interface FilesApi {
      * @param fileExtension The editing file extension from the request. (optional)
      * @param file The edited file to be saved, uploaded as part of the multipart/form-data request.  This property represents the modified file content from the HTTP request form after editing operations.  The file is accessed via the IFormFile interface which provides access to the file name, content type, length, and stream. (optional)
      * @param forcesave Specifies whether to force save the file or not. (optional)
-     * @return [Call]<[FileIntegerWrapper]>
+     * @return [FileIntegerWrapper]
      */
     @Multipart
     @PUT("api/2.0/files/file/{fileId}/saveediting")
-    fun saveEditingFileFromForm(@Path("fileId") fileId: kotlin.Int, @Query("DownloadUri") downloadUri: kotlin.String? = null, @Part("FileExtension") fileExtension: kotlin.String? = null, @Part file: MultipartBody.Part? = null, @Part("Forcesave") forcesave: kotlin.Boolean? = null): Call<FileIntegerWrapper>
+    suspend fun saveEditingFileFromForm(@Path("fileId") fileId: kotlin.Int, @Query("DownloadUri") downloadUri: kotlin.String? = null, @Part("FileExtension") fileExtension: kotlin.String? = null, @Part file: MultipartBody.Part? = null, @Part("Forcesave") forcesave: kotlin.Boolean? = null): Response<FileIntegerWrapper>
 
     /**
      * POST api/2.0/files/file/{id}/saveaspdf
@@ -816,10 +816,10 @@ interface FilesApi {
      *
      * @param id The file ID to save as PDF.
      * @param saveAsPdfInteger The parameters for saving the file as PDF.
-     * @return [Call]<[FileIntegerWrapper]>
+     * @return [FileIntegerWrapper]
      */
     @POST("api/2.0/files/file/{id}/saveaspdf")
-    fun saveFileAsPdf(@Path("id") id: kotlin.Int, @Body saveAsPdfInteger: SaveAsPdfInteger): Call<FileIntegerWrapper>
+    suspend fun saveFileAsPdf(@Path("id") id: kotlin.Int, @Body saveAsPdfInteger: SaveAsPdfInteger): Response<FileIntegerWrapper>
 
     /**
      * POST api/2.0/files/file/{fileId}/formrolemapping
@@ -836,10 +836,10 @@ interface FilesApi {
      *
      * @param fileId 
      * @param saveFormRoleMappingDtoInteger  (optional)
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @POST("api/2.0/files/file/{fileId}/formrolemapping")
-    fun saveFormRoleMapping(@Path("fileId") fileId: kotlin.String, @Body saveFormRoleMappingDtoInteger: SaveFormRoleMappingDtoInteger? = null): Call<Unit>
+    suspend fun saveFormRoleMapping(@Path("fileId") fileId: kotlin.String, @Body saveFormRoleMappingDtoInteger: SaveFormRoleMappingDtoInteger? = null): Response<Unit>
 
     /**
      * PUT api/2.0/files/file/{fileId}/customfilter
@@ -855,10 +855,10 @@ interface FilesApi {
      *
      * @param fileId The file ID.
      * @param customFilterParameters The parameters for setting the Custom Filter editing mode.
-     * @return [Call]<[FileIntegerWrapper]>
+     * @return [FileIntegerWrapper]
      */
     @PUT("api/2.0/files/file/{fileId}/customfilter")
-    fun setCustomFilterTag(@Path("fileId") fileId: kotlin.Int, @Body customFilterParameters: CustomFilterParameters): Call<FileIntegerWrapper>
+    suspend fun setCustomFilterTag(@Path("fileId") fileId: kotlin.Int, @Body customFilterParameters: CustomFilterParameters): Response<FileIntegerWrapper>
 
     /**
      * PUT api/2.0/files/file/{id}/links
@@ -874,10 +874,10 @@ interface FilesApi {
      *
      * @param id The file ID.
      * @param fileLinkRequest The file external link parameters.
-     * @return [Call]<[FileShareWrapper]>
+     * @return [FileShareWrapper]
      */
     @PUT("api/2.0/files/file/{id}/links")
-    fun setFileExternalLink(@Path("id") id: kotlin.Int, @Body fileLinkRequest: FileLinkRequest): Call<FileShareWrapper>
+    suspend fun setFileExternalLink(@Path("id") id: kotlin.Int, @Body fileLinkRequest: FileLinkRequest): Response<FileShareWrapper>
 
     /**
      * PUT api/2.0/files/{fileId}/order
@@ -895,10 +895,10 @@ interface FilesApi {
      *
      * @param fileId The file unique identifier.
      * @param orderRequestDto The file order information. (optional)
-     * @return [Call]<[FileIntegerWrapper]>
+     * @return [FileIntegerWrapper]
      */
     @PUT("api/2.0/files/{fileId}/order")
-    fun setFileOrder(@Path("fileId") fileId: kotlin.Int, @Body orderRequestDto: OrderRequestDto? = null): Call<FileIntegerWrapper>
+    suspend fun setFileOrder(@Path("fileId") fileId: kotlin.Int, @Body orderRequestDto: OrderRequestDto? = null): Response<FileIntegerWrapper>
 
     /**
      * PUT api/2.0/files/order
@@ -913,10 +913,10 @@ interface FilesApi {
      *
      *
      * @param ordersRequestDtoInteger  (optional)
-     * @return [Call]<[FileEntryIntegerArrayWrapper]>
+     * @return [FileEntryIntegerArrayWrapper]
      */
     @PUT("api/2.0/files/order")
-    fun setFilesOrder(@Body ordersRequestDtoInteger: OrdersRequestDtoInteger? = null): Call<FileEntryIntegerArrayWrapper>
+    suspend fun setFilesOrder(@Body ordersRequestDtoInteger: OrdersRequestDtoInteger? = null): Response<FileEntryIntegerArrayWrapper>
 
     /**
      * POST api/2.0/files/file/{fileId}/startedit
@@ -932,10 +932,10 @@ interface FilesApi {
      *
      * @param fileId The file ID to start editing.
      * @param startEdit The file parameters to start editing.
-     * @return [Call]<[StringWrapper]>
+     * @return [StringWrapper]
      */
     @POST("api/2.0/files/file/{fileId}/startedit")
-    fun startEditFile(@Path("fileId") fileId: kotlin.Int, @Body startEdit: StartEdit): Call<StringWrapper>
+    suspend fun startEditFile(@Path("fileId") fileId: kotlin.Int, @Body startEdit: StartEdit): Response<StringWrapper>
 
     /**
      * PUT api/2.0/files/file/{fileId}/startfilling
@@ -951,10 +951,10 @@ interface FilesApi {
      *
      *
      * @param fileId The file ID to start filling.
-     * @return [Call]<[FileIntegerWrapper]>
+     * @return [FileIntegerWrapper]
      */
     @PUT("api/2.0/files/file/{fileId}/startfilling")
-    fun startFillingFile(@Path("fileId") fileId: kotlin.Int): Call<FileIntegerWrapper>
+    suspend fun startFillingFile(@Path("fileId") fileId: kotlin.Int): Response<FileIntegerWrapper>
 
     /**
      * GET api/2.0/files/favorites/{fileId}
@@ -971,10 +971,10 @@ interface FilesApi {
      *
      * @param fileId The file ID.
      * @param favorite Specifies if the file is marked as favorite or not. (optional)
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @GET("api/2.0/files/favorites/{fileId}")
-    fun toggleFileFavorite(@Path("fileId") fileId: kotlin.Int, @Query("favorite") favorite: kotlin.Boolean? = null): Call<BooleanWrapper>
+    suspend fun toggleFileFavorite(@Path("fileId") fileId: kotlin.Int, @Query("favorite") favorite: kotlin.Boolean? = null): Response<BooleanWrapper>
 
     /**
      * GET api/2.0/files/file/{fileId}/trackeditfile
@@ -992,10 +992,10 @@ interface FilesApi {
      * @param tabId The tab ID to track editing changes. (optional)
      * @param docKeyForTrack The document key for tracking changes. (optional)
      * @param isFinish Specifies whether to finish file tracking or not. (optional)
-     * @return [Call]<[KeyValuePairBooleanStringWrapper]>
+     * @return [KeyValuePairBooleanStringWrapper]
      */
     @GET("api/2.0/files/file/{fileId}/trackeditfile")
-    fun trackEditFile(@Path("fileId") fileId: kotlin.Int, @Query("tabId") tabId: java.util.UUID? = null, @Query("docKeyForTrack") docKeyForTrack: kotlin.String? = null, @Query("isFinish") isFinish: kotlin.Boolean? = null): Call<KeyValuePairBooleanStringWrapper>
+    suspend fun trackEditFile(@Path("fileId") fileId: kotlin.Int, @Query("tabId") tabId: java.util.UUID? = null, @Query("docKeyForTrack") docKeyForTrack: kotlin.String? = null, @Query("isFinish") isFinish: kotlin.Boolean? = null): Response<KeyValuePairBooleanStringWrapper>
 
     /**
      * PUT api/2.0/files/file/{fileId}
@@ -1011,9 +1011,9 @@ interface FilesApi {
      *
      * @param fileId The file ID to update.
      * @param updateFile The parameters for updating a file.
-     * @return [Call]<[FileIntegerWrapper]>
+     * @return [FileIntegerWrapper]
      */
     @PUT("api/2.0/files/file/{fileId}")
-    fun updateFile(@Path("fileId") fileId: kotlin.Int, @Body updateFile: UpdateFile): Call<FileIntegerWrapper>
+    suspend fun updateFile(@Path("fileId") fileId: kotlin.Int, @Body updateFile: UpdateFile): Response<FileIntegerWrapper>
 
 }

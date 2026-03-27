@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Security
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -40,9 +40,9 @@ interface AccessToDevToolsApi {
      *
      *
      * @param tenantDevToolsAccessSettingsDto  (optional)
-     * @return [Call]<[TenantDevToolsAccessSettingsWrapper]>
+     * @return [TenantDevToolsAccessSettingsWrapper]
      */
     @POST("api/2.0/settings/devtoolsaccess")
-    fun setTenantDevToolsAccessSettings(@Body tenantDevToolsAccessSettingsDto: TenantDevToolsAccessSettingsDto? = null): Call<TenantDevToolsAccessSettingsWrapper>
+    suspend fun setTenantDevToolsAccessSettings(@Body tenantDevToolsAccessSettingsDto: TenantDevToolsAccessSettingsDto? = null): Response<TenantDevToolsAccessSettingsWrapper>
 
 }

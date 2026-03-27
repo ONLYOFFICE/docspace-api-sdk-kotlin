@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Settings
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -39,9 +39,9 @@ interface StatisticsApi {
      *
      *
      * @param id The ID extracted from the route parameters.
-     * @return [Call]<[UsageSpaceStatItemArrayWrapper]>
+     * @return [UsageSpaceStatItemArrayWrapper]
      */
     @GET("api/2.0/settings/statistics/spaceusage/{id}")
-    fun getSpaceUsageStatistics(@Path("id") id: java.util.UUID): Call<UsageSpaceStatItemArrayWrapper>
+    suspend fun getSpaceUsageStatistics(@Path("id") id: java.util.UUID): Response<UsageSpaceStatItemArrayWrapper>
 
 }

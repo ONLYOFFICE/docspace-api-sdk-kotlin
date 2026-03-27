@@ -46,7 +46,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(IPRestrictionsApi::class.java)
 
-val result : IPRestrictionArrayWrapper = webService.getIpRestrictions()
+launch(Dispatchers.IO) {
+    val result : IPRestrictionArrayWrapper = webService.getIpRestrictions()
+}
 ```
 
 ### HTTP request headers
@@ -90,7 +92,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(IPRestrictionsApi::class.java)
 
-val result : IPRestrictionsSettingsWrapper = webService.readIpRestrictionsSettings()
+launch(Dispatchers.IO) {
+    val result : IPRestrictionsSettingsWrapper = webService.readIpRestrictionsSettings()
+}
 ```
 
 ### HTTP request headers
@@ -137,7 +141,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(IPRestrictionsApi::class.java)
 val ipRestrictionsDto : IpRestrictionsDto =  // IpRestrictionsDto | 
 
-val result : IpRestrictionsWrapper = webService.saveIpRestrictions(ipRestrictionsDto)
+launch(Dispatchers.IO) {
+    val result : IpRestrictionsWrapper = webService.saveIpRestrictions(ipRestrictionsDto)
+}
 ```
 
 ### HTTP request headers
@@ -184,7 +190,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(IPRestrictionsApi::class.java)
 val ipRestrictionsDto : IpRestrictionsDto =  // IpRestrictionsDto | 
 
-val result : IpRestrictionsWrapper = webService.updateIpRestrictionsSettings(ipRestrictionsDto)
+launch(Dispatchers.IO) {
+    val result : IpRestrictionsWrapper = webService.updateIpRestrictionsSettings(ipRestrictionsDto)
+}
 ```
 
 ### HTTP request headers

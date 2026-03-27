@@ -51,7 +51,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(GroupsApi::class.java)
 val roomGroupRequestDto : RoomGroupRequestDto =  // RoomGroupRequestDto | 
 
-val result : RoomGroupWrapper = webService.addRoomGroup(roomGroupRequestDto)
+launch(Dispatchers.IO) {
+    val result : RoomGroupWrapper = webService.addRoomGroup(roomGroupRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -100,7 +102,9 @@ val webService = apiClient.createWebservice(GroupsApi::class.java)
 val id : kotlin.Int = 1 // kotlin.Int | Group id
 val iconRequest : IconRequest =  // IconRequest | Icon update data.
 
-val result : RoomGroupWrapper = webService.changeRoomGroupIcon(id, iconRequest)
+launch(Dispatchers.IO) {
+    val result : RoomGroupWrapper = webService.changeRoomGroupIcon(id, iconRequest)
+}
 ```
 
 ### HTTP request headers
@@ -149,7 +153,9 @@ val webService = apiClient.createWebservice(GroupsApi::class.java)
 val id : kotlin.Int = 10 // kotlin.Int | The group unique identifier.
 val includeMembers : kotlin.Boolean = true // kotlin.Boolean | Whether to include group members.
 
-webService.deleteRoomGroup(id, includeMembers)
+launch(Dispatchers.IO) {
+    webService.deleteRoomGroup(id, includeMembers)
+}
 ```
 
 ### HTTP request headers
@@ -198,7 +204,9 @@ val webService = apiClient.createWebservice(GroupsApi::class.java)
 val id : kotlin.Int = 10 // kotlin.Int | The group unique identifier.
 val includeMembers : kotlin.Boolean = true // kotlin.Boolean | Whether to include group members.
 
-val result : RoomGroupWrapper = webService.getRoomGroupInfo(id, includeMembers)
+launch(Dispatchers.IO) {
+    val result : RoomGroupWrapper = webService.getRoomGroupInfo(id, includeMembers)
+}
 ```
 
 ### HTTP request headers
@@ -247,7 +255,9 @@ val webService = apiClient.createWebservice(GroupsApi::class.java)
 val id : kotlin.Int = 10 // kotlin.Int | The group unique identifier.
 val includeMembers : kotlin.Boolean = true // kotlin.Boolean | Whether to include group members.
 
-val result : RoomGroupArrayWrapper = webService.getRoomGroups(id, includeMembers)
+launch(Dispatchers.IO) {
+    val result : RoomGroupArrayWrapper = webService.getRoomGroups(id, includeMembers)
+}
 ```
 
 ### HTTP request headers
@@ -296,7 +306,9 @@ val webService = apiClient.createWebservice(GroupsApi::class.java)
 val id : kotlin.Int = 1 // kotlin.Int | The group ID.
 val updateRoomGroupRequest : UpdateRoomGroupRequest =  // UpdateRoomGroupRequest | The request for updating a group.
 
-val result : RoomGroupWrapper = webService.updateRoomGroup(id, updateRoomGroupRequest)
+launch(Dispatchers.IO) {
+    val result : RoomGroupWrapper = webService.updateRoomGroup(id, updateRoomGroupRequest)
+}
 ```
 
 ### HTTP request headers

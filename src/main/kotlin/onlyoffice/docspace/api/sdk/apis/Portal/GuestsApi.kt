@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Portal
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -41,9 +41,9 @@ interface GuestsApi {
      *
      *
      * @param userid The user ID.
-     * @return [Call]<[StringWrapper]>
+     * @return [StringWrapper]
      */
     @GET("api/2.0/people/guests/{userid}/share")
-    fun getGuestSharingLink(@Path("userid") userid: java.util.UUID): Call<StringWrapper>
+    suspend fun getGuestSharingLink(@Path("userid") userid: java.util.UUID): Response<StringWrapper>
 
 }

@@ -45,7 +45,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AuthorizationApi::class.java)
 
-val result : AuthServiceRequestsArrayWrapper = webService.getAuthServices()
+launch(Dispatchers.IO) {
+    val result : AuthServiceRequestsArrayWrapper = webService.getAuthServices()
+}
 ```
 
 ### HTTP request headers
@@ -92,7 +94,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AuthorizationApi::class.java)
 val authServiceRequestsDto : AuthServiceRequestsDto =  // AuthServiceRequestsDto | 
 
-val result : BooleanWrapper = webService.saveAuthKeys(authServiceRequestsDto)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.saveAuthKeys(authServiceRequestsDto)
+}
 ```
 
 ### HTTP request headers
@@ -139,7 +143,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AuthorizationApi::class.java)
 val externalDatabaseSettings : ExternalDatabaseSettings =  // ExternalDatabaseSettings | 
 
-val result : ConnectionTestResultWrapper = webService.testExternalDatabaseConnection(externalDatabaseSettings)
+launch(Dispatchers.IO) {
+    val result : ConnectionTestResultWrapper = webService.testExternalDatabaseConnection(externalDatabaseSettings)
+}
 ```
 
 ### HTTP request headers

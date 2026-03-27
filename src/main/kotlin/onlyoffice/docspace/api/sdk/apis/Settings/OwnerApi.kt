@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Settings
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -42,10 +42,10 @@ interface OwnerApi {
      *
      *
      * @param ownerIdSettingsRequestDto  (optional)
-     * @return [Call]<[OwnerChangeInstructionsWrapper]>
+     * @return [OwnerChangeInstructionsWrapper]
      */
     @POST("api/2.0/settings/owner")
-    fun sendOwnerChangeInstructions(@Body ownerIdSettingsRequestDto: OwnerIdSettingsRequestDto? = null): Call<OwnerChangeInstructionsWrapper>
+    suspend fun sendOwnerChangeInstructions(@Body ownerIdSettingsRequestDto: OwnerIdSettingsRequestDto? = null): Response<OwnerChangeInstructionsWrapper>
 
     /**
      * PUT api/2.0/settings/owner
@@ -62,9 +62,9 @@ interface OwnerApi {
      *
      *
      * @param ownerIdSettingsRequestDto  (optional)
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @PUT("api/2.0/settings/owner")
-    fun updatePortalOwner(@Body ownerIdSettingsRequestDto: OwnerIdSettingsRequestDto? = null): Call<Unit>
+    suspend fun updatePortalOwner(@Body ownerIdSettingsRequestDto: OwnerIdSettingsRequestDto? = null): Response<Unit>
 
 }

@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Settings
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -43,10 +43,10 @@ interface WebpluginsApi {
      *
      *
      * @param system Specifies whether to load the system plugins or not. (optional)
-     * @return [Call]<[WebPluginWrapper]>
+     * @return [WebPluginWrapper]
      */
     @POST("api/2.0/settings/webplugins")
-    fun addWebPluginFromFile(@Query("system") system: kotlin.Boolean? = null): Call<WebPluginWrapper>
+    suspend fun addWebPluginFromFile(@Query("system") system: kotlin.Boolean? = null): Response<WebPluginWrapper>
 
     /**
      * DELETE api/2.0/settings/webplugins/{name}
@@ -62,10 +62,10 @@ interface WebpluginsApi {
      *
      *
      * @param name The web plugin name.
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @DELETE("api/2.0/settings/webplugins/{name}")
-    fun deleteWebPlugin(@Path("name") name: kotlin.String): Call<Unit>
+    suspend fun deleteWebPlugin(@Path("name") name: kotlin.String): Response<Unit>
 
     /**
      * GET api/2.0/settings/webplugins/{name}
@@ -81,10 +81,10 @@ interface WebpluginsApi {
      *
      *
      * @param name The web plugin name.
-     * @return [Call]<[WebPluginWrapper]>
+     * @return [WebPluginWrapper]
      */
     @GET("api/2.0/settings/webplugins/{name}")
-    fun getWebPlugin(@Path("name") name: kotlin.String): Call<WebPluginWrapper>
+    suspend fun getWebPlugin(@Path("name") name: kotlin.String): Response<WebPluginWrapper>
 
     /**
      * GET api/2.0/settings/webplugins
@@ -100,10 +100,10 @@ interface WebpluginsApi {
      *
      *
      * @param enabled The optional filter for the plugin enabled state. (optional)
-     * @return [Call]<[WebPluginArrayWrapper]>
+     * @return [WebPluginArrayWrapper]
      */
     @GET("api/2.0/settings/webplugins")
-    fun getWebPlugins(@Query("enabled") enabled: kotlin.Boolean? = null): Call<WebPluginArrayWrapper>
+    suspend fun getWebPlugins(@Query("enabled") enabled: kotlin.Boolean? = null): Response<WebPluginArrayWrapper>
 
     /**
      * PUT api/2.0/settings/webplugins/{name}
@@ -120,9 +120,9 @@ interface WebpluginsApi {
      *
      * @param name The web plugin name.
      * @param webPluginRequests The configuration settings for the web plugin instance.
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @PUT("api/2.0/settings/webplugins/{name}")
-    fun updateWebPlugin(@Path("name") name: kotlin.String, @Body webPluginRequests: WebPluginRequests): Call<Unit>
+    suspend fun updateWebPlugin(@Path("name") name: kotlin.String, @Body webPluginRequests: WebPluginRequests): Response<Unit>
 
 }

@@ -47,7 +47,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(CSPApi::class.java)
 val cspRequestsDto : CspRequestsDto =  // CspRequestsDto | 
 
-val result : CspWrapper = webService.configureCsp(cspRequestsDto)
+launch(Dispatchers.IO) {
+    val result : CspWrapper = webService.configureCsp(cspRequestsDto)
+}
 ```
 
 ### HTTP request headers
@@ -85,7 +87,9 @@ No authorization required
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(CSPApi::class.java)
 
-val result : CspWrapper = webService.getCspSettings()
+launch(Dispatchers.IO) {
+    val result : CspWrapper = webService.getCspSettings()
+}
 ```
 
 ### HTTP request headers

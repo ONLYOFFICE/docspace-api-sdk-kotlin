@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.People
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -44,10 +44,10 @@ interface ThirdPartyAccountsApi {
      * @param settingsView Specifies whether to display the provider settings in a pop-up window (true) or redirect them to the desktop application (false). (optional)
      * @param clientCallback The method that is called after authentication. (optional)
      * @param fromOnly The provider name if a response is required only from this provider. (optional)
-     * @return [Call]<[AccountInfoArrayWrapper]>
+     * @return [AccountInfoArrayWrapper]
      */
     @GET("api/2.0/people/thirdparty/providers")
-    fun getThirdPartyAuthProviders(@Query("inviteView") inviteView: kotlin.Boolean? = null, @Query("settingsView") settingsView: kotlin.Boolean? = null, @Query("clientCallback") clientCallback: kotlin.String? = null, @Query("fromOnly") fromOnly: kotlin.String? = null): Call<AccountInfoArrayWrapper>
+    suspend fun getThirdPartyAuthProviders(@Query("inviteView") inviteView: kotlin.Boolean? = null, @Query("settingsView") settingsView: kotlin.Boolean? = null, @Query("clientCallback") clientCallback: kotlin.String? = null, @Query("fromOnly") fromOnly: kotlin.String? = null): Response<AccountInfoArrayWrapper>
 
     /**
      * PUT api/2.0/people/thirdparty/linkaccount
@@ -63,10 +63,10 @@ interface ThirdPartyAccountsApi {
      *
      *
      * @param linkAccountRequestDto  (optional)
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @PUT("api/2.0/people/thirdparty/linkaccount")
-    fun linkThirdPartyAccount(@Body linkAccountRequestDto: LinkAccountRequestDto? = null): Call<Unit>
+    suspend fun linkThirdPartyAccount(@Body linkAccountRequestDto: LinkAccountRequestDto? = null): Response<Unit>
 
     /**
      * POST api/2.0/people/thirdparty/signup
@@ -82,10 +82,10 @@ interface ThirdPartyAccountsApi {
      *
      *
      * @param signupAccountRequestDto  (optional)
-     * @return [Call]<[EmployeeWrapper]>
+     * @return [EmployeeWrapper]
      */
     @POST("api/2.0/people/thirdparty/signup")
-    fun signupThirdPartyAccount(@Body signupAccountRequestDto: SignupAccountRequestDto? = null): Call<EmployeeWrapper>
+    suspend fun signupThirdPartyAccount(@Body signupAccountRequestDto: SignupAccountRequestDto? = null): Response<EmployeeWrapper>
 
     /**
      * DELETE api/2.0/people/thirdparty/unlinkaccount
@@ -100,9 +100,9 @@ interface ThirdPartyAccountsApi {
      *
      *
      * @param provider The provider name. (optional)
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @DELETE("api/2.0/people/thirdparty/unlinkaccount")
-    fun unlinkThirdPartyAccount(@Query("provider") provider: kotlin.String? = null): Call<Unit>
+    suspend fun unlinkThirdPartyAccount(@Query("provider") provider: kotlin.String? = null): Response<Unit>
 
 }

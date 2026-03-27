@@ -49,7 +49,9 @@ val webService = apiClient.createWebservice(PasswordApi::class.java)
 val userid : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The user ID.
 val changePasswordRequest : ChangePasswordRequest =  // ChangePasswordRequest | The request parameters for updating a user password.
 
-val result : EmployeeFullWrapper = webService.changeUserPassword(userid, changePasswordRequest)
+launch(Dispatchers.IO) {
+    val result : EmployeeFullWrapper = webService.changeUserPassword(userid, changePasswordRequest)
+}
 ```
 
 ### HTTP request headers
@@ -90,7 +92,9 @@ val apiClient = ApiClient()
 val webService = apiClient.createWebservice(PasswordApi::class.java)
 val emailMemberRequestDto : EmailMemberRequestDto =  // EmailMemberRequestDto | 
 
-val result : StringWrapper = webService.sendUserPassword(emailMemberRequestDto)
+launch(Dispatchers.IO) {
+    val result : StringWrapper = webService.sendUserPassword(emailMemberRequestDto)
+}
 ```
 
 ### HTTP request headers

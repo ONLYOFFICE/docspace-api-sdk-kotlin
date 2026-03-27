@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Settings
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -43,10 +43,10 @@ interface NotificationsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-notification-channels/
      *
      *
-     * @return [Call]<[NotificationChannelStatusWrapper]>
+     * @return [NotificationChannelStatusWrapper]
      */
     @GET("api/2.0/settings/notification/channels")
-    fun getNotificationChannels(): Call<NotificationChannelStatusWrapper>
+    suspend fun getNotificationChannels(): Response<NotificationChannelStatusWrapper>
 
     /**
      * GET api/2.0/settings/notification/{type}
@@ -61,10 +61,10 @@ interface NotificationsApi {
      *
      *
      * @param type The type of notification to query, specified in the route.
-     * @return [Call]<[NotificationSettingsWrapper]>
+     * @return [NotificationSettingsWrapper]
      */
     @GET("api/2.0/settings/notification/{type}")
-    fun getNotificationSettings(@Path("type") type: NotificationType): Call<NotificationSettingsWrapper>
+    suspend fun getNotificationSettings(@Path("type") type: NotificationType): Response<NotificationSettingsWrapper>
 
     /**
      * GET api/2.0/settings/notification/rooms
@@ -78,10 +78,10 @@ interface NotificationsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-rooms-notification-settings/
      *
      *
-     * @return [Call]<[RoomsNotificationSettingsWrapper]>
+     * @return [RoomsNotificationSettingsWrapper]
      */
     @GET("api/2.0/settings/notification/rooms")
-    fun getRoomsNotificationSettings(): Call<RoomsNotificationSettingsWrapper>
+    suspend fun getRoomsNotificationSettings(): Response<RoomsNotificationSettingsWrapper>
 
     /**
      * POST api/2.0/settings/notification
@@ -96,10 +96,10 @@ interface NotificationsApi {
      *
      *
      * @param notificationSettingsRequestsDto  (optional)
-     * @return [Call]<[NotificationSettingsWrapper]>
+     * @return [NotificationSettingsWrapper]
      */
     @POST("api/2.0/settings/notification")
-    fun setNotificationSettings(@Body notificationSettingsRequestsDto: NotificationSettingsRequestsDto? = null): Call<NotificationSettingsWrapper>
+    suspend fun setNotificationSettings(@Body notificationSettingsRequestsDto: NotificationSettingsRequestsDto? = null): Response<NotificationSettingsWrapper>
 
     /**
      * POST api/2.0/settings/notification/rooms
@@ -114,9 +114,9 @@ interface NotificationsApi {
      *
      *
      * @param roomsNotificationsSettingsRequestDto  (optional)
-     * @return [Call]<[RoomsNotificationSettingsWrapper]>
+     * @return [RoomsNotificationSettingsWrapper]
      */
     @POST("api/2.0/settings/notification/rooms")
-    fun setRoomsNotificationStatus(@Body roomsNotificationsSettingsRequestDto: RoomsNotificationsSettingsRequestDto? = null): Call<RoomsNotificationSettingsWrapper>
+    suspend fun setRoomsNotificationStatus(@Body roomsNotificationsSettingsRequestDto: RoomsNotificationsSettingsRequestDto? = null): Response<RoomsNotificationSettingsWrapper>
 
 }

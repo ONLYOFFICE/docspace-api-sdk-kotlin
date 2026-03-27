@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.OAuth20
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -49,10 +49,10 @@ interface ClientManagementApi {
      *
      * @param clientId The client identifier.
      * @param changeClientActivationRequest 
-     * @return [Call]<[kotlin.Any]>
+     * @return [kotlin.Any]
      */
     @PATCH("api/2.0/clients/{clientId}/activation")
-    fun changeActivation(@Path("clientId") clientId: kotlin.String, @Body changeClientActivationRequest: ChangeClientActivationRequest): Call<kotlin.Any>
+    suspend fun changeActivation(@Path("clientId") clientId: kotlin.String, @Body changeClientActivationRequest: ChangeClientActivationRequest): Response<kotlin.Any>
 
     /**
      * POST api/2.0/clients
@@ -70,10 +70,10 @@ interface ClientManagementApi {
      *
      *
      * @param createClientRequest 
-     * @return [Call]<[ClientResponse]>
+     * @return [ClientResponse]
      */
     @POST("api/2.0/clients")
-    fun createClient(@Body createClientRequest: CreateClientRequest): Call<ClientResponse>
+    suspend fun createClient(@Body createClientRequest: CreateClientRequest): Response<ClientResponse>
 
     /**
      * DELETE api/2.0/clients/{clientId}
@@ -92,10 +92,10 @@ interface ClientManagementApi {
      *
      *
      * @param clientId The client identifier.
-     * @return [Call]<[kotlin.Any]>
+     * @return [kotlin.Any]
      */
     @DELETE("api/2.0/clients/{clientId}")
-    fun deleteClient(@Path("clientId") clientId: kotlin.String): Call<kotlin.Any>
+    suspend fun deleteClient(@Path("clientId") clientId: kotlin.String): Response<kotlin.Any>
 
     /**
      * PATCH api/2.0/clients/{clientId}/regenerate
@@ -114,10 +114,10 @@ interface ClientManagementApi {
      *
      *
      * @param clientId The client identifier.
-     * @return [Call]<[ClientSecretResponse]>
+     * @return [ClientSecretResponse]
      */
     @PATCH("api/2.0/clients/{clientId}/regenerate")
-    fun regenerateSecret(@Path("clientId") clientId: kotlin.String): Call<ClientSecretResponse>
+    suspend fun regenerateSecret(@Path("clientId") clientId: kotlin.String): Response<ClientSecretResponse>
 
     /**
      * DELETE api/2.0/clients/{clientId}/revoke
@@ -137,10 +137,10 @@ interface ClientManagementApi {
      *
      *
      * @param clientId The client identifier.
-     * @return [Call]<[kotlin.Any]>
+     * @return [kotlin.Any]
      */
     @DELETE("api/2.0/clients/{clientId}/revoke")
-    fun revokeUserClient(@Path("clientId") clientId: kotlin.String): Call<kotlin.Any>
+    suspend fun revokeUserClient(@Path("clientId") clientId: kotlin.String): Response<kotlin.Any>
 
     /**
      * PUT api/2.0/clients/{clientId}
@@ -160,9 +160,9 @@ interface ClientManagementApi {
      *
      * @param clientId The client identifier.
      * @param updateClientRequest 
-     * @return [Call]<[kotlin.Any]>
+     * @return [kotlin.Any]
      */
     @PUT("api/2.0/clients/{clientId}")
-    fun updateClient(@Path("clientId") clientId: kotlin.String, @Body updateClientRequest: UpdateClientRequest): Call<kotlin.Any>
+    suspend fun updateClient(@Path("clientId") clientId: kotlin.String, @Body updateClientRequest: UpdateClientRequest): Response<kotlin.Any>
 
 }

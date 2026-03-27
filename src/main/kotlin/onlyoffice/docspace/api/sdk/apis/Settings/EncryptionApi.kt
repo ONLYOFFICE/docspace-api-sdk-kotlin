@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Settings
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -42,10 +42,10 @@ interface EncryptionApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-storage-encryption-progress/
      *
      *
-     * @return [Call]<[DoubleNullableWrapper]>
+     * @return [DoubleNullableWrapper]
      */
     @GET("api/2.0/settings/encryption/progress")
-    fun getStorageEncryptionProgress(): Call<DoubleNullableWrapper>
+    suspend fun getStorageEncryptionProgress(): Response<DoubleNullableWrapper>
 
     /**
      * GET api/2.0/settings/encryption/settings
@@ -61,10 +61,10 @@ interface EncryptionApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-storage-encryption-settings/
      *
      *
-     * @return [Call]<[EncryptionSettingsWrapper]>
+     * @return [EncryptionSettingsWrapper]
      */
     @GET("api/2.0/settings/encryption/settings")
-    fun getStorageEncryptionSettings(): Call<EncryptionSettingsWrapper>
+    suspend fun getStorageEncryptionSettings(): Response<EncryptionSettingsWrapper>
 
     /**
      * POST api/2.0/settings/encryption/start
@@ -82,9 +82,9 @@ interface EncryptionApi {
      *
      *
      * @param storageEncryptionRequestsDto  (optional)
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @POST("api/2.0/settings/encryption/start")
-    fun startStorageEncryption(@Body storageEncryptionRequestsDto: StorageEncryptionRequestsDto? = null): Call<BooleanWrapper>
+    suspend fun startStorageEncryption(@Body storageEncryptionRequestsDto: StorageEncryptionRequestsDto? = null): Response<BooleanWrapper>
 
 }

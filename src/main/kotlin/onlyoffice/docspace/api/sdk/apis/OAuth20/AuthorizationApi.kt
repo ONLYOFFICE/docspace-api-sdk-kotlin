@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.OAuth20
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -42,10 +42,10 @@ interface AuthorizationApi {
      * @param clientId The client identifier issued to the client during registration.
      * @param redirectUri The URL to redirect to after authorization is complete.
      * @param scope The space-separated list of requested scope permissions.
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @GET("oauth2/authorize")
-    fun authorizeOAuth(@Query("response_type") responseType: kotlin.String, @Query("client_id") clientId: kotlin.String, @Query("redirect_uri") redirectUri: kotlin.String, @Query("scope") scope: kotlin.String): Call<Unit>
+    suspend fun authorizeOAuth(@Query("response_type") responseType: kotlin.String, @Query("client_id") clientId: kotlin.String, @Query("redirect_uri") redirectUri: kotlin.String, @Query("scope") scope: kotlin.String): Response<Unit>
 
     /**
      * POST oauth2/token
@@ -64,11 +64,11 @@ interface AuthorizationApi {
      * @param redirectUri The URL where the user will be redirected after successful or unsuccessful authentication. (optional)
      * @param clientId The client identifier issued to the client during registration. (optional)
      * @param clientSecret The client secret issued to the client during registration. (optional)
-     * @return [Call]<[ExchangeToken200Response]>
+     * @return [ExchangeToken200Response]
      */
     @FormUrlEncoded
     @POST("oauth2/token")
-    fun exchangeToken(@Field("grant_type") grantType: kotlin.String? = null, @Field("code") code: kotlin.String? = null, @Field("redirect_uri") redirectUri: kotlin.String? = null, @Field("client_id") clientId: kotlin.String? = null, @Field("client_secret") clientSecret: kotlin.String? = null): Call<ExchangeToken200Response>
+    suspend fun exchangeToken(@Field("grant_type") grantType: kotlin.String? = null, @Field("code") code: kotlin.String? = null, @Field("redirect_uri") redirectUri: kotlin.String? = null, @Field("client_id") clientId: kotlin.String? = null, @Field("client_secret") clientSecret: kotlin.String? = null): Response<ExchangeToken200Response>
 
     /**
      * POST oauth2/authorize
@@ -85,10 +85,10 @@ interface AuthorizationApi {
      * @param clientId The client identifier issued to the client during registration. (optional)
      * @param state The random string used to solve the CSRF vulnerability problem. (optional)
      * @param scope The space-separated list of requested scope permissions. (optional)
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @Multipart
     @POST("oauth2/authorize")
-    fun submitConsent(@Part("client_id") clientId: kotlin.String? = null, @Part("state") state: kotlin.String? = null, @Part("scope") scope: kotlin.String? = null): Call<Unit>
+    suspend fun submitConsent(@Part("client_id") clientId: kotlin.String? = null, @Part("state") state: kotlin.String? = null, @Part("scope") scope: kotlin.String? = null): Response<Unit>
 
 }

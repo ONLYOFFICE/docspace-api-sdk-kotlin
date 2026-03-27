@@ -47,7 +47,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(NotificationsApi::class.java)
 
-val result : NotificationChannelStatusWrapper = webService.getNotificationChannels()
+launch(Dispatchers.IO) {
+    val result : NotificationChannelStatusWrapper = webService.getNotificationChannels()
+}
 ```
 
 ### HTTP request headers
@@ -94,7 +96,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(NotificationsApi::class.java)
 val type : NotificationType = 0 // NotificationType | The type of notification to query, specified in the route.
 
-val result : NotificationSettingsWrapper = webService.getNotificationSettings(type)
+launch(Dispatchers.IO) {
+    val result : NotificationSettingsWrapper = webService.getNotificationSettings(type)
+}
 ```
 
 ### HTTP request headers
@@ -138,7 +142,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(NotificationsApi::class.java)
 
-val result : RoomsNotificationSettingsWrapper = webService.getRoomsNotificationSettings()
+launch(Dispatchers.IO) {
+    val result : RoomsNotificationSettingsWrapper = webService.getRoomsNotificationSettings()
+}
 ```
 
 ### HTTP request headers
@@ -185,7 +191,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(NotificationsApi::class.java)
 val notificationSettingsRequestsDto : NotificationSettingsRequestsDto =  // NotificationSettingsRequestsDto | 
 
-val result : NotificationSettingsWrapper = webService.setNotificationSettings(notificationSettingsRequestsDto)
+launch(Dispatchers.IO) {
+    val result : NotificationSettingsWrapper = webService.setNotificationSettings(notificationSettingsRequestsDto)
+}
 ```
 
 ### HTTP request headers
@@ -232,7 +240,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(NotificationsApi::class.java)
 val roomsNotificationsSettingsRequestDto : RoomsNotificationsSettingsRequestDto =  // RoomsNotificationsSettingsRequestDto | 
 
-val result : RoomsNotificationSettingsWrapper = webService.setRoomsNotificationStatus(roomsNotificationsSettingsRequestDto)
+launch(Dispatchers.IO) {
+    val result : RoomsNotificationSettingsWrapper = webService.setRoomsNotificationStatus(roomsNotificationsSettingsRequestDto)
+}
 ```
 
 ### HTTP request headers

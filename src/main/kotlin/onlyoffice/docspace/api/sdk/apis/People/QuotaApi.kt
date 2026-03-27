@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.People
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -43,10 +43,10 @@ interface QuotaApi {
      *
      *
      * @param updateMembersQuotaRequestDto  (optional)
-     * @return [Call]<[EmployeeFullArrayWrapper]>
+     * @return [EmployeeFullArrayWrapper]
      */
     @PUT("api/2.0/people/resetquota")
-    fun resetUsersQuota(@Body updateMembersQuotaRequestDto: UpdateMembersQuotaRequestDto? = null): Call<EmployeeFullArrayWrapper>
+    suspend fun resetUsersQuota(@Body updateMembersQuotaRequestDto: UpdateMembersQuotaRequestDto? = null): Response<EmployeeFullArrayWrapper>
 
     /**
      * PUT api/2.0/people/userquota
@@ -63,9 +63,9 @@ interface QuotaApi {
      *
      *
      * @param updateMembersQuotaRequestDto  (optional)
-     * @return [Call]<[EmployeeFullArrayWrapper]>
+     * @return [EmployeeFullArrayWrapper]
      */
     @PUT("api/2.0/people/userquota")
-    fun updateUserQuota(@Body updateMembersQuotaRequestDto: UpdateMembersQuotaRequestDto? = null): Call<EmployeeFullArrayWrapper>
+    suspend fun updateUserQuota(@Body updateMembersQuotaRequestDto: UpdateMembersQuotaRequestDto? = null): Response<EmployeeFullArrayWrapper>
 
 }

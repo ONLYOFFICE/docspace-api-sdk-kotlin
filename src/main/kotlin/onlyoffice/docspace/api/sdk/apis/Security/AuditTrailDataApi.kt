@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Security
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -49,10 +49,10 @@ interface AuditTrailDataApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-audit-trail-report/
      *
      *
-     * @return [Call]<[StringWrapper]>
+     * @return [StringWrapper]
      */
     @POST("api/2.0/security/audit/events/report")
-    fun createAuditTrailReport(): Call<StringWrapper>
+    suspend fun createAuditTrailReport(): Response<StringWrapper>
 
     /**
      * GET api/2.0/security/audit/events/filter
@@ -77,10 +77,10 @@ interface AuditTrailDataApi {
      * @param to The ending date and time for filtering audit events. (optional)
      * @param count The maximum number of audit event records to retrieve. (optional)
      * @param startIndex The index of the first audit event record to retrieve in a paged query. (optional)
-     * @return [Call]<[AuditEventArrayWrapper]>
+     * @return [AuditEventArrayWrapper]
      */
     @GET("api/2.0/security/audit/events/filter")
-    fun getAuditEventsByFilter(@Query("userId") userId: java.util.UUID? = null, @Query("moduleType") moduleType: LocationType? = null, @Query("actionType") actionType: ActionType? = null, @Query("action") action: MessageAction? = null, @Query("entryType") entryType: EntryType? = null, @Query("target") target: kotlin.String? = null, @Query("from") from: ApiDateTime? = null, @Query("to") to: ApiDateTime? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null): Call<AuditEventArrayWrapper>
+    suspend fun getAuditEventsByFilter(@Query("userId") userId: java.util.UUID? = null, @Query("moduleType") moduleType: LocationType? = null, @Query("actionType") actionType: ActionType? = null, @Query("action") action: MessageAction? = null, @Query("entryType") entryType: EntryType? = null, @Query("target") target: kotlin.String? = null, @Query("from") from: ApiDateTime? = null, @Query("to") to: ApiDateTime? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null): Response<AuditEventArrayWrapper>
 
     /**
      * GET api/2.0/security/audit/settings/lifetime
@@ -95,10 +95,10 @@ interface AuditTrailDataApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-audit-settings/
      *
      *
-     * @return [Call]<[TenantAuditSettingsWrapper]>
+     * @return [TenantAuditSettingsWrapper]
      */
     @GET("api/2.0/security/audit/settings/lifetime")
-    fun getAuditSettings(): Call<TenantAuditSettingsWrapper>
+    suspend fun getAuditSettings(): Response<TenantAuditSettingsWrapper>
 
     /**
      * GET api/2.0/security/audit/mappers
@@ -113,10 +113,10 @@ interface AuditTrailDataApi {
      *
      * @param productType The type of product related to the audit trail. (optional)
      * @param moduleType The location associated with the audit trail. (optional)
-     * @return [Call]<[ObjectWrapper]>
+     * @return [ObjectWrapper]
      */
     @GET("api/2.0/security/audit/mappers")
-    fun getAuditTrailMappers(@Query("productType") productType: ProductType? = null, @Query("moduleType") moduleType: LocationType? = null): Call<ObjectWrapper>
+    suspend fun getAuditTrailMappers(@Query("productType") productType: ProductType? = null, @Query("moduleType") moduleType: LocationType? = null): Response<ObjectWrapper>
 
     /**
      * GET api/2.0/security/audit/types
@@ -129,10 +129,10 @@ interface AuditTrailDataApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-audit-trail-types/
      *
      *
-     * @return [Call]<[ObjectWrapper]>
+     * @return [ObjectWrapper]
      */
     @GET("api/2.0/security/audit/types")
-    fun getAuditTrailTypes(): Call<ObjectWrapper>
+    suspend fun getAuditTrailTypes(): Response<ObjectWrapper>
 
     /**
      * GET api/2.0/security/audit/events/last
@@ -147,10 +147,10 @@ interface AuditTrailDataApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-last-audit-events/
      *
      *
-     * @return [Call]<[AuditEventArrayWrapper]>
+     * @return [AuditEventArrayWrapper]
      */
     @GET("api/2.0/security/audit/events/last")
-    fun getLastAuditEvents(): Call<AuditEventArrayWrapper>
+    suspend fun getLastAuditEvents(): Response<AuditEventArrayWrapper>
 
     /**
      * POST api/2.0/security/audit/settings/lifetime
@@ -167,9 +167,9 @@ interface AuditTrailDataApi {
      *
      *
      * @param tenantAuditSettingsWrapper  (optional)
-     * @return [Call]<[TenantAuditSettingsWrapper]>
+     * @return [TenantAuditSettingsWrapper]
      */
     @POST("api/2.0/security/audit/settings/lifetime")
-    fun setAuditSettings(@Body tenantAuditSettingsWrapper: TenantAuditSettingsWrapper? = null): Call<TenantAuditSettingsWrapper>
+    suspend fun setAuditSettings(@Body tenantAuditSettingsWrapper: TenantAuditSettingsWrapper? = null): Response<TenantAuditSettingsWrapper>
 
 }

@@ -52,7 +52,9 @@ val webService = apiClient.createWebservice(PhotosApi::class.java)
 val userid : kotlin.String = 00000000-0000-0000-0000-000000000000 // kotlin.String | The user ID.
 val thumbnailsRequest : ThumbnailsRequest =  // ThumbnailsRequest | The thumbnail request.
 
-val result : ThumbnailsDataWrapper = webService.createMemberPhotoThumbnails(userid, thumbnailsRequest)
+launch(Dispatchers.IO) {
+    val result : ThumbnailsDataWrapper = webService.createMemberPhotoThumbnails(userid, thumbnailsRequest)
+}
 ```
 
 ### HTTP request headers
@@ -99,7 +101,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PhotosApi::class.java)
 val userid : kotlin.String = 00000000-0000-0000-0000-000000000000 // kotlin.String | The user ID.
 
-val result : ThumbnailsDataWrapper = webService.deleteMemberPhoto(userid)
+launch(Dispatchers.IO) {
+    val result : ThumbnailsDataWrapper = webService.deleteMemberPhoto(userid)
+}
 ```
 
 ### HTTP request headers
@@ -146,7 +150,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PhotosApi::class.java)
 val userid : kotlin.String = 00000000-0000-0000-0000-000000000000 // kotlin.String | The user ID.
 
-val result : ThumbnailsDataWrapper = webService.getMemberPhoto(userid)
+launch(Dispatchers.IO) {
+    val result : ThumbnailsDataWrapper = webService.getMemberPhoto(userid)
+}
 ```
 
 ### HTTP request headers
@@ -195,7 +201,9 @@ val webService = apiClient.createWebservice(PhotosApi::class.java)
 val userid : kotlin.String = 00000000-0000-0000-0000-000000000000 // kotlin.String | The user ID.
 val updatePhotoMemberRequest : UpdatePhotoMemberRequest =  // UpdatePhotoMemberRequest | The request parameters for updating a photo.
 
-val result : ThumbnailsDataWrapper = webService.updateMemberPhoto(userid, updatePhotoMemberRequest)
+launch(Dispatchers.IO) {
+    val result : ThumbnailsDataWrapper = webService.updateMemberPhoto(userid, updatePhotoMemberRequest)
+}
 ```
 
 ### HTTP request headers
@@ -246,7 +254,9 @@ val userid : kotlin.String = 00000000-0000-0000-0000-000000000000 // kotlin.Stri
 val file : java.io.File = BINARY_DATA_HERE // java.io.File | The image data.
 val autosave : kotlin.Boolean = true // kotlin.Boolean | 
 
-val result : FileUploadResultWrapper = webService.uploadMemberPhoto(userid, file, autosave)
+launch(Dispatchers.IO) {
+    val result : FileUploadResultWrapper = webService.uploadMemberPhoto(userid, file, autosave)
+}
 ```
 
 ### HTTP request headers

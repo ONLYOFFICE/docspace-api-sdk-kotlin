@@ -45,7 +45,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(LoginHistoryApi::class.java)
 
-val result : StringWrapper = webService.createLoginHistoryReport()
+launch(Dispatchers.IO) {
+    val result : StringWrapper = webService.createLoginHistoryReport()
+}
 ```
 
 ### HTTP request headers
@@ -89,7 +91,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(LoginHistoryApi::class.java)
 
-val result : LoginEventArrayWrapper = webService.getLastLoginEvents()
+launch(Dispatchers.IO) {
+    val result : LoginEventArrayWrapper = webService.getLastLoginEvents()
+}
 ```
 
 ### HTTP request headers
@@ -146,7 +150,9 @@ val to : ApiDateTime = 2024-01-15T10:30:00Z // ApiDateTime | The ending date and
 val count : kotlin.Int = 1 // kotlin.Int | The number of login events to retrieve in the query.
 val startIndex : kotlin.Int = 1 // kotlin.Int | The starting index for fetching a subset of login events from the query results.
 
-val result : LoginEventArrayWrapper = webService.getLoginEventsByFilter(userId, action, from, to, count, startIndex)
+launch(Dispatchers.IO) {
+    val result : LoginEventArrayWrapper = webService.getLoginEventsByFilter(userId, action, from, to, count, startIndex)
+}
 ```
 
 ### HTTP request headers

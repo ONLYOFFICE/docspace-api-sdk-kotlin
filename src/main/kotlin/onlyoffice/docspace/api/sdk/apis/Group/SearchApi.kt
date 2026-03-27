@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Group
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -44,10 +44,10 @@ interface SearchApi {
      * @param count The number of groups to retrieve in the request. (optional)
      * @param startIndex The starting index from which to begin retrieving groups with their sharing settings. (optional)
      * @param filterValue The text used as a filter for retrieving groups with their sharing settings. (optional)
-     * @return [Call]<[GroupArrayWrapper]>
+     * @return [GroupArrayWrapper]
      */
     @GET("api/2.0/group/file/{id}")
-    fun getGroupsWithFilesShared(@Path("id") id: kotlin.Int, @Query("excludeShared") excludeShared: kotlin.Boolean? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterValue") filterValue: kotlin.String? = null): Call<GroupArrayWrapper>
+    suspend fun getGroupsWithFilesShared(@Path("id") id: kotlin.Int, @Query("excludeShared") excludeShared: kotlin.Boolean? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<GroupArrayWrapper>
 
     /**
      * GET api/2.0/group/folder/{id}
@@ -67,10 +67,10 @@ interface SearchApi {
      * @param count The number of groups to retrieve in the request. (optional)
      * @param startIndex The starting index from which to begin retrieving groups with their sharing settings. (optional)
      * @param filterValue The text used as a filter for retrieving groups with their sharing settings. (optional)
-     * @return [Call]<[GroupArrayWrapper]>
+     * @return [GroupArrayWrapper]
      */
     @GET("api/2.0/group/folder/{id}")
-    fun getGroupsWithFoldersShared(@Path("id") id: kotlin.Int, @Query("excludeShared") excludeShared: kotlin.Boolean? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterValue") filterValue: kotlin.String? = null): Call<GroupArrayWrapper>
+    suspend fun getGroupsWithFoldersShared(@Path("id") id: kotlin.Int, @Query("excludeShared") excludeShared: kotlin.Boolean? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<GroupArrayWrapper>
 
     /**
      * GET api/2.0/group/room/{id}
@@ -90,9 +90,9 @@ interface SearchApi {
      * @param count The number of groups to retrieve in the request. (optional)
      * @param startIndex The starting index from which to begin retrieving groups with their sharing settings. (optional)
      * @param filterValue The text used as a filter for retrieving groups with their sharing settings. (optional)
-     * @return [Call]<[GroupArrayWrapper]>
+     * @return [GroupArrayWrapper]
      */
     @GET("api/2.0/group/room/{id}")
-    fun getGroupsWithRoomsShared(@Path("id") id: kotlin.Int, @Query("excludeShared") excludeShared: kotlin.Boolean? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterValue") filterValue: kotlin.String? = null): Call<GroupArrayWrapper>
+    suspend fun getGroupsWithRoomsShared(@Path("id") id: kotlin.Int, @Query("excludeShared") excludeShared: kotlin.Boolean? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<GroupArrayWrapper>
 
 }

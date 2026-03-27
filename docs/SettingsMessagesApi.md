@@ -48,7 +48,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(MessagesApi::class.java)
 val turnOnAdminMessageSettingsRequestDto : TurnOnAdminMessageSettingsRequestDto =  // TurnOnAdminMessageSettingsRequestDto | 
 
-val result : StringWrapper = webService.enableAdminMessageSettings(turnOnAdminMessageSettingsRequestDto)
+launch(Dispatchers.IO) {
+    val result : StringWrapper = webService.enableAdminMessageSettings(turnOnAdminMessageSettingsRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -89,7 +91,9 @@ val apiClient = ApiClient()
 val webService = apiClient.createWebservice(MessagesApi::class.java)
 val adminMessageSettingsRequestsDto : AdminMessageSettingsRequestsDto =  // AdminMessageSettingsRequestsDto | 
 
-val result : StringWrapper = webService.sendAdminMail(adminMessageSettingsRequestsDto)
+launch(Dispatchers.IO) {
+    val result : StringWrapper = webService.sendAdminMail(adminMessageSettingsRequestsDto)
+}
 ```
 
 ### HTTP request headers
@@ -130,7 +134,9 @@ val apiClient = ApiClient()
 val webService = apiClient.createWebservice(MessagesApi::class.java)
 val adminMessageBaseSettingsRequestsDto : AdminMessageBaseSettingsRequestsDto =  // AdminMessageBaseSettingsRequestsDto | 
 
-val result : StringWrapper = webService.sendJoinInviteMail(adminMessageBaseSettingsRequestsDto)
+launch(Dispatchers.IO) {
+    val result : StringWrapper = webService.sendJoinInviteMail(adminMessageBaseSettingsRequestsDto)
+}
 ```
 
 ### HTTP request headers

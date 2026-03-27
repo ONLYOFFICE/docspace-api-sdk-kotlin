@@ -50,7 +50,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(WebpluginsApi::class.java)
 val system : kotlin.Boolean = false // kotlin.Boolean | Specifies whether to load the system plugins or not.
 
-val result : WebPluginWrapper = webService.addWebPluginFromFile(system)
+launch(Dispatchers.IO) {
+    val result : WebPluginWrapper = webService.addWebPluginFromFile(system)
+}
 ```
 
 ### HTTP request headers
@@ -97,7 +99,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(WebpluginsApi::class.java)
 val name : kotlin.String = example-plugin // kotlin.String | The web plugin name.
 
-webService.deleteWebPlugin(name)
+launch(Dispatchers.IO) {
+    webService.deleteWebPlugin(name)
+}
 ```
 
 ### HTTP request headers
@@ -144,7 +148,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(WebpluginsApi::class.java)
 val name : kotlin.String = example-plugin // kotlin.String | The web plugin name.
 
-val result : WebPluginWrapper = webService.getWebPlugin(name)
+launch(Dispatchers.IO) {
+    val result : WebPluginWrapper = webService.getWebPlugin(name)
+}
 ```
 
 ### HTTP request headers
@@ -191,7 +197,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(WebpluginsApi::class.java)
 val enabled : kotlin.Boolean = true // kotlin.Boolean | The optional filter for the plugin enabled state.
 
-val result : WebPluginArrayWrapper = webService.getWebPlugins(enabled)
+launch(Dispatchers.IO) {
+    val result : WebPluginArrayWrapper = webService.getWebPlugins(enabled)
+}
 ```
 
 ### HTTP request headers
@@ -240,7 +248,9 @@ val webService = apiClient.createWebservice(WebpluginsApi::class.java)
 val name : kotlin.String = example-plugin // kotlin.String | The web plugin name.
 val webPluginRequests : WebPluginRequests =  // WebPluginRequests | The configuration settings for the web plugin instance.
 
-webService.updateWebPlugin(name, webPluginRequests)
+launch(Dispatchers.IO) {
+    webService.updateWebPlugin(name, webPluginRequests)
+}
 ```
 
 ### HTTP request headers

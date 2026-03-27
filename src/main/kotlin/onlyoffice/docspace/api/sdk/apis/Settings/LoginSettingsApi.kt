@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Settings
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -39,10 +39,10 @@ interface LoginSettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-login-settings/
      *
      *
-     * @return [Call]<[LoginSettingsWrapper]>
+     * @return [LoginSettingsWrapper]
      */
     @GET("api/2.0/settings/security/loginsettings")
-    fun getLoginSettings(): Call<LoginSettingsWrapper>
+    suspend fun getLoginSettings(): Response<LoginSettingsWrapper>
 
     /**
      * DELETE api/2.0/settings/security/loginsettings
@@ -56,10 +56,10 @@ interface LoginSettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-default-login-settings/
      *
      *
-     * @return [Call]<[LoginSettingsWrapper]>
+     * @return [LoginSettingsWrapper]
      */
     @DELETE("api/2.0/settings/security/loginsettings")
-    fun setDefaultLoginSettings(): Call<LoginSettingsWrapper>
+    suspend fun setDefaultLoginSettings(): Response<LoginSettingsWrapper>
 
     /**
      * PUT api/2.0/settings/security/loginsettings
@@ -74,9 +74,9 @@ interface LoginSettingsApi {
      *
      *
      * @param loginSettingsRequestDto  (optional)
-     * @return [Call]<[LoginSettingsWrapper]>
+     * @return [LoginSettingsWrapper]
      */
     @PUT("api/2.0/settings/security/loginsettings")
-    fun updateLoginSettings(@Body loginSettingsRequestDto: LoginSettingsRequestDto? = null): Call<LoginSettingsWrapper>
+    suspend fun updateLoginSettings(@Body loginSettingsRequestDto: LoginSettingsRequestDto? = null): Response<LoginSettingsWrapper>
 
 }

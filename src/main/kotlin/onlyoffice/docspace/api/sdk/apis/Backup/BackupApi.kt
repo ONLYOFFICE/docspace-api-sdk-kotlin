@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Backup
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -46,10 +46,10 @@ interface BackupApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/cancel-backup/
      *
      *
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @POST("api/2.0/backup/cancelbackup")
-    fun cancelBackup(): Call<BooleanWrapper>
+    suspend fun cancelBackup(): Response<BooleanWrapper>
 
     /**
      * POST api/2.0/backup/createbackupschedule
@@ -68,10 +68,10 @@ interface BackupApi {
      *
      *
      * @param backupScheduleDto  (optional)
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @POST("api/2.0/backup/createbackupschedule")
-    fun createBackupSchedule(@Body backupScheduleDto: BackupScheduleDto? = null): Call<BooleanWrapper>
+    suspend fun createBackupSchedule(@Body backupScheduleDto: BackupScheduleDto? = null): Response<BooleanWrapper>
 
     /**
      * DELETE api/2.0/backup/deletebackup/{id}
@@ -87,10 +87,10 @@ interface BackupApi {
      *
      *
      * @param id The backup ID.
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @DELETE("api/2.0/backup/deletebackup/{id}")
-    fun deleteBackup(@Path("id") id: java.util.UUID): Call<BooleanWrapper>
+    suspend fun deleteBackup(@Path("id") id: java.util.UUID): Response<BooleanWrapper>
 
     /**
      * DELETE api/2.0/backup/deletebackuphistory
@@ -106,10 +106,10 @@ interface BackupApi {
      *
      *
      * @param dump Specifies if a dump will be created or not. (optional)
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @DELETE("api/2.0/backup/deletebackuphistory")
-    fun deleteBackupHistory(@Query("Dump") dump: kotlin.Boolean? = null): Call<BooleanWrapper>
+    suspend fun deleteBackupHistory(@Query("Dump") dump: kotlin.Boolean? = null): Response<BooleanWrapper>
 
     /**
      * DELETE api/2.0/backup/deletebackupschedule
@@ -125,10 +125,10 @@ interface BackupApi {
      *
      *
      * @param dump Specifies if a dump will be created or not. (optional)
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @DELETE("api/2.0/backup/deletebackupschedule")
-    fun deleteBackupSchedule(@Query("Dump") dump: kotlin.Boolean? = null): Call<BooleanWrapper>
+    suspend fun deleteBackupSchedule(@Query("Dump") dump: kotlin.Boolean? = null): Response<BooleanWrapper>
 
     /**
      * GET api/2.0/backup/getbackuphistory
@@ -144,10 +144,10 @@ interface BackupApi {
      *
      *
      * @param dump Specifies if a dump will be created or not. (optional)
-     * @return [Call]<[BackupHistoryRecordArrayWrapper]>
+     * @return [BackupHistoryRecordArrayWrapper]
      */
     @GET("api/2.0/backup/getbackuphistory")
-    fun getBackupHistory(@Query("Dump") dump: kotlin.Boolean? = null): Call<BackupHistoryRecordArrayWrapper>
+    suspend fun getBackupHistory(@Query("Dump") dump: kotlin.Boolean? = null): Response<BackupHistoryRecordArrayWrapper>
 
     /**
      * GET api/2.0/backup/getbackupprogress
@@ -163,10 +163,10 @@ interface BackupApi {
      *
      *
      * @param dump Specifies if a dump will be created or not. (optional)
-     * @return [Call]<[BackupProgressWrapper]>
+     * @return [BackupProgressWrapper]
      */
     @GET("api/2.0/backup/getbackupprogress")
-    fun getBackupProgress(@Query("Dump") dump: kotlin.Boolean? = null): Call<BackupProgressWrapper>
+    suspend fun getBackupProgress(@Query("Dump") dump: kotlin.Boolean? = null): Response<BackupProgressWrapper>
 
     /**
      * GET api/2.0/backup/getbackupschedule
@@ -182,10 +182,10 @@ interface BackupApi {
      *
      *
      * @param dump Specifies if a dump will be created or not. (optional)
-     * @return [Call]<[ScheduleWrapper]>
+     * @return [ScheduleWrapper]
      */
     @GET("api/2.0/backup/getbackupschedule")
-    fun getBackupSchedule(@Query("Dump") dump: kotlin.Boolean? = null): Call<ScheduleWrapper>
+    suspend fun getBackupSchedule(@Query("Dump") dump: kotlin.Boolean? = null): Response<ScheduleWrapper>
 
     /**
      * GET api/2.0/backup/getbackupscount
@@ -204,10 +204,10 @@ interface BackupApi {
      * @param from The from date. (optional)
      * @param to The to date. (optional)
      * @param paid Specifies if the backups are paid or not. (optional)
-     * @return [Call]<[Int32Wrapper]>
+     * @return [Int32Wrapper]
      */
     @GET("api/2.0/backup/getbackupscount")
-    fun getBackupsCount(@Query("from") from: java.time.OffsetDateTime? = null, @Query("to") to: java.time.OffsetDateTime? = null, @Query("paid") paid: kotlin.Boolean? = null): Call<Int32Wrapper>
+    suspend fun getBackupsCount(@Query("from") from: java.time.OffsetDateTime? = null, @Query("to") to: java.time.OffsetDateTime? = null, @Query("paid") paid: kotlin.Boolean? = null): Response<Int32Wrapper>
 
     /**
      * GET api/2.0/backup/getservicestate
@@ -221,10 +221,10 @@ interface BackupApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-backups-service-state/
      *
      *
-     * @return [Call]<[BackupServiceStateWrapper]>
+     * @return [BackupServiceStateWrapper]
      */
     @GET("api/2.0/backup/getservicestate")
-    fun getBackupsServiceState(): Call<BackupServiceStateWrapper>
+    suspend fun getBackupsServiceState(): Response<BackupServiceStateWrapper>
 
     /**
      * GET api/2.0/backup/getrestoreprogress
@@ -238,10 +238,10 @@ interface BackupApi {
      *
      *
      * @param dump Specifies if a dump will be created or not. (optional)
-     * @return [Call]<[BackupProgressWrapper]>
+     * @return [BackupProgressWrapper]
      */
     @GET("api/2.0/backup/getrestoreprogress")
-    fun getRestoreProgress(@Query("Dump") dump: kotlin.Boolean? = null): Call<BackupProgressWrapper>
+    suspend fun getRestoreProgress(@Query("Dump") dump: kotlin.Boolean? = null): Response<BackupProgressWrapper>
 
     /**
      * POST api/2.0/backup/startbackup
@@ -260,10 +260,10 @@ interface BackupApi {
      *
      *
      * @param backupDto  (optional)
-     * @return [Call]<[BackupProgressWrapper]>
+     * @return [BackupProgressWrapper]
      */
     @POST("api/2.0/backup/startbackup")
-    fun startBackup(@Body backupDto: BackupDto? = null): Call<BackupProgressWrapper>
+    suspend fun startBackup(@Body backupDto: BackupDto? = null): Response<BackupProgressWrapper>
 
     /**
      * POST api/2.0/backup/startrestore
@@ -282,9 +282,9 @@ interface BackupApi {
      *
      *
      * @param backupRestoreDto  (optional)
-     * @return [Call]<[BackupProgressWrapper]>
+     * @return [BackupProgressWrapper]
      */
     @POST("api/2.0/backup/startrestore")
-    fun startBackupRestore(@Body backupRestoreDto: BackupRestoreDto? = null): Call<BackupProgressWrapper>
+    suspend fun startBackupRestore(@Body backupRestoreDto: BackupRestoreDto? = null): Response<BackupProgressWrapper>
 
 }

@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Security
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -41,10 +41,10 @@ interface CSPApi {
      *
      *
      * @param cspRequestsDto  (optional)
-     * @return [Call]<[CspWrapper]>
+     * @return [CspWrapper]
      */
     @POST("api/2.0/security/csp")
-    fun configureCsp(@Body cspRequestsDto: CspRequestsDto? = null): Call<CspWrapper>
+    suspend fun configureCsp(@Body cspRequestsDto: CspRequestsDto? = null): Response<CspWrapper>
 
     /**
      * GET api/2.0/security/csp
@@ -57,9 +57,9 @@ interface CSPApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-csp-settings/
      *
      *
-     * @return [Call]<[CspWrapper]>
+     * @return [CspWrapper]
      */
     @GET("api/2.0/security/csp")
-    fun getCspSettings(): Call<CspWrapper>
+    suspend fun getCspSettings(): Response<CspWrapper>
 
 }

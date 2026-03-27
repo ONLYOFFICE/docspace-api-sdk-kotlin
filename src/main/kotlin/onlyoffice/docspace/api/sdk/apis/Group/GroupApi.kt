@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Group
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -47,10 +47,10 @@ interface GroupApi {
      *
      *
      * @param groupRequestDto  (optional)
-     * @return [Call]<[GroupWrapper]>
+     * @return [GroupWrapper]
      */
     @POST("api/2.0/group")
-    fun addGroup(@Body groupRequestDto: GroupRequestDto? = null): Call<GroupWrapper>
+    suspend fun addGroup(@Body groupRequestDto: GroupRequestDto? = null): Response<GroupWrapper>
 
     /**
      * PUT api/2.0/group/{id}/members
@@ -67,10 +67,10 @@ interface GroupApi {
      *
      * @param id The group ID.
      * @param membersRequest The member request.
-     * @return [Call]<[GroupWrapper]>
+     * @return [GroupWrapper]
      */
     @PUT("api/2.0/group/{id}/members")
-    fun addMembersTo(@Path("id") id: java.util.UUID, @Body membersRequest: MembersRequest): Call<GroupWrapper>
+    suspend fun addMembersTo(@Path("id") id: java.util.UUID, @Body membersRequest: MembersRequest): Response<GroupWrapper>
 
     /**
      * DELETE api/2.0/group/{id}
@@ -86,10 +86,10 @@ interface GroupApi {
      *
      *
      * @param id The group ID.
-     * @return [Call]<[NoContentResultWrapper]>
+     * @return [NoContentResultWrapper]
      */
     @DELETE("api/2.0/group/{id}")
-    fun deleteGroup(@Path("id") id: java.util.UUID): Call<NoContentResultWrapper>
+    suspend fun deleteGroup(@Path("id") id: java.util.UUID): Response<NoContentResultWrapper>
 
     /**
      * GET api/2.0/group/{id}
@@ -106,10 +106,10 @@ interface GroupApi {
      *
      * @param id The group ID.
      * @param includeMembers Specifies whether to include the group members or not. (optional)
-     * @return [Call]<[GroupWrapper]>
+     * @return [GroupWrapper]
      */
     @GET("api/2.0/group/{id}")
-    fun getGroup(@Path("id") id: java.util.UUID, @Query("includeMembers") includeMembers: kotlin.Boolean? = null): Call<GroupWrapper>
+    suspend fun getGroup(@Path("id") id: java.util.UUID, @Query("includeMembers") includeMembers: kotlin.Boolean? = null): Response<GroupWrapper>
 
     /**
      * GET api/2.0/group/user/{userid}
@@ -124,10 +124,10 @@ interface GroupApi {
      *
      *
      * @param userid The user ID.
-     * @return [Call]<[GroupSummaryArrayWrapper]>
+     * @return [GroupSummaryArrayWrapper]
      */
     @GET("api/2.0/group/user/{userid}")
-    fun getGroupByUserId(@Path("userid") userid: java.util.UUID): Call<GroupSummaryArrayWrapper>
+    suspend fun getGroupByUserId(@Path("userid") userid: java.util.UUID): Response<GroupSummaryArrayWrapper>
 
     /**
      * GET api/2.0/group
@@ -148,10 +148,10 @@ interface GroupApi {
      * @param sortBy Specifies the property used to sort the query results. (optional)
      * @param sortOrder The order in which the results are sorted. (optional)
      * @param filterValue The text used for filtering or searching group data. (optional)
-     * @return [Call]<[GroupArrayWrapper]>
+     * @return [GroupArrayWrapper]
      */
     @GET("api/2.0/group")
-    fun getGroups(@Query("userId") userId: java.util.UUID? = null, @Query("manager") manager: kotlin.Boolean? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterValue") filterValue: kotlin.String? = null): Call<GroupArrayWrapper>
+    suspend fun getGroups(@Query("userId") userId: java.util.UUID? = null, @Query("manager") manager: kotlin.Boolean? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<GroupArrayWrapper>
 
     /**
      * PUT api/2.0/group/{fromId}/members/{toId}
@@ -168,10 +168,10 @@ interface GroupApi {
      *
      * @param fromId The group ID to move from.
      * @param toId The group ID to move to.
-     * @return [Call]<[GroupWrapper]>
+     * @return [GroupWrapper]
      */
     @PUT("api/2.0/group/{fromId}/members/{toId}")
-    fun moveMembersTo(@Path("fromId") fromId: java.util.UUID, @Path("toId") toId: java.util.UUID): Call<GroupWrapper>
+    suspend fun moveMembersTo(@Path("fromId") fromId: java.util.UUID, @Path("toId") toId: java.util.UUID): Response<GroupWrapper>
 
     /**
      * DELETE api/2.0/group/{id}/members
@@ -188,10 +188,10 @@ interface GroupApi {
      *
      * @param id The group ID.
      * @param membersRequest The member request.
-     * @return [Call]<[GroupWrapper]>
+     * @return [GroupWrapper]
      */
     @DELETE("api/2.0/group/{id}/members")
-    fun removeMembersFrom(@Path("id") id: java.util.UUID, @Body membersRequest: MembersRequest): Call<GroupWrapper>
+    suspend fun removeMembersFrom(@Path("id") id: java.util.UUID, @Body membersRequest: MembersRequest): Response<GroupWrapper>
 
     /**
      * PUT api/2.0/group/{id}/manager
@@ -208,10 +208,10 @@ interface GroupApi {
      *
      * @param id The group ID.
      * @param setManagerRequest The request for setting a group manager.
-     * @return [Call]<[GroupWrapper]>
+     * @return [GroupWrapper]
      */
     @PUT("api/2.0/group/{id}/manager")
-    fun setGroupManager(@Path("id") id: java.util.UUID, @Body setManagerRequest: SetManagerRequest): Call<GroupWrapper>
+    suspend fun setGroupManager(@Path("id") id: java.util.UUID, @Body setManagerRequest: SetManagerRequest): Response<GroupWrapper>
 
     /**
      * POST api/2.0/group/{id}/members
@@ -227,10 +227,10 @@ interface GroupApi {
      *
      * @param id The group ID.
      * @param membersRequest The member request.
-     * @return [Call]<[GroupWrapper]>
+     * @return [GroupWrapper]
      */
     @POST("api/2.0/group/{id}/members")
-    fun setMembersTo(@Path("id") id: java.util.UUID, @Body membersRequest: MembersRequest): Call<GroupWrapper>
+    suspend fun setMembersTo(@Path("id") id: java.util.UUID, @Body membersRequest: MembersRequest): Response<GroupWrapper>
 
     /**
      * PUT api/2.0/group/{id}
@@ -247,9 +247,9 @@ interface GroupApi {
      *
      * @param id The group ID.
      * @param updateGroupRequest The request for updating a group.
-     * @return [Call]<[GroupWrapper]>
+     * @return [GroupWrapper]
      */
     @PUT("api/2.0/group/{id}")
-    fun updateGroup(@Path("id") id: java.util.UUID, @Body updateGroupRequest: UpdateGroupRequest): Call<GroupWrapper>
+    suspend fun updateGroup(@Path("id") id: java.util.UUID, @Body updateGroupRequest: UpdateGroupRequest): Response<GroupWrapper>
 
 }

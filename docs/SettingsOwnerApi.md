@@ -47,7 +47,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(OwnerApi::class.java)
 val ownerIdSettingsRequestDto : OwnerIdSettingsRequestDto =  // OwnerIdSettingsRequestDto | 
 
-val result : OwnerChangeInstructionsWrapper = webService.sendOwnerChangeInstructions(ownerIdSettingsRequestDto)
+launch(Dispatchers.IO) {
+    val result : OwnerChangeInstructionsWrapper = webService.sendOwnerChangeInstructions(ownerIdSettingsRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -94,7 +96,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(OwnerApi::class.java)
 val ownerIdSettingsRequestDto : OwnerIdSettingsRequestDto =  // OwnerIdSettingsRequestDto | 
 
-webService.updatePortalOwner(ownerIdSettingsRequestDto)
+launch(Dispatchers.IO) {
+    webService.updatePortalOwner(ownerIdSettingsRequestDto)
+}
 ```
 
 ### HTTP request headers

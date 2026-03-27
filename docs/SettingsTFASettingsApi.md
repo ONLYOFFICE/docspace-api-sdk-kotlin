@@ -51,7 +51,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(TFASettingsApi::class.java)
 
-val result : ObjectArrayWrapper = webService.getTfaAppCodes()
+launch(Dispatchers.IO) {
+    val result : ObjectArrayWrapper = webService.getTfaAppCodes()
+}
 ```
 
 ### HTTP request headers
@@ -95,7 +97,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(TFASettingsApi::class.java)
 
-val result : StringWrapper = webService.getTfaConfirmUrl()
+launch(Dispatchers.IO) {
+    val result : StringWrapper = webService.getTfaConfirmUrl()
+}
 ```
 
 ### HTTP request headers
@@ -139,7 +143,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(TFASettingsApi::class.java)
 
-val result : TfaSettingsArrayWrapper = webService.getTfaSettings()
+launch(Dispatchers.IO) {
+    val result : TfaSettingsArrayWrapper = webService.getTfaSettings()
+}
 ```
 
 ### HTTP request headers
@@ -183,7 +189,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(TFASettingsApi::class.java)
 
-val result : SetupCodeWrapper = webService.tfaAppGenerateSetupCode()
+launch(Dispatchers.IO) {
+    val result : SetupCodeWrapper = webService.tfaAppGenerateSetupCode()
+}
 ```
 
 ### HTTP request headers
@@ -230,7 +238,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(TFASettingsApi::class.java)
 val tfaValidateRequestsDto : TfaValidateRequestsDto =  // TfaValidateRequestsDto | 
 
-val result : BooleanWrapper = webService.tfaValidateAuthCode(tfaValidateRequestsDto)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.tfaValidateAuthCode(tfaValidateRequestsDto)
+}
 ```
 
 ### HTTP request headers
@@ -277,7 +287,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(TFASettingsApi::class.java)
 val tfaRequestsDto : TfaRequestsDto =  // TfaRequestsDto | 
 
-val result : StringWrapper = webService.unlinkTfaApp(tfaRequestsDto)
+launch(Dispatchers.IO) {
+    val result : StringWrapper = webService.unlinkTfaApp(tfaRequestsDto)
+}
 ```
 
 ### HTTP request headers
@@ -321,7 +333,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(TFASettingsApi::class.java)
 
-val result : ObjectArrayWrapper = webService.updateTfaAppCodes()
+launch(Dispatchers.IO) {
+    val result : ObjectArrayWrapper = webService.updateTfaAppCodes()
+}
 ```
 
 ### HTTP request headers
@@ -368,7 +382,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(TFASettingsApi::class.java)
 val tfaRequestsDto : TfaRequestsDto =  // TfaRequestsDto | 
 
-val result : BooleanWrapper = webService.updateTfaSettings(tfaRequestsDto)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.updateTfaSettings(tfaRequestsDto)
+}
 ```
 
 ### HTTP request headers
@@ -415,7 +431,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(TFASettingsApi::class.java)
 val tfaRequestsDto : TfaRequestsDto =  // TfaRequestsDto | 
 
-val result : StringWrapper = webService.updateTfaSettingsLink(tfaRequestsDto)
+launch(Dispatchers.IO) {
+    val result : StringWrapper = webService.updateTfaSettingsLink(tfaRequestsDto)
+}
 ```
 
 ### HTTP request headers

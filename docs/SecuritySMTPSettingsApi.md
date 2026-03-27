@@ -47,7 +47,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SMTPSettingsApi::class.java)
 
-val result : SmtpOperationStatusRequestsWrapper = webService.getSmtpOperationStatus()
+launch(Dispatchers.IO) {
+    val result : SmtpOperationStatusRequestsWrapper = webService.getSmtpOperationStatus()
+}
 ```
 
 ### HTTP request headers
@@ -91,7 +93,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SMTPSettingsApi::class.java)
 
-val result : SmtpSettingsWrapper = webService.getSmtpSettings()
+launch(Dispatchers.IO) {
+    val result : SmtpSettingsWrapper = webService.getSmtpSettings()
+}
 ```
 
 ### HTTP request headers
@@ -135,7 +139,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SMTPSettingsApi::class.java)
 
-val result : SmtpSettingsWrapper = webService.resetSmtpSettings()
+launch(Dispatchers.IO) {
+    val result : SmtpSettingsWrapper = webService.resetSmtpSettings()
+}
 ```
 
 ### HTTP request headers
@@ -182,7 +188,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SMTPSettingsApi::class.java)
 val smtpSettingsDto : SmtpSettingsDto =  // SmtpSettingsDto | 
 
-val result : SmtpSettingsWrapper = webService.saveSmtpSettings(smtpSettingsDto)
+launch(Dispatchers.IO) {
+    val result : SmtpSettingsWrapper = webService.saveSmtpSettings(smtpSettingsDto)
+}
 ```
 
 ### HTTP request headers
@@ -226,7 +234,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SMTPSettingsApi::class.java)
 
-val result : SmtpOperationStatusRequestsWrapper = webService.testSmtpSettings()
+launch(Dispatchers.IO) {
+    val result : SmtpOperationStatusRequestsWrapper = webService.testSmtpSettings()
+}
 ```
 
 ### HTTP request headers

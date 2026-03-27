@@ -52,7 +52,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIProvidersApi::class.java)
 val createProviderRequestDto : CreateProviderRequestDto =  // CreateProviderRequestDto | 
 
-val result : AiProviderWrapper = webService.addProvider(createProviderRequestDto)
+launch(Dispatchers.IO) {
+    val result : AiProviderWrapper = webService.addProvider(createProviderRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -99,7 +101,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIProvidersApi::class.java)
 val removeProviderRequestDto : RemoveProviderRequestDto =  // RemoveProviderRequestDto | 
 
-webService.deleteProviders(removeProviderRequestDto)
+launch(Dispatchers.IO) {
+    webService.deleteProviders(removeProviderRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -143,7 +147,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIProvidersApi::class.java)
 
-val result : ProviderSettingsArrayWrapper = webService.getAvailableProviders()
+launch(Dispatchers.IO) {
+    val result : ProviderSettingsArrayWrapper = webService.getAvailableProviders()
+}
 ```
 
 ### HTTP request headers
@@ -187,7 +193,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIProvidersApi::class.java)
 
-val result : DefaultProviderWrapper = webService.getDefaultProvider()
+launch(Dispatchers.IO) {
+    val result : DefaultProviderWrapper = webService.getDefaultProvider()
+}
 ```
 
 ### HTTP request headers
@@ -236,7 +244,9 @@ val webService = apiClient.createWebservice(AIProvidersApi::class.java)
 val startIndex : kotlin.Int = 0 // kotlin.Int | The number of items to skip before returning results (zero-based offset). Defaults to 0.
 val count : kotlin.Int = 100 // kotlin.Int | The maximum number of items to return per page. Defaults to 100.
 
-val result : AiProviderArrayWrapper = webService.getProviders(startIndex, count)
+launch(Dispatchers.IO) {
+    val result : AiProviderArrayWrapper = webService.getProviders(startIndex, count)
+}
 ```
 
 ### HTTP request headers
@@ -283,7 +293,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIProvidersApi::class.java)
 val setDefaultProviderRequestDto : SetDefaultProviderRequestDto =  // SetDefaultProviderRequestDto | 
 
-val result : DefaultProviderWrapper = webService.setDefaultProvider(setDefaultProviderRequestDto)
+launch(Dispatchers.IO) {
+    val result : DefaultProviderWrapper = webService.setDefaultProvider(setDefaultProviderRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -332,7 +344,9 @@ val webService = apiClient.createWebservice(AIProvidersApi::class.java)
 val id : kotlin.Int = 1 // kotlin.Int | The identifier of the AI provider to update.
 val updateProviderBody : UpdateProviderBody =  // UpdateProviderBody | The AI provider configuration parameters to update.
 
-val result : AiProviderWrapper = webService.updateProvider(id, updateProviderBody)
+launch(Dispatchers.IO) {
+    val result : AiProviderWrapper = webService.updateProvider(id, updateProviderBody)
+}
 ```
 
 ### HTTP request headers

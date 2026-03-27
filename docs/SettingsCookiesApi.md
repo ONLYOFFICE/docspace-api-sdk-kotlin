@@ -44,7 +44,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(CookiesApi::class.java)
 
-val result : CookieSettingsWrapper = webService.getCookieSettings()
+launch(Dispatchers.IO) {
+    val result : CookieSettingsWrapper = webService.getCookieSettings()
+}
 ```
 
 ### HTTP request headers
@@ -91,7 +93,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(CookiesApi::class.java)
 val cookieSettingsRequestsDto : CookieSettingsRequestsDto =  // CookieSettingsRequestsDto | 
 
-val result : StringWrapper = webService.updateCookieSettings(cookieSettingsRequestsDto)
+launch(Dispatchers.IO) {
+    val result : StringWrapper = webService.updateCookieSettings(cookieSettingsRequestsDto)
+}
 ```
 
 ### HTTP request headers

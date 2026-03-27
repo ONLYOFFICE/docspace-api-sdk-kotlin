@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Settings
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -60,10 +60,10 @@ interface CommonSettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/close-admin-helper/
      *
      *
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @PUT("api/2.0/settings/closeadminhelper")
-    fun closeAdminHelper(): Call<Unit>
+    suspend fun closeAdminHelper(): Response<Unit>
 
     /**
      * PUT api/2.0/settings/wizard/complete
@@ -80,10 +80,10 @@ interface CommonSettingsApi {
      *
      *
      * @param wizardRequestsDto  (optional)
-     * @return [Call]<[WizardSettingsWrapper]>
+     * @return [WizardSettingsWrapper]
      */
     @PUT("api/2.0/settings/wizard/complete")
-    fun completeWizard(@Body wizardRequestsDto: WizardRequestsDto? = null): Call<WizardSettingsWrapper>
+    suspend fun completeWizard(@Body wizardRequestsDto: WizardRequestsDto? = null): Response<WizardSettingsWrapper>
 
     /**
      * POST api/2.0/settings/deeplink
@@ -99,10 +99,10 @@ interface CommonSettingsApi {
      *
      *
      * @param deepLinkConfigurationRequestsDto  (optional)
-     * @return [Call]<[TenantDeepLinkSettingsWrapper]>
+     * @return [TenantDeepLinkSettingsWrapper]
      */
     @POST("api/2.0/settings/deeplink")
-    fun configureDeepLink(@Body deepLinkConfigurationRequestsDto: DeepLinkConfigurationRequestsDto? = null): Call<TenantDeepLinkSettingsWrapper>
+    suspend fun configureDeepLink(@Body deepLinkConfigurationRequestsDto: DeepLinkConfigurationRequestsDto? = null): Response<TenantDeepLinkSettingsWrapper>
 
     /**
      * DELETE api/2.0/settings/colortheme
@@ -117,10 +117,10 @@ interface CommonSettingsApi {
      *
      *
      * @param id The ID of the portal theme to delete.
-     * @return [Call]<[CustomColorThemesSettingsWrapper]>
+     * @return [CustomColorThemesSettingsWrapper]
      */
     @DELETE("api/2.0/settings/colortheme")
-    fun deletePortalColorTheme(@Query("id") id: kotlin.Int): Call<CustomColorThemesSettingsWrapper>
+    suspend fun deletePortalColorTheme(@Query("id") id: kotlin.Int): Response<CustomColorThemesSettingsWrapper>
 
     /**
      * GET api/2.0/settings/deeplink
@@ -133,10 +133,10 @@ interface CommonSettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-deep-link-settings/
      *
      *
-     * @return [Call]<[TenantDeepLinkSettingsWrapper]>
+     * @return [TenantDeepLinkSettingsWrapper]
      */
     @GET("api/2.0/settings/deeplink")
-    fun getDeepLinkSettings(): Call<TenantDeepLinkSettingsWrapper>
+    suspend fun getDeepLinkSettings(): Response<TenantDeepLinkSettingsWrapper>
 
     /**
      * GET api/2.0/settings/payment
@@ -150,10 +150,10 @@ interface CommonSettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-payment-settings/
      *
      *
-     * @return [Call]<[PaymentSettingsWrapper]>
+     * @return [PaymentSettingsWrapper]
      */
     @GET("api/2.0/settings/payment")
-    fun getPaymentSettings(): Call<PaymentSettingsWrapper>
+    suspend fun getPaymentSettings(): Response<PaymentSettingsWrapper>
 
     /**
      * GET api/2.0/settings/colortheme
@@ -166,10 +166,10 @@ interface CommonSettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-portal-color-theme/
      *
      *
-     * @return [Call]<[CustomColorThemesSettingsWrapper]>
+     * @return [CustomColorThemesSettingsWrapper]
      */
     @GET("api/2.0/settings/colortheme")
-    fun getPortalColorTheme(): Call<CustomColorThemesSettingsWrapper>
+    suspend fun getPortalColorTheme(): Response<CustomColorThemesSettingsWrapper>
 
     /**
      * GET api/2.0/settings/machine
@@ -183,10 +183,10 @@ interface CommonSettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-portal-hostname/
      *
      *
-     * @return [Call]<[ObjectWrapper]>
+     * @return [ObjectWrapper]
      */
     @GET("api/2.0/settings/machine")
-    fun getPortalHostname(): Call<ObjectWrapper>
+    suspend fun getPortalHostname(): Response<ObjectWrapper>
 
     /**
      * GET api/2.0/settings/logo
@@ -200,10 +200,10 @@ interface CommonSettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-portal-logo/
      *
      *
-     * @return [Call]<[StringWrapper]>
+     * @return [StringWrapper]
      */
     @GET("api/2.0/settings/logo")
-    fun getPortalLogo(): Call<StringWrapper>
+    suspend fun getPortalLogo(): Response<StringWrapper>
 
     /**
      * GET api/2.0/settings
@@ -217,10 +217,10 @@ interface CommonSettingsApi {
      *
      *
      * @param withpassword Specifies whether to include the password hashing configuration in the response. (optional)
-     * @return [Call]<[SettingsWrapper]>
+     * @return [SettingsWrapper]
      */
     @GET("api/2.0/settings")
-    fun getPortalSettings(@Query("withpassword") withpassword: kotlin.Boolean? = null): Call<SettingsWrapper>
+    suspend fun getPortalSettings(@Query("withpassword") withpassword: kotlin.Boolean? = null): Response<SettingsWrapper>
 
     /**
      * GET api/2.0/settings/socket
@@ -234,10 +234,10 @@ interface CommonSettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-socket-settings/
      *
      *
-     * @return [Call]<[ObjectWrapper]>
+     * @return [ObjectWrapper]
      */
     @GET("api/2.0/settings/socket")
-    fun getSocketSettings(): Call<ObjectWrapper>
+    suspend fun getSocketSettings(): Response<ObjectWrapper>
 
     /**
      * GET api/2.0/settings/cultures
@@ -250,10 +250,10 @@ interface CommonSettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-supported-cultures/
      *
      *
-     * @return [Call]<[STRINGArrayWrapper]>
+     * @return [STRINGArrayWrapper]
      */
     @GET("api/2.0/settings/cultures")
-    fun getSupportedCultures(): Call<STRINGArrayWrapper>
+    suspend fun getSupportedCultures(): Response<STRINGArrayWrapper>
 
     /**
      * GET api/2.0/settings/ai-access
@@ -267,10 +267,10 @@ interface CommonSettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tenant-ai-access-settings/
      *
      *
-     * @return [Call]<[TenantAiAccessSettingsWrapper]>
+     * @return [TenantAiAccessSettingsWrapper]
      */
     @GET("api/2.0/settings/ai-access")
-    fun getTenantAiAccessSettings(): Call<TenantAiAccessSettingsWrapper>
+    suspend fun getTenantAiAccessSettings(): Response<TenantAiAccessSettingsWrapper>
 
     /**
      * GET api/2.0/settings/invitationsettings
@@ -283,10 +283,10 @@ interface CommonSettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tenant-user-invitation-settings/
      *
      *
-     * @return [Call]<[TenantUserInvitationSettingsWrapper]>
+     * @return [TenantUserInvitationSettingsWrapper]
      */
     @GET("api/2.0/settings/invitationsettings")
-    fun getTenantUserInvitationSettings(): Call<TenantUserInvitationSettingsWrapper>
+    suspend fun getTenantUserInvitationSettings(): Response<TenantUserInvitationSettingsWrapper>
 
     /**
      * GET api/2.0/settings/timezones
@@ -300,10 +300,10 @@ interface CommonSettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-time-zones/
      *
      *
-     * @return [Call]<[TimezonesRequestsArrayWrapper]>
+     * @return [TimezonesRequestsArrayWrapper]
      */
     @GET("api/2.0/settings/timezones")
-    fun getTimeZones(): Call<TimezonesRequestsArrayWrapper>
+    suspend fun getTimeZones(): Response<TimezonesRequestsArrayWrapper>
 
     /**
      * PUT api/2.0/settings/defaultfolder
@@ -318,10 +318,10 @@ interface CommonSettingsApi {
      *
      *
      * @param defaultProductRequestDto  (optional)
-     * @return [Call]<[StudioDefaultPageSettingsWrapper]>
+     * @return [StudioDefaultPageSettingsWrapper]
      */
     @PUT("api/2.0/settings/defaultfolder")
-    fun saveDefaultFolder(@Body defaultProductRequestDto: DefaultProductRequestDto? = null): Call<StudioDefaultPageSettingsWrapper>
+    suspend fun saveDefaultFolder(@Body defaultProductRequestDto: DefaultProductRequestDto? = null): Response<StudioDefaultPageSettingsWrapper>
 
     /**
      * PUT api/2.0/settings/dns
@@ -339,10 +339,10 @@ interface CommonSettingsApi {
      *
      *
      * @param dnsSettingsRequestsDto  (optional)
-     * @return [Call]<[StringWrapper]>
+     * @return [StringWrapper]
      */
     @PUT("api/2.0/settings/dns")
-    fun saveDnsSettings(@Body dnsSettingsRequestsDto: DnsSettingsRequestsDto? = null): Call<StringWrapper>
+    suspend fun saveDnsSettings(@Body dnsSettingsRequestsDto: DnsSettingsRequestsDto? = null): Response<StringWrapper>
 
     /**
      * POST api/2.0/settings/maildomainsettings
@@ -357,10 +357,10 @@ interface CommonSettingsApi {
      *
      *
      * @param mailDomainSettingsRequestsDto  (optional)
-     * @return [Call]<[StringWrapper]>
+     * @return [StringWrapper]
      */
     @POST("api/2.0/settings/maildomainsettings")
-    fun saveMailDomainSettings(@Body mailDomainSettingsRequestsDto: MailDomainSettingsRequestsDto? = null): Call<StringWrapper>
+    suspend fun saveMailDomainSettings(@Body mailDomainSettingsRequestsDto: MailDomainSettingsRequestsDto? = null): Response<StringWrapper>
 
     /**
      * PUT api/2.0/settings/colortheme
@@ -375,10 +375,10 @@ interface CommonSettingsApi {
      *
      *
      * @param customColorThemesSettingsRequestsDto  (optional)
-     * @return [Call]<[CustomColorThemesSettingsWrapper]>
+     * @return [CustomColorThemesSettingsWrapper]
      */
     @PUT("api/2.0/settings/colortheme")
-    fun savePortalColorTheme(@Body customColorThemesSettingsRequestsDto: CustomColorThemesSettingsRequestsDto? = null): Call<CustomColorThemesSettingsWrapper>
+    suspend fun savePortalColorTheme(@Body customColorThemesSettingsRequestsDto: CustomColorThemesSettingsRequestsDto? = null): Response<CustomColorThemesSettingsWrapper>
 
     /**
      * POST api/2.0/settings/ai-access
@@ -394,10 +394,10 @@ interface CommonSettingsApi {
      *
      *
      * @param tenantAiAccessSettingsDto  (optional)
-     * @return [Call]<[TenantAiAccessSettingsWrapper]>
+     * @return [TenantAiAccessSettingsWrapper]
      */
     @POST("api/2.0/settings/ai-access")
-    fun setTenantAiAccessSettings(@Body tenantAiAccessSettingsDto: TenantAiAccessSettingsDto? = null): Call<TenantAiAccessSettingsWrapper>
+    suspend fun setTenantAiAccessSettings(@Body tenantAiAccessSettingsDto: TenantAiAccessSettingsDto? = null): Response<TenantAiAccessSettingsWrapper>
 
     /**
      * PUT api/2.0/settings/emailactivation
@@ -412,10 +412,10 @@ interface CommonSettingsApi {
      *
      *
      * @param emailActivationSettings  (optional)
-     * @return [Call]<[EmailActivationSettingsWrapper]>
+     * @return [EmailActivationSettingsWrapper]
      */
     @PUT("api/2.0/settings/emailactivation")
-    fun updateEmailActivationSettings(@Body emailActivationSettings: EmailActivationSettings? = null): Call<EmailActivationSettingsWrapper>
+    suspend fun updateEmailActivationSettings(@Body emailActivationSettings: EmailActivationSettings? = null): Response<EmailActivationSettingsWrapper>
 
     /**
      * PUT api/2.0/settings/invitationsettings
@@ -430,9 +430,9 @@ interface CommonSettingsApi {
      *
      *
      * @param tenantUserInvitationSettingsRequestDto  (optional)
-     * @return [Call]<[TenantUserInvitationSettingsWrapper]>
+     * @return [TenantUserInvitationSettingsWrapper]
      */
     @PUT("api/2.0/settings/invitationsettings")
-    fun updateInvitationSettings(@Body tenantUserInvitationSettingsRequestDto: TenantUserInvitationSettingsRequestDto? = null): Call<TenantUserInvitationSettingsWrapper>
+    suspend fun updateInvitationSettings(@Body tenantUserInvitationSettingsRequestDto: TenantUserInvitationSettingsRequestDto? = null): Response<TenantUserInvitationSettingsWrapper>
 
 }

@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Settings
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -47,10 +47,10 @@ interface SecurityApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-enabled-modules/
      *
      *
-     * @return [Call]<[ObjectWrapper]>
+     * @return [ObjectWrapper]
      */
     @GET("api/2.0/settings/security/modules")
-    fun getEnabledModules(): Call<ObjectWrapper>
+    suspend fun getEnabledModules(): Response<ObjectWrapper>
 
     /**
      * GET api/2.0/settings/security/administrator
@@ -66,10 +66,10 @@ interface SecurityApi {
      *
      * @param productid The ID of the product extracted from the query parameters.
      * @param userid The user ID extracted from the query parameters.
-     * @return [Call]<[ProductAdministratorWrapper]>
+     * @return [ProductAdministratorWrapper]
      */
     @GET("api/2.0/settings/security/administrator")
-    fun getIsProductAdministrator(@Query("productid") productid: java.util.UUID, @Query("userid") userid: java.util.UUID): Call<ProductAdministratorWrapper>
+    suspend fun getIsProductAdministrator(@Query("productid") productid: java.util.UUID, @Query("userid") userid: java.util.UUID): Response<ProductAdministratorWrapper>
 
     /**
      * GET api/2.0/settings/security/password
@@ -83,10 +83,10 @@ interface SecurityApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-password-settings/
      *
      *
-     * @return [Call]<[PasswordSettingsWrapper]>
+     * @return [PasswordSettingsWrapper]
      */
     @GET("api/2.0/settings/security/password")
-    fun getPasswordSettings(): Call<PasswordSettingsWrapper>
+    suspend fun getPasswordSettings(): Response<PasswordSettingsWrapper>
 
     /**
      * GET api/2.0/settings/security/administrator/{productid}
@@ -101,10 +101,10 @@ interface SecurityApi {
      *
      *
      * @param productid The ID of the product extracted from the route parameters.
-     * @return [Call]<[EmployeeArrayWrapper]>
+     * @return [EmployeeArrayWrapper]
      */
     @GET("api/2.0/settings/security/administrator/{productid}")
-    fun getProductAdministrators(@Path("productid") productid: java.util.UUID): Call<EmployeeArrayWrapper>
+    suspend fun getProductAdministrators(@Path("productid") productid: java.util.UUID): Response<EmployeeArrayWrapper>
 
     /**
      * GET api/2.0/settings/security/{id}
@@ -119,10 +119,10 @@ interface SecurityApi {
      *
      *
      * @param id The ID extracted from the route parameters.
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @GET("api/2.0/settings/security/{id}")
-    fun getWebItemSecurityInfo(@Path("id") id: java.util.UUID): Call<BooleanWrapper>
+    suspend fun getWebItemSecurityInfo(@Path("id") id: java.util.UUID): Response<BooleanWrapper>
 
     /**
      * GET api/2.0/settings/security
@@ -137,10 +137,10 @@ interface SecurityApi {
      *
      *
      * @param ids The list of module identifiers for which to retrieve the security settings. (optional)
-     * @return [Call]<[SecurityArrayWrapper]>
+     * @return [SecurityArrayWrapper]
      */
     @GET("api/2.0/settings/security")
-    fun getWebItemSettingsSecurityInfo(@Query("ids") ids: CSVParams? = null): Call<SecurityArrayWrapper>
+    suspend fun getWebItemSettingsSecurityInfo(@Query("ids") ids: CSVParams? = null): Response<SecurityArrayWrapper>
 
     /**
      * PUT api/2.0/settings/security/access
@@ -156,10 +156,10 @@ interface SecurityApi {
      *
      *
      * @param webItemsSecurityRequestsDto  (optional)
-     * @return [Call]<[SecurityArrayWrapper]>
+     * @return [SecurityArrayWrapper]
      */
     @PUT("api/2.0/settings/security/access")
-    fun setAccessToWebItems(@Body webItemsSecurityRequestsDto: WebItemsSecurityRequestsDto? = null): Call<SecurityArrayWrapper>
+    suspend fun setAccessToWebItems(@Body webItemsSecurityRequestsDto: WebItemsSecurityRequestsDto? = null): Response<SecurityArrayWrapper>
 
     /**
      * PUT api/2.0/settings/security/administrator
@@ -176,10 +176,10 @@ interface SecurityApi {
      *
      *
      * @param securityRequestsDto  (optional)
-     * @return [Call]<[ProductAdministratorWrapper]>
+     * @return [ProductAdministratorWrapper]
      */
     @PUT("api/2.0/settings/security/administrator")
-    fun setProductAdministrator(@Body securityRequestsDto: SecurityRequestsDto? = null): Call<ProductAdministratorWrapper>
+    suspend fun setProductAdministrator(@Body securityRequestsDto: SecurityRequestsDto? = null): Response<ProductAdministratorWrapper>
 
     /**
      * PUT api/2.0/settings/security
@@ -195,10 +195,10 @@ interface SecurityApi {
      *
      *
      * @param webItemSecurityRequestsDto  (optional)
-     * @return [Call]<[SecurityArrayWrapper]>
+     * @return [SecurityArrayWrapper]
      */
     @PUT("api/2.0/settings/security")
-    fun setWebItemSecurity(@Body webItemSecurityRequestsDto: WebItemSecurityRequestsDto? = null): Call<SecurityArrayWrapper>
+    suspend fun setWebItemSecurity(@Body webItemSecurityRequestsDto: WebItemSecurityRequestsDto? = null): Response<SecurityArrayWrapper>
 
     /**
      * PUT api/2.0/settings/security/password
@@ -214,9 +214,9 @@ interface SecurityApi {
      *
      *
      * @param passwordSettingsRequestsDto  (optional)
-     * @return [Call]<[PasswordSettingsWrapper]>
+     * @return [PasswordSettingsWrapper]
      */
     @PUT("api/2.0/settings/security/password")
-    fun updatePasswordSettings(@Body passwordSettingsRequestsDto: PasswordSettingsRequestsDto? = null): Call<PasswordSettingsWrapper>
+    suspend fun updatePasswordSettings(@Body passwordSettingsRequestsDto: PasswordSettingsRequestsDto? = null): Response<PasswordSettingsWrapper>
 
 }

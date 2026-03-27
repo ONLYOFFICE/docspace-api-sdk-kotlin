@@ -54,7 +54,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(StorageApi::class.java)
 val dump : kotlin.Boolean = true // kotlin.Boolean | Indicates whether the operation should perform a dump of backup storage data.  This property is used as a parameter in backup-related API requests to specify  if additional details or data dumping is required during the process.
 
-val result : StorageArrayWrapper = webService.getAllBackupStorages(dump)
+launch(Dispatchers.IO) {
+    val result : StorageArrayWrapper = webService.getAllBackupStorages(dump)
+}
 ```
 
 ### HTTP request headers
@@ -98,7 +100,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(StorageApi::class.java)
 
-val result : StorageArrayWrapper = webService.getAllCdnStorages()
+launch(Dispatchers.IO) {
+    val result : StorageArrayWrapper = webService.getAllCdnStorages()
+}
 ```
 
 ### HTTP request headers
@@ -142,7 +146,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(StorageApi::class.java)
 
-val result : StorageArrayWrapper = webService.getAllStorages()
+launch(Dispatchers.IO) {
+    val result : StorageArrayWrapper = webService.getAllStorages()
+}
 ```
 
 ### HTTP request headers
@@ -186,7 +192,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(StorageApi::class.java)
 
-val result : ObjectWrapper = webService.getAmazonS3Regions()
+launch(Dispatchers.IO) {
+    val result : ObjectWrapper = webService.getAmazonS3Regions()
+}
 ```
 
 ### HTTP request headers
@@ -230,7 +238,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(StorageApi::class.java)
 
-val result : DoubleWrapper = webService.getStorageProgress()
+launch(Dispatchers.IO) {
+    val result : DoubleWrapper = webService.getStorageProgress()
+}
 ```
 
 ### HTTP request headers
@@ -274,7 +284,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(StorageApi::class.java)
 
-webService.resetCdnToDefault()
+launch(Dispatchers.IO) {
+    webService.resetCdnToDefault()
+}
 ```
 
 ### HTTP request headers
@@ -318,7 +330,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(StorageApi::class.java)
 
-webService.resetStorageToDefault()
+launch(Dispatchers.IO) {
+    webService.resetStorageToDefault()
+}
 ```
 
 ### HTTP request headers
@@ -365,7 +379,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(StorageApi::class.java)
 val storageRequestsDto : StorageRequestsDto =  // StorageRequestsDto | 
 
-val result : CdnStorageSettingsWrapper = webService.updateCdnStorage(storageRequestsDto)
+launch(Dispatchers.IO) {
+    val result : CdnStorageSettingsWrapper = webService.updateCdnStorage(storageRequestsDto)
+}
 ```
 
 ### HTTP request headers
@@ -412,7 +428,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(StorageApi::class.java)
 val storageRequestsDto : StorageRequestsDto =  // StorageRequestsDto | 
 
-val result : StorageSettingsWrapper = webService.updateStorage(storageRequestsDto)
+launch(Dispatchers.IO) {
+    val result : StorageSettingsWrapper = webService.updateStorage(storageRequestsDto)
+}
 ```
 
 ### HTTP request headers

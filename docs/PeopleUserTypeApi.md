@@ -49,7 +49,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(UserTypeApi::class.java)
 val userid : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The user ID.
 
-val result : TaskProgressResponseWrapper = webService.getUserTypeUpdateProgress(userid)
+launch(Dispatchers.IO) {
+    val result : TaskProgressResponseWrapper = webService.getUserTypeUpdateProgress(userid)
+}
 ```
 
 ### HTTP request headers
@@ -96,7 +98,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(UserTypeApi::class.java)
 val startUpdateUserTypeDto : StartUpdateUserTypeDto =  // StartUpdateUserTypeDto | 
 
-val result : TaskProgressResponseWrapper = webService.startUserTypeUpdate(startUpdateUserTypeDto)
+launch(Dispatchers.IO) {
+    val result : TaskProgressResponseWrapper = webService.startUserTypeUpdate(startUpdateUserTypeDto)
+}
 ```
 
 ### HTTP request headers
@@ -143,7 +147,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(UserTypeApi::class.java)
 val terminateRequestDto : TerminateRequestDto =  // TerminateRequestDto | 
 
-val result : TaskProgressResponseWrapper = webService.terminateUserTypeUpdate(terminateRequestDto)
+launch(Dispatchers.IO) {
+    val result : TaskProgressResponseWrapper = webService.terminateUserTypeUpdate(terminateRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -192,7 +198,9 @@ val webService = apiClient.createWebservice(UserTypeApi::class.java)
 val type : EmployeeType = 1 // EmployeeType | The new user type.
 val updateMembersRequestDto : UpdateMembersRequestDto =  // UpdateMembersRequestDto | The request parameters for updating the user information.
 
-val result : EmployeeFullArrayWrapper = webService.updateUserType(type, updateMembersRequestDto)
+launch(Dispatchers.IO) {
+    val result : EmployeeFullArrayWrapper = webService.updateUserType(type, updateMembersRequestDto)
+}
 ```
 
 ### HTTP request headers

@@ -49,7 +49,9 @@ val webService = apiClient.createWebservice(EmailApi::class.java)
 val userid : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The user ID.
 val changeEmailRequest : ChangeEmailRequest =  // ChangeEmailRequest | The request parameters for updating a user email.
 
-val result : EmployeeFullWrapper = webService.changeUserEmail(userid, changeEmailRequest)
+launch(Dispatchers.IO) {
+    val result : EmployeeFullWrapper = webService.changeUserEmail(userid, changeEmailRequest)
+}
 ```
 
 ### HTTP request headers
@@ -96,7 +98,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(EmailApi::class.java)
 val updateMemberRequestDto : UpdateMemberRequestDto =  // UpdateMemberRequestDto | 
 
-val result : StringWrapper = webService.sendEmailChangeInstructions(updateMemberRequestDto)
+launch(Dispatchers.IO) {
+    val result : StringWrapper = webService.sendEmailChangeInstructions(updateMemberRequestDto)
+}
 ```
 
 ### HTTP request headers

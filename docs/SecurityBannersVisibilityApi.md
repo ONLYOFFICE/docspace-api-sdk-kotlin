@@ -46,7 +46,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(BannersVisibilityApi::class.java)
 val tenantBannerSettingsDto : TenantBannerSettingsDto =  // TenantBannerSettingsDto | 
 
-val result : TenantBannerSettingsWrapper = webService.setTenantBannerSettings(tenantBannerSettingsDto)
+launch(Dispatchers.IO) {
+    val result : TenantBannerSettingsWrapper = webService.setTenantBannerSettings(tenantBannerSettingsDto)
+}
 ```
 
 ### HTTP request headers

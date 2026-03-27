@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.AI
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -48,10 +48,10 @@ interface AIProvidersApi {
      *
      *
      * @param createProviderRequestDto  (optional)
-     * @return [Call]<[AiProviderWrapper]>
+     * @return [AiProviderWrapper]
      */
     @POST("api/2.0/ai/providers")
-    fun addProvider(@Body createProviderRequestDto: CreateProviderRequestDto? = null): Call<AiProviderWrapper>
+    suspend fun addProvider(@Body createProviderRequestDto: CreateProviderRequestDto? = null): Response<AiProviderWrapper>
 
     /**
      * DELETE api/2.0/ai/providers
@@ -67,10 +67,10 @@ interface AIProvidersApi {
      *
      *
      * @param removeProviderRequestDto  (optional)
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @DELETE("api/2.0/ai/providers")
-    fun deleteProviders(@Body removeProviderRequestDto: RemoveProviderRequestDto? = null): Call<Unit>
+    suspend fun deleteProviders(@Body removeProviderRequestDto: RemoveProviderRequestDto? = null): Response<Unit>
 
     /**
      * GET api/2.0/ai/providers/available
@@ -84,10 +84,10 @@ interface AIProvidersApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-available-providers/
      *
      *
-     * @return [Call]<[ProviderSettingsArrayWrapper]>
+     * @return [ProviderSettingsArrayWrapper]
      */
     @GET("api/2.0/ai/providers/available")
-    fun getAvailableProviders(): Call<ProviderSettingsArrayWrapper>
+    suspend fun getAvailableProviders(): Response<ProviderSettingsArrayWrapper>
 
     /**
      * GET api/2.0/ai/providers/default
@@ -101,10 +101,10 @@ interface AIProvidersApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-default-provider/
      *
      *
-     * @return [Call]<[DefaultProviderWrapper]>
+     * @return [DefaultProviderWrapper]
      */
     @GET("api/2.0/ai/providers/default")
-    fun getDefaultProvider(): Call<DefaultProviderWrapper>
+    suspend fun getDefaultProvider(): Response<DefaultProviderWrapper>
 
     /**
      * GET api/2.0/ai/providers
@@ -120,10 +120,10 @@ interface AIProvidersApi {
      *
      * @param startIndex The number of items to skip before returning results (zero-based offset). Defaults to 0. (optional)
      * @param count The maximum number of items to return per page. Defaults to 100. (optional)
-     * @return [Call]<[AiProviderArrayWrapper]>
+     * @return [AiProviderArrayWrapper]
      */
     @GET("api/2.0/ai/providers")
-    fun getProviders(@Query("startIndex") startIndex: kotlin.Int? = null, @Query("count") count: kotlin.Int? = null): Call<AiProviderArrayWrapper>
+    suspend fun getProviders(@Query("startIndex") startIndex: kotlin.Int? = null, @Query("count") count: kotlin.Int? = null): Response<AiProviderArrayWrapper>
 
     /**
      * PUT api/2.0/ai/providers/default
@@ -140,10 +140,10 @@ interface AIProvidersApi {
      *
      *
      * @param setDefaultProviderRequestDto  (optional)
-     * @return [Call]<[DefaultProviderWrapper]>
+     * @return [DefaultProviderWrapper]
      */
     @PUT("api/2.0/ai/providers/default")
-    fun setDefaultProvider(@Body setDefaultProviderRequestDto: SetDefaultProviderRequestDto? = null): Call<DefaultProviderWrapper>
+    suspend fun setDefaultProvider(@Body setDefaultProviderRequestDto: SetDefaultProviderRequestDto? = null): Response<DefaultProviderWrapper>
 
     /**
      * PUT api/2.0/ai/providers/{id}
@@ -162,9 +162,9 @@ interface AIProvidersApi {
      *
      * @param id The identifier of the AI provider to update.
      * @param updateProviderBody The AI provider configuration parameters to update.
-     * @return [Call]<[AiProviderWrapper]>
+     * @return [AiProviderWrapper]
      */
     @PUT("api/2.0/ai/providers/{id}")
-    fun updateProvider(@Path("id") id: kotlin.Int, @Body updateProviderBody: UpdateProviderBody): Call<AiProviderWrapper>
+    suspend fun updateProvider(@Path("id") id: kotlin.Int, @Body updateProviderBody: UpdateProviderBody): Response<AiProviderWrapper>
 
 }

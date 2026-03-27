@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Settings
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -45,10 +45,10 @@ interface StorageApi {
      *
      *
      * @param dump Indicates whether the operation should perform a dump of backup storage data.  This property is used as a parameter in backup-related API requests to specify  if additional details or data dumping is required during the process. (optional)
-     * @return [Call]<[StorageArrayWrapper]>
+     * @return [StorageArrayWrapper]
      */
     @GET("api/2.0/settings/storage/backup")
-    fun getAllBackupStorages(@Query("Dump") dump: kotlin.Boolean? = null): Call<StorageArrayWrapper>
+    suspend fun getAllBackupStorages(@Query("Dump") dump: kotlin.Boolean? = null): Response<StorageArrayWrapper>
 
     /**
      * GET api/2.0/settings/storage/cdn
@@ -63,10 +63,10 @@ interface StorageApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-all-cdn-storages/
      *
      *
-     * @return [Call]<[StorageArrayWrapper]>
+     * @return [StorageArrayWrapper]
      */
     @GET("api/2.0/settings/storage/cdn")
-    fun getAllCdnStorages(): Call<StorageArrayWrapper>
+    suspend fun getAllCdnStorages(): Response<StorageArrayWrapper>
 
     /**
      * GET api/2.0/settings/storage
@@ -81,10 +81,10 @@ interface StorageApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-all-storages/
      *
      *
-     * @return [Call]<[StorageArrayWrapper]>
+     * @return [StorageArrayWrapper]
      */
     @GET("api/2.0/settings/storage")
-    fun getAllStorages(): Call<StorageArrayWrapper>
+    suspend fun getAllStorages(): Response<StorageArrayWrapper>
 
     /**
      * GET api/2.0/settings/storage/s3/regions
@@ -98,10 +98,10 @@ interface StorageApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-amazon-s3-regions/
      *
      *
-     * @return [Call]<[ObjectWrapper]>
+     * @return [ObjectWrapper]
      */
     @GET("api/2.0/settings/storage/s3/regions")
-    fun getAmazonS3Regions(): Call<ObjectWrapper>
+    suspend fun getAmazonS3Regions(): Response<ObjectWrapper>
 
     /**
      * GET api/2.0/settings/storage/progress
@@ -115,10 +115,10 @@ interface StorageApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-storage-progress/
      *
      *
-     * @return [Call]<[DoubleWrapper]>
+     * @return [DoubleWrapper]
      */
     @GET("api/2.0/settings/storage/progress")
-    fun getStorageProgress(): Call<DoubleWrapper>
+    suspend fun getStorageProgress(): Response<DoubleWrapper>
 
     /**
      * DELETE api/2.0/settings/storage/cdn
@@ -133,10 +133,10 @@ interface StorageApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/reset-cdn-to-default/
      *
      *
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @DELETE("api/2.0/settings/storage/cdn")
-    fun resetCdnToDefault(): Call<Unit>
+    suspend fun resetCdnToDefault(): Response<Unit>
 
     /**
      * DELETE api/2.0/settings/storage
@@ -151,10 +151,10 @@ interface StorageApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/reset-storage-to-default/
      *
      *
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @DELETE("api/2.0/settings/storage")
-    fun resetStorageToDefault(): Call<Unit>
+    suspend fun resetStorageToDefault(): Response<Unit>
 
     /**
      * PUT api/2.0/settings/storage/cdn
@@ -171,10 +171,10 @@ interface StorageApi {
      *
      *
      * @param storageRequestsDto  (optional)
-     * @return [Call]<[CdnStorageSettingsWrapper]>
+     * @return [CdnStorageSettingsWrapper]
      */
     @PUT("api/2.0/settings/storage/cdn")
-    fun updateCdnStorage(@Body storageRequestsDto: StorageRequestsDto? = null): Call<CdnStorageSettingsWrapper>
+    suspend fun updateCdnStorage(@Body storageRequestsDto: StorageRequestsDto? = null): Response<CdnStorageSettingsWrapper>
 
     /**
      * PUT api/2.0/settings/storage
@@ -191,9 +191,9 @@ interface StorageApi {
      *
      *
      * @param storageRequestsDto  (optional)
-     * @return [Call]<[StorageSettingsWrapper]>
+     * @return [StorageSettingsWrapper]
      */
     @PUT("api/2.0/settings/storage")
-    fun updateStorage(@Body storageRequestsDto: StorageRequestsDto? = null): Call<StorageSettingsWrapper>
+    suspend fun updateStorage(@Body storageRequestsDto: StorageRequestsDto? = null): Response<StorageSettingsWrapper>
 
 }

@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Settings
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -42,10 +42,10 @@ interface MessagesApi {
      *
      *
      * @param turnOnAdminMessageSettingsRequestDto  (optional)
-     * @return [Call]<[StringWrapper]>
+     * @return [StringWrapper]
      */
     @POST("api/2.0/settings/messagesettings")
-    fun enableAdminMessageSettings(@Body turnOnAdminMessageSettingsRequestDto: TurnOnAdminMessageSettingsRequestDto? = null): Call<StringWrapper>
+    suspend fun enableAdminMessageSettings(@Body turnOnAdminMessageSettingsRequestDto: TurnOnAdminMessageSettingsRequestDto? = null): Response<StringWrapper>
 
     /**
      * POST api/2.0/settings/sendadmmail
@@ -61,10 +61,10 @@ interface MessagesApi {
      *
      *
      * @param adminMessageSettingsRequestsDto  (optional)
-     * @return [Call]<[StringWrapper]>
+     * @return [StringWrapper]
      */
     @POST("api/2.0/settings/sendadmmail")
-    fun sendAdminMail(@Body adminMessageSettingsRequestsDto: AdminMessageSettingsRequestsDto? = null): Call<StringWrapper>
+    suspend fun sendAdminMail(@Body adminMessageSettingsRequestsDto: AdminMessageSettingsRequestsDto? = null): Response<StringWrapper>
 
     /**
      * POST api/2.0/settings/sendjoininvite
@@ -81,9 +81,9 @@ interface MessagesApi {
      *
      *
      * @param adminMessageBaseSettingsRequestsDto  (optional)
-     * @return [Call]<[StringWrapper]>
+     * @return [StringWrapper]
      */
     @POST("api/2.0/settings/sendjoininvite")
-    fun sendJoinInviteMail(@Body adminMessageBaseSettingsRequestsDto: AdminMessageBaseSettingsRequestsDto? = null): Call<StringWrapper>
+    suspend fun sendJoinInviteMail(@Body adminMessageBaseSettingsRequestsDto: AdminMessageBaseSettingsRequestsDto? = null): Response<StringWrapper>
 
 }

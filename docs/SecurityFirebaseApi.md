@@ -47,7 +47,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FirebaseApi::class.java)
 val firebaseRequestsDto : FirebaseRequestsDto =  // FirebaseRequestsDto | 
 
-val result : FireBaseUserWrapper = webService.docRegisterPusnNotificationDevice(firebaseRequestsDto)
+launch(Dispatchers.IO) {
+    val result : FireBaseUserWrapper = webService.docRegisterPusnNotificationDevice(firebaseRequestsDto)
+}
 ```
 
 ### HTTP request headers
@@ -94,7 +96,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FirebaseApi::class.java)
 val firebaseRequestsDto : FirebaseRequestsDto =  // FirebaseRequestsDto | 
 
-val result : FireBaseUserWrapper = webService.subscribeDocumentsPushNotification(firebaseRequestsDto)
+launch(Dispatchers.IO) {
+    val result : FireBaseUserWrapper = webService.subscribeDocumentsPushNotification(firebaseRequestsDto)
+}
 ```
 
 ### HTTP request headers

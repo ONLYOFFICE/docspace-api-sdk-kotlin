@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Settings
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -45,10 +45,10 @@ interface TFASettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tfa-app-codes/
      *
      *
-     * @return [Call]<[ObjectArrayWrapper]>
+     * @return [ObjectArrayWrapper]
      */
     @GET("api/2.0/settings/tfaappcodes")
-    fun getTfaAppCodes(): Call<ObjectArrayWrapper>
+    suspend fun getTfaAppCodes(): Response<ObjectArrayWrapper>
 
     /**
      * GET api/2.0/settings/tfaapp/confirm
@@ -62,10 +62,10 @@ interface TFASettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tfa-confirm-url/
      *
      *
-     * @return [Call]<[StringWrapper]>
+     * @return [StringWrapper]
      */
     @GET("api/2.0/settings/tfaapp/confirm")
-    fun getTfaConfirmUrl(): Call<StringWrapper>
+    suspend fun getTfaConfirmUrl(): Response<StringWrapper>
 
     /**
      * GET api/2.0/settings/tfaapp
@@ -79,10 +79,10 @@ interface TFASettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tfa-settings/
      *
      *
-     * @return [Call]<[TfaSettingsArrayWrapper]>
+     * @return [TfaSettingsArrayWrapper]
      */
     @GET("api/2.0/settings/tfaapp")
-    fun getTfaSettings(): Call<TfaSettingsArrayWrapper>
+    suspend fun getTfaSettings(): Response<TfaSettingsArrayWrapper>
 
     /**
      * GET api/2.0/settings/tfaapp/setup
@@ -97,10 +97,10 @@ interface TFASettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/tfa-app-generate-setup-code/
      *
      *
-     * @return [Call]<[SetupCodeWrapper]>
+     * @return [SetupCodeWrapper]
      */
     @GET("api/2.0/settings/tfaapp/setup")
-    fun tfaAppGenerateSetupCode(): Call<SetupCodeWrapper>
+    suspend fun tfaAppGenerateSetupCode(): Response<SetupCodeWrapper>
 
     /**
      * POST api/2.0/settings/tfaapp/validate
@@ -115,10 +115,10 @@ interface TFASettingsApi {
      *
      *
      * @param tfaValidateRequestsDto  (optional)
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @POST("api/2.0/settings/tfaapp/validate")
-    fun tfaValidateAuthCode(@Body tfaValidateRequestsDto: TfaValidateRequestsDto? = null): Call<BooleanWrapper>
+    suspend fun tfaValidateAuthCode(@Body tfaValidateRequestsDto: TfaValidateRequestsDto? = null): Response<BooleanWrapper>
 
     /**
      * PUT api/2.0/settings/tfaappnewapp
@@ -135,10 +135,10 @@ interface TFASettingsApi {
      *
      *
      * @param tfaRequestsDto  (optional)
-     * @return [Call]<[StringWrapper]>
+     * @return [StringWrapper]
      */
     @PUT("api/2.0/settings/tfaappnewapp")
-    fun unlinkTfaApp(@Body tfaRequestsDto: TfaRequestsDto? = null): Call<StringWrapper>
+    suspend fun unlinkTfaApp(@Body tfaRequestsDto: TfaRequestsDto? = null): Response<StringWrapper>
 
     /**
      * PUT api/2.0/settings/tfaappnewcodes
@@ -153,10 +153,10 @@ interface TFASettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-tfa-app-codes/
      *
      *
-     * @return [Call]<[ObjectArrayWrapper]>
+     * @return [ObjectArrayWrapper]
      */
     @PUT("api/2.0/settings/tfaappnewcodes")
-    fun updateTfaAppCodes(): Call<ObjectArrayWrapper>
+    suspend fun updateTfaAppCodes(): Response<ObjectArrayWrapper>
 
     /**
      * PUT api/2.0/settings/tfaapp
@@ -172,10 +172,10 @@ interface TFASettingsApi {
      *
      *
      * @param tfaRequestsDto  (optional)
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @PUT("api/2.0/settings/tfaapp")
-    fun updateTfaSettings(@Body tfaRequestsDto: TfaRequestsDto? = null): Call<BooleanWrapper>
+    suspend fun updateTfaSettings(@Body tfaRequestsDto: TfaRequestsDto? = null): Response<BooleanWrapper>
 
     /**
      * PUT api/2.0/settings/tfaappwithlink
@@ -192,9 +192,9 @@ interface TFASettingsApi {
      *
      *
      * @param tfaRequestsDto  (optional)
-     * @return [Call]<[StringWrapper]>
+     * @return [StringWrapper]
      */
     @PUT("api/2.0/settings/tfaappwithlink")
-    fun updateTfaSettingsLink(@Body tfaRequestsDto: TfaRequestsDto? = null): Call<StringWrapper>
+    suspend fun updateTfaSettingsLink(@Body tfaRequestsDto: TfaRequestsDto? = null): Response<StringWrapper>
 
 }

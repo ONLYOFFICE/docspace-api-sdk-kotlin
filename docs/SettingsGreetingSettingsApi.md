@@ -46,7 +46,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(GreetingSettingsApi::class.java)
 
-val result : ObjectWrapper = webService.getGreetingSettings()
+launch(Dispatchers.IO) {
+    val result : ObjectWrapper = webService.getGreetingSettings()
+}
 ```
 
 ### HTTP request headers
@@ -90,7 +92,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(GreetingSettingsApi::class.java)
 
-val result : BooleanWrapper = webService.getIsDefaultGreetingSettings()
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.getIsDefaultGreetingSettings()
+}
 ```
 
 ### HTTP request headers
@@ -134,7 +138,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(GreetingSettingsApi::class.java)
 
-val result : StringWrapper = webService.restoreGreetingSettings()
+launch(Dispatchers.IO) {
+    val result : StringWrapper = webService.restoreGreetingSettings()
+}
 ```
 
 ### HTTP request headers
@@ -181,7 +187,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(GreetingSettingsApi::class.java)
 val greetingSettingsRequestsDto : GreetingSettingsRequestsDto =  // GreetingSettingsRequestsDto | 
 
-val result : StringWrapper = webService.saveGreetingSettings(greetingSettingsRequestsDto)
+launch(Dispatchers.IO) {
+    val result : StringWrapper = webService.saveGreetingSettings(greetingSettingsRequestsDto)
+}
 ```
 
 ### HTTP request headers

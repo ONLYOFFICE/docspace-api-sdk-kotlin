@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.People
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -43,10 +43,10 @@ interface UserDataApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-delete-personal-folder-progress/
      *
      *
-     * @return [Call]<[TaskProgressResponseWrapper]>
+     * @return [TaskProgressResponseWrapper]
      */
     @GET("api/2.0/people/delete/personal/progress")
-    fun getDeletePersonalFolderProgress(): Call<TaskProgressResponseWrapper>
+    suspend fun getDeletePersonalFolderProgress(): Response<TaskProgressResponseWrapper>
 
     /**
      * GET api/2.0/people/reassign/progress/{userid}
@@ -61,10 +61,10 @@ interface UserDataApi {
      *
      *
      * @param userid The user ID.
-     * @return [Call]<[TaskProgressResponseWrapper]>
+     * @return [TaskProgressResponseWrapper]
      */
     @GET("api/2.0/people/reassign/progress/{userid}")
-    fun getReassignProgress(@Path("userid") userid: java.util.UUID): Call<TaskProgressResponseWrapper>
+    suspend fun getReassignProgress(@Path("userid") userid: java.util.UUID): Response<TaskProgressResponseWrapper>
 
     /**
      * GET api/2.0/people/remove/progress/{userid}
@@ -79,10 +79,10 @@ interface UserDataApi {
      *
      *
      * @param userid The user ID.
-     * @return [Call]<[TaskProgressResponseWrapper]>
+     * @return [TaskProgressResponseWrapper]
      */
     @GET("api/2.0/people/remove/progress/{userid}")
-    fun getRemoveProgress(@Path("userid") userid: java.util.UUID): Call<TaskProgressResponseWrapper>
+    suspend fun getRemoveProgress(@Path("userid") userid: java.util.UUID): Response<TaskProgressResponseWrapper>
 
     /**
      * GET api/2.0/people/reassign/necessary
@@ -98,10 +98,10 @@ interface UserDataApi {
      *
      * @param userId The user ID. (optional)
      * @param type The expected user type. (optional)
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @GET("api/2.0/people/reassign/necessary")
-    fun necessaryReassign(@Query("UserId") userId: java.util.UUID? = null, @Query("Type") type: EmployeeType? = null): Call<BooleanWrapper>
+    suspend fun necessaryReassign(@Query("UserId") userId: java.util.UUID? = null, @Query("Type") type: EmployeeType? = null): Response<BooleanWrapper>
 
     /**
      * PUT api/2.0/people/self/delete
@@ -116,10 +116,10 @@ interface UserDataApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/send-instructions-to-delete/
      *
      *
-     * @return [Call]<[StringWrapper]>
+     * @return [StringWrapper]
      */
     @PUT("api/2.0/people/self/delete")
-    fun sendInstructionsToDelete(): Call<StringWrapper>
+    suspend fun sendInstructionsToDelete(): Response<StringWrapper>
 
     /**
      * POST api/2.0/people/delete/personal/start
@@ -134,10 +134,10 @@ interface UserDataApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/start-delete-personal-folder/
      *
      *
-     * @return [Call]<[TaskProgressResponseWrapper]>
+     * @return [TaskProgressResponseWrapper]
      */
     @POST("api/2.0/people/delete/personal/start")
-    fun startDeletePersonalFolder(): Call<TaskProgressResponseWrapper>
+    suspend fun startDeletePersonalFolder(): Response<TaskProgressResponseWrapper>
 
     /**
      * POST api/2.0/people/reassign/start
@@ -153,10 +153,10 @@ interface UserDataApi {
      *
      *
      * @param startReassignRequestDto  (optional)
-     * @return [Call]<[TaskProgressResponseWrapper]>
+     * @return [TaskProgressResponseWrapper]
      */
     @POST("api/2.0/people/reassign/start")
-    fun startReassign(@Body startReassignRequestDto: StartReassignRequestDto? = null): Call<TaskProgressResponseWrapper>
+    suspend fun startReassign(@Body startReassignRequestDto: StartReassignRequestDto? = null): Response<TaskProgressResponseWrapper>
 
     /**
      * POST api/2.0/people/remove/start
@@ -174,10 +174,10 @@ interface UserDataApi {
      *
      *
      * @param terminateRequestDto  (optional)
-     * @return [Call]<[TaskProgressResponseWrapper]>
+     * @return [TaskProgressResponseWrapper]
      */
     @POST("api/2.0/people/remove/start")
-    fun startRemove(@Body terminateRequestDto: TerminateRequestDto? = null): Call<TaskProgressResponseWrapper>
+    suspend fun startRemove(@Body terminateRequestDto: TerminateRequestDto? = null): Response<TaskProgressResponseWrapper>
 
     /**
      * PUT api/2.0/people/reassign/terminate
@@ -192,10 +192,10 @@ interface UserDataApi {
      *
      *
      * @param terminateRequestDto  (optional)
-     * @return [Call]<[TaskProgressResponseWrapper]>
+     * @return [TaskProgressResponseWrapper]
      */
     @PUT("api/2.0/people/reassign/terminate")
-    fun terminateReassign(@Body terminateRequestDto: TerminateRequestDto? = null): Call<TaskProgressResponseWrapper>
+    suspend fun terminateReassign(@Body terminateRequestDto: TerminateRequestDto? = null): Response<TaskProgressResponseWrapper>
 
     /**
      * PUT api/2.0/people/remove/terminate
@@ -210,9 +210,9 @@ interface UserDataApi {
      *
      *
      * @param terminateRequestDto  (optional)
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @PUT("api/2.0/people/remove/terminate")
-    fun terminateRemove(@Body terminateRequestDto: TerminateRequestDto? = null): Call<Unit>
+    suspend fun terminateRemove(@Body terminateRequestDto: TerminateRequestDto? = null): Response<Unit>
 
 }

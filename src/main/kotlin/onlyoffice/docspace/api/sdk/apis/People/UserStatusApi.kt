@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.People
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -50,10 +50,10 @@ interface UserStatusApi {
      * @param sortOrder The order in which the results are sorted. (optional)
      * @param filterSeparator Represents the separator used to split multiple filter criteria in a query string. (optional)
      * @param filterValue A string value representing additional filter criteria used in query parameters. (optional)
-     * @return [Call]<[EmployeeFullArrayWrapper]>
+     * @return [EmployeeFullArrayWrapper]
      */
     @GET("api/2.0/people/status/{status}")
-    fun getByStatus(@Path("status") status: EmployeeStatus, @Query("filterBy") filterBy: kotlin.String? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Call<EmployeeFullArrayWrapper>
+    suspend fun getByStatus(@Path("status") status: EmployeeStatus, @Query("filterBy") filterBy: kotlin.String? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<EmployeeFullArrayWrapper>
 
     /**
      * PUT api/2.0/people/activationstatus/{activationstatus}
@@ -69,10 +69,10 @@ interface UserStatusApi {
      *
      * @param activationstatus The new user activation status.
      * @param updateMembersRequestDto The request parameters for updating the user information.
-     * @return [Call]<[EmployeeFullArrayWrapper]>
+     * @return [EmployeeFullArrayWrapper]
      */
     @PUT("api/2.0/people/activationstatus/{activationstatus}")
-    fun updateUserActivationStatus(@Path("activationstatus") activationstatus: EmployeeActivationStatus, @Body updateMembersRequestDto: UpdateMembersRequestDto): Call<EmployeeFullArrayWrapper>
+    suspend fun updateUserActivationStatus(@Path("activationstatus") activationstatus: EmployeeActivationStatus, @Body updateMembersRequestDto: UpdateMembersRequestDto): Response<EmployeeFullArrayWrapper>
 
     /**
      * PUT api/2.0/people/status/{status}
@@ -90,9 +90,9 @@ interface UserStatusApi {
      *
      * @param status The new user status.
      * @param updateMembersRequestDto The request parameters for updating the user information.
-     * @return [Call]<[EmployeeFullArrayWrapper]>
+     * @return [EmployeeFullArrayWrapper]
      */
     @PUT("api/2.0/people/status/{status}")
-    fun updateUserStatus(@Path("status") status: EmployeeStatus, @Body updateMembersRequestDto: UpdateMembersRequestDto): Call<EmployeeFullArrayWrapper>
+    suspend fun updateUserStatus(@Path("status") status: EmployeeStatus, @Body updateMembersRequestDto: UpdateMembersRequestDto): Response<EmployeeFullArrayWrapper>
 
 }

@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.AI
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -42,10 +42,10 @@ interface AISettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-ai-settings/
      *
      *
-     * @return [Call]<[AiSettingsWrapper]>
+     * @return [AiSettingsWrapper]
      */
     @GET("api/2.0/ai/config")
-    fun getAiSettings(): Call<AiSettingsWrapper>
+    suspend fun getAiSettings(): Response<AiSettingsWrapper>
 
     /**
      * GET api/2.0/ai/config/vectorization
@@ -59,10 +59,10 @@ interface AISettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-vectorization-settings/
      *
      *
-     * @return [Call]<[VectorizationSettingsWrapper]>
+     * @return [VectorizationSettingsWrapper]
      */
     @GET("api/2.0/ai/config/vectorization")
-    fun getVectorizationSettings(): Call<VectorizationSettingsWrapper>
+    suspend fun getVectorizationSettings(): Response<VectorizationSettingsWrapper>
 
     /**
      * GET api/2.0/ai/config/web-search
@@ -76,10 +76,10 @@ interface AISettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-web-search-settings/
      *
      *
-     * @return [Call]<[WebSearchSettingsWrapper]>
+     * @return [WebSearchSettingsWrapper]
      */
     @GET("api/2.0/ai/config/web-search")
-    fun getWebSearchSettings(): Call<WebSearchSettingsWrapper>
+    suspend fun getWebSearchSettings(): Response<WebSearchSettingsWrapper>
 
     /**
      * PUT api/2.0/ai/config/vectorization
@@ -94,10 +94,10 @@ interface AISettingsApi {
      *
      *
      * @param setEmbeddingConfigRequestBody The embedding provider configuration parameters.
-     * @return [Call]<[VectorizationSettingsWrapper]>
+     * @return [VectorizationSettingsWrapper]
      */
     @PUT("api/2.0/ai/config/vectorization")
-    fun setVectorizationSettings(@Body setEmbeddingConfigRequestBody: SetEmbeddingConfigRequestBody): Call<VectorizationSettingsWrapper>
+    suspend fun setVectorizationSettings(@Body setEmbeddingConfigRequestBody: SetEmbeddingConfigRequestBody): Response<VectorizationSettingsWrapper>
 
     /**
      * PUT api/2.0/ai/config/web-search
@@ -112,9 +112,9 @@ interface AISettingsApi {
      *
      *
      * @param setWebSearchSettingsRequestBody The web search configuration parameters.
-     * @return [Call]<[WebSearchSettingsWrapper]>
+     * @return [WebSearchSettingsWrapper]
      */
     @PUT("api/2.0/ai/config/web-search")
-    fun setWebSearchSettings(@Body setWebSearchSettingsRequestBody: SetWebSearchSettingsRequestBody): Call<WebSearchSettingsWrapper>
+    suspend fun setWebSearchSettings(@Body setWebSearchSettingsRequestBody: SetWebSearchSettingsRequestBody): Response<WebSearchSettingsWrapper>
 
 }

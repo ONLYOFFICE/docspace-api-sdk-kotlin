@@ -75,7 +75,9 @@ val webService = apiClient.createWebservice(FoldersApi::class.java)
 val folderId : kotlin.Int = 1 // kotlin.Int | The folder ID.
 val checkUploadRequest : CheckUploadRequest =  // CheckUploadRequest | The request parameters for checking file uploads.
 
-val result : STRINGArrayWrapper = webService.checkUpload(folderId, checkUploadRequest)
+launch(Dispatchers.IO) {
+    val result : STRINGArrayWrapper = webService.checkUpload(folderId, checkUploadRequest)
+}
 ```
 
 ### HTTP request headers
@@ -124,7 +126,9 @@ val webService = apiClient.createWebservice(FoldersApi::class.java)
 val folderId : kotlin.Int = 1 // kotlin.Int | The folder ID for the folder creation.
 val createFolder : CreateFolder =  // CreateFolder | The parameters for creating a folder.
 
-val result : FolderIntegerWrapper = webService.createFolder(folderId, createFolder)
+launch(Dispatchers.IO) {
+    val result : FolderIntegerWrapper = webService.createFolder(folderId, createFolder)
+}
 ```
 
 ### HTTP request headers
@@ -173,7 +177,9 @@ val webService = apiClient.createWebservice(FoldersApi::class.java)
 val id : kotlin.Int = 1 // kotlin.Int | The folder ID.
 val folderLinkRequest : FolderLinkRequest =  // FolderLinkRequest | The folder link parameters.
 
-val result : FileShareWrapper = webService.createFolderPrimaryExternalLink(id, folderLinkRequest)
+launch(Dispatchers.IO) {
+    val result : FileShareWrapper = webService.createFolderPrimaryExternalLink(id, folderLinkRequest)
+}
 ```
 
 ### HTTP request headers
@@ -220,7 +226,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
 val folderId : kotlin.Int = 56 // kotlin.Int | 
 
-val result : StringWrapper = webService.createReportFolderHistory(folderId)
+launch(Dispatchers.IO) {
+    val result : StringWrapper = webService.createReportFolderHistory(folderId)
+}
 ```
 
 ### HTTP request headers
@@ -269,7 +277,9 @@ val webService = apiClient.createWebservice(FoldersApi::class.java)
 val folderId : kotlin.Int = 10 // kotlin.Int | The folder ID to delete.
 val deleteFolder : DeleteFolder =  // DeleteFolder | The parameters for deleting a folder.
 
-val result : FileOperationArrayWrapper = webService.deleteFolder(folderId, deleteFolder)
+launch(Dispatchers.IO) {
+    val result : FileOperationArrayWrapper = webService.deleteFolder(folderId, deleteFolder)
+}
 ```
 
 ### HTTP request headers
@@ -328,7 +338,9 @@ val sortBy : kotlin.String = DateAndTime // kotlin.String | Specifies the field 
 val sortOrder : SortOrder = 1 // SortOrder | The order in which the results are sorted.
 val filterValue : kotlin.String = My Document // kotlin.String | The text used as a filter or search criterion for folder content queries.
 
-val result : FolderContentIntegerWrapper = webService.getFavoritesFolder(userIdOrGroupId, filterType, count, startIndex, sortBy, sortOrder, filterValue)
+launch(Dispatchers.IO) {
+    val result : FolderContentIntegerWrapper = webService.getFavoritesFolder(userIdOrGroupId, filterType, count, startIndex, sortBy, sortOrder, filterValue)
+}
 ```
 
 ### HTTP request headers
@@ -372,7 +384,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
 
-val result : FilesStatisticsResultWrapper = webService.getFilesUsedSpace()
+launch(Dispatchers.IO) {
+    val result : FilesStatisticsResultWrapper = webService.getFilesUsedSpace()
+}
 ```
 
 ### HTTP request headers
@@ -413,7 +427,9 @@ val apiClient = ApiClient()
 val webService = apiClient.createWebservice(FoldersApi::class.java)
 val folderId : kotlin.Int = 1 // kotlin.Int | The folder unique identifier.
 
-val result : FormsItemArrayWrapper = webService.getFolder(folderId)
+launch(Dispatchers.IO) {
+    val result : FormsItemArrayWrapper = webService.getFolder(folderId)
+}
 ```
 
 ### HTTP request headers
@@ -486,7 +502,9 @@ val sortOrder : SortOrder = 1 // SortOrder | The order in which the results are 
 val filterValue : kotlin.String = My Document // kotlin.String | The text value used as a filter parameter for folder content queries.
 val location : Location = 1 // Location | The location context of the request, specifying the area  where the operation is performed, such as a room, documents, or a link.
 
-val result : FolderContentIntegerWrapper = webService.getFolderByFolderId(folderId, userIdOrGroupId, sharedBy, filterType, roomId, excludeSubject, applyFilterOption, extension, searchArea, formsItemKey, formsItemType, count, startIndex, sortBy, sortOrder, filterValue, location)
+launch(Dispatchers.IO) {
+    val result : FolderContentIntegerWrapper = webService.getFolderByFolderId(folderId, userIdOrGroupId, sharedBy, filterType, roomId, excludeSubject, applyFilterOption, extension, searchArea, formsItemKey, formsItemType, count, startIndex, sortBy, sortOrder, filterValue, location)
+}
 ```
 
 ### HTTP request headers
@@ -541,7 +559,9 @@ val toDate : ApiDateTime = 2025-12-31T23:59:59.0000000Z // ApiDateTime | The end
 val count : kotlin.Int = 25 // kotlin.Int | The number of records to retrieve for the folder history.
 val startIndex : kotlin.Int = 0 // kotlin.Int | The starting index from which the history records are retrieved in the request.
 
-val result : HistoryArrayWrapper = webService.getFolderHistory(folderId, fromDate, toDate, count, startIndex)
+launch(Dispatchers.IO) {
+    val result : HistoryArrayWrapper = webService.getFolderHistory(folderId, fromDate, toDate, count, startIndex)
+}
 ```
 
 ### HTTP request headers
@@ -582,7 +602,9 @@ val apiClient = ApiClient()
 val webService = apiClient.createWebservice(FoldersApi::class.java)
 val folderId : kotlin.Int = 1 // kotlin.Int | The folder unique identifier.
 
-val result : FolderIntegerWrapper = webService.getFolderInfo(folderId)
+launch(Dispatchers.IO) {
+    val result : FolderIntegerWrapper = webService.getFolderInfo(folderId)
+}
 ```
 
 ### HTTP request headers
@@ -629,7 +651,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
 val id : kotlin.Int = 1 // kotlin.Int | The folder ID.
 
-val result : FileShareArrayWrapper = webService.getFolderLinks(id)
+launch(Dispatchers.IO) {
+    val result : FileShareArrayWrapper = webService.getFolderLinks(id)
+}
 ```
 
 ### HTTP request headers
@@ -676,7 +700,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
 val folderId : kotlin.Int = 1 // kotlin.Int | The folder unique identifier.
 
-val result : FileEntryBaseArrayWrapper = webService.getFolderPath(folderId)
+launch(Dispatchers.IO) {
+    val result : FileEntryBaseArrayWrapper = webService.getFolderPath(folderId)
+}
 ```
 
 ### HTTP request headers
@@ -721,7 +747,9 @@ val id : kotlin.Int = 10 // kotlin.Int | The folder unique identifier.
 val count : kotlin.Int = 25 // kotlin.Int | The number of items to retrieve in the request.
 val startIndex : kotlin.Int = 0 // kotlin.Int | The starting index for the query results.
 
-val result : FileShareWrapper = webService.getFolderPrimaryExternalLink(id, count, startIndex)
+launch(Dispatchers.IO) {
+    val result : FileShareWrapper = webService.getFolderPrimaryExternalLink(id, count, startIndex)
+}
 ```
 
 ### HTTP request headers
@@ -768,7 +796,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
 val folderId : kotlin.Int = 1 // kotlin.Int | The folder unique identifier.
 
-val result : FileEntryBaseArrayWrapper = webService.getFolders(folderId)
+launch(Dispatchers.IO) {
+    val result : FileEntryBaseArrayWrapper = webService.getFolders(folderId)
+}
 ```
 
 ### HTTP request headers
@@ -829,7 +859,9 @@ val sortBy : kotlin.String = DateAndTime // kotlin.String | The property used to
 val sortOrder : SortOrder = 1 // SortOrder | The order in which the results are sorted.
 val filterValue : kotlin.String = My Document // kotlin.String | The text used for filtering or searching folder contents.
 
-val result : FolderContentIntegerWrapper = webService.getMyFolder(userIdOrGroupId, filterType, applyFilterOption, count, startIndex, sortBy, sortOrder, filterValue)
+launch(Dispatchers.IO) {
+    val result : FolderContentIntegerWrapper = webService.getMyFolder(userIdOrGroupId, filterType, applyFilterOption, count, startIndex, sortBy, sortOrder, filterValue)
+}
 ```
 
 ### HTTP request headers
@@ -876,7 +908,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
 val folderId : kotlin.Int = 1 // kotlin.Int | The folder unique identifier.
 
-val result : FileEntryBaseArrayWrapper = webService.getNewFolderItems(folderId)
+launch(Dispatchers.IO) {
+    val result : FileEntryBaseArrayWrapper = webService.getNewFolderItems(folderId)
+}
 ```
 
 ### HTTP request headers
@@ -935,7 +969,9 @@ val sortBy : kotlin.String = DateAndTime // kotlin.String | Specifies the field 
 val sortOrder : SortOrder = 1 // SortOrder | The order in which the results are sorted.
 val filterValue : kotlin.String = My Document // kotlin.String | The text used as a filter or search criterion for folder content queries.
 
-val result : FolderContentIntegerWrapper = webService.getPrivacyFolder(userIdOrGroupId, filterType, count, startIndex, sortBy, sortOrder, filterValue)
+launch(Dispatchers.IO) {
+    val result : FolderContentIntegerWrapper = webService.getPrivacyFolder(userIdOrGroupId, filterType, count, startIndex, sortBy, sortOrder, filterValue)
+}
 ```
 
 ### HTTP request headers
@@ -1002,7 +1038,9 @@ val sortBy : kotlin.String = DateAndTime // kotlin.String | Specifies the sortin
 val sortOrder : SortOrder = 1 // SortOrder | The order in which the results are sorted.
 val filterValue : kotlin.String = My Document // kotlin.String | The text used for filtering or searching folder contents.
 
-val result : FolderContentIntegerWrapper = webService.getRecentFolder(userIdOrGroupId, filterType, excludeSubject, applyFilterOption, searchArea, extension, count, startIndex, sortBy, sortOrder, filterValue)
+launch(Dispatchers.IO) {
+    val result : FolderContentIntegerWrapper = webService.getRecentFolder(userIdOrGroupId, filterType, excludeSubject, applyFilterOption, searchArea, extension, count, startIndex, sortBy, sortOrder, filterValue)
+}
 ```
 
 ### HTTP request headers
@@ -1063,7 +1101,9 @@ val sortBy : kotlin.String = DateAndTime // kotlin.String | Specifies the field 
 val sortOrder : SortOrder = 1 // SortOrder | The order in which the results are sorted.
 val filterValue : kotlin.String = My Document // kotlin.String | The text used as a filter for searching or retrieving folder contents.
 
-val result : FolderContentIntegerArrayWrapper = webService.getRootFolders(userIdOrGroupId, filterType, withoutTrash, count, startIndex, sortBy, sortOrder, filterValue)
+launch(Dispatchers.IO) {
+    val result : FolderContentIntegerArrayWrapper = webService.getRootFolders(userIdOrGroupId, filterType, withoutTrash, count, startIndex, sortBy, sortOrder, filterValue)
+}
 ```
 
 ### HTTP request headers
@@ -1124,7 +1164,9 @@ val sortBy : kotlin.String = DateAndTime // kotlin.String | The property used to
 val sortOrder : SortOrder = 1 // SortOrder | The order in which the results are sorted.
 val filterValue : kotlin.String = My Document // kotlin.String | The text used for filtering or searching folder contents.
 
-val result : FolderContentIntegerWrapper = webService.getTrashFolder(userIdOrGroupId, filterType, applyFilterOption, count, startIndex, sortBy, sortOrder, filterValue)
+launch(Dispatchers.IO) {
+    val result : FolderContentIntegerWrapper = webService.getTrashFolder(userIdOrGroupId, filterType, applyFilterOption, count, startIndex, sortBy, sortOrder, filterValue)
+}
 ```
 
 ### HTTP request headers
@@ -1195,7 +1237,9 @@ val insertFileStreamPosition : kotlin.Long = 789 // kotlin.Long |
 val insertFileStreamReadTimeout : kotlin.Int = 56 // kotlin.Int | 
 val insertFileStreamWriteTimeout : kotlin.Int = 56 // kotlin.Int | 
 
-val result : FileIntegerWrapper = webService.insertFile(folderId, insertFileFile, insertFileTitle, insertFileCreateNewIfExist, insertFileKeepConvertStatus, insertFileStreamCanRead, insertFileStreamCanWrite, insertFileStreamCanSeek, insertFileStreamCanTimeout, insertFileStreamLength, insertFileStreamPosition, insertFileStreamReadTimeout, insertFileStreamWriteTimeout)
+launch(Dispatchers.IO) {
+    val result : FileIntegerWrapper = webService.insertFile(folderId, insertFileFile, insertFileTitle, insertFileCreateNewIfExist, insertFileKeepConvertStatus, insertFileStreamCanRead, insertFileStreamCanWrite, insertFileStreamCanSeek, insertFileStreamCanTimeout, insertFileStreamLength, insertFileStreamPosition, insertFileStreamReadTimeout, insertFileStreamWriteTimeout)
+}
 ```
 
 ### HTTP request headers
@@ -1264,7 +1308,9 @@ val streamPosition : kotlin.Long = 789 // kotlin.Long |
 val streamReadTimeout : kotlin.Int = 56 // kotlin.Int | 
 val streamWriteTimeout : kotlin.Int = 56 // kotlin.Int | 
 
-val result : FileIntegerWrapper = webService.insertFileToMyFromBody(file, title, createNewIfExist, keepConvertStatus, streamCanRead, streamCanWrite, streamCanSeek, streamCanTimeout, streamLength, streamPosition, streamReadTimeout, streamWriteTimeout)
+launch(Dispatchers.IO) {
+    val result : FileIntegerWrapper = webService.insertFileToMyFromBody(file, title, createNewIfExist, keepConvertStatus, streamCanRead, streamCanWrite, streamCanSeek, streamCanTimeout, streamLength, streamPosition, streamReadTimeout, streamWriteTimeout)
+}
 ```
 
 ### HTTP request headers
@@ -1313,7 +1359,9 @@ val webService = apiClient.createWebservice(FoldersApi::class.java)
 val folderId : kotlin.Int = 1 // kotlin.Int | The folder ID for the folder creation.
 val createFolder : CreateFolder =  // CreateFolder | The parameters for creating a folder.
 
-val result : FolderIntegerWrapper = webService.renameFolder(folderId, createFolder)
+launch(Dispatchers.IO) {
+    val result : FolderIntegerWrapper = webService.renameFolder(folderId, createFolder)
+}
 ```
 
 ### HTTP request headers
@@ -1362,7 +1410,9 @@ val webService = apiClient.createWebservice(FoldersApi::class.java)
 val folderId : kotlin.Int = 1 // kotlin.Int | The folder unique identifier.
 val orderRequestDto : OrderRequestDto =  // OrderRequestDto | The folder order information.
 
-val result : FolderIntegerWrapper = webService.setFolderOrder(folderId, orderRequestDto)
+launch(Dispatchers.IO) {
+    val result : FolderIntegerWrapper = webService.setFolderOrder(folderId, orderRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -1411,7 +1461,9 @@ val webService = apiClient.createWebservice(FoldersApi::class.java)
 val id : kotlin.Int = 1 // kotlin.Int | The folder ID.
 val folderLinkRequest : FolderLinkRequest =  // FolderLinkRequest | The folder link parameters.
 
-val result : FileShareWrapper = webService.setFolderPrimaryExternalLink(id, folderLinkRequest)
+launch(Dispatchers.IO) {
+    val result : FileShareWrapper = webService.setFolderPrimaryExternalLink(id, folderLinkRequest)
+}
 ```
 
 ### HTTP request headers
@@ -1460,7 +1512,9 @@ val webService = apiClient.createWebservice(FoldersApi::class.java)
 val folderId : kotlin.Int = 1 // kotlin.Int | The folder ID to upload a file.
 val uploadRequestDto : UploadRequestDto =  // UploadRequestDto | The request parameters for uploading a file.
 
-val result : ObjectWrapper = webService.uploadFile(folderId, uploadRequestDto)
+launch(Dispatchers.IO) {
+    val result : ObjectWrapper = webService.uploadFile(folderId, uploadRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -1507,7 +1561,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
 val inDto : UploadRequestDto =  // UploadRequestDto | The request parameters for uploading a file.
 
-val result : ObjectWrapper = webService.uploadFileToMy(inDto)
+launch(Dispatchers.IO) {
+    val result : ObjectWrapper = webService.uploadFileToMy(inDto)
+}
 ```
 
 ### HTTP request headers

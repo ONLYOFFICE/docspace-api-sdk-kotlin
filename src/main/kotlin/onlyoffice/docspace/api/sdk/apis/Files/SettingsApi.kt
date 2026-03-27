@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Files
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -55,10 +55,10 @@ interface SettingsApi {
      *
      *
      * @param settingsRequestDto  (optional)
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @PUT("api/2.0/files/thirdparty")
-    fun changeAccessToThirdparty(@Body settingsRequestDto: SettingsRequestDto? = null): Call<BooleanWrapper>
+    suspend fun changeAccessToThirdparty(@Body settingsRequestDto: SettingsRequestDto? = null): Response<BooleanWrapper>
 
     /**
      * PUT api/2.0/files/settings/autocleanup
@@ -73,10 +73,10 @@ interface SettingsApi {
      *
      *
      * @param autoCleanupRequestDto  (optional)
-     * @return [Call]<[AutoCleanUpDataWrapper]>
+     * @return [AutoCleanUpDataWrapper]
      */
     @PUT("api/2.0/files/settings/autocleanup")
-    fun changeAutomaticallyCleanUp(@Body autoCleanupRequestDto: AutoCleanupRequestDto? = null): Call<AutoCleanUpDataWrapper>
+    suspend fun changeAutomaticallyCleanUp(@Body autoCleanupRequestDto: AutoCleanupRequestDto? = null): Response<AutoCleanUpDataWrapper>
 
     /**
      * PUT api/2.0/files/settings/dafaultaccessrights
@@ -91,10 +91,10 @@ interface SettingsApi {
      *
      *
      * @param requestBody Sharing rights (None, ReadWrite, Read, Restrict, Varies, Review, Comment, FillForms, CustomFilter, RoomAdmin, Editing, Collaborator). (optional)
-     * @return [Call]<[FileShareArrayWrapper]>
+     * @return [FileShareArrayWrapper]
      */
     @PUT("api/2.0/files/settings/dafaultaccessrights")
-    fun changeDefaultAccessRights(@Body requestBody: kotlin.collections.List<kotlin.Int>? = null): Call<FileShareArrayWrapper>
+    suspend fun changeDefaultAccessRights(@Body requestBody: kotlin.collections.List<kotlin.Int>? = null): Response<FileShareArrayWrapper>
 
     /**
      * PUT api/2.0/files/changedeleteconfrim
@@ -109,10 +109,10 @@ interface SettingsApi {
      *
      *
      * @param settingsRequestDto  (optional)
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @PUT("api/2.0/files/changedeleteconfrim")
-    fun changeDeleteConfirm(@Body settingsRequestDto: SettingsRequestDto? = null): Call<BooleanWrapper>
+    suspend fun changeDeleteConfirm(@Body settingsRequestDto: SettingsRequestDto? = null): Response<BooleanWrapper>
 
     /**
      * PUT api/2.0/files/settings/downloadtargz
@@ -127,10 +127,10 @@ interface SettingsApi {
      *
      *
      * @param displayRequestDto  (optional)
-     * @return [Call]<[ICompressWrapper]>
+     * @return [ICompressWrapper]
      */
     @PUT("api/2.0/files/settings/downloadtargz")
-    fun changeDownloadZipFromBody(@Body displayRequestDto: DisplayRequestDto? = null): Call<ICompressWrapper>
+    suspend fun changeDownloadZipFromBody(@Body displayRequestDto: DisplayRequestDto? = null): Response<ICompressWrapper>
 
     /**
      * PUT api/2.0/files/docservice
@@ -146,10 +146,10 @@ interface SettingsApi {
      *
      *
      * @param checkDocServiceUrlRequestDto  (optional)
-     * @return [Call]<[DocServiceUrlWrapper]>
+     * @return [DocServiceUrlWrapper]
      */
     @PUT("api/2.0/files/docservice")
-    fun checkDocServiceUrl(@Body checkDocServiceUrlRequestDto: CheckDocServiceUrlRequestDto? = null): Call<DocServiceUrlWrapper>
+    suspend fun checkDocServiceUrl(@Body checkDocServiceUrlRequestDto: CheckDocServiceUrlRequestDto? = null): Response<DocServiceUrlWrapper>
 
     /**
      * PUT api/2.0/files/displayfileextension
@@ -164,10 +164,10 @@ interface SettingsApi {
      *
      *
      * @param settingsRequestDto  (optional)
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @PUT("api/2.0/files/displayfileextension")
-    fun displayFileExtension(@Body settingsRequestDto: SettingsRequestDto? = null): Call<BooleanWrapper>
+    suspend fun displayFileExtension(@Body settingsRequestDto: SettingsRequestDto? = null): Response<BooleanWrapper>
 
     /**
      * PUT api/2.0/files/displayrecent
@@ -183,10 +183,10 @@ interface SettingsApi {
      *
      *
      * @param displayRequestDto  (optional)
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @PUT("api/2.0/files/displayrecent")
-    fun displayRecent(@Body displayRequestDto: DisplayRequestDto? = null): Call<BooleanWrapper>
+    suspend fun displayRecent(@Body displayRequestDto: DisplayRequestDto? = null): Response<BooleanWrapper>
 
     /**
      * PUT api/2.0/files/settings/external
@@ -201,10 +201,10 @@ interface SettingsApi {
      *
      *
      * @param displayRequestDto  (optional)
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @PUT("api/2.0/files/settings/external")
-    fun externalShare(@Body displayRequestDto: DisplayRequestDto? = null): Call<BooleanWrapper>
+    suspend fun externalShare(@Body displayRequestDto: DisplayRequestDto? = null): Response<BooleanWrapper>
 
     /**
      * PUT api/2.0/files/settings/externalsocialmedia
@@ -219,10 +219,10 @@ interface SettingsApi {
      *
      *
      * @param displayRequestDto  (optional)
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @PUT("api/2.0/files/settings/externalsocialmedia")
-    fun externalShareSocialMedia(@Body displayRequestDto: DisplayRequestDto? = null): Call<BooleanWrapper>
+    suspend fun externalShareSocialMedia(@Body displayRequestDto: DisplayRequestDto? = null): Response<BooleanWrapper>
 
     /**
      * PUT api/2.0/files/forcesave
@@ -236,10 +236,10 @@ interface SettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/forcesave/
      *
      *
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @PUT("api/2.0/files/forcesave")
-    fun forcesave(): Call<BooleanWrapper>
+    suspend fun forcesave(): Response<BooleanWrapper>
 
     /**
      * GET api/2.0/files/settings/autocleanup
@@ -253,10 +253,10 @@ interface SettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-automatically-clean-up/
      *
      *
-     * @return [Call]<[AutoCleanUpDataWrapper]>
+     * @return [AutoCleanUpDataWrapper]
      */
     @GET("api/2.0/files/settings/autocleanup")
-    fun getAutomaticallyCleanUp(): Call<AutoCleanUpDataWrapper>
+    suspend fun getAutomaticallyCleanUp(): Response<AutoCleanUpDataWrapper>
 
     /**
      * GET api/2.0/files/settings/defaulttemplate
@@ -271,10 +271,10 @@ interface SettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-default-templates/
      *
      *
-     * @return [Call]<[DefaultTemplateSettingsWrapper]>
+     * @return [DefaultTemplateSettingsWrapper]
      */
     @GET("api/2.0/files/settings/defaulttemplate")
-    fun getDefaultTemplates(): Call<DefaultTemplateSettingsWrapper>
+    suspend fun getDefaultTemplates(): Response<DefaultTemplateSettingsWrapper>
 
     /**
      * GET api/2.0/files/docservice
@@ -288,10 +288,10 @@ interface SettingsApi {
      *
      *
      * @param version Specifies whether to return the editor version or not. (optional)
-     * @return [Call]<[DocServiceUrlWrapper]>
+     * @return [DocServiceUrlWrapper]
      */
     @GET("api/2.0/files/docservice")
-    fun getDocServiceUrl(@Query("version") version: kotlin.Boolean? = null): Call<DocServiceUrlWrapper>
+    suspend fun getDocServiceUrl(@Query("version") version: kotlin.Boolean? = null): Response<DocServiceUrlWrapper>
 
     /**
      * GET api/2.0/files/info
@@ -305,10 +305,10 @@ interface SettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-files-module/
      *
      *
-     * @return [Call]<[ModuleWrapper]>
+     * @return [ModuleWrapper]
      */
     @GET("api/2.0/files/info")
-    fun getFilesModule(): Call<ModuleWrapper>
+    suspend fun getFilesModule(): Response<ModuleWrapper>
 
     /**
      * GET api/2.0/files/settings
@@ -321,10 +321,10 @@ interface SettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-files-settings/
      *
      *
-     * @return [Call]<[FilesSettingsWrapper]>
+     * @return [FilesSettingsWrapper]
      */
     @GET("api/2.0/files/settings")
-    fun getFilesSettings(): Call<FilesSettingsWrapper>
+    suspend fun getFilesSettings(): Response<FilesSettingsWrapper>
 
     /**
      * PUT api/2.0/files/hideconfirmcanceloperation
@@ -339,10 +339,10 @@ interface SettingsApi {
      *
      *
      * @param settingsRequestDto  (optional)
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @PUT("api/2.0/files/hideconfirmcanceloperation")
-    fun hideConfirmCancelOperation(@Body settingsRequestDto: SettingsRequestDto? = null): Call<BooleanWrapper>
+    suspend fun hideConfirmCancelOperation(@Body settingsRequestDto: SettingsRequestDto? = null): Response<BooleanWrapper>
 
     /**
      * PUT api/2.0/files/hideconfirmconvert
@@ -357,10 +357,10 @@ interface SettingsApi {
      *
      *
      * @param hideConfirmConvertRequestDto  (optional)
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @PUT("api/2.0/files/hideconfirmconvert")
-    fun hideConfirmConvert(@Body hideConfirmConvertRequestDto: HideConfirmConvertRequestDto? = null): Call<BooleanWrapper>
+    suspend fun hideConfirmConvert(@Body hideConfirmConvertRequestDto: HideConfirmConvertRequestDto? = null): Response<BooleanWrapper>
 
     /**
      * PUT api/2.0/files/hideconfirmroomlifetime
@@ -375,10 +375,10 @@ interface SettingsApi {
      *
      *
      * @param settingsRequestDto  (optional)
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @PUT("api/2.0/files/hideconfirmroomlifetime")
-    fun hideConfirmRoomLifetime(@Body settingsRequestDto: SettingsRequestDto? = null): Call<BooleanWrapper>
+    suspend fun hideConfirmRoomLifetime(@Body settingsRequestDto: SettingsRequestDto? = null): Response<BooleanWrapper>
 
     /**
      * GET api/2.0/files/@privacy/available
@@ -392,10 +392,10 @@ interface SettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/is-available-privacy-room-settings/
      *
      *
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @GET("api/2.0/files/@privacy/available")
-    fun isAvailablePrivacyRoomSettings(): Call<BooleanWrapper>
+    suspend fun isAvailablePrivacyRoomSettings(): Response<BooleanWrapper>
 
     /**
      * PUT api/2.0/files/keepnewfilename
@@ -410,10 +410,10 @@ interface SettingsApi {
      *
      *
      * @param settingsRequestDto  (optional)
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @PUT("api/2.0/files/keepnewfilename")
-    fun keepNewFileName(@Body settingsRequestDto: SettingsRequestDto? = null): Call<BooleanWrapper>
+    suspend fun keepNewFileName(@Body settingsRequestDto: SettingsRequestDto? = null): Response<BooleanWrapper>
 
     /**
      * DELETE api/2.0/files/settings/defaulttemplate
@@ -429,10 +429,10 @@ interface SettingsApi {
      *
      *
      * @param defaultTemplateSettingsResetRequestDto  (optional)
-     * @return [Call]<[DefaultTemplateSettingsWrapper]>
+     * @return [DefaultTemplateSettingsWrapper]
      */
     @DELETE("api/2.0/files/settings/defaulttemplate")
-    fun resetDefaultTemplate(@Body defaultTemplateSettingsResetRequestDto: DefaultTemplateSettingsResetRequestDto? = null): Call<DefaultTemplateSettingsWrapper>
+    suspend fun resetDefaultTemplate(@Body defaultTemplateSettingsResetRequestDto: DefaultTemplateSettingsResetRequestDto? = null): Response<DefaultTemplateSettingsWrapper>
 
     /**
      * PUT api/2.0/files/settings/defaulttemplate
@@ -449,10 +449,10 @@ interface SettingsApi {
      *
      *
      * @param defaultTemplateSettingsRequestDto  (optional)
-     * @return [Call]<[DefaultTemplateSettingsWrapper]>
+     * @return [DefaultTemplateSettingsWrapper]
      */
     @PUT("api/2.0/files/settings/defaulttemplate")
-    fun setDefaultTemplate(@Body defaultTemplateSettingsRequestDto: DefaultTemplateSettingsRequestDto? = null): Call<DefaultTemplateSettingsWrapper>
+    suspend fun setDefaultTemplate(@Body defaultTemplateSettingsRequestDto: DefaultTemplateSettingsRequestDto? = null): Response<DefaultTemplateSettingsWrapper>
 
     /**
      * PUT api/2.0/files/settings/openeditorinsametab
@@ -467,10 +467,10 @@ interface SettingsApi {
      *
      *
      * @param settingsRequestDto  (optional)
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @PUT("api/2.0/files/settings/openeditorinsametab")
-    fun setOpenEditorInSameTab(@Body settingsRequestDto: SettingsRequestDto? = null): Call<BooleanWrapper>
+    suspend fun setOpenEditorInSameTab(@Body settingsRequestDto: SettingsRequestDto? = null): Response<BooleanWrapper>
 
     /**
      * PUT api/2.0/files/settings/organizegrouping
@@ -485,10 +485,10 @@ interface SettingsApi {
      *
      *
      * @param settingsRequestDto  (optional)
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @PUT("api/2.0/files/settings/organizegrouping")
-    fun setOrganizeRoomsGrouping(@Body settingsRequestDto: SettingsRequestDto? = null): Call<BooleanWrapper>
+    suspend fun setOrganizeRoomsGrouping(@Body settingsRequestDto: SettingsRequestDto? = null): Response<BooleanWrapper>
 
     /**
      * PUT api/2.0/files/storeforcesave
@@ -502,10 +502,10 @@ interface SettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/store-forcesave/
      *
      *
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @PUT("api/2.0/files/storeforcesave")
-    fun storeForcesave(): Call<BooleanWrapper>
+    suspend fun storeForcesave(): Response<BooleanWrapper>
 
     /**
      * PUT api/2.0/files/storeoriginal
@@ -520,10 +520,10 @@ interface SettingsApi {
      *
      *
      * @param settingsRequestDto  (optional)
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @PUT("api/2.0/files/storeoriginal")
-    fun storeOriginal(@Body settingsRequestDto: SettingsRequestDto? = null): Call<BooleanWrapper>
+    suspend fun storeOriginal(@Body settingsRequestDto: SettingsRequestDto? = null): Response<BooleanWrapper>
 
     /**
      * PUT api/2.0/files/updateifexist
@@ -538,10 +538,10 @@ interface SettingsApi {
      *
      *
      * @param settingsRequestDto  (optional)
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @PUT("api/2.0/files/updateifexist")
-    fun updateFileIfExist(@Body settingsRequestDto: SettingsRequestDto? = null): Call<BooleanWrapper>
+    suspend fun updateFileIfExist(@Body settingsRequestDto: SettingsRequestDto? = null): Response<BooleanWrapper>
 
     /**
      * POST api/2.0/files/settings/defaulttemplate
@@ -559,10 +559,10 @@ interface SettingsApi {
      *
      * @param fileExtension File extension of a template to replace
      * @param file File to replace template with
-     * @return [Call]<[DefaultTemplateSettingsWrapper]>
+     * @return [DefaultTemplateSettingsWrapper]
      */
     @Multipart
     @POST("api/2.0/files/settings/defaulttemplate")
-    fun uploadDefaultTemplate(@Query("FileExtension") fileExtension: kotlin.String, @Part file: MultipartBody.Part): Call<DefaultTemplateSettingsWrapper>
+    suspend fun uploadDefaultTemplate(@Query("FileExtension") fileExtension: kotlin.String, @Part file: MultipartBody.Part): Response<DefaultTemplateSettingsWrapper>
 
 }

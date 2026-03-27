@@ -47,7 +47,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(QuotaApi::class.java)
 val updateRoomsRoomIdsRequestDtoInteger : UpdateRoomsRoomIdsRequestDtoInteger =  // UpdateRoomsRoomIdsRequestDtoInteger | 
 
-val result : FolderIntegerArrayWrapper = webService.resetRoomQuota(updateRoomsRoomIdsRequestDtoInteger)
+launch(Dispatchers.IO) {
+    val result : FolderIntegerArrayWrapper = webService.resetRoomQuota(updateRoomsRoomIdsRequestDtoInteger)
+}
 ```
 
 ### HTTP request headers
@@ -94,7 +96,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(QuotaApi::class.java)
 val updateRoomsQuotaRequestDtoInteger : UpdateRoomsQuotaRequestDtoInteger =  // UpdateRoomsQuotaRequestDtoInteger | 
 
-val result : FolderIntegerArrayWrapper = webService.updateRoomsQuota(updateRoomsQuotaRequestDtoInteger)
+launch(Dispatchers.IO) {
+    val result : FolderIntegerArrayWrapper = webService.updateRoomsQuota(updateRoomsQuotaRequestDtoInteger)
+}
 ```
 
 ### HTTP request headers

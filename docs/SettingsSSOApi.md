@@ -47,7 +47,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SSOApi::class.java)
 
-val result : SsoSettingsV2Wrapper = webService.getDefaultSsoSettingsV2()
+launch(Dispatchers.IO) {
+    val result : SsoSettingsV2Wrapper = webService.getDefaultSsoSettingsV2()
+}
 ```
 
 ### HTTP request headers
@@ -85,7 +87,9 @@ No authorization required
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(SSOApi::class.java)
 
-val result : SsoSettingsV2Wrapper = webService.getSsoSettingsV2()
+launch(Dispatchers.IO) {
+    val result : SsoSettingsV2Wrapper = webService.getSsoSettingsV2()
+}
 ```
 
 ### HTTP request headers
@@ -129,7 +133,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SSOApi::class.java)
 
-val result : ObjectWrapper = webService.getSsoSettingsV2Constants()
+launch(Dispatchers.IO) {
+    val result : ObjectWrapper = webService.getSsoSettingsV2Constants()
+}
 ```
 
 ### HTTP request headers
@@ -173,7 +179,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SSOApi::class.java)
 
-val result : SsoSettingsV2Wrapper = webService.resetSsoSettingsV2()
+launch(Dispatchers.IO) {
+    val result : SsoSettingsV2Wrapper = webService.resetSsoSettingsV2()
+}
 ```
 
 ### HTTP request headers
@@ -220,7 +228,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SSOApi::class.java)
 val ssoSettingsRequestsDto : SsoSettingsRequestsDto =  // SsoSettingsRequestsDto | 
 
-val result : SsoSettingsV2Wrapper = webService.saveSsoSettingsV2(ssoSettingsRequestsDto)
+launch(Dispatchers.IO) {
+    val result : SsoSettingsV2Wrapper = webService.saveSsoSettingsV2(ssoSettingsRequestsDto)
+}
 ```
 
 ### HTTP request headers

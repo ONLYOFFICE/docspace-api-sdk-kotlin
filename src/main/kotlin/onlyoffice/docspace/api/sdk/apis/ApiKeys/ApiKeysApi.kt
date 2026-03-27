@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.ApiKeys
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -44,10 +44,10 @@ interface ApiKeysApi {
      *
      *
      * @param createApiKeyRequestDto  (optional)
-     * @return [Call]<[ApiKeyResponseWrapper]>
+     * @return [ApiKeyResponseWrapper]
      */
     @POST("api/2.0/keys")
-    fun createApiKey(@Body createApiKeyRequestDto: CreateApiKeyRequestDto? = null): Call<ApiKeyResponseWrapper>
+    suspend fun createApiKey(@Body createApiKeyRequestDto: CreateApiKeyRequestDto? = null): Response<ApiKeyResponseWrapper>
 
     /**
      * DELETE api/2.0/keys/{keyId}
@@ -62,10 +62,10 @@ interface ApiKeysApi {
      *
      *
      * @param keyId The API key ID.
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @DELETE("api/2.0/keys/{keyId}")
-    fun deleteApiKey(@Path("keyId") keyId: java.util.UUID): Call<BooleanWrapper>
+    suspend fun deleteApiKey(@Path("keyId") keyId: java.util.UUID): Response<BooleanWrapper>
 
     /**
      * GET api/2.0/keys/permissions
@@ -79,10 +79,10 @@ interface ApiKeysApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-all-permissions/
      *
      *
-     * @return [Call]<[STRINGArrayWrapper]>
+     * @return [STRINGArrayWrapper]
      */
     @GET("api/2.0/keys/permissions")
-    fun getAllPermissions(): Call<STRINGArrayWrapper>
+    suspend fun getAllPermissions(): Response<STRINGArrayWrapper>
 
     /**
      * GET api/2.0/keys/@self
@@ -96,10 +96,10 @@ interface ApiKeysApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-api-key/
      *
      *
-     * @return [Call]<[ApiKeyResponseWrapper]>
+     * @return [ApiKeyResponseWrapper]
      */
     @GET("api/2.0/keys/@self")
-    fun getApiKey(): Call<ApiKeyResponseWrapper>
+    suspend fun getApiKey(): Response<ApiKeyResponseWrapper>
 
     /**
      * GET api/2.0/keys
@@ -113,10 +113,10 @@ interface ApiKeysApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-api-keys/
      *
      *
-     * @return [Call]<[ApiKeyResponseArrayWrapper]>
+     * @return [ApiKeyResponseArrayWrapper]
      */
     @GET("api/2.0/keys")
-    fun getApiKeys(): Call<ApiKeyResponseArrayWrapper>
+    suspend fun getApiKeys(): Response<ApiKeyResponseArrayWrapper>
 
     /**
      * PUT api/2.0/keys/{keyId}
@@ -132,9 +132,9 @@ interface ApiKeysApi {
      *
      * @param keyId The unique identifier of the API key to update.
      * @param updateApiKeyRequest The request parameters for updating an existing API key.
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @PUT("api/2.0/keys/{keyId}")
-    fun updateApiKey(@Path("keyId") keyId: java.util.UUID, @Body updateApiKeyRequest: UpdateApiKeyRequest): Call<BooleanWrapper>
+    suspend fun updateApiKey(@Path("keyId") keyId: java.util.UUID, @Body updateApiKeyRequest: UpdateApiKeyRequest): Response<BooleanWrapper>
 
 }

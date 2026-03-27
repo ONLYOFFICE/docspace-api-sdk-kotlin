@@ -52,7 +52,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SecurityApi::class.java)
 
-val result : ObjectWrapper = webService.getEnabledModules()
+launch(Dispatchers.IO) {
+    val result : ObjectWrapper = webService.getEnabledModules()
+}
 ```
 
 ### HTTP request headers
@@ -101,7 +103,9 @@ val webService = apiClient.createWebservice(SecurityApi::class.java)
 val productid : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The ID of the product extracted from the query parameters.
 val userid : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The user ID extracted from the query parameters.
 
-val result : ProductAdministratorWrapper = webService.getIsProductAdministrator(productid, userid)
+launch(Dispatchers.IO) {
+    val result : ProductAdministratorWrapper = webService.getIsProductAdministrator(productid, userid)
+}
 ```
 
 ### HTTP request headers
@@ -145,7 +149,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SecurityApi::class.java)
 
-val result : PasswordSettingsWrapper = webService.getPasswordSettings()
+launch(Dispatchers.IO) {
+    val result : PasswordSettingsWrapper = webService.getPasswordSettings()
+}
 ```
 
 ### HTTP request headers
@@ -192,7 +198,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SecurityApi::class.java)
 val productid : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The ID of the product extracted from the route parameters.
 
-val result : EmployeeArrayWrapper = webService.getProductAdministrators(productid)
+launch(Dispatchers.IO) {
+    val result : EmployeeArrayWrapper = webService.getProductAdministrators(productid)
+}
 ```
 
 ### HTTP request headers
@@ -239,7 +247,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SecurityApi::class.java)
 val id : java.util.UUID = 38400000-8cf0-11bd-b23e-10b96e4ef00d // java.util.UUID | The ID extracted from the route parameters.
 
-val result : BooleanWrapper = webService.getWebItemSecurityInfo(id)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.getWebItemSecurityInfo(id)
+}
 ```
 
 ### HTTP request headers
@@ -286,7 +296,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SecurityApi::class.java)
 val ids : kotlin.collections.List<kotlin.String> = ["item1","item2"] // kotlin.collections.List<kotlin.String> | The list of module identifiers for which to retrieve the security settings.
 
-val result : SecurityArrayWrapper = webService.getWebItemSettingsSecurityInfo(ids)
+launch(Dispatchers.IO) {
+    val result : SecurityArrayWrapper = webService.getWebItemSettingsSecurityInfo(ids)
+}
 ```
 
 ### HTTP request headers
@@ -333,7 +345,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SecurityApi::class.java)
 val webItemsSecurityRequestsDto : WebItemsSecurityRequestsDto =  // WebItemsSecurityRequestsDto | 
 
-val result : SecurityArrayWrapper = webService.setAccessToWebItems(webItemsSecurityRequestsDto)
+launch(Dispatchers.IO) {
+    val result : SecurityArrayWrapper = webService.setAccessToWebItems(webItemsSecurityRequestsDto)
+}
 ```
 
 ### HTTP request headers
@@ -380,7 +394,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SecurityApi::class.java)
 val securityRequestsDto : SecurityRequestsDto =  // SecurityRequestsDto | 
 
-val result : ProductAdministratorWrapper = webService.setProductAdministrator(securityRequestsDto)
+launch(Dispatchers.IO) {
+    val result : ProductAdministratorWrapper = webService.setProductAdministrator(securityRequestsDto)
+}
 ```
 
 ### HTTP request headers
@@ -427,7 +443,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SecurityApi::class.java)
 val webItemSecurityRequestsDto : WebItemSecurityRequestsDto =  // WebItemSecurityRequestsDto | 
 
-val result : SecurityArrayWrapper = webService.setWebItemSecurity(webItemSecurityRequestsDto)
+launch(Dispatchers.IO) {
+    val result : SecurityArrayWrapper = webService.setWebItemSecurity(webItemSecurityRequestsDto)
+}
 ```
 
 ### HTTP request headers
@@ -474,7 +492,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SecurityApi::class.java)
 val passwordSettingsRequestsDto : PasswordSettingsRequestsDto =  // PasswordSettingsRequestsDto | 
 
-val result : PasswordSettingsWrapper = webService.updatePasswordSettings(passwordSettingsRequestsDto)
+launch(Dispatchers.IO) {
+    val result : PasswordSettingsWrapper = webService.updatePasswordSettings(passwordSettingsRequestsDto)
+}
 ```
 
 ### HTTP request headers

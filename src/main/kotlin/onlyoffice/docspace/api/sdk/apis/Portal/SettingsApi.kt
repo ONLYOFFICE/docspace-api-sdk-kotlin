@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Portal
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -40,10 +40,10 @@ interface SettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/continue-portal/
      *
      *
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @PUT("api/2.0/portal/continue")
-    fun continuePortal(): Call<Unit>
+    suspend fun continuePortal(): Response<Unit>
 
     /**
      * DELETE api/2.0/portal/delete
@@ -57,10 +57,10 @@ interface SettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-portal/
      *
      *
-     * @return [Call]<[StringWrapper]>
+     * @return [StringWrapper]
      */
     @DELETE("api/2.0/portal/delete")
-    fun deletePortal(): Call<StringWrapper>
+    suspend fun deletePortal(): Response<StringWrapper>
 
     /**
      * GET api/2.0/portal
@@ -74,10 +74,10 @@ interface SettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-portal-information/
      *
      *
-     * @return [Call]<[TenantWrapper]>
+     * @return [TenantWrapper]
      */
     @GET("api/2.0/portal")
-    fun getPortalInformation(): Call<TenantWrapper>
+    suspend fun getPortalInformation(): Response<TenantWrapper>
 
     /**
      * GET api/2.0/portal/path
@@ -92,10 +92,10 @@ interface SettingsApi {
      *
      *
      * @param virtualPath The virtual path for the portal resource access. (optional)
-     * @return [Call]<[ObjectWrapper]>
+     * @return [ObjectWrapper]
      */
     @GET("api/2.0/portal/path")
-    fun getPortalPath(@Query("virtualPath") virtualPath: kotlin.String? = null): Call<ObjectWrapper>
+    suspend fun getPortalPath(@Query("virtualPath") virtualPath: kotlin.String? = null): Response<ObjectWrapper>
 
     /**
      * POST api/2.0/portal/delete
@@ -109,10 +109,10 @@ interface SettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/send-delete-instructions/
      *
      *
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @POST("api/2.0/portal/delete")
-    fun sendDeleteInstructions(): Call<Unit>
+    suspend fun sendDeleteInstructions(): Response<Unit>
 
     /**
      * POST api/2.0/portal/suspend
@@ -126,10 +126,10 @@ interface SettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/send-suspend-instructions/
      *
      *
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @POST("api/2.0/portal/suspend")
-    fun sendSuspendInstructions(): Call<Unit>
+    suspend fun sendSuspendInstructions(): Response<Unit>
 
     /**
      * PUT api/2.0/portal/suspend
@@ -143,9 +143,9 @@ interface SettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/suspend-portal/
      *
      *
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @PUT("api/2.0/portal/suspend")
-    fun suspendPortal(): Call<Unit>
+    suspend fun suspendPortal(): Response<Unit>
 
 }

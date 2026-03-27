@@ -45,7 +45,9 @@ val apiClient = ApiClient()
 val webService = apiClient.createWebservice(ClientQueryingApi::class.java)
 val clientId : kotlin.String = 6c7cf17b-1bd3-47d5-94c6-be2d3570e168 // kotlin.String | The client identifier.
 
-val result : ClientResponse = webService.getClient(clientId)
+launch(Dispatchers.IO) {
+    val result : ClientResponse = webService.getClient(clientId)
+}
 ```
 
 ### HTTP request headers
@@ -86,7 +88,9 @@ val apiClient = ApiClient()
 val webService = apiClient.createWebservice(ClientQueryingApi::class.java)
 val clientId : kotlin.String = 6c7cf17b-1bd3-47d5-94c6-be2d3570e168 // kotlin.String | The client identifier.
 
-val result : ClientInfoResponse = webService.getClientInfo(clientId)
+launch(Dispatchers.IO) {
+    val result : ClientInfoResponse = webService.getClientInfo(clientId)
+}
 ```
 
 ### HTTP request headers
@@ -131,7 +135,9 @@ val limit : kotlin.Int = 1 // kotlin.Int | The maximum number of results returne
 val lastClientId : kotlin.String = 6c7cf17b-1bd3-47d5-94c6-be2d3570e168 // kotlin.String | The ID of the last retrieved client.
 val lastCreatedOn : java.time.OffsetDateTime = 2024-04-04T12:00:00Z // java.time.OffsetDateTime | The creation date of the last retrieved client.
 
-val result : PageableResponse = webService.getClients(limit, lastClientId, lastCreatedOn)
+launch(Dispatchers.IO) {
+    val result : PageableResponse = webService.getClients(limit, lastClientId, lastCreatedOn)
+}
 ```
 
 ### HTTP request headers
@@ -176,7 +182,9 @@ val limit : kotlin.Int = 1 // kotlin.Int | The maximum number of results returne
 val lastClientId : kotlin.String = 6c7cf17b-1bd3-47d5-94c6-be2d3570e168 // kotlin.String | The identifier of the last retrieved client.
 val lastCreatedOn : java.time.OffsetDateTime = 2024-04-04T12:00:00Z // java.time.OffsetDateTime | The creation date of the last retrieved client.
 
-val result : PageableResponseClientInfoResponse = webService.getClientsInfo(limit, lastClientId, lastCreatedOn)
+launch(Dispatchers.IO) {
+    val result : PageableResponseClientInfoResponse = webService.getClientsInfo(limit, lastClientId, lastCreatedOn)
+}
 ```
 
 ### HTTP request headers
@@ -219,7 +227,9 @@ val webService = apiClient.createWebservice(ClientQueryingApi::class.java)
 val limit : kotlin.Int = 1 // kotlin.Int | The maximum number of results returned per page.
 val lastModifiedOn : java.time.OffsetDateTime = 2024-04-04T12:00:00Z // java.time.OffsetDateTime | The date when the user consent was last modified.
 
-val result : PageableModificationResponse = webService.getConsents(limit, lastModifiedOn)
+launch(Dispatchers.IO) {
+    val result : PageableModificationResponse = webService.getConsents(limit, lastModifiedOn)
+}
 ```
 
 ### HTTP request headers
@@ -260,7 +270,9 @@ val apiClient = ApiClient()
 val webService = apiClient.createWebservice(ClientQueryingApi::class.java)
 val clientId : kotlin.String = 6c7cf17b-1bd3-47d5-94c6-be2d3570e168 // kotlin.String | The client identifier.
 
-val result : ClientInfoResponse = webService.getPublicClientInfo(clientId)
+launch(Dispatchers.IO) {
+    val result : ClientInfoResponse = webService.getPublicClientInfo(clientId)
+}
 ```
 
 ### HTTP request headers

@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Rooms
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -84,10 +84,10 @@ interface RoomsApi {
      *
      * @param id The room Id.
      * @param batchTagsRequestDto The parameters for managing tags. (optional)
-     * @return [Call]<[FolderIntegerWrapper]>
+     * @return [FolderIntegerWrapper]
      */
     @PUT("api/2.0/files/rooms/{id}/tags")
-    fun addRoomTags(@Path("id") id: kotlin.Int, @Body batchTagsRequestDto: BatchTagsRequestDto? = null): Call<FolderIntegerWrapper>
+    suspend fun addRoomTags(@Path("id") id: kotlin.Int, @Body batchTagsRequestDto: BatchTagsRequestDto? = null): Response<FolderIntegerWrapper>
 
     /**
      * PUT api/2.0/files/rooms/{id}/archive
@@ -103,10 +103,10 @@ interface RoomsApi {
      *
      * @param id The room ID.
      * @param archiveRoomRequest The parameters for archiving a room. (optional)
-     * @return [Call]<[FileOperationWrapper]>
+     * @return [FileOperationWrapper]
      */
     @PUT("api/2.0/files/rooms/{id}/archive")
-    fun archiveRoom(@Path("id") id: kotlin.Int, @Body archiveRoomRequest: ArchiveRoomRequest? = null): Call<FileOperationWrapper>
+    suspend fun archiveRoom(@Path("id") id: kotlin.Int, @Body archiveRoomRequest: ArchiveRoomRequest? = null): Response<FileOperationWrapper>
 
     /**
      * POST api/2.0/files/rooms/{id}/cover
@@ -124,10 +124,10 @@ interface RoomsApi {
      *
      * @param id The room ID.
      * @param coverRequestDto The request parameters to change the room cover.
-     * @return [Call]<[FolderIntegerWrapper]>
+     * @return [FolderIntegerWrapper]
      */
     @POST("api/2.0/files/rooms/{id}/cover")
-    fun changeRoomCover(@Path("id") id: kotlin.Int, @Body coverRequestDto: CoverRequestDto): Call<FolderIntegerWrapper>
+    suspend fun changeRoomCover(@Path("id") id: kotlin.Int, @Body coverRequestDto: CoverRequestDto): Response<FolderIntegerWrapper>
 
     /**
      * POST api/2.0/files/rooms
@@ -142,10 +142,10 @@ interface RoomsApi {
      *
      *
      * @param createRoomRequestDto  (optional)
-     * @return [Call]<[FolderIntegerWrapper]>
+     * @return [FolderIntegerWrapper]
      */
     @POST("api/2.0/files/rooms")
-    fun createRoom(@Body createRoomRequestDto: CreateRoomRequestDto? = null): Call<FolderIntegerWrapper>
+    suspend fun createRoom(@Body createRoomRequestDto: CreateRoomRequestDto? = null): Response<FolderIntegerWrapper>
 
     /**
      * POST api/2.0/files/rooms/fromtemplate
@@ -160,10 +160,10 @@ interface RoomsApi {
      *
      *
      * @param createRoomFromTemplateDto  (optional)
-     * @return [Call]<[RoomFromTemplateStatusWrapper]>
+     * @return [RoomFromTemplateStatusWrapper]
      */
     @POST("api/2.0/files/rooms/fromtemplate")
-    fun createRoomFromTemplate(@Body createRoomFromTemplateDto: CreateRoomFromTemplateDto? = null): Call<RoomFromTemplateStatusWrapper>
+    suspend fun createRoomFromTemplate(@Body createRoomFromTemplateDto: CreateRoomFromTemplateDto? = null): Response<RoomFromTemplateStatusWrapper>
 
     /**
      * POST api/2.0/files/rooms/{id}/logo
@@ -180,10 +180,10 @@ interface RoomsApi {
      *
      * @param id The room ID.
      * @param logoRequest The logo request parameters.
-     * @return [Call]<[FolderIntegerWrapper]>
+     * @return [FolderIntegerWrapper]
      */
     @POST("api/2.0/files/rooms/{id}/logo")
-    fun createRoomLogo(@Path("id") id: kotlin.Int, @Body logoRequest: LogoRequest): Call<FolderIntegerWrapper>
+    suspend fun createRoomLogo(@Path("id") id: kotlin.Int, @Body logoRequest: LogoRequest): Response<FolderIntegerWrapper>
 
     /**
      * POST api/2.0/files/tags
@@ -199,10 +199,10 @@ interface RoomsApi {
      *
      *
      * @param createTagRequestDto  (optional)
-     * @return [Call]<[StringWrapper]>
+     * @return [StringWrapper]
      */
     @POST("api/2.0/files/tags")
-    fun createRoomTag(@Body createTagRequestDto: CreateTagRequestDto? = null): Call<StringWrapper>
+    suspend fun createRoomTag(@Body createTagRequestDto: CreateTagRequestDto? = null): Response<StringWrapper>
 
     /**
      * POST api/2.0/files/roomtemplate
@@ -217,10 +217,10 @@ interface RoomsApi {
      *
      *
      * @param roomTemplateDto  (optional)
-     * @return [Call]<[RoomTemplateStatusWrapper]>
+     * @return [RoomTemplateStatusWrapper]
      */
     @POST("api/2.0/files/roomtemplate")
-    fun createRoomTemplate(@Body roomTemplateDto: RoomTemplateDto? = null): Call<RoomTemplateStatusWrapper>
+    suspend fun createRoomTemplate(@Body roomTemplateDto: RoomTemplateDto? = null): Response<RoomTemplateStatusWrapper>
 
     /**
      * POST api/2.0/files/rooms/thirdparty/{id}
@@ -236,10 +236,10 @@ interface RoomsApi {
      *
      * @param id The ID of the folder in the third-party storage in which the contents of the room will be stored.
      * @param createThirdPartyRoom The third-party room information.
-     * @return [Call]<[FolderStringWrapper]>
+     * @return [FolderStringWrapper]
      */
     @POST("api/2.0/files/rooms/thirdparty/{id}")
-    fun createRoomThirdParty(@Path("id") id: kotlin.String, @Body createThirdPartyRoom: CreateThirdPartyRoom): Call<FolderStringWrapper>
+    suspend fun createRoomThirdParty(@Path("id") id: kotlin.String, @Body createThirdPartyRoom: CreateThirdPartyRoom): Response<FolderStringWrapper>
 
     /**
      * DELETE api/2.0/files/tags
@@ -255,10 +255,10 @@ interface RoomsApi {
      *
      *
      * @param batchTagsRequestDto  (optional)
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @DELETE("api/2.0/files/tags")
-    fun deleteCustomTags(@Body batchTagsRequestDto: BatchTagsRequestDto? = null): Call<Unit>
+    suspend fun deleteCustomTags(@Body batchTagsRequestDto: BatchTagsRequestDto? = null): Response<Unit>
 
     /**
      * DELETE api/2.0/files/rooms/{id}
@@ -274,10 +274,10 @@ interface RoomsApi {
      *
      * @param id The room ID.
      * @param deleteRoomRequest The parameters for deleting a room.
-     * @return [Call]<[FileOperationWrapper]>
+     * @return [FileOperationWrapper]
      */
     @DELETE("api/2.0/files/rooms/{id}")
-    fun deleteRoom(@Path("id") id: kotlin.Int, @Body deleteRoomRequest: DeleteRoomRequest): Call<FileOperationWrapper>
+    suspend fun deleteRoom(@Path("id") id: kotlin.Int, @Body deleteRoomRequest: DeleteRoomRequest): Response<FileOperationWrapper>
 
     /**
      * DELETE api/2.0/files/rooms/{id}/logo
@@ -292,10 +292,10 @@ interface RoomsApi {
      *
      *
      * @param id The room ID.
-     * @return [Call]<[FolderIntegerWrapper]>
+     * @return [FolderIntegerWrapper]
      */
     @DELETE("api/2.0/files/rooms/{id}/logo")
-    fun deleteRoomLogo(@Path("id") id: kotlin.Int): Call<FolderIntegerWrapper>
+    suspend fun deleteRoomLogo(@Path("id") id: kotlin.Int): Response<FolderIntegerWrapper>
 
     /**
      * DELETE api/2.0/files/rooms/{id}/tags
@@ -312,10 +312,10 @@ interface RoomsApi {
      *
      * @param id The room Id.
      * @param batchTagsRequestDto The parameters for managing tags. (optional)
-     * @return [Call]<[FolderIntegerWrapper]>
+     * @return [FolderIntegerWrapper]
      */
     @DELETE("api/2.0/files/rooms/{id}/tags")
-    fun deleteRoomTags(@Path("id") id: kotlin.Int, @Body batchTagsRequestDto: BatchTagsRequestDto? = null): Call<FolderIntegerWrapper>
+    suspend fun deleteRoomTags(@Path("id") id: kotlin.Int, @Body batchTagsRequestDto: BatchTagsRequestDto? = null): Response<FolderIntegerWrapper>
 
     /**
      * GET api/2.0/files/rooms/{id}/news
@@ -330,10 +330,10 @@ interface RoomsApi {
      *
      *
      * @param id The room ID.
-     * @return [Call]<[NewItemsFileEntryBaseArrayWrapper]>
+     * @return [NewItemsFileEntryBaseArrayWrapper]
      */
     @GET("api/2.0/files/rooms/{id}/news")
-    fun getNewRoomItems(@Path("id") id: kotlin.Int): Call<NewItemsFileEntryBaseArrayWrapper>
+    suspend fun getNewRoomItems(@Path("id") id: kotlin.Int): Response<NewItemsFileEntryBaseArrayWrapper>
 
     /**
      * GET api/2.0/files/roomtemplate/{id}/public
@@ -348,10 +348,10 @@ interface RoomsApi {
      *
      *
      * @param id The room template ID.
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @GET("api/2.0/files/roomtemplate/{id}/public")
-    fun getPublicSettings(@Path("id") id: kotlin.Int): Call<BooleanWrapper>
+    suspend fun getPublicSettings(@Path("id") id: kotlin.Int): Response<BooleanWrapper>
 
     /**
      * GET api/2.0/files/rooms/covers
@@ -365,10 +365,10 @@ interface RoomsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-covers/
      *
      *
-     * @return [Call]<[CoversResultArrayWrapper]>
+     * @return [CoversResultArrayWrapper]
      */
     @GET("api/2.0/files/rooms/covers")
-    fun getRoomCovers(): Call<CoversResultArrayWrapper>
+    suspend fun getRoomCovers(): Response<CoversResultArrayWrapper>
 
     /**
      * GET api/2.0/files/rooms/fromtemplate/status
@@ -382,10 +382,10 @@ interface RoomsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-creating-status/
      *
      *
-     * @return [Call]<[RoomFromTemplateStatusWrapper]>
+     * @return [RoomFromTemplateStatusWrapper]
      */
     @GET("api/2.0/files/rooms/fromtemplate/status")
-    fun getRoomCreatingStatus(): Call<RoomFromTemplateStatusWrapper>
+    suspend fun getRoomCreatingStatus(): Response<RoomFromTemplateStatusWrapper>
 
     /**
      * GET api/2.0/files/rooms/indexexport
@@ -399,10 +399,10 @@ interface RoomsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-index-export/
      *
      *
-     * @return [Call]<[DocumentBuilderTaskWrapper]>
+     * @return [DocumentBuilderTaskWrapper]
      */
     @GET("api/2.0/files/rooms/indexexport")
-    fun getRoomIndexExport(): Call<DocumentBuilderTaskWrapper>
+    suspend fun getRoomIndexExport(): Response<DocumentBuilderTaskWrapper>
 
     /**
      * GET api/2.0/files/rooms/{id}
@@ -416,10 +416,10 @@ interface RoomsApi {
      *
      *
      * @param id The room ID.
-     * @return [Call]<[FolderIntegerWrapper]>
+     * @return [FolderIntegerWrapper]
      */
     @GET("api/2.0/files/rooms/{id}")
-    fun getRoomInfo(@Path("id") id: kotlin.Int): Call<FolderIntegerWrapper>
+    suspend fun getRoomInfo(@Path("id") id: kotlin.Int): Response<FolderIntegerWrapper>
 
     /**
      * GET api/2.0/files/rooms/{id}/links
@@ -435,10 +435,10 @@ interface RoomsApi {
      *
      * @param id The room ID.
      * @param type The link type. (optional)
-     * @return [Call]<[FileShareArrayWrapper]>
+     * @return [FileShareArrayWrapper]
      */
     @GET("api/2.0/files/rooms/{id}/links")
-    fun getRoomLinks(@Path("id") id: kotlin.Int, @Query("type") type: LinkType? = null): Call<FileShareArrayWrapper>
+    suspend fun getRoomLinks(@Path("id") id: kotlin.Int, @Query("type") type: LinkType? = null): Response<FileShareArrayWrapper>
 
     /**
      * GET api/2.0/files/rooms/{id}/share
@@ -457,10 +457,10 @@ interface RoomsApi {
      * @param count The number of items to be retrieved or processed. (optional)
      * @param startIndex The starting index of the items to retrieve in a paginated request. (optional)
      * @param filterValue The text filter value used for filtering room security information. (optional)
-     * @return [Call]<[FileShareArrayWrapper]>
+     * @return [FileShareArrayWrapper]
      */
     @GET("api/2.0/files/rooms/{id}/share")
-    fun getRoomSecurityInfo(@Path("id") id: kotlin.Int, @Query("filterType") filterType: ShareFilterType? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterValue") filterValue: kotlin.String? = null): Call<FileShareArrayWrapper>
+    suspend fun getRoomSecurityInfo(@Path("id") id: kotlin.Int, @Query("filterType") filterType: ShareFilterType? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<FileShareArrayWrapper>
 
     /**
      * GET api/2.0/files/tags
@@ -477,10 +477,10 @@ interface RoomsApi {
      * @param count Gets or sets the number of tag results to retrieve.  This property specifies the maximum amount of tag data to be included in the result set. (optional)
      * @param startIndex Represents the starting index from which the tags' information will be retrieved.  This property is used to define the offset for pagination when retrieving a list of tags. It determines  the point in the data set from which the retrieval begins. (optional)
      * @param filterValue Gets or sets the text value used for searching tags.  This property is typically used as a filter value when retrieving tag information. (optional)
-     * @return [Call]<[ObjectArrayWrapper]>
+     * @return [ObjectArrayWrapper]
      */
     @GET("api/2.0/files/tags")
-    fun getRoomTagsInfo(@Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterValue") filterValue: kotlin.String? = null): Call<ObjectArrayWrapper>
+    suspend fun getRoomTagsInfo(@Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<ObjectArrayWrapper>
 
     /**
      * GET api/2.0/files/roomtemplate/status
@@ -494,10 +494,10 @@ interface RoomsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-template-creating-status/
      *
      *
-     * @return [Call]<[RoomTemplateStatusWrapper]>
+     * @return [RoomTemplateStatusWrapper]
      */
     @GET("api/2.0/files/roomtemplate/status")
-    fun getRoomTemplateCreatingStatus(): Call<RoomTemplateStatusWrapper>
+    suspend fun getRoomTemplateCreatingStatus(): Response<RoomTemplateStatusWrapper>
 
     /**
      * GET api/2.0/files/rooms
@@ -528,10 +528,10 @@ interface RoomsApi {
      * @param sortOrder The order in which the results are sorted. (optional)
      * @param filterValue The text filter value used to refine search or query operations. (optional)
      * @param groupId The group ID (optional)
-     * @return [Call]<[FolderContentIntegerWrapper]>
+     * @return [FolderContentIntegerWrapper]
      */
     @GET("api/2.0/files/rooms")
-    fun getRoomsFolder(@Query("type") type: CSVParams? = null, @Query("subjectId") subjectId: kotlin.String? = null, @Query("searchArea") searchArea: SearchArea? = null, @Query("withoutTags") withoutTags: kotlin.Boolean? = null, @Query("tags") tags: kotlin.String? = null, @Query("excludeSubject") excludeSubject: kotlin.Boolean? = null, @Query("provider") provider: ProviderFilter? = null, @Query("subjectFilter") subjectFilter: SubjectFilter? = null, @Query("quotaFilter") quotaFilter: QuotaFilter? = null, @Query("storageFilter") storageFilter: StorageFilter? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterValue") filterValue: kotlin.String? = null, @Query("groupId") groupId: kotlin.Int? = null): Call<FolderContentIntegerWrapper>
+    suspend fun getRoomsFolder(@Query("type") type: CSVParams? = null, @Query("subjectId") subjectId: kotlin.String? = null, @Query("searchArea") searchArea: SearchArea? = null, @Query("withoutTags") withoutTags: kotlin.Boolean? = null, @Query("tags") tags: kotlin.String? = null, @Query("excludeSubject") excludeSubject: kotlin.Boolean? = null, @Query("provider") provider: ProviderFilter? = null, @Query("subjectFilter") subjectFilter: SubjectFilter? = null, @Query("quotaFilter") quotaFilter: QuotaFilter? = null, @Query("storageFilter") storageFilter: StorageFilter? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterValue") filterValue: kotlin.String? = null, @Query("groupId") groupId: kotlin.Int? = null): Response<FolderContentIntegerWrapper>
 
     /**
      * GET api/2.0/files/rooms/news
@@ -545,10 +545,10 @@ interface RoomsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-rooms-new-items/
      *
      *
-     * @return [Call]<[NewItemsRoomNewItemsArrayWrapper]>
+     * @return [NewItemsRoomNewItemsArrayWrapper]
      */
     @GET("api/2.0/files/rooms/news")
-    fun getRoomsNewItems(): Call<NewItemsRoomNewItemsArrayWrapper>
+    suspend fun getRoomsNewItems(): Response<NewItemsRoomNewItemsArrayWrapper>
 
     /**
      * GET api/2.0/files/rooms/{id}/link
@@ -564,10 +564,10 @@ interface RoomsApi {
      *
      *
      * @param id The room ID.
-     * @return [Call]<[FileShareWrapper]>
+     * @return [FileShareWrapper]
      */
     @GET("api/2.0/files/rooms/{id}/link")
-    fun getRoomsPrimaryExternalLink(@Path("id") id: kotlin.Int): Call<FileShareWrapper>
+    suspend fun getRoomsPrimaryExternalLink(@Path("id") id: kotlin.Int): Response<FileShareWrapper>
 
     /**
      * GET api/2.0/files/tags/{tagName}/haslinks
@@ -584,10 +584,10 @@ interface RoomsApi {
      *
      * @param tagName2 
      * @param tagName Represents the name of a tag (optional)
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @GET("api/2.0/files/tags/{tagName}/haslinks")
-    fun hasTagLinks(@Path("tagName") tagName2: kotlin.String, @Query("tagName") tagName: kotlin.String? = null): Call<BooleanWrapper>
+    suspend fun hasTagLinks(@Path("tagName") tagName2: kotlin.String, @Query("tagName") tagName: kotlin.String? = null): Response<BooleanWrapper>
 
     /**
      * PUT api/2.0/files/rooms/{id}/pin
@@ -602,10 +602,10 @@ interface RoomsApi {
      *
      *
      * @param id The room ID.
-     * @return [Call]<[FolderIntegerWrapper]>
+     * @return [FolderIntegerWrapper]
      */
     @PUT("api/2.0/files/rooms/{id}/pin")
-    fun pinRoom(@Path("id") id: kotlin.Int): Call<FolderIntegerWrapper>
+    suspend fun pinRoom(@Path("id") id: kotlin.Int): Response<FolderIntegerWrapper>
 
     /**
      * PUT api/2.0/files/rooms/{id}/reorder
@@ -620,10 +620,10 @@ interface RoomsApi {
      *
      *
      * @param id The room ID.
-     * @return [Call]<[FolderIntegerWrapper]>
+     * @return [FolderIntegerWrapper]
      */
     @PUT("api/2.0/files/rooms/{id}/reorder")
-    fun reorderRoom(@Path("id") id: kotlin.Int): Call<FolderIntegerWrapper>
+    suspend fun reorderRoom(@Path("id") id: kotlin.Int): Response<FolderIntegerWrapper>
 
     /**
      * POST api/2.0/files/rooms/{id}/resend
@@ -639,10 +639,10 @@ interface RoomsApi {
      *
      * @param id The room ID.
      * @param userInvitation The user invitation parameters.
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @POST("api/2.0/files/rooms/{id}/resend")
-    fun resendEmailInvitations(@Path("id") id: kotlin.Int, @Body userInvitation: UserInvitation): Call<Unit>
+    suspend fun resendEmailInvitations(@Path("id") id: kotlin.Int, @Body userInvitation: UserInvitation): Response<Unit>
 
     /**
      * PUT api/2.0/files/roomtemplate/public
@@ -657,10 +657,10 @@ interface RoomsApi {
      *
      *
      * @param setPublicDto  (optional)
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @PUT("api/2.0/files/roomtemplate/public")
-    fun setPublicSettings(@Body setPublicDto: SetPublicDto? = null): Call<Unit>
+    suspend fun setPublicSettings(@Body setPublicDto: SetPublicDto? = null): Response<Unit>
 
     /**
      * PUT api/2.0/files/rooms/{id}/links
@@ -676,10 +676,10 @@ interface RoomsApi {
      *
      * @param id The room ID.
      * @param roomLinkRequest The room link parameters.
-     * @return [Call]<[FileShareWrapper]>
+     * @return [FileShareWrapper]
      */
     @PUT("api/2.0/files/rooms/{id}/links")
-    fun setRoomLink(@Path("id") id: kotlin.Int, @Body roomLinkRequest: RoomLinkRequest): Call<FileShareWrapper>
+    suspend fun setRoomLink(@Path("id") id: kotlin.Int, @Body roomLinkRequest: RoomLinkRequest): Response<FileShareWrapper>
 
     /**
      * PUT api/2.0/files/rooms/{id}/share
@@ -695,10 +695,10 @@ interface RoomsApi {
      *
      * @param id The room ID.
      * @param roomInvitationRequest The room invitation request.
-     * @return [Call]<[RoomSecurityWrapper]>
+     * @return [RoomSecurityWrapper]
      */
     @PUT("api/2.0/files/rooms/{id}/share")
-    fun setRoomSecurity(@Path("id") id: kotlin.Int, @Body roomInvitationRequest: RoomInvitationRequest): Call<RoomSecurityWrapper>
+    suspend fun setRoomSecurity(@Path("id") id: kotlin.Int, @Body roomInvitationRequest: RoomInvitationRequest): Response<RoomSecurityWrapper>
 
     /**
      * POST api/2.0/files/rooms/{id}/indexexport
@@ -714,10 +714,10 @@ interface RoomsApi {
      *
      *
      * @param id The room ID.
-     * @return [Call]<[DocumentBuilderTaskWrapper]>
+     * @return [DocumentBuilderTaskWrapper]
      */
     @POST("api/2.0/files/rooms/{id}/indexexport")
-    fun startRoomIndexExport(@Path("id") id: kotlin.Int): Call<DocumentBuilderTaskWrapper>
+    suspend fun startRoomIndexExport(@Path("id") id: kotlin.Int): Response<DocumentBuilderTaskWrapper>
 
     /**
      * DELETE api/2.0/files/rooms/indexexport
@@ -731,10 +731,10 @@ interface RoomsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/terminate-room-index-export/
      *
      *
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @DELETE("api/2.0/files/rooms/indexexport")
-    fun terminateRoomIndexExport(): Call<Unit>
+    suspend fun terminateRoomIndexExport(): Response<Unit>
 
     /**
      * PUT api/2.0/files/rooms/{id}/unarchive
@@ -750,10 +750,10 @@ interface RoomsApi {
      *
      * @param id The room ID.
      * @param archiveRoomRequest The parameters for archiving a room. (optional)
-     * @return [Call]<[FileOperationWrapper]>
+     * @return [FileOperationWrapper]
      */
     @PUT("api/2.0/files/rooms/{id}/unarchive")
-    fun unarchiveRoom(@Path("id") id: kotlin.Int, @Body archiveRoomRequest: ArchiveRoomRequest? = null): Call<FileOperationWrapper>
+    suspend fun unarchiveRoom(@Path("id") id: kotlin.Int, @Body archiveRoomRequest: ArchiveRoomRequest? = null): Response<FileOperationWrapper>
 
     /**
      * PUT api/2.0/files/rooms/{id}/unpin
@@ -768,10 +768,10 @@ interface RoomsApi {
      *
      *
      * @param id The room ID.
-     * @return [Call]<[FolderIntegerWrapper]>
+     * @return [FolderIntegerWrapper]
      */
     @PUT("api/2.0/files/rooms/{id}/unpin")
-    fun unpinRoom(@Path("id") id: kotlin.Int): Call<FolderIntegerWrapper>
+    suspend fun unpinRoom(@Path("id") id: kotlin.Int): Response<FolderIntegerWrapper>
 
     /**
      * PUT api/2.0/files/rooms/{id}
@@ -787,10 +787,10 @@ interface RoomsApi {
      *
      * @param id The room ID.
      * @param updateRoomRequest The request parameters for updating a room.
-     * @return [Call]<[FolderIntegerWrapper]>
+     * @return [FolderIntegerWrapper]
      */
     @PUT("api/2.0/files/rooms/{id}")
-    fun updateRoom(@Path("id") id: kotlin.Int, @Body updateRoomRequest: UpdateRoomRequest): Call<FolderIntegerWrapper>
+    suspend fun updateRoom(@Path("id") id: kotlin.Int, @Body updateRoomRequest: UpdateRoomRequest): Response<FolderIntegerWrapper>
 
     /**
      * PUT api/2.0/files/tags
@@ -806,10 +806,10 @@ interface RoomsApi {
      *
      *
      * @param updateTagRequestDto  (optional)
-     * @return [Call]<[StringWrapper]>
+     * @return [StringWrapper]
      */
     @PUT("api/2.0/files/tags")
-    fun updateRoomTag(@Body updateTagRequestDto: UpdateTagRequestDto? = null): Call<StringWrapper>
+    suspend fun updateRoomTag(@Body updateTagRequestDto: UpdateTagRequestDto? = null): Response<StringWrapper>
 
     /**
      * POST api/2.0/files/logos
@@ -825,10 +825,10 @@ interface RoomsApi {
      *
      *
      * @param file The image data. (optional)
-     * @return [Call]<[UploadResultWrapper]>
+     * @return [UploadResultWrapper]
      */
     @Multipart
     @POST("api/2.0/files/logos")
-    fun uploadRoomLogo(@Part file: MultipartBody.Part? = null): Call<UploadResultWrapper>
+    suspend fun uploadRoomLogo(@Part file: MultipartBody.Part? = null): Response<UploadResultWrapper>
 
 }

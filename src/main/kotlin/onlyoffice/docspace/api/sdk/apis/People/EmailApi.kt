@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.People
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -46,10 +46,10 @@ interface EmailApi {
      *
      * @param userid The user ID.
      * @param changeEmailRequest The request parameters for updating a user email.
-     * @return [Call]<[EmployeeFullWrapper]>
+     * @return [EmployeeFullWrapper]
      */
     @PUT("api/2.0/people/{userid}/email")
-    fun changeUserEmail(@Path("userid") userid: java.util.UUID, @Body changeEmailRequest: ChangeEmailRequest): Call<EmployeeFullWrapper>
+    suspend fun changeUserEmail(@Path("userid") userid: java.util.UUID, @Body changeEmailRequest: ChangeEmailRequest): Response<EmployeeFullWrapper>
 
     /**
      * POST api/2.0/people/email
@@ -67,9 +67,9 @@ interface EmailApi {
      *
      *
      * @param updateMemberRequestDto  (optional)
-     * @return [Call]<[StringWrapper]>
+     * @return [StringWrapper]
      */
     @POST("api/2.0/people/email")
-    fun sendEmailChangeInstructions(@Body updateMemberRequestDto: UpdateMemberRequestDto? = null): Call<StringWrapper>
+    suspend fun sendEmailChangeInstructions(@Body updateMemberRequestDto: UpdateMemberRequestDto? = null): Response<StringWrapper>
 
 }

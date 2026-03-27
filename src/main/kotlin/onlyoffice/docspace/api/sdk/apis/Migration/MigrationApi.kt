@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Migration
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -42,10 +42,10 @@ interface MigrationApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/cancel-migration/
      *
      *
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @POST("api/2.0/migration/cancel")
-    fun cancelMigration(): Call<Unit>
+    suspend fun cancelMigration(): Response<Unit>
 
     /**
      * POST api/2.0/migration/clear
@@ -60,10 +60,10 @@ interface MigrationApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/clear-migration/
      *
      *
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @POST("api/2.0/migration/clear")
-    fun clearMigration(): Call<Unit>
+    suspend fun clearMigration(): Response<Unit>
 
     /**
      * POST api/2.0/migration/finish
@@ -79,10 +79,10 @@ interface MigrationApi {
      *
      *
      * @param finishDto  (optional)
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @POST("api/2.0/migration/finish")
-    fun finishMigration(@Body finishDto: FinishDto? = null): Call<Unit>
+    suspend fun finishMigration(@Body finishDto: FinishDto? = null): Response<Unit>
 
     /**
      * GET api/2.0/migration/logs
@@ -97,10 +97,10 @@ interface MigrationApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-migration-logs/
      *
      *
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @GET("api/2.0/migration/logs")
-    fun getMigrationLogs(): Call<Unit>
+    suspend fun getMigrationLogs(): Response<Unit>
 
     /**
      * GET api/2.0/migration/status
@@ -115,10 +115,10 @@ interface MigrationApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-migration-status/
      *
      *
-     * @return [Call]<[MigrationStatusWrapper]>
+     * @return [MigrationStatusWrapper]
      */
     @GET("api/2.0/migration/status")
-    fun getMigrationStatus(): Call<MigrationStatusWrapper>
+    suspend fun getMigrationStatus(): Response<MigrationStatusWrapper>
 
     /**
      * GET api/2.0/migration/list
@@ -133,10 +133,10 @@ interface MigrationApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/list-migrations/
      *
      *
-     * @return [Call]<[STRINGArrayWrapper]>
+     * @return [STRINGArrayWrapper]
      */
     @GET("api/2.0/migration/list")
-    fun listMigrations(): Call<STRINGArrayWrapper>
+    suspend fun listMigrations(): Response<STRINGArrayWrapper>
 
     /**
      * POST api/2.0/migration/migrate
@@ -152,10 +152,10 @@ interface MigrationApi {
      *
      *
      * @param migrationApiInfo  (optional)
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @POST("api/2.0/migration/migrate")
-    fun startMigration(@Body migrationApiInfo: MigrationApiInfo? = null): Call<Unit>
+    suspend fun startMigration(@Body migrationApiInfo: MigrationApiInfo? = null): Response<Unit>
 
     /**
      * POST api/2.0/migration/init/{migratorName}
@@ -171,9 +171,9 @@ interface MigrationApi {
      *
      *
      * @param migratorName The migrator name extracted from the route parameters.
-     * @return [Call]<[Unit]>
+     * @return [Unit]
      */
     @POST("api/2.0/migration/init/{migratorName}")
-    fun uploadAndInitializeMigration(@Path("migratorName") migratorName: kotlin.String): Call<Unit>
+    suspend fun uploadAndInitializeMigration(@Path("migratorName") migratorName: kotlin.String): Response<Unit>
 
 }

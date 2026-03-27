@@ -46,7 +46,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIVectorizationApi::class.java)
 val vectorizationStartRequestBody : VectorizationStartRequestBody =  // VectorizationStartRequestBody | The vectorization parameters including file identifiers.
 
-webService.startTask(vectorizationStartRequestBody)
+launch(Dispatchers.IO) {
+    webService.startTask(vectorizationStartRequestBody)
+}
 ```
 
 ### HTTP request headers

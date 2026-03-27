@@ -51,7 +51,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ApiKeysApi::class.java)
 val createApiKeyRequestDto : CreateApiKeyRequestDto =  // CreateApiKeyRequestDto | 
 
-val result : ApiKeyResponseWrapper = webService.createApiKey(createApiKeyRequestDto)
+launch(Dispatchers.IO) {
+    val result : ApiKeyResponseWrapper = webService.createApiKey(createApiKeyRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -98,7 +100,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ApiKeysApi::class.java)
 val keyId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The API key ID.
 
-val result : BooleanWrapper = webService.deleteApiKey(keyId)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.deleteApiKey(keyId)
+}
 ```
 
 ### HTTP request headers
@@ -142,7 +146,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ApiKeysApi::class.java)
 
-val result : STRINGArrayWrapper = webService.getAllPermissions()
+launch(Dispatchers.IO) {
+    val result : STRINGArrayWrapper = webService.getAllPermissions()
+}
 ```
 
 ### HTTP request headers
@@ -186,7 +192,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ApiKeysApi::class.java)
 
-val result : ApiKeyResponseWrapper = webService.getApiKey()
+launch(Dispatchers.IO) {
+    val result : ApiKeyResponseWrapper = webService.getApiKey()
+}
 ```
 
 ### HTTP request headers
@@ -230,7 +238,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ApiKeysApi::class.java)
 
-val result : ApiKeyResponseArrayWrapper = webService.getApiKeys()
+launch(Dispatchers.IO) {
+    val result : ApiKeyResponseArrayWrapper = webService.getApiKeys()
+}
 ```
 
 ### HTTP request headers
@@ -279,7 +289,9 @@ val webService = apiClient.createWebservice(ApiKeysApi::class.java)
 val keyId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The unique identifier of the API key to update.
 val updateApiKeyRequest : UpdateApiKeyRequest =  // UpdateApiKeyRequest | The request parameters for updating an existing API key.
 
-val result : BooleanWrapper = webService.updateApiKey(keyId, updateApiKeyRequest)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.updateApiKey(keyId, updateApiKeyRequest)
+}
 ```
 
 ### HTTP request headers

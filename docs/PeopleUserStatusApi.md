@@ -62,7 +62,9 @@ val sortOrder : SortOrder = 0 // SortOrder | The order in which the results are 
 val filterSeparator : kotlin.String = , // kotlin.String | Represents the separator used to split multiple filter criteria in a query string.
 val filterValue : kotlin.String = John // kotlin.String | A string value representing additional filter criteria used in query parameters.
 
-val result : EmployeeFullArrayWrapper = webService.getByStatus(status, filterBy, count, startIndex, sortBy, sortOrder, filterSeparator, filterValue)
+launch(Dispatchers.IO) {
+    val result : EmployeeFullArrayWrapper = webService.getByStatus(status, filterBy, count, startIndex, sortBy, sortOrder, filterSeparator, filterValue)
+}
 ```
 
 ### HTTP request headers
@@ -111,7 +113,9 @@ val webService = apiClient.createWebservice(UserStatusApi::class.java)
 val activationstatus : EmployeeActivationStatus = 1 // EmployeeActivationStatus | The new user activation status.
 val updateMembersRequestDto : UpdateMembersRequestDto =  // UpdateMembersRequestDto | The request parameters for updating the user information.
 
-val result : EmployeeFullArrayWrapper = webService.updateUserActivationStatus(activationstatus, updateMembersRequestDto)
+launch(Dispatchers.IO) {
+    val result : EmployeeFullArrayWrapper = webService.updateUserActivationStatus(activationstatus, updateMembersRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -160,7 +164,9 @@ val webService = apiClient.createWebservice(UserStatusApi::class.java)
 val status : EmployeeStatus = 1 // EmployeeStatus | The new user status.
 val updateMembersRequestDto : UpdateMembersRequestDto =  // UpdateMembersRequestDto | The request parameters for updating the user information.
 
-val result : EmployeeFullArrayWrapper = webService.updateUserStatus(status, updateMembersRequestDto)
+launch(Dispatchers.IO) {
+    val result : EmployeeFullArrayWrapper = webService.updateUserStatus(status, updateMembersRequestDto)
+}
 ```
 
 ### HTTP request headers

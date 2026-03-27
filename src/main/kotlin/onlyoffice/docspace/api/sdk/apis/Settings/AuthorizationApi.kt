@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Settings
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -42,10 +42,10 @@ interface AuthorizationApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-auth-services/
      *
      *
-     * @return [Call]<[AuthServiceRequestsArrayWrapper]>
+     * @return [AuthServiceRequestsArrayWrapper]
      */
     @GET("api/2.0/settings/authservice")
-    fun getAuthServices(): Call<AuthServiceRequestsArrayWrapper>
+    suspend fun getAuthServices(): Response<AuthServiceRequestsArrayWrapper>
 
     /**
      * POST api/2.0/settings/authservice
@@ -62,10 +62,10 @@ interface AuthorizationApi {
      *
      *
      * @param authServiceRequestsDto  (optional)
-     * @return [Call]<[BooleanWrapper]>
+     * @return [BooleanWrapper]
      */
     @POST("api/2.0/settings/authservice")
-    fun saveAuthKeys(@Body authServiceRequestsDto: AuthServiceRequestsDto? = null): Call<BooleanWrapper>
+    suspend fun saveAuthKeys(@Body authServiceRequestsDto: AuthServiceRequestsDto? = null): Response<BooleanWrapper>
 
     /**
      * POST api/2.0/settings/authservice/externaldb/test
@@ -80,9 +80,9 @@ interface AuthorizationApi {
      *
      *
      * @param externalDatabaseSettings  (optional)
-     * @return [Call]<[ConnectionTestResultWrapper]>
+     * @return [ConnectionTestResultWrapper]
      */
     @POST("api/2.0/settings/authservice/externaldb/test")
-    fun testExternalDatabaseConnection(@Body externalDatabaseSettings: ExternalDatabaseSettings? = null): Call<ConnectionTestResultWrapper>
+    suspend fun testExternalDatabaseConnection(@Body externalDatabaseSettings: ExternalDatabaseSettings? = null): Response<ConnectionTestResultWrapper>
 
 }

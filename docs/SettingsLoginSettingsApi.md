@@ -45,7 +45,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(LoginSettingsApi::class.java)
 
-val result : LoginSettingsWrapper = webService.getLoginSettings()
+launch(Dispatchers.IO) {
+    val result : LoginSettingsWrapper = webService.getLoginSettings()
+}
 ```
 
 ### HTTP request headers
@@ -89,7 +91,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(LoginSettingsApi::class.java)
 
-val result : LoginSettingsWrapper = webService.setDefaultLoginSettings()
+launch(Dispatchers.IO) {
+    val result : LoginSettingsWrapper = webService.setDefaultLoginSettings()
+}
 ```
 
 ### HTTP request headers
@@ -136,7 +140,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(LoginSettingsApi::class.java)
 val loginSettingsRequestDto : LoginSettingsRequestDto =  // LoginSettingsRequestDto | 
 
-val result : LoginSettingsWrapper = webService.updateLoginSettings(loginSettingsRequestDto)
+launch(Dispatchers.IO) {
+    val result : LoginSettingsWrapper = webService.updateLoginSettings(loginSettingsRequestDto)
+}
 ```
 
 ### HTTP request headers

@@ -49,7 +49,9 @@ val settingsView : kotlin.Boolean = false // kotlin.Boolean | Specifies whether 
 val clientCallback : kotlin.String = onAuthCallback // kotlin.String | The method that is called after authentication.
 val fromOnly : kotlin.String = Google // kotlin.String | The provider name if a response is required only from this provider.
 
-val result : AccountInfoArrayWrapper = webService.getThirdPartyAuthProviders(inviteView, settingsView, clientCallback, fromOnly)
+launch(Dispatchers.IO) {
+    val result : AccountInfoArrayWrapper = webService.getThirdPartyAuthProviders(inviteView, settingsView, clientCallback, fromOnly)
+}
 ```
 
 ### HTTP request headers
@@ -96,7 +98,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ThirdPartyAccountsApi::class.java)
 val linkAccountRequestDto : LinkAccountRequestDto =  // LinkAccountRequestDto | 
 
-webService.linkThirdPartyAccount(linkAccountRequestDto)
+launch(Dispatchers.IO) {
+    webService.linkThirdPartyAccount(linkAccountRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -137,7 +141,9 @@ val apiClient = ApiClient()
 val webService = apiClient.createWebservice(ThirdPartyAccountsApi::class.java)
 val signupAccountRequestDto : SignupAccountRequestDto =  // SignupAccountRequestDto | 
 
-val result : EmployeeWrapper = webService.signupThirdPartyAccount(signupAccountRequestDto)
+launch(Dispatchers.IO) {
+    val result : EmployeeWrapper = webService.signupThirdPartyAccount(signupAccountRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -184,7 +190,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ThirdPartyAccountsApi::class.java)
 val provider : kotlin.String = Google // kotlin.String | The provider name.
 
-webService.unlinkThirdPartyAccount(provider)
+launch(Dispatchers.IO) {
+    webService.unlinkThirdPartyAccount(provider)
+}
 ```
 
 ### HTTP request headers

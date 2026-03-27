@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.AI
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -51,10 +51,10 @@ interface AIAgentsApi {
      *
      *
      * @param createAgentRequestDto  (optional)
-     * @return [Call]<[FolderIntegerWrapper]>
+     * @return [FolderIntegerWrapper]
      */
     @POST("api/2.0/ai/agents")
-    fun createAgent(@Body createAgentRequestDto: CreateAgentRequestDto? = null): Call<FolderIntegerWrapper>
+    suspend fun createAgent(@Body createAgentRequestDto: CreateAgentRequestDto? = null): Response<FolderIntegerWrapper>
 
     /**
      * DELETE api/2.0/ai/agents/{id}
@@ -70,10 +70,10 @@ interface AIAgentsApi {
      *
      * @param id The room ID.
      * @param deleteRoomRequest The parameters for deleting a room.
-     * @return [Call]<[FileOperationWrapper]>
+     * @return [FileOperationWrapper]
      */
     @DELETE("api/2.0/ai/agents/{id}")
-    fun deleteAgent(@Path("id") id: kotlin.Int, @Body deleteRoomRequest: DeleteRoomRequest): Call<FileOperationWrapper>
+    suspend fun deleteAgent(@Path("id") id: kotlin.Int, @Body deleteRoomRequest: DeleteRoomRequest): Response<FileOperationWrapper>
 
     /**
      * GET api/2.0/ai/agents/{id}
@@ -88,10 +88,10 @@ interface AIAgentsApi {
      *
      *
      * @param id The room ID.
-     * @return [Call]<[FolderIntegerWrapper]>
+     * @return [FolderIntegerWrapper]
      */
     @GET("api/2.0/ai/agents/{id}")
-    fun getAgentInfo(@Path("id") id: kotlin.Int): Call<FolderIntegerWrapper>
+    suspend fun getAgentInfo(@Path("id") id: kotlin.Int): Response<FolderIntegerWrapper>
 
     /**
      * GET api/2.0/ai/agents
@@ -116,10 +116,10 @@ interface AIAgentsApi {
      * @param sortBy Specifies the field by which the room content should be sorted. (optional)
      * @param sortOrder The order in which the results are sorted. (optional)
      * @param filterValue The text filter value used to refine search or query operations. (optional)
-     * @return [Call]<[FolderContentIntegerWrapper]>
+     * @return [FolderContentIntegerWrapper]
      */
     @GET("api/2.0/ai/agents")
-    fun getAgents(@Query("subjectId") subjectId: kotlin.String? = null, @Query("withoutTags") withoutTags: kotlin.Boolean? = null, @Query("tags") tags: kotlin.String? = null, @Query("excludeSubject") excludeSubject: kotlin.Boolean? = null, @Query("subjectFilter") subjectFilter: SubjectFilter? = null, @Query("quotaFilter") quotaFilter: QuotaFilter? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterValue") filterValue: kotlin.String? = null): Call<FolderContentIntegerWrapper>
+    suspend fun getAgents(@Query("subjectId") subjectId: kotlin.String? = null, @Query("withoutTags") withoutTags: kotlin.Boolean? = null, @Query("tags") tags: kotlin.String? = null, @Query("excludeSubject") excludeSubject: kotlin.Boolean? = null, @Query("subjectFilter") subjectFilter: SubjectFilter? = null, @Query("quotaFilter") quotaFilter: QuotaFilter? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<FolderContentIntegerWrapper>
 
     /**
      * GET api/2.0/ai/agents/news
@@ -133,10 +133,10 @@ interface AIAgentsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-agents-new-items/
      *
      *
-     * @return [Call]<[NewItemsAgentNewItemsArrayWrapper]>
+     * @return [NewItemsAgentNewItemsArrayWrapper]
      */
     @GET("api/2.0/ai/agents/news")
-    fun getAgentsNewItems(): Call<NewItemsAgentNewItemsArrayWrapper>
+    suspend fun getAgentsNewItems(): Response<NewItemsAgentNewItemsArrayWrapper>
 
     /**
      * PUT api/2.0/ai/agents/resetquota
@@ -151,10 +151,10 @@ interface AIAgentsApi {
      *
      *
      * @param updateRoomsRoomIdsRequestDtoInteger  (optional)
-     * @return [Call]<[FolderIntegerArrayWrapper]>
+     * @return [FolderIntegerArrayWrapper]
      */
     @PUT("api/2.0/ai/agents/resetquota")
-    fun resetAgentsQuota(@Body updateRoomsRoomIdsRequestDtoInteger: UpdateRoomsRoomIdsRequestDtoInteger? = null): Call<FolderIntegerArrayWrapper>
+    suspend fun resetAgentsQuota(@Body updateRoomsRoomIdsRequestDtoInteger: UpdateRoomsRoomIdsRequestDtoInteger? = null): Response<FolderIntegerArrayWrapper>
 
     /**
      * PUT api/2.0/ai/agents/{id}
@@ -170,10 +170,10 @@ interface AIAgentsApi {
      *
      * @param id The room ID.
      * @param updateRoomRequest The request parameters for updating a room.
-     * @return [Call]<[FolderIntegerWrapper]>
+     * @return [FolderIntegerWrapper]
      */
     @PUT("api/2.0/ai/agents/{id}")
-    fun updateAgent(@Path("id") id: kotlin.Int, @Body updateRoomRequest: UpdateRoomRequest): Call<FolderIntegerWrapper>
+    suspend fun updateAgent(@Path("id") id: kotlin.Int, @Body updateRoomRequest: UpdateRoomRequest): Response<FolderIntegerWrapper>
 
     /**
      * PUT api/2.0/ai/agents/agentquota
@@ -188,9 +188,9 @@ interface AIAgentsApi {
      *
      *
      * @param updateRoomsQuotaRequestDtoInteger  (optional)
-     * @return [Call]<[FolderIntegerArrayWrapper]>
+     * @return [FolderIntegerArrayWrapper]
      */
     @PUT("api/2.0/ai/agents/agentquota")
-    fun updateAgentsQuota(@Body updateRoomsQuotaRequestDtoInteger: UpdateRoomsQuotaRequestDtoInteger? = null): Call<FolderIntegerArrayWrapper>
+    suspend fun updateAgentsQuota(@Body updateRoomsQuotaRequestDtoInteger: UpdateRoomsQuotaRequestDtoInteger? = null): Response<FolderIntegerArrayWrapper>
 
 }

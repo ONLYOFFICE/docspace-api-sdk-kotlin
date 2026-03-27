@@ -71,7 +71,9 @@ val webService = apiClient.createWebservice(OperationsApi::class.java)
 val sessionId : kotlin.String = session-123-abc // kotlin.String | The session ID.
 val folderId : kotlin.Int = 1 // kotlin.Int | The folder ID.
 
-webService.abortUploadSession(sessionId, folderId)
+launch(Dispatchers.IO) {
+    webService.abortUploadSession(sessionId, folderId)
+}
 ```
 
 ### HTTP request headers
@@ -118,7 +120,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(OperationsApi::class.java)
 val baseBatchRequestDto : BaseBatchRequestDto =  // BaseBatchRequestDto | 
 
-val result : BooleanWrapper = webService.addFavorites(baseBatchRequestDto)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.addFavorites(baseBatchRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -159,7 +163,9 @@ val apiClient = ApiClient()
 val webService = apiClient.createWebservice(OperationsApi::class.java)
 val downloadRequestDto : DownloadRequestDto =  // DownloadRequestDto | 
 
-val result : FileOperationArrayWrapper = webService.bulkDownload(downloadRequestDto)
+launch(Dispatchers.IO) {
+    val result : FileOperationArrayWrapper = webService.bulkDownload(downloadRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -208,7 +214,9 @@ val webService = apiClient.createWebservice(OperationsApi::class.java)
 val fileId : kotlin.Int = 1 // kotlin.Int | The file ID to check conversion status.
 val start : kotlin.Boolean = false // kotlin.Boolean | Specifies whether a conversion operation is started or not.
 
-val result : ConversationResultArrayWrapper = webService.checkConversionStatus(fileId, start)
+launch(Dispatchers.IO) {
+    val result : ConversationResultArrayWrapper = webService.checkConversionStatus(fileId, start)
+}
 ```
 
 ### HTTP request headers
@@ -255,7 +263,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(OperationsApi::class.java)
 val inDto : BatchRequestDto =  // BatchRequestDto | The request parameters for copying/moving files.
 
-val result : FileEntryBaseArrayWrapper = webService.checkMoveOrCopyBatchItems(inDto)
+launch(Dispatchers.IO) {
+    val result : FileEntryBaseArrayWrapper = webService.checkMoveOrCopyBatchItems(inDto)
+}
 ```
 
 ### HTTP request headers
@@ -302,7 +312,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(OperationsApi::class.java)
 val inDto : BatchRequestDto =  // BatchRequestDto | The request parameters for copying/moving files.
 
-val result : CheckDestFolderWrapper = webService.checkMoveOrCopyDestFolder(inDto)
+launch(Dispatchers.IO) {
+    val result : CheckDestFolderWrapper = webService.checkMoveOrCopyDestFolder(inDto)
+}
 ```
 
 ### HTTP request headers
@@ -349,7 +361,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(OperationsApi::class.java)
 val batchRequestDto : BatchRequestDto =  // BatchRequestDto | 
 
-val result : FileOperationArrayWrapper = webService.copyBatchItems(batchRequestDto)
+launch(Dispatchers.IO) {
+    val result : FileOperationArrayWrapper = webService.copyBatchItems(batchRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -398,7 +412,9 @@ val webService = apiClient.createWebservice(OperationsApi::class.java)
 val folderId : kotlin.Int = 1 // kotlin.Int | The session folder ID.
 val sessionRequest : SessionRequest =  // SessionRequest | The session parameters.
 
-val result : ChunkedUploadSessionResponseWrapperIntegerWrapper = webService.createUploadSession(folderId, sessionRequest)
+launch(Dispatchers.IO) {
+    val result : ChunkedUploadSessionResponseWrapperIntegerWrapper = webService.createUploadSession(folderId, sessionRequest)
+}
 ```
 
 ### HTTP request headers
@@ -447,7 +463,9 @@ val webService = apiClient.createWebservice(OperationsApi::class.java)
 val folderId : kotlin.Int = 1 // kotlin.Int | The session folder ID.
 val sessionRequest : SessionRequest =  // SessionRequest | The session parameters.
 
-val result : ChunkedUploadSessionResponseIntegerWrapper = webService.createUploadSessionInFolder(folderId, sessionRequest)
+launch(Dispatchers.IO) {
+    val result : ChunkedUploadSessionResponseIntegerWrapper = webService.createUploadSessionInFolder(folderId, sessionRequest)
+}
 ```
 
 ### HTTP request headers
@@ -494,7 +512,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(OperationsApi::class.java)
 val deleteBatchRequestDto : DeleteBatchRequestDto =  // DeleteBatchRequestDto | 
 
-val result : FileOperationArrayWrapper = webService.deleteBatchItems(deleteBatchRequestDto)
+launch(Dispatchers.IO) {
+    val result : FileOperationArrayWrapper = webService.deleteBatchItems(deleteBatchRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -541,7 +561,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(OperationsApi::class.java)
 val baseBatchRequestDto : BaseBatchRequestDto =  // BaseBatchRequestDto | 
 
-val result : BooleanWrapper = webService.deleteFavoritesFromBody(baseBatchRequestDto)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.deleteFavoritesFromBody(baseBatchRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -588,7 +610,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(OperationsApi::class.java)
 val deleteVersionBatchRequestDto : DeleteVersionBatchRequestDto =  // DeleteVersionBatchRequestDto | 
 
-val result : FileOperationWrapper = webService.deleteFileVersions(deleteVersionBatchRequestDto)
+launch(Dispatchers.IO) {
+    val result : FileOperationWrapper = webService.deleteFileVersions(deleteVersionBatchRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -635,7 +659,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(OperationsApi::class.java)
 val duplicateRequestDto : DuplicateRequestDto =  // DuplicateRequestDto | 
 
-val result : FileOperationArrayWrapper = webService.duplicateBatchItems(duplicateRequestDto)
+launch(Dispatchers.IO) {
+    val result : FileOperationArrayWrapper = webService.duplicateBatchItems(duplicateRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -682,7 +708,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(OperationsApi::class.java)
 val single : kotlin.Boolean = false // kotlin.Boolean | Specifies whether to return only the current operation
 
-val result : FileOperationArrayWrapper = webService.emptyTrash(single)
+launch(Dispatchers.IO) {
+    val result : FileOperationArrayWrapper = webService.emptyTrash(single)
+}
 ```
 
 ### HTTP request headers
@@ -731,7 +759,9 @@ val webService = apiClient.createWebservice(OperationsApi::class.java)
 val folderId : kotlin.Int = 1 // kotlin.Int | The folder ID.
 val sessionId : kotlin.String = doc_key_123 // kotlin.String | The session ID.
 
-val result : UploadSessionResponseIntegerWrapper = webService.finalizeSession(folderId, sessionId)
+launch(Dispatchers.IO) {
+    val result : UploadSessionResponseIntegerWrapper = webService.finalizeSession(folderId, sessionId)
+}
 ```
 
 ### HTTP request headers
@@ -772,7 +802,9 @@ val apiClient = ApiClient()
 val webService = apiClient.createWebservice(OperationsApi::class.java)
 val id : kotlin.String = operation-123-abc // kotlin.String | The ID of the file operation.
 
-val result : FileOperationArrayWrapper = webService.getOperationStatuses(id)
+launch(Dispatchers.IO) {
+    val result : FileOperationArrayWrapper = webService.getOperationStatuses(id)
+}
 ```
 
 ### HTTP request headers
@@ -815,7 +847,9 @@ val webService = apiClient.createWebservice(OperationsApi::class.java)
 val operationType : FileOperationType = 0 // FileOperationType | Specifies the type of file operation to be retrieved.
 val id : kotlin.String = operation-123-abc // kotlin.String | The ID of the file operation.
 
-val result : FileOperationArrayWrapper = webService.getOperationStatusesByType(operationType, id)
+launch(Dispatchers.IO) {
+    val result : FileOperationArrayWrapper = webService.getOperationStatusesByType(operationType, id)
+}
 ```
 
 ### HTTP request headers
@@ -862,7 +896,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(OperationsApi::class.java)
 val baseBatchRequestDto : BaseBatchRequestDto =  // BaseBatchRequestDto | 
 
-val result : FileOperationArrayWrapper = webService.markAsRead(baseBatchRequestDto)
+launch(Dispatchers.IO) {
+    val result : FileOperationArrayWrapper = webService.markAsRead(baseBatchRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -909,7 +945,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(OperationsApi::class.java)
 val batchRequestDto : BatchRequestDto =  // BatchRequestDto | 
 
-val result : FileOperationArrayWrapper = webService.moveBatchItems(batchRequestDto)
+launch(Dispatchers.IO) {
+    val result : FileOperationArrayWrapper = webService.moveBatchItems(batchRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -958,7 +996,9 @@ val webService = apiClient.createWebservice(OperationsApi::class.java)
 val fileId : kotlin.Int = 1 // kotlin.Int | The file ID to start conversion proccess.
 val checkConversionRequestDtoInteger : CheckConversionRequestDtoInteger =  // CheckConversionRequestDtoInteger | The parameters for checking file conversion.
 
-val result : ConversationResultArrayWrapper = webService.startFileConversion(fileId, checkConversionRequestDtoInteger)
+launch(Dispatchers.IO) {
+    val result : ConversationResultArrayWrapper = webService.startFileConversion(fileId, checkConversionRequestDtoInteger)
+}
 ```
 
 ### HTTP request headers
@@ -999,7 +1039,9 @@ val apiClient = ApiClient()
 val webService = apiClient.createWebservice(OperationsApi::class.java)
 val id : kotlin.String = some-operation-id // kotlin.String | The operation unique identifier.
 
-val result : FileOperationArrayWrapper = webService.terminateTasks(id)
+launch(Dispatchers.IO) {
+    val result : FileOperationArrayWrapper = webService.terminateTasks(id)
+}
 ```
 
 ### HTTP request headers
@@ -1048,7 +1090,9 @@ val webService = apiClient.createWebservice(OperationsApi::class.java)
 val fileId : kotlin.Int = 1 // kotlin.Int | The file ID where the comment is located.
 val updateComment : UpdateComment =  // UpdateComment | The parameters for updating a comment.
 
-val result : StringWrapper = webService.updateFileComment(fileId, updateComment)
+launch(Dispatchers.IO) {
+    val result : StringWrapper = webService.updateFileComment(fileId, updateComment)
+}
 ```
 
 ### HTTP request headers
@@ -1101,7 +1145,9 @@ val sessionId : kotlin.String = session_abc123 // kotlin.String | The upload ses
 val chunkNumber : kotlin.Int = 1 // kotlin.Int | The chunk number.
 val file : java.io.File = BINARY_DATA_HERE // java.io.File | The file chunk to be uploaded as part of the multipart/form-data request.  This property represents the uploaded file chunk content from the HTTP request form for chunked upload operations.  The file chunk is accessed via the IFormFile interface which provides access to the chunk content and length.
 
-val result : ChunkedUploadSessionResponseIntegerWrapper = webService.uploadAsyncSession(folderId, sessionId, chunkNumber, file)
+launch(Dispatchers.IO) {
+    val result : ChunkedUploadSessionResponseIntegerWrapper = webService.uploadAsyncSession(folderId, sessionId, chunkNumber, file)
+}
 ```
 
 ### HTTP request headers
@@ -1152,7 +1198,9 @@ val folderId : kotlin.Int = 1 // kotlin.Int | The folder ID.
 val sessionId : kotlin.String = session_abc123 // kotlin.String | The upload session ID.
 val file : java.io.File = BINARY_DATA_HERE // java.io.File | The file to be uploaded as part of the multipart/form-data request.  This property represents the uploaded file content from the HTTP request form.  The file is accessed via the IFormFile interface which provides access to the file name, content type, length, and stream.
 
-val result : UploadSessionResponseIntegerWrapper = webService.uploadSession(folderId, sessionId, file)
+launch(Dispatchers.IO) {
+    val result : UploadSessionResponseIntegerWrapper = webService.uploadSession(folderId, sessionId, file)
+}
 ```
 
 ### HTTP request headers

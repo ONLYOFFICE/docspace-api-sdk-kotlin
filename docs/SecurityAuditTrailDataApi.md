@@ -49,7 +49,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AuditTrailDataApi::class.java)
 
-val result : StringWrapper = webService.createAuditTrailReport()
+launch(Dispatchers.IO) {
+    val result : StringWrapper = webService.createAuditTrailReport()
+}
 ```
 
 ### HTTP request headers
@@ -114,7 +116,9 @@ val to : ApiDateTime = 2024-01-31T23:59:59Z // ApiDateTime | The ending date and
 val count : kotlin.Int = 100 // kotlin.Int | The maximum number of audit event records to retrieve.
 val startIndex : kotlin.Int = 0 // kotlin.Int | The index of the first audit event record to retrieve in a paged query.
 
-val result : AuditEventArrayWrapper = webService.getAuditEventsByFilter(userId, moduleType, actionType, action, entryType, target, from, to, count, startIndex)
+launch(Dispatchers.IO) {
+    val result : AuditEventArrayWrapper = webService.getAuditEventsByFilter(userId, moduleType, actionType, action, entryType, target, from, to, count, startIndex)
+}
 ```
 
 ### HTTP request headers
@@ -158,7 +162,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AuditTrailDataApi::class.java)
 
-val result : TenantAuditSettingsWrapper = webService.getAuditSettings()
+launch(Dispatchers.IO) {
+    val result : TenantAuditSettingsWrapper = webService.getAuditSettings()
+}
 ```
 
 ### HTTP request headers
@@ -201,7 +207,9 @@ val webService = apiClient.createWebservice(AuditTrailDataApi::class.java)
 val productType : ProductType = Documents // ProductType | The type of product related to the audit trail.
 val moduleType : LocationType = Files // LocationType | The location associated with the audit trail.
 
-val result : ObjectWrapper = webService.getAuditTrailMappers(productType, moduleType)
+launch(Dispatchers.IO) {
+    val result : ObjectWrapper = webService.getAuditTrailMappers(productType, moduleType)
+}
 ```
 
 ### HTTP request headers
@@ -239,7 +247,9 @@ No authorization required
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(AuditTrailDataApi::class.java)
 
-val result : ObjectWrapper = webService.getAuditTrailTypes()
+launch(Dispatchers.IO) {
+    val result : ObjectWrapper = webService.getAuditTrailTypes()
+}
 ```
 
 ### HTTP request headers
@@ -283,7 +293,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AuditTrailDataApi::class.java)
 
-val result : AuditEventArrayWrapper = webService.getLastAuditEvents()
+launch(Dispatchers.IO) {
+    val result : AuditEventArrayWrapper = webService.getLastAuditEvents()
+}
 ```
 
 ### HTTP request headers
@@ -330,7 +342,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AuditTrailDataApi::class.java)
 val tenantAuditSettingsWrapper : TenantAuditSettingsWrapper =  // TenantAuditSettingsWrapper | 
 
-val result : TenantAuditSettingsWrapper = webService.setAuditSettings(tenantAuditSettingsWrapper)
+launch(Dispatchers.IO) {
+    val result : TenantAuditSettingsWrapper = webService.setAuditSettings(tenantAuditSettingsWrapper)
+}
 ```
 
 ### HTTP request headers

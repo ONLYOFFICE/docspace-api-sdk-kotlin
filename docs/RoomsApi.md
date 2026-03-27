@@ -87,7 +87,9 @@ val webService = apiClient.createWebservice(RoomsApi::class.java)
 val id : kotlin.Int = 1 // kotlin.Int | The room Id.
 val batchTagsRequestDto : BatchTagsRequestDto =  // BatchTagsRequestDto | The parameters for managing tags.
 
-val result : FolderIntegerWrapper = webService.addRoomTags(id, batchTagsRequestDto)
+launch(Dispatchers.IO) {
+    val result : FolderIntegerWrapper = webService.addRoomTags(id, batchTagsRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -136,7 +138,9 @@ val webService = apiClient.createWebservice(RoomsApi::class.java)
 val id : kotlin.Int = 1 // kotlin.Int | The room ID.
 val archiveRoomRequest : ArchiveRoomRequest =  // ArchiveRoomRequest | The parameters for archiving a room.
 
-val result : FileOperationWrapper = webService.archiveRoom(id, archiveRoomRequest)
+launch(Dispatchers.IO) {
+    val result : FileOperationWrapper = webService.archiveRoom(id, archiveRoomRequest)
+}
 ```
 
 ### HTTP request headers
@@ -185,7 +189,9 @@ val webService = apiClient.createWebservice(RoomsApi::class.java)
 val id : kotlin.Int = 1 // kotlin.Int | The room ID.
 val coverRequestDto : CoverRequestDto =  // CoverRequestDto | The request parameters to change the room cover.
 
-val result : FolderIntegerWrapper = webService.changeRoomCover(id, coverRequestDto)
+launch(Dispatchers.IO) {
+    val result : FolderIntegerWrapper = webService.changeRoomCover(id, coverRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -232,7 +238,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
 val createRoomRequestDto : CreateRoomRequestDto =  // CreateRoomRequestDto | 
 
-val result : FolderIntegerWrapper = webService.createRoom(createRoomRequestDto)
+launch(Dispatchers.IO) {
+    val result : FolderIntegerWrapper = webService.createRoom(createRoomRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -279,7 +287,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
 val createRoomFromTemplateDto : CreateRoomFromTemplateDto =  // CreateRoomFromTemplateDto | 
 
-val result : RoomFromTemplateStatusWrapper = webService.createRoomFromTemplate(createRoomFromTemplateDto)
+launch(Dispatchers.IO) {
+    val result : RoomFromTemplateStatusWrapper = webService.createRoomFromTemplate(createRoomFromTemplateDto)
+}
 ```
 
 ### HTTP request headers
@@ -328,7 +338,9 @@ val webService = apiClient.createWebservice(RoomsApi::class.java)
 val id : kotlin.Int = 1 // kotlin.Int | The room ID.
 val logoRequest : LogoRequest =  // LogoRequest | The logo request parameters.
 
-val result : FolderIntegerWrapper = webService.createRoomLogo(id, logoRequest)
+launch(Dispatchers.IO) {
+    val result : FolderIntegerWrapper = webService.createRoomLogo(id, logoRequest)
+}
 ```
 
 ### HTTP request headers
@@ -375,7 +387,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
 val createTagRequestDto : CreateTagRequestDto =  // CreateTagRequestDto | 
 
-val result : StringWrapper = webService.createRoomTag(createTagRequestDto)
+launch(Dispatchers.IO) {
+    val result : StringWrapper = webService.createRoomTag(createTagRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -422,7 +436,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
 val roomTemplateDto : RoomTemplateDto =  // RoomTemplateDto | 
 
-val result : RoomTemplateStatusWrapper = webService.createRoomTemplate(roomTemplateDto)
+launch(Dispatchers.IO) {
+    val result : RoomTemplateStatusWrapper = webService.createRoomTemplate(roomTemplateDto)
+}
 ```
 
 ### HTTP request headers
@@ -471,7 +487,9 @@ val webService = apiClient.createWebservice(RoomsApi::class.java)
 val id : kotlin.String = folder-123-abc // kotlin.String | The ID of the folder in the third-party storage in which the contents of the room will be stored.
 val createThirdPartyRoom : CreateThirdPartyRoom =  // CreateThirdPartyRoom | The third-party room information.
 
-val result : FolderStringWrapper = webService.createRoomThirdParty(id, createThirdPartyRoom)
+launch(Dispatchers.IO) {
+    val result : FolderStringWrapper = webService.createRoomThirdParty(id, createThirdPartyRoom)
+}
 ```
 
 ### HTTP request headers
@@ -518,7 +536,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
 val batchTagsRequestDto : BatchTagsRequestDto =  // BatchTagsRequestDto | 
 
-webService.deleteCustomTags(batchTagsRequestDto)
+launch(Dispatchers.IO) {
+    webService.deleteCustomTags(batchTagsRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -567,7 +587,9 @@ val webService = apiClient.createWebservice(RoomsApi::class.java)
 val id : kotlin.Int = 10 // kotlin.Int | The room ID.
 val deleteRoomRequest : DeleteRoomRequest =  // DeleteRoomRequest | The parameters for deleting a room.
 
-val result : FileOperationWrapper = webService.deleteRoom(id, deleteRoomRequest)
+launch(Dispatchers.IO) {
+    val result : FileOperationWrapper = webService.deleteRoom(id, deleteRoomRequest)
+}
 ```
 
 ### HTTP request headers
@@ -614,7 +636,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
 val id : kotlin.Int = 1 // kotlin.Int | The room ID.
 
-val result : FolderIntegerWrapper = webService.deleteRoomLogo(id)
+launch(Dispatchers.IO) {
+    val result : FolderIntegerWrapper = webService.deleteRoomLogo(id)
+}
 ```
 
 ### HTTP request headers
@@ -663,7 +687,9 @@ val webService = apiClient.createWebservice(RoomsApi::class.java)
 val id : kotlin.Int = 1 // kotlin.Int | The room Id.
 val batchTagsRequestDto : BatchTagsRequestDto =  // BatchTagsRequestDto | The parameters for managing tags.
 
-val result : FolderIntegerWrapper = webService.deleteRoomTags(id, batchTagsRequestDto)
+launch(Dispatchers.IO) {
+    val result : FolderIntegerWrapper = webService.deleteRoomTags(id, batchTagsRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -710,7 +736,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
 val id : kotlin.Int = 1 // kotlin.Int | The room ID.
 
-val result : NewItemsFileEntryBaseArrayWrapper = webService.getNewRoomItems(id)
+launch(Dispatchers.IO) {
+    val result : NewItemsFileEntryBaseArrayWrapper = webService.getNewRoomItems(id)
+}
 ```
 
 ### HTTP request headers
@@ -757,7 +785,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
 val id : kotlin.Int = 1 // kotlin.Int | The room template ID.
 
-val result : BooleanWrapper = webService.getPublicSettings(id)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.getPublicSettings(id)
+}
 ```
 
 ### HTTP request headers
@@ -801,7 +831,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
 
-val result : CoversResultArrayWrapper = webService.getRoomCovers()
+launch(Dispatchers.IO) {
+    val result : CoversResultArrayWrapper = webService.getRoomCovers()
+}
 ```
 
 ### HTTP request headers
@@ -845,7 +877,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
 
-val result : RoomFromTemplateStatusWrapper = webService.getRoomCreatingStatus()
+launch(Dispatchers.IO) {
+    val result : RoomFromTemplateStatusWrapper = webService.getRoomCreatingStatus()
+}
 ```
 
 ### HTTP request headers
@@ -889,7 +923,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
 
-val result : DocumentBuilderTaskWrapper = webService.getRoomIndexExport()
+launch(Dispatchers.IO) {
+    val result : DocumentBuilderTaskWrapper = webService.getRoomIndexExport()
+}
 ```
 
 ### HTTP request headers
@@ -930,7 +966,9 @@ val apiClient = ApiClient()
 val webService = apiClient.createWebservice(RoomsApi::class.java)
 val id : kotlin.Int = 1 // kotlin.Int | The room ID.
 
-val result : FolderIntegerWrapper = webService.getRoomInfo(id)
+launch(Dispatchers.IO) {
+    val result : FolderIntegerWrapper = webService.getRoomInfo(id)
+}
 ```
 
 ### HTTP request headers
@@ -979,7 +1017,9 @@ val webService = apiClient.createWebservice(RoomsApi::class.java)
 val id : kotlin.Int = 1 // kotlin.Int | The room ID.
 val type : LinkType = 1 // LinkType | The link type.
 
-val result : FileShareArrayWrapper = webService.getRoomLinks(id, type)
+launch(Dispatchers.IO) {
+    val result : FileShareArrayWrapper = webService.getRoomLinks(id, type)
+}
 ```
 
 ### HTTP request headers
@@ -1034,7 +1074,9 @@ val count : kotlin.Int = 25 // kotlin.Int | The number of items to be retrieved 
 val startIndex : kotlin.Int = 0 // kotlin.Int | The starting index of the items to retrieve in a paginated request.
 val filterValue : kotlin.String = Sample filter // kotlin.String | The text filter value used for filtering room security information.
 
-val result : FileShareArrayWrapper = webService.getRoomSecurityInfo(id, filterType, count, startIndex, filterValue)
+launch(Dispatchers.IO) {
+    val result : FileShareArrayWrapper = webService.getRoomSecurityInfo(id, filterType, count, startIndex, filterValue)
+}
 ```
 
 ### HTTP request headers
@@ -1085,7 +1127,9 @@ val count : kotlin.Int = 25 // kotlin.Int | Gets or sets the number of tag resul
 val startIndex : kotlin.Int = 0 // kotlin.Int | Represents the starting index from which the tags' information will be retrieved.  This property is used to define the offset for pagination when retrieving a list of tags. It determines  the point in the data set from which the retrieval begins.
 val filterValue : kotlin.String = My Document // kotlin.String | Gets or sets the text value used for searching tags.  This property is typically used as a filter value when retrieving tag information.
 
-val result : ObjectArrayWrapper = webService.getRoomTagsInfo(count, startIndex, filterValue)
+launch(Dispatchers.IO) {
+    val result : ObjectArrayWrapper = webService.getRoomTagsInfo(count, startIndex, filterValue)
+}
 ```
 
 ### HTTP request headers
@@ -1129,7 +1173,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
 
-val result : RoomTemplateStatusWrapper = webService.getRoomTemplateCreatingStatus()
+launch(Dispatchers.IO) {
+    val result : RoomTemplateStatusWrapper = webService.getRoomTemplateCreatingStatus()
+}
 ```
 
 ### HTTP request headers
@@ -1206,7 +1252,9 @@ val sortOrder : SortOrder = 1 // SortOrder | The order in which the results are 
 val filterValue : kotlin.String = My Document // kotlin.String | The text filter value used to refine search or query operations.
 val groupId : kotlin.Int = 1 // kotlin.Int | The group ID
 
-val result : FolderContentIntegerWrapper = webService.getRoomsFolder(type, subjectId, searchArea, withoutTags, tags, excludeSubject, provider, subjectFilter, quotaFilter, storageFilter, count, startIndex, sortBy, sortOrder, filterValue, groupId)
+launch(Dispatchers.IO) {
+    val result : FolderContentIntegerWrapper = webService.getRoomsFolder(type, subjectId, searchArea, withoutTags, tags, excludeSubject, provider, subjectFilter, quotaFilter, storageFilter, count, startIndex, sortBy, sortOrder, filterValue, groupId)
+}
 ```
 
 ### HTTP request headers
@@ -1250,7 +1298,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
 
-val result : NewItemsRoomNewItemsArrayWrapper = webService.getRoomsNewItems()
+launch(Dispatchers.IO) {
+    val result : NewItemsRoomNewItemsArrayWrapper = webService.getRoomsNewItems()
+}
 ```
 
 ### HTTP request headers
@@ -1297,7 +1347,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
 val id : kotlin.Int = 1 // kotlin.Int | The room ID.
 
-val result : FileShareWrapper = webService.getRoomsPrimaryExternalLink(id)
+launch(Dispatchers.IO) {
+    val result : FileShareWrapper = webService.getRoomsPrimaryExternalLink(id)
+}
 ```
 
 ### HTTP request headers
@@ -1346,7 +1398,9 @@ val webService = apiClient.createWebservice(RoomsApi::class.java)
 val tagName2 : kotlin.String = tagName_example // kotlin.String | 
 val tagName : kotlin.String = tag1 // kotlin.String | Represents the name of a tag
 
-val result : BooleanWrapper = webService.hasTagLinks(tagName2, tagName)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.hasTagLinks(tagName2, tagName)
+}
 ```
 
 ### HTTP request headers
@@ -1393,7 +1447,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
 val id : kotlin.Int = 1 // kotlin.Int | The room ID.
 
-val result : FolderIntegerWrapper = webService.pinRoom(id)
+launch(Dispatchers.IO) {
+    val result : FolderIntegerWrapper = webService.pinRoom(id)
+}
 ```
 
 ### HTTP request headers
@@ -1440,7 +1496,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
 val id : kotlin.Int = 1 // kotlin.Int | The room ID.
 
-val result : FolderIntegerWrapper = webService.reorderRoom(id)
+launch(Dispatchers.IO) {
+    val result : FolderIntegerWrapper = webService.reorderRoom(id)
+}
 ```
 
 ### HTTP request headers
@@ -1489,7 +1547,9 @@ val webService = apiClient.createWebservice(RoomsApi::class.java)
 val id : kotlin.Int = 1 // kotlin.Int | The room ID.
 val userInvitation : UserInvitation =  // UserInvitation | The user invitation parameters.
 
-webService.resendEmailInvitations(id, userInvitation)
+launch(Dispatchers.IO) {
+    webService.resendEmailInvitations(id, userInvitation)
+}
 ```
 
 ### HTTP request headers
@@ -1536,7 +1596,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
 val setPublicDto : SetPublicDto =  // SetPublicDto | 
 
-webService.setPublicSettings(setPublicDto)
+launch(Dispatchers.IO) {
+    webService.setPublicSettings(setPublicDto)
+}
 ```
 
 ### HTTP request headers
@@ -1585,7 +1647,9 @@ val webService = apiClient.createWebservice(RoomsApi::class.java)
 val id : kotlin.Int = 1 // kotlin.Int | The room ID.
 val roomLinkRequest : RoomLinkRequest =  // RoomLinkRequest | The room link parameters.
 
-val result : FileShareWrapper = webService.setRoomLink(id, roomLinkRequest)
+launch(Dispatchers.IO) {
+    val result : FileShareWrapper = webService.setRoomLink(id, roomLinkRequest)
+}
 ```
 
 ### HTTP request headers
@@ -1634,7 +1698,9 @@ val webService = apiClient.createWebservice(RoomsApi::class.java)
 val id : kotlin.Int = 1 // kotlin.Int | The room ID.
 val roomInvitationRequest : RoomInvitationRequest =  // RoomInvitationRequest | The room invitation request.
 
-val result : RoomSecurityWrapper = webService.setRoomSecurity(id, roomInvitationRequest)
+launch(Dispatchers.IO) {
+    val result : RoomSecurityWrapper = webService.setRoomSecurity(id, roomInvitationRequest)
+}
 ```
 
 ### HTTP request headers
@@ -1681,7 +1747,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
 val id : kotlin.Int = 1 // kotlin.Int | The room ID.
 
-val result : DocumentBuilderTaskWrapper = webService.startRoomIndexExport(id)
+launch(Dispatchers.IO) {
+    val result : DocumentBuilderTaskWrapper = webService.startRoomIndexExport(id)
+}
 ```
 
 ### HTTP request headers
@@ -1725,7 +1793,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
 
-webService.terminateRoomIndexExport()
+launch(Dispatchers.IO) {
+    webService.terminateRoomIndexExport()
+}
 ```
 
 ### HTTP request headers
@@ -1774,7 +1844,9 @@ val webService = apiClient.createWebservice(RoomsApi::class.java)
 val id : kotlin.Int = 1 // kotlin.Int | The room ID.
 val archiveRoomRequest : ArchiveRoomRequest =  // ArchiveRoomRequest | The parameters for archiving a room.
 
-val result : FileOperationWrapper = webService.unarchiveRoom(id, archiveRoomRequest)
+launch(Dispatchers.IO) {
+    val result : FileOperationWrapper = webService.unarchiveRoom(id, archiveRoomRequest)
+}
 ```
 
 ### HTTP request headers
@@ -1821,7 +1893,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
 val id : kotlin.Int = 1 // kotlin.Int | The room ID.
 
-val result : FolderIntegerWrapper = webService.unpinRoom(id)
+launch(Dispatchers.IO) {
+    val result : FolderIntegerWrapper = webService.unpinRoom(id)
+}
 ```
 
 ### HTTP request headers
@@ -1870,7 +1944,9 @@ val webService = apiClient.createWebservice(RoomsApi::class.java)
 val id : kotlin.Int = 56 // kotlin.Int | The room ID.
 val updateRoomRequest : UpdateRoomRequest =  // UpdateRoomRequest | The request parameters for updating a room.
 
-val result : FolderIntegerWrapper = webService.updateRoom(id, updateRoomRequest)
+launch(Dispatchers.IO) {
+    val result : FolderIntegerWrapper = webService.updateRoom(id, updateRoomRequest)
+}
 ```
 
 ### HTTP request headers
@@ -1917,7 +1993,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
 val updateTagRequestDto : UpdateTagRequestDto =  // UpdateTagRequestDto | 
 
-val result : StringWrapper = webService.updateRoomTag(updateTagRequestDto)
+launch(Dispatchers.IO) {
+    val result : StringWrapper = webService.updateRoomTag(updateTagRequestDto)
+}
 ```
 
 ### HTTP request headers
@@ -1964,7 +2042,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
 val file : java.io.File = BINARY_DATA_HERE // java.io.File | The image data.
 
-val result : UploadResultWrapper = webService.uploadRoomLogo(file)
+launch(Dispatchers.IO) {
+    val result : UploadResultWrapper = webService.uploadRoomLogo(file)
+}
 ```
 
 ### HTTP request headers

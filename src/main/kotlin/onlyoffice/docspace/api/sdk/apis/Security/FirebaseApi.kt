@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Security
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -40,10 +40,10 @@ interface FirebaseApi {
      *
      *
      * @param firebaseRequestsDto  (optional)
-     * @return [Call]<[FireBaseUserWrapper]>
+     * @return [FireBaseUserWrapper]
      */
     @POST("api/2.0/settings/push/docregisterdevice")
-    fun docRegisterPusnNotificationDevice(@Body firebaseRequestsDto: FirebaseRequestsDto? = null): Call<FireBaseUserWrapper>
+    suspend fun docRegisterPusnNotificationDevice(@Body firebaseRequestsDto: FirebaseRequestsDto? = null): Response<FireBaseUserWrapper>
 
     /**
      * PUT api/2.0/settings/push/docsubscribe
@@ -58,9 +58,9 @@ interface FirebaseApi {
      *
      *
      * @param firebaseRequestsDto  (optional)
-     * @return [Call]<[FireBaseUserWrapper]>
+     * @return [FireBaseUserWrapper]
      */
     @PUT("api/2.0/settings/push/docsubscribe")
-    fun subscribeDocumentsPushNotification(@Body firebaseRequestsDto: FirebaseRequestsDto? = null): Call<FireBaseUserWrapper>
+    suspend fun subscribeDocumentsPushNotification(@Body firebaseRequestsDto: FirebaseRequestsDto? = null): Response<FireBaseUserWrapper>
 
 }

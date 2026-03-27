@@ -59,7 +59,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RebrandingApi::class.java)
 
-val result : AdditionalWhiteLabelSettingsWrapper = webService.deleteAdditionalWhiteLabelSettings()
+launch(Dispatchers.IO) {
+    val result : AdditionalWhiteLabelSettingsWrapper = webService.deleteAdditionalWhiteLabelSettings()
+}
 ```
 
 ### HTTP request headers
@@ -103,7 +105,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RebrandingApi::class.java)
 
-val result : CompanyWhiteLabelSettingsWrapper = webService.deleteCompanyWhiteLabelSettings()
+launch(Dispatchers.IO) {
+    val result : CompanyWhiteLabelSettingsWrapper = webService.deleteCompanyWhiteLabelSettings()
+}
 ```
 
 ### HTTP request headers
@@ -147,7 +151,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RebrandingApi::class.java)
 
-val result : AdditionalWhiteLabelSettingsWrapper = webService.getAdditionalWhiteLabelSettings()
+launch(Dispatchers.IO) {
+    val result : AdditionalWhiteLabelSettingsWrapper = webService.getAdditionalWhiteLabelSettings()
+}
 ```
 
 ### HTTP request headers
@@ -191,7 +197,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RebrandingApi::class.java)
 
-val result : CompanyWhiteLabelSettingsWrapper = webService.getCompanyWhiteLabelSettings()
+launch(Dispatchers.IO) {
+    val result : CompanyWhiteLabelSettingsWrapper = webService.getCompanyWhiteLabelSettings()
+}
 ```
 
 ### HTTP request headers
@@ -235,7 +243,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RebrandingApi::class.java)
 
-val result : BooleanWrapper = webService.getEnableWhitelabel()
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.getEnableWhitelabel()
+}
 ```
 
 ### HTTP request headers
@@ -284,7 +294,9 @@ val webService = apiClient.createWebservice(RebrandingApi::class.java)
 val isDark : kotlin.Boolean = true // kotlin.Boolean | Specifies if the white label logo is for the dark theme or not.
 val isDefault : kotlin.Boolean = true // kotlin.Boolean | Specifies if the logo is for a default tenant or not.
 
-val result : IsDefaultWhiteLabelLogosWrapper = webService.getIsDefaultWhiteLabelLogoText(isDark, isDefault)
+launch(Dispatchers.IO) {
+    val result : IsDefaultWhiteLabelLogosWrapper = webService.getIsDefaultWhiteLabelLogoText(isDark, isDefault)
+}
 ```
 
 ### HTTP request headers
@@ -333,7 +345,9 @@ val webService = apiClient.createWebservice(RebrandingApi::class.java)
 val isDark : kotlin.Boolean = true // kotlin.Boolean | Specifies if the white label logo is for the dark theme or not.
 val isDefault : kotlin.Boolean = true // kotlin.Boolean | Specifies if the logo is for a default tenant or not.
 
-val result : IsDefaultWhiteLabelLogosArrayWrapper = webService.getIsDefaultWhiteLabelLogos(isDark, isDefault)
+launch(Dispatchers.IO) {
+    val result : IsDefaultWhiteLabelLogosArrayWrapper = webService.getIsDefaultWhiteLabelLogos(isDark, isDefault)
+}
 ```
 
 ### HTTP request headers
@@ -377,7 +391,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RebrandingApi::class.java)
 
-val result : CompanyWhiteLabelSettingsArrayWrapper = webService.getLicensorData()
+launch(Dispatchers.IO) {
+    val result : CompanyWhiteLabelSettingsArrayWrapper = webService.getLicensorData()
+}
 ```
 
 ### HTTP request headers
@@ -426,7 +442,9 @@ val webService = apiClient.createWebservice(RebrandingApi::class.java)
 val isDark : kotlin.Boolean = true // kotlin.Boolean | Specifies if the white label logo is for the dark theme or not.
 val isDefault : kotlin.Boolean = true // kotlin.Boolean | Specifies if the logo is for a default tenant or not.
 
-val result : StringWrapper = webService.getWhiteLabelLogoText(isDark, isDefault)
+launch(Dispatchers.IO) {
+    val result : StringWrapper = webService.getWhiteLabelLogoText(isDark, isDefault)
+}
 ```
 
 ### HTTP request headers
@@ -469,7 +487,9 @@ val webService = apiClient.createWebservice(RebrandingApi::class.java)
 val isDark : kotlin.Boolean = true // kotlin.Boolean | Specifies if the white label logo is for the dark theme or not.
 val isDefault : kotlin.Boolean = true // kotlin.Boolean | Specifies if the logo is for a default tenant or not.
 
-val result : WhiteLabelItemArrayWrapper = webService.getWhiteLabelLogos(isDark, isDefault)
+launch(Dispatchers.IO) {
+    val result : WhiteLabelItemArrayWrapper = webService.getWhiteLabelLogos(isDark, isDefault)
+}
 ```
 
 ### HTTP request headers
@@ -518,7 +538,9 @@ val webService = apiClient.createWebservice(RebrandingApi::class.java)
 val isDark : kotlin.Boolean = true // kotlin.Boolean | Specifies if the white label logo is for the dark theme or not.
 val isDefault : kotlin.Boolean = true // kotlin.Boolean | Specifies if the logo is for a default tenant or not.
 
-val result : BooleanWrapper = webService.restoreWhiteLabelLogoText(isDark, isDefault)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.restoreWhiteLabelLogoText(isDark, isDefault)
+}
 ```
 
 ### HTTP request headers
@@ -567,7 +589,9 @@ val webService = apiClient.createWebservice(RebrandingApi::class.java)
 val isDark : kotlin.Boolean = true // kotlin.Boolean | Specifies if the white label logo is for the dark theme or not.
 val isDefault : kotlin.Boolean = true // kotlin.Boolean | Specifies if the logo is for a default tenant or not.
 
-val result : BooleanWrapper = webService.restoreWhiteLabelLogos(isDark, isDefault)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.restoreWhiteLabelLogos(isDark, isDefault)
+}
 ```
 
 ### HTTP request headers
@@ -614,7 +638,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RebrandingApi::class.java)
 val additionalWhiteLabelSettingsWrapper : AdditionalWhiteLabelSettingsWrapper =  // AdditionalWhiteLabelSettingsWrapper | 
 
-val result : BooleanWrapper = webService.saveAdditionalWhiteLabelSettings(additionalWhiteLabelSettingsWrapper)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.saveAdditionalWhiteLabelSettings(additionalWhiteLabelSettingsWrapper)
+}
 ```
 
 ### HTTP request headers
@@ -661,7 +687,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RebrandingApi::class.java)
 val companyWhiteLabelSettingsWrapper : CompanyWhiteLabelSettingsWrapper =  // CompanyWhiteLabelSettingsWrapper | 
 
-val result : BooleanWrapper = webService.saveCompanyWhiteLabelSettings(companyWhiteLabelSettingsWrapper)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.saveCompanyWhiteLabelSettings(companyWhiteLabelSettingsWrapper)
+}
 ```
 
 ### HTTP request headers
@@ -712,7 +740,9 @@ val isDark : kotlin.Boolean = true // kotlin.Boolean | Specifies if the white la
 val isDefault : kotlin.Boolean = true // kotlin.Boolean | Specifies if the logo is for a default tenant or not.
 val whiteLabelRequestsDto : WhiteLabelRequestsDto =  // WhiteLabelRequestsDto | 
 
-val result : BooleanWrapper = webService.saveWhiteLabelLogoText(isDark, isDefault, whiteLabelRequestsDto)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.saveWhiteLabelLogoText(isDark, isDefault, whiteLabelRequestsDto)
+}
 ```
 
 ### HTTP request headers
@@ -763,7 +793,9 @@ val isDark : kotlin.Boolean = true // kotlin.Boolean | Specifies if the white la
 val isDefault : kotlin.Boolean = true // kotlin.Boolean | Specifies if the logo is for a default tenant or not.
 val whiteLabelRequestsDto : WhiteLabelRequestsDto =  // WhiteLabelRequestsDto | 
 
-val result : BooleanWrapper = webService.saveWhiteLabelSettings(isDark, isDefault, whiteLabelRequestsDto)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.saveWhiteLabelSettings(isDark, isDefault, whiteLabelRequestsDto)
+}
 ```
 
 ### HTTP request headers
@@ -812,7 +844,9 @@ val webService = apiClient.createWebservice(RebrandingApi::class.java)
 val isDark : kotlin.Boolean = true // kotlin.Boolean | Specifies if the white label logo is for the dark theme or not.
 val isDefault : kotlin.Boolean = true // kotlin.Boolean | Specifies if the logo is for a default tenant or not.
 
-val result : BooleanWrapper = webService.saveWhiteLabelSettingsFromFiles(isDark, isDefault)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.saveWhiteLabelSettingsFromFiles(isDark, isDefault)
+}
 ```
 
 ### HTTP request headers

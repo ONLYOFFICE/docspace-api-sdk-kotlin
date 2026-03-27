@@ -49,7 +49,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SettingsApi::class.java)
 
-webService.continuePortal()
+launch(Dispatchers.IO) {
+    webService.continuePortal()
+}
 ```
 
 ### HTTP request headers
@@ -93,7 +95,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SettingsApi::class.java)
 
-val result : StringWrapper = webService.deletePortal()
+launch(Dispatchers.IO) {
+    val result : StringWrapper = webService.deletePortal()
+}
 ```
 
 ### HTTP request headers
@@ -137,7 +141,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SettingsApi::class.java)
 
-val result : TenantWrapper = webService.getPortalInformation()
+launch(Dispatchers.IO) {
+    val result : TenantWrapper = webService.getPortalInformation()
+}
 ```
 
 ### HTTP request headers
@@ -184,7 +190,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SettingsApi::class.java)
 val virtualPath : kotlin.String = /portal/documents // kotlin.String | The virtual path for the portal resource access.
 
-val result : ObjectWrapper = webService.getPortalPath(virtualPath)
+launch(Dispatchers.IO) {
+    val result : ObjectWrapper = webService.getPortalPath(virtualPath)
+}
 ```
 
 ### HTTP request headers
@@ -228,7 +236,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SettingsApi::class.java)
 
-webService.sendDeleteInstructions()
+launch(Dispatchers.IO) {
+    webService.sendDeleteInstructions()
+}
 ```
 
 ### HTTP request headers
@@ -272,7 +282,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SettingsApi::class.java)
 
-webService.sendSuspendInstructions()
+launch(Dispatchers.IO) {
+    webService.sendSuspendInstructions()
+}
 ```
 
 ### HTTP request headers
@@ -316,7 +328,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SettingsApi::class.java)
 
-webService.suspendPortal()
+launch(Dispatchers.IO) {
+    webService.suspendPortal()
+}
 ```
 
 ### HTTP request headers

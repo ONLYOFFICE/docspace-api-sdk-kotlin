@@ -54,7 +54,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(WebhooksApi::class.java)
 val createWebhooksConfigRequestsDto : CreateWebhooksConfigRequestsDto =  // CreateWebhooksConfigRequestsDto | 
 
-val result : WebhooksConfigWrapper = webService.createWebhook(createWebhooksConfigRequestsDto)
+launch(Dispatchers.IO) {
+    val result : WebhooksConfigWrapper = webService.createWebhook(createWebhooksConfigRequestsDto)
+}
 ```
 
 ### HTTP request headers
@@ -101,7 +103,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(WebhooksApi::class.java)
 val updateWebhooksConfigRequestsDto : UpdateWebhooksConfigRequestsDto =  // UpdateWebhooksConfigRequestsDto | 
 
-val result : WebhooksConfigWrapper = webService.enableWebhook(updateWebhooksConfigRequestsDto)
+launch(Dispatchers.IO) {
+    val result : WebhooksConfigWrapper = webService.enableWebhook(updateWebhooksConfigRequestsDto)
+}
 ```
 
 ### HTTP request headers
@@ -145,7 +149,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(WebhooksApi::class.java)
 
-val result : WebhooksConfigWithStatusArrayWrapper = webService.getTenantWebhooks()
+launch(Dispatchers.IO) {
+    val result : WebhooksConfigWithStatusArrayWrapper = webService.getTenantWebhooks()
+}
 ```
 
 ### HTTP request headers
@@ -189,7 +195,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(WebhooksApi::class.java)
 
-val result : GetWebhookTriggers200Response = webService.getWebhookTriggers()
+launch(Dispatchers.IO) {
+    val result : GetWebhookTriggers200Response = webService.getWebhookTriggers()
+}
 ```
 
 ### HTTP request headers
@@ -254,7 +262,9 @@ val trigger : WebhookTrigger = 0 // WebhookTrigger | The type of event that trig
 val count : kotlin.Int = 1 // kotlin.Int | The maximum number of webhook log records to return in the query response.
 val startIndex : kotlin.Int = 1 // kotlin.Int | Specifies the starting index for retrieving webhook logs.  Used for pagination in the webhook delivery log queries.
 
-val result : WebhooksLogArrayWrapper = webService.getWebhooksLogs(deliveryFrom, deliveryTo, hookUri, configId, eventId, groupStatus, userId, trigger, count, startIndex)
+launch(Dispatchers.IO) {
+    val result : WebhooksLogArrayWrapper = webService.getWebhooksLogs(deliveryFrom, deliveryTo, hookUri, configId, eventId, groupStatus, userId, trigger, count, startIndex)
+}
 ```
 
 ### HTTP request headers
@@ -301,7 +311,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(WebhooksApi::class.java)
 val id : kotlin.Int = 1 // kotlin.Int | The ID extracted from the route parameters.
 
-val result : WebhooksConfigWrapper = webService.removeWebhook(id)
+launch(Dispatchers.IO) {
+    val result : WebhooksConfigWrapper = webService.removeWebhook(id)
+}
 ```
 
 ### HTTP request headers
@@ -348,7 +360,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(WebhooksApi::class.java)
 val id : kotlin.Int = 1 // kotlin.Int | The ID extracted from the route parameters.
 
-val result : WebhooksLogWrapper = webService.retryWebhook(id)
+launch(Dispatchers.IO) {
+    val result : WebhooksLogWrapper = webService.retryWebhook(id)
+}
 ```
 
 ### HTTP request headers
@@ -395,7 +409,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(WebhooksApi::class.java)
 val webhookRetryRequestsDto : WebhookRetryRequestsDto =  // WebhookRetryRequestsDto | 
 
-val result : WebhooksLogArrayWrapper = webService.retryWebhooks(webhookRetryRequestsDto)
+launch(Dispatchers.IO) {
+    val result : WebhooksLogArrayWrapper = webService.retryWebhooks(webhookRetryRequestsDto)
+}
 ```
 
 ### HTTP request headers
@@ -442,7 +458,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(WebhooksApi::class.java)
 val updateWebhooksConfigRequestsDto : UpdateWebhooksConfigRequestsDto =  // UpdateWebhooksConfigRequestsDto | 
 
-val result : WebhooksConfigWrapper = webService.updateWebhook(updateWebhooksConfigRequestsDto)
+launch(Dispatchers.IO) {
+    val result : WebhooksConfigWrapper = webService.updateWebhook(updateWebhooksConfigRequestsDto)
+}
 ```
 
 ### HTTP request headers

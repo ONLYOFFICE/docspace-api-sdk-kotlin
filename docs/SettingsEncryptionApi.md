@@ -45,7 +45,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(EncryptionApi::class.java)
 
-val result : DoubleNullableWrapper = webService.getStorageEncryptionProgress()
+launch(Dispatchers.IO) {
+    val result : DoubleNullableWrapper = webService.getStorageEncryptionProgress()
+}
 ```
 
 ### HTTP request headers
@@ -89,7 +91,9 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(EncryptionApi::class.java)
 
-val result : EncryptionSettingsWrapper = webService.getStorageEncryptionSettings()
+launch(Dispatchers.IO) {
+    val result : EncryptionSettingsWrapper = webService.getStorageEncryptionSettings()
+}
 ```
 
 ### HTTP request headers
@@ -136,7 +140,9 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(EncryptionApi::class.java)
 val storageEncryptionRequestsDto : StorageEncryptionRequestsDto =  // StorageEncryptionRequestsDto | 
 
-val result : BooleanWrapper = webService.startStorageEncryption(storageEncryptionRequestsDto)
+launch(Dispatchers.IO) {
+    val result : BooleanWrapper = webService.startStorageEncryption(storageEncryptionRequestsDto)
+}
 ```
 
 ### HTTP request headers

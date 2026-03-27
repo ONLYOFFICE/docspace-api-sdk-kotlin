@@ -19,7 +19,7 @@ package onlyoffice.docspace.api.sdk.apis.Settings
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
+import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
@@ -38,9 +38,9 @@ interface BannersVisibilityApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tenant-banner-settings/
      *
      *
-     * @return [Call]<[TenantBannerSettingsWrapper]>
+     * @return [TenantBannerSettingsWrapper]
      */
     @GET("api/2.0/settings/banner")
-    fun getTenantBannerSettings(): Call<TenantBannerSettingsWrapper>
+    suspend fun getTenantBannerSettings(): Response<TenantBannerSettingsWrapper>
 
 }
