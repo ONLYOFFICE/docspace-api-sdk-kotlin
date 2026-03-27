@@ -35,11 +35,11 @@ import onlyoffice.docspace.api.sdk.models.StartNewChatBody
 import onlyoffice.docspace.api.sdk.models.ToolDecisionRequestBody
 import onlyoffice.docspace.api.sdk.models.UserChatSettingsWrapper
 
-interface ChatApi {
+interface AIChatApi {
     /**
      * POST api/2.0/ai/chats/{chatId}/messages
      * Send a message to an existing AI chat
-     * Appends a new user message to an existing chat session and streams the AI assistant&#39;s response.  The full conversation history of the chat is sent to the AI provider to maintain context.  The response is delivered as a Server-Sent Events (SSE) stream with periodic keep-alive pings.  File references can optionally be attached to provide additional context.
+     * Appends a new user message to an existing chat session and streams the AI assistant's response.  The full conversation history of the chat is sent to the AI provider to maintain context.  The response is delivered as a Server-Sent Events (SSE) stream with periodic keep-alive pings.  File references can optionally be attached to provide additional context.
      * Responses:
      *  - 200: SSE stream of ChatCompletion events (text/event-stream)
      *  - 400: The message is empty or one or more file attachments could not be processed
@@ -180,7 +180,7 @@ interface ChatApi {
     /**
      * GET api/2.0/ai/rooms/{roomId}/chats/config
      * Get user chat settings for a room
-     * Retrieves the current user&#39;s personal AI chat preferences for the specified room,  including whether web search is enabled for AI-assisted responses.
+     * Retrieves the current user's personal AI chat preferences for the specified room,  including whether web search is enabled for AI-assisted responses.
      * Responses:
      *  - 200: Current user chat settings
      *  - 403: You don't have enough permission to access chats in this room
@@ -200,7 +200,7 @@ interface ChatApi {
     /**
      * POST api/2.0/ai/chats/tool-permissions/{callId}/decision
      * Submit a tool execution permission decision
-     * Provides the user&#39;s approval or denial decision for a pending MCP (Model Context Protocol) tool execution request.  When an AI assistant attempts to invoke an external tool that requires explicit user consent,  the client receives a permission prompt via the SSE stream. This endpoint is used to submit the user&#39;s decision  so that the AI chat session can proceed accordingly.
+     * Provides the user's approval or denial decision for a pending MCP (Model Context Protocol) tool execution request.  When an AI assistant attempts to invoke an external tool that requires explicit user consent,  the client receives a permission prompt via the SSE stream. This endpoint is used to submit the user's decision  so that the AI chat session can proceed accordingly.
      * Responses:
      *  - 200: The permission decision was successfully recorded
      *  - 401: Unauthorized
@@ -239,7 +239,7 @@ interface ChatApi {
     /**
      * PUT api/2.0/ai/rooms/{roomId}/chats/config
      * Update user chat settings for a room
-     * Saves the current user&#39;s personal AI chat preferences for the specified room.  Currently supports toggling the web search capability, which allows the AI assistant to search the internet when generating responses.
+     * Saves the current user's personal AI chat preferences for the specified room.  Currently supports toggling the web search capability, which allows the AI assistant to search the internet when generating responses.
      * Responses:
      *  - 200: Updated user chat settings
      *  - 403: You don't have enough permission to access chats in this room

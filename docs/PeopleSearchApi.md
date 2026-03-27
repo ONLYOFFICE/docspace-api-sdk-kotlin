@@ -27,6 +27,8 @@ Returns the account entries with their sharing settings for a file with the ID s
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-accounts-entries-with-files-shared/).
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **id** | **kotlin.Int**| The user ID. | |
 | **employeeStatus** | [**EmployeeStatus**](.md)| The user status. | [optional] [enum: 1, 2, 4, 5, 7] |
 | **activationStatus** | [**EmployeeActivationStatus**](.md)| The user activation status. | [optional] [enum: 0, 1, 2, 4] |
@@ -35,12 +37,10 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **invitedByMe** | **kotlin.Boolean**| Specifies whether the user is invited by the current user or not. | [optional] |
 | **inviterId** | **java.util.UUID**| The inviter ID. | [optional] |
 | **area** | [**Area**](.md)| The area of the account entries. | [optional] [enum: 0, 1, 2] |
-| **employeeTypes** | [**kotlin.collections.List&lt;EmployeeType&gt;**](EmployeeType.md)| The list of the user types. | [optional] |
+| **employeeTypes** | **CSVParams** (`List<kotlin.collections.List<EmployeeType>>`, CSV-encoded)| The list of the user types. | [optional] |
 | **count** | **kotlin.Int**| The number of items to retrieve in a request. | [optional] |
 | **startIndex** | **kotlin.Int**| The starting index for the query results. | [optional] |
 | **filterSeparator** | **kotlin.String**| Specifies the separator used in filter expressions. | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **filterValue** | **kotlin.String**| The text filter applied to the accounts search query. | [optional] |
 
 ### Return type
@@ -98,6 +98,8 @@ Returns the account entries with their sharing settings in a folder with the ID 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-accounts-entries-with-folders-shared/).
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **id** | **kotlin.Int**| The user ID. | |
 | **employeeStatus** | [**EmployeeStatus**](.md)| The user status. | [optional] [enum: 1, 2, 4, 5, 7] |
 | **activationStatus** | [**EmployeeActivationStatus**](.md)| The user activation status. | [optional] [enum: 0, 1, 2, 4] |
@@ -106,12 +108,10 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **invitedByMe** | **kotlin.Boolean**| Specifies whether the user is invited by the current user or not. | [optional] |
 | **inviterId** | **java.util.UUID**| The inviter ID. | [optional] |
 | **area** | [**Area**](.md)| The area of the account entries. | [optional] [enum: 0, 1, 2] |
-| **employeeTypes** | [**kotlin.collections.List&lt;EmployeeType&gt;**](EmployeeType.md)| The list of the user types. | [optional] |
+| **employeeTypes** | **CSVParams** (`List<kotlin.collections.List<EmployeeType>>`, CSV-encoded)| The list of the user types. | [optional] |
 | **count** | **kotlin.Int**| The number of items to retrieve in a request. | [optional] |
 | **startIndex** | **kotlin.Int**| The starting index for the query results. | [optional] |
 | **filterSeparator** | **kotlin.String**| Specifies the separator used in filter expressions. | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **filterValue** | **kotlin.String**| The text filter applied to the accounts search query. | [optional] |
 
 ### Return type
@@ -169,6 +169,8 @@ Returns the account entries with their sharing settings in a room with the ID sp
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-accounts-entries-with-rooms-shared/).
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **id** | **kotlin.Int**| The user ID. | |
 | **employeeStatus** | [**EmployeeStatus**](.md)| The user status. | [optional] [enum: 1, 2, 4, 5, 7] |
 | **activationStatus** | [**EmployeeActivationStatus**](.md)| The user activation status. | [optional] [enum: 0, 1, 2, 4] |
@@ -177,12 +179,10 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **invitedByMe** | **kotlin.Boolean**| Specifies whether the user is invited by the current user or not. | [optional] |
 | **inviterId** | **java.util.UUID**| The inviter ID. | [optional] |
 | **area** | [**Area**](.md)| The area of the account entries. | [optional] [enum: 0, 1, 2] |
-| **employeeTypes** | [**kotlin.collections.List&lt;EmployeeType&gt;**](EmployeeType.md)| The list of the user types. | [optional] |
+| **employeeTypes** | **CSVParams** (`List<kotlin.collections.List<EmployeeType>>`, CSV-encoded)| The list of the user types. | [optional] |
 | **count** | **kotlin.Int**| The number of items to retrieve in a request. | [optional] |
 | **startIndex** | **kotlin.Int**| The starting index for the query results. | [optional] |
 | **filterSeparator** | **kotlin.String**| Specifies the separator used in filter expressions. | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **filterValue** | **kotlin.String**| The text filter applied to the accounts search query. | [optional] |
 
 ### Return type
@@ -240,10 +240,10 @@ Returns a list of users matching the search query.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-search/).
 
 ### Parameters
-| **query** | **kotlin.String**| The search query. | |
-| **filterBy** | **kotlin.String**| Specifies a filter criteria for the user search query. | [optional] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **query** | **kotlin.String**| The search query. | |
+| **filterBy** | **kotlin.String**| Specifies a filter criteria for the user search query. | [optional] |
 | **filterValue** | **kotlin.String**| The value used for filtering users, allowing additional constraints for the query. | [optional] |
 
 ### Return type
@@ -291,11 +291,13 @@ Returns a list of users matching the parameters specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-simple-by-filter/).
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **employeeStatus** | [**EmployeeStatus**](.md)| The user status. | [optional] [enum: 1, 2, 4, 5, 7] |
 | **groupId** | **java.util.UUID**| The group ID. | [optional] |
 | **activationStatus** | [**EmployeeActivationStatus**](.md)| The user activation status. | [optional] [enum: 0, 1, 2, 4] |
 | **employeeType** | [**EmployeeType**](.md)| The user type. | [optional] [enum: All, RoomAdmin, Guest, DocSpaceAdmin, User] |
-| **employeeTypes** | [**kotlin.collections.List&lt;kotlin.Int&gt;**](kotlin.Int.md)| The list of user types. | [optional] [enum: 0, 1, 2, 3, 4] |
+| **employeeTypes** | **CSVParams** (`List<kotlin.collections.List<kotlin.Int>>`, CSV-encoded)| The list of user types. | [optional] [enum: 0, 1, 2, 3, 4] |
 | **isAdministrator** | **kotlin.Boolean**| Specifies if the user is an administrator or not. | [optional] |
 | **payments** | [**Payments**](.md)| The user payment status. | [optional] [enum: 0, 1] |
 | **accountLoginType** | [**AccountLoginType**](.md)| The account login type. | [optional] [enum: 0, 1, 2] |
@@ -310,8 +312,6 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **sortBy** | **kotlin.String**| Specifies the property or field name by which the results should be sorted. | [optional] |
 | **sortOrder** | [**SortOrder**](.md)| The order in which the results are sorted. | [optional] [enum: 0, 1] |
 | **filterSeparator** | **kotlin.String**| Represents the separator used to split filter criteria in query parameters. | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **filterValue** | **kotlin.String**| The search text used to filter results based on user input. | [optional] |
 
 ### Return type
@@ -376,6 +376,8 @@ Returns the users with the sharing settings in a file with the ID specified in r
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-users-with-files-shared/).
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **id** | **kotlin.Int**| The user ID. | |
 | **employeeStatus** | [**EmployeeStatus**](.md)| The user status. | [optional] [enum: 1, 2, 4, 5, 7] |
 | **activationStatus** | [**EmployeeActivationStatus**](.md)| The user activation status. | [optional] [enum: 0, 1, 2, 4] |
@@ -384,12 +386,10 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **invitedByMe** | **kotlin.Boolean**| Specifies whether the user was invited by the current user or not. | [optional] |
 | **inviterId** | **java.util.UUID**| The inviter ID. | [optional] |
 | **area** | [**Area**](.md)| The user area. | [optional] [enum: 0, 1, 2] |
-| **employeeTypes** | [**kotlin.collections.List&lt;EmployeeType&gt;**](EmployeeType.md)| The list of user types. | [optional] |
+| **employeeTypes** | **CSVParams** (`List<kotlin.collections.List<EmployeeType>>`, CSV-encoded)| The list of user types. | [optional] |
 | **count** | **kotlin.Int**| The maximum number of users to be retrieved in the request. | [optional] |
 | **startIndex** | **kotlin.Int**| The zero-based index of the first record to retrieve in a paged query. | [optional] |
 | **filterSeparator** | **kotlin.String**| The character or string used to separate multiple filter values in a filtering query. | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **filterValue** | **kotlin.String**| The filter text value used for searching or filtering user results. | [optional] |
 
 ### Return type
@@ -447,6 +447,8 @@ Returns the users with the sharing settings in a folder with the ID specified in
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-users-with-folders-shared/).
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **id** | **kotlin.Int**| The user ID. | |
 | **employeeStatus** | [**EmployeeStatus**](.md)| The user status. | [optional] [enum: 1, 2, 4, 5, 7] |
 | **activationStatus** | [**EmployeeActivationStatus**](.md)| The user activation status. | [optional] [enum: 0, 1, 2, 4] |
@@ -455,12 +457,10 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **invitedByMe** | **kotlin.Boolean**| Specifies whether the user was invited by the current user or not. | [optional] |
 | **inviterId** | **java.util.UUID**| The inviter ID. | [optional] |
 | **area** | [**Area**](.md)| The user area. | [optional] [enum: 0, 1, 2] |
-| **employeeTypes** | [**kotlin.collections.List&lt;EmployeeType&gt;**](EmployeeType.md)| The list of user types. | [optional] |
+| **employeeTypes** | **CSVParams** (`List<kotlin.collections.List<EmployeeType>>`, CSV-encoded)| The list of user types. | [optional] |
 | **count** | **kotlin.Int**| The maximum number of users to be retrieved in the request. | [optional] |
 | **startIndex** | **kotlin.Int**| The zero-based index of the first record to retrieve in a paged query. | [optional] |
 | **filterSeparator** | **kotlin.String**| The character or string used to separate multiple filter values in a filtering query. | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **filterValue** | **kotlin.String**| The filter text value used for searching or filtering user results. | [optional] |
 
 ### Return type
@@ -518,6 +518,8 @@ Returns the users with the sharing settings in a room with the ID specified in r
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-users-with-room-shared/).
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **id** | **kotlin.Int**| The user ID. | |
 | **employeeStatus** | [**EmployeeStatus**](.md)| The user status. | [optional] [enum: 1, 2, 4, 5, 7] |
 | **activationStatus** | [**EmployeeActivationStatus**](.md)| The user activation status. | [optional] [enum: 0, 1, 2, 4] |
@@ -526,12 +528,10 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **invitedByMe** | **kotlin.Boolean**| Specifies whether the user was invited by the current user or not. | [optional] |
 | **inviterId** | **java.util.UUID**| The inviter ID. | [optional] |
 | **area** | [**Area**](.md)| The user area. | [optional] [enum: 0, 1, 2] |
-| **employeeTypes** | [**kotlin.collections.List&lt;EmployeeType&gt;**](EmployeeType.md)| The list of user types. | [optional] |
+| **employeeTypes** | **CSVParams** (`List<kotlin.collections.List<EmployeeType>>`, CSV-encoded)| The list of user types. | [optional] |
 | **count** | **kotlin.Int**| The maximum number of users to be retrieved in the request. | [optional] |
 | **startIndex** | **kotlin.Int**| The zero-based index of the first record to retrieve in a paged query. | [optional] |
 | **filterSeparator** | **kotlin.String**| The character or string used to separate multiple filter values in a filtering query. | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **filterValue** | **kotlin.String**| The filter text value used for searching or filtering user results. | [optional] |
 
 ### Return type
@@ -589,11 +589,13 @@ Returns a list of users with full information about them matching the parameters
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/search-users-by-extended-filter/).
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **employeeStatus** | [**EmployeeStatus**](.md)| The user status. | [optional] [enum: 1, 2, 4, 5, 7] |
 | **groupId** | **java.util.UUID**| The group ID. | [optional] |
 | **activationStatus** | [**EmployeeActivationStatus**](.md)| The user activation status. | [optional] [enum: 0, 1, 2, 4] |
 | **employeeType** | [**EmployeeType**](.md)| The user type. | [optional] [enum: All, RoomAdmin, Guest, DocSpaceAdmin, User] |
-| **employeeTypes** | [**kotlin.collections.List&lt;kotlin.Int&gt;**](kotlin.Int.md)| The list of user types. | [optional] [enum: 0, 1, 2, 3, 4] |
+| **employeeTypes** | **CSVParams** (`List<kotlin.collections.List<kotlin.Int>>`, CSV-encoded)| The list of user types. | [optional] [enum: 0, 1, 2, 3, 4] |
 | **isAdministrator** | **kotlin.Boolean**| Specifies if the user is an administrator or not. | [optional] |
 | **payments** | [**Payments**](.md)| The user payment status. | [optional] [enum: 0, 1] |
 | **accountLoginType** | [**AccountLoginType**](.md)| The account login type. | [optional] [enum: 0, 1, 2] |
@@ -608,8 +610,6 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **sortBy** | **kotlin.String**| Specifies the property or field name by which the results should be sorted. | [optional] |
 | **sortOrder** | [**SortOrder**](.md)| The order in which the results are sorted. | [optional] [enum: 0, 1] |
 | **filterSeparator** | **kotlin.String**| Represents the separator used to split filter criteria in query parameters. | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **filterValue** | **kotlin.String**| The search text used to filter results based on user input. | [optional] |
 
 ### Return type
@@ -721,11 +721,11 @@ Returns a list of users matching the status filter and search query.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/search-users-by-status/).
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **status** | [**EmployeeStatus**](.md)| The user status. | [enum: 1, 2, 4, 5, 7] |
 | **query** | **kotlin.String**| The advanced search query. | [optional] |
 | **filterBy** | **kotlin.String**| Specifies the criteria used to filter search results in advanced queries. | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **filterValue** | **kotlin.String**| The value used to filter the search query. | [optional] |
 
 ### Return type

@@ -7,8 +7,8 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 | [**createApiKey**](ApiKeysApi.md#createApiKey) | **POST** api/2.0/keys | Create a user API key |
 | [**deleteApiKey**](ApiKeysApi.md#deleteApiKey) | **DELETE** api/2.0/keys/{keyId} | Delete a user API key |
 | [**getAllPermissions**](ApiKeysApi.md#getAllPermissions) | **GET** api/2.0/keys/permissions | Get API key permissions |
-| [**getApiKey**](ApiKeysApi.md#getApiKey) | **GET** api/2.0/keys/@self | Get current user&#39;s API key |
-| [**getApiKeys**](ApiKeysApi.md#getApiKeys) | **GET** api/2.0/keys | Get current user&#39;s API keys |
+| [**getApiKey**](ApiKeysApi.md#getApiKey) | **GET** api/2.0/keys/@self | Get current user's API key |
+| [**getApiKeys**](ApiKeysApi.md#getApiKeys) | **GET** api/2.0/keys | Get current user's API keys |
 | [**updateApiKey**](ApiKeysApi.md#updateApiKey) | **PUT** api/2.0/keys/{keyId} | Update an API key |
 
 
@@ -248,9 +248,9 @@ Updates an existing API key changing its name, permissions, and status.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/update-api-key/).
 
 ### Parameters
-| **keyId** | **java.util.UUID**| The unique identifier of the API key to update. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **keyId** | **java.util.UUID**| The unique identifier of the API key to update. | |
 | **updateApiKeyRequest** | [**UpdateApiKeyRequest**](UpdateApiKeyRequest.md)| The request parameters for updating an existing API key. | |
 
 ### Return type

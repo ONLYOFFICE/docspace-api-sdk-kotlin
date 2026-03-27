@@ -30,7 +30,7 @@ interface ScopeManagementApi {
     /**
      * GET api/2.0/scopes
      * Get available OAuth2 scopes
-     * Retrieves a list of all available OAuth2 scopes for the specified tenant. The scopes define the permissions that can be requested by OAuth2 clients. The list is ordered alphabetically, with the &#39;openid&#39; scope always appearing first.
+     * Retrieves a list of all available OAuth2 scopes for the specified tenant. The scopes define the permissions that can be requested by OAuth2 clients. The list is ordered alphabetically, with the 'openid' scope always appearing first.
      * Responses:
      *  - 200: Scopes successfully retrieved
      *  - 400: Invalid request parameters

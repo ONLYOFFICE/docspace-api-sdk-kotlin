@@ -1,4 +1,4 @@
-# VectorizationApi
+# AIVectorizationApi
 
 All URIs are relative to *https://your-docspace.onlyoffice.com*
 
@@ -43,7 +43,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(VectorizationApi::class.java)
+val webService = apiClient.createWebservice(AIVectorizationApi::class.java)
 val vectorizationStartRequestBody : VectorizationStartRequestBody =  // VectorizationStartRequestBody | The vectorization parameters including file identifiers.
 
 webService.startTask(vectorizationStartRequestBody)

@@ -70,9 +70,9 @@ Checks if the selected user is an administrator of a product with the ID specifi
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-is-product-administrator/).
 
 ### Parameters
-| **productid** | **java.util.UUID**| The ID of the product extracted from the query parameters. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **productid** | **java.util.UUID**| The ID of the product extracted from the query parameters. | |
 | **userid** | **java.util.UUID**| The user ID extracted from the query parameters. | |
 
 ### Return type
@@ -259,7 +259,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **ids** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)| The list of module identifiers for which to retrieve the security settings. | [optional] |
+| **ids** | **CSVParams** (`List<kotlin.collections.List<kotlin.String>>`, CSV-encoded)| The list of module identifiers for which to retrieve the security settings. | [optional] |
 
 ### Return type
 

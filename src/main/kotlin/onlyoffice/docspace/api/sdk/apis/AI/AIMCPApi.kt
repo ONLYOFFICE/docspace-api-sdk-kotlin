@@ -39,7 +39,7 @@ import onlyoffice.docspace.api.sdk.models.SetMcpToolsRequestBody
 import onlyoffice.docspace.api.sdk.models.SetServerStatusRequestBody
 import onlyoffice.docspace.api.sdk.models.UpdateServerRequestBody
 
-interface MCPApi {
+interface AIMCPApi {
     /**
      * POST api/2.0/ai/rooms/{roomId}/servers
      * Assign MCP servers to a room
@@ -148,7 +148,7 @@ interface MCPApi {
     /**
      * POST api/2.0/ai/rooms/{roomId}/servers/{serverId}/disconnect
      * Disconnect an MCP server in a room
-     * Revokes the current user&#39;s OAuth connection to an MCP server within the specified room. After  disconnection, the server&#39;s tools will no longer be available to this user in AI chat sessions  until they re-authorize. Other room members&#39; connections are not affected.  Requires room edit permissions.
+     * Revokes the current user's OAuth connection to an MCP server within the specified room. After  disconnection, the server's tools will no longer be available to this user in AI chat sessions  until they re-authorize. Other room members' connections are not affected.  Requires room edit permissions.
      * Responses:
      *  - 200: MCP server connection status after disconnection
      *  - 403: You don't have enough permission to perform the operation
@@ -188,7 +188,7 @@ interface MCPApi {
     /**
      * GET api/2.0/ai/rooms/{roomId}/servers
      * Get MCP servers assigned to a room
-     * Returns the list of MCP servers currently assigned to the specified room along with their connection  statuses for the current user. For OAuth-based servers, the connection status reflects whether the  current user has completed authorization. Requires access to the room&#39;s AI chat.
+     * Returns the list of MCP servers currently assigned to the specified room along with their connection  statuses for the current user. For OAuth-based servers, the connection status reflects whether the  current user has completed authorization. Requires access to the room's AI chat.
      * Responses:
      *  - 200: List of MCP server statuses in the room
      *  - 403: You don't have enough permission to perform the operation
@@ -248,7 +248,7 @@ interface MCPApi {
     /**
      * GET api/2.0/ai/rooms/{roomId}/servers/{serverId}/tools
      * Get MCP server tools in a room
-     * Retrieves the full list of tools exposed by an MCP server within the context of a specific room,  along with each tool&#39;s enabled or disabled state. Disabled tools will not be invoked during  AI chat sessions in this room. Requires access to the room&#39;s AI chat.
+     * Retrieves the full list of tools exposed by an MCP server within the context of a specific room,  along with each tool's enabled or disabled state. Disabled tools will not be invoked during  AI chat sessions in this room. Requires access to the room's AI chat.
      * Responses:
      *  - 200: List of tools with their enabled/disabled states
      *  - 403: You don't have enough permission to perform the operation

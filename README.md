@@ -103,7 +103,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
         <th>Description</th>
       </tr>
       <tr>
-        <td colspan="3" style="text-align: center;"><strong>AgentsApi</strong></td>
+        <td colspan="3" style="text-align: center;"><strong>AIAgentsApi</strong></td>
       </tr>
       <tr>
         <td><a href="docs/AIAgentsApi.md#createagent"><strong>createAgent</strong></a></td>
@@ -146,7 +146,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
         <td>Change the AI agent quota limit</td>
       </tr>
     <tr>
-        <td colspan="3" style="text-align: center;"><strong>ChatApi</strong></td>
+        <td colspan="3" style="text-align: center;"><strong>AIChatApi</strong></td>
       </tr>
       <tr>
         <td><a href="docs/AIChatApi.md#continuechat"><strong>continueChat</strong></a></td>
@@ -209,7 +209,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
         <td>Start a new AI chat</td>
       </tr>
     <tr>
-        <td colspan="3" style="text-align: center;"><strong>MCPApi</strong></td>
+        <td colspan="3" style="text-align: center;"><strong>AIMCPApi</strong></td>
       </tr>
       <tr>
         <td><a href="docs/AIMCPApi.md#addroomservers"><strong>addRoomServers</strong></a></td>
@@ -282,7 +282,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
         <td>Update a custom MCP server</td>
       </tr>
     <tr>
-        <td colspan="3" style="text-align: center;"><strong>MessagesApi</strong></td>
+        <td colspan="3" style="text-align: center;"><strong>AIMessagesApi</strong></td>
       </tr>
       <tr>
         <td><a href="docs/AIMessagesApi.md#exportmessage"><strong>exportMessage</strong></a></td>
@@ -290,7 +290,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
         <td>Export a single AI message to a document</td>
       </tr>
     <tr>
-        <td colspan="3" style="text-align: center;"><strong>ProvidersApi</strong></td>
+        <td colspan="3" style="text-align: center;"><strong>AIProvidersApi</strong></td>
       </tr>
       <tr>
         <td><a href="docs/AIProvidersApi.md#addprovider"><strong>addProvider</strong></a></td>
@@ -328,7 +328,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
         <td>Update an AI provider</td>
       </tr>
     <tr>
-        <td colspan="3" style="text-align: center;"><strong>SettingsApi</strong></td>
+        <td colspan="3" style="text-align: center;"><strong>AISettingsApi</strong></td>
       </tr>
       <tr>
         <td><a href="docs/AISettingsApi.md#getaisettings"><strong>getAiSettings</strong></a></td>
@@ -356,7 +356,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
         <td>Update web search settings</td>
       </tr>
     <tr>
-        <td colspan="3" style="text-align: center;"><strong>VectorizationApi</strong></td>
+        <td colspan="3" style="text-align: center;"><strong>AIVectorizationApi</strong></td>
       </tr>
       <tr>
         <td><a href="docs/AIVectorizationApi.md#starttask"><strong>startTask</strong></a></td>
@@ -398,12 +398,12 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
       <tr>
         <td><a href="docs/ApiKeysApi.md#getapikey"><strong>getApiKey</strong></a></td>
         <td><strong>GET</strong> api/2.0/keys/@self</td>
-        <td>Get current user&#39;s API key</td>
+        <td>Get current user's API key</td>
       </tr>
       <tr>
         <td><a href="docs/ApiKeysApi.md#getapikeys"><strong>getApiKeys</strong></a></td>
         <td><strong>GET</strong> api/2.0/keys</td>
-        <td>Get current user&#39;s API keys</td>
+        <td>Get current user's API keys</td>
       </tr>
       <tr>
         <td><a href="docs/ApiKeysApi.md#updateapikey"><strong>updateApiKey</strong></a></td>

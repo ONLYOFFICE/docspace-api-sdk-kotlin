@@ -40,9 +40,9 @@ This method allows users to cancel an ongoing upload session identified by the s
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/abort-upload-session/).
 
 ### Parameters
-| **sessionId** | **kotlin.String**| The session ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **sessionId** | **kotlin.String**| The session ID. | |
 | **folderId** | **kotlin.Int**| The folder ID. | |
 
 ### Return type
@@ -177,9 +177,9 @@ Checks the conversion status of a file with the ID specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/check-conversion-status/).
 
 ### Parameters
-| **fileId** | **kotlin.Int**| The file ID to check conversion status. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **fileId** | **kotlin.Int**| The file ID to check conversion status. | |
 | **start** | **kotlin.Boolean**| Specifies whether a conversion operation is started or not. | [optional] |
 
 ### Return type
@@ -367,9 +367,9 @@ Creates the session to upload large files in multiple chunks to the folder with 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-upload-session/).
 
 ### Parameters
-| **folderId** | **kotlin.Int**| The session folder ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **folderId** | **kotlin.Int**| The session folder ID. | |
 | **sessionRequest** | [**SessionRequest**](SessionRequest.md)| The session parameters. | |
 
 ### Return type
@@ -416,9 +416,9 @@ The session allows the user to upload a file in smaller chunks to the folder ide
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-upload-session-in-folder/).
 
 ### Parameters
-| **folderId** | **kotlin.Int**| The session folder ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **folderId** | **kotlin.Int**| The session folder ID. | |
 | **sessionRequest** | [**SessionRequest**](SessionRequest.md)| The session parameters. | |
 
 ### Return type
@@ -700,9 +700,9 @@ Finalizes the upload session by processing the uploaded file chunks and marking 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/finalize-session/).
 
 ### Parameters
-| **folderId** | **kotlin.Int**| The folder ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **folderId** | **kotlin.Int**| The folder ID. | |
 | **sessionId** | **kotlin.String**| The session ID. | |
 
 ### Return type
@@ -790,9 +790,9 @@ Retrieves the statuses of operations filtered by the specified operation type.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-operation-statuses-by-type/).
 
 ### Parameters
-| **operationType** | [**FileOperationType**](.md)| Specifies the type of file operation to be retrieved. | [enum: 0, 1, 2, 3, 4, 5, 6, 7] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **operationType** | [**FileOperationType**](.md)| Specifies the type of file operation to be retrieved. | [enum: 0, 1, 2, 3, 4, 5, 6, 7] |
 | **id** | **kotlin.String**| The ID of the file operation. | [optional] |
 
 ### Return type
@@ -927,9 +927,9 @@ Starts a conversion operation of a file with the ID specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/start-file-conversion/).
 
 ### Parameters
-| **fileId** | **kotlin.Int**| The file ID to start conversion proccess. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **fileId** | **kotlin.Int**| The file ID to start conversion proccess. | |
 | **checkConversionRequestDtoInteger** | [**CheckConversionRequestDtoInteger**](CheckConversionRequestDtoInteger.md)| The parameters for checking file conversion. | [optional] |
 
 ### Return type
@@ -1017,9 +1017,9 @@ Updates a comment in a file with the ID specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/update-file-comment/).
 
 ### Parameters
-| **fileId** | **kotlin.Int**| The file ID where the comment is located. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **fileId** | **kotlin.Int**| The file ID where the comment is located. | |
 | **updateComment** | [**UpdateComment**](UpdateComment.md)| The parameters for updating a comment. | |
 
 ### Return type
@@ -1066,11 +1066,11 @@ This method allows the caller to upload a specific chunk of a file to an ongoing
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-async-session/).
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **folderId** | **kotlin.Int**| The folder ID. | |
 | **sessionId** | **kotlin.String**| The upload session ID. | |
 | **chunkNumber** | **kotlin.Int**| The chunk number. | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **file** | **java.io.File**| The file chunk to be uploaded as part of the multipart/form-data request.  This property represents the uploaded file chunk content from the HTTP request form for chunked upload operations.  The file chunk is accessed via the IFormFile interface which provides access to the chunk content and length. | [optional] |
 
 ### Return type
@@ -1119,10 +1119,10 @@ This method allows continuing an interrupted or partially completed file upload 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-session/).
 
 ### Parameters
-| **folderId** | **kotlin.Int**| The folder ID. | |
-| **sessionId** | **kotlin.String**| The upload session ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **folderId** | **kotlin.Int**| The folder ID. | |
+| **sessionId** | **kotlin.String**| The upload session ID. | |
 | **file** | **java.io.File**| The file to be uploaded as part of the multipart/form-data request.  This property represents the uploaded file content from the HTTP request form.  The file is accessed via the IFormFile interface which provides access to the file name, content type, length, and stream. | [optional] |
 
 ### Return type

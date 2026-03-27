@@ -159,9 +159,9 @@ Changes the version history of a file with the ID specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/change-version-history/).
 
 ### Parameters
-| **fileId** | **kotlin.Int**| The file Id to change its version history. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **fileId** | **kotlin.Int**| The file Id to change its version history. | |
 | **changeHistory** | [**ChangeHistory**](ChangeHistory.md)| The parameters for changing version history. | |
 
 ### Return type
@@ -208,9 +208,9 @@ Checks if the current file is a form draft which can be filled out.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/check-fill-form-draft/).
 
 ### Parameters
-| **fileId** | **kotlin.Int**| The file ID of the form draft. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **fileId** | **kotlin.Int**| The file ID of the form draft. | |
 | **checkFillFormDraft** | [**CheckFillFormDraft**](CheckFillFormDraft.md)| The parameters for checking the form draft filling. | |
 
 ### Return type
@@ -251,9 +251,9 @@ Copies (and converts if possible) an existing file to the specified folder.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/copy-file-as/).
 
 ### Parameters
-| **fileId** | **kotlin.Int**| The file ID to copy. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **fileId** | **kotlin.Int**| The file ID to copy. | |
 | **copyAsJsonElement** | [**CopyAsJsonElement**](CopyAsJsonElement.md)| The parameters for copying a file. | |
 
 ### Return type
@@ -300,9 +300,9 @@ Creates a session to edit the existing file with multiple chunks (needed for Web
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-edit-session/).
 
 ### Parameters
-| **fileId** | **kotlin.Int**| The file ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **fileId** | **kotlin.Int**| The file ID. | |
 | **fileSize** | **kotlin.Long**| The file size in bytes. | [optional] |
 
 ### Return type
@@ -349,9 +349,9 @@ Creates a new file in the specified folder with the title specified in the reque
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-file/).
 
 ### Parameters
-| **folderId** | **kotlin.Int**| The folder ID for the file creation. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **folderId** | **kotlin.Int**| The folder ID for the file creation. | |
 | **createFileJsonElement** | [**CreateFileJsonElement**](CreateFileJsonElement.md)| The parameters for creating a file. | |
 
 ### Return type
@@ -445,9 +445,9 @@ Creates a primary external link by the identifier specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-file-primary-external-link/).
 
 ### Parameters
-| **id** | **kotlin.Int**| The file ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **id** | **kotlin.Int**| The file ID. | |
 | **fileLinkRequest** | [**FileLinkRequest**](FileLinkRequest.md)| The file external link parameters. | |
 
 ### Return type
@@ -494,9 +494,9 @@ Creates an HTML (.html) file in the selected folder with the title and contents 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-html-file/).
 
 ### Parameters
-| **folderId** | **kotlin.Int**| The folder ID to create the text or HTML file. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **folderId** | **kotlin.Int**| The folder ID to create the text or HTML file. | |
 | **createTextOrHtmlFile** | [**CreateTextOrHtmlFile**](CreateTextOrHtmlFile.md)| The parameters for creating an HTML or text file. | |
 
 ### Return type
@@ -590,9 +590,9 @@ Creates a text (.txt) file in the selected folder with the title and contents sp
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-text-file/).
 
 ### Parameters
-| **folderId** | **kotlin.Int**| The folder ID to create the text or HTML file. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **folderId** | **kotlin.Int**| The folder ID to create the text or HTML file. | |
 | **createTextOrHtmlFile** | [**CreateTextOrHtmlFile**](CreateTextOrHtmlFile.md)| The parameters for creating an HTML or text file. | |
 
 ### Return type
@@ -727,10 +727,10 @@ Deletes a file with the ID specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-file/).
 
 ### Parameters
-| **fileId** | **kotlin.Int**| The file ID to delete. | |
-| **delete** | [**Delete**](Delete.md)| The parameters for deleting a file. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **fileId** | **kotlin.Int**| The file ID to delete. | |
+| **delete** | [**Delete**](Delete.md)| The parameters for deleting a file. | |
 | **returnSingleOperation** | **kotlin.Boolean**| Specifies whether to return only the current operation | [optional] |
 
 ### Return type
@@ -966,9 +966,9 @@ Returns a URL to the changes of a file version specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-edit-diff-url/).
 
 ### Parameters
-| **fileId** | **kotlin.Int**| The file ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **fileId** | **kotlin.Int**| The file ID. | |
 | **version** | **kotlin.Int**| The file version. | [optional] |
 
 ### Return type
@@ -1050,12 +1050,12 @@ Returns the list of actions performed on the file with the specified identifier.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-file-history/).
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **fileId** | **kotlin.Int**| The file ID of the history request. | |
 | **fromDate** | [**ApiDateTime**](.md)| The start date of the history. | [optional] |
 | **toDate** | [**ApiDateTime**](.md)| The end date of the history. | [optional] |
 | **count** | **kotlin.Int**| The number of history entries to retrieve for the file log. | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **startIndex** | **kotlin.Int**| The starting index for retrieving a subset of file history entries. | [optional] |
 
 ### Return type
@@ -1105,9 +1105,9 @@ Returns the detailed information about a file with the ID specified in the reque
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-file-info/).
 
 ### Parameters
-| **fileId** | **kotlin.Int**| The file ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **fileId** | **kotlin.Int**| The file ID. | |
 | **version** | **kotlin.Int**| The file version. | [optional] |
 
 ### Return type
@@ -1148,10 +1148,10 @@ Returns the external links of a file with the ID specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-file-links/).
 
 ### Parameters
-| **id** | **kotlin.Int**| The file unique identifier. | |
-| **count** | **kotlin.Int**| The number of items to retrieve in the request. | [optional] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **id** | **kotlin.Int**| The file unique identifier. | |
+| **count** | **kotlin.Int**| The number of items to retrieve in the request. | [optional] |
 | **startIndex** | **kotlin.Int**| The starting index for the query results. | [optional] |
 
 ### Return type
@@ -1199,10 +1199,10 @@ Returns the primary external link by the identifier specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-file-primary-external-link/).
 
 ### Parameters
-| **id** | **kotlin.Int**| The file unique identifier. | |
-| **count** | **kotlin.Int**| The number of items to retrieve in the request. | [optional] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **id** | **kotlin.Int**| The file unique identifier. | |
+| **count** | **kotlin.Int**| The number of items to retrieve in the request. | [optional] |
 | **startIndex** | **kotlin.Int**| The starting index for the query results. | [optional] |
 
 ### Return type
@@ -1608,9 +1608,9 @@ Locks a file with the ID specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/lock-file/).
 
 ### Parameters
-| **fileId** | **kotlin.Int**| The file ID for locking. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **fileId** | **kotlin.Int**| The file ID for locking. | |
 | **lockFileParameters** | [**LockFileParameters**](LockFileParameters.md)| The parameters for locking a file. | |
 
 ### Return type
@@ -1657,9 +1657,9 @@ Performs the specified form filling action.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/manage-form-filling/).
 
 ### Parameters
-| **fileId** | **kotlin.String**|  | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **fileId** | **kotlin.String**|  | |
 | **manageFormFillingDtoInteger** | [**ManageFormFillingDtoInteger**](ManageFormFillingDtoInteger.md)|  | [optional] |
 
 ### Return type
@@ -1706,13 +1706,13 @@ Returns the initialization configuration of a file to open it in the editor.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/open-edit-file/).
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **fileId** | **kotlin.Int**| The file ID to open. | |
 | **version** | **kotlin.Int**| The file version to open. | [optional] |
 | **view** | **kotlin.Boolean**| Specifies if the document will be opened for viewing only or not. | [optional] |
 | **editorType** | [**EditorType**](.md)| The editor type to open the file. | [optional] [enum: 0, 1, 2] |
 | **edit** | **kotlin.Boolean**| Specifies if the document is opened in the editing mode or not. | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **fill** | **kotlin.Boolean**| Specifies if the document is opened in the form-filling mode or not. | [optional] |
 
 ### Return type
@@ -1757,10 +1757,10 @@ Restores a file version specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/restore-file-version/).
 
 ### Parameters
-| **fileId** | **kotlin.Int**| The file ID of the restore version. | |
-| **version** | **kotlin.Int**| The file version of the restore. | [optional] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **fileId** | **kotlin.Int**| The file ID of the restore version. | |
+| **version** | **kotlin.Int**| The file version of the restore. | [optional] |
 | **url** | **kotlin.String**| The file version URL of the restore. | [optional] |
 
 ### Return type
@@ -1802,12 +1802,12 @@ Saves edits to a file with the ID specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/save-editing-file-from-form/).
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **fileId** | **kotlin.Int**| The editing file ID from the request. | |
 | **downloadUri** | **kotlin.String**| The URI to download the editing file. | [optional] |
 | **fileExtension** | **kotlin.String**| The editing file extension from the request. | [optional] |
 | **file** | **java.io.File**| The edited file to be saved, uploaded as part of the multipart/form-data request.  This property represents the modified file content from the HTTP request form after editing operations.  The file is accessed via the IFormFile interface which provides access to the file name, content type, length, and stream. | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **forcesave** | **kotlin.Boolean**| Specifies whether to force save the file or not. | [optional] |
 
 ### Return type
@@ -1857,9 +1857,9 @@ Saves a file with the identifier specified in the request as a PDF document.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/save-file-as-pdf/).
 
 ### Parameters
-| **id** | **kotlin.Int**| The file ID to save as PDF. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **id** | **kotlin.Int**| The file ID to save as PDF. | |
 | **saveAsPdfInteger** | [**SaveAsPdfInteger**](SaveAsPdfInteger.md)| The parameters for saving the file as PDF. | |
 
 ### Return type
@@ -1906,9 +1906,9 @@ Saves the form role mapping.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/save-form-role-mapping/).
 
 ### Parameters
-| **fileId** | **kotlin.String**|  | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **fileId** | **kotlin.String**|  | |
 | **saveFormRoleMappingDtoInteger** | [**SaveFormRoleMappingDtoInteger**](SaveFormRoleMappingDtoInteger.md)|  | [optional] |
 
 ### Return type
@@ -1955,9 +1955,9 @@ Sets the Custom Filter editing mode to a file with the ID specified in the reque
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/set-custom-filter-tag/).
 
 ### Parameters
-| **fileId** | **kotlin.Int**| The file ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **fileId** | **kotlin.Int**| The file ID. | |
 | **customFilterParameters** | [**CustomFilterParameters**](CustomFilterParameters.md)| The parameters for setting the Custom Filter editing mode. | |
 
 ### Return type
@@ -2004,9 +2004,9 @@ Sets an external link to a file with the ID specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/set-file-external-link/).
 
 ### Parameters
-| **id** | **kotlin.Int**| The file ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **id** | **kotlin.Int**| The file ID. | |
 | **fileLinkRequest** | [**FileLinkRequest**](FileLinkRequest.md)| The file external link parameters. | |
 
 ### Return type
@@ -2053,9 +2053,9 @@ Sets the order of the file with the ID specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/set-file-order/).
 
 ### Parameters
-| **fileId** | **kotlin.Int**| The file unique identifier. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **fileId** | **kotlin.Int**| The file unique identifier. | |
 | **orderRequestDto** | [**OrderRequestDto**](OrderRequestDto.md)| The file order information. | [optional] |
 
 ### Return type
@@ -2149,9 +2149,9 @@ Informs about opening a file with the ID specified in the request for editing, l
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/start-edit-file/).
 
 ### Parameters
-| **fileId** | **kotlin.Int**| The file ID to start editing. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **fileId** | **kotlin.Int**| The file ID to start editing. | |
 | **startEdit** | [**StartEdit**](StartEdit.md)| The file parameters to start editing. | |
 
 ### Return type
@@ -2239,9 +2239,9 @@ Changes the favorite status of the file with the ID specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/toggle-file-favorite/).
 
 ### Parameters
-| **fileId** | **kotlin.Int**| The file ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **fileId** | **kotlin.Int**| The file ID. | |
 | **favorite** | **kotlin.Boolean**| Specifies if the file is marked as favorite or not. | [optional] |
 
 ### Return type
@@ -2288,11 +2288,11 @@ Tracks file changes when editing.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/track-edit-file/).
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **fileId** | **kotlin.Int**| The file ID to track editing changes. | |
 | **tabId** | **java.util.UUID**| The tab ID to track editing changes. | [optional] |
 | **docKeyForTrack** | **kotlin.String**| The document key for tracking changes. | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **isFinish** | **kotlin.Boolean**| Specifies whether to finish file tracking or not. | [optional] |
 
 ### Return type
@@ -2335,9 +2335,9 @@ Updates the information of the selected file with the parameters specified in th
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/update-file/).
 
 ### Parameters
-| **fileId** | **kotlin.Int**| The file ID to update. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **fileId** | **kotlin.Int**| The file ID to update. | |
 | **updateFile** | [**UpdateFile**](UpdateFile.md)| The parameters for updating a file. | |
 
 ### Return type

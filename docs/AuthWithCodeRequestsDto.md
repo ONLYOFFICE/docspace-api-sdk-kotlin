@@ -14,7 +14,7 @@
 | **session** | **kotlin.Boolean** | Specifies whether the authentication is session-based. |  [optional] |
 | **confirmData** | [**ConfirmData**](ConfirmData.md) |  |  [optional] |
 | **recaptchaType** | [**RecaptchaType**](RecaptchaType.md) |  |  [optional] |
-| **recaptchaResponse** | **kotlin.String** | The user&#39;s response to the CAPTCHA challenge. |  [optional] |
+| **recaptchaResponse** | **kotlin.String** | The user's response to the CAPTCHA challenge. |  [optional] |
 | **culture** | **kotlin.String** | The culture code for localization during authentication. |  [optional] |
 | **code** | **kotlin.String** | The code for two-factor authentication. |  [optional] |
 

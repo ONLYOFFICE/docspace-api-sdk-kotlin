@@ -25,7 +25,7 @@ import com.squareup.moshi.Json
 
 import onlyoffice.docspace.api.sdk.models.VectorizationStartRequestBody
 
-interface VectorizationApi {
+interface AIVectorizationApi {
     /**
      * POST api/2.0/ai/vectorization/tasks
      * Start a vectorization task

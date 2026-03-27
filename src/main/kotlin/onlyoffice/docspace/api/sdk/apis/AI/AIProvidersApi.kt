@@ -32,7 +32,7 @@ import onlyoffice.docspace.api.sdk.models.RemoveProviderRequestDto
 import onlyoffice.docspace.api.sdk.models.SetDefaultProviderRequestDto
 import onlyoffice.docspace.api.sdk.models.UpdateProviderBody
 
-interface ProvidersApi {
+interface AIProvidersApi {
     /**
      * POST api/2.0/ai/providers
      * Add an AI provider

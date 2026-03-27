@@ -21,9 +21,9 @@ Creates the user photo thumbnails by coordinates of the original image specified
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-member-photo-thumbnails/).
 
 ### Parameters
-| **userid** | **kotlin.String**| The user ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **userid** | **kotlin.String**| The user ID. | |
 | **thumbnailsRequest** | [**ThumbnailsRequest**](ThumbnailsRequest.md)| The thumbnail request. | |
 
 ### Return type
@@ -164,9 +164,9 @@ Updates a photo of the user with the ID specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/update-member-photo/).
 
 ### Parameters
-| **userid** | **kotlin.String**| The user ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **userid** | **kotlin.String**| The user ID. | |
 | **updatePhotoMemberRequest** | [**UpdatePhotoMemberRequest**](UpdatePhotoMemberRequest.md)| The request parameters for updating a photo. | |
 
 ### Return type
@@ -213,10 +213,10 @@ Uploads a photo of the user with the ID specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-member-photo/).
 
 ### Parameters
-| **userid** | **kotlin.String**| The user ID. | |
-| **file** | **java.io.File**| The image data. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **userid** | **kotlin.String**| The user ID. | |
+| **file** | **java.io.File**| The image data. | |
 | **autosave** | **kotlin.Boolean**|  | [optional] |
 
 ### Return type

@@ -19,12 +19,12 @@ Returns groups with their sharing settings for a file with the ID specified in r
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-groups-with-files-shared/).
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **id** | **kotlin.Int**| The group ID. | |
 | **excludeShared** | **kotlin.Boolean**| Specifies whether to exclude the group sharing settings from the response. | [optional] |
 | **count** | **kotlin.Int**| The number of groups to retrieve in the request. | [optional] |
 | **startIndex** | **kotlin.Int**| The starting index from which to begin retrieving groups with their sharing settings. | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **filterValue** | **kotlin.String**| The text used as a filter for retrieving groups with their sharing settings. | [optional] |
 
 ### Return type
@@ -74,12 +74,12 @@ Returns groups with their sharing settings in a folder with the ID specified in 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-groups-with-folders-shared/).
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **id** | **kotlin.Int**| The group ID. | |
 | **excludeShared** | **kotlin.Boolean**| Specifies whether to exclude the group sharing settings from the response. | [optional] |
 | **count** | **kotlin.Int**| The number of groups to retrieve in the request. | [optional] |
 | **startIndex** | **kotlin.Int**| The starting index from which to begin retrieving groups with their sharing settings. | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **filterValue** | **kotlin.String**| The text used as a filter for retrieving groups with their sharing settings. | [optional] |
 
 ### Return type
@@ -129,12 +129,12 @@ Returns groups with their sharing settings in a room with the ID specified in re
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-groups-with-rooms-shared/).
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **id** | **kotlin.Int**| The group ID. | |
 | **excludeShared** | **kotlin.Boolean**| Specifies whether to exclude the group sharing settings from the response. | [optional] |
 | **count** | **kotlin.Int**| The number of groups to retrieve in the request. | [optional] |
 | **startIndex** | **kotlin.Int**| The starting index from which to begin retrieving groups with their sharing settings. | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **filterValue** | **kotlin.String**| The text used as a filter for retrieving groups with their sharing settings. | [optional] |
 
 ### Return type

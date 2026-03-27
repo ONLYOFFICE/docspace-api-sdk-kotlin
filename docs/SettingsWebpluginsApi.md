@@ -209,9 +209,9 @@ Updates a web plugin with the parameters specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/update-web-plugin/).
 
 ### Parameters
-| **name** | **kotlin.String**| The web plugin name. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **name** | **kotlin.String**| The web plugin name. | |
 | **webPluginRequests** | [**WebPluginRequests**](WebPluginRequests.md)| The configuration settings for the web plugin instance. | |
 
 ### Return type

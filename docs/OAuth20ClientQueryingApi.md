@@ -104,10 +104,10 @@ Retrieves a paginated list of OAuth2 clients. The results can be paginated using
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-clients/).
 
 ### Parameters
-| **limit** | **kotlin.Int**| The maximum number of results returned per page. | |
-| **lastClientId** | **kotlin.String**| The ID of the last retrieved client. | [optional] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **limit** | **kotlin.Int**| The maximum number of results returned per page. | |
+| **lastClientId** | **kotlin.String**| The ID of the last retrieved client. | [optional] |
 | **lastCreatedOn** | **java.time.OffsetDateTime**| The creation date of the last retrieved client. | [optional] |
 
 ### Return type
@@ -149,10 +149,10 @@ Retrieves a paginated list of information for all clients.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-clients-info/).
 
 ### Parameters
-| **limit** | **kotlin.Int**| The maximum number of results returned per page. | |
-| **lastClientId** | **kotlin.String**| The identifier of the last retrieved client. | [optional] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **limit** | **kotlin.Int**| The maximum number of results returned per page. | |
+| **lastClientId** | **kotlin.String**| The identifier of the last retrieved client. | [optional] |
 | **lastCreatedOn** | **java.time.OffsetDateTime**| The creation date of the last retrieved client. | [optional] |
 
 ### Return type
@@ -194,9 +194,9 @@ Retrieves a paginated list of user consents.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-consents/).
 
 ### Parameters
-| **limit** | **kotlin.Int**| The maximum number of results returned per page. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **limit** | **kotlin.Int**| The maximum number of results returned per page. | |
 | **lastModifiedOn** | **java.time.OffsetDateTime**| The date when the user consent was last modified. | [optional] |
 
 ### Return type

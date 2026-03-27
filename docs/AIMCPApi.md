@@ -1,4 +1,4 @@
-# MCPApi
+# AIMCPApi
 
 All URIs are relative to *https://your-docspace.onlyoffice.com*
 
@@ -30,9 +30,9 @@ Associates one or more MCP servers with a specific room, making them available f
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/add-room-servers/).
 
 ### Parameters
-| **roomId** | **kotlin.Int**| Identifier of the room to which MCP servers will be assigned. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **roomId** | **kotlin.Int**| Identifier of the room to which MCP servers will be assigned. | |
 | **addRoomServersRequestBody** | [**AddRoomServersRequestBody**](AddRoomServersRequestBody.md)| Server identifiers to assign. | |
 
 ### Return type
@@ -57,7 +57,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(MCPApi::class.java)
+val webService = apiClient.createWebservice(AIMCPApi::class.java)
 val roomId : kotlin.Int = 42 // kotlin.Int | Identifier of the room to which MCP servers will be assigned.
 val addRoomServersRequestBody : AddRoomServersRequestBody =  // AddRoomServersRequestBody | Server identifiers to assign.
 
@@ -105,7 +105,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(MCPApi::class.java)
+val webService = apiClient.createWebservice(AIMCPApi::class.java)
 val addMcpServerRequestBody : AddMcpServerRequestBody =  // AddMcpServerRequestBody | MCP server registration parameters.
 
 val result : McpServerWrapper = webService.addServer(addMcpServerRequestBody)
@@ -126,10 +126,10 @@ Completes the OAuth authorization flow for an MCP server within a specific room 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/connect-server/).
 
 ### Parameters
-| **roomId** | **kotlin.Int**| Identifier of the room containing the MCP server. | |
-| **serverId** | **java.util.UUID**| Unique identifier of the MCP server to connect. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **roomId** | **kotlin.Int**| Identifier of the room containing the MCP server. | |
+| **serverId** | **java.util.UUID**| Unique identifier of the MCP server to connect. | |
 | **connectServerRequestBody** | [**ConnectServerRequestBody**](ConnectServerRequestBody.md)| The request body containing additional data necessary for connecting to the server,  such as authentication or operation-specific information. | |
 
 ### Return type
@@ -154,7 +154,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(MCPApi::class.java)
+val webService = apiClient.createWebservice(AIMCPApi::class.java)
 val roomId : kotlin.Int = 42 // kotlin.Int | Identifier of the room containing the MCP server.
 val serverId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | Unique identifier of the MCP server to connect.
 val connectServerRequestBody : ConnectServerRequestBody =  // ConnectServerRequestBody | The request body containing additional data necessary for connecting to the server,  such as authentication or operation-specific information.
@@ -177,9 +177,9 @@ Detaches one or more MCP servers from the specified room. After removal, the ser
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-room-servers/).
 
 ### Parameters
-| **roomId** | **kotlin.Int**| Identifier of the room from which MCP servers will be removed. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **roomId** | **kotlin.Int**| Identifier of the room from which MCP servers will be removed. | |
 | **deleteRoomServersRequestBody** | [**DeleteRoomServersRequestBody**](DeleteRoomServersRequestBody.md)| Server identifiers to remove. | |
 
 ### Return type
@@ -204,7 +204,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(MCPApi::class.java)
+val webService = apiClient.createWebservice(AIMCPApi::class.java)
 val roomId : kotlin.Int = 42 // kotlin.Int | Identifier of the room from which MCP servers will be removed.
 val deleteRoomServersRequestBody : DeleteRoomServersRequestBody =  // DeleteRoomServersRequestBody | Server identifiers to remove.
 
@@ -252,7 +252,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(MCPApi::class.java)
+val webService = apiClient.createWebservice(AIMCPApi::class.java)
 val deleteServersRequestBody : DeleteServersRequestBody =  // DeleteServersRequestBody | Server identifiers to delete.
 
 webService.deleteServer(deleteServersRequestBody)
@@ -273,9 +273,9 @@ Revokes the current user's OAuth connection to an MCP server within the specifie
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/disconnect-server/).
 
 ### Parameters
-| **roomId** | **kotlin.Int**| Identifier of the room containing the MCP server. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **roomId** | **kotlin.Int**| Identifier of the room containing the MCP server. | |
 | **serverId** | **java.util.UUID**| Unique identifier of the MCP server to disconnect from. | |
 
 ### Return type
@@ -300,7 +300,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(MCPApi::class.java)
+val webService = apiClient.createWebservice(AIMCPApi::class.java)
 val roomId : kotlin.Int = 42 // kotlin.Int | Identifier of the room containing the MCP server.
 val serverId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | Unique identifier of the MCP server to disconnect from.
 
@@ -322,9 +322,9 @@ Returns a paginated list of MCP servers that are currently active (enabled) and 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-available-servers/).
 
 ### Parameters
-| **startIndex** | **kotlin.Int**| The number of items to skip before returning results (zero-based offset). Defaults to 0. | [optional] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **startIndex** | **kotlin.Int**| The number of items to skip before returning results (zero-based offset). Defaults to 0. | [optional] |
 | **count** | **kotlin.Int**| The maximum number of items to return per page. Defaults to 100. | [optional] |
 
 ### Return type
@@ -349,7 +349,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(MCPApi::class.java)
+val webService = apiClient.createWebservice(AIMCPApi::class.java)
 val startIndex : kotlin.Int = 0 // kotlin.Int | The number of items to skip before returning results (zero-based offset). Defaults to 0.
 val count : kotlin.Int = 100 // kotlin.Int | The maximum number of items to return per page. Defaults to 100.
 
@@ -397,7 +397,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(MCPApi::class.java)
+val webService = apiClient.createWebservice(AIMCPApi::class.java)
 val roomId : kotlin.Int = 42 // kotlin.Int | Identifier of the room whose assigned MCP servers are being retrieved.
 
 val result : McpServerStatusArrayWrapper = webService.getRoomServers(roomId)
@@ -444,7 +444,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(MCPApi::class.java)
+val webService = apiClient.createWebservice(AIMCPApi::class.java)
 val id : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | Unique identifier of the MCP server to retrieve.
 
 val result : McpServerShortWrapper = webService.getServer(id)
@@ -465,9 +465,9 @@ Returns a paginated list of all MCP servers registered for the current tenant, i
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-servers/).
 
 ### Parameters
-| **startIndex** | **kotlin.Int**| The number of items to skip before returning results (zero-based offset). Defaults to 0. | [optional] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **startIndex** | **kotlin.Int**| The number of items to skip before returning results (zero-based offset). Defaults to 0. | [optional] |
 | **count** | **kotlin.Int**| The maximum number of items to return per page. Defaults to 100. | [optional] |
 
 ### Return type
@@ -492,7 +492,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(MCPApi::class.java)
+val webService = apiClient.createWebservice(AIMCPApi::class.java)
 val startIndex : kotlin.Int = 0 // kotlin.Int | The number of items to skip before returning results (zero-based offset). Defaults to 0.
 val count : kotlin.Int = 100 // kotlin.Int | The maximum number of items to return per page. Defaults to 100.
 
@@ -514,9 +514,9 @@ Retrieves the full list of tools exposed by an MCP server within the context of 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tools/).
 
 ### Parameters
-| **roomId** | **kotlin.Int**| Identifier of the room containing the MCP server. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **roomId** | **kotlin.Int**| Identifier of the room containing the MCP server. | |
 | **serverId** | **java.util.UUID**| Unique identifier of the MCP server whose tools are being retrieved. | |
 
 ### Return type
@@ -541,7 +541,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(MCPApi::class.java)
+val webService = apiClient.createWebservice(AIMCPApi::class.java)
 val roomId : kotlin.Int = 42 // kotlin.Int | Identifier of the room containing the MCP server.
 val serverId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | Unique identifier of the MCP server whose tools are being retrieved.
 
@@ -563,9 +563,9 @@ Toggles the enabled/disabled state of an MCP server. When a server is disabled, 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/set-server-status/).
 
 ### Parameters
-| **id** | **java.util.UUID**| Unique identifier of the MCP server whose status is being changed. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **id** | **java.util.UUID**| Unique identifier of the MCP server whose status is being changed. | |
 | **setServerStatusRequestBody** | [**SetServerStatusRequestBody**](SetServerStatusRequestBody.md)| New status value. | |
 
 ### Return type
@@ -590,7 +590,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(MCPApi::class.java)
+val webService = apiClient.createWebservice(AIMCPApi::class.java)
 val id : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | Unique identifier of the MCP server whose status is being changed.
 val setServerStatusRequestBody : SetServerStatusRequestBody =  // SetServerStatusRequestBody | New status value.
 
@@ -612,10 +612,10 @@ Updates the set of disabled tools for an MCP server within a specific room. Pass
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/set-tools/).
 
 ### Parameters
-| **roomId** | **kotlin.Int**| Identifier of the room containing the MCP server. | |
-| **serverId** | **java.util.UUID**| Unique identifier of the MCP server whose tools are being configured. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **roomId** | **kotlin.Int**| Identifier of the room containing the MCP server. | |
+| **serverId** | **java.util.UUID**| Unique identifier of the MCP server whose tools are being configured. | |
 | **setMcpToolsRequestBody** | [**SetMcpToolsRequestBody**](SetMcpToolsRequestBody.md)| Tool configuration parameters. | |
 
 ### Return type
@@ -640,7 +640,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(MCPApi::class.java)
+val webService = apiClient.createWebservice(AIMCPApi::class.java)
 val roomId : kotlin.Int = 42 // kotlin.Int | Identifier of the room containing the MCP server.
 val serverId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | Unique identifier of the MCP server whose tools are being configured.
 val setMcpToolsRequestBody : SetMcpToolsRequestBody =  // SetMcpToolsRequestBody | Tool configuration parameters.
@@ -663,9 +663,9 @@ Updates the configuration of an existing custom MCP server identified by its uni
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/update-server/).
 
 ### Parameters
-| **id** | **java.util.UUID**| Unique identifier of the MCP server to update. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **id** | **java.util.UUID**| Unique identifier of the MCP server to update. | |
 | **updateServerRequestBody** | [**UpdateServerRequestBody**](UpdateServerRequestBody.md)| Updated server configuration fields. | |
 
 ### Return type
@@ -690,7 +690,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(MCPApi::class.java)
+val webService = apiClient.createWebservice(AIMCPApi::class.java)
 val id : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | Unique identifier of the MCP server to update.
 val updateServerRequestBody : UpdateServerRequestBody =  // UpdateServerRequestBody | Updated server configuration fields.
 

@@ -64,9 +64,9 @@ Authenticates the current user by SMS or two-factor authentication code.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/authenticate-me-from-body-with-code/).
 
 ### Parameters
-| **code** | **kotlin.String**|  | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **code** | **kotlin.String**|  | |
 | **authWithCodeRequestsDto** | [**AuthWithCodeRequestsDto**](AuthWithCodeRequestsDto.md)|  | [optional] |
 
 ### Return type

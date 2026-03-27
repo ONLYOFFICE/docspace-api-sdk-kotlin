@@ -67,6 +67,8 @@ Returns a list of the audit events by the parameters specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-audit-events-by-filter/).
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **userId** | **java.util.UUID**| The ID of the user who triggered the audit event. | [optional] |
 | **moduleType** | [**LocationType**](.md)| The location where the audit event occurred. | [optional] [enum: 0, 1, 2, 3, 27, 29, 30, 31] |
 | **actionType** | [**ActionType**](.md)| The type of action performed in the audit event (e.g., Create, Update, Delete). | [optional] [enum: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19] |
@@ -76,8 +78,6 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **from** | [**ApiDateTime**](.md)| The starting date and time for filtering audit events. | [optional] |
 | **to** | [**ApiDateTime**](.md)| The ending date and time for filtering audit events. | [optional] |
 | **count** | **kotlin.Int**| The maximum number of audit event records to retrieve. | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **startIndex** | **kotlin.Int**| The index of the first audit event record to retrieve in a paged query. | [optional] |
 
 ### Return type
@@ -176,9 +176,9 @@ Returns the mappers for the audit trail types.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-audit-trail-mappers/).
 
 ### Parameters
-| **productType** | [**ProductType**](.md)| The type of product related to the audit trail. | [optional] [enum: 2, 3, 7, 8] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **productType** | [**ProductType**](.md)| The type of product related to the audit trail. | [optional] [enum: 2, 3, 7, 8] |
 | **moduleType** | [**LocationType**](.md)| The location associated with the audit trail. | [optional] [enum: 0, 1, 2, 3, 27, 29, 30, 31] |
 
 ### Return type

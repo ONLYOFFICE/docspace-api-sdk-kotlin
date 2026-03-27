@@ -207,6 +207,8 @@ Returns the logs of the webhook activities.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-webhooks-logs/).
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **deliveryFrom** | **java.time.OffsetDateTime**| The delivery start time for filtering webhook logs. | [optional] |
 | **deliveryTo** | **java.time.OffsetDateTime**| The delivery end time for filtering webhook logs. | [optional] |
 | **hookUri** | **kotlin.String**| The destination URL where webhooks are delivered. | [optional] |
@@ -216,8 +218,6 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **userId** | **java.util.UUID**| The identifier of the user associated with the webhook event. | [optional] |
 | **trigger** | [**WebhookTrigger**](.md)| The type of event that triggered the webhook. | [optional] [enum: 0, 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072, 262144, 524288, 1048576, 2097152, 4194304, 8388608, 16777216, 33554432, 67108864, 134217728, 268435456, 536870912, 1073741824] |
 | **count** | **kotlin.Int**| The maximum number of webhook log records to return in the query response. | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **startIndex** | **kotlin.Int**| Specifies the starting index for retrieving webhook logs.  Used for pagination in the webhook delivery log queries. | [optional] |
 
 ### Return type

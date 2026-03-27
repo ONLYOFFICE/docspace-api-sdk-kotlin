@@ -25,7 +25,7 @@ import com.squareup.moshi.Json
 
 import onlyoffice.docspace.api.sdk.models.ExportMessageRequestBodyInteger
 
-interface MessagesApi {
+interface AIMessagesApi {
     /**
      * POST api/2.0/ai/messages/{messageId}/export
      * Export a single AI message to a document

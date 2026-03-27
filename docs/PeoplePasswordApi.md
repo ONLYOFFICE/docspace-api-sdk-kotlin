@@ -18,9 +18,9 @@ Sets a new password to the user with the ID specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/change-user-password/).
 
 ### Parameters
-| **userid** | **java.util.UUID**| The user ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **userid** | **java.util.UUID**| The user ID. | |
 | **changePasswordRequest** | [**ChangePasswordRequest**](ChangePasswordRequest.md)| The request parameters for updating a user password. | |
 
 ### Return type

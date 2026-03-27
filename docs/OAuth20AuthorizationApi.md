@@ -19,11 +19,11 @@ Initiates the OAuth2 authorization flow.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/authorize-oauth/).
 
 ### Parameters
-| **responseType** | **kotlin.String**| The OAuth 2.0 response type, must be &#39;code&#39; for authorization code flow. | |
-| **clientId** | **kotlin.String**| The client identifier issued to the client during registration. | |
-| **redirectUri** | **kotlin.String**| The URL to redirect to after authorization is complete. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **responseType** | **kotlin.String**| The OAuth 2.0 response type, must be 'code' for authorization code flow. | |
+| **clientId** | **kotlin.String**| The client identifier issued to the client during registration. | |
+| **redirectUri** | **kotlin.String**| The URL to redirect to after authorization is complete. | |
 | **scope** | **kotlin.String**| The space-separated list of requested scope permissions. | |
 
 ### Return type
@@ -66,12 +66,12 @@ Exchanges an authorization code specified in the request for the access token.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/exchange-token/).
 
 ### Parameters
-| **grantType** | **kotlin.String**| The OAuth2 grant type, must be &#39;authorization_code&#39; for the authorization code flow. | [optional] |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **grantType** | **kotlin.String**| The OAuth2 grant type, must be 'authorization_code' for the authorization code flow. | [optional] |
 | **code** | **kotlin.String**| A temporary authorization code that is sent to the client to be exchanged for a token. | [optional] |
 | **redirectUri** | **kotlin.String**| The URL where the user will be redirected after successful or unsuccessful authentication. | [optional] |
 | **clientId** | **kotlin.String**| The client identifier issued to the client during registration. | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **clientSecret** | **kotlin.String**| The client secret issued to the client during registration. | [optional] |
 
 ### Return type
@@ -115,10 +115,10 @@ Sends a consent request with the specified parameters.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/submit-consent/).
 
 ### Parameters
-| **clientId** | **kotlin.String**| The client identifier issued to the client during registration. | [optional] |
-| **state** | **kotlin.String**| The random string used to solve the CSRF vulnerability problem. | [optional] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **clientId** | **kotlin.String**| The client identifier issued to the client during registration. | [optional] |
+| **state** | **kotlin.String**| The random string used to solve the CSRF vulnerability problem. | [optional] |
 | **scope** | **kotlin.String**| The space-separated list of requested scope permissions. | [optional] |
 
 ### Return type

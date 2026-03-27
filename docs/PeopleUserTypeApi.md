@@ -161,9 +161,9 @@ Changes a type of the users with the IDs specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/update-user-type/).
 
 ### Parameters
-| **type** | [**EmployeeType**](.md)| The new user type. | [enum: All, RoomAdmin, Guest, DocSpaceAdmin, User] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **type** | [**EmployeeType**](.md)| The new user type. | [enum: All, RoomAdmin, Guest, DocSpaceAdmin, User] |
 | **updateMembersRequestDto** | [**UpdateMembersRequestDto**](UpdateMembersRequestDto.md)| The request parameters for updating the user information. | |
 
 ### Return type

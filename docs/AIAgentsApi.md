@@ -1,4 +1,4 @@
-# AgentsApi
+# AIAgentsApi
 
 All URIs are relative to *https://your-docspace.onlyoffice.com*
 
@@ -50,7 +50,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(AgentsApi::class.java)
+val webService = apiClient.createWebservice(AIAgentsApi::class.java)
 val createAgentRequestDto : CreateAgentRequestDto =  // CreateAgentRequestDto | 
 
 val result : FolderIntegerWrapper = webService.createAgent(createAgentRequestDto)
@@ -71,9 +71,9 @@ Removes an ai agent.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-agent/).
 
 ### Parameters
-| **id** | **kotlin.Int**| The room ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **id** | **kotlin.Int**| The room ID. | |
 | **deleteRoomRequest** | [**DeleteRoomRequest**](DeleteRoomRequest.md)| The parameters for deleting a room. | |
 
 ### Return type
@@ -98,7 +98,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(AgentsApi::class.java)
+val webService = apiClient.createWebservice(AIAgentsApi::class.java)
 val id : kotlin.Int = 10 // kotlin.Int | The room ID.
 val deleteRoomRequest : DeleteRoomRequest =  // DeleteRoomRequest | The parameters for deleting a room.
 
@@ -146,7 +146,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(AgentsApi::class.java)
+val webService = apiClient.createWebservice(AIAgentsApi::class.java)
 val id : kotlin.Int = 1 // kotlin.Int | The room ID.
 
 val result : FolderIntegerWrapper = webService.getAgentInfo(id)
@@ -167,6 +167,8 @@ Get ai agents
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-agents/).
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **subjectId** | **kotlin.String**| The filter by user ID. | [optional] |
 | **withoutTags** | **kotlin.Boolean**| Specifies whether to search by tags or not. | [optional] |
 | **tags** | **kotlin.String**| The tags in the serialized format. | [optional] |
@@ -177,8 +179,6 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **startIndex** | **kotlin.Int**| The index from which to start retrieving the room content. | [optional] |
 | **sortBy** | **kotlin.String**| Specifies the field by which the room content should be sorted. | [optional] |
 | **sortOrder** | [**SortOrder**](.md)| The order in which the results are sorted. | [optional] [enum: 0, 1] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **filterValue** | **kotlin.String**| The text filter value used to refine search or query operations. | [optional] |
 
 ### Return type
@@ -203,7 +203,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(AgentsApi::class.java)
+val webService = apiClient.createWebservice(AIAgentsApi::class.java)
 val subjectId : kotlin.String = 00000000-0000-0000-0000-000000000000 // kotlin.String | The filter by user ID.
 val withoutTags : kotlin.Boolean = false // kotlin.Boolean | Specifies whether to search by tags or not.
 val tags : kotlin.String = ai,assistant // kotlin.String | The tags in the serialized format.
@@ -258,7 +258,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(AgentsApi::class.java)
+val webService = apiClient.createWebservice(AIAgentsApi::class.java)
 
 val result : NewItemsAgentNewItemsArrayWrapper = webService.getAgentsNewItems()
 ```
@@ -304,7 +304,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(AgentsApi::class.java)
+val webService = apiClient.createWebservice(AIAgentsApi::class.java)
 val updateRoomsRoomIdsRequestDtoInteger : UpdateRoomsRoomIdsRequestDtoInteger =  // UpdateRoomsRoomIdsRequestDtoInteger | 
 
 val result : FolderIntegerArrayWrapper = webService.resetAgentsQuota(updateRoomsRoomIdsRequestDtoInteger)
@@ -325,9 +325,9 @@ Updates an ai agent.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/update-agent/).
 
 ### Parameters
-| **id** | **kotlin.Int**| The room ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **id** | **kotlin.Int**| The room ID. | |
 | **updateRoomRequest** | [**UpdateRoomRequest**](UpdateRoomRequest.md)| The request parameters for updating a room. | |
 
 ### Return type
@@ -352,7 +352,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(AgentsApi::class.java)
+val webService = apiClient.createWebservice(AIAgentsApi::class.java)
 val id : kotlin.Int = 56 // kotlin.Int | The room ID.
 val updateRoomRequest : UpdateRoomRequest =  // UpdateRoomRequest | The request parameters for updating a room.
 
@@ -400,7 +400,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(AgentsApi::class.java)
+val webService = apiClient.createWebservice(AIAgentsApi::class.java)
 val updateRoomsQuotaRequestDtoInteger : UpdateRoomsQuotaRequestDtoInteger =  // UpdateRoomsQuotaRequestDtoInteger | 
 
 val result : FolderIntegerArrayWrapper = webService.updateAgentsQuota(updateRoomsQuotaRequestDtoInteger)

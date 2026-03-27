@@ -22,9 +22,9 @@ Activates or deactivates an OAuth2 client. When deactivated, the client cannot r
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/change-activation/).
 
 ### Parameters
-| **clientId** | **kotlin.String**| The client identifier. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **clientId** | **kotlin.String**| The client identifier. | |
 | **changeClientActivationRequest** | [**ChangeClientActivationRequest**](ChangeClientActivationRequest.md)|  | |
 
 ### Return type
@@ -229,9 +229,9 @@ Updates the configuration of an existing OAuth2 client, allowing modifications t
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/update-client/).
 
 ### Parameters
-| **clientId** | **kotlin.String**| The client identifier. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **clientId** | **kotlin.String**| The client identifier. | |
 | **updateClientRequest** | [**UpdateClientRequest**](UpdateClientRequest.md)|  | |
 
 ### Return type

@@ -1,4 +1,4 @@
-# MessagesApi
+# AIMessagesApi
 
 All URIs are relative to *https://your-docspace.onlyoffice.com*
 
@@ -17,9 +17,9 @@ Exports a specific AI chat message as a document into the specified folder. The 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/export-message/).
 
 ### Parameters
-| **messageId** | **kotlin.Int**| The unique identifier of the AI chat message to export. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **messageId** | **kotlin.Int**| The unique identifier of the AI chat message to export. | |
 | **exportMessageRequestBodyInteger** | [**ExportMessageRequestBodyInteger**](ExportMessageRequestBodyInteger.md)| The export parameters including destination folder and file title. | |
 
 ### Return type
@@ -44,7 +44,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(MessagesApi::class.java)
+val webService = apiClient.createWebservice(AIMessagesApi::class.java)
 val messageId : kotlin.Int = 1 // kotlin.Int | The unique identifier of the AI chat message to export.
 val exportMessageRequestBodyInteger : ExportMessageRequestBodyInteger =  // ExportMessageRequestBodyInteger | The export parameters including destination folder and file title.
 

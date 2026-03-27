@@ -1328,9 +1328,9 @@ Uploads a file to use as the default template setting.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-default-template/).
 
 ### Parameters
-| **fileExtension** | **kotlin.String**| File extension of a template to replace | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **fileExtension** | **kotlin.String**| File extension of a template to replace | |
 | **file** | **java.io.File**| File to replace template with | |
 
 ### Return type

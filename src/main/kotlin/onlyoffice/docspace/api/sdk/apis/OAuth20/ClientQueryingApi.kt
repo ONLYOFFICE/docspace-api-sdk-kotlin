@@ -76,7 +76,7 @@ interface ClientQueryingApi {
     /**
      * GET api/2.0/clients
      * Get clients
-     * Retrieves a paginated list of OAuth2 clients. The results can be paginated using the &#39;limit&#39; parameter and the last seen client ID or creation date.
+     * Retrieves a paginated list of OAuth2 clients. The results can be paginated using the 'limit' parameter and the last seen client ID or creation date.
      * Responses:
      *  - 200: Client list successfully retrieved
      *  - 400: Invalid pagination parameters

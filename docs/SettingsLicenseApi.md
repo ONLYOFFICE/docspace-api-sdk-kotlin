@@ -148,7 +148,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **files** | **kotlin.collections.List&lt;java.io.File&gt;**| The list of license files to be uploaded. | |
+| **files** | **MultipartBody.Part**| The list of license files to be uploaded. | |
 
 ### Return type
 

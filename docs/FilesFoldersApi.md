@@ -44,9 +44,9 @@ Checks the file uploads to the folder with the ID specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/check-upload/).
 
 ### Parameters
-| **folderId** | **kotlin.Int**| The folder ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **folderId** | **kotlin.Int**| The folder ID. | |
 | **checkUploadRequest** | [**CheckUploadRequest**](CheckUploadRequest.md)| The request parameters for checking file uploads. | |
 
 ### Return type
@@ -93,9 +93,9 @@ Creates a new folder with the title specified in the request. The parent folder 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-folder/).
 
 ### Parameters
-| **folderId** | **kotlin.Int**| The folder ID for the folder creation. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **folderId** | **kotlin.Int**| The folder ID for the folder creation. | |
 | **createFolder** | [**CreateFolder**](CreateFolder.md)| The parameters for creating a folder. | |
 
 ### Return type
@@ -142,9 +142,9 @@ Creates a primary external link by the identifier specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-folder-primary-external-link/).
 
 ### Parameters
-| **id** | **kotlin.Int**| The folder ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **id** | **kotlin.Int**| The folder ID. | |
 | **folderLinkRequest** | [**FolderLinkRequest**](FolderLinkRequest.md)| The folder link parameters. | |
 
 ### Return type
@@ -238,9 +238,9 @@ Deletes a folder with the ID specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-folder/).
 
 ### Parameters
-| **folderId** | **kotlin.Int**| The folder ID to delete. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **folderId** | **kotlin.Int**| The folder ID to delete. | |
 | **deleteFolder** | [**DeleteFolder**](DeleteFolder.md)| The parameters for deleting a folder. | |
 
 ### Return type
@@ -287,14 +287,14 @@ Returns the detailed list of files and folders located in the Favorites section.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-favorites-folder/).
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **userIdOrGroupId** | **java.util.UUID**| The user or group ID. | [optional] |
 | **filterType** | [**FilterType**](.md)| The filter type. | [optional] [enum: 0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 17, 20, 22, 23, 24, 25, 26] |
 | **count** | **kotlin.Int**| The maximum number of items to retrieve in the request. | [optional] |
 | **startIndex** | **kotlin.Int**| The zero-based index of the first item to retrieve in a paginated list. | [optional] |
 | **sortBy** | **kotlin.String**| Specifies the field by which the folder content should be sorted. | [optional] |
 | **sortOrder** | [**SortOrder**](.md)| The order in which the results are sorted. | [optional] [enum: 0, 1] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **filterValue** | **kotlin.String**| The text used as a filter or search criterion for folder content queries. | [optional] |
 
 ### Return type
@@ -431,6 +431,8 @@ Returns the detailed list of files and folders located in the folder with the ID
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-by-folder-id/).
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **folderId** | **kotlin.Int**| The folder ID. | |
 | **userIdOrGroupId** | **java.util.UUID**| The user or group ID. | [optional] |
 | **sharedBy** | **java.util.UUID**| The identifier of the user who shared the folder or file. | [optional] |
@@ -447,8 +449,6 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **sortBy** | **kotlin.String**| The property used for sorting the folder request results. | [optional] |
 | **sortOrder** | [**SortOrder**](.md)| The order in which the results are sorted. | [optional] [enum: 0, 1] |
 | **filterValue** | **kotlin.String**| The text value used as a filter parameter for folder content queries. | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **location** | [**Location**](.md)| The location context of the request, specifying the area  where the operation is performed, such as a room, documents, or a link. | [optional] [enum: 1, 2, 3] |
 
 ### Return type
@@ -504,12 +504,12 @@ Returns the activity history of a folder with a specified identifier.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-history/).
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **folderId** | **kotlin.Int**| The folder ID of the history request. | |
 | **fromDate** | [**ApiDateTime**](.md)| The start date of the history request. | [optional] |
 | **toDate** | [**ApiDateTime**](.md)| The end date of the history request. | [optional] |
 | **count** | **kotlin.Int**| The number of records to retrieve for the folder history. | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **startIndex** | **kotlin.Int**| The starting index from which the history records are retrieved in the request. | [optional] |
 
 ### Return type
@@ -694,10 +694,10 @@ Returns the primary external link by the identifier specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-primary-external-link/).
 
 ### Parameters
-| **id** | **kotlin.Int**| The folder unique identifier. | |
-| **count** | **kotlin.Int**| The number of items to retrieve in the request. | [optional] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **id** | **kotlin.Int**| The folder unique identifier. | |
+| **count** | **kotlin.Int**| The number of items to retrieve in the request. | [optional] |
 | **startIndex** | **kotlin.Int**| The starting index for the query results. | [optional] |
 
 ### Return type
@@ -786,6 +786,8 @@ Returns the detailed list of files and folders located in the My documents secti
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-my-folder/).
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **userIdOrGroupId** | **java.util.UUID**| The user or group ID. | [optional] |
 | **filterType** | [**FilterType**](.md)| The filter type. | [optional] [enum: 0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 17, 20, 22, 23, 24, 25, 26] |
 | **applyFilterOption** | [**ApplyFilterOption**](.md)| Specifies whether to return only files, only folders or all elements. | [optional] [enum: 0, 1, 2] |
@@ -793,8 +795,6 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **startIndex** | **kotlin.Int**| The starting position of the items to be retrieved. | [optional] |
 | **sortBy** | **kotlin.String**| The property used to specify the sorting criteria for folder contents. | [optional] |
 | **sortOrder** | [**SortOrder**](.md)| The order in which the results are sorted. | [optional] [enum: 0, 1] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **filterValue** | **kotlin.String**| The text used for filtering or searching folder contents. | [optional] |
 
 ### Return type
@@ -894,14 +894,14 @@ Returns the detailed list of files and folders located in the Private Room secti
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-privacy-folder/).
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **userIdOrGroupId** | **java.util.UUID**| The user or group ID. | [optional] |
 | **filterType** | [**FilterType**](.md)| The filter type. | [optional] [enum: 0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 17, 20, 22, 23, 24, 25, 26] |
 | **count** | **kotlin.Int**| The maximum number of items to retrieve in the request. | [optional] |
 | **startIndex** | **kotlin.Int**| The zero-based index of the first item to retrieve in a paginated list. | [optional] |
 | **sortBy** | **kotlin.String**| Specifies the field by which the folder content should be sorted. | [optional] |
 | **sortOrder** | [**SortOrder**](.md)| The order in which the results are sorted. | [optional] [enum: 0, 1] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **filterValue** | **kotlin.String**| The text used as a filter or search criterion for folder content queries. | [optional] |
 
 ### Return type
@@ -953,18 +953,18 @@ Returns the detailed list of files located in the Recent section.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-recent-folder/).
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **userIdOrGroupId** | **java.util.UUID**| The user or group ID. | [optional] |
 | **filterType** | [**FilterType**](.md)| The filter type. | [optional] [enum: 0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 17, 20, 22, 23, 24, 25, 26] |
 | **excludeSubject** | **kotlin.Boolean**| Specifies whether to exclude search by user or group ID. | [optional] |
 | **applyFilterOption** | [**ApplyFilterOption**](.md)| Specifies whether to return only files, only folders or all elements. | [optional] [enum: 0, 1, 2] |
 | **searchArea** | [**SearchArea**](.md)| The search area. | [optional] [enum: 0, 1, 2, 3, 4, 5, 6, 7] |
-| **extension** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)| Specifies whether to search for a specific file extension in the Recent folder. | [optional] |
+| **extension** | **CSVParams** (`List<kotlin.collections.List<kotlin.String>>`, CSV-encoded)| Specifies whether to search for a specific file extension in the Recent folder. | [optional] |
 | **count** | **kotlin.Int**| The maximum number of items to return. | [optional] |
 | **startIndex** | **kotlin.Int**| The starting position of the results to be returned in the query response. | [optional] |
 | **sortBy** | **kotlin.String**| Specifies the sorting criteria for the folder request. | [optional] |
 | **sortOrder** | [**SortOrder**](.md)| The order in which the results are sorted. | [optional] [enum: 0, 1] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **filterValue** | **kotlin.String**| The text used for filtering or searching folder contents. | [optional] |
 
 ### Return type
@@ -1020,6 +1020,8 @@ Returns all the sections matching the parameters specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-root-folders/).
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **userIdOrGroupId** | **java.util.UUID**| The user or group ID. | [optional] |
 | **filterType** | [**FilterType**](.md)| The filter type. | [optional] [enum: 0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 17, 20, 22, 23, 24, 25, 26] |
 | **withoutTrash** | **kotlin.Boolean**| Specifies whether to return the Trash section or not. | [optional] |
@@ -1027,8 +1029,6 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **startIndex** | **kotlin.Int**| The starting position of the items to be retrieved. | [optional] |
 | **sortBy** | **kotlin.String**| Specifies the field by which the folder content should be sorted. | [optional] |
 | **sortOrder** | [**SortOrder**](.md)| The order in which the results are sorted. | [optional] [enum: 0, 1] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **filterValue** | **kotlin.String**| The text used as a filter for searching or retrieving folder contents. | [optional] |
 
 ### Return type
@@ -1081,6 +1081,8 @@ Returns the detailed list of files and folders located in the Trash section.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-trash-folder/).
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **userIdOrGroupId** | **java.util.UUID**| The user or group ID. | [optional] |
 | **filterType** | [**FilterType**](.md)| The filter type. | [optional] [enum: 0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 17, 20, 22, 23, 24, 25, 26] |
 | **applyFilterOption** | [**ApplyFilterOption**](.md)| Specifies whether to return only files, only folders or all elements. | [optional] [enum: 0, 1, 2] |
@@ -1088,8 +1090,6 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **startIndex** | **kotlin.Int**| The starting position of the items to be retrieved. | [optional] |
 | **sortBy** | **kotlin.String**| The property used to specify the sorting criteria for folder contents. | [optional] |
 | **sortOrder** | [**SortOrder**](.md)| The order in which the results are sorted. | [optional] [enum: 0, 1] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **filterValue** | **kotlin.String**| The text used for filtering or searching folder contents. | [optional] |
 
 ### Return type
@@ -1142,6 +1142,8 @@ Inserts a file specified in the request to the selected folder by single file up
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/insert-file/).
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **folderId** | **kotlin.Int**| The folder ID for inserting a file. | |
 | **insertFileFile** | **java.io.File**| The file to be inserted. | [optional] |
 | **insertFileTitle** | **kotlin.String**| The file title to be inserted. | [optional] |
@@ -1154,8 +1156,6 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **insertFileStreamLength** | **kotlin.Long**|  | [optional] |
 | **insertFileStreamPosition** | **kotlin.Long**|  | [optional] |
 | **insertFileStreamReadTimeout** | **kotlin.Int**|  | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **insertFileStreamWriteTimeout** | **kotlin.Int**|  | [optional] |
 
 ### Return type
@@ -1213,6 +1213,8 @@ Inserts a file specified in the request to the My documents section by single fi
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/insert-file-to-my-from-body/).
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **file** | **java.io.File**| The file to be inserted. | [optional] |
 | **title** | **kotlin.String**| The file title to be inserted. | [optional] |
 | **createNewIfExist** | **kotlin.Boolean**| Specifies whether to create a new file if it already exists or not. | [optional] |
@@ -1224,8 +1226,6 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **streamLength** | **kotlin.Long**|  | [optional] |
 | **streamPosition** | **kotlin.Long**|  | [optional] |
 | **streamReadTimeout** | **kotlin.Int**|  | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **streamWriteTimeout** | **kotlin.Int**|  | [optional] |
 
 ### Return type
@@ -1282,9 +1282,9 @@ Renames the selected folder with a new title specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/rename-folder/).
 
 ### Parameters
-| **folderId** | **kotlin.Int**| The folder ID for the folder creation. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **folderId** | **kotlin.Int**| The folder ID for the folder creation. | |
 | **createFolder** | [**CreateFolder**](CreateFolder.md)| The parameters for creating a folder. | |
 
 ### Return type
@@ -1331,9 +1331,9 @@ Sets the order of a folder with ID specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/set-folder-order/).
 
 ### Parameters
-| **folderId** | **kotlin.Int**| The folder unique identifier. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **folderId** | **kotlin.Int**| The folder unique identifier. | |
 | **orderRequestDto** | [**OrderRequestDto**](OrderRequestDto.md)| The folder order information. | [optional] |
 
 ### Return type
@@ -1380,9 +1380,9 @@ Sets the folder external link with the ID specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/set-folder-primary-external-link/).
 
 ### Parameters
-| **id** | **kotlin.Int**| The folder ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **id** | **kotlin.Int**| The folder ID. | |
 | **folderLinkRequest** | [**FolderLinkRequest**](FolderLinkRequest.md)| The folder link parameters. | |
 
 ### Return type
@@ -1429,9 +1429,9 @@ Uploads a file specified in the request to the selected folder by single file up
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-file/).
 
 ### Parameters
-| **folderId** | **kotlin.Int**| The folder ID to upload a file. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **folderId** | **kotlin.Int**| The folder ID to upload a file. | |
 | **uploadRequestDto** | [**UploadRequestDto**](UploadRequestDto.md)| The request parameters for uploading a file. | [optional] |
 
 ### Return type

@@ -20,11 +20,11 @@ Returns a list of the available third-party accounts.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-third-party-auth-providers/).
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **inviteView** | **kotlin.Boolean**| Specifies whether to return providers that are available for invitation links, i.e. the user can login or register through these providers. | [optional] |
 | **settingsView** | **kotlin.Boolean**| Specifies whether to display the provider settings in a pop-up window (true) or redirect them to the desktop application (false). | [optional] |
 | **clientCallback** | **kotlin.String**| The method that is called after authentication. | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **fromOnly** | **kotlin.String**| The provider name if a response is required only from this provider. | [optional] |
 
 ### Return type

@@ -1,4 +1,4 @@
-# ChatApi
+# AIChatApi
 
 All URIs are relative to *https://your-docspace.onlyoffice.com*
 
@@ -28,9 +28,9 @@ Appends a new user message to an existing chat session and streams the AI assist
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/continue-chat/).
 
 ### Parameters
-| **chatId** | **java.util.UUID**| The unique identifier of the existing AI chat session to continue. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **chatId** | **java.util.UUID**| The unique identifier of the existing AI chat session to continue. | |
 | **continueChatBody** | [**ContinueChatBody**](ContinueChatBody.md)| The message and optional file attachments. | |
 
 ### Return type
@@ -55,7 +55,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(ChatApi::class.java)
+val webService = apiClient.createWebservice(AIChatApi::class.java)
 val chatId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The unique identifier of the existing AI chat session to continue.
 val continueChatBody : ContinueChatBody =  // ContinueChatBody | The message and optional file attachments.
 
@@ -103,7 +103,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(ChatApi::class.java)
+val webService = apiClient.createWebservice(AIChatApi::class.java)
 val chatId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The unique identifier of the AI chat session to delete.
 
 webService.deleteChat(chatId)
@@ -124,9 +124,9 @@ Exports the entire message history of an AI chat session and saves it as a docum
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/export-chat/).
 
 ### Parameters
-| **chatId** | **java.util.UUID**| The unique identifier of the AI chat session to export. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **chatId** | **java.util.UUID**| The unique identifier of the AI chat session to export. | |
 | **exportChatRequestBodyInteger** | [**ExportChatRequestBodyInteger**](ExportChatRequestBodyInteger.md)| The export parameters including destination folder and file title. | |
 
 ### Return type
@@ -151,7 +151,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(ChatApi::class.java)
+val webService = apiClient.createWebservice(AIChatApi::class.java)
 val chatId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The unique identifier of the AI chat session to export.
 val exportChatRequestBodyInteger : ExportChatRequestBodyInteger =  // ExportChatRequestBodyInteger | The export parameters including destination folder and file title.
 
@@ -199,7 +199,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(ChatApi::class.java)
+val webService = apiClient.createWebservice(AIChatApi::class.java)
 val chatId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The unique identifier of the AI chat session to retrieve.
 
 val result : ChatWrapper = webService.getChat(chatId)
@@ -246,7 +246,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(ChatApi::class.java)
+val webService = apiClient.createWebservice(AIChatApi::class.java)
 val provider : kotlin.Int = 1 // kotlin.Int | The optional AI provider identifier to filter models by. When set to 0, models from all providers are returned.
 
 val result : ModelArrayWrapper = webService.getChatModels(provider)
@@ -267,10 +267,10 @@ Returns a paginated list of AI chat sessions that belong to the current user wit
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-chats/).
 
 ### Parameters
-| **roomId** | **kotlin.Int**| The identifier of the room whose AI chat sessions are to be listed. | |
-| **startIndex** | **kotlin.Int**| The number of items to skip before returning results (zero-based offset). Defaults to 0. | [optional] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **roomId** | **kotlin.Int**| The identifier of the room whose AI chat sessions are to be listed. | |
+| **startIndex** | **kotlin.Int**| The number of items to skip before returning results (zero-based offset). Defaults to 0. | [optional] |
 | **count** | **kotlin.Int**| The maximum number of items to return per page. Defaults to 100. | [optional] |
 
 ### Return type
@@ -295,7 +295,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(ChatApi::class.java)
+val webService = apiClient.createWebservice(AIChatApi::class.java)
 val roomId : kotlin.Int = 42 // kotlin.Int | The identifier of the room whose AI chat sessions are to be listed.
 val startIndex : kotlin.Int = 0 // kotlin.Int | The number of items to skip before returning results (zero-based offset). Defaults to 0.
 val count : kotlin.Int = 100 // kotlin.Int | The maximum number of items to return per page. Defaults to 100.
@@ -318,10 +318,10 @@ Returns a paginated list of messages from an AI chat session owned by the curren
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-messages/).
 
 ### Parameters
-| **chatId** | **java.util.UUID**| The unique identifier of the AI chat session whose messages are to be listed. | |
-| **startIndex** | **kotlin.Int**| The number of items to skip before returning results (zero-based offset). Defaults to 0. | [optional] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **chatId** | **java.util.UUID**| The unique identifier of the AI chat session whose messages are to be listed. | |
+| **startIndex** | **kotlin.Int**| The number of items to skip before returning results (zero-based offset). Defaults to 0. | [optional] |
 | **count** | **kotlin.Int**| The maximum number of items to return per page. Defaults to 100. | [optional] |
 
 ### Return type
@@ -346,7 +346,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(ChatApi::class.java)
+val webService = apiClient.createWebservice(AIChatApi::class.java)
 val chatId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The unique identifier of the AI chat session whose messages are to be listed.
 val startIndex : kotlin.Int = 0 // kotlin.Int | The number of items to skip before returning results (zero-based offset). Defaults to 0.
 val count : kotlin.Int = 100 // kotlin.Int | The maximum number of items to return per page. Defaults to 100.
@@ -395,7 +395,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(ChatApi::class.java)
+val webService = apiClient.createWebservice(AIChatApi::class.java)
 val roomId : kotlin.Int = 42 // kotlin.Int | The identifier of the room whose chat settings are to be retrieved.
 
 val result : UserChatSettingsWrapper = webService.getUserChatsSettings(roomId)
@@ -416,9 +416,9 @@ Provides the user's approval or denial decision for a pending MCP (Model Context
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/provide-permission/).
 
 ### Parameters
-| **callId** | **kotlin.String**| The unique identifier of the pending tool execution call awaiting a permission decision. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **callId** | **kotlin.String**| The unique identifier of the pending tool execution call awaiting a permission decision. | |
 | **toolDecisionRequestBody** | [**ToolDecisionRequestBody**](ToolDecisionRequestBody.md)| The permission decision parameters. | |
 
 ### Return type
@@ -443,7 +443,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(ChatApi::class.java)
+val webService = apiClient.createWebservice(AIChatApi::class.java)
 val callId : kotlin.String = call_abc123 // kotlin.String | The unique identifier of the pending tool execution call awaiting a permission decision.
 val toolDecisionRequestBody : ToolDecisionRequestBody =  // ToolDecisionRequestBody | The permission decision parameters.
 
@@ -465,9 +465,9 @@ Updates the display title of an existing AI chat session owned by the current us
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/rename-chat/).
 
 ### Parameters
-| **chatId** | **java.util.UUID**| The unique identifier of the AI chat session to rename. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **chatId** | **java.util.UUID**| The unique identifier of the AI chat session to rename. | |
 | **renameChatBody** | [**RenameChatBody**](RenameChatBody.md)| The new chat name. | |
 
 ### Return type
@@ -492,7 +492,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(ChatApi::class.java)
+val webService = apiClient.createWebservice(AIChatApi::class.java)
 val chatId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The unique identifier of the AI chat session to rename.
 val renameChatBody : RenameChatBody =  // RenameChatBody | The new chat name.
 
@@ -514,9 +514,9 @@ Saves the current user's personal AI chat preferences for the specified room.  C
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/set-user-chats-settings/).
 
 ### Parameters
-| **roomId** | **kotlin.Int**| The identifier of the room whose chat settings are to be updated. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **roomId** | **kotlin.Int**| The identifier of the room whose chat settings are to be updated. | |
 | **setUserChatSettingsRequestBody** | [**SetUserChatSettingsRequestBody**](SetUserChatSettingsRequestBody.md)| The chat settings to apply. | |
 
 ### Return type
@@ -541,7 +541,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(ChatApi::class.java)
+val webService = apiClient.createWebservice(AIChatApi::class.java)
 val roomId : kotlin.Int = 42 // kotlin.Int | The identifier of the room whose chat settings are to be updated.
 val setUserChatSettingsRequestBody : SetUserChatSettingsRequestBody =  // SetUserChatSettingsRequestBody | The chat settings to apply.
 
@@ -563,9 +563,9 @@ Creates a new AI chat session within the specified room and sends the initial me
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/start-new-chat/).
 
 ### Parameters
-| **roomId** | **kotlin.Int**| The identifier of the room in which to create the new AI chat session. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **roomId** | **kotlin.Int**| The identifier of the room in which to create the new AI chat session. | |
 | **startNewChatBody** | [**StartNewChatBody**](StartNewChatBody.md)| The initial message and optional file attachments. | |
 
 ### Return type
@@ -590,7 +590,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(ChatApi::class.java)
+val webService = apiClient.createWebservice(AIChatApi::class.java)
 val roomId : kotlin.Int = 42 // kotlin.Int | The identifier of the room in which to create the new AI chat session.
 val startNewChatBody : StartNewChatBody =  // StartNewChatBody | The initial message and optional file attachments.
 

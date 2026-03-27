@@ -37,7 +37,7 @@ import onlyoffice.docspace.api.sdk.models.UpdateRoomRequest
 import onlyoffice.docspace.api.sdk.models.UpdateRoomsQuotaRequestDtoInteger
 import onlyoffice.docspace.api.sdk.models.UpdateRoomsRoomIdsRequestDtoInteger
 
-interface AgentsApi {
+interface AIAgentsApi {
     /**
      * POST api/2.0/ai/agents
      * Create an ai agent

@@ -418,6 +418,8 @@ Returns the report of customer operations from the accounting service.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-customer-operations/).
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **offset** | **kotlin.Int**| The number of items to skip for pagination. The default value is 0. | [optional] |
 | **limit** | **kotlin.Int**| The maximum number of items to return for pagination. The default value is 25. | [optional] |
 | **serviceName** | **kotlin.String**| The service name. | [optional] |
@@ -430,8 +432,6 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **types** | [**OperationType**](.md)| List of operation types to filter by. | [optional] [enum: 0, 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072] |
 | **status** | [**OperationStatus**](.md)| List of operation status to filter by. | [optional] [enum: 0, 1, 2, 4, 8] |
 | **orderBy** | **kotlin.String**| The field to order by. | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **orderType** | [**OperationOrderType**](.md)| Order direction: Ascending or Descending. | [optional] [enum: 0, 1] |
 
 ### Return type
@@ -533,9 +533,9 @@ Returns the service quota from the accounting service.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-customer-service-quota/).
 
 ### Parameters
-| **serviceName** | **kotlin.String**| The service name. | [optional] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **serviceName** | **kotlin.String**| The service name. | [optional] |
 | **refresh** | **kotlin.Boolean**| Specifies whether to refresh the payment information cache or not. | [optional] |
 
 ### Return type

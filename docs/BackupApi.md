@@ -402,10 +402,10 @@ Returns the number of backups for a period of time. The default is the current c
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-backups-count/).
 
 ### Parameters
-| **from** | **java.time.OffsetDateTime**| The from date. | [optional] |
-| **to** | **java.time.OffsetDateTime**| The to date. | [optional] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **from** | **java.time.OffsetDateTime**| The from date. | [optional] |
+| **to** | **java.time.OffsetDateTime**| The to date. | [optional] |
 | **paid** | **kotlin.Boolean**| Specifies if the backups are paid or not. | [optional] |
 
 ### Return type

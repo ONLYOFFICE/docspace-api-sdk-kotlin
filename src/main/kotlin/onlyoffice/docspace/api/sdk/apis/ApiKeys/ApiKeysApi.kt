@@ -86,8 +86,8 @@ interface ApiKeysApi {
 
     /**
      * GET api/2.0/keys/@self
-     * Get current user&#39;s API key
-     * Returns information about the current user&#39;s API key.
+     * Get current user's API key
+     * Returns information about the current user's API key.
      * Responses:
      *  - 200: List of api keys for user
      *  - 401: Unauthorized
@@ -103,7 +103,7 @@ interface ApiKeysApi {
 
     /**
      * GET api/2.0/keys
-     * Get current user&#39;s API keys
+     * Get current user's API keys
      * Returns a list of all API keys for the current user.
      * Responses:
      *  - 200: List of api keys for user

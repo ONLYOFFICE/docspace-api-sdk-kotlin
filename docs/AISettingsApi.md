@@ -1,4 +1,4 @@
-# SettingsApi
+# AISettingsApi
 
 All URIs are relative to *https://your-docspace.onlyoffice.com*
 
@@ -45,7 +45,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(SettingsApi::class.java)
+val webService = apiClient.createWebservice(AISettingsApi::class.java)
 
 val result : AiSettingsWrapper = webService.getAiSettings()
 ```
@@ -89,7 +89,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(SettingsApi::class.java)
+val webService = apiClient.createWebservice(AISettingsApi::class.java)
 
 val result : VectorizationSettingsWrapper = webService.getVectorizationSettings()
 ```
@@ -133,7 +133,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(SettingsApi::class.java)
+val webService = apiClient.createWebservice(AISettingsApi::class.java)
 
 val result : WebSearchSettingsWrapper = webService.getWebSearchSettings()
 ```
@@ -179,7 +179,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(SettingsApi::class.java)
+val webService = apiClient.createWebservice(AISettingsApi::class.java)
 val setEmbeddingConfigRequestBody : SetEmbeddingConfigRequestBody =  // SetEmbeddingConfigRequestBody | The embedding provider configuration parameters.
 
 val result : VectorizationSettingsWrapper = webService.setVectorizationSettings(setEmbeddingConfigRequestBody)
@@ -226,7 +226,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(SettingsApi::class.java)
+val webService = apiClient.createWebservice(AISettingsApi::class.java)
 val setWebSearchSettingsRequestBody : SetWebSearchSettingsRequestBody =  // SetWebSearchSettingsRequestBody | The web search configuration parameters.
 
 val result : WebSearchSettingsWrapper = webService.setWebSearchSettings(setWebSearchSettingsRequestBody)

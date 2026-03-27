@@ -29,7 +29,7 @@ import onlyoffice.docspace.api.sdk.models.SetWebSearchSettingsRequestBody
 import onlyoffice.docspace.api.sdk.models.VectorizationSettingsWrapper
 import onlyoffice.docspace.api.sdk.models.WebSearchSettingsWrapper
 
-interface SettingsApi {
+interface AISettingsApi {
     /**
      * GET api/2.0/ai/config
      * Get AI settings

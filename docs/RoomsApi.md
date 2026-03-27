@@ -56,9 +56,9 @@ Adds the tags to a room with the ID specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/add-room-tags/).
 
 ### Parameters
-| **id** | **kotlin.Int**| The room Id. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **id** | **kotlin.Int**| The room Id. | |
 | **batchTagsRequestDto** | [**BatchTagsRequestDto**](BatchTagsRequestDto.md)| The parameters for managing tags. | [optional] |
 
 ### Return type
@@ -105,9 +105,9 @@ Moves a room with the ID specified in the request to the Archive section.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/archive-room/).
 
 ### Parameters
-| **id** | **kotlin.Int**| The room ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **id** | **kotlin.Int**| The room ID. | |
 | **archiveRoomRequest** | [**ArchiveRoomRequest**](ArchiveRoomRequest.md)| The parameters for archiving a room. | [optional] |
 
 ### Return type
@@ -154,9 +154,9 @@ Changes a cover of a room with the ID specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/change-room-cover/).
 
 ### Parameters
-| **id** | **kotlin.Int**| The room ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **id** | **kotlin.Int**| The room ID. | |
 | **coverRequestDto** | [**CoverRequestDto**](CoverRequestDto.md)| The request parameters to change the room cover. | |
 
 ### Return type
@@ -297,9 +297,9 @@ Creates a logo for a room with the ID specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-room-logo/).
 
 ### Parameters
-| **id** | **kotlin.Int**| The room ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **id** | **kotlin.Int**| The room ID. | |
 | **logoRequest** | [**LogoRequest**](LogoRequest.md)| The logo request parameters. | |
 
 ### Return type
@@ -440,9 +440,9 @@ Creates a room in the Rooms section stored in a third-party storage.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-room-third-party/).
 
 ### Parameters
-| **id** | **kotlin.String**| The ID of the folder in the third-party storage in which the contents of the room will be stored. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **id** | **kotlin.String**| The ID of the folder in the third-party storage in which the contents of the room will be stored. | |
 | **createThirdPartyRoom** | [**CreateThirdPartyRoom**](CreateThirdPartyRoom.md)| The third-party room information. | |
 
 ### Return type
@@ -536,9 +536,9 @@ Removes a room with the ID specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-room/).
 
 ### Parameters
-| **id** | **kotlin.Int**| The room ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **id** | **kotlin.Int**| The room ID. | |
 | **deleteRoomRequest** | [**DeleteRoomRequest**](DeleteRoomRequest.md)| The parameters for deleting a room. | |
 
 ### Return type
@@ -632,9 +632,9 @@ Removes the tags from a room with the ID specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-room-tags/).
 
 ### Parameters
-| **id** | **kotlin.Int**| The room Id. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **id** | **kotlin.Int**| The room Id. | |
 | **batchTagsRequestDto** | [**BatchTagsRequestDto**](BatchTagsRequestDto.md)| The parameters for managing tags. | [optional] |
 
 ### Return type
@@ -948,9 +948,9 @@ Returns the links of the room with the ID specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-links/).
 
 ### Parameters
-| **id** | **kotlin.Int**| The room ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **id** | **kotlin.Int**| The room ID. | |
 | **type** | [**LinkType**](.md)| The link type. | [optional] [enum: 0, 1] |
 
 ### Return type
@@ -997,12 +997,12 @@ Returns the access rights of a room with the ID specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-security-info/).
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **id** | **kotlin.Int**| The room ID. | |
 | **filterType** | [**ShareFilterType**](.md)| The filter type of the access rights. | [optional] [enum: 0, 1, 2, 4, 8, 15, 16, 32] |
 | **count** | **kotlin.Int**| The number of items to be retrieved or processed. | [optional] |
 | **startIndex** | **kotlin.Int**| The starting index of the items to retrieve in a paginated request. | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **filterValue** | **kotlin.String**| The text filter value used for filtering room security information. | [optional] |
 
 ### Return type
@@ -1052,10 +1052,10 @@ Returns a list of custom tags.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-tags-info/).
 
 ### Parameters
-| **count** | **kotlin.Int**| Gets or sets the number of tag results to retrieve.  This property specifies the maximum amount of tag data to be included in the result set. | [optional] |
-| **startIndex** | **kotlin.Int**| Represents the starting index from which the tags&#39; information will be retrieved.  This property is used to define the offset for pagination when retrieving a list of tags. It determines  the point in the data set from which the retrieval begins. | [optional] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **count** | **kotlin.Int**| Gets or sets the number of tag results to retrieve.  This property specifies the maximum amount of tag data to be included in the result set. | [optional] |
+| **startIndex** | **kotlin.Int**| Represents the starting index from which the tags' information will be retrieved.  This property is used to define the offset for pagination when retrieving a list of tags. It determines  the point in the data set from which the retrieval begins. | [optional] |
 | **filterValue** | **kotlin.String**| Gets or sets the text value used for searching tags.  This property is typically used as a filter value when retrieving tag information. | [optional] |
 
 ### Return type
@@ -1147,7 +1147,9 @@ Returns the contents of the Rooms section by the parameters specified in the req
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-rooms-folder/).
 
 ### Parameters
-| **type** | [**kotlin.collections.List&lt;RoomType&gt;**](RoomType.md)| The filter by room type. | [optional] |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **type** | **CSVParams** (`List<kotlin.collections.List<RoomType>>`, CSV-encoded)| The filter by room type. | [optional] |
 | **subjectId** | **kotlin.String**| The filter by user ID. | [optional] |
 | **searchArea** | [**SearchArea**](.md)| The room search area (Active, Archive, Any, Recent by links). | [optional] [enum: 0, 1, 2, 3, 4, 5, 6, 7] |
 | **withoutTags** | **kotlin.Boolean**| Specifies whether to search by tags or not. | [optional] |
@@ -1162,8 +1164,6 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **sortBy** | **kotlin.String**| Specifies the field by which the room content should be sorted. | [optional] |
 | **sortOrder** | [**SortOrder**](.md)| The order in which the results are sorted. | [optional] [enum: 0, 1] |
 | **filterValue** | **kotlin.String**| The text filter value used to refine search or query operations. | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **groupId** | **kotlin.Int**| The group ID | [optional] |
 
 ### Return type
@@ -1315,9 +1315,9 @@ Checks if a specific custom tag has linked items.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/has-tag-links/).
 
 ### Parameters
-| **tagName2** | **kotlin.String**|  | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **tagName2** | **kotlin.String**|  | |
 | **tagName** | **kotlin.String**| Represents the name of a tag | [optional] |
 
 ### Return type
@@ -1458,9 +1458,9 @@ Resends the email invitations to a room with the ID specified in the request to 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/resend-email-invitations/).
 
 ### Parameters
-| **id** | **kotlin.Int**| The room ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **id** | **kotlin.Int**| The room ID. | |
 | **userInvitation** | [**UserInvitation**](UserInvitation.md)| The user invitation parameters. | |
 
 ### Return type
@@ -1554,9 +1554,9 @@ Sets the room external or invitation link with the ID specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/set-room-link/).
 
 ### Parameters
-| **id** | **kotlin.Int**| The room ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **id** | **kotlin.Int**| The room ID. | |
 | **roomLinkRequest** | [**RoomLinkRequest**](RoomLinkRequest.md)| The room link parameters. | |
 
 ### Return type
@@ -1603,9 +1603,9 @@ Sets the access rights to the room with the ID specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/set-room-security/).
 
 ### Parameters
-| **id** | **kotlin.Int**| The room ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **id** | **kotlin.Int**| The room ID. | |
 | **roomInvitationRequest** | [**RoomInvitationRequest**](RoomInvitationRequest.md)| The room invitation request. | |
 
 ### Return type
@@ -1743,9 +1743,9 @@ Moves a room with the ID specified in the request from the Archive section to th
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/unarchive-room/).
 
 ### Parameters
-| **id** | **kotlin.Int**| The room ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **id** | **kotlin.Int**| The room ID. | |
 | **archiveRoomRequest** | [**ArchiveRoomRequest**](ArchiveRoomRequest.md)| The parameters for archiving a room. | [optional] |
 
 ### Return type
@@ -1839,9 +1839,9 @@ Updates a room with the ID specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/update-room/).
 
 ### Parameters
-| **id** | **kotlin.Int**| The room ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **id** | **kotlin.Int**| The room ID. | |
 | **updateRoomRequest** | [**UpdateRoomRequest**](UpdateRoomRequest.md)| The request parameters for updating a room. | |
 
 ### Return type

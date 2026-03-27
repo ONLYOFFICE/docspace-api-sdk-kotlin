@@ -77,10 +77,10 @@ Returns a boolean indicating whether a user with the specified email exists on t
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/check-user-exists-by-email/).
 
 ### Parameters
-| **email** | **kotlin.String**| The user email address. | [optional] |
-| **encemail** | **kotlin.String**| The user encrypted email address. | [optional] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **email** | **kotlin.String**| The user email address. | [optional] |
+| **encemail** | **kotlin.String**| The user encrypted email address. | [optional] |
 | **culture** | **kotlin.String**| Culture | [optional] |
 
 ### Return type
@@ -219,14 +219,14 @@ Returns a list of profiles for all the portal users.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-all-profiles/).
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **count** | **kotlin.Int**| The maximum number of items to be retrieved in the response. | [optional] |
 | **startIndex** | **kotlin.Int**| The zero-based index of the first item to be retrieved in a filtered result set. | [optional] |
 | **filterBy** | **kotlin.String**| Specifies the filter criteria for user-related queries. | [optional] |
 | **sortBy** | **kotlin.String**| Specifies the property or field name by which the results should be sorted. | [optional] |
 | **sortOrder** | [**SortOrder**](.md)| The order in which the results are sorted. | [optional] [enum: 0, 1] |
 | **filterSeparator** | **kotlin.String**| The character or string used to separate multiple filter values in a filtering query. | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **filterValue** | **kotlin.String**| The text value used as an additional filter criterion for profiles retrieval. | [optional] |
 
 ### Return type
@@ -322,10 +322,10 @@ Returns the detailed information about a profile of the user with the email spec
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-profile-by-email/).
 
 ### Parameters
-| **email** | **kotlin.String**| The user email address. | [optional] |
-| **encemail** | **kotlin.String**| The user encrypted email address. | [optional] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **email** | **kotlin.String**| The user email address. | [optional] |
+| **encemail** | **kotlin.String**| The user encrypted email address. | [optional] |
 | **culture** | **kotlin.String**| Culture | [optional] |
 
 ### Return type
@@ -605,9 +605,9 @@ Updates the data for the selected portal user with the first name, last name, em
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/update-member/).
 
 ### Parameters
-| **userid** | **kotlin.String**| The user ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **userid** | **kotlin.String**| The user ID. | |
 | **updateMemberRequestDto** | [**UpdateMemberRequestDto**](UpdateMemberRequestDto.md)| The request parameters for updating the user information. | |
 
 ### Return type
@@ -654,9 +654,9 @@ Updates the user culture with the parameters specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/update-member-culture/).
 
 ### Parameters
-| **userid** | **kotlin.String**| The user ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **userid** | **kotlin.String**| The user ID. | |
 | **culture** | [**Culture**](Culture.md)| The culture name parameters. | [optional] |
 
 ### Return type

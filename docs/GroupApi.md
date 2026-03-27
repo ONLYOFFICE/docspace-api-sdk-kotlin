@@ -74,9 +74,9 @@ Adds new group members to the group with the ID specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/add-members-to/).
 
 ### Parameters
-| **id** | **java.util.UUID**| The group ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **id** | **java.util.UUID**| The group ID. | |
 | **membersRequest** | [**MembersRequest**](MembersRequest.md)| The member request. | |
 
 ### Return type
@@ -170,9 +170,9 @@ Returns the detailed information about the selected group.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-group/).
 
 ### Parameters
-| **id** | **java.util.UUID**| The group ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **id** | **java.util.UUID**| The group ID. | |
 | **includeMembers** | **kotlin.Boolean**| Specifies whether to include the group members or not. | [optional] |
 
 ### Return type
@@ -266,14 +266,14 @@ Returns the general information about all the groups, such as group ID and group
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-groups/).
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **userId** | **java.util.UUID**| The user ID. | [optional] |
 | **manager** | **kotlin.Boolean**| Specifies if the user is a manager or not. | [optional] |
 | **count** | **kotlin.Int**| The number of records to retrieve. | [optional] |
 | **startIndex** | **kotlin.Int**| The starting index for paginated results. | [optional] |
 | **sortBy** | **kotlin.String**| Specifies the property used to sort the query results. | [optional] |
 | **sortOrder** | [**SortOrder**](.md)| The order in which the results are sorted. | [optional] [enum: 0, 1] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **filterValue** | **kotlin.String**| The text used for filtering or searching group data. | [optional] |
 
 ### Return type
@@ -325,9 +325,9 @@ Moves all the members from the selected group to another one specified in the re
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/move-members-to/).
 
 ### Parameters
-| **fromId** | **java.util.UUID**| The group ID to move from. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **fromId** | **java.util.UUID**| The group ID to move from. | |
 | **toId** | **java.util.UUID**| The group ID to move to. | |
 
 ### Return type
@@ -374,9 +374,9 @@ Removes the group members specified in the request from the selected group.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/remove-members-from/).
 
 ### Parameters
-| **id** | **java.util.UUID**| The group ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **id** | **java.util.UUID**| The group ID. | |
 | **membersRequest** | [**MembersRequest**](MembersRequest.md)| The member request. | |
 
 ### Return type
@@ -423,9 +423,9 @@ Sets a user with the ID specified in the request as a group manager.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/set-group-manager/).
 
 ### Parameters
-| **id** | **java.util.UUID**| The group ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **id** | **java.util.UUID**| The group ID. | |
 | **setManagerRequest** | [**SetManagerRequest**](SetManagerRequest.md)| The request for setting a group manager. | |
 
 ### Return type
@@ -472,9 +472,9 @@ Replaces the group members with those specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/set-members-to/).
 
 ### Parameters
-| **id** | **java.util.UUID**| The group ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **id** | **java.util.UUID**| The group ID. | |
 | **membersRequest** | [**MembersRequest**](MembersRequest.md)| The member request. | |
 
 ### Return type
@@ -521,9 +521,9 @@ Updates the existing group changing the group manager, name, and/or members.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/update-group/).
 
 ### Parameters
-| **id** | **java.util.UUID**| The group ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **id** | **java.util.UUID**| The group ID. | |
 | **updateGroupRequest** | [**UpdateGroupRequest**](UpdateGroupRequest.md)| The request for updating a group. | |
 
 ### Return type

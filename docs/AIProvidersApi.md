@@ -1,4 +1,4 @@
-# ProvidersApi
+# AIProvidersApi
 
 All URIs are relative to *https://your-docspace.onlyoffice.com*
 
@@ -49,7 +49,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(ProvidersApi::class.java)
+val webService = apiClient.createWebservice(AIProvidersApi::class.java)
 val createProviderRequestDto : CreateProviderRequestDto =  // CreateProviderRequestDto | 
 
 val result : AiProviderWrapper = webService.addProvider(createProviderRequestDto)
@@ -96,7 +96,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(ProvidersApi::class.java)
+val webService = apiClient.createWebservice(AIProvidersApi::class.java)
 val removeProviderRequestDto : RemoveProviderRequestDto =  // RemoveProviderRequestDto | 
 
 webService.deleteProviders(removeProviderRequestDto)
@@ -141,7 +141,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(ProvidersApi::class.java)
+val webService = apiClient.createWebservice(AIProvidersApi::class.java)
 
 val result : ProviderSettingsArrayWrapper = webService.getAvailableProviders()
 ```
@@ -185,7 +185,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(ProvidersApi::class.java)
+val webService = apiClient.createWebservice(AIProvidersApi::class.java)
 
 val result : DefaultProviderWrapper = webService.getDefaultProvider()
 ```
@@ -205,9 +205,9 @@ Returns a paginated list of AI providers configured for the current tenant.  Sup
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-providers/).
 
 ### Parameters
-| **startIndex** | **kotlin.Int**| The number of items to skip before returning results (zero-based offset). Defaults to 0. | [optional] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **startIndex** | **kotlin.Int**| The number of items to skip before returning results (zero-based offset). Defaults to 0. | [optional] |
 | **count** | **kotlin.Int**| The maximum number of items to return per page. Defaults to 100. | [optional] |
 
 ### Return type
@@ -232,7 +232,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(ProvidersApi::class.java)
+val webService = apiClient.createWebservice(AIProvidersApi::class.java)
 val startIndex : kotlin.Int = 0 // kotlin.Int | The number of items to skip before returning results (zero-based offset). Defaults to 0.
 val count : kotlin.Int = 100 // kotlin.Int | The maximum number of items to return per page. Defaults to 100.
 
@@ -280,7 +280,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(ProvidersApi::class.java)
+val webService = apiClient.createWebservice(AIProvidersApi::class.java)
 val setDefaultProviderRequestDto : SetDefaultProviderRequestDto =  // SetDefaultProviderRequestDto | 
 
 val result : DefaultProviderWrapper = webService.setDefaultProvider(setDefaultProviderRequestDto)
@@ -301,9 +301,9 @@ Updates the configuration of an existing AI provider, including its display titl
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/update-provider/).
 
 ### Parameters
-| **id** | **kotlin.Int**| The identifier of the AI provider to update. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **id** | **kotlin.Int**| The identifier of the AI provider to update. | |
 | **updateProviderBody** | [**UpdateProviderBody**](UpdateProviderBody.md)| The AI provider configuration parameters to update. | |
 
 ### Return type
@@ -328,7 +328,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(ProvidersApi::class.java)
+val webService = apiClient.createWebservice(AIProvidersApi::class.java)
 val id : kotlin.Int = 1 // kotlin.Int | The identifier of the AI provider to update.
 val updateProviderBody : UpdateProviderBody =  // UpdateProviderBody | The AI provider configuration parameters to update.
 

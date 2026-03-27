@@ -164,9 +164,9 @@ Checks whether the reassignment of rooms and shared files is required.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/necessary-reassign/).
 
 ### Parameters
-| **userId** | **java.util.UUID**| The user ID. | [optional] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **userId** | **java.util.UUID**| The user ID. | [optional] |
 | **type** | [**EmployeeType**](.md)| The expected user type. | [optional] [enum: All, RoomAdmin, Guest, DocSpaceAdmin, User] |
 
 ### Return type

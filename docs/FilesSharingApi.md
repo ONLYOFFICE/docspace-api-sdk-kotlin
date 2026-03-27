@@ -30,9 +30,9 @@ Applies a password specified in the request to get the external data.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/apply-external-share-password/).
 
 ### Parameters
-| **key** | **kotlin.String**| The unique document identifier. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **key** | **kotlin.String**| The unique document identifier. | |
 | **externalShareRequestParam** | [**ExternalShareRequestParam**](ExternalShareRequestParam.md)| The external data share request parameters. | |
 
 ### Return type
@@ -120,10 +120,10 @@ Returns the external data by the key specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-external-share-data/).
 
 ### Parameters
-| **key** | **kotlin.String**| The unique key of the external shared data. | |
-| **fileId** | **kotlin.String**| The unique document identifier. | [optional] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **key** | **kotlin.String**| The unique key of the external shared data. | |
+| **fileId** | **kotlin.String**| The unique document identifier. | [optional] |
 | **folderId** | **kotlin.String**| The unique folder identifier. | [optional] |
 
 ### Return type
@@ -165,10 +165,10 @@ Returns the detailed information about the shared file with the ID specified in 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-file-security-info/).
 
 ### Parameters
-| **id** | **kotlin.Int**| The file unique identifier. | |
-| **count** | **kotlin.Int**| The number of items to retrieve in the request. | [optional] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **id** | **kotlin.Int**| The file unique identifier. | |
+| **count** | **kotlin.Int**| The number of items to retrieve in the request. | [optional] |
 | **startIndex** | **kotlin.Int**| The starting index for the query results. | [optional] |
 
 ### Return type
@@ -216,10 +216,10 @@ Returns the detailed information about the shared folder with the ID specified i
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-security-info/).
 
 ### Parameters
-| **id** | **kotlin.Int**| The folder unique identifier. | |
-| **count** | **kotlin.Int**| The number of items to retrieve in the request. | [optional] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **id** | **kotlin.Int**| The folder unique identifier. | |
+| **count** | **kotlin.Int**| The number of items to retrieve in the request. | [optional] |
 | **startIndex** | **kotlin.Int**| The starting index for the query results. | [optional] |
 
 ### Return type
@@ -267,12 +267,12 @@ Returns the group members with their file security information.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-groups-members-with-file-security/).
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **fileId** | **kotlin.Int**| The file ID. | |
 | **groupId** | **java.util.UUID**| The group ID. | |
 | **count** | **kotlin.Int**| The number of items to be retrieved in the current query. | [optional] |
 | **startIndex** | **kotlin.Int**| The starting index for the query result set. | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **filterValue** | **kotlin.String**| The filter value used for searching or querying group members based on text input. | [optional] |
 
 ### Return type
@@ -322,12 +322,12 @@ Returns the group members with their folder security information.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-groups-members-with-folder-security/).
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **folderId** | **kotlin.Int**| The folder ID. | |
 | **groupId** | **java.util.UUID**| The group ID. | |
 | **count** | **kotlin.Int**| The number of items to be retrieved in the current query. | [optional] |
 | **startIndex** | **kotlin.Int**| The starting index for the query result set. | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **filterValue** | **kotlin.String**| The filter value used for searching or querying group members based on text input. | [optional] |
 
 ### Return type
@@ -518,9 +518,9 @@ Sends a message to the users who are mentioned in the file with the ID specified
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/send-editor-notify/).
 
 ### Parameters
-| **fileId** | **kotlin.Int**| The file ID with the mention message. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **fileId** | **kotlin.Int**| The file ID with the mention message. | |
 | **mentionMessageWrapper** | [**MentionMessageWrapper**](MentionMessageWrapper.md)| The mention message. | [optional] |
 
 ### Return type
@@ -567,9 +567,9 @@ Sets the sharing settings to a file with the ID specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/set-file-security-info/).
 
 ### Parameters
-| **fileId** | **kotlin.Int**| The file ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **fileId** | **kotlin.Int**| The file ID. | |
 | **securityInfoSimpleRequestDto** | [**SecurityInfoSimpleRequestDto**](SecurityInfoSimpleRequestDto.md)| The parameters of the security information simple request. | |
 
 ### Return type
@@ -616,9 +616,9 @@ Sets the sharing settings to a folder with the ID specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/set-folder-security-info/).
 
 ### Parameters
-| **folderId** | **kotlin.Int**| The folder ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **folderId** | **kotlin.Int**| The folder ID. | |
 | **securityInfoSimpleRequestDto** | [**SecurityInfoSimpleRequestDto**](SecurityInfoSimpleRequestDto.md)| The parameters of the security information simple request. | |
 
 ### Return type

@@ -253,9 +253,9 @@ Specifies if the white label logo text is default or not.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-is-default-white-label-logo-text/).
 
 ### Parameters
-| **isDark** | **kotlin.Boolean**| Specifies if the white label logo is for the dark theme or not. | [optional] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **isDark** | **kotlin.Boolean**| Specifies if the white label logo is for the dark theme or not. | [optional] |
 | **isDefault** | **kotlin.Boolean**| Specifies if the logo is for a default tenant or not. | [optional] |
 
 ### Return type
@@ -302,9 +302,9 @@ Specifies if the white label logos are default or not.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-is-default-white-label-logos/).
 
 ### Parameters
-| **isDark** | **kotlin.Boolean**| Specifies if the white label logo is for the dark theme or not. | [optional] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **isDark** | **kotlin.Boolean**| Specifies if the white label logo is for the dark theme or not. | [optional] |
 | **isDefault** | **kotlin.Boolean**| Specifies if the logo is for a default tenant or not. | [optional] |
 
 ### Return type
@@ -395,9 +395,9 @@ Returns the white label logo text.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-white-label-logo-text/).
 
 ### Parameters
-| **isDark** | **kotlin.Boolean**| Specifies if the white label logo is for the dark theme or not. | [optional] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **isDark** | **kotlin.Boolean**| Specifies if the white label logo is for the dark theme or not. | [optional] |
 | **isDefault** | **kotlin.Boolean**| Specifies if the logo is for a default tenant or not. | [optional] |
 
 ### Return type
@@ -444,9 +444,9 @@ Returns the white label logos.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-white-label-logos/).
 
 ### Parameters
-| **isDark** | **kotlin.Boolean**| Specifies if the white label logo is for the dark theme or not. | [optional] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **isDark** | **kotlin.Boolean**| Specifies if the white label logo is for the dark theme or not. | [optional] |
 | **isDefault** | **kotlin.Boolean**| Specifies if the logo is for a default tenant or not. | [optional] |
 
 ### Return type
@@ -487,9 +487,9 @@ Restores the white label logo text.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/restore-white-label-logo-text/).
 
 ### Parameters
-| **isDark** | **kotlin.Boolean**| Specifies if the white label logo is for the dark theme or not. | [optional] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **isDark** | **kotlin.Boolean**| Specifies if the white label logo is for the dark theme or not. | [optional] |
 | **isDefault** | **kotlin.Boolean**| Specifies if the logo is for a default tenant or not. | [optional] |
 
 ### Return type
@@ -536,9 +536,9 @@ Restores the white label logos.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/restore-white-label-logos/).
 
 ### Parameters
-| **isDark** | **kotlin.Boolean**| Specifies if the white label logo is for the dark theme or not. | [optional] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **isDark** | **kotlin.Boolean**| Specifies if the white label logo is for the dark theme or not. | [optional] |
 | **isDefault** | **kotlin.Boolean**| Specifies if the logo is for a default tenant or not. | [optional] |
 
 ### Return type
@@ -679,10 +679,10 @@ Saves the white label logo text specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/save-white-label-logo-text/).
 
 ### Parameters
-| **isDark** | **kotlin.Boolean**| Specifies if the white label logo is for the dark theme or not. | [optional] |
-| **isDefault** | **kotlin.Boolean**| Specifies if the logo is for a default tenant or not. | [optional] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **isDark** | **kotlin.Boolean**| Specifies if the white label logo is for the dark theme or not. | [optional] |
+| **isDefault** | **kotlin.Boolean**| Specifies if the logo is for a default tenant or not. | [optional] |
 | **whiteLabelRequestsDto** | [**WhiteLabelRequestsDto**](WhiteLabelRequestsDto.md)|  | [optional] |
 
 ### Return type
@@ -730,10 +730,10 @@ Saves the white label logos specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/save-white-label-settings/).
 
 ### Parameters
-| **isDark** | **kotlin.Boolean**| Specifies if the white label logo is for the dark theme or not. | [optional] |
-| **isDefault** | **kotlin.Boolean**| Specifies if the logo is for a default tenant or not. | [optional] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **isDark** | **kotlin.Boolean**| Specifies if the white label logo is for the dark theme or not. | [optional] |
+| **isDefault** | **kotlin.Boolean**| Specifies if the logo is for a default tenant or not. | [optional] |
 | **whiteLabelRequestsDto** | [**WhiteLabelRequestsDto**](WhiteLabelRequestsDto.md)|  | [optional] |
 
 ### Return type
@@ -781,9 +781,9 @@ Saves the white label logos from files.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/save-white-label-settings-from-files/).
 
 ### Parameters
-| **isDark** | **kotlin.Boolean**| Specifies if the white label logo is for the dark theme or not. | [optional] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **isDark** | **kotlin.Boolean**| Specifies if the white label logo is for the dark theme or not. | [optional] |
 | **isDefault** | **kotlin.Boolean**| Specifies if the logo is for a default tenant or not. | [optional] |
 
 ### Return type

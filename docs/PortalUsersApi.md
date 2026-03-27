@@ -348,9 +348,9 @@ Sends congratulations to the user after registering a portal.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/send-congratulations/).
 
 ### Parameters
-| **userid** | **java.util.UUID**| The user ID to receive the congratulatory message. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **userid** | **java.util.UUID**| The user ID to receive the congratulatory message. | |
 | **key** | **kotlin.String**| The template identifier or email configuration key. | |
 
 ### Return type

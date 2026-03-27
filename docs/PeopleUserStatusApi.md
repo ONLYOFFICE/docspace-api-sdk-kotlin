@@ -19,6 +19,8 @@ Returns a list of profiles filtered by the user status.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-by-status/).
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **status** | [**EmployeeStatus**](.md)| The user status. | [enum: 1, 2, 4, 5, 7] |
 | **filterBy** | **kotlin.String**| Specifies the criteria used to filter the profiles in the request. | [optional] |
 | **count** | **kotlin.Int**| The maximum number of user profiles to retrieve. | [optional] |
@@ -26,8 +28,6 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **sortBy** | **kotlin.String**| Specifies the property or field name by which the results should be sorted. | [optional] |
 | **sortOrder** | [**SortOrder**](.md)| The order in which the results are sorted. | [optional] [enum: 0, 1] |
 | **filterSeparator** | **kotlin.String**| Represents the separator used to split multiple filter criteria in a query string. | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **filterValue** | **kotlin.String**| A string value representing additional filter criteria used in query parameters. | [optional] |
 
 ### Return type
@@ -80,9 +80,9 @@ Sets the required activation status to the list of users with the IDs specified 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/update-user-activation-status/).
 
 ### Parameters
-| **activationstatus** | [**EmployeeActivationStatus**](.md)| The new user activation status. | [enum: 0, 1, 2, 4] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **activationstatus** | [**EmployeeActivationStatus**](.md)| The new user activation status. | [enum: 0, 1, 2, 4] |
 | **updateMembersRequestDto** | [**UpdateMembersRequestDto**](UpdateMembersRequestDto.md)| The request parameters for updating the user information. | |
 
 ### Return type
@@ -129,9 +129,9 @@ Changes a status of the users with the IDs specified in the request.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/update-user-status/).
 
 ### Parameters
-| **status** | [**EmployeeStatus**](.md)| The new user status. | [enum: 1, 2, 4, 5, 7] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **status** | [**EmployeeStatus**](.md)| The new user status. | [enum: 1, 2, 4, 5, 7] |
 | **updateMembersRequestDto** | [**UpdateMembersRequestDto**](UpdateMembersRequestDto.md)| The request parameters for updating the user information. | |
 
 ### Return type

@@ -8,9 +8,9 @@
 | **description** | **kotlin.String** | The client description. |  [optional] |
 | **scopes** | **kotlin.collections.Set&lt;kotlin.String&gt;** | The client scopes. |  [optional] |
 | **clientId** | **kotlin.String** | The client ID. |  [optional] |
-| **websiteUrl** | **kotlin.String** | The URL to the client&#39;s website |  [optional] |
-| **termsUrl** | **kotlin.String** | The URL to the client&#39;s terms of service. |  [optional] |
-| **policyUrl** | **kotlin.String** | The URL to the client&#39;s privacy policy. |  [optional] |
+| **websiteUrl** | **kotlin.String** | The URL to the client's website |  [optional] |
+| **termsUrl** | **kotlin.String** | The URL to the client's terms of service. |  [optional] |
+| **policyUrl** | **kotlin.String** | The URL to the client's privacy policy. |  [optional] |
 | **logo** | **kotlin.String** | The client logo in base64 format. |  [optional] |
 | **authenticationMethods** | **kotlin.collections.Set&lt;kotlin.String&gt;** | The authentication methods supported by the client. |  [optional] |
 | **isPublic** | **kotlin.Boolean** | Indicates whether the client is accessible by third-party tenants. |  [optional] |

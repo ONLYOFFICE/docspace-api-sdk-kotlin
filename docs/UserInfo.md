@@ -5,8 +5,8 @@
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
 | **id** | [**java.util.UUID**](java.util.UUID.md) | The user ID. |  [optional] |
-| **firstName** | **kotlin.String** | The user&#39;s first name. |  [optional] |
-| **lastName** | **kotlin.String** | The user&#39;s last name. |  [optional] |
+| **firstName** | **kotlin.String** | The user's first name. |  [optional] |
+| **lastName** | **kotlin.String** | The user's last name. |  [optional] |
 | **userName** | **kotlin.String** | The user username. |  [optional] |
 | **birthDate** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) | The user birthday. |  [optional] |
 | **sex** | **kotlin.Boolean** | The user sex (male or female). |  [optional] |

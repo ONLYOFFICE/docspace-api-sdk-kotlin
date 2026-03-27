@@ -69,9 +69,9 @@ Changes the icon of an existing room group.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/change-room-group-icon/).
 
 ### Parameters
-| **id** | **kotlin.Int**| Group id | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **id** | **kotlin.Int**| Group id | |
 | **iconRequest** | [**IconRequest**](IconRequest.md)| Icon update data. | [optional] |
 
 ### Return type
@@ -118,9 +118,9 @@ Deletes the specified room group.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-room-group/).
 
 ### Parameters
-| **id** | **kotlin.Int**| The group unique identifier. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **id** | **kotlin.Int**| The group unique identifier. | |
 | **includeMembers** | **kotlin.Boolean**| Whether to include group members. | [optional] |
 
 ### Return type
@@ -167,9 +167,9 @@ Returns detailed information about a room group.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-group-info/).
 
 ### Parameters
-| **id** | **kotlin.Int**| The group unique identifier. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **id** | **kotlin.Int**| The group unique identifier. | |
 | **includeMembers** | **kotlin.Boolean**| Whether to include group members. | [optional] |
 
 ### Return type
@@ -216,9 +216,9 @@ Returns a list of all room groups for the current user.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-groups/).
 
 ### Parameters
-| **id** | **kotlin.Int**| The group unique identifier. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **id** | **kotlin.Int**| The group unique identifier. | |
 | **includeMembers** | **kotlin.Boolean**| Whether to include group members. | [optional] |
 
 ### Return type
@@ -265,9 +265,9 @@ Updates room group properties and adds or removes rooms.
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/update-room-group/).
 
 ### Parameters
-| **id** | **kotlin.Int**| The group ID. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **id** | **kotlin.Int**| The group ID. | |
 | **updateRoomGroupRequest** | [**UpdateRoomGroupRequest**](UpdateRoomGroupRequest.md)| The request for updating a group. | |
 
 ### Return type
