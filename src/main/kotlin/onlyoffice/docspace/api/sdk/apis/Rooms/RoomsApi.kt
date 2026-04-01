@@ -514,6 +514,7 @@ interface RoomsApi {
      *
      * @param type The filter by room type. (optional)
      * @param subjectId The filter by user ID. (optional)
+     * @param subjectOwnerId The filter by room owner ID. (optional)
      * @param searchArea The room search area (Active, Archive, Any, Recent by links). (optional)
      * @param withoutTags Specifies whether to search by tags or not. (optional)
      * @param tags The tags in the serialized format. (optional)
@@ -531,7 +532,7 @@ interface RoomsApi {
      * @return [FolderContentIntegerWrapper]
      */
     @GET("api/2.0/files/rooms")
-    suspend fun getRoomsFolder(@Query("type") type: CSVParams? = null, @Query("subjectId") subjectId: kotlin.String? = null, @Query("searchArea") searchArea: SearchArea? = null, @Query("withoutTags") withoutTags: kotlin.Boolean? = null, @Query("tags") tags: kotlin.String? = null, @Query("excludeSubject") excludeSubject: kotlin.Boolean? = null, @Query("provider") provider: ProviderFilter? = null, @Query("subjectFilter") subjectFilter: SubjectFilter? = null, @Query("quotaFilter") quotaFilter: QuotaFilter? = null, @Query("storageFilter") storageFilter: StorageFilter? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterValue") filterValue: kotlin.String? = null, @Query("groupId") groupId: kotlin.Int? = null): Response<FolderContentIntegerWrapper>
+    suspend fun getRoomsFolder(@Query("type") type: CSVParams? = null, @Query("subjectId") subjectId: kotlin.String? = null, @Query("subjectOwnerId") subjectOwnerId: kotlin.String? = null, @Query("searchArea") searchArea: SearchArea? = null, @Query("withoutTags") withoutTags: kotlin.Boolean? = null, @Query("tags") tags: kotlin.String? = null, @Query("excludeSubject") excludeSubject: kotlin.Boolean? = null, @Query("provider") provider: ProviderFilter? = null, @Query("subjectFilter") subjectFilter: SubjectFilter? = null, @Query("quotaFilter") quotaFilter: QuotaFilter? = null, @Query("storageFilter") storageFilter: StorageFilter? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterValue") filterValue: kotlin.String? = null, @Query("groupId") groupId: kotlin.Int? = null): Response<FolderContentIntegerWrapper>
 
     /**
      * GET api/2.0/files/rooms/news

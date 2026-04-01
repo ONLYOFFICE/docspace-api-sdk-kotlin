@@ -47,6 +47,7 @@
 | **vectorization** | **kotlin.Boolean** |  |  [optional] |
 | **askAi** | **kotlin.Boolean** |  |  [optional] |
 | **useChat** | **kotlin.Boolean** |  |  [optional] |
+| **updateXlsx** | **kotlin.Boolean** |  |  [optional] |
 
 
 

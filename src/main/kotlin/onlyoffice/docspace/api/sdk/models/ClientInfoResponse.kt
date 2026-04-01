@@ -26,6 +26,7 @@ import com.squareup.moshi.JsonClass
  * @param name The client name.
  * @param description The client description.
  * @param scopes The client scopes.
+ * @param `public` 
  * @param clientId The client ID.
  * @param websiteUrl The URL to the client's website
  * @param termsUrl The URL to the client's terms of service.
@@ -53,6 +54,9 @@ data class ClientInfoResponse (
     /* The client scopes. */
     @Json(name = "scopes")
     val scopes: kotlin.collections.Set<kotlin.String>? = null,
+
+    @Json(name = "public")
+    val `public`: kotlin.Boolean? = null,
 
     /* The client ID. */
     @Json(name = "client_id")

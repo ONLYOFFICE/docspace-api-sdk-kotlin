@@ -25,10 +25,10 @@ import com.squareup.moshi.Json
 
 import onlyoffice.docspace.api.sdk.models.ClientInfoResponse
 import onlyoffice.docspace.api.sdk.models.ClientResponse
-import onlyoffice.docspace.api.sdk.models.ErrorResponse
 import onlyoffice.docspace.api.sdk.models.PageableModificationResponse
 import onlyoffice.docspace.api.sdk.models.PageableResponse
 import onlyoffice.docspace.api.sdk.models.PageableResponseClientInfoResponse
+import onlyoffice.docspace.api.sdk.models.ProblemDetail
 
 interface ClientQueryingApi {
     /**
@@ -47,7 +47,7 @@ interface ClientQueryingApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-client/
      *
      *
-     * @param clientId The client identifier.
+     * @param clientId ID of the client to retrieve
      * @return [ClientResponse]
      */
     @GET("api/2.0/clients/{clientId}")
@@ -55,7 +55,7 @@ interface ClientQueryingApi {
 
     /**
      * GET api/2.0/clients/{clientId}/info
-     * Get detailed client information
+     * Retrieves detailed information for a specific client
      * Retrieves the detailed information for a client with the ID specified in the request.
      * Responses:
      *  - 200: Successfully retrieved client info
@@ -67,7 +67,7 @@ interface ClientQueryingApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-client-info/
      *
      *
-     * @param clientId The client identifier.
+     * @param clientId ID of the client to retrieve
      * @return [ClientInfoResponse]
      */
     @GET("api/2.0/clients/{clientId}/info")
@@ -75,12 +75,12 @@ interface ClientQueryingApi {
 
     /**
      * GET api/2.0/clients
-     * Get clients
-     * Retrieves a paginated list of OAuth2 clients. The results can be paginated using the 'limit' parameter and the last seen client ID or creation date.
+     * List clients
+     * Retrieves a paginated list of OAuth2 clients. The results can be paginated using the limit parameter and last seen client ID/creation date.
      * Responses:
      *  - 200: Client list successfully retrieved
      *  - 400: Invalid pagination parameters
-     *  - 403: Insufficient permissions to create a client list
+     *  - 403: Insufficient permissions to list clients
      *  - 429: Too many requests - rate limit exceeded
      *  - 500: Internal server error occurred
      *
@@ -88,17 +88,17 @@ interface ClientQueryingApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-clients/
      *
      *
-     * @param limit The maximum number of results returned per page.
-     * @param lastClientId The ID of the last retrieved client. (optional)
-     * @param lastCreatedOn The creation date of the last retrieved client. (optional)
+     * @param limit Pagination limit (default to 30)
+     * @param lastClientId ID of the last retrieved client (optional)
+     * @param lastCreatedOn Date of the last retrieved client (optional)
      * @return [PageableResponse]
      */
     @GET("api/2.0/clients")
-    suspend fun getClients(@Query("limit") limit: kotlin.Int, @Query("last_client_id") lastClientId: kotlin.String? = null, @Query("last_created_on") lastCreatedOn: java.time.OffsetDateTime? = null): Response<PageableResponse>
+    suspend fun getClients(@Query("limit") limit: kotlin.Int = 30, @Query("last_client_id") lastClientId: kotlin.String? = null, @Query("last_created_on") lastCreatedOn: java.time.OffsetDateTime? = null): Response<PageableResponse>
 
     /**
      * GET api/2.0/clients/info
-     * Get detailed information of clients
+     * Retrieves a pageable list of client information
      * Retrieves a paginated list of information for all clients.
      * Responses:
      *  - 200: Successfully retrieved clients info
@@ -110,9 +110,9 @@ interface ClientQueryingApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-clients-info/
      *
      *
-     * @param limit The maximum number of results returned per page.
-     * @param lastClientId The identifier of the last retrieved client. (optional)
-     * @param lastCreatedOn The creation date of the last retrieved client. (optional)
+     * @param limit Pagination limit
+     * @param lastClientId ID of the last retrieved client (optional)
+     * @param lastCreatedOn Date of the last retrieved client (optional)
      * @return [PageableResponseClientInfoResponse]
      */
     @GET("api/2.0/clients/info")
@@ -120,7 +120,7 @@ interface ClientQueryingApi {
 
     /**
      * GET api/2.0/clients/consents
-     * Get user consents
+     * Retrieves a pageable list of consents
      * Retrieves a paginated list of user consents.
      * Responses:
      *  - 200: Successfully retrieved user consents
@@ -129,8 +129,8 @@ interface ClientQueryingApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-consents/
      *
      *
-     * @param limit The maximum number of results returned per page.
-     * @param lastModifiedOn The date when the user consent was last modified. (optional)
+     * @param limit Pagination limit
+     * @param lastModifiedOn Date of the last retrieved consent (optional)
      * @return [PageableModificationResponse]
      */
     @GET("api/2.0/clients/consents")
@@ -138,8 +138,8 @@ interface ClientQueryingApi {
 
     /**
      * GET api/2.0/clients/{clientId}/public/info
-     * Get public client information
-     * Returns the public information for a client with the ID secified din the request.
+     * Handles the GET request for public client information
+     * 
      * Responses:
      *  - 200: Successfully retrieved client public info
      *  - 400: Bad request
@@ -150,7 +150,7 @@ interface ClientQueryingApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-public-client-info/
      *
      *
-     * @param clientId The client identifier.
+     * @param clientId ID of the client to retrieve
      * @return [ClientInfoResponse]
      */
     @GET("api/2.0/clients/{clientId}/public/info")

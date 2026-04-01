@@ -23,18 +23,18 @@ import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
-import onlyoffice.docspace.api.sdk.models.ErrorResponse
+import onlyoffice.docspace.api.sdk.models.ProblemDetail
 import onlyoffice.docspace.api.sdk.models.ScopeResponse
 
 interface ScopeManagementApi {
     /**
      * GET api/2.0/scopes
-     * Get available OAuth2 scopes
+     * List available OAuth2 scopes
      * Retrieves a list of all available OAuth2 scopes for the specified tenant. The scopes define the permissions that can be requested by OAuth2 clients. The list is ordered alphabetically, with the 'openid' scope always appearing first.
      * Responses:
      *  - 200: Scopes successfully retrieved
      *  - 400: Invalid request parameters
-     *  - 403: Insufficient permissions to get a list of scopes
+     *  - 403: Insufficient permissions to list scopes
      *  - 429: Too many requests - rate limit exceeded
      *  - 500: Internal server error occurred
      *

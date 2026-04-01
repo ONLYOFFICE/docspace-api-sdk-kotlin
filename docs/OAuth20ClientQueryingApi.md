@@ -5,11 +5,11 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
 | [**getClient**](OAuth20ClientQueryingApi.md#getClient) | **GET** api/2.0/clients/{clientId} | Get client details |
-| [**getClientInfo**](OAuth20ClientQueryingApi.md#getClientInfo) | **GET** api/2.0/clients/{clientId}/info | Get detailed client information |
-| [**getClients**](OAuth20ClientQueryingApi.md#getClients) | **GET** api/2.0/clients | Get clients |
-| [**getClientsInfo**](OAuth20ClientQueryingApi.md#getClientsInfo) | **GET** api/2.0/clients/info | Get detailed information of clients |
-| [**getConsents**](OAuth20ClientQueryingApi.md#getConsents) | **GET** api/2.0/clients/consents | Get user consents |
-| [**getPublicClientInfo**](OAuth20ClientQueryingApi.md#getPublicClientInfo) | **GET** api/2.0/clients/{clientId}/public/info | Get public client information |
+| [**getClientInfo**](OAuth20ClientQueryingApi.md#getClientInfo) | **GET** api/2.0/clients/{clientId}/info | Retrieves detailed information for a specific client |
+| [**getClients**](OAuth20ClientQueryingApi.md#getClients) | **GET** api/2.0/clients | List clients |
+| [**getClientsInfo**](OAuth20ClientQueryingApi.md#getClientsInfo) | **GET** api/2.0/clients/info | Retrieves a pageable list of client information |
+| [**getConsents**](OAuth20ClientQueryingApi.md#getConsents) | **GET** api/2.0/clients/consents | Retrieves a pageable list of consents |
+| [**getPublicClientInfo**](OAuth20ClientQueryingApi.md#getPublicClientInfo) | **GET** api/2.0/clients/{clientId}/public/info | Handles the GET request for public client information |
 
 
 
@@ -24,7 +24,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **clientId** | **kotlin.String**| The client identifier. | |
+| **clientId** | **kotlin.String**| ID of the client to retrieve | |
 
 ### Return type
 
@@ -43,7 +43,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(ClientQueryingApi::class.java)
-val clientId : kotlin.String = 6c7cf17b-1bd3-47d5-94c6-be2d3570e168 // kotlin.String | The client identifier.
+val clientId : kotlin.String = 6c7cf17b-1bd3-47d5-94c6-be2d3570e168 // kotlin.String | ID of the client to retrieve
 
 launch(Dispatchers.IO) {
     val result : ClientResponse = webService.getClient(clientId)
@@ -67,7 +67,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **clientId** | **kotlin.String**| The client identifier. | |
+| **clientId** | **kotlin.String**| ID of the client to retrieve | |
 
 ### Return type
 
@@ -86,7 +86,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(ClientQueryingApi::class.java)
-val clientId : kotlin.String = 6c7cf17b-1bd3-47d5-94c6-be2d3570e168 // kotlin.String | The client identifier.
+val clientId : kotlin.String = 6c7cf17b-1bd3-47d5-94c6-be2d3570e168 // kotlin.String | ID of the client to retrieve
 
 launch(Dispatchers.IO) {
     val result : ClientInfoResponse = webService.getClientInfo(clientId)
@@ -103,16 +103,16 @@ launch(Dispatchers.IO) {
 # **getClients**
 > PageableResponse getClients (kotlin.Int limit, kotlin.String lastClientId, java.time.OffsetDateTime lastCreatedOn)
 
-Retrieves a paginated list of OAuth2 clients. The results can be paginated using the 'limit' parameter and the last seen client ID or creation date.
+Retrieves a paginated list of OAuth2 clients. The results can be paginated using the limit parameter and last seen client ID/creation date.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-clients/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **limit** | **kotlin.Int**| The maximum number of results returned per page. | |
-| **lastClientId** | **kotlin.String**| The ID of the last retrieved client. | [optional] |
-| **lastCreatedOn** | **java.time.OffsetDateTime**| The creation date of the last retrieved client. | [optional] |
+| **limit** | **kotlin.Int**| Pagination limit | [default to 30] |
+| **lastClientId** | **kotlin.String**| ID of the last retrieved client | [optional] |
+| **lastCreatedOn** | **java.time.OffsetDateTime**| Date of the last retrieved client | [optional] |
 
 ### Return type
 
@@ -131,9 +131,9 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(ClientQueryingApi::class.java)
-val limit : kotlin.Int = 1 // kotlin.Int | The maximum number of results returned per page.
-val lastClientId : kotlin.String = 6c7cf17b-1bd3-47d5-94c6-be2d3570e168 // kotlin.String | The ID of the last retrieved client.
-val lastCreatedOn : java.time.OffsetDateTime = 2024-04-04T12:00:00Z // java.time.OffsetDateTime | The creation date of the last retrieved client.
+val limit : kotlin.Int = 1 // kotlin.Int | Pagination limit
+val lastClientId : kotlin.String = 6c7cf17b-1bd3-47d5-94c6-be2d3570e168 // kotlin.String | ID of the last retrieved client
+val lastCreatedOn : java.time.OffsetDateTime = 2024-04-04T12:00:00Z // java.time.OffsetDateTime | Date of the last retrieved client
 
 launch(Dispatchers.IO) {
     val result : PageableResponse = webService.getClients(limit, lastClientId, lastCreatedOn)
@@ -157,9 +157,9 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **limit** | **kotlin.Int**| The maximum number of results returned per page. | |
-| **lastClientId** | **kotlin.String**| The identifier of the last retrieved client. | [optional] |
-| **lastCreatedOn** | **java.time.OffsetDateTime**| The creation date of the last retrieved client. | [optional] |
+| **limit** | **kotlin.Int**| Pagination limit | |
+| **lastClientId** | **kotlin.String**| ID of the last retrieved client | [optional] |
+| **lastCreatedOn** | **java.time.OffsetDateTime**| Date of the last retrieved client | [optional] |
 
 ### Return type
 
@@ -178,9 +178,9 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(ClientQueryingApi::class.java)
-val limit : kotlin.Int = 1 // kotlin.Int | The maximum number of results returned per page.
-val lastClientId : kotlin.String = 6c7cf17b-1bd3-47d5-94c6-be2d3570e168 // kotlin.String | The identifier of the last retrieved client.
-val lastCreatedOn : java.time.OffsetDateTime = 2024-04-04T12:00:00Z // java.time.OffsetDateTime | The creation date of the last retrieved client.
+val limit : kotlin.Int = 1 // kotlin.Int | Pagination limit
+val lastClientId : kotlin.String = 6c7cf17b-1bd3-47d5-94c6-be2d3570e168 // kotlin.String | ID of the last retrieved client
+val lastCreatedOn : java.time.OffsetDateTime = 2024-04-04T12:00:00Z // java.time.OffsetDateTime | Date of the last retrieved client
 
 launch(Dispatchers.IO) {
     val result : PageableResponseClientInfoResponse = webService.getClientsInfo(limit, lastClientId, lastCreatedOn)
@@ -204,8 +204,8 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **limit** | **kotlin.Int**| The maximum number of results returned per page. | |
-| **lastModifiedOn** | **java.time.OffsetDateTime**| The date when the user consent was last modified. | [optional] |
+| **limit** | **kotlin.Int**| Pagination limit | |
+| **lastModifiedOn** | **java.time.OffsetDateTime**| Date of the last retrieved consent | [optional] |
 
 ### Return type
 
@@ -224,8 +224,8 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(ClientQueryingApi::class.java)
-val limit : kotlin.Int = 1 // kotlin.Int | The maximum number of results returned per page.
-val lastModifiedOn : java.time.OffsetDateTime = 2024-04-04T12:00:00Z // java.time.OffsetDateTime | The date when the user consent was last modified.
+val limit : kotlin.Int = 1 // kotlin.Int | Pagination limit
+val lastModifiedOn : java.time.OffsetDateTime = 2024-04-04T12:00:00Z // java.time.OffsetDateTime | Date of the last retrieved consent
 
 launch(Dispatchers.IO) {
     val result : PageableModificationResponse = webService.getConsents(limit, lastModifiedOn)
@@ -242,14 +242,14 @@ launch(Dispatchers.IO) {
 # **getPublicClientInfo**
 > ClientInfoResponse getPublicClientInfo (kotlin.String clientId)
 
-Returns the public information for a client with the ID secified din the request.
+
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-public-client-info/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **clientId** | **kotlin.String**| The client identifier. | |
+| **clientId** | **kotlin.String**| ID of the client to retrieve | |
 
 ### Return type
 
@@ -268,7 +268,7 @@ No authorization required
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(ClientQueryingApi::class.java)
-val clientId : kotlin.String = 6c7cf17b-1bd3-47d5-94c6-be2d3570e168 // kotlin.String | The client identifier.
+val clientId : kotlin.String = 6c7cf17b-1bd3-47d5-94c6-be2d3570e168 // kotlin.String | ID of the client to retrieve
 
 launch(Dispatchers.IO) {
     val result : ClientInfoResponse = webService.getPublicClientInfo(clientId)

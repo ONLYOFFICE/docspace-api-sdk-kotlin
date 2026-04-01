@@ -4,8 +4,8 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**authorizeOAuth**](OAuth20AuthorizationApi.md#authorizeOAuth) | **GET** oauth2/authorize | OAuth2 authorization endpoint |
-| [**exchangeToken**](OAuth20AuthorizationApi.md#exchangeToken) | **POST** oauth2/token | OAuth2 token endpoint |
+| [**authorizeOAuth**](OAuth20AuthorizationApi.md#authorizeOAuth) | **GET** oauth2/authorize | OAuth2 Authorization Endpoint |
+| [**exchangeToken**](OAuth20AuthorizationApi.md#exchangeToken) | **POST** oauth2/token | OAuth2 Token Endpoint |
 | [**submitConsent**](OAuth20AuthorizationApi.md#submitConsent) | **POST** oauth2/authorize | OAuth2 consent endpoint |
 
 
@@ -63,7 +63,7 @@ launch(Dispatchers.IO) {
 # **exchangeToken**
 > ExchangeToken200Response exchangeToken (kotlin.String grantType, kotlin.String code, kotlin.String redirectUri, kotlin.String clientId, kotlin.String clientSecret)
 
-Exchanges an authorization code specified in the request for the access token.
+Exchange authorization code for access token
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/exchange-token/).
 
@@ -114,7 +114,7 @@ launch(Dispatchers.IO) {
 # **submitConsent**
 > void submitConsent (kotlin.String clientId, kotlin.String state, kotlin.String scope)
 
-Sends a consent request with the specified parameters.
+Sends consent approval
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/submit-consent/).
 

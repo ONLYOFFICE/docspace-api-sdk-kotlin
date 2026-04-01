@@ -21,30 +21,31 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The request parameters for creating a client.
+ * Client creation request containing client details
  *
- * @param redirectUris The list of allowed redirect URIs.
- * @param allowedOrigins The list of allowed CORS origins.
+ * @param redirectUris The redirect URIs for the client
+ * @param allowedOrigins The allowed origins for the client
  * @param name The client name.
- * @param description The client description.
- * @param logo The client logo in base64 format.
- * @param scopes The client scopes.
- * @param allowPkce Indicates whether PKCE is allowed for the client.
- * @param isPublic Indicates whether the client is accessible by third-party tenants.
- * @param websiteUrl The URL to the client's website.
- * @param termsUrl The URL to the client's terms of service.
- * @param policyUrl The URL to the client's privacy policy.
- * @param logoutRedirectUri The list of allowed logout redirect URIs.
+ * @param description The description of the client
+ * @param logo The logo of the client in base64 format
+ * @param scopes The scopes for the client
+ * @param `public` 
+ * @param allowPkce Indicates whether PKCE is allowed for the client
+ * @param isPublic Indicates if the client is public
+ * @param websiteUrl The website URL of the client
+ * @param termsUrl The terms URL of the client
+ * @param policyUrl The policy URL of the client
+ * @param logoutRedirectUri The logout redirect URI for the client
  */
 
 
 data class CreateClientRequest (
 
-    /* The list of allowed redirect URIs. */
+    /* The redirect URIs for the client */
     @Json(name = "redirect_uris")
     val redirectUris: kotlin.collections.Set<kotlin.String>,
 
-    /* The list of allowed CORS origins. */
+    /* The allowed origins for the client */
     @Json(name = "allowed_origins")
     val allowedOrigins: kotlin.collections.Set<kotlin.String>,
 
@@ -52,39 +53,42 @@ data class CreateClientRequest (
     @Json(name = "name")
     val name: kotlin.String? = null,
 
-    /* The client description. */
+    /* The description of the client */
     @Json(name = "description")
     val description: kotlin.String? = null,
 
-    /* The client logo in base64 format. */
+    /* The logo of the client in base64 format */
     @Json(name = "logo")
     val logo: kotlin.String? = null,
 
-    /* The client scopes. */
+    /* The scopes for the client */
     @Json(name = "scopes")
     val scopes: kotlin.collections.Set<kotlin.String>? = null,
 
-    /* Indicates whether PKCE is allowed for the client. */
+    @Json(name = "public")
+    val `public`: kotlin.Boolean? = null,
+
+    /* Indicates whether PKCE is allowed for the client */
     @Json(name = "allow_pkce")
     val allowPkce: kotlin.Boolean? = null,
 
-    /* Indicates whether the client is accessible by third-party tenants. */
+    /* Indicates if the client is public */
     @Json(name = "is_public")
     val isPublic: kotlin.Boolean? = null,
 
-    /* The URL to the client's website. */
+    /* The website URL of the client */
     @Json(name = "website_url")
     val websiteUrl: kotlin.String? = null,
 
-    /* The URL to the client's terms of service. */
+    /* The terms URL of the client */
     @Json(name = "terms_url")
     val termsUrl: kotlin.String? = null,
 
-    /* The URL to the client's privacy policy. */
+    /* The policy URL of the client */
     @Json(name = "policy_url")
     val policyUrl: kotlin.String? = null,
 
-    /* The list of allowed logout redirect URIs. */
+    /* The logout redirect URI for the client */
     @Json(name = "logout_redirect_uri")
     val logoutRedirectUri: kotlin.String? = null
 

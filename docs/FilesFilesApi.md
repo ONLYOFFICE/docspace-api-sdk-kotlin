@@ -899,7 +899,7 @@ launch(Dispatchers.IO) {
 
 <a id="generateXlsx"></a>
 # **generateXlsx**
-> void generateXlsx (kotlin.Int fileId)
+> FileIntegerWrapper generateXlsx (kotlin.Int fileId)
 
 Triggers asynchronous XLSX report generation for the specified form file.
 
@@ -912,7 +912,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Return type
 
-null (empty response body)
+[**FileIntegerWrapper**](FileIntegerWrapper.md)
 
 ### Authorization
 
@@ -936,14 +936,14 @@ val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.Int = 1 // kotlin.Int | The file unique identifier.
 
 launch(Dispatchers.IO) {
-    webService.generateXlsx(fileId)
+    val result : FileIntegerWrapper = webService.generateXlsx(fileId)
 }
 ```
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 <a id="getAllFormRoles"></a>

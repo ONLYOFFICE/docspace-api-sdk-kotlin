@@ -131,7 +131,7 @@ interface PhotosApi {
      *
      * @param userid The user ID.
      * @param file The image data.
-     * @param autosave  (optional)
+     * @param autosave Specifies whether to autosave a photo or not. (optional)
      * @return [FileUploadResultWrapper]
      */
     @Multipart

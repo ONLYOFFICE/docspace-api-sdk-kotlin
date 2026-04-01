@@ -21,17 +21,36 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * Client activation change request
+ * 
  *
- * @param status The activation status of the client
+ * @param type 
+ * @param title 
+ * @param status 
+ * @param detail 
+ * @param instance 
+ * @param properties 
  */
 
 
-data class ChangeClientActivationRequest (
+data class ProblemDetail (
 
-    /* The activation status of the client */
+    @Json(name = "type")
+    val type: java.net.URI? = null,
+
+    @Json(name = "title")
+    val title: kotlin.String? = null,
+
     @Json(name = "status")
-    val status: kotlin.Boolean
+    val status: kotlin.Int? = null,
+
+    @Json(name = "detail")
+    val detail: kotlin.String? = null,
+
+    @Json(name = "instance")
+    val instance: java.net.URI? = null,
+
+    @Json(name = "properties")
+    val properties: kotlin.collections.Map<kotlin.String, kotlin.Any>? = null
 
 ) {
 

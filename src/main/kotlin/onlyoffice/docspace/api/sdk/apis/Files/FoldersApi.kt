@@ -151,6 +151,26 @@ interface FoldersApi {
     suspend fun deleteFolder(@Path("folderId") folderId: kotlin.Int, @Body deleteFolder: DeleteFolder): Response<FileOperationArrayWrapper>
 
     /**
+     * POST api/2.0/files/folder/{folderId}/xlsx
+     * Generate XLSX report by folder
+     * Triggers asynchronous XLSX report generation for the specified form results folder.
+     * Responses:
+     *  - 200: Original form file information
+     *  - 403: You do not have enough permissions to perform this action
+     *  - 404: Form results folder not found
+     *  - 401: Unauthorized
+     *
+     * REST API Reference for generateXlsxByFolder Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/generate-xlsx-by-folder/
+     *
+     *
+     * @param folderId The folder unique identifier.
+     * @return [FileIntegerWrapper]
+     */
+    @POST("api/2.0/files/folder/{folderId}/xlsx")
+    suspend fun generateXlsxByFolder(@Path("folderId") folderId: kotlin.Int): Response<FileIntegerWrapper>
+
+    /**
      * GET api/2.0/files/@favorites
      * Get the Favorites section
      * Returns the detailed list of files and folders located in the Favorites section.

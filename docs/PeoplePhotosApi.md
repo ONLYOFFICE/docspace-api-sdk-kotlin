@@ -225,7 +225,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | ------------- | ------------- | ------------- | ------------- |
 | **userid** | **kotlin.String**| The user ID. | |
 | **file** | **java.io.File**| The image data. | |
-| **autosave** | **kotlin.Boolean**|  | [optional] |
+| **autosave** | **kotlin.Boolean**| Specifies whether to autosave a photo or not. | [optional] |
 
 ### Return type
 
@@ -252,7 +252,7 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PhotosApi::class.java)
 val userid : kotlin.String = 00000000-0000-0000-0000-000000000000 // kotlin.String | The user ID.
 val file : java.io.File = BINARY_DATA_HERE // java.io.File | The image data.
-val autosave : kotlin.Boolean = true // kotlin.Boolean | 
+val autosave : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to autosave a photo or not.
 
 launch(Dispatchers.IO) {
     val result : FileUploadResultWrapper = webService.uploadMemberPhoto(userid, file, autosave)

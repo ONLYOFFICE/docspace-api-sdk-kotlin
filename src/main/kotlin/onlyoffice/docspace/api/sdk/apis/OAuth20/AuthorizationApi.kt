@@ -28,7 +28,7 @@ import onlyoffice.docspace.api.sdk.models.ExchangeToken200Response
 interface AuthorizationApi {
     /**
      * GET oauth2/authorize
-     * OAuth2 authorization endpoint
+     * OAuth2 Authorization Endpoint
      * Initiates the OAuth2 authorization flow.
      * Responses:
      *  - 200: Authorization page
@@ -49,10 +49,10 @@ interface AuthorizationApi {
 
     /**
      * POST oauth2/token
-     * OAuth2 token endpoint
-     * Exchanges an authorization code specified in the request for the access token.
+     * OAuth2 Token Endpoint
+     * Exchange authorization code for access token
      * Responses:
-     *  - 200: The authorization code was successfully exchanged for the access token
+     *  - 200: Successfully exchanged authorization code for access token
      *  - 400: Invalid request parameters
      *
      * REST API Reference for exchangeToken Operation
@@ -73,7 +73,7 @@ interface AuthorizationApi {
     /**
      * POST oauth2/authorize
      * OAuth2 consent endpoint
-     * Sends a consent request with the specified parameters.
+     * Sends consent approval
      * Responses:
      *  - 302: Redirect to the client's redirect URI with authorization code
      *  - 400: Invalid request parameters

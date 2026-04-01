@@ -1186,7 +1186,7 @@ launch(Dispatchers.IO) {
 
 <a id="getRoomsFolder"></a>
 # **getRoomsFolder**
-> FolderContentIntegerWrapper getRoomsFolder (kotlin.collections.List<RoomType> type, kotlin.String subjectId, SearchArea searchArea, kotlin.Boolean withoutTags, kotlin.String tags, kotlin.Boolean excludeSubject, ProviderFilter provider, SubjectFilter subjectFilter, QuotaFilter quotaFilter, StorageFilter storageFilter, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterValue, kotlin.Int groupId)
+> FolderContentIntegerWrapper getRoomsFolder (kotlin.collections.List<RoomType> type, kotlin.String subjectId, kotlin.String subjectOwnerId, SearchArea searchArea, kotlin.Boolean withoutTags, kotlin.String tags, kotlin.Boolean excludeSubject, ProviderFilter provider, SubjectFilter subjectFilter, QuotaFilter quotaFilter, StorageFilter storageFilter, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterValue, kotlin.Int groupId)
 
 Returns the contents of the Rooms section by the parameters specified in the request.
 
@@ -1197,6 +1197,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | ------------- | ------------- | ------------- | ------------- |
 | **type** | **CSVParams** (`List<kotlin.collections.List<RoomType>>`, CSV-encoded)| The filter by room type. | [optional] |
 | **subjectId** | **kotlin.String**| The filter by user ID. | [optional] |
+| **subjectOwnerId** | **kotlin.String**| The filter by room owner ID. | [optional] |
 | **searchArea** | [**SearchArea**](.md)| The room search area (Active, Archive, Any, Recent by links). | [optional] [enum: 0, 1, 2, 3, 4, 5, 6, 7] |
 | **withoutTags** | **kotlin.Boolean**| Specifies whether to search by tags or not. | [optional] |
 | **tags** | **kotlin.String**| The tags in the serialized format. | [optional] |
@@ -1237,6 +1238,7 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
 val type : kotlin.collections.List<RoomType> = 1 // kotlin.collections.List<RoomType> | The filter by room type.
 val subjectId : kotlin.String = 00000000-0000-0000-0000-000000000000 // kotlin.String | The filter by user ID.
+val subjectOwnerId : kotlin.String = 00000000-0000-0000-0000-000000000000 // kotlin.String | The filter by room owner ID.
 val searchArea : SearchArea = 1 // SearchArea | The room search area (Active, Archive, Any, Recent by links).
 val withoutTags : kotlin.Boolean = false // kotlin.Boolean | Specifies whether to search by tags or not.
 val tags : kotlin.String = tag1 // kotlin.String | The tags in the serialized format.
@@ -1253,7 +1255,7 @@ val filterValue : kotlin.String = My Document // kotlin.String | The text filter
 val groupId : kotlin.Int = 1 // kotlin.Int | The group ID
 
 launch(Dispatchers.IO) {
-    val result : FolderContentIntegerWrapper = webService.getRoomsFolder(type, subjectId, searchArea, withoutTags, tags, excludeSubject, provider, subjectFilter, quotaFilter, storageFilter, count, startIndex, sortBy, sortOrder, filterValue, groupId)
+    val result : FolderContentIntegerWrapper = webService.getRoomsFolder(type, subjectId, subjectOwnerId, searchArea, withoutTags, tags, excludeSubject, provider, subjectFilter, quotaFilter, storageFilter, count, startIndex, sortBy, sortOrder, filterValue, groupId)
 }
 ```
 

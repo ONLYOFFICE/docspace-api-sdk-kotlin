@@ -4,7 +4,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**getScopes**](OAuth20ScopeManagementApi.md#getScopes) | **GET** api/2.0/scopes | Get available OAuth2 scopes |
+| [**getScopes**](OAuth20ScopeManagementApi.md#getScopes) | **GET** api/2.0/scopes | List available OAuth2 scopes |
 
 
 

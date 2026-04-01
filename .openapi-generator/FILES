@@ -270,7 +270,6 @@ docs/EncryptionSettings.md
 docs/EncryptionSettingsWrapper.md
 docs/EngineType.md
 docs/EntryType.md
-docs/ErrorResponse.md
 docs/ExchangeToken200Response.md
 docs/ExportChatRequestBodyInteger.md
 docs/ExportMessageRequestBodyInteger.md
@@ -484,6 +483,7 @@ docs/NotificationType.md
 docs/OAuth20AuthorizationApi.md
 docs/OAuth20ClientManagementApi.md
 docs/OAuth20ClientQueryingApi.md
+docs/OAuth20DiscoveryApi.md
 docs/OAuth20ScopeManagementApi.md
 docs/OAuth20Token.md
 docs/ObjectArrayWrapper.md
@@ -536,6 +536,7 @@ docs/PortalQuotaApi.md
 docs/PortalSettingsApi.md
 docs/PortalUsersApi.md
 docs/PriceDto.md
+docs/ProblemDetail.md
 docs/ProductAdministratorDto.md
 docs/ProductAdministratorWrapper.md
 docs/ProductQuantityType.md
@@ -866,6 +867,7 @@ src/main/kotlin/onlyoffice/docspace/api/sdk/apis/Migration/MigrationApi.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/apis/OAuth20/AuthorizationApi.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/apis/OAuth20/ClientManagementApi.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/apis/OAuth20/ClientQueryingApi.kt
+src/main/kotlin/onlyoffice/docspace/api/sdk/apis/OAuth20/DiscoveryApi.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/apis/OAuth20/ScopeManagementApi.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/apis/People/EmailApi.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/apis/People/GuestsApi.kt
@@ -1193,7 +1195,6 @@ src/main/kotlin/onlyoffice/docspace/api/sdk/models/EncryptionSettings.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/EncryptionSettingsWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/EngineType.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/EntryType.kt
-src/main/kotlin/onlyoffice/docspace/api/sdk/models/ErrorResponse.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/ExchangeToken200Response.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/ExportChatRequestBodyInteger.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/ExportMessageRequestBodyInteger.kt
@@ -1428,6 +1429,7 @@ src/main/kotlin/onlyoffice/docspace/api/sdk/models/PermissionsConfig.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/PluginsConfig.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/PluginsDto.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/PriceDto.kt
+src/main/kotlin/onlyoffice/docspace/api/sdk/models/ProblemDetail.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/ProductAdministratorDto.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/ProductAdministratorWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/ProductQuantityType.kt

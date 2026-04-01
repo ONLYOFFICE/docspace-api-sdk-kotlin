@@ -399,9 +399,9 @@ interface FilesApi {
      * Generate XLSX report
      * Triggers asynchronous XLSX report generation for the specified form file.
      * Responses:
-     *  - 200: XLSX report generation has been queued
+     *  - 200: Original form file information
      *  - 403: You do not have enough permissions to perform this action
-     *  - 404: Form file not found
+     *  - 404: File not found
      *  - 401: Unauthorized
      *
      * REST API Reference for generateXlsx Operation
@@ -409,10 +409,10 @@ interface FilesApi {
      *
      *
      * @param fileId The file unique identifier.
-     * @return [Unit]
+     * @return [FileIntegerWrapper]
      */
     @POST("api/2.0/files/file/{fileId}/xlsx")
-    suspend fun generateXlsx(@Path("fileId") fileId: kotlin.Int): Response<Unit>
+    suspend fun generateXlsx(@Path("fileId") fileId: kotlin.Int): Response<FileIntegerWrapper>
 
     /**
      * GET api/2.0/files/file/{fileId}/formroles

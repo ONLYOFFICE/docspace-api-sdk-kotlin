@@ -166,7 +166,7 @@ launch(Dispatchers.IO) {
 
 <a id="getAgents"></a>
 # **getAgents**
-> FolderContentIntegerWrapper getAgents (kotlin.String subjectId, kotlin.Boolean withoutTags, kotlin.String tags, kotlin.Boolean excludeSubject, SubjectFilter subjectFilter, QuotaFilter quotaFilter, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterValue)
+> FolderContentIntegerWrapper getAgents (kotlin.String subjectId, kotlin.String subjectOwnerId, kotlin.Boolean withoutTags, kotlin.String tags, kotlin.Boolean excludeSubject, SubjectFilter subjectFilter, QuotaFilter quotaFilter, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterValue)
 
 Get ai agents
 
@@ -176,6 +176,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **subjectId** | **kotlin.String**| The filter by user ID. | [optional] |
+| **subjectOwnerId** | **kotlin.String**| The filter by room owner ID. | [optional] |
 | **withoutTags** | **kotlin.Boolean**| Specifies whether to search by tags or not. | [optional] |
 | **tags** | **kotlin.String**| The tags in the serialized format. | [optional] |
 | **excludeSubject** | **kotlin.Boolean**| Specifies whether to exclude search by user or group ID. | [optional] |
@@ -211,6 +212,7 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIAgentsApi::class.java)
 val subjectId : kotlin.String = 00000000-0000-0000-0000-000000000000 // kotlin.String | The filter by user ID.
+val subjectOwnerId : kotlin.String = 00000000-0000-0000-0000-000000000000 // kotlin.String | The filter by room owner ID.
 val withoutTags : kotlin.Boolean = false // kotlin.Boolean | Specifies whether to search by tags or not.
 val tags : kotlin.String = ai,assistant // kotlin.String | The tags in the serialized format.
 val excludeSubject : kotlin.Boolean = false // kotlin.Boolean | Specifies whether to exclude search by user or group ID.
@@ -223,7 +225,7 @@ val sortOrder : SortOrder = 1 // SortOrder | The order in which the results are 
 val filterValue : kotlin.String = my agent // kotlin.String | The text filter value used to refine search or query operations.
 
 launch(Dispatchers.IO) {
-    val result : FolderContentIntegerWrapper = webService.getAgents(subjectId, withoutTags, tags, excludeSubject, subjectFilter, quotaFilter, count, startIndex, sortBy, sortOrder, filterValue)
+    val result : FolderContentIntegerWrapper = webService.getAgents(subjectId, subjectOwnerId, withoutTags, tags, excludeSubject, subjectFilter, quotaFilter, count, startIndex, sortBy, sortOrder, filterValue)
 }
 ```
 

@@ -9,6 +9,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 | [**createFolderPrimaryExternalLink**](FilesFoldersApi.md#createFolderPrimaryExternalLink) | **POST** api/2.0/files/folder/{id}/link | Create primary external link |
 | [**createReportFolderHistory**](FilesFoldersApi.md#createReportFolderHistory) | **POST** api/2.0/files/folder/{folderId}/log/report | Generates folder history |
 | [**deleteFolder**](FilesFoldersApi.md#deleteFolder) | **DELETE** api/2.0/files/folder/{folderId} | Delete a folder |
+| [**generateXlsxByFolder**](FilesFoldersApi.md#generateXlsxByFolder) | **POST** api/2.0/files/folder/{folderId}/xlsx | Generate XLSX report by folder |
 | [**getFavoritesFolder**](FilesFoldersApi.md#getFavoritesFolder) | **GET** api/2.0/files/@favorites | Get the Favorites section |
 | [**getFilesUsedSpace**](FilesFoldersApi.md#getFilesUsedSpace) | **GET** api/2.0/files/filesusedspace | Get used space of files |
 | [**getFolder**](FilesFoldersApi.md#getFolder) | **GET** api/2.0/files/{folderId}/formfilter | Get folder form filter |
@@ -285,6 +286,55 @@ launch(Dispatchers.IO) {
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+<a id="generateXlsxByFolder"></a>
+# **generateXlsxByFolder**
+> FileIntegerWrapper generateXlsxByFolder (kotlin.Int folderId)
+
+Triggers asynchronous XLSX report generation for the specified form results folder.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/generate-xlsx-by-folder/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **folderId** | **kotlin.Int**| The folder unique identifier. | |
+
+### Return type
+
+[**FileIntegerWrapper**](FileIntegerWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(FoldersApi::class.java)
+val folderId : kotlin.Int = 1 // kotlin.Int | The folder unique identifier.
+
+launch(Dispatchers.IO) {
+    val result : FileIntegerWrapper = webService.generateXlsxByFolder(folderId)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 

@@ -21,40 +21,44 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The request for updating client details.
+ * Client update request containing modified client details
  *
- * @param name The client name.
- * @param description The client description
- * @param logo The client logo in base64 format.
- * @param allowPkce Indicates whether PKCE is allowed for the client.
- * @param isPublic Indicates whether the client is accessible by third-party tenants.
- * @param allowedOrigins The allowed origins for the client.
+ * @param name The name of the client
+ * @param description The description of the client
+ * @param logo The logo of the client in base64 format
+ * @param `public` 
+ * @param allowPkce Indicates whether PKCE is allowed for the client
+ * @param isPublic Indicates whether client is accessible by third-party tenants
+ * @param allowedOrigins The allowed origins for the client
  */
 
 
 data class UpdateClientRequest (
 
-    /* The client name. */
+    /* The name of the client */
     @Json(name = "name")
     val name: kotlin.String? = null,
 
-    /* The client description */
+    /* The description of the client */
     @Json(name = "description")
     val description: kotlin.String? = null,
 
-    /* The client logo in base64 format. */
+    /* The logo of the client in base64 format */
     @Json(name = "logo")
     val logo: kotlin.String? = null,
 
-    /* Indicates whether PKCE is allowed for the client. */
+    @Json(name = "public")
+    val `public`: kotlin.Boolean? = null,
+
+    /* Indicates whether PKCE is allowed for the client */
     @Json(name = "allow_pkce")
     val allowPkce: kotlin.Boolean? = null,
 
-    /* Indicates whether the client is accessible by third-party tenants. */
+    /* Indicates whether client is accessible by third-party tenants */
     @Json(name = "is_public")
     val isPublic: kotlin.Boolean? = null,
 
-    /* The allowed origins for the client. */
+    /* The allowed origins for the client */
     @Json(name = "allowed_origins")
     val allowedOrigins: kotlin.collections.Set<kotlin.String>? = null
 

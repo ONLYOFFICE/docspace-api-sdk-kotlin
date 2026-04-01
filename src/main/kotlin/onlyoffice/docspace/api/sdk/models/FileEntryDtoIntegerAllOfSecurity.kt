@@ -66,6 +66,7 @@ import com.squareup.moshi.JsonClass
  * @param vectorization 
  * @param askAi 
  * @param useChat 
+ * @param updateXlsx 
  */
 
 
@@ -198,7 +199,10 @@ data class FileEntryDtoIntegerAllOfSecurity (
     val askAi: kotlin.Boolean? = null,
 
     @Json(name = "UseChat")
-    val useChat: kotlin.Boolean? = null
+    val useChat: kotlin.Boolean? = null,
+
+    @Json(name = "UpdateXlsx")
+    val updateXlsx: kotlin.Boolean? = null
 
 ) {
 

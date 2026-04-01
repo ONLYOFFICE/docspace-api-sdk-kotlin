@@ -14,27 +14,31 @@
  * limitations under the License.
  */
 
-package onlyoffice.docspace.api.sdk.models
 
+package onlyoffice.docspace.api.sdk.apis.OAuth20
 
+import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
+import retrofit2.http.*
+import retrofit2.Response
+import okhttp3.RequestBody
 import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
-
-/**
- * Client activation change request
- *
- * @param status The activation status of the client
- */
 
 
-data class ChangeClientActivationRequest (
-
-    /* The activation status of the client */
-    @Json(name = "status")
-    val status: kotlin.Boolean
-
-) {
-
+interface DiscoveryApi {
+    /**
+     * OPTIONS .well-known/oauth-authorization-server
+     * 
+     * 
+     * Responses:
+     *  - 200: OK
+     *
+     * REST API Reference for handleOptions Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/handle-options/
+     *
+     *
+     * @return [kotlin.Any]
+     */
+    @OPTIONS(".well-known/oauth-authorization-server")
+    suspend fun handleOptions(): Response<kotlin.Any>
 
 }
-

@@ -27,19 +27,20 @@ import onlyoffice.docspace.api.sdk.models.ChangeClientActivationRequest
 import onlyoffice.docspace.api.sdk.models.ClientResponse
 import onlyoffice.docspace.api.sdk.models.ClientSecretResponse
 import onlyoffice.docspace.api.sdk.models.CreateClientRequest
-import onlyoffice.docspace.api.sdk.models.ErrorResponse
+import onlyoffice.docspace.api.sdk.models.ProblemDetail
 import onlyoffice.docspace.api.sdk.models.UpdateClientRequest
 
 interface ClientManagementApi {
     /**
      * PATCH api/2.0/clients/{clientId}/activation
-     * Change the client activation status
+     * Change client activation status
      * Activates or deactivates an OAuth2 client. When deactivated, the client cannot request new access tokens, but existing tokens will remain valid until they expire.
      * Responses:
      *  - 200: Client activation status successfully changed
      *  - 400: Invalid client ID format or activation status
      *  - 403: Insufficient permissions to change client activation
      *  - 404: Client not found
+     *  - 415: Unsupported media type
      *  - 429: Too many requests - rate limit exceeded
      *  - 500: Internal server error occurred
      *
@@ -47,7 +48,7 @@ interface ClientManagementApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/change-activation/
      *
      *
-     * @param clientId The client identifier.
+     * @param clientId ID of the client to change activation for
      * @param changeClientActivationRequest 
      * @return [kotlin.Any]
      */
@@ -61,7 +62,8 @@ interface ClientManagementApi {
      * Responses:
      *  - 201: Client successfully created
      *  - 400: Invalid request - missing required fields or validation failed
-     *  - 403: Insufficient permissions to create a client
+     *  - 403: Insufficient permissions to create client
+     *  - 415: Unsupported media type
      *  - 429: Too many requests - rate limit exceeded
      *  - 500: Internal server error occurred
      *
@@ -78,7 +80,7 @@ interface ClientManagementApi {
     /**
      * DELETE api/2.0/clients/{clientId}
      * Delete an OAuth2 client
-     * Permanently deletes an OAuth2 client and all associated data. All access and refresh tokens issued to this client will be invalidated. This operation cannot be undone.
+     * Permanently deletes an OAuth2 client and all associated data. This will invalidate all access tokens and refresh tokens issued to this client. This operation cannot be undone.
      * Responses:
      *  - 200: Client successfully deleted
      *  - 400: Invalid client ID format
@@ -91,15 +93,53 @@ interface ClientManagementApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-client/
      *
      *
-     * @param clientId The client identifier.
+     * @param clientId ID of the client to delete
      * @return [kotlin.Any]
      */
     @DELETE("api/2.0/clients/{clientId}")
     suspend fun deleteClient(@Path("clientId") clientId: kotlin.String): Response<kotlin.Any>
 
     /**
+     * DELETE api/2.0/clients/tenant
+     * Delete all tenant OAuth2 clients
+     * Permanently deletes tenant OAuth2 clients and all associated data. This will invalidate all access tokens and refresh tokens issued to this client. This operation cannot be undone.
+     * Responses:
+     *  - 200: Client successfully deleted
+     *  - 403: Insufficient permissions to delete tenant clients
+     *  - 429: Too many requests - rate limit exceeded
+     *  - 500: Internal server error occurred
+     *
+     * REST API Reference for deleteTenantClients Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-tenant-clients/
+     *
+     *
+     * @return [kotlin.Any]
+     */
+    @DELETE("api/2.0/clients/tenant")
+    suspend fun deleteTenantClients(): Response<kotlin.Any>
+
+    /**
+     * DELETE api/2.0/clients
+     * Delete all user OAuth2 clients
+     * Permanently deletes user OAuth2 clients and all associated data. This will invalidate all access tokens and refresh tokens issued to this client. This operation cannot be undone.
+     * Responses:
+     *  - 200: Client successfully deleted
+     *  - 403: Insufficient permissions to delete user clients
+     *  - 429: Too many requests - rate limit exceeded
+     *  - 500: Internal server error occurred
+     *
+     * REST API Reference for deleteUserClients Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-user-clients/
+     *
+     *
+     * @return [kotlin.Any]
+     */
+    @DELETE("api/2.0/clients")
+    suspend fun deleteUserClients(): Response<kotlin.Any>
+
+    /**
      * PATCH api/2.0/clients/{clientId}/regenerate
-     * Regenerate the client secret
+     * Regenerate client secret
      * Generates a new client secret for the specified OAuth2 client. The old secret will be immediately invalidated. This operation should be used with caution as it requires updating the secret in all client applications.
      * Responses:
      *  - 200: Client secret successfully regenerated
@@ -113,7 +153,7 @@ interface ClientManagementApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/regenerate-secret/
      *
      *
-     * @param clientId The client identifier.
+     * @param clientId ID of the client to regenerate secret for
      * @return [ClientSecretResponse]
      */
     @PATCH("api/2.0/clients/{clientId}/regenerate")
@@ -136,7 +176,7 @@ interface ClientManagementApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/revoke-user-client/
      *
      *
-     * @param clientId The client identifier.
+     * @param clientId ID of the client to revoke consent for
      * @return [kotlin.Any]
      */
     @DELETE("api/2.0/clients/{clientId}/revoke")
@@ -145,12 +185,13 @@ interface ClientManagementApi {
     /**
      * PUT api/2.0/clients/{clientId}
      * Update an existing OAuth2 client
-     * Updates the configuration of an existing OAuth2 client, allowing modifications to the client name, description, redirect URIs, and other settings. The client ID cannot be modified.
+     * Updates the configuration of an existing OAuth2 client. Allows modification of client name, description, redirect URIs, and other settings. The client ID cannot be modified.
      * Responses:
      *  - 200: Client successfully updated
      *  - 400: Invalid request - missing required fields or validation failed
      *  - 403: Insufficient permissions to update client
      *  - 404: Client not found
+     *  - 415: Unsupported media type
      *  - 429: Too many requests - rate limit exceeded
      *  - 500: Internal server error occurred
      *
@@ -158,7 +199,7 @@ interface ClientManagementApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-client/
      *
      *
-     * @param clientId The client identifier.
+     * @param clientId ID of the client to update
      * @param updateClientRequest 
      * @return [kotlin.Any]
      */

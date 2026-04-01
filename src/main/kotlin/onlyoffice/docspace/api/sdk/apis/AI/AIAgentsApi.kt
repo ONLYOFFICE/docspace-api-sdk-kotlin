@@ -106,6 +106,7 @@ interface AIAgentsApi {
      *
      *
      * @param subjectId The filter by user ID. (optional)
+     * @param subjectOwnerId The filter by room owner ID. (optional)
      * @param withoutTags Specifies whether to search by tags or not. (optional)
      * @param tags The tags in the serialized format. (optional)
      * @param excludeSubject Specifies whether to exclude search by user or group ID. (optional)
@@ -119,7 +120,7 @@ interface AIAgentsApi {
      * @return [FolderContentIntegerWrapper]
      */
     @GET("api/2.0/ai/agents")
-    suspend fun getAgents(@Query("subjectId") subjectId: kotlin.String? = null, @Query("withoutTags") withoutTags: kotlin.Boolean? = null, @Query("tags") tags: kotlin.String? = null, @Query("excludeSubject") excludeSubject: kotlin.Boolean? = null, @Query("subjectFilter") subjectFilter: SubjectFilter? = null, @Query("quotaFilter") quotaFilter: QuotaFilter? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<FolderContentIntegerWrapper>
+    suspend fun getAgents(@Query("subjectId") subjectId: kotlin.String? = null, @Query("subjectOwnerId") subjectOwnerId: kotlin.String? = null, @Query("withoutTags") withoutTags: kotlin.Boolean? = null, @Query("tags") tags: kotlin.String? = null, @Query("excludeSubject") excludeSubject: kotlin.Boolean? = null, @Query("subjectFilter") subjectFilter: SubjectFilter? = null, @Query("quotaFilter") quotaFilter: QuotaFilter? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<FolderContentIntegerWrapper>
 
     /**
      * GET api/2.0/ai/agents/news
