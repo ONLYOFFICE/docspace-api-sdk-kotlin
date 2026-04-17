@@ -41,6 +41,9 @@ interface GroupApi {
      * Responses:
      *  - 200: Newly created group with the detailed information
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for addGroup Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/add-group/
@@ -60,6 +63,9 @@ interface GroupApi {
      *  - 200: Group with the detailed information
      *  - 404: Group not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for addMembersTo Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/add-members-to/
@@ -80,6 +86,9 @@ interface GroupApi {
      *  - 200: No content
      *  - 404: Group not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for deleteGroup Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-group/
@@ -99,6 +108,9 @@ interface GroupApi {
      *  - 200: Group with the detailed information
      *  - 404: Group not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getGroup Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-group/
@@ -118,6 +130,9 @@ interface GroupApi {
      * Responses:
      *  - 200: List of groups
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getGroupByUserId Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-group-by-user-id/
@@ -136,6 +151,9 @@ interface GroupApi {
      * Responses:
      *  - 200: List of groups
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getGroups Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-groups/
@@ -161,6 +179,9 @@ interface GroupApi {
      *  - 200: Group with the detailed information
      *  - 404: Group not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for moveMembersTo Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/move-members-to/
@@ -181,6 +202,9 @@ interface GroupApi {
      *  - 200: Group with the detailed information
      *  - 404: Group not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for removeMembersFrom Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/remove-members-from/
@@ -201,6 +225,9 @@ interface GroupApi {
      *  - 200: Group with the detailed information
      *  - 404: User not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for setGroupManager Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-group-manager/
@@ -220,6 +247,9 @@ interface GroupApi {
      * Responses:
      *  - 200: Group with the detailed information
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for setMembersTo Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-members-to/
@@ -240,6 +270,9 @@ interface GroupApi {
      *  - 200: Updated group with the detailed information
      *  - 404: Group not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for updateGroup Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-group/

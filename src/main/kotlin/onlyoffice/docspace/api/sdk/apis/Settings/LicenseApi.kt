@@ -36,6 +36,9 @@ interface LicenseApi {
      * Responses:
      *  - 200: Message about the result of activating license
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for acceptLicense Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/accept-license/
@@ -52,6 +55,9 @@ interface LicenseApi {
      * Requests a portal license if necessary.
      * Responses:
      *  - 200: Boolean value: true if the license is required
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getIsLicenseRequired Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-is-license-required/
@@ -69,6 +75,9 @@ interface LicenseApi {
      * Responses:
      *  - 200: Boolean value: true if the operation is successful
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for refreshLicense Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/refresh-license/
@@ -89,6 +98,9 @@ interface LicenseApi {
      *  - 403: Portal Access
      *  - 405: Your pricing plan does not support this option
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for uploadLicense Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-license/

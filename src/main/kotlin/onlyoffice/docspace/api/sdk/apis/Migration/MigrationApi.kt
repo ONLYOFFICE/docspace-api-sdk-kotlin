@@ -37,6 +37,9 @@ interface MigrationApi {
      *  - 200: Ok
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for cancelMigration Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/cancel-migration/
@@ -55,6 +58,9 @@ interface MigrationApi {
      *  - 200: Ok
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for clearMigration Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/clear-migration/
@@ -73,6 +79,9 @@ interface MigrationApi {
      *  - 200: Ok
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for finishMigration Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/finish-migration/
@@ -92,6 +101,9 @@ interface MigrationApi {
      *  - 200: Ok
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getMigrationLogs Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-migration-logs/
@@ -110,6 +122,9 @@ interface MigrationApi {
      *  - 200: Ok
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getMigrationStatus Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-migration-status/
@@ -128,6 +143,9 @@ interface MigrationApi {
      *  - 200: Ok
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for listMigrations Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/list-migrations/
@@ -146,6 +164,9 @@ interface MigrationApi {
      *  - 200: Ok
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for startMigration Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/start-migration/
@@ -165,6 +186,9 @@ interface MigrationApi {
      *  - 200: Ok
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for uploadAndInitializeMigration Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-and-initialize-migration/

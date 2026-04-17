@@ -39,6 +39,9 @@ interface EmailApi {
      *  - 403: The link is invalid or no permissions to perform this action
      *  - 404: The user could not be found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for changeUserEmail Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/change-user-email/
@@ -61,6 +64,9 @@ interface EmailApi {
      *  - 403: No permissions to perform this action
      *  - 404: User not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for sendEmailChangeInstructions Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/send-email-change-instructions/

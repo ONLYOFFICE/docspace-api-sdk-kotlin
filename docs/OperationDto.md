@@ -15,6 +15,8 @@
 | **debit** | **kotlin.Double** | The debit amount of the operation. |  [optional] |
 | **participantName** | **kotlin.String** | The participant original name. |  [optional] |
 | **participantDisplayName** | **kotlin.String** | The participant display name. |  [optional] |
+| **agentId** | **kotlin.String** | AI Agent id. |  [optional] |
+| **agentTitle** | **kotlin.String** | AI Agent name. |  [optional] |
 
 
 

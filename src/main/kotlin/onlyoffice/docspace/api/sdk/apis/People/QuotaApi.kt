@@ -37,6 +37,9 @@ interface QuotaApi {
      *  - 403: The invitation link is invalid or its validity has expired
      *  - 409: Conflict - system user quota cannot be reset
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for resetUsersQuota Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/reset-users-quota/
@@ -57,6 +60,9 @@ interface QuotaApi {
      *  - 400: The entered quota value is invalid or greater than the total storage size
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for updateUserQuota Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-user-quota/

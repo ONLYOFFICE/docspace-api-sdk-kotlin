@@ -41,6 +41,9 @@ interface BackupApi {
      * Responses:
      *  - 200: Boolean value: true if the operation is successful
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for cancelBackup Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/cancel-backup/
@@ -62,6 +65,9 @@ interface BackupApi {
      *  - 403: Access denied
      *  - 404: The required folder was not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for createBackupSchedule Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-backup-schedule/
@@ -81,6 +87,9 @@ interface BackupApi {
      *  - 200: Boolean value: true if the operation is successful
      *  - 403: Access denied
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for deleteBackup Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-backup/
@@ -100,6 +109,9 @@ interface BackupApi {
      *  - 200: Boolean value: true if the operation is successful
      *  - 403: Access denied
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for deleteBackupHistory Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-backup-history/
@@ -119,6 +131,9 @@ interface BackupApi {
      *  - 200: Boolean value: true if the operation is successful
      *  - 403: Access denied
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for deleteBackupSchedule Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-backup-schedule/
@@ -138,6 +153,9 @@ interface BackupApi {
      *  - 200: List of backup history records
      *  - 403: Access denied
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getBackupHistory Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-backup-history/
@@ -157,6 +175,9 @@ interface BackupApi {
      *  - 200: Backup progress: completed or not, progress percentage, error, tenant ID, backup progress item (Backup, Restore, Transfer), link
      *  - 403: Access denied
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getBackupProgress Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-backup-progress/
@@ -176,6 +197,9 @@ interface BackupApi {
      *  - 200: Backup schedule
      *  - 403: Access denied
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getBackupSchedule Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-backup-schedule/
@@ -196,6 +220,9 @@ interface BackupApi {
      *  - 400: From date must be less than to date
      *  - 403: Access denied
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getBackupsCount Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-backups-count/
@@ -215,7 +242,11 @@ interface BackupApi {
      * Returns the backup service state.
      * Responses:
      *  - 200: Backup service state
+     *  - 403: Access denied
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getBackupsServiceState Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-backups-service-state/
@@ -232,6 +263,9 @@ interface BackupApi {
      * Returns the progress of the started restoring process.
      * Responses:
      *  - 200: Backup progress: completed or not, progress percentage, error, tenant ID, backup progress item (Backup, Restore, Transfer), link
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getRestoreProgress Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-restore-progress/
@@ -254,6 +288,9 @@ interface BackupApi {
      *  - 403: Access denied
      *  - 404: The required folder was not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for startBackup Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/start-backup/
@@ -276,6 +313,9 @@ interface BackupApi {
      *  - 403: Access denied
      *  - 404: The required file or folder was not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for startBackupRestore Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/start-backup-restore/

@@ -17,6 +17,7 @@
 package onlyoffice.docspace.api.sdk.models
 
 import onlyoffice.docspace.api.sdk.models.AiChatPrice
+import onlyoffice.docspace.api.sdk.models.AiModelCapabilities
 import onlyoffice.docspace.api.sdk.models.CurrencyInfo
 
 import com.squareup.moshi.Json
@@ -28,6 +29,8 @@ import com.squareup.moshi.JsonClass
  * @param providerTitle The human-readable display name of the AI provider (e.g., OpenAI, Anthropic).
  * @param modelId The model identifier as recognized by the AI provider (e.g., gpt-4o, claude-sonnet-4-20250514).
  * @param providerId The unique identifier of the AI provider that offers this model.
+ * @param alias The display name for the model.
+ * @param capabilities 
  * @param price 
  * @param currency 
  */
@@ -46,6 +49,13 @@ data class ModelDto (
     /* The unique identifier of the AI provider that offers this model. */
     @Json(name = "providerId")
     val providerId: kotlin.Int? = null,
+
+    /* The display name for the model. */
+    @Json(name = "alias")
+    val alias: kotlin.String? = null,
+
+    @Json(name = "capabilities")
+    val capabilities: AiModelCapabilities? = null,
 
     @Json(name = "price")
     val price: AiChatPrice? = null,

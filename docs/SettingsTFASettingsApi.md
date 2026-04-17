@@ -5,20 +5,20 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
 | [**getTfaAppCodes**](SettingsTFASettingsApi.md#getTfaAppCodes) | **GET** api/2.0/settings/tfaappcodes | Get the TFA codes |
-| [**getTfaConfirmUrl**](SettingsTFASettingsApi.md#getTfaConfirmUrl) | **GET** api/2.0/settings/tfaapp/confirm | Get confirmation email |
+| [**getTfaConfirmUrl**](SettingsTFASettingsApi.md#getTfaConfirmUrl) | **GET** api/2.0/settings/tfaapp/confirm | Get TFA confirmation URL |
 | [**getTfaSettings**](SettingsTFASettingsApi.md#getTfaSettings) | **GET** api/2.0/settings/tfaapp | Get the TFA settings |
 | [**tfaAppGenerateSetupCode**](SettingsTFASettingsApi.md#tfaAppGenerateSetupCode) | **GET** api/2.0/settings/tfaapp/setup | Generate setup code |
 | [**tfaValidateAuthCode**](SettingsTFASettingsApi.md#tfaValidateAuthCode) | **POST** api/2.0/settings/tfaapp/validate | Validate the TFA code |
 | [**unlinkTfaApp**](SettingsTFASettingsApi.md#unlinkTfaApp) | **PUT** api/2.0/settings/tfaappnewapp | Unlink the TFA application |
 | [**updateTfaAppCodes**](SettingsTFASettingsApi.md#updateTfaAppCodes) | **PUT** api/2.0/settings/tfaappnewcodes | Update the TFA codes |
 | [**updateTfaSettings**](SettingsTFASettingsApi.md#updateTfaSettings) | **PUT** api/2.0/settings/tfaapp | Update the TFA settings |
-| [**updateTfaSettingsLink**](SettingsTFASettingsApi.md#updateTfaSettingsLink) | **PUT** api/2.0/settings/tfaappwithlink | Get a confirmation email for updating TFA settings |
+| [**updateTfaSettingsLink**](SettingsTFASettingsApi.md#updateTfaSettingsLink) | **PUT** api/2.0/settings/tfaappwithlink | Updates TFA settings |
 
 
 
 <a id="getTfaAppCodes"></a>
 # **getTfaAppCodes**
-> ObjectArrayWrapper getTfaAppCodes ()
+> TfaAppCodeArrayWrapper getTfaAppCodes ()
 
 Returns the two-factor authentication application codes.
 
@@ -29,7 +29,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ObjectArrayWrapper**](ObjectArrayWrapper.md)
+[**TfaAppCodeArrayWrapper**](TfaAppCodeArrayWrapper.md)
 
 ### Authorization
 
@@ -52,7 +52,7 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(TFASettingsApi::class.java)
 
 launch(Dispatchers.IO) {
-    val result : ObjectArrayWrapper = webService.getTfaAppCodes()
+    val result : TfaAppCodeArrayWrapper = webService.getTfaAppCodes()
 }
 ```
 
@@ -66,7 +66,7 @@ launch(Dispatchers.IO) {
 # **getTfaConfirmUrl**
 > StringWrapper getTfaConfirmUrl ()
 
-Returns the confirmation email URL for authorization via SMS or TFA application.
+Returns the confirmation URL for authorization via SMS or TFA application.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tfa-confirm-url/).
 
@@ -300,7 +300,7 @@ launch(Dispatchers.IO) {
 
 <a id="updateTfaAppCodes"></a>
 # **updateTfaAppCodes**
-> ObjectArrayWrapper updateTfaAppCodes ()
+> TfaAppCodeArrayWrapper updateTfaAppCodes ()
 
 Requests the new backup codes for the two-factor authentication application.
 
@@ -311,7 +311,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ObjectArrayWrapper**](ObjectArrayWrapper.md)
+[**TfaAppCodeArrayWrapper**](TfaAppCodeArrayWrapper.md)
 
 ### Authorization
 
@@ -334,7 +334,7 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(TFASettingsApi::class.java)
 
 launch(Dispatchers.IO) {
-    val result : ObjectArrayWrapper = webService.updateTfaAppCodes()
+    val result : TfaAppCodeArrayWrapper = webService.updateTfaAppCodes()
 }
 ```
 
@@ -397,7 +397,7 @@ launch(Dispatchers.IO) {
 # **updateTfaSettingsLink**
 > StringWrapper updateTfaSettingsLink (TfaRequestsDto tfaRequestsDto)
 
-Returns the confirmation email URL for updating TFA settings.
+Updates TFA settings and returns the confirmation URL for authorization via SMS or TFA application.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/update-tfa-settings-link/).
 

@@ -37,6 +37,9 @@ interface AuthorizationApi {
      * Responses:
      *  - 200: Authorization services
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getAuthServices Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-auth-services/
@@ -56,6 +59,9 @@ interface AuthorizationApi {
      *  - 400: Bad keys
      *  - 402: Your pricing plan does not support this option
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for saveAuthKeys Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/save-auth-keys/
@@ -74,6 +80,9 @@ interface AuthorizationApi {
      * Responses:
      *  - 200: Connection test result with Success flag and optional Error message
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for testExternalDatabaseConnection Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/test-external-database-connection/

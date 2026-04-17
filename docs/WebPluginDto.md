@@ -21,8 +21,8 @@
 | **cssUrl** | **kotlin.String** | The web plugin css URL. |  |
 | **settings** | **kotlin.String** | The web plugin settings. |  |
 | **minDocSpaceVersion** | **kotlin.String** | The minimum version of DocSpace with which the plugin is guaranteed to work. |  [optional] |
-| **nameLocale** | **kotlin.collections.Map&lt;kotlin.String, kotlin.String&gt;** | The web plugin localized name. |  [optional] |
-| **descriptionLocale** | **kotlin.collections.Map&lt;kotlin.String, kotlin.String&gt;** | The web plugin localized description. |  [optional] |
+| **nameLocale** | **kotlin.collections.Map&lt;kotlin.String, kotlin.String?&gt;** | The web plugin localized name. |  [optional] |
+| **descriptionLocale** | **kotlin.collections.Map&lt;kotlin.String, kotlin.String?&gt;** | The web plugin localized description. |  [optional] |
 
 
 

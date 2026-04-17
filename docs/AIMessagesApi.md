@@ -10,7 +10,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 
 <a id="exportMessage"></a>
 # **exportMessage**
-> void exportMessage (kotlin.Int messageId, ExportMessageRequestBodyInteger exportMessageRequestBodyInteger)
+> void exportMessage (kotlin.Int messageId, ExportMessageRequestBody exportMessageRequestBody)
 
 Exports a specific AI chat message as a document into the specified folder. The system verifies that the message exists  and belongs to a chat accessible by the current user, then publishes an asynchronous export task to the event bus.  The exported document will be created in the target folder with the given title once the background task completes.
 
@@ -20,7 +20,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **messageId** | **kotlin.Int**| The unique identifier of the AI chat message to export. | |
-| **exportMessageRequestBodyInteger** | [**ExportMessageRequestBodyInteger**](ExportMessageRequestBodyInteger.md)| The export parameters including destination folder and file title. | |
+| **exportMessageRequestBody** | [**ExportMessageRequestBody**](ExportMessageRequestBody.md)| The export parameters including destination folder and file title. | |
 
 ### Return type
 
@@ -46,10 +46,10 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIMessagesApi::class.java)
 val messageId : kotlin.Int = 1 // kotlin.Int | The unique identifier of the AI chat message to export.
-val exportMessageRequestBodyInteger : ExportMessageRequestBodyInteger =  // ExportMessageRequestBodyInteger | The export parameters including destination folder and file title.
+val exportMessageRequestBody : ExportMessageRequestBody =  // ExportMessageRequestBody | The export parameters including destination folder and file title.
 
 launch(Dispatchers.IO) {
-    webService.exportMessage(messageId, exportMessageRequestBodyInteger)
+    webService.exportMessage(messageId, exportMessageRequestBody)
 }
 ```
 

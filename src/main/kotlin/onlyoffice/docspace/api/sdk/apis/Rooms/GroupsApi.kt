@@ -37,6 +37,9 @@ interface GroupsApi {
      * Responses:
      *  - 200: OK
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for addRoomGroup Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/add-room-group/
@@ -55,6 +58,9 @@ interface GroupsApi {
      * Responses:
      *  - 200: OK
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for changeRoomGroupIcon Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/change-room-group-icon/
@@ -74,6 +80,9 @@ interface GroupsApi {
      * Responses:
      *  - 200: OK
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for deleteRoomGroup Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-room-group/
@@ -93,6 +102,9 @@ interface GroupsApi {
      * Responses:
      *  - 200: OK
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getRoomGroupInfo Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-group-info/
@@ -112,6 +124,9 @@ interface GroupsApi {
      * Responses:
      *  - 200: OK
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getRoomGroups Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-groups/
@@ -131,6 +146,9 @@ interface GroupsApi {
      * Responses:
      *  - 200: OK
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for updateRoomGroup Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-room-group/

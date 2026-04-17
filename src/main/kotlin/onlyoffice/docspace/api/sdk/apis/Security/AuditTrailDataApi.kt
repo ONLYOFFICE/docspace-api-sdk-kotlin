@@ -44,6 +44,9 @@ interface AuditTrailDataApi {
      *  - 402: Your pricing plan does not support this option
      *  - 403: You don't have enough permission to create
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for createAuditTrailReport Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-audit-trail-report/
@@ -62,6 +65,9 @@ interface AuditTrailDataApi {
      *  - 200: List of filtered audit trail data
      *  - 402: Your pricing plan does not support this option
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getAuditEventsByFilter Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-audit-events-by-filter/
@@ -90,6 +96,9 @@ interface AuditTrailDataApi {
      *  - 200: Audit settings
      *  - 402: Your pricing plan does not support this option
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getAuditSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-audit-settings/
@@ -106,6 +115,9 @@ interface AuditTrailDataApi {
      * Returns the mappers for the audit trail types.
      * Responses:
      *  - 200: Audit trail mappers
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getAuditTrailMappers Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-audit-trail-mappers/
@@ -124,6 +136,9 @@ interface AuditTrailDataApi {
      * Returns all the available audit trail types.
      * Responses:
      *  - 200: Audit trail types
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getAuditTrailTypes Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-audit-trail-types/
@@ -142,6 +157,9 @@ interface AuditTrailDataApi {
      *  - 200: List of audit trail data
      *  - 402: Your pricing plan does not support this option
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getLastAuditEvents Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-last-audit-events/
@@ -161,6 +179,9 @@ interface AuditTrailDataApi {
      *  - 400: Exception in LoginHistoryLifeTime or AuditTrailLifeTime
      *  - 402: Your pricing plan does not support this option
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for setAuditSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-audit-settings/

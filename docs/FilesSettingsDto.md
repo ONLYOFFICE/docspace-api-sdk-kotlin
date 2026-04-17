@@ -15,7 +15,7 @@
 | **extsWebCommented** | **kotlin.collections.List&lt;kotlin.String&gt;** | The list of extensions of the commented files. |  [optional] |
 | **extsWebTemplate** | **kotlin.collections.List&lt;kotlin.String&gt;** | The list of extensions of the template files. |  [optional] |
 | **extsMustConvert** | **kotlin.collections.List&lt;kotlin.String&gt;** | The list of extensions of the files that must be converted. |  [optional] |
-| **extsConvertible** | **kotlin.collections.Map&lt;kotlin.String, kotlin.collections.List&lt;kotlin.String&gt;&gt;** | The list of the convertible extensions. |  [optional] |
+| **extsConvertible** | **kotlin.collections.Map&lt;kotlin.String, kotlin.collections.List&lt;kotlin.String&gt;?&gt;** | The list of the convertible extensions. |  [optional] |
 | **extsUploadable** | **kotlin.collections.List&lt;kotlin.String&gt;** | The list of the uploadable extensions. |  [optional] |
 | **extsArchive** | **kotlin.collections.List&lt;kotlin.String&gt;** | The list of extensions of the archive files. |  [optional] |
 | **extsVideo** | **kotlin.collections.List&lt;kotlin.String&gt;** | The list of the video extensions. |  [optional] |

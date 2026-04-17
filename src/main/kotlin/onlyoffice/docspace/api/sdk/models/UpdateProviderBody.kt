@@ -16,6 +16,7 @@
 
 package onlyoffice.docspace.api.sdk.models
 
+import onlyoffice.docspace.api.sdk.models.ModelSettingsItemDto
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -26,6 +27,7 @@ import com.squareup.moshi.JsonClass
  * @param title The new display title for the AI provider. If null, the title is not changed.
  * @param url The new API endpoint URL for the AI provider. If null, the URL is not changed.
  * @param key The new authentication API key for the AI provider. If null, the key is not changed.
+ * @param modelSettings Optional list of model settings changes to apply atomically with the provider update.
  */
 
 
@@ -41,7 +43,11 @@ data class UpdateProviderBody (
 
     /* The new authentication API key for the AI provider. If null, the key is not changed. */
     @Json(name = "key")
-    val key: kotlin.String? = null
+    val key: kotlin.String? = null,
+
+    /* Optional list of model settings changes to apply atomically with the provider update. */
+    @Json(name = "modelSettings")
+    val modelSettings: kotlin.collections.Set<ModelSettingsItemDto>? = null
 
 ) {
 

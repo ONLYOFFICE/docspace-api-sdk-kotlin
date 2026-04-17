@@ -35,6 +35,9 @@ interface QuotaApi {
      * Responses:
      *  - 200: List of rooms with the detailed information
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for resetRoomQuota Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/reset-room-quota/
@@ -53,6 +56,9 @@ interface QuotaApi {
      * Responses:
      *  - 200: List of rooms with the detailed information
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for updateRoomsQuota Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-rooms-quota/

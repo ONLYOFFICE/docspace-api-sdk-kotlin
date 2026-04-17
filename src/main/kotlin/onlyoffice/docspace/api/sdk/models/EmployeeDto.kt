@@ -25,7 +25,6 @@ import com.squareup.moshi.JsonClass
  *
  * @param id The user ID.
  * @param displayName The HTML-encoded user's display name formatted according to the default format for the current culture.
- * @param title The user title.
  * @param avatar The user avatar.
  * @param avatarOriginal The user original size avatar.
  * @param avatarMax The user maximum size avatar.
@@ -46,10 +45,6 @@ data class EmployeeDto (
     /* The HTML-encoded user's display name formatted according to the default format for the current culture. */
     @Json(name = "displayName")
     val displayName: kotlin.String? = null,
-
-    /* The user title. */
-    @Json(name = "title")
-    val title: kotlin.String? = null,
 
     /* The user avatar. */
     @Json(name = "avatar")

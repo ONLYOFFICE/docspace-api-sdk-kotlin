@@ -10,6 +10,7 @@
 | **prompt** | **kotlin.String** | The system prompt for the chat. |  [optional] |
 | **multimodal** | [**ChatMultimodalSettingsDto**](ChatMultimodalSettingsDto.md) |  |  [optional] |
 | **thinking** | **kotlin.Boolean** | Indicates whether the model supports extended thinking mode. |  [optional] |
+| **capabilities** | [**AiModelCapabilities**](AiModelCapabilities.md) |  |  [optional] |
 | **&#x60;internal&#x60;** | **kotlin.Boolean** | Indicates whether this is an internal AI gateway provider. |  [optional] [readonly] |
 
 

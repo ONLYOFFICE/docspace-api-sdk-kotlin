@@ -35,7 +35,7 @@ data class StorageSettings (
     val module: kotlin.String? = null,
 
     @Json(name = "props")
-    val props: kotlin.collections.Map<kotlin.String, kotlin.String>? = null,
+    val props: kotlin.collections.Map<kotlin.String, kotlin.String?>? = null,
 
     @Json(name = "lastModified")
     val lastModified: java.time.OffsetDateTime? = null

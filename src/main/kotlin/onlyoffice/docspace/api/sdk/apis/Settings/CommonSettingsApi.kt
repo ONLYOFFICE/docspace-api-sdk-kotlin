@@ -55,6 +55,9 @@ interface CommonSettingsApi {
      *  - 200: Ok
      *  - 405: Not available
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for closeAdminHelper Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/close-admin-helper/
@@ -74,6 +77,9 @@ interface CommonSettingsApi {
      *  - 400: Incorrect email address/The password is empty
      *  - 402: You must enter a license key or license key is not correct or license expired or user quota does not match the license
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for completeWizard Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/complete-wizard/
@@ -93,6 +99,9 @@ interface CommonSettingsApi {
      *  - 200: Deep link configuration updated
      *  - 400: Invalid deep link configuration
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for configureDeepLink Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/configure-deep-link/
@@ -111,6 +120,9 @@ interface CommonSettingsApi {
      * Responses:
      *  - 200: Portal theme settings: custom color theme settings, selected or not, limit
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for deletePortalColorTheme Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-portal-color-theme/
@@ -128,6 +140,9 @@ interface CommonSettingsApi {
      * Returns the deep link settings.
      * Responses:
      *  - 200: Ok
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getDeepLinkSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-deep-link-settings/
@@ -145,6 +160,9 @@ interface CommonSettingsApi {
      * Responses:
      *  - 200: Payment settings: sales email, feedback and support URL, link to pay for a portal, Standalone or not, current license, maximum quota quantity
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getPaymentSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-payment-settings/
@@ -161,6 +179,9 @@ interface CommonSettingsApi {
      * Returns the portal color theme.
      * Responses:
      *  - 200: Settings of the portal themes
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getPortalColorTheme Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-portal-color-theme/
@@ -178,6 +199,9 @@ interface CommonSettingsApi {
      * Responses:
      *  - 200: Portal hostname
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getPortalHostname Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-portal-hostname/
@@ -195,6 +219,9 @@ interface CommonSettingsApi {
      * Responses:
      *  - 200: Portal logo image URL
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getPortalLogo Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-portal-logo/
@@ -211,6 +238,9 @@ interface CommonSettingsApi {
      * Returns a list of all the available portal settings with the current values for each parameter.
      * Responses:
      *  - 200: Settings
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getPortalSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-portal-settings/
@@ -229,6 +259,9 @@ interface CommonSettingsApi {
      * Responses:
      *  - 200: Socket settings: hub URL
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getSocketSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-socket-settings/
@@ -245,6 +278,9 @@ interface CommonSettingsApi {
      * Returns a list of all the available portal languages in the format of a two-letter or four-letter language code (e.g. de, en-US, etc.).
      * Responses:
      *  - 200: List of all the available portal languages
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getSupportedCultures Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-supported-cultures/
@@ -262,6 +298,9 @@ interface CommonSettingsApi {
      * Responses:
      *  - 200: AI access settings
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getTenantAiAccessSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tenant-ai-access-settings/
@@ -278,6 +317,9 @@ interface CommonSettingsApi {
      * Returns the portal user invitation settings.
      * Responses:
      *  - 200: portal user invitation settings
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getTenantUserInvitationSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tenant-user-invitation-settings/
@@ -295,6 +337,9 @@ interface CommonSettingsApi {
      * Responses:
      *  - 200: List of all the available time zones with their IDs and display names
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getTimeZones Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-time-zones/
@@ -312,6 +357,9 @@ interface CommonSettingsApi {
      * Responses:
      *  - 200: Message about saving settings successfully
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for saveDefaultFolder Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/save-default-folder/
@@ -333,6 +381,9 @@ interface CommonSettingsApi {
      *  - 402: Your pricing plan does not support this option
      *  - 405: Method not allowed
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for saveDnsSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/save-dns-settings/
@@ -351,6 +402,9 @@ interface CommonSettingsApi {
      * Responses:
      *  - 200: Message about the result of saving the mail domain settings
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for saveMailDomainSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/save-mail-domain-settings/
@@ -369,6 +423,9 @@ interface CommonSettingsApi {
      * Responses:
      *  - 200: Portal theme settings
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for savePortalColorTheme Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/save-portal-color-theme/
@@ -388,6 +445,9 @@ interface CommonSettingsApi {
      *  - 200: Updated AI access settings
      *  - 403: You don't have enough permission to change the AI access settings
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for setTenantAiAccessSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-tenant-ai-access-settings/
@@ -406,6 +466,9 @@ interface CommonSettingsApi {
      * Responses:
      *  - 200: Updated email activation settings
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for updateEmailActivationSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-email-activation-settings/
@@ -424,6 +487,9 @@ interface CommonSettingsApi {
      * Responses:
      *  - 200: Updated user invitation settings
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for updateInvitationSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-invitation-settings/

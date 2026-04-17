@@ -33,6 +33,9 @@ interface OAuth2Api {
      * Responses:
      *  - 200: Jwt Token
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for generateJwtToken Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/generate-jwt-token/

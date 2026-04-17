@@ -37,6 +37,9 @@ interface EncryptionApi {
      *  - 200: Storage encryption progress
      *  - 405: Method not allowed
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getStorageEncryptionProgress Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-storage-encryption-progress/
@@ -56,6 +59,9 @@ interface EncryptionApi {
      *  - 403: No permissions to perform this action
      *  - 405: Method not allowed
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getStorageEncryptionSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-storage-encryption-settings/
@@ -76,6 +82,9 @@ interface EncryptionApi {
      *  - 403: No permissions to perform this action
      *  - 405: Method not allowed
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for startStorageEncryption Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/start-storage-encryption/

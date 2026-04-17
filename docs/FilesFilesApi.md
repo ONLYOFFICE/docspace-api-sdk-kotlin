@@ -36,6 +36,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 | [**getPresignedUri**](FilesFilesApi.md#getPresignedUri) | **GET** api/2.0/files/file/{fileId}/presigneduri | Get file download link |
 | [**getProtectedFileUsers**](FilesFilesApi.md#getProtectedFileUsers) | **GET** api/2.0/files/file/{fileId}/protectusers | Get users access rights to the protected file |
 | [**getReferenceData**](FilesFilesApi.md#getReferenceData) | **POST** api/2.0/files/file/referencedata | Get reference data |
+| [**getXlsx**](FilesFilesApi.md#getXlsx) | **GET** api/2.0/files/file/{fileId}/xlsx | Get XLSX report generation status |
 | [**isFormPDF**](FilesFilesApi.md#isFormPDF) | **GET** api/2.0/files/file/{fileId}/isformpdf | Check the PDF file |
 | [**lockFile**](FilesFilesApi.md#lockFile) | **PUT** api/2.0/files/file/{fileId}/lock | Lock a file |
 | [**manageFormFilling**](FilesFilesApi.md#manageFormFilling) | **PUT** api/2.0/files/file/{fileId}/manageformfilling | Perform form filling action |
@@ -899,7 +900,7 @@ launch(Dispatchers.IO) {
 
 <a id="generateXlsx"></a>
 # **generateXlsx**
-> FileIntegerWrapper generateXlsx (kotlin.Int fileId)
+> XlsxReportResponseWrapper generateXlsx (kotlin.Int fileId)
 
 Triggers asynchronous XLSX report generation for the specified form file.
 
@@ -912,7 +913,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Return type
 
-[**FileIntegerWrapper**](FileIntegerWrapper.md)
+[**XlsxReportResponseWrapper**](XlsxReportResponseWrapper.md)
 
 ### Authorization
 
@@ -936,7 +937,7 @@ val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.Int = 1 // kotlin.Int | The file unique identifier.
 
 launch(Dispatchers.IO) {
-    val result : FileIntegerWrapper = webService.generateXlsx(fileId)
+    val result : XlsxReportResponseWrapper = webService.generateXlsx(fileId)
 }
 ```
 
@@ -1613,6 +1614,55 @@ launch(Dispatchers.IO) {
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+<a id="getXlsx"></a>
+# **getXlsx**
+> DocumentBuilderTaskWrapper getXlsx (kotlin.Int fileId)
+
+Returns the status of the XLSX report generation task for the specified form.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-xlsx/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **fileId** | **kotlin.Int**| The file unique identifier. | |
+
+### Return type
+
+[**DocumentBuilderTaskWrapper**](DocumentBuilderTaskWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(FilesApi::class.java)
+val fileId : kotlin.Int = 1 // kotlin.Int | The file unique identifier.
+
+launch(Dispatchers.IO) {
+    val result : DocumentBuilderTaskWrapper = webService.getXlsx(fileId)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 

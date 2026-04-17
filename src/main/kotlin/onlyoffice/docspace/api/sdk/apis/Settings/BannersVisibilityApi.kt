@@ -33,6 +33,9 @@ interface BannersVisibilityApi {
      * Responses:
      *  - 200: Promotional banners visibility settings
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getTenantBannerSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tenant-banner-settings/

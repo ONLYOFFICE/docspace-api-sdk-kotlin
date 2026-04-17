@@ -45,6 +45,9 @@ interface AIAgentsApi {
      * Responses:
      *  - 200: Agent information
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for createAgent Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-agent/
@@ -63,6 +66,9 @@ interface AIAgentsApi {
      * Responses:
      *  - 200: File operation
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for deleteAgent Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-agent/
@@ -82,6 +88,9 @@ interface AIAgentsApi {
      * Responses:
      *  - 200: Agent information
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getAgentInfo Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-agent-info/
@@ -100,6 +109,9 @@ interface AIAgentsApi {
      * Responses:
      *  - 200: Agent information
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getAgents Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-agents/
@@ -129,6 +141,9 @@ interface AIAgentsApi {
      * Responses:
      *  - 200: List of new items
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getAgentsNewItems Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-agents-new-items/
@@ -146,6 +161,9 @@ interface AIAgentsApi {
      * Responses:
      *  - 200: List of AI agents with the detailed information
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for resetAgentsQuota Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/reset-agents-quota/
@@ -164,6 +182,9 @@ interface AIAgentsApi {
      * Responses:
      *  - 200: Updated agent information
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for updateAgent Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-agent/
@@ -183,6 +204,9 @@ interface AIAgentsApi {
      * Responses:
      *  - 200: List of AI agents with the detailed information
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for updateAgentsQuota Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-agents-quota/

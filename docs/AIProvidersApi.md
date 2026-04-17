@@ -8,7 +8,9 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 | [**deleteProviders**](AIProvidersApi.md#deleteProviders) | **DELETE** api/2.0/ai/providers | Delete AI providers |
 | [**getAvailableProviders**](AIProvidersApi.md#getAvailableProviders) | **GET** api/2.0/ai/providers/available | Get available AI provider types |
 | [**getDefaultProvider**](AIProvidersApi.md#getDefaultProvider) | **GET** api/2.0/ai/providers/default | Get the default AI provider |
+| [**getProviderModels**](AIProvidersApi.md#getProviderModels) | **GET** api/2.0/ai/providers/{providerId}/models | Get all models for a provider with their settings |
 | [**getProviders**](AIProvidersApi.md#getProviders) | **GET** api/2.0/ai/providers | Get AI providers |
+| [**previewProviderModels**](AIProvidersApi.md#previewProviderModels) | **POST** api/2.0/ai/providers/models/preview | Preview models for a new AI provider |
 | [**setDefaultProvider**](AIProvidersApi.md#setDefaultProvider) | **PUT** api/2.0/ai/providers/default | Set the default AI provider |
 | [**updateProvider**](AIProvidersApi.md#updateProvider) | **PUT** api/2.0/ai/providers/{id} | Update an AI provider |
 
@@ -204,6 +206,55 @@ launch(Dispatchers.IO) {
  - **Accept**: application/json
 
 
+<a id="getProviderModels"></a>
+# **getProviderModels**
+> ModelSettingsArrayWrapper getProviderModels (kotlin.Int providerId)
+
+Returns the full list of AI models available from a provider, including both recommended and additional models.  Each model includes its current settings: enabled state, display alias, and capabilities (vision, tool calling, thinking).  Recommended models are enabled by default and their alias and capabilities come from configuration.  Additional models are disabled by default and can be configured by the admin.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-provider-models/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **providerId** | **kotlin.Int**| The identifier of the AI provider. | |
+
+### Return type
+
+[**ModelSettingsArrayWrapper**](ModelSettingsArrayWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(AIProvidersApi::class.java)
+val providerId : kotlin.Int = 1 // kotlin.Int | The identifier of the AI provider.
+
+launch(Dispatchers.IO) {
+    val result : ModelSettingsArrayWrapper = webService.getProviderModels(providerId)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
 <a id="getProviders"></a>
 # **getProviders**
 > AiProviderArrayWrapper getProviders (kotlin.Int startIndex, kotlin.Int count)
@@ -252,6 +303,55 @@ launch(Dispatchers.IO) {
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+<a id="previewProviderModels"></a>
+# **previewProviderModels**
+> ModelSettingsArrayWrapper previewProviderModels (PreviewProviderModelsRequestDto previewProviderModelsRequestDto)
+
+Connects to the specified AI provider using the provided credentials and returns the available models  with their default settings. This is used to preview models before saving the provider.  Recommended models are enabled by default with configuration-defined settings.  Additional models are disabled by default with empty capabilities.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/preview-provider-models/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **previewProviderModelsRequestDto** | [**PreviewProviderModelsRequestDto**](PreviewProviderModelsRequestDto.md)|  | [optional] |
+
+### Return type
+
+[**ModelSettingsArrayWrapper**](ModelSettingsArrayWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(AIProvidersApi::class.java)
+val previewProviderModelsRequestDto : PreviewProviderModelsRequestDto =  // PreviewProviderModelsRequestDto | 
+
+launch(Dispatchers.IO) {
+    val result : ModelSettingsArrayWrapper = webService.previewProviderModels(previewProviderModelsRequestDto)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 

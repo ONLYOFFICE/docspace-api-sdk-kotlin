@@ -33,6 +33,7 @@ docs/AiChatModelPricing.md
 docs/AiChatPrice.md
 docs/AiEmbeddingModelPricing.md
 docs/AiEmbeddingPrice.md
+docs/AiModelCapabilities.md
 docs/AiPricesResponse.md
 docs/AiPricesResponseWrapper.md
 docs/AiProviderArrayWrapper.md
@@ -271,8 +272,9 @@ docs/EncryptionSettingsWrapper.md
 docs/EngineType.md
 docs/EntryType.md
 docs/ExchangeToken200Response.md
-docs/ExportChatRequestBodyInteger.md
-docs/ExportMessageRequestBodyInteger.md
+docs/ExportChatRequestBody.md
+docs/ExportChatRequestBodyFolderId.md
+docs/ExportMessageRequestBody.md
 docs/ExternalDatabaseSettings.md
 docs/ExternalDatabaseType.md
 docs/ExternalShareDto.md
@@ -282,15 +284,11 @@ docs/FeatureUsedDto.md
 docs/FeedbackConfig.md
 docs/FileConflictResolveType.md
 docs/FileDtoInteger.md
-docs/FileDtoIntegerAllOfViewAccessibility.md
+docs/FileDtoIntegerViewAccessibility.md
 docs/FileEntryBaseArrayWrapper.md
 docs/FileEntryBaseDto.md
 docs/FileEntryBaseWrapper.md
 docs/FileEntryDtoInteger.md
-docs/FileEntryDtoIntegerAllOfAvailableShareRights.md
-docs/FileEntryDtoIntegerAllOfSecurity.md
-docs/FileEntryDtoIntegerAllOfShareSettings.md
-docs/FileEntryDtoString.md
 docs/FileEntryIntegerArrayWrapper.md
 docs/FileEntryType.md
 docs/FileIntegerArrayWrapper.md
@@ -341,6 +339,9 @@ docs/FolderContentDtoInteger.md
 docs/FolderContentIntegerArrayWrapper.md
 docs/FolderContentIntegerWrapper.md
 docs/FolderDtoInteger.md
+docs/FolderDtoIntegerAvailableShareRights.md
+docs/FolderDtoIntegerSecurity.md
+docs/FolderDtoIntegerShareSettings.md
 docs/FolderDtoString.md
 docs/FolderIntegerArrayWrapper.md
 docs/FolderIntegerWrapper.md
@@ -462,6 +463,9 @@ docs/MobilePhoneActivationStatus.md
 docs/MobileRequestsDto.md
 docs/ModelArrayWrapper.md
 docs/ModelDto.md
+docs/ModelSettingsArrayWrapper.md
+docs/ModelSettingsDto.md
+docs/ModelSettingsItemDto.md
 docs/Module.md
 docs/ModuleWrapper.md
 docs/MultiSizeLogoCover.md
@@ -535,6 +539,7 @@ docs/PortalPaymentApi.md
 docs/PortalQuotaApi.md
 docs/PortalSettingsApi.md
 docs/PortalUsersApi.md
+docs/PreviewProviderModelsRequestDto.md
 docs/PriceDto.md
 docs/ProblemDetail.md
 docs/ProductAdministratorDto.md
@@ -656,7 +661,6 @@ docs/SettingsWebpluginsApi.md
 docs/SettingsWrapper.md
 docs/SetupCode.md
 docs/SetupCodeWrapper.md
-docs/SexEnum.md
 docs/ShareFilterType.md
 docs/SignupAccountRequestDto.md
 docs/Size.md
@@ -746,6 +750,8 @@ docs/TenantWalletSettings.md
 docs/TenantWalletSettingsWrapper.md
 docs/TenantWrapper.md
 docs/TerminateRequestDto.md
+docs/TfaAppCodeArrayWrapper.md
+docs/TfaAppCodeDto.md
 docs/TfaRequestsDto.md
 docs/TfaRequestsDtoType.md
 docs/TfaSettingsArrayWrapper.md
@@ -838,6 +844,8 @@ docs/WhiteLabelRequestsDto.md
 docs/WizardRequestsDto.md
 docs/WizardSettings.md
 docs/WizardSettingsWrapper.md
+docs/XlsxReportResponseDto.md
+docs/XlsxReportResponseWrapper.md
 gradle/wrapper/gradle-wrapper.jar
 gradle/wrapper/gradle-wrapper.properties
 gradlew
@@ -962,6 +970,7 @@ src/main/kotlin/onlyoffice/docspace/api/sdk/models/AiChatModelPricing.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/AiChatPrice.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/AiEmbeddingModelPricing.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/AiEmbeddingPrice.kt
+src/main/kotlin/onlyoffice/docspace/api/sdk/models/AiModelCapabilities.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/AiPricesResponse.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/AiPricesResponseWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/AiProviderArrayWrapper.kt
@@ -1196,8 +1205,9 @@ src/main/kotlin/onlyoffice/docspace/api/sdk/models/EncryptionSettingsWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/EngineType.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/EntryType.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/ExchangeToken200Response.kt
-src/main/kotlin/onlyoffice/docspace/api/sdk/models/ExportChatRequestBodyInteger.kt
-src/main/kotlin/onlyoffice/docspace/api/sdk/models/ExportMessageRequestBodyInteger.kt
+src/main/kotlin/onlyoffice/docspace/api/sdk/models/ExportChatRequestBody.kt
+src/main/kotlin/onlyoffice/docspace/api/sdk/models/ExportChatRequestBodyFolderId.kt
+src/main/kotlin/onlyoffice/docspace/api/sdk/models/ExportMessageRequestBody.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/ExternalDatabaseSettings.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/ExternalDatabaseType.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/ExternalShareDto.kt
@@ -1207,15 +1217,11 @@ src/main/kotlin/onlyoffice/docspace/api/sdk/models/FeatureUsedDto.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/FeedbackConfig.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/FileConflictResolveType.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/FileDtoInteger.kt
-src/main/kotlin/onlyoffice/docspace/api/sdk/models/FileDtoIntegerAllOfViewAccessibility.kt
+src/main/kotlin/onlyoffice/docspace/api/sdk/models/FileDtoIntegerViewAccessibility.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/FileEntryBaseArrayWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/FileEntryBaseDto.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/FileEntryBaseWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/FileEntryDtoInteger.kt
-src/main/kotlin/onlyoffice/docspace/api/sdk/models/FileEntryDtoIntegerAllOfAvailableShareRights.kt
-src/main/kotlin/onlyoffice/docspace/api/sdk/models/FileEntryDtoIntegerAllOfSecurity.kt
-src/main/kotlin/onlyoffice/docspace/api/sdk/models/FileEntryDtoIntegerAllOfShareSettings.kt
-src/main/kotlin/onlyoffice/docspace/api/sdk/models/FileEntryDtoString.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/FileEntryIntegerArrayWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/FileEntryType.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/FileIntegerArrayWrapper.kt
@@ -1259,6 +1265,9 @@ src/main/kotlin/onlyoffice/docspace/api/sdk/models/FolderContentDtoInteger.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/FolderContentIntegerArrayWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/FolderContentIntegerWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/FolderDtoInteger.kt
+src/main/kotlin/onlyoffice/docspace/api/sdk/models/FolderDtoIntegerAvailableShareRights.kt
+src/main/kotlin/onlyoffice/docspace/api/sdk/models/FolderDtoIntegerSecurity.kt
+src/main/kotlin/onlyoffice/docspace/api/sdk/models/FolderDtoIntegerShareSettings.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/FolderDtoString.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/FolderIntegerArrayWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/FolderIntegerWrapper.kt
@@ -1377,6 +1386,9 @@ src/main/kotlin/onlyoffice/docspace/api/sdk/models/MobilePhoneActivationStatus.k
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/MobileRequestsDto.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/ModelArrayWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/ModelDto.kt
+src/main/kotlin/onlyoffice/docspace/api/sdk/models/ModelSettingsArrayWrapper.kt
+src/main/kotlin/onlyoffice/docspace/api/sdk/models/ModelSettingsDto.kt
+src/main/kotlin/onlyoffice/docspace/api/sdk/models/ModelSettingsItemDto.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/Module.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/ModuleWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/MultiSizeLogoCover.kt
@@ -1428,6 +1440,7 @@ src/main/kotlin/onlyoffice/docspace/api/sdk/models/Payments.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/PermissionsConfig.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/PluginsConfig.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/PluginsDto.kt
+src/main/kotlin/onlyoffice/docspace/api/sdk/models/PreviewProviderModelsRequestDto.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/PriceDto.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/ProblemDetail.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/ProductAdministratorDto.kt
@@ -1515,7 +1528,6 @@ src/main/kotlin/onlyoffice/docspace/api/sdk/models/SettingsRequestDto.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/SettingsWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/SetupCode.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/SetupCodeWrapper.kt
-src/main/kotlin/onlyoffice/docspace/api/sdk/models/SexEnum.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/ShareFilterType.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/SignupAccountRequestDto.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/Size.kt
@@ -1605,6 +1617,8 @@ src/main/kotlin/onlyoffice/docspace/api/sdk/models/TenantWalletSettings.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/TenantWalletSettingsWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/TenantWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/TerminateRequestDto.kt
+src/main/kotlin/onlyoffice/docspace/api/sdk/models/TfaAppCodeArrayWrapper.kt
+src/main/kotlin/onlyoffice/docspace/api/sdk/models/TfaAppCodeDto.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/TfaRequestsDto.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/TfaRequestsDtoType.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/TfaSettingsArrayWrapper.kt
@@ -1696,3 +1710,5 @@ src/main/kotlin/onlyoffice/docspace/api/sdk/models/WhiteLabelRequestsDto.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/WizardRequestsDto.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/WizardSettings.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/WizardSettingsWrapper.kt
+src/main/kotlin/onlyoffice/docspace/api/sdk/models/XlsxReportResponseDto.kt
+src/main/kotlin/onlyoffice/docspace/api/sdk/models/XlsxReportResponseWrapper.kt

@@ -21,9 +21,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * [0 - Facebook, 1 - Google, 2 - Dropbox, 3 - Docusign, 4 - Box, 5 - OneDrive, 6 - GosUslugi, 7 - LinkedIn, 8 - MailRu, 9 - VK, 10 - Wordpress, 11 - Yahoo, 12 - Yandex, 13 - Github]
+ * [0 - Facebook, 1 - Google, 2 - Dropbox, 3 - Docusign, 4 - Box, 5 - OneDrive, 6 - GosUslugi, 7 - LinkedIn, 8 - MailRu, 9 - VK, 10 - Wordpress, 11 - Yahoo, 12 - Yandex, 13 - Github, 14 - Nextcloud]
  *
- * Values: Facebook,Google,Dropbox,Docusign,Box,OneDrive,GosUslugi,LinkedIn,MailRu,VK,Wordpress,Yahoo,Yandex,Github
+ * Values: Facebook,Google,Dropbox,Docusign,Box,OneDrive,GosUslugi,LinkedIn,MailRu,VK,Wordpress,Yahoo,Yandex,Github,Nextcloud
  */
 
 @JsonClass(generateAdapter = false)
@@ -69,7 +69,10 @@ enum class LoginProvider(val value: kotlin.Int) {
     Yandex(12),
 
     @Json(name = "13")
-    Github(13);
+    Github(13),
+
+    @Json(name = "14")
+    Nextcloud(14);
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use
@@ -91,7 +94,7 @@ enum class LoginProvider(val value: kotlin.Int) {
          */
         fun decode(data: kotlin.Any?): LoginProvider? = data?.let {
           val normalizedData = "$it".lowercase()
-          values().firstOrNull { value ->
+          entries.firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()
           }
         }

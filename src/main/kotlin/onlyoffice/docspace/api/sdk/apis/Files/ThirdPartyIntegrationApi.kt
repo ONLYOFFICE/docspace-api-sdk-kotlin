@@ -40,6 +40,9 @@ interface ThirdPartyIntegrationApi {
      * Responses:
      *  - 200: Third-party folder ID
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for deleteThirdParty Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-third-party/
@@ -58,6 +61,9 @@ interface ThirdPartyIntegrationApi {
      * Responses:
      *  - 200: List of provider
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getAllProviders Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-all-providers/
@@ -76,6 +82,9 @@ interface ThirdPartyIntegrationApi {
      * Responses:
      *  - 200: Folder for the third-party account backup
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getBackupThirdPartyAccount Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-backup-third-party-account/
@@ -93,6 +102,9 @@ interface ThirdPartyIntegrationApi {
      * Responses:
      *  - 200: List of provider keys
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getCapabilities Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-capabilities/
@@ -110,6 +122,9 @@ interface ThirdPartyIntegrationApi {
      * Responses:
      *  - 200: List of common third-party folderst
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getCommonThirdPartyFolders Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-common-third-party-folders/
@@ -127,6 +142,9 @@ interface ThirdPartyIntegrationApi {
      * Responses:
      *  - 200: List of connected providers information
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getThirdPartyAccounts Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-third-party-accounts/
@@ -144,6 +162,9 @@ interface ThirdPartyIntegrationApi {
      * Responses:
      *  - 200: Connected provider folder
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for saveThirdParty Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/save-third-party/
@@ -162,6 +183,9 @@ interface ThirdPartyIntegrationApi {
      * Responses:
      *  - 200: Folder for the third-party account backup
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for saveThirdPartyBackup Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/save-third-party-backup/

@@ -40,6 +40,9 @@ interface PhotosApi {
      *  - 403: No permissions to perform this action
      *  - 404: User not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for createMemberPhotoThumbnails Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-member-photo-thumbnails/
@@ -61,6 +64,9 @@ interface PhotosApi {
      *  - 403: No permissions to perform this action
      *  - 404: User not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for deleteMemberPhoto Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-member-photo/
@@ -81,6 +87,9 @@ interface PhotosApi {
      *  - 403: No permissions to perform this action
      *  - 404: User not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getMemberPhoto Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-member-photo/
@@ -101,6 +110,9 @@ interface PhotosApi {
      *  - 403: No permissions to perform this action
      *  - 404: User not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for updateMemberPhoto Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-member-photo/
@@ -124,6 +136,9 @@ interface PhotosApi {
      *  - 413: Image size is too large
      *  - 415: Unknown image file type
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for uploadMemberPhoto Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-member-photo/

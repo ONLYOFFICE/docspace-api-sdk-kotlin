@@ -6,7 +6,6 @@
 | ------------ | ------------- | ------------- | ------------- |
 | **id** | [**java.util.UUID**](java.util.UUID.md) | The user ID. |  [optional] |
 | **displayName** | **kotlin.String** | The HTML-encoded user's display name formatted according to the default format for the current culture. |  [optional] |
-| **title** | **kotlin.String** | The user title. |  [optional] |
 | **avatar** | **kotlin.String** | The user avatar. |  [optional] |
 | **avatarOriginal** | **kotlin.String** | The user original size avatar. |  [optional] |
 | **avatarMax** | **kotlin.String** | The user maximum size avatar. |  [optional] |
@@ -20,13 +19,10 @@
 | **userName** | **kotlin.String** | The user username. |  [optional] |
 | **email** | **kotlin.String** | The user email. |  [optional] |
 | **contacts** | [**kotlin.collections.List&lt;Contact&gt;**](Contact.md) | The list of user contacts. |  [optional] |
-| **birthday** | [**ApiDateTime**](ApiDateTime.md) |  |  [optional] |
-| **sex** | **kotlin.String** | The user sex. |  [optional] |
 | **status** | [**EmployeeStatus**](EmployeeStatus.md) |  |  [optional] |
 | **activationStatus** | [**EmployeeActivationStatus**](EmployeeActivationStatus.md) |  |  [optional] |
 | **terminated** | [**ApiDateTime**](ApiDateTime.md) |  |  [optional] |
 | **department** | **kotlin.String** | The user department. |  [optional] |
-| **workFrom** | [**ApiDateTime**](ApiDateTime.md) |  |  [optional] |
 | **groups** | [**kotlin.collections.List&lt;GroupSummaryDto&gt;**](GroupSummaryDto.md) | The list of user groups. |  [optional] |
 | **location** | **kotlin.String** | The user location. |  [optional] |
 | **notes** | **kotlin.String** | The user notes. |  [optional] |

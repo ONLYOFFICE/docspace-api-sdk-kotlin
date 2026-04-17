@@ -33,7 +33,7 @@ data class WalletQuantityRequestDto (
 
     /* The mapping of item identifiers to their respective quantities in the payment. */
     @Json(name = "quantity")
-    val quantity: kotlin.collections.Map<kotlin.String, kotlin.Int>? = null,
+    val quantity: kotlin.collections.Map<kotlin.String, kotlin.Int?>? = null,
 
     @Json(name = "productQuantityType")
     val productQuantityType: ProductQuantityType? = null

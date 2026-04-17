@@ -38,6 +38,9 @@ interface QuotaApi {
      * Responses:
      *  - 200: Ok
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getUserQuotaSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-user-quota-settings/
@@ -56,6 +59,9 @@ interface QuotaApi {
      *  - 200: Tenant AI Agent quota settings
      *  - 402: Your pricing plan does not support this option
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for saveAiAgentQuotaSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/save-ai-agent-quota-settings/
@@ -75,6 +81,9 @@ interface QuotaApi {
      *  - 200: Tenant room quota settings
      *  - 402: Your pricing plan does not support this option
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for saveRoomQuotaSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/save-room-quota-settings/
@@ -95,6 +104,9 @@ interface QuotaApi {
      *  - 402: Your pricing plan does not support this option
      *  - 405: Not available
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for setTenantQuotaSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-tenant-quota-settings/

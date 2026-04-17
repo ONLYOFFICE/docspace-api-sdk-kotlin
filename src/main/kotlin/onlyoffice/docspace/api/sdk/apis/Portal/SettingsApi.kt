@@ -35,6 +35,9 @@ interface SettingsApi {
      * Responses:
      *  - 200: OK
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for continuePortal Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/continue-portal/
@@ -52,6 +55,9 @@ interface SettingsApi {
      * Responses:
      *  - 200: URL to the feedback form about removing a portal
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for deletePortal Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-portal/
@@ -69,6 +75,9 @@ interface SettingsApi {
      * Responses:
      *  - 200: Current portal information
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getPortalInformation Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-portal-information/
@@ -86,6 +95,9 @@ interface SettingsApi {
      * Responses:
      *  - 200: Portal path
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getPortalPath Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-portal-path/
@@ -104,6 +116,9 @@ interface SettingsApi {
      * Responses:
      *  - 200: OK
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for sendDeleteInstructions Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/send-delete-instructions/
@@ -121,6 +136,9 @@ interface SettingsApi {
      * Responses:
      *  - 200: OK
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for sendSuspendInstructions Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/send-suspend-instructions/
@@ -138,6 +156,9 @@ interface SettingsApi {
      * Responses:
      *  - 200: OK
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for suspendPortal Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/suspend-portal/

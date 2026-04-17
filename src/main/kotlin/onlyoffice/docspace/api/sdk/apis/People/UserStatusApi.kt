@@ -37,6 +37,9 @@ interface UserStatusApi {
      * Responses:
      *  - 200: List of users with the detailed information
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getByStatus Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-by-status/
@@ -62,6 +65,9 @@ interface UserStatusApi {
      * Responses:
      *  - 200: List of users with the detailed information
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for updateUserActivationStatus Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-user-activation-status/
@@ -83,6 +89,9 @@ interface UserStatusApi {
      *  - 400: Incorrect status
      *  - 403: No permissions to perform this action or cannot change status for a specific user (yourself, owner, LDAP ...)
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for updateUserStatus Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-user-status/

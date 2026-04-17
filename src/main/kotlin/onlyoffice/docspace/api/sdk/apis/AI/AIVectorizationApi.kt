@@ -33,6 +33,9 @@ interface AIVectorizationApi {
      * Responses:
      *  - 200: The vectorization task was successfully submitted
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for startTask Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/start-task/

@@ -39,6 +39,9 @@ interface StorageApi {
      *  - 200: List of the backup storages with the following parameters
      *  - 403: Access denied
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getAllBackupStorages Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-all-backup-storages/
@@ -58,6 +61,9 @@ interface StorageApi {
      *  - 200: List of the CDN storages with the following parameters
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getAllCdnStorages Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-all-cdn-storages/
@@ -76,6 +82,9 @@ interface StorageApi {
      *  - 200: List of storages with the following parameters
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getAllStorages Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-all-storages/
@@ -93,6 +102,9 @@ interface StorageApi {
      * Responses:
      *  - 200: List of the Amazon regions
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getAmazonS3Regions Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-amazon-s3-regions/
@@ -110,6 +122,9 @@ interface StorageApi {
      * Responses:
      *  - 200: Storage progress
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getStorageProgress Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-storage-progress/
@@ -128,6 +143,9 @@ interface StorageApi {
      *  - 200: Ok
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for resetCdnToDefault Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/reset-cdn-to-default/
@@ -146,6 +164,9 @@ interface StorageApi {
      *  - 200: Ok
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for resetStorageToDefault Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/reset-storage-to-default/
@@ -165,6 +186,9 @@ interface StorageApi {
      *  - 400: Module
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for updateCdnStorage Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-cdn-storage/
@@ -185,6 +209,9 @@ interface StorageApi {
      *  - 400: Module
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for updateStorage Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-storage/

@@ -35,6 +35,9 @@ interface ActiveConnectionsApi {
      * Responses:
      *  - 200: Active portal connections
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getAllActiveConnections Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-all-active-connections/
@@ -53,6 +56,9 @@ interface ActiveConnectionsApi {
      *  - 200: Boolean value: true if the operation is successful
      *  - 403: Method not available
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for logOutActiveConnection Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/log-out-active-connection/
@@ -71,6 +77,9 @@ interface ActiveConnectionsApi {
      * Responses:
      *  - 200: URL to the confirmation message for changing a password
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for logOutAllActiveConnectionsChangePassword Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/log-out-all-active-connections-change-password/
@@ -89,6 +98,9 @@ interface ActiveConnectionsApi {
      *  - 200: Ok
      *  - 403: Method not available
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for logOutAllActiveConnectionsForUser Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/log-out-all-active-connections-for-user/
@@ -107,6 +119,9 @@ interface ActiveConnectionsApi {
      * Responses:
      *  - 200: Current user name
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for logOutAllExceptThisConnection Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/log-out-all-except-this-connection/

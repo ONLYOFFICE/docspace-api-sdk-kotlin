@@ -37,6 +37,9 @@ interface AISettingsApi {
      * Responses:
      *  - 200: Current AI settings
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getAiSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-ai-settings/
@@ -54,6 +57,9 @@ interface AISettingsApi {
      * Responses:
      *  - 200: Current vectorization settings
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getVectorizationSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-vectorization-settings/
@@ -71,6 +77,9 @@ interface AISettingsApi {
      * Responses:
      *  - 200: Current web search settings
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getWebSearchSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-web-search-settings/
@@ -88,6 +97,9 @@ interface AISettingsApi {
      * Responses:
      *  - 200: Updated vectorization settings
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for setVectorizationSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-vectorization-settings/
@@ -106,6 +118,9 @@ interface AISettingsApi {
      * Responses:
      *  - 200: Updated web search settings
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for setWebSearchSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-web-search-settings/

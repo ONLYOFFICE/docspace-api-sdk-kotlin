@@ -77,6 +77,9 @@ interface RoomsApi {
      *  - 200: Room information
      *  - 403: You don't have permission to edit the room
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for addRoomTags Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/add-room-tags/
@@ -96,6 +99,9 @@ interface RoomsApi {
      * Responses:
      *  - 200: File operation
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for archiveRoom Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/archive-room/
@@ -117,6 +123,9 @@ interface RoomsApi {
      *  - 403: You don't have permission to change cover
      *  - 404: The required room was not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for changeRoomCover Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/change-room-cover/
@@ -136,6 +145,9 @@ interface RoomsApi {
      * Responses:
      *  - 200: Room information
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for createRoom Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-room/
@@ -154,6 +166,9 @@ interface RoomsApi {
      * Responses:
      *  - 200: Status
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for createRoomFromTemplate Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-room-from-template/
@@ -173,6 +188,9 @@ interface RoomsApi {
      *  - 200: Room information
      *  - 404: The required room was not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for createRoomLogo Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-room-logo/
@@ -193,6 +211,9 @@ interface RoomsApi {
      *  - 200: New tag name
      *  - 403: You don't have enough permission to perform the operation
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for createRoomTag Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-room-tag/
@@ -211,6 +232,9 @@ interface RoomsApi {
      * Responses:
      *  - 200: Status
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for createRoomTemplate Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-room-template/
@@ -229,6 +253,9 @@ interface RoomsApi {
      * Responses:
      *  - 200: Room information
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for createRoomThirdParty Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-room-third-party/
@@ -249,6 +276,9 @@ interface RoomsApi {
      *  - 200: Ok
      *  - 403: You don't have enough permission to perform the operation
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for deleteCustomTags Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-custom-tags/
@@ -267,6 +297,9 @@ interface RoomsApi {
      * Responses:
      *  - 200: File operation
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for deleteRoom Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-room/
@@ -286,6 +319,9 @@ interface RoomsApi {
      * Responses:
      *  - 200: Room information
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for deleteRoomLogo Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-room-logo/
@@ -305,6 +341,9 @@ interface RoomsApi {
      *  - 200: Room information
      *  - 403: You don't have permission to edit the room
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for deleteRoomTags Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-room-tags/
@@ -324,6 +363,9 @@ interface RoomsApi {
      * Responses:
      *  - 200: List of file entry information
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getNewRoomItems Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-new-room-items/
@@ -342,6 +384,9 @@ interface RoomsApi {
      * Responses:
      *  - 200: Ok
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getPublicSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-public-settings/
@@ -360,6 +405,9 @@ interface RoomsApi {
      * Responses:
      *  - 200: Gets room cover
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getRoomCovers Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-covers/
@@ -377,6 +425,9 @@ interface RoomsApi {
      * Responses:
      *  - 200: Status
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getRoomCreatingStatus Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-creating-status/
@@ -394,6 +445,9 @@ interface RoomsApi {
      * Responses:
      *  - 200: Ok
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getRoomIndexExport Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-index-export/
@@ -410,6 +464,9 @@ interface RoomsApi {
      * Returns the room information.
      * Responses:
      *  - 200: Room information
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getRoomInfo Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-info/
@@ -428,6 +485,9 @@ interface RoomsApi {
      * Responses:
      *  - 200: Room security information
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getRoomLinks Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-links/
@@ -447,6 +507,9 @@ interface RoomsApi {
      * Responses:
      *  - 200: Security information of room files
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getRoomSecurityInfo Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-security-info/
@@ -469,6 +532,9 @@ interface RoomsApi {
      * Responses:
      *  - 200: List of tag names
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getRoomTagsInfo Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-tags-info/
@@ -489,6 +555,9 @@ interface RoomsApi {
      * Responses:
      *  - 200: Status
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getRoomTemplateCreatingStatus Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-template-creating-status/
@@ -507,6 +576,9 @@ interface RoomsApi {
      *  - 200: Returns the contents of the Rooms section
      *  - 403: You don't have enough permission to view the room content
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getRoomsFolder Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-rooms-folder/
@@ -541,6 +613,9 @@ interface RoomsApi {
      * Responses:
      *  - 200: List of new items
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getRoomsNewItems Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-rooms-new-items/
@@ -559,6 +634,9 @@ interface RoomsApi {
      *  - 200: Room security information
      *  - 404: Not Found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getRoomsPrimaryExternalLink Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-rooms-primary-external-link/
@@ -578,6 +656,9 @@ interface RoomsApi {
      *  - 200: True if tag has links, false otherwise
      *  - 404: Tag not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for hasTagLinks Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/has-tag-links/
@@ -597,6 +678,9 @@ interface RoomsApi {
      * Responses:
      *  - 200: Room information
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for pinRoom Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/pin-room/
@@ -615,6 +699,9 @@ interface RoomsApi {
      * Responses:
      *  - 200: Room information
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for reorderRoom Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/reorder-room/
@@ -633,6 +720,9 @@ interface RoomsApi {
      * Responses:
      *  - 200: Ok
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for resendEmailInvitations Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/resend-email-invitations/
@@ -652,6 +742,9 @@ interface RoomsApi {
      * Responses:
      *  - 200: Ok
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for setPublicSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-public-settings/
@@ -670,6 +763,9 @@ interface RoomsApi {
      * Responses:
      *  - 200: Room security information
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for setRoomLink Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-room-link/
@@ -689,6 +785,9 @@ interface RoomsApi {
      * Responses:
      *  - 200: Room security information
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for setRoomSecurity Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-room-security/
@@ -709,6 +808,9 @@ interface RoomsApi {
      *  - 200: Ok
      *  - 501: Folder indexing is turned off
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for startRoomIndexExport Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/start-room-index-export/
@@ -727,6 +829,9 @@ interface RoomsApi {
      * Responses:
      *  - 200: Ok
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for terminateRoomIndexExport Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/terminate-room-index-export/
@@ -744,6 +849,9 @@ interface RoomsApi {
      * Responses:
      *  - 200: File operation
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for unarchiveRoom Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/unarchive-room/
@@ -763,6 +871,9 @@ interface RoomsApi {
      * Responses:
      *  - 200: Room information
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for unpinRoom Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/unpin-room/
@@ -781,6 +892,9 @@ interface RoomsApi {
      * Responses:
      *  - 200: Updated room information
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for updateRoom Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-room/
@@ -801,6 +915,9 @@ interface RoomsApi {
      *  - 200: Updated tag name
      *  - 403: You don't have enough permission to perform the operation
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for updateRoomTag Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-room-tag/
@@ -820,6 +937,9 @@ interface RoomsApi {
      *  - 200: Upload result
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for uploadRoomLogo Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-room-logo/

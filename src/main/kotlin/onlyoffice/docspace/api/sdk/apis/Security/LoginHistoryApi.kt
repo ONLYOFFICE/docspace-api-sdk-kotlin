@@ -37,6 +37,9 @@ interface LoginHistoryApi {
      *  - 200: URL to the xlsx report file
      *  - 402: Your pricing plan does not support this option
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for createLoginHistoryReport Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-login-history-report/
@@ -55,6 +58,9 @@ interface LoginHistoryApi {
      *  - 200: List of login events
      *  - 402: Your pricing plan does not support this option
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getLastLoginEvents Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-last-login-events/
@@ -73,6 +79,9 @@ interface LoginHistoryApi {
      *  - 200: List of filtered login events
      *  - 402: Your pricing plan does not support this option
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getLoginEventsByFilter Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-login-events-by-filter/

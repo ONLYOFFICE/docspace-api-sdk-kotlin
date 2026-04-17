@@ -36,6 +36,9 @@ interface MessagesApi {
      * Responses:
      *  - 200: Message about the result of saving new settings
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for enableAdminMessageSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/enable-admin-message-settings/
@@ -55,6 +58,8 @@ interface MessagesApi {
      *  - 200: Message about the result of sending a message
      *  - 400: Incorrect email or message text is empty
      *  - 429: Request limit is exceeded
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for sendAdminMail Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/send-admin-mail/
@@ -75,6 +80,8 @@ interface MessagesApi {
      *  - 400: Incorrect email or email already exists
      *  - 403: No permissions to perform this action
      *  - 429: Request limit is exceeded
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for sendJoinInviteMail Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/send-join-invite-mail/

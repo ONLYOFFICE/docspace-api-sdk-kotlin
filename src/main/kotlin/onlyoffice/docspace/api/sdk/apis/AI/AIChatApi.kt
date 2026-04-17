@@ -26,7 +26,7 @@ import com.squareup.moshi.Json
 import onlyoffice.docspace.api.sdk.models.ChatArrayWrapper
 import onlyoffice.docspace.api.sdk.models.ChatWrapper
 import onlyoffice.docspace.api.sdk.models.ContinueChatBody
-import onlyoffice.docspace.api.sdk.models.ExportChatRequestBodyInteger
+import onlyoffice.docspace.api.sdk.models.ExportChatRequestBody
 import onlyoffice.docspace.api.sdk.models.MessageArrayWrapper
 import onlyoffice.docspace.api.sdk.models.ModelArrayWrapper
 import onlyoffice.docspace.api.sdk.models.RenameChatBody
@@ -46,6 +46,9 @@ interface AIChatApi {
      *  - 403: You don't have enough permission to access the chat in this room
      *  - 404: The specified chat, room, or AI provider was not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for continueChat Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/continue-chat/
@@ -66,6 +69,9 @@ interface AIChatApi {
      *  - 204: The chat was successfully deleted
      *  - 404: The chat with the specified ID was not found or does not belong to the current user
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for deleteChat Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-chat/
@@ -85,17 +91,20 @@ interface AIChatApi {
      *  - 200: The chat messages were successfully exported to the specified folder
      *  - 404: The chat with the specified ID was not found or does not belong to the current user
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for exportChat Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/export-chat/
      *
      *
      * @param chatId The unique identifier of the AI chat session to export.
-     * @param exportChatRequestBodyInteger The export parameters including destination folder and file title.
+     * @param exportChatRequestBody The export parameters including destination folder and file title.
      * @return [Unit]
      */
     @POST("api/2.0/ai/chats/{chatId}/messages/export")
-    suspend fun exportChat(@Path("chatId") chatId: java.util.UUID, @Body exportChatRequestBodyInteger: ExportChatRequestBodyInteger): Response<Unit>
+    suspend fun exportChat(@Path("chatId") chatId: java.util.UUID, @Body exportChatRequestBody: ExportChatRequestBody): Response<Unit>
 
     /**
      * GET api/2.0/ai/chats/{chatId}
@@ -105,6 +114,9 @@ interface AIChatApi {
      *  - 200: Chat session details
      *  - 404: The chat with the specified ID was not found or does not belong to the current user
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getChat Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-chat/
@@ -123,6 +135,9 @@ interface AIChatApi {
      * Responses:
      *  - 200: List of available AI models
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getChatModels Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-chat-models/
@@ -143,6 +158,9 @@ interface AIChatApi {
      *  - 403: You don't have enough permission to access chats in this room
      *  - 404: The room with the specified ID was not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getChats Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-chats/
@@ -164,6 +182,9 @@ interface AIChatApi {
      *  - 200: Paginated list of messages in the chat
      *  - 404: The chat with the specified ID was not found or does not belong to the current user
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getMessages Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-messages/
@@ -186,6 +207,9 @@ interface AIChatApi {
      *  - 403: You don't have enough permission to access chats in this room
      *  - 404: The room with the specified ID was not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getUserChatsSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-user-chats-settings/
@@ -204,6 +228,9 @@ interface AIChatApi {
      * Responses:
      *  - 200: The permission decision was successfully recorded
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for providePermission Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/provide-permission/
@@ -224,6 +251,9 @@ interface AIChatApi {
      *  - 200: Updated chat session details
      *  - 404: The chat with the specified ID was not found or does not belong to the current user
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for renameChat Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/rename-chat/
@@ -245,6 +275,9 @@ interface AIChatApi {
      *  - 403: You don't have enough permission to access chats in this room
      *  - 404: The room with the specified ID was not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for setUserChatsSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-user-chats-settings/
@@ -267,6 +300,9 @@ interface AIChatApi {
      *  - 403: You don't have enough permission to access the chat in this room
      *  - 404: The specified room or AI provider was not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for startNewChat Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/start-new-chat/

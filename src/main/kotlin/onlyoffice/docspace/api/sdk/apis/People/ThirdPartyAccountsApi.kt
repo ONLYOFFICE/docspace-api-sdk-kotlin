@@ -35,6 +35,9 @@ interface ThirdPartyAccountsApi {
      * Returns a list of the available third-party accounts.
      * Responses:
      *  - 200: List of third-party accounts
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getThirdPartyAuthProviders Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-third-party-auth-providers/
@@ -57,6 +60,9 @@ interface ThirdPartyAccountsApi {
      *  - 200: Ok
      *  - 405: Error not allowed option
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for linkThirdPartyAccount Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/link-third-party-account/
@@ -76,6 +82,9 @@ interface ThirdPartyAccountsApi {
      *  - 200: Ok
      *  - 400: Incorrect email
      *  - 403: The invitation link is invalid or its validity has expired
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for signupThirdPartyAccount Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/signup-third-party-account/
@@ -94,6 +103,9 @@ interface ThirdPartyAccountsApi {
      * Responses:
      *  - 200: OK
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for unlinkThirdPartyAccount Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/unlink-third-party-account/

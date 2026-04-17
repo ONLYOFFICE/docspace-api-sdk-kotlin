@@ -19,14 +19,14 @@ package onlyoffice.docspace.api.sdk.models
 import onlyoffice.docspace.api.sdk.models.ApiDateTime
 import onlyoffice.docspace.api.sdk.models.DraftLocationInteger
 import onlyoffice.docspace.api.sdk.models.EmployeeDto
-import onlyoffice.docspace.api.sdk.models.FileDtoIntegerAllOfViewAccessibility
-import onlyoffice.docspace.api.sdk.models.FileEntryDtoIntegerAllOfAvailableShareRights
-import onlyoffice.docspace.api.sdk.models.FileEntryDtoIntegerAllOfSecurity
-import onlyoffice.docspace.api.sdk.models.FileEntryDtoIntegerAllOfShareSettings
+import onlyoffice.docspace.api.sdk.models.FileDtoIntegerViewAccessibility
 import onlyoffice.docspace.api.sdk.models.FileEntryType
 import onlyoffice.docspace.api.sdk.models.FileShare
 import onlyoffice.docspace.api.sdk.models.FileStatus
 import onlyoffice.docspace.api.sdk.models.FileType
+import onlyoffice.docspace.api.sdk.models.FolderDtoIntegerAvailableShareRights
+import onlyoffice.docspace.api.sdk.models.FolderDtoIntegerSecurity
+import onlyoffice.docspace.api.sdk.models.FolderDtoIntegerShareSettings
 import onlyoffice.docspace.api.sdk.models.FolderType
 import onlyoffice.docspace.api.sdk.models.FormFillingStatus
 import onlyoffice.docspace.api.sdk.models.Size
@@ -59,7 +59,6 @@ import com.squareup.moshi.JsonClass
  * @param providerId The provider ID of the file entry.
  * @param order The order of the file entry.
  * @param isFavorite Specifies if the file is a favorite or not.
- * @param fileEntryType 
  * @param id The file entry ID.
  * @param rootFolderId The root folder ID of the file entry.
  * @param originId The origin ID of the file entry.
@@ -105,6 +104,7 @@ import com.squareup.moshi.JsonClass
  * @param viewAccessibility 
  * @param lastOpened 
  * @param expired 
+ * @param fileEntryType 
  * @param vectorizationStatus 
  * @param dimensions 
  */
@@ -182,9 +182,6 @@ data class FileDtoInteger (
     @Json(name = "isFavorite")
     val isFavorite: kotlin.Boolean? = null,
 
-    @Json(name = "fileEntryType")
-    val fileEntryType: FileEntryType? = null,
-
     /* The file entry ID. */
     @Json(name = "id")
     val id: kotlin.Int? = null,
@@ -214,13 +211,13 @@ data class FileDtoInteger (
     val canShare: kotlin.Boolean? = null,
 
     @Json(name = "shareSettings")
-    val shareSettings: FileEntryDtoIntegerAllOfShareSettings? = null,
+    val shareSettings: FolderDtoIntegerShareSettings? = null,
 
     @Json(name = "security")
-    val security: FileEntryDtoIntegerAllOfSecurity? = null,
+    val security: FolderDtoIntegerSecurity? = null,
 
     @Json(name = "availableShareRights")
-    val availableShareRights: FileEntryDtoIntegerAllOfAvailableShareRights? = null,
+    val availableShareRights: FolderDtoIntegerAvailableShareRights? = null,
 
     /* The request token of the file entry. */
     @Json(name = "requestToken")
@@ -262,7 +259,7 @@ data class FileDtoInteger (
 
     /* The list of users editing the file. */
     @Json(name = "editingBy")
-    val editingBy: kotlin.collections.Map<kotlin.String, kotlin.String>? = null,
+    val editingBy: kotlin.collections.Map<kotlin.String, kotlin.String?>? = null,
 
     /* Specifies if the file is muted or not. */
     @Json(name = "mute")
@@ -345,13 +342,16 @@ data class FileDtoInteger (
     val draftLocation: DraftLocationInteger? = null,
 
     @Json(name = "viewAccessibility")
-    val viewAccessibility: FileDtoIntegerAllOfViewAccessibility? = null,
+    val viewAccessibility: FileDtoIntegerViewAccessibility? = null,
 
     @Json(name = "lastOpened")
     val lastOpened: ApiDateTime? = null,
 
     @Json(name = "expired")
     val expired: ApiDateTime? = null,
+
+    @Json(name = "fileEntryType")
+    val fileEntryType: FileEntryType? = null,
 
     @Json(name = "vectorizationStatus")
     val vectorizationStatus: VectorizationStatus? = null,

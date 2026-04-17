@@ -34,6 +34,9 @@ interface FirebaseApi {
      * Responses:
      *  - 200: FireBase user
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for docRegisterPusnNotificationDevice Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/doc-register-pusn-notification-device/
@@ -52,6 +55,9 @@ interface FirebaseApi {
      * Responses:
      *  - 200: FireBase user
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for subscribeDocumentsPushNotification Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/subscribe-documents-push-notification/

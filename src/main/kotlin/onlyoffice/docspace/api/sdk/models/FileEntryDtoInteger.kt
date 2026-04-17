@@ -18,11 +18,11 @@ package onlyoffice.docspace.api.sdk.models
 
 import onlyoffice.docspace.api.sdk.models.ApiDateTime
 import onlyoffice.docspace.api.sdk.models.EmployeeDto
-import onlyoffice.docspace.api.sdk.models.FileEntryDtoIntegerAllOfAvailableShareRights
-import onlyoffice.docspace.api.sdk.models.FileEntryDtoIntegerAllOfSecurity
-import onlyoffice.docspace.api.sdk.models.FileEntryDtoIntegerAllOfShareSettings
 import onlyoffice.docspace.api.sdk.models.FileEntryType
 import onlyoffice.docspace.api.sdk.models.FileShare
+import onlyoffice.docspace.api.sdk.models.FolderDtoIntegerAvailableShareRights
+import onlyoffice.docspace.api.sdk.models.FolderDtoIntegerSecurity
+import onlyoffice.docspace.api.sdk.models.FolderDtoIntegerShareSettings
 import onlyoffice.docspace.api.sdk.models.FolderType
 
 import com.squareup.moshi.Json
@@ -173,13 +173,13 @@ data class FileEntryDtoInteger (
     val canShare: kotlin.Boolean? = null,
 
     @Json(name = "shareSettings")
-    val shareSettings: FileEntryDtoIntegerAllOfShareSettings? = null,
+    val shareSettings: FolderDtoIntegerShareSettings? = null,
 
     @Json(name = "security")
-    val security: FileEntryDtoIntegerAllOfSecurity? = null,
+    val security: FolderDtoIntegerSecurity? = null,
 
     @Json(name = "availableShareRights")
-    val availableShareRights: FileEntryDtoIntegerAllOfAvailableShareRights? = null,
+    val availableShareRights: FolderDtoIntegerAvailableShareRights? = null,
 
     /* The request token of the file entry. */
     @Json(name = "requestToken")

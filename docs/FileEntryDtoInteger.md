@@ -32,9 +32,9 @@
 | **originTitle** | **kotlin.String** | The origin title of the file entry. |  [optional] |
 | **originRoomTitle** | **kotlin.String** | The origin room title of the file entry. |  [optional] |
 | **canShare** | **kotlin.Boolean** | Specifies if the file entry can be shared or not. |  [optional] |
-| **shareSettings** | [**FileEntryDtoIntegerAllOfShareSettings**](FileEntryDtoIntegerAllOfShareSettings.md) |  |  [optional] |
-| **security** | [**FileEntryDtoIntegerAllOfSecurity**](FileEntryDtoIntegerAllOfSecurity.md) |  |  [optional] |
-| **availableShareRights** | [**FileEntryDtoIntegerAllOfAvailableShareRights**](FileEntryDtoIntegerAllOfAvailableShareRights.md) |  |  [optional] |
+| **shareSettings** | [**FolderDtoIntegerShareSettings**](FolderDtoIntegerShareSettings.md) |  |  [optional] |
+| **security** | [**FolderDtoIntegerSecurity**](FolderDtoIntegerSecurity.md) |  |  [optional] |
+| **availableShareRights** | [**FolderDtoIntegerAvailableShareRights**](FolderDtoIntegerAvailableShareRights.md) |  |  [optional] |
 | **requestToken** | **kotlin.String** | The request token of the file entry. |  [optional] |
 | **&#x60;external&#x60;** | **kotlin.Boolean** | Specifies if the folder can be accessed via an external link or not. |  [optional] |
 | **expirationDate** | [**ApiDateTime**](ApiDateTime.md) |  |  [optional] |

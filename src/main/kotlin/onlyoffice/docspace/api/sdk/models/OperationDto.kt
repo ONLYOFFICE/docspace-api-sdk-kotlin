@@ -35,6 +35,8 @@ import com.squareup.moshi.JsonClass
  * @param debit The debit amount of the operation.
  * @param participantName The participant original name.
  * @param participantDisplayName The participant display name.
+ * @param agentId AI Agent id.
+ * @param agentTitle AI Agent name.
  */
 
 
@@ -81,7 +83,15 @@ data class OperationDto (
 
     /* The participant display name. */
     @Json(name = "participantDisplayName")
-    val participantDisplayName: kotlin.String? = null
+    val participantDisplayName: kotlin.String? = null,
+
+    /* AI Agent id. */
+    @Json(name = "agentId")
+    val agentId: kotlin.String? = null,
+
+    /* AI Agent name. */
+    @Json(name = "agentTitle")
+    val agentTitle: kotlin.String? = null
 
 ) {
 

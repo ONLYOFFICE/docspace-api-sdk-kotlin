@@ -38,6 +38,9 @@ interface ApiKeysApi {
      * Responses:
      *  - 200: Create a user api key
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for createApiKey Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-api-key/
@@ -56,6 +59,9 @@ interface ApiKeysApi {
      * Responses:
      *  - 200: Delete a user api key
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for deleteApiKey Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-api-key/
@@ -74,6 +80,9 @@ interface ApiKeysApi {
      * Responses:
      *  - 200: List of all available permissions for key
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getAllPermissions Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-all-permissions/
@@ -91,6 +100,9 @@ interface ApiKeysApi {
      * Responses:
      *  - 200: List of api keys for user
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getApiKey Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-api-key/
@@ -108,6 +120,9 @@ interface ApiKeysApi {
      * Responses:
      *  - 200: List of api keys for user
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getApiKeys Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-api-keys/
@@ -125,6 +140,9 @@ interface ApiKeysApi {
      * Responses:
      *  - 200: Update optional params for user api keys
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for updateApiKey Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-api-key/

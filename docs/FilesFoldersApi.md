@@ -291,7 +291,7 @@ launch(Dispatchers.IO) {
 
 <a id="generateXlsxByFolder"></a>
 # **generateXlsxByFolder**
-> FileIntegerWrapper generateXlsxByFolder (kotlin.Int folderId)
+> XlsxReportResponseWrapper generateXlsxByFolder (kotlin.Int folderId)
 
 Triggers asynchronous XLSX report generation for the specified form results folder.
 
@@ -304,7 +304,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Return type
 
-[**FileIntegerWrapper**](FileIntegerWrapper.md)
+[**XlsxReportResponseWrapper**](XlsxReportResponseWrapper.md)
 
 ### Authorization
 
@@ -328,7 +328,7 @@ val webService = apiClient.createWebservice(FoldersApi::class.java)
 val folderId : kotlin.Int = 1 // kotlin.Int | The folder unique identifier.
 
 launch(Dispatchers.IO) {
-    val result : FileIntegerWrapper = webService.generateXlsxByFolder(folderId)
+    val result : XlsxReportResponseWrapper = webService.generateXlsxByFolder(folderId)
 }
 ```
 

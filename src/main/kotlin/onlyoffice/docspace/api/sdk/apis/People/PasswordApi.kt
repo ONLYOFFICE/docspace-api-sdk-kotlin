@@ -39,6 +39,9 @@ interface PasswordApi {
      *  - 403: The link is invalid or no permissions to perform this action
      *  - 404: The user could not be found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for changeUserPassword Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/change-user-password/
@@ -58,6 +61,9 @@ interface PasswordApi {
      * Responses:
      *  - 200: Email with the password
      *  - 403: No permissions to perform this action
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for sendUserPassword Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/send-user-password/

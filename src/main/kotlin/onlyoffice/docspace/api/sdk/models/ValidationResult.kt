@@ -70,7 +70,7 @@ enum class ValidationResult(val value: kotlin.Int) {
          */
         fun decode(data: kotlin.Any?): ValidationResult? = data?.let {
           val normalizedData = "$it".lowercase()
-          values().firstOrNull { value ->
+          entries.firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()
           }
         }

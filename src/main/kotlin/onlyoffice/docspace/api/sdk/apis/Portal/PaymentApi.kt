@@ -65,6 +65,9 @@ interface PaymentApi {
      *  - 403: No permissions to perform this action
      *  - 404: Service could not be found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for buyWalletService Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/buy-wallet-service/
@@ -84,6 +87,9 @@ interface PaymentApi {
      *  - 200: Payment calculation
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for calculateWalletPayment Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/calculate-wallet-payment/
@@ -103,6 +109,9 @@ interface PaymentApi {
      *  - 200: The updated tenant wallet service settings
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for changeTenantWalletServiceState Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/change-tenant-wallet-service-state/
@@ -123,6 +132,9 @@ interface PaymentApi {
      *  - 403: No permissions to perform this action
      *  - 404: Service could not be found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for createCustomerOperationsReport Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-customer-operations-report/
@@ -142,6 +154,9 @@ interface PaymentApi {
      *  - 200: Prices for AI models
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getAiPrices Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-ai-prices/
@@ -160,6 +175,9 @@ interface PaymentApi {
      *  - 200: The URL to the checkout setup page
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getCheckoutSetupUrl Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-checkout-setup-url/
@@ -179,6 +197,9 @@ interface PaymentApi {
      *  - 200: The customer balance
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getCustomerBalance Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-customer-balance/
@@ -198,6 +219,9 @@ interface PaymentApi {
      *  - 200: The customer info
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getCustomerInfo Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-customer-info/
@@ -218,6 +242,9 @@ interface PaymentApi {
      *  - 403: No permissions to perform this action
      *  - 404: Service could not be found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getCustomerOperations Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-customer-operations/
@@ -248,6 +275,9 @@ interface PaymentApi {
      * Responses:
      *  - 200: Ok
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getCustomerOperationsReport Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-customer-operations-report/
@@ -267,6 +297,9 @@ interface PaymentApi {
      *  - 403: No permissions to perform this action
      *  - 404: Service could not be found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getCustomerServiceQuota Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-customer-service-quota/
@@ -287,6 +320,9 @@ interface PaymentApi {
      *  - 200: The URL to the payment account
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getPaymentAccount Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-payment-account/
@@ -305,6 +341,9 @@ interface PaymentApi {
      * Responses:
      *  - 200: List of available portal currencies
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getPaymentCurrencies Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-payment-currencies/
@@ -322,6 +361,9 @@ interface PaymentApi {
      * Responses:
      *  - 200: List of available portal quotas
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getPaymentQuotas Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-payment-quotas/
@@ -341,6 +383,9 @@ interface PaymentApi {
      *  - 200: The URL to the payment page
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getPaymentUrl Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-payment-url/
@@ -359,6 +404,9 @@ interface PaymentApi {
      * Responses:
      *  - 200: List of available portal prices
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getPortalPrices Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-portal-prices/
@@ -377,6 +425,9 @@ interface PaymentApi {
      *  - 200: Payment information about the current portal quota
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getQuotaPaymentInformation Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-quota-payment-information/
@@ -396,6 +447,9 @@ interface PaymentApi {
      *  - 200: The list of restricted AI model IDs
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getRestrictedAiModels Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-restricted-ai-models/
@@ -414,6 +468,9 @@ interface PaymentApi {
      *  - 200: The wallet service settings for the tenant
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getTenantWalletServiceSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tenant-wallet-service-settings/
@@ -432,6 +489,9 @@ interface PaymentApi {
      *  - 200: The wallet auto top up settings
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getTenantWalletSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tenant-wallet-settings/
@@ -449,6 +509,9 @@ interface PaymentApi {
      * Responses:
      *  - 200: Wallet service
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getWalletService Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-wallet-service/
@@ -467,6 +530,9 @@ interface PaymentApi {
      * Responses:
      *  - 200: List of available wallet services
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getWalletServices Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-wallet-services/
@@ -486,6 +552,8 @@ interface PaymentApi {
      *  - 400: Incorrect email or message text is empty
      *  - 429: Request limit is exceeded
      *  - 401: Unauthorized
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for sendPaymentRequest Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/send-payment-request/
@@ -505,6 +573,9 @@ interface PaymentApi {
      *  - 200: The updated list of restricted AI model IDs
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for setRestrictedAiModels Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-restricted-ai-models/
@@ -524,6 +595,9 @@ interface PaymentApi {
      *  - 200: The wallet auto top up settings
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for setTenantWalletSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-tenant-wallet-settings/
@@ -542,6 +616,9 @@ interface PaymentApi {
      * Responses:
      *  - 200: Ok
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for terminateCustomerOperationsReport Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/terminate-customer-operations-report/
@@ -560,6 +637,9 @@ interface PaymentApi {
      *  - 200: Boolean value: true if the operation is successful
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for topUpDeposit Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/top-up-deposit/
@@ -579,6 +659,9 @@ interface PaymentApi {
      *  - 200: Boolean value: true if the operation is successful
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for updatePayment Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-payment/
@@ -598,6 +681,9 @@ interface PaymentApi {
      *  - 200: Boolean value: true if the operation is successful
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for updateWalletPayment Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-wallet-payment/

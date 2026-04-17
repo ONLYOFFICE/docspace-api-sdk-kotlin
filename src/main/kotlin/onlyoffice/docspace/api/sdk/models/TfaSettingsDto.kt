@@ -26,7 +26,7 @@ import com.squareup.moshi.JsonClass
  * @param id The ID of the TFA configuration.
  * @param title The display name or description of the TFA configuration.
  * @param enabled Indicates whether the TFA configuration is currently active.
- * @param avaliable Indicates whether the TFA configuration can be used.
+ * @param available Indicates whether the TFA configuration can be used.
  * @param trustedIps The list of IP addresses that are exempt from TFA requirements.
  * @param mandatoryUsers The list of user IDs that are required to use TFA.
  * @param mandatoryGroups The list of group IDs whose members are required to use TFA.
@@ -48,8 +48,8 @@ data class TfaSettingsDto (
     val enabled: kotlin.Boolean,
 
     /* Indicates whether the TFA configuration can be used. */
-    @Json(name = "avaliable")
-    val avaliable: kotlin.Boolean,
+    @Json(name = "available")
+    val available: kotlin.Boolean,
 
     /* The list of IP addresses that are exempt from TFA requirements. */
     @Json(name = "trustedIps")

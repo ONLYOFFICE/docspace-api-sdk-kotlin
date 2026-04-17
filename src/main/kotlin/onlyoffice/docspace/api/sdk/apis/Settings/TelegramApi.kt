@@ -35,6 +35,9 @@ interface TelegramApi {
      * Responses:
      *  - 200: Status if user is linked or not
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for checkTelegram Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/check-telegram/
@@ -52,6 +55,9 @@ interface TelegramApi {
      * Responses:
      *  - 200: A link to connect Telegram account
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for linkTelegram Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/link-telegram/
@@ -69,6 +75,9 @@ interface TelegramApi {
      * Responses:
      *  - 200: True if success
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for unlinkTelegram Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/unlink-telegram/

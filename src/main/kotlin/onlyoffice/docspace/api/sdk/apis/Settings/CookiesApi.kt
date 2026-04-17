@@ -35,6 +35,9 @@ interface CookiesApi {
      * Responses:
      *  - 200: Lifetime value in minutes
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getCookieSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-cookie-settings/
@@ -53,6 +56,9 @@ interface CookiesApi {
      *  - 200: Message about the result of saving new settings
      *  - 402: Your pricing plan does not support this option
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for updateCookieSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-cookie-settings/

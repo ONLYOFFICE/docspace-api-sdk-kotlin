@@ -23,7 +23,7 @@ import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
-import onlyoffice.docspace.api.sdk.models.ExportMessageRequestBodyInteger
+import onlyoffice.docspace.api.sdk.models.ExportMessageRequestBody
 
 interface AIMessagesApi {
     /**
@@ -35,16 +35,19 @@ interface AIMessagesApi {
      *  - 400: The message identifier is invalid (must be greater than 0)
      *  - 404: The specified message was not found or the current user does not have access to it
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for exportMessage Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/export-message/
      *
      *
      * @param messageId The unique identifier of the AI chat message to export.
-     * @param exportMessageRequestBodyInteger The export parameters including destination folder and file title.
+     * @param exportMessageRequestBody The export parameters including destination folder and file title.
      * @return [Unit]
      */
     @POST("api/2.0/ai/messages/{messageId}/export")
-    suspend fun exportMessage(@Path("messageId") messageId: kotlin.Int, @Body exportMessageRequestBodyInteger: ExportMessageRequestBodyInteger): Response<Unit>
+    suspend fun exportMessage(@Path("messageId") messageId: kotlin.Int, @Body exportMessageRequestBody: ExportMessageRequestBody): Response<Unit>
 
 }

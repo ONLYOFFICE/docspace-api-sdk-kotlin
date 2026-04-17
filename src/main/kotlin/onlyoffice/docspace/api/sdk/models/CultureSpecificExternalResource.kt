@@ -36,7 +36,7 @@ data class CultureSpecificExternalResource (
 
     /* The external resource entries. */
     @Json(name = "entries")
-    val propertyEntries: kotlin.collections.Map<kotlin.String, kotlin.String>? = null
+    val propertyEntries: kotlin.collections.Map<kotlin.String, kotlin.String?>? = null
 
 ) {
 

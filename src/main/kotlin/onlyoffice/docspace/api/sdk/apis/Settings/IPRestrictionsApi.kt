@@ -36,6 +36,9 @@ interface IPRestrictionsApi {
      * Responses:
      *  - 200: List of IP restrictions parameters
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getIpRestrictions Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-ip-restrictions/
@@ -53,6 +56,9 @@ interface IPRestrictionsApi {
      * Responses:
      *  - 200: IP restriction settings
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for readIpRestrictionsSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/read-ip-restrictions-settings/
@@ -70,6 +76,9 @@ interface IPRestrictionsApi {
      * Responses:
      *  - 200: Updated IP restriction settings
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for saveIpRestrictions Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/save-ip-restrictions/
@@ -88,6 +97,9 @@ interface IPRestrictionsApi {
      * Responses:
      *  - 200: Updated IP restriction settings
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for updateIpRestrictionsSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-ip-restrictions-settings/

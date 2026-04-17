@@ -56,6 +56,9 @@ interface OperationsApi {
      * Responses:
      *  - 200: OK
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for abortUploadSession Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/abort-upload-session/
@@ -76,6 +79,9 @@ interface OperationsApi {
      *  - 200: Boolean value: true if the operation is successful
      *  - 403: You don't have enough permission to perform the operation
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for addFavorites Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/add-favorites/
@@ -94,6 +100,9 @@ interface OperationsApi {
      * Responses:
      *  - 200: List of file operations
      *  - 403: You don't have enough permission to download
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for bulkDownload Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/bulk-download/
@@ -112,6 +121,9 @@ interface OperationsApi {
      * Responses:
      *  - 200: Conversion result
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for checkConversionStatus Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/check-conversion-status/
@@ -132,6 +144,9 @@ interface OperationsApi {
      *  - 200: List of file entry information
      *  - 403: You don't have enough permission to create
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for checkMoveOrCopyBatchItems Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/check-move-or-copy-batch-items/
@@ -151,6 +166,9 @@ interface OperationsApi {
      *  - 200: Result
      *  - 403: You don't have enough permission to create
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for checkMoveOrCopyDestFolder Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/check-move-or-copy-dest-folder/
@@ -170,6 +188,9 @@ interface OperationsApi {
      *  - 200: List of file operations
      *  - 403: You don't have enough permission to copy
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for copyBatchItems Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/copy-batch-items/
@@ -189,6 +210,9 @@ interface OperationsApi {
      *  - 200: Information about created session
      *  - 403: You don't have enough permission to create
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for createUploadSession Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-upload-session/
@@ -209,6 +233,9 @@ interface OperationsApi {
      * Responses:
      *  - 200: OK
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for createUploadSessionInFolder Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-upload-session-in-folder/
@@ -229,6 +256,9 @@ interface OperationsApi {
      *  - 200: List of file operations
      *  - 403: You don't have enough permission to delete
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for deleteBatchItems Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-batch-items/
@@ -247,6 +277,9 @@ interface OperationsApi {
      * Responses:
      *  - 200: Boolean value: true if the operation is successful
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for deleteFavoritesFromBody Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-favorites-from-body/
@@ -265,6 +298,9 @@ interface OperationsApi {
      * Responses:
      *  - 200: List of file operations
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for deleteFileVersions Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-file-versions/
@@ -284,6 +320,9 @@ interface OperationsApi {
      *  - 200: List of file operations
      *  - 403: You don't have enough permission to duplicate
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for duplicateBatchItems Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/duplicate-batch-items/
@@ -302,6 +341,9 @@ interface OperationsApi {
      * Responses:
      *  - 200: List of file operations
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for emptyTrash Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/empty-trash/
@@ -320,6 +362,9 @@ interface OperationsApi {
      * Responses:
      *  - 200: OK
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for finalizeSession Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/finalize-session/
@@ -338,6 +383,9 @@ interface OperationsApi {
      * Returns a list of all the active file operations.
      * Responses:
      *  - 200: List of file operations
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getOperationStatuses Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-operation-statuses/
@@ -355,6 +403,9 @@ interface OperationsApi {
      * Retrieves the statuses of operations filtered by the specified operation type.
      * Responses:
      *  - 200: List of file operations
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getOperationStatusesByType Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-operation-statuses-by-type/
@@ -374,6 +425,9 @@ interface OperationsApi {
      * Responses:
      *  - 200: List of file operations
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for markAsRead Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/mark-as-read/
@@ -393,6 +447,9 @@ interface OperationsApi {
      *  - 200: List of file operations
      *  - 403: You don't have enough permission to move
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for moveBatchItems Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/move-batch-items/
@@ -411,6 +468,9 @@ interface OperationsApi {
      * Responses:
      *  - 200: Conversion result
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for startFileConversion Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/start-file-conversion/
@@ -429,6 +489,9 @@ interface OperationsApi {
      * Finishes an operation with the ID specified in the request or all the active operations.
      * Responses:
      *  - 200: List of file operations
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for terminateTasks Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/terminate-tasks/
@@ -447,6 +510,9 @@ interface OperationsApi {
      * Responses:
      *  - 200: Updated comment
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for updateFileComment Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-file-comment/
@@ -466,6 +532,9 @@ interface OperationsApi {
      * Responses:
      *  - 200: OK
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for uploadAsyncSession Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-async-session/
@@ -488,6 +557,9 @@ interface OperationsApi {
      * Responses:
      *  - 200: OK
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for uploadSession Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-session/

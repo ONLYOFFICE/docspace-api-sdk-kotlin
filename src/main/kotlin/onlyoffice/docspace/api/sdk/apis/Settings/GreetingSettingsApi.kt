@@ -36,6 +36,9 @@ interface GreetingSettingsApi {
      * Responses:
      *  - 200: Greeting settings: tenant name
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getGreetingSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-greeting-settings/
@@ -53,6 +56,9 @@ interface GreetingSettingsApi {
      * Responses:
      *  - 200: Boolean value: true if the greeting settings of the current portal are set to default
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getIsDefaultGreetingSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-is-default-greeting-settings/
@@ -70,6 +76,9 @@ interface GreetingSettingsApi {
      * Responses:
      *  - 200: Greeting settings: tenant name
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for restoreGreetingSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/restore-greeting-settings/
@@ -87,6 +96,9 @@ interface GreetingSettingsApi {
      * Responses:
      *  - 200: Message about saving greeting settings successfully
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for saveGreetingSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/save-greeting-settings/

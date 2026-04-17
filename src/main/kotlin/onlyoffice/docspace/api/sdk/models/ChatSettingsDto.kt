@@ -16,6 +16,7 @@
 
 package onlyoffice.docspace.api.sdk.models
 
+import onlyoffice.docspace.api.sdk.models.AiModelCapabilities
 import onlyoffice.docspace.api.sdk.models.ChatMultimodalSettingsDto
 
 import com.squareup.moshi.Json
@@ -30,6 +31,7 @@ import com.squareup.moshi.JsonClass
  * @param prompt The system prompt for the chat.
  * @param multimodal 
  * @param thinking Indicates whether the model supports extended thinking mode.
+ * @param capabilities 
  * @param `internal` Indicates whether this is an internal AI gateway provider.
  */
 
@@ -57,7 +59,11 @@ data class ChatSettingsDto (
 
     /* Indicates whether the model supports extended thinking mode. */
     @Json(name = "thinking")
+    @Deprecated(message = "This property is deprecated.")
     val thinking: kotlin.Boolean? = null,
+
+    @Json(name = "capabilities")
+    val capabilities: AiModelCapabilities? = null,
 
     /* Indicates whether this is an internal AI gateway provider. */
     @Json(name = "internal")

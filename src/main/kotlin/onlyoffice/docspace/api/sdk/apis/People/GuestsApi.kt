@@ -37,6 +37,9 @@ interface GuestsApi {
      *  - 404: User not found
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for approveGuestShareLink Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/approve-guest-share-link/
@@ -56,6 +59,9 @@ interface GuestsApi {
      *  - 200: Request parameters for deleting guests
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for deleteGuests Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-guests/

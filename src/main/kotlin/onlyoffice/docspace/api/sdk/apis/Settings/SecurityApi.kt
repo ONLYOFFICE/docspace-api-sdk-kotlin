@@ -42,6 +42,9 @@ interface SecurityApi {
      * Responses:
      *  - 200: List of enabled modules
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getEnabledModules Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-enabled-modules/
@@ -59,6 +62,9 @@ interface SecurityApi {
      * Responses:
      *  - 200: Object with the user security information: product ID, user ID, administrator or not
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getIsProductAdministrator Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-is-product-administrator/
@@ -78,6 +84,9 @@ interface SecurityApi {
      * Responses:
      *  - 200: Password settings
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getPasswordSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-password-settings/
@@ -95,6 +104,9 @@ interface SecurityApi {
      * Responses:
      *  - 200: List of product administrators with the following parameters
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getProductAdministrators Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-product-administrators/
@@ -113,6 +125,9 @@ interface SecurityApi {
      * Responses:
      *  - 200: Boolean value: true - module is enabled, false - module is disabled
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getWebItemSecurityInfo Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-web-item-security-info/
@@ -131,6 +146,9 @@ interface SecurityApi {
      * Responses:
      *  - 200: Security settings
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getWebItemSettingsSecurityInfo Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-web-item-settings-security-info/
@@ -150,6 +168,9 @@ interface SecurityApi {
      *  - 200: Security settings
      *  - 403: Security settings are disabled for an open portal
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for setAccessToWebItems Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-access-to-web-items/
@@ -170,6 +191,9 @@ interface SecurityApi {
      *  - 402: Your pricing plan does not support this option
      *  - 403: Only portal owner can set user as administrator
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for setProductAdministrator Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-product-administrator/
@@ -189,6 +213,9 @@ interface SecurityApi {
      *  - 200: Security settings
      *  - 403: Security settings are disabled for an open portal
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for setWebItemSecurity Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-web-item-security/
@@ -208,6 +235,9 @@ interface SecurityApi {
      *  - 200: Password settings
      *  - 400: MinLength
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for updatePasswordSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-password-settings/

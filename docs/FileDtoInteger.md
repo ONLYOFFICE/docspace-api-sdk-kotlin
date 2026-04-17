@@ -24,7 +24,6 @@
 | **providerId** | **kotlin.Int** | The provider ID of the file entry. |  [optional] |
 | **order** | **kotlin.String** | The order of the file entry. |  [optional] |
 | **isFavorite** | **kotlin.Boolean** | Specifies if the file is a favorite or not. |  [optional] |
-| **fileEntryType** | [**FileEntryType**](FileEntryType.md) |  |  [optional] |
 | **id** | **kotlin.Int** | The file entry ID. |  [optional] |
 | **rootFolderId** | **kotlin.Int** | The root folder ID of the file entry. |  [optional] |
 | **originId** | **kotlin.Int** | The origin ID of the file entry. |  [optional] |
@@ -32,9 +31,9 @@
 | **originTitle** | **kotlin.String** | The origin title of the file entry. |  [optional] |
 | **originRoomTitle** | **kotlin.String** | The origin room title of the file entry. |  [optional] |
 | **canShare** | **kotlin.Boolean** | Specifies if the file entry can be shared or not. |  [optional] |
-| **shareSettings** | [**FileEntryDtoIntegerAllOfShareSettings**](FileEntryDtoIntegerAllOfShareSettings.md) |  |  [optional] |
-| **security** | [**FileEntryDtoIntegerAllOfSecurity**](FileEntryDtoIntegerAllOfSecurity.md) |  |  [optional] |
-| **availableShareRights** | [**FileEntryDtoIntegerAllOfAvailableShareRights**](FileEntryDtoIntegerAllOfAvailableShareRights.md) |  |  [optional] |
+| **shareSettings** | [**FolderDtoIntegerShareSettings**](FolderDtoIntegerShareSettings.md) |  |  [optional] |
+| **security** | [**FolderDtoIntegerSecurity**](FolderDtoIntegerSecurity.md) |  |  [optional] |
+| **availableShareRights** | [**FolderDtoIntegerAvailableShareRights**](FolderDtoIntegerAvailableShareRights.md) |  |  [optional] |
 | **requestToken** | **kotlin.String** | The request token of the file entry. |  [optional] |
 | **&#x60;external&#x60;** | **kotlin.Boolean** | Specifies if the folder can be accessed via an external link or not. |  [optional] |
 | **expirationDate** | [**ApiDateTime**](ApiDateTime.md) |  |  [optional] |
@@ -45,7 +44,7 @@
 | **contentLength** | **kotlin.String** | The content length of the file. |  [optional] |
 | **pureContentLength** | **kotlin.Long** | The pure content length of the file. |  [optional] |
 | **fileStatus** | [**FileStatus**](FileStatus.md) |  |  [optional] |
-| **editingBy** | **kotlin.collections.Map&lt;kotlin.String, kotlin.String&gt;** | The list of users editing the file. |  [optional] |
+| **editingBy** | **kotlin.collections.Map&lt;kotlin.String, kotlin.String?&gt;** | The list of users editing the file. |  [optional] |
 | **mute** | **kotlin.Boolean** | Specifies if the file is muted or not. |  [optional] |
 | **viewUrl** | [**java.net.URI**](java.net.URI.md) | The URL link to view the file. |  [optional] |
 | **webUrl** | [**java.net.URI**](java.net.URI.md) | The Web URL link to the file. |  [optional] |
@@ -67,9 +66,10 @@
 | **inProcessFolderId** | **kotlin.Int** | The InProcess folder ID of the file. |  [optional] |
 | **inProcessFolderTitle** | **kotlin.String** | The InProcess folder title of the file. |  [optional] |
 | **draftLocation** | [**DraftLocationInteger**](DraftLocationInteger.md) |  |  [optional] |
-| **viewAccessibility** | [**FileDtoIntegerAllOfViewAccessibility**](FileDtoIntegerAllOfViewAccessibility.md) |  |  [optional] |
+| **viewAccessibility** | [**FileDtoIntegerViewAccessibility**](FileDtoIntegerViewAccessibility.md) |  |  [optional] |
 | **lastOpened** | [**ApiDateTime**](ApiDateTime.md) |  |  [optional] |
 | **expired** | [**ApiDateTime**](ApiDateTime.md) |  |  [optional] |
+| **fileEntryType** | [**FileEntryType**](FileEntryType.md) |  |  [optional] |
 | **vectorizationStatus** | [**VectorizationStatus**](VectorizationStatus.md) |  |  [optional] |
 | **dimensions** | [**Size**](Size.md) |  |  [optional] |
 

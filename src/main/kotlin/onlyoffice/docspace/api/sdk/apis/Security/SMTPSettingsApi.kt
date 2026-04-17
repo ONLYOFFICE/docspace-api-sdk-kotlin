@@ -36,6 +36,9 @@ interface SMTPSettingsApi {
      *  - 200: SMTP operation status
      *  - 402: Your pricing plan does not support this option
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getSmtpOperationStatus Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-smtp-operation-status/
@@ -54,6 +57,9 @@ interface SMTPSettingsApi {
      *  - 200: SMTP settings
      *  - 402: Your pricing plan does not support this option
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getSmtpSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-smtp-settings/
@@ -72,6 +78,9 @@ interface SMTPSettingsApi {
      *  - 200: Default SMTP settings
      *  - 402: Your pricing plan does not support this option
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for resetSmtpSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/reset-smtp-settings/
@@ -90,6 +99,9 @@ interface SMTPSettingsApi {
      *  - 200: SMTP settings
      *  - 402: Your pricing plan does not support this option
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for saveSmtpSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/save-smtp-settings/
@@ -109,6 +121,9 @@ interface SMTPSettingsApi {
      *  - 200: SMTP operation status
      *  - 402: Your pricing plan does not support this option
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for testSmtpSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/test-smtp-settings/

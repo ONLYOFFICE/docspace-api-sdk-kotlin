@@ -16,6 +16,7 @@
 
 package onlyoffice.docspace.api.sdk.models
 
+import onlyoffice.docspace.api.sdk.models.ModelSettingsItemDto
 import onlyoffice.docspace.api.sdk.models.ProviderType
 
 import com.squareup.moshi.Json
@@ -28,6 +29,7 @@ import com.squareup.moshi.JsonClass
  * @param key The authentication API key for the AI provider.
  * @param type 
  * @param url The API endpoint URL for the AI provider. Required for OpenAiCompatible type; optional for other types that have default URLs.
+ * @param modelSettings Optional list of model settings to configure atomically with the provider creation.
  */
 
 
@@ -46,7 +48,11 @@ data class CreateProviderRequestDto (
 
     /* The API endpoint URL for the AI provider. Required for OpenAiCompatible type; optional for other types that have default URLs. */
     @Json(name = "url")
-    val url: kotlin.String? = null
+    val url: kotlin.String? = null,
+
+    /* Optional list of model settings to configure atomically with the provider creation. */
+    @Json(name = "modelSettings")
+    val modelSettings: kotlin.collections.Set<ModelSettingsItemDto>? = null
 
 ) {
 

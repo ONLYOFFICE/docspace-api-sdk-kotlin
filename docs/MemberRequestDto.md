@@ -12,11 +12,7 @@
 | **firstName** | **kotlin.String** | The user first name. |  [optional] |
 | **lastName** | **kotlin.String** | The user last name. |  [optional] |
 | **department** | [**kotlin.collections.List&lt;java.util.UUID&gt;**](java.util.UUID.md) | The list of the user departments IDs. |  [optional] |
-| **title** | **kotlin.String** | The user title. |  [optional] |
 | **location** | **kotlin.String** | The user location. |  [optional] |
-| **sex** | [**SexEnum**](SexEnum.md) |  |  [optional] |
-| **birthday** | [**ApiDateTime**](ApiDateTime.md) |  |  [optional] |
-| **worksfrom** | [**ApiDateTime**](ApiDateTime.md) |  |  [optional] |
 | **comment** | **kotlin.String** | The user comment. |  [optional] |
 | **contacts** | [**kotlin.collections.List&lt;Contact&gt;**](Contact.md) | The list of the user contacts. |  [optional] |
 | **files** | **kotlin.String** | The avatar photo URL. |  [optional] |

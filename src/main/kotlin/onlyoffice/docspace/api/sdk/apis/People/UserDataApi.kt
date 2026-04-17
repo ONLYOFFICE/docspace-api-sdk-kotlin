@@ -38,6 +38,9 @@ interface UserDataApi {
      * Responses:
      *  - 200: Deletion progress
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getDeletePersonalFolderProgress Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-delete-personal-folder-progress/
@@ -55,6 +58,9 @@ interface UserDataApi {
      * Responses:
      *  - 200: Reassignment progress
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getReassignProgress Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-reassign-progress/
@@ -73,6 +79,9 @@ interface UserDataApi {
      * Responses:
      *  - 200: Deletion progress
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getRemoveProgress Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-remove-progress/
@@ -91,6 +100,9 @@ interface UserDataApi {
      * Responses:
      *  - 200: Boolean value: true if neccessary reassign
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for necessaryReassign Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/necessary-reassign/
@@ -111,6 +123,9 @@ interface UserDataApi {
      *  - 200: Information message
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for sendInstructionsToDelete Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/send-instructions-to-delete/
@@ -129,6 +144,9 @@ interface UserDataApi {
      *  - 200: delete personal progress
      *  - 400: Access denied
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for startDeletePersonalFolder Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/start-delete-personal-folder/
@@ -147,6 +165,9 @@ interface UserDataApi {
      *  - 200: Reassignment progress
      *  - 400: Can not reassign data to user or from user
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for startReassign Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/start-reassign/
@@ -168,6 +189,9 @@ interface UserDataApi {
      *  - 403: No permissions to perform this action
      *  - 404: User not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for startRemove Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/start-remove/
@@ -186,6 +210,9 @@ interface UserDataApi {
      * Responses:
      *  - 200: Reassignment progress
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for terminateReassign Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/terminate-reassign/
@@ -204,6 +231,9 @@ interface UserDataApi {
      * Responses:
      *  - 200: OK
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for terminateRemove Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/terminate-remove/

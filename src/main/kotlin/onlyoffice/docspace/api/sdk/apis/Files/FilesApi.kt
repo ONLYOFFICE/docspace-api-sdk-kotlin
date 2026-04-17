@@ -35,6 +35,7 @@ import onlyoffice.docspace.api.sdk.models.CreateFileJsonElement
 import onlyoffice.docspace.api.sdk.models.CreateTextOrHtmlFile
 import onlyoffice.docspace.api.sdk.models.CustomFilterParameters
 import onlyoffice.docspace.api.sdk.models.Delete
+import onlyoffice.docspace.api.sdk.models.DocumentBuilderTaskWrapper
 import onlyoffice.docspace.api.sdk.models.EditHistoryArrayWrapper
 import onlyoffice.docspace.api.sdk.models.EditHistoryDataWrapper
 import onlyoffice.docspace.api.sdk.models.EditorType
@@ -67,6 +68,7 @@ import onlyoffice.docspace.api.sdk.models.StartEdit
 import onlyoffice.docspace.api.sdk.models.StringWrapper
 import onlyoffice.docspace.api.sdk.models.TemplatesRequestDto
 import onlyoffice.docspace.api.sdk.models.UpdateFile
+import onlyoffice.docspace.api.sdk.models.XlsxReportResponseWrapper
 
 import okhttp3.MultipartBody
 
@@ -77,7 +79,12 @@ interface FilesApi {
      * Adds a file with the ID specified in the request to the Recent section.
      * Responses:
      *  - 200: New file information
+     *  - 403: You don't have enough permission to perform the operation
+     *  - 404: File not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for addFileToRecent Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/add-file-to-recent/
@@ -96,6 +103,9 @@ interface FilesApi {
      * Responses:
      *  - 200: Boolean value: true if the operation is successful
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for addTemplates Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/add-templates/
@@ -115,6 +125,9 @@ interface FilesApi {
      *  - 200: Updated information about file versions
      *  - 403: You do not have enough permissions to edit the file
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for changeVersionHistory Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/change-version-history/
@@ -134,6 +147,9 @@ interface FilesApi {
      * Responses:
      *  - 200: Link to the form
      *  - 403: You don't have enough permission to view the file
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for checkFillFormDraft Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/check-fill-form-draft/
@@ -156,6 +172,9 @@ interface FilesApi {
      *  - 403: You don't have enough permission to create
      *  - 404: File not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for copyFileAs Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/copy-file-as/
@@ -176,6 +195,9 @@ interface FilesApi {
      *  - 200: Information about created session
      *  - 403: You don't have enough permission to edit the file
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for createEditSession Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-edit-session/
@@ -195,6 +217,9 @@ interface FilesApi {
      * Responses:
      *  - 200: New file information
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for createFile Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-file/
@@ -214,6 +239,9 @@ interface FilesApi {
      * Responses:
      *  - 200: New file information
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for createFileInMyDocuments Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-file-in-my-documents/
@@ -233,6 +261,9 @@ interface FilesApi {
      *  - 200: File security information
      *  - 404: Not Found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for createFilePrimaryExternalLink Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-file-primary-external-link/
@@ -253,6 +284,9 @@ interface FilesApi {
      *  - 200: New file information
      *  - 403: You don't have enough permission to create
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for createHtmlFile Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-html-file/
@@ -273,6 +307,9 @@ interface FilesApi {
      *  - 200: New file information
      *  - 403: You don't have enough permission to create
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for createHtmlFileInMyDocuments Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-html-file-in-my-documents/
@@ -291,6 +328,9 @@ interface FilesApi {
      * Responses:
      *  - 200: New file information
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for createTextFile Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-text-file/
@@ -310,6 +350,9 @@ interface FilesApi {
      * Responses:
      *  - 200: New file information
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for createTextFileInMyDocuments Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-text-file-in-my-documents/
@@ -327,6 +370,9 @@ interface FilesApi {
      * Creates thumbnails for the files with the IDs specified in the request.
      * Responses:
      *  - 200: List of file IDs
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for createThumbnails Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-thumbnails/
@@ -345,6 +391,9 @@ interface FilesApi {
      * Responses:
      *  - 200: List of file operations
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for deleteFile Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-file/
@@ -365,6 +414,9 @@ interface FilesApi {
      * Responses:
      *  - 200: No content
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for deleteRecent Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-recent/
@@ -383,6 +435,9 @@ interface FilesApi {
      * Responses:
      *  - 200: Boolean value: true if the operation is successful
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for deleteTemplates Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-templates/
@@ -399,20 +454,23 @@ interface FilesApi {
      * Generate XLSX report
      * Triggers asynchronous XLSX report generation for the specified form file.
      * Responses:
-     *  - 200: Original form file information
+     *  - 200: Ok
      *  - 403: You do not have enough permissions to perform this action
-     *  - 404: File not found
+     *  - 404: The required file was not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for generateXlsx Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/generate-xlsx/
      *
      *
      * @param fileId The file unique identifier.
-     * @return [FileIntegerWrapper]
+     * @return [XlsxReportResponseWrapper]
      */
     @POST("api/2.0/files/file/{fileId}/xlsx")
-    suspend fun generateXlsx(@Path("fileId") fileId: kotlin.Int): Response<FileIntegerWrapper>
+    suspend fun generateXlsx(@Path("fileId") fileId: kotlin.Int): Response<XlsxReportResponseWrapper>
 
     /**
      * GET api/2.0/files/file/{fileId}/formroles
@@ -422,6 +480,9 @@ interface FilesApi {
      *  - 200: Successfully retrieved all roles for the form
      *  - 403: You do not have enough permissions to view the form roles
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getAllFormRoles Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-all-form-roles/
@@ -439,6 +500,9 @@ interface FilesApi {
      * Returns a URL to the changes of a file version specified in the request.
      * Responses:
      *  - 200: File version history data
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getEditDiffUrl Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-edit-diff-url/
@@ -457,6 +521,9 @@ interface FilesApi {
      * Returns the version history of a file with the ID specified in the request.
      * Responses:
      *  - 200: Version history data
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getEditHistory Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-edit-history/
@@ -477,6 +544,9 @@ interface FilesApi {
      *  - 403: You don't have enough permission to perform the operation
      *  - 404: The required file was not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getFileHistory Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-file-history/
@@ -498,6 +568,9 @@ interface FilesApi {
      * Returns the detailed information about a file with the ID specified in the request.
      * Responses:
      *  - 200: File information
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getFileInfo Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-file-info/
@@ -517,6 +590,9 @@ interface FilesApi {
      * Responses:
      *  - 200: File security information
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getFileLinks Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-file-links/
@@ -537,6 +613,9 @@ interface FilesApi {
      * Responses:
      *  - 200: File security information
      *  - 404: Not Found
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getFilePrimaryExternalLink Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-file-primary-external-link/
@@ -556,6 +635,9 @@ interface FilesApi {
      * Returns the detailed information about all the available file versions with the ID specified in the request.
      * Responses:
      *  - 200: Information about file versions: folder ID, version, version group, content length, pure content length, file status, URL to view a file, web URL, file type, file extension, comment, encrypted or not, thumbnail URL, thumbnail status, locked or not, user ID who locked a file, denies file downloading or not, denies file sharing or not, file accessibility
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getFileVersionInfo Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-file-version-info/
@@ -573,6 +655,9 @@ interface FilesApi {
      * Retrieves the result of a form-filling session.
      * Responses:
      *  - 200: Ok
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getFillResult Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-fill-result/
@@ -592,6 +677,9 @@ interface FilesApi {
      *  - 200: Form submission results were successfully retrieved
      *  - 403: You do not have enough permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getFormSubmissions Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-form-submissions/
@@ -610,6 +698,9 @@ interface FilesApi {
      * Responses:
      *  - 200: File download link
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getPresignedFileUri Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-presigned-file-uri/
@@ -628,6 +719,9 @@ interface FilesApi {
      * Responses:
      *  - 200: File download link
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getPresignedUri Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-presigned-uri/
@@ -646,6 +740,9 @@ interface FilesApi {
      * Responses:
      *  - 200: List of users with their access rights to the protected file
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getProtectedFileUsers Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-protected-file-users/
@@ -664,6 +761,9 @@ interface FilesApi {
      * Responses:
      *  - 200: File reference data
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getReferenceData Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-reference-data/
@@ -676,12 +776,36 @@ interface FilesApi {
     suspend fun getReferenceData(@Body getReferenceDataDtoInteger: GetReferenceDataDtoInteger? = null): Response<FileReferenceWrapper>
 
     /**
+     * GET api/2.0/files/file/{fileId}/xlsx
+     * Get XLSX report generation status
+     * Returns the status of the XLSX report generation task for the specified form.
+     * Responses:
+     *  - 200: Ok
+     *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *
+     * REST API Reference for getXlsx Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-xlsx/
+     *
+     *
+     * @param fileId The file unique identifier.
+     * @return [DocumentBuilderTaskWrapper]
+     */
+    @GET("api/2.0/files/file/{fileId}/xlsx")
+    suspend fun getXlsx(@Path("fileId") fileId: kotlin.Int): Response<DocumentBuilderTaskWrapper>
+
+    /**
      * GET api/2.0/files/file/{fileId}/isformpdf
      * Check the PDF file
      * Checks if the PDF file is a form or not.
      * Responses:
      *  - 200: Boolean value: true - the PDF file is form, false - the PDF file is not a form
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for isFormPDF Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/is-form-pdf/
@@ -700,6 +824,9 @@ interface FilesApi {
      * Responses:
      *  - 200: Locked file information
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for lockFile Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/lock-file/
@@ -720,6 +847,9 @@ interface FilesApi {
      *  - 200: Successfully processed the form filling action
      *  - 403: You do not have enough permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for manageFormFilling Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/manage-form-filling/
@@ -739,6 +869,9 @@ interface FilesApi {
      * Responses:
      *  - 200: Configuration parameters
      *  - 403: You don't have enough permission to view the file
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for openEditFile Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/open-edit-file/
@@ -763,6 +896,9 @@ interface FilesApi {
      *  - 200: Version history data: file ID, key, file version, version group, a user who updated a file, creation time, history changes in the string format, list of history changes, server version
      *  - 400: No file id or folder id toFolderId determine provider
      *  - 403: You do not have enough permissions to edit the file
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for restoreFileVersion Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/restore-file-version/
@@ -785,6 +921,9 @@ interface FilesApi {
      *  - 400: No file id or folder id toFolderId determine provider
      *  - 403: You do not have enough permissions to edit the file
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for saveEditingFileFromForm Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/save-editing-file-from-form/
@@ -809,6 +948,9 @@ interface FilesApi {
      *  - 200: New file information
      *  - 404: File not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for saveFileAsPdf Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/save-file-as-pdf/
@@ -829,6 +971,9 @@ interface FilesApi {
      *  - 200: Updated information about form role mappings
      *  - 403: You do not have enough permissions to edit the file
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for saveFormRoleMapping Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/save-form-role-mapping/
@@ -848,6 +993,9 @@ interface FilesApi {
      * Responses:
      *  - 200: File information
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for setCustomFilterTag Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-custom-filter-tag/
@@ -867,6 +1015,9 @@ interface FilesApi {
      * Responses:
      *  - 200: File security information
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for setFileExternalLink Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-file-external-link/
@@ -888,6 +1039,9 @@ interface FilesApi {
      *  - 403: You don't have enough permission to perform the operation
      *  - 404: Not Found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for setFileOrder Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-file-order/
@@ -907,6 +1061,9 @@ interface FilesApi {
      * Responses:
      *  - 200: Updated file entries information
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for setFilesOrder Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-files-order/
@@ -925,6 +1082,9 @@ interface FilesApi {
      * Responses:
      *  - 200: File key for Document Service
      *  - 403: You don't have enough permission to view the file
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for startEditFile Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/start-edit-file/
@@ -945,6 +1105,9 @@ interface FilesApi {
      *  - 200: File information
      *  - 403: You do not have enough permissions to edit the file
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for startFillingFile Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/start-filling-file/
@@ -964,6 +1127,9 @@ interface FilesApi {
      *  - 200: Boolean value: true - the file is favorite, false - the file is not favorite
      *  - 403: You don't have enough permission to perform the operation
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for toggleFileFavorite Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/toggle-file-favorite/
@@ -983,6 +1149,9 @@ interface FilesApi {
      * Responses:
      *  - 200: File changes
      *  - 403: You don't have enough permission to perform the operation
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for trackEditFile Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/track-edit-file/
@@ -1004,6 +1173,9 @@ interface FilesApi {
      * Responses:
      *  - 200: Updated file information
      *  - 403: You do not have enough permissions to edit the file
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for updateFile Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-file/

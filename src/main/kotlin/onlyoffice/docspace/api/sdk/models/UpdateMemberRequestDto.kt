@@ -16,9 +16,7 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.ApiDateTime
 import onlyoffice.docspace.api.sdk.models.Contact
-import onlyoffice.docspace.api.sdk.models.SexEnum
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -33,11 +31,7 @@ import com.squareup.moshi.JsonClass
  * @param firstName The user first name.
  * @param lastName The user last name.
  * @param department The list of the user departments.
- * @param title The user title.
  * @param location The user location.
- * @param sex 
- * @param birthday 
- * @param worksfrom 
  * @param comment The user comment.
  * @param contacts The list of the user contacts.
  * @param files The user avatar photo URL.
@@ -75,22 +69,9 @@ data class UpdateMemberRequestDto (
     @Json(name = "department")
     val department: kotlin.collections.List<java.util.UUID>? = null,
 
-    /* The user title. */
-    @Json(name = "title")
-    val title: kotlin.String? = null,
-
     /* The user location. */
     @Json(name = "location")
     val location: kotlin.String? = null,
-
-    @Json(name = "sex")
-    val sex: SexEnum? = null,
-
-    @Json(name = "birthday")
-    val birthday: ApiDateTime? = null,
-
-    @Json(name = "worksfrom")
-    val worksfrom: ApiDateTime? = null,
 
     /* The user comment. */
     @Json(name = "comment")

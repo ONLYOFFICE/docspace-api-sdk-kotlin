@@ -45,6 +45,8 @@ interface SharingApi {
      * Responses:
      *  - 200: External data
      *  - 429: Too many requests
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for applyExternalSharePassword Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/apply-external-share-password/
@@ -64,6 +66,9 @@ interface SharingApi {
      * Responses:
      *  - 200: File entry information
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for changeFileOwner Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/change-file-owner/
@@ -81,6 +86,9 @@ interface SharingApi {
      * Returns the external data by the key specified in the request.
      * Responses:
      *  - 200: External data
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getExternalShareData Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-external-share-data/
@@ -101,6 +109,9 @@ interface SharingApi {
      * Responses:
      *  - 200: List of shared file information
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getFileSecurityInfo Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-file-security-info/
@@ -121,6 +132,9 @@ interface SharingApi {
      * Responses:
      *  - 200: List of shared file information
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getFolderSecurityInfo Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-security-info/
@@ -141,6 +155,9 @@ interface SharingApi {
      * Responses:
      *  - 200: Ok
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getGroupsMembersWithFileSecurity Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-groups-members-with-file-security/
@@ -163,6 +180,9 @@ interface SharingApi {
      * Responses:
      *  - 200: Ok
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getGroupsMembersWithFolderSecurity Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-groups-members-with-folder-security/
@@ -185,6 +205,9 @@ interface SharingApi {
      * Responses:
      *  - 200: List of shared files and folders information
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getSecurityInfo Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-security-info/
@@ -203,6 +226,9 @@ interface SharingApi {
      * Responses:
      *  - 200: List of users with their access rights to the file
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getSharedUsers Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-shared-users/
@@ -221,6 +247,9 @@ interface SharingApi {
      * Responses:
      *  - 200: Boolean value: true if the operation is successful
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for removeSecurityInfo Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/remove-security-info/
@@ -242,6 +271,9 @@ interface SharingApi {
      *  - 403: You don't have enough permission to perform the operation
      *  - 404: The required file was not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for sendEditorNotify Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/send-editor-notify/
@@ -261,6 +293,9 @@ interface SharingApi {
      * Responses:
      *  - 200: List of shared file information: sharing rights, a user who has the access to the specified file, the file is locked by this user or not, this user is an owner of the specified file or not, this user can edit the access to the specified file or not
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for setFileSecurityInfo Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-file-security-info/
@@ -280,6 +315,9 @@ interface SharingApi {
      * Responses:
      *  - 200: List of shared folder information: sharing rights, a user who has the access to the specified folder, the folder is locked by this user or not, this user is an owner of the specified folder or not, this user can edit the access to the specified folder or not
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for setFolderSecurityInfo Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-folder-security-info/
@@ -299,6 +337,9 @@ interface SharingApi {
      * Responses:
      *  - 200: List of shared files and folders information: sharing rights, a user who has the access to the specified folder, the folder is locked by this user or not, this user is an owner of the specified folder or not, this user can edit the access to the specified folder or not
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for setSecurityInfo Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-security-info/

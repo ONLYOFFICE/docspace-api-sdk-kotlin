@@ -42,6 +42,9 @@ interface RebrandingApi {
      *  - 200: Default additional white label settings
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for deleteAdditionalWhiteLabelSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-additional-white-label-settings/
@@ -60,6 +63,9 @@ interface RebrandingApi {
      *  - 200: Default company white label settings
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for deleteCompanyWhiteLabelSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-company-white-label-settings/
@@ -77,6 +83,9 @@ interface RebrandingApi {
      * Responses:
      *  - 200: Additional white label settings
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getAdditionalWhiteLabelSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-additional-white-label-settings/
@@ -94,6 +103,9 @@ interface RebrandingApi {
      * Responses:
      *  - 200: Company white label settings
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getCompanyWhiteLabelSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-company-white-label-settings/
@@ -111,6 +123,9 @@ interface RebrandingApi {
      * Responses:
      *  - 200: Boolean value: true if the white label is enabled
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getEnableWhitelabel Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-enable-whitelabel/
@@ -128,6 +143,9 @@ interface RebrandingApi {
      * Responses:
      *  - 200: Request properties of white label logos
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getIsDefaultWhiteLabelLogoText Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-is-default-white-label-logo-text/
@@ -147,6 +165,9 @@ interface RebrandingApi {
      * Responses:
      *  - 200: Request properties of white label logos
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getIsDefaultWhiteLabelLogos Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-is-default-white-label-logos/
@@ -166,6 +187,9 @@ interface RebrandingApi {
      * Responses:
      *  - 200: List of company white label settings
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getLicensorData Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-licensor-data/
@@ -183,6 +207,9 @@ interface RebrandingApi {
      * Responses:
      *  - 200: Logo text
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getWhiteLabelLogoText Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-white-label-logo-text/
@@ -201,6 +228,9 @@ interface RebrandingApi {
      * Returns the white label logos.
      * Responses:
      *  - 200: White label logos
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getWhiteLabelLogos Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-white-label-logos/
@@ -221,6 +251,9 @@ interface RebrandingApi {
      *  - 200: Boolean value: true if the operation is successful
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for restoreWhiteLabelLogoText Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/restore-white-label-logo-text/
@@ -241,6 +274,9 @@ interface RebrandingApi {
      *  - 200: Boolean value: true if the operation is successful
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for restoreWhiteLabelLogos Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/restore-white-label-logos/
@@ -262,6 +298,9 @@ interface RebrandingApi {
      *  - 400: Settings is empty
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for saveAdditionalWhiteLabelSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/save-additional-white-label-settings/
@@ -282,6 +321,9 @@ interface RebrandingApi {
      *  - 400: Argument is empty or invalid
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for saveCompanyWhiteLabelSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/save-company-white-label-settings/
@@ -301,6 +343,9 @@ interface RebrandingApi {
      *  - 200: Boolean value: true if the operation is sucessful
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for saveWhiteLabelLogoText Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/save-white-label-logo-text/
@@ -322,6 +367,9 @@ interface RebrandingApi {
      *  - 200: Boolean value: true if the operation is sucessful
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for saveWhiteLabelSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/save-white-label-settings/
@@ -344,6 +392,9 @@ interface RebrandingApi {
      *  - 403: No permissions to perform this action
      *  - 409: No input files
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for saveWhiteLabelSettingsFromFiles Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/save-white-label-settings-from-files/

@@ -137,7 +137,7 @@ data class FilesSettingsDto (
 
     /* The list of the convertible extensions. */
     @Json(name = "extsConvertible")
-    val extsConvertible: kotlin.collections.Map<kotlin.String, kotlin.collections.List<kotlin.String>>? = null,
+    val extsConvertible: kotlin.collections.Map<kotlin.String, kotlin.collections.List<kotlin.String>?>? = null,
 
     /* The list of the uploadable extensions. */
     @Json(name = "extsUploadable")

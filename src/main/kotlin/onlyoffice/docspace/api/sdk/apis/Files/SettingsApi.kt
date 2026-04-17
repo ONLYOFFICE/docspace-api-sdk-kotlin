@@ -49,6 +49,9 @@ interface SettingsApi {
      * Responses:
      *  - 200: Boolean value: true if the operation is successful
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for changeAccessToThirdparty Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/change-access-to-thirdparty/
@@ -67,6 +70,9 @@ interface SettingsApi {
      * Responses:
      *  - 200: The auto-clearing setting properties: auto-clearing or not, a time interval when the auto-clearing will be performed
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for changeAutomaticallyCleanUp Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/change-automatically-clean-up/
@@ -85,6 +91,9 @@ interface SettingsApi {
      * Responses:
      *  - 200: Updated sharing rights (None, ReadWrite, Read, Restrict, Varies, Review, Comment, FillForms, CustomFilter, RoomAdmin, Editing, Collaborator)
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for changeDefaultAccessRights Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/change-default-access-rights/
@@ -103,6 +112,9 @@ interface SettingsApi {
      * Responses:
      *  - 200: Boolean value: true if the operation is successful
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for changeDeleteConfirm Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/change-delete-confirm/
@@ -121,6 +133,9 @@ interface SettingsApi {
      * Responses:
      *  - 200: Archive
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for changeDownloadZipFromBody Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/change-download-zip-from-body/
@@ -140,6 +155,9 @@ interface SettingsApi {
      *  - 200: Document service information: the Document Server address, the Document Server address in the local private network, the Community Server address
      *  - 400: Invalid input urls/Mixed Active Content is not allowed. HTTPS address for Document Server is required
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for checkDocServiceUrl Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/check-doc-service-url/
@@ -158,6 +176,9 @@ interface SettingsApi {
      * Responses:
      *  - 200: Boolean value: true if the parameter is enabled
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for displayFileExtension Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/display-file-extension/
@@ -177,6 +198,9 @@ interface SettingsApi {
      *  - 200: Boolean value: true if the parameter is enabled
      *  - 403: You don't have enough permission to perform the operation
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for displayRecent Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/display-recent/
@@ -195,6 +219,9 @@ interface SettingsApi {
      * Responses:
      *  - 200: Boolean value: true if the parameter is enabled
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for externalShare Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/external-share/
@@ -213,6 +240,9 @@ interface SettingsApi {
      * Responses:
      *  - 200: Boolean value: true if the parameter is enabled
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for externalShareSocialMedia Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/external-share-social-media/
@@ -231,6 +261,9 @@ interface SettingsApi {
      * Responses:
      *  - 200: Boolean value: true if the parameter is enabled
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for forcesave Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/forcesave/
@@ -248,6 +281,9 @@ interface SettingsApi {
      * Responses:
      *  - 200: The auto-clearing setting properties: auto-clearing or not, a time interval when the auto-clearing will be performed
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getAutomaticallyCleanUp Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-automatically-clean-up/
@@ -266,6 +302,9 @@ interface SettingsApi {
      *  - 200: Default template settings
      *  - 403: You don't have enough permission to perform the operation
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getDefaultTemplates Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-default-templates/
@@ -282,6 +321,9 @@ interface SettingsApi {
      * Returns the URL address of the connected editors.
      * Responses:
      *  - 200: The document service URL with the editor version specified
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getDocServiceUrl Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-doc-service-url/
@@ -300,6 +342,9 @@ interface SettingsApi {
      * Responses:
      *  - 200: Module information: ID, product class name, title, description, icon URL, large icon URL, start URL, primary or nor, help URL
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getFilesModule Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-files-module/
@@ -316,6 +361,9 @@ interface SettingsApi {
      * Returns all the file settings.
      * Responses:
      *  - 200: File settings
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getFilesSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-files-settings/
@@ -333,6 +381,9 @@ interface SettingsApi {
      * Responses:
      *  - 200: Boolean value: true if the parameter is enabled
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for hideConfirmCancelOperation Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/hide-confirm-cancel-operation/
@@ -351,6 +402,9 @@ interface SettingsApi {
      * Responses:
      *  - 200: Boolean value: true if the operation is successful
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for hideConfirmConvert Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/hide-confirm-convert/
@@ -369,6 +423,9 @@ interface SettingsApi {
      * Responses:
      *  - 200: Boolean value: true if the parameter is enabled
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for hideConfirmRoomLifetime Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/hide-confirm-room-lifetime/
@@ -387,6 +444,9 @@ interface SettingsApi {
      * Responses:
      *  - 200: Boolean value: true if the Private Room settings are available
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for isAvailablePrivacyRoomSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/is-available-privacy-room-settings/
@@ -404,6 +464,9 @@ interface SettingsApi {
      * Responses:
      *  - 200: Boolean value: true if the operation is successful
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for keepNewFileName Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/keep-new-file-name/
@@ -423,6 +486,9 @@ interface SettingsApi {
      *  - 200: New default template settings
      *  - 403: You don't have enough permission to perform the operation
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for resetDefaultTemplate Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/reset-default-template/
@@ -443,6 +509,9 @@ interface SettingsApi {
      *  - 400: Incorrect or missing file
      *  - 403: You don't have enough permission to perform the operation
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for setDefaultTemplate Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-default-template/
@@ -461,6 +530,9 @@ interface SettingsApi {
      * Responses:
      *  - 200: Boolean value: true if the parameter is enabled
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for setOpenEditorInSameTab Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-open-editor-in-same-tab/
@@ -479,6 +551,9 @@ interface SettingsApi {
      * Responses:
      *  - 200: Boolean value: true if the parameter is enabled
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for setOrganizeRoomsGrouping Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-organize-rooms-grouping/
@@ -497,6 +572,9 @@ interface SettingsApi {
      * Responses:
      *  - 200: Boolean value: true if the operation is successful
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for storeForcesave Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/store-forcesave/
@@ -514,6 +592,9 @@ interface SettingsApi {
      * Responses:
      *  - 200: Boolean value: true if the operation is successful
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for storeOriginal Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/store-original/
@@ -532,6 +613,9 @@ interface SettingsApi {
      * Responses:
      *  - 200: Boolean value: true if the operation is successful
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for updateFileIfExist Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-file-if-exist/
@@ -552,6 +636,9 @@ interface SettingsApi {
      *  - 400: Incorrect or missing file
      *  - 403: You don't have enough permission to perform the operation
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for uploadDefaultTemplate Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-default-template/

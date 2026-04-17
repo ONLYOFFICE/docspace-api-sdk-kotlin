@@ -41,7 +41,12 @@ interface WebhooksApi {
      * Creates a new tenant webhook with the parameters specified in the request.
      * Responses:
      *  - 200: Tenant webhook with its config parameters
+     *  - 400: Invalid or empty parameters
+     *  - 403: Access denied
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for createWebhook Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-webhook/
@@ -59,7 +64,13 @@ interface WebhooksApi {
      * Enables or disables a tenant webhook with the parameters specified in the request.
      * Responses:
      *  - 200: Enable or disable tenant webhook
+     *  - 400: Invalid or empty parameters
+     *  - 403: Access denied
+     *  - 404: Item not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for enableWebhook Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/enable-webhook/
@@ -77,7 +88,11 @@ interface WebhooksApi {
      * Returns a list of the tenant webhooks.
      * Responses:
      *  - 200: List of tenant webhooks with their config parameters
+     *  - 403: Access denied
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getTenantWebhooks Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tenant-webhooks/
@@ -95,6 +110,9 @@ interface WebhooksApi {
      * Responses:
      *  - 200: List of triggers for a webhook
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getWebhookTriggers Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-webhook-triggers/
@@ -111,7 +129,11 @@ interface WebhooksApi {
      * Returns the logs of the webhook activities.
      * Responses:
      *  - 200: Logs of the webhook activities
+     *  - 403: Access denied
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getWebhooksLogs Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-webhooks-logs/
@@ -138,7 +160,12 @@ interface WebhooksApi {
      * Removes a tenant webhook with the ID specified in the request.
      * Responses:
      *  - 200: Tenant webhook with its config parameters
+     *  - 403: Access denied
+     *  - 404: Item not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for removeWebhook Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/remove-webhook/
@@ -157,8 +184,12 @@ interface WebhooksApi {
      * Responses:
      *  - 200: Logs of the webhook activities
      *  - 400: Id incorrect
+     *  - 403: Access denied
      *  - 404: Item not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for retryWebhook Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/retry-webhook/
@@ -176,7 +207,11 @@ interface WebhooksApi {
      * Retries all the webhooks with the IDs specified in the request.
      * Responses:
      *  - 200: Logs of the webhook activities
+     *  - 403: Access denied
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for retryWebhooks Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/retry-webhooks/
@@ -194,7 +229,13 @@ interface WebhooksApi {
      * Updates a tenant webhook with the parameters specified in the request.
      * Responses:
      *  - 200: Updated tenant webhook with its config parameters
+     *  - 400: Invalid or empty parameters
+     *  - 403: Access denied
+     *  - 404: Item not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for updateWebhook Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-webhook/

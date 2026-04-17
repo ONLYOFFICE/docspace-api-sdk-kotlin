@@ -121,7 +121,7 @@ launch(Dispatchers.IO) {
 
 <a id="exportChat"></a>
 # **exportChat**
-> void exportChat (java.util.UUID chatId, ExportChatRequestBodyInteger exportChatRequestBodyInteger)
+> void exportChat (java.util.UUID chatId, ExportChatRequestBody exportChatRequestBody)
 
 Exports the entire message history of an AI chat session and saves it as a document in the specified folder.  The exported file is created with the provided title. Only the chat owner can export their own chat sessions.
 
@@ -131,7 +131,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **chatId** | **java.util.UUID**| The unique identifier of the AI chat session to export. | |
-| **exportChatRequestBodyInteger** | [**ExportChatRequestBodyInteger**](ExportChatRequestBodyInteger.md)| The export parameters including destination folder and file title. | |
+| **exportChatRequestBody** | [**ExportChatRequestBody**](ExportChatRequestBody.md)| The export parameters including destination folder and file title. | |
 
 ### Return type
 
@@ -157,10 +157,10 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIChatApi::class.java)
 val chatId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The unique identifier of the AI chat session to export.
-val exportChatRequestBodyInteger : ExportChatRequestBodyInteger =  // ExportChatRequestBodyInteger | The export parameters including destination folder and file title.
+val exportChatRequestBody : ExportChatRequestBody =  // ExportChatRequestBody | The export parameters including destination folder and file title.
 
 launch(Dispatchers.IO) {
-    webService.exportChat(chatId, exportChatRequestBodyInteger)
+    webService.exportChat(chatId, exportChatRequestBody)
 }
 ```
 

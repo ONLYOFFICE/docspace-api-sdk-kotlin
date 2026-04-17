@@ -106,7 +106,7 @@ enum class ConfirmType(val value: kotlin.String) {
          */
         fun decode(data: kotlin.Any?): ConfirmType? = data?.let {
           val normalizedData = "$it".lowercase()
-          values().firstOrNull { value ->
+          entries.firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()
           }
         }

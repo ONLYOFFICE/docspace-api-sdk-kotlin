@@ -16,6 +16,7 @@
 
 package onlyoffice.docspace.api.sdk.models
 
+import onlyoffice.docspace.api.sdk.models.ProviderType
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -26,6 +27,8 @@ import com.squareup.moshi.JsonClass
  * @param defaultModel Default model identifier used with this provider.
  * @param providerId AI provider identifier.
  * @param providerTitle AI provider title.
+ * @param providerType 
+ * @param defaultModelAlias Display alias of the default model.
  */
 
 
@@ -41,7 +44,14 @@ data class DefaultProviderDto (
 
     /* AI provider title. */
     @Json(name = "providerTitle")
-    val providerTitle: kotlin.String? = null
+    val providerTitle: kotlin.String? = null,
+
+    @Json(name = "providerType")
+    val providerType: ProviderType? = null,
+
+    /* Display alias of the default model. */
+    @Json(name = "defaultModelAlias")
+    val defaultModelAlias: kotlin.String? = null
 
 ) {
 

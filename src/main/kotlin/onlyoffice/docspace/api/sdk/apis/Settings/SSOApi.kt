@@ -35,6 +35,9 @@ interface SSOApi {
      * Responses:
      *  - 200: Default SSO settings
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getDefaultSsoSettingsV2 Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-default-sso-settings-v2/
@@ -51,6 +54,9 @@ interface SSOApi {
      * Returns the current portal SSO settings.
      * Responses:
      *  - 200: SSO settings
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getSsoSettingsV2 Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-sso-settings-v2/
@@ -68,6 +74,9 @@ interface SSOApi {
      * Responses:
      *  - 200: The SSO settings constants: SSO name ID format type, SSO binding type, SSO signing algorithm type, SSO SP certificate action type, SSO IDP certificate action type
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getSsoSettingsV2Constants Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-sso-settings-v2-constants/
@@ -85,6 +94,9 @@ interface SSOApi {
      * Responses:
      *  - 200: Default SSO settings
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for resetSsoSettingsV2 Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/reset-sso-settings-v2/
@@ -103,6 +115,9 @@ interface SSOApi {
      *  - 200: SSO settings
      *  - 400: Settings could not be null
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for saveSsoSettingsV2 Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/save-sso-settings-v2/

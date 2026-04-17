@@ -38,6 +38,9 @@ interface UserTypeApi {
      * Responses:
      *  - 200: Update type progress
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getUserTypeUpdateProgress Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-user-type-update-progress/
@@ -56,7 +59,11 @@ interface UserTypeApi {
      * Responses:
      *  - 200: Update type progress
      *  - 400: Can not update user type
+     *  - 403: Access denied
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for startUserTypeUpdate Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/start-user-type-update/
@@ -75,6 +82,9 @@ interface UserTypeApi {
      * Responses:
      *  - 200: Update type progress
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for terminateUserTypeUpdate Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/terminate-user-type-update/
@@ -94,6 +104,9 @@ interface UserTypeApi {
      *  - 200: List of users with the detailed information
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for updateUserType Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-user-type/

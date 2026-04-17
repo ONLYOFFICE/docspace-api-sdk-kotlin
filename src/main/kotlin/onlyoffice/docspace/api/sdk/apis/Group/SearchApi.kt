@@ -34,6 +34,9 @@ interface SearchApi {
      *  - 200: Ok
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getGroupsWithFilesShared Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-groups-with-files-shared/
@@ -57,6 +60,9 @@ interface SearchApi {
      *  - 200: Ok
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getGroupsWithFoldersShared Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-groups-with-folders-shared/
@@ -80,6 +86,9 @@ interface SearchApi {
      *  - 200: Ok
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getGroupsWithRoomsShared Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-groups-with-rooms-shared/

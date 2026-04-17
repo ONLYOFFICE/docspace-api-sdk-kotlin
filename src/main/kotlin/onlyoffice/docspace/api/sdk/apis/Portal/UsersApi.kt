@@ -40,6 +40,9 @@ interface UsersApi {
      * Responses:
      *  - 200: Invitation link
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for createInvitationLink Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-invitation-link/
@@ -58,6 +61,9 @@ interface UsersApi {
      * Responses:
      *  - 200: Invitation link
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for deleteInvitationLink Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-invitation-link/
@@ -76,6 +82,9 @@ interface UsersApi {
      * Responses:
      *  - 200: Invitation link
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getInvitationLink Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-invitation-link/
@@ -95,6 +104,9 @@ interface UsersApi {
      * Responses:
      *  - 200: Invitation link
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getInvitationLinkByEmployeeType Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-invitation-link-by-employee-type/
@@ -113,6 +125,9 @@ interface UsersApi {
      * Responses:
      *  - 200: Number of portal users
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getPortalUsersCount Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-portal-users-count/
@@ -130,6 +145,9 @@ interface UsersApi {
      * Responses:
      *  - 200: User information
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getUserById Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-user-by-id/
@@ -148,6 +166,9 @@ interface UsersApi {
      * Responses:
      *  - 200: OK
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for markGiftMessageAsRead Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/mark-gift-message-as-read/
@@ -165,6 +186,9 @@ interface UsersApi {
      * Responses:
      *  - 200: Ok
      *  - 403: No permissions to perform this action
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for sendCongratulations Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/send-congratulations/
@@ -184,6 +208,9 @@ interface UsersApi {
      * Responses:
      *  - 200: Invitation link
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for updateInvitationLink Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-invitation-link/

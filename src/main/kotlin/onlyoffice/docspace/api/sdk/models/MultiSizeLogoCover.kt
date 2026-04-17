@@ -36,7 +36,7 @@ data class MultiSizeLogoCover (
 
     /* The logo cover data. */
     @Json(name = "data")
-    val `data`: kotlin.collections.Map<kotlin.String, kotlin.String>?
+    val `data`: kotlin.collections.Map<kotlin.String, kotlin.String?>?
 
 ) {
 

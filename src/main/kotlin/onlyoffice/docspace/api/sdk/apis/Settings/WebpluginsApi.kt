@@ -37,6 +37,9 @@ interface WebpluginsApi {
      *  - 400: bad request
      *  - 403: Plugins disabled
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for addWebPluginFromFile Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/add-web-plugin-from-file/
@@ -56,6 +59,9 @@ interface WebpluginsApi {
      *  - 200: Ok
      *  - 403: Plugins disabled
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for deleteWebPlugin Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-web-plugin/
@@ -75,6 +81,9 @@ interface WebpluginsApi {
      *  - 200: Web plugin
      *  - 403: Plugins disabled
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getWebPlugin Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-web-plugin/
@@ -94,6 +103,9 @@ interface WebpluginsApi {
      *  - 200: Web plugin
      *  - 403: Plugins disabled
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getWebPlugins Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-web-plugins/
@@ -113,6 +125,9 @@ interface WebpluginsApi {
      *  - 200: Ok
      *  - 403: Plugins disabled
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for updateWebPlugin Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-web-plugin/

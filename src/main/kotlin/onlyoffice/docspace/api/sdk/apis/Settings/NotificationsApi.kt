@@ -38,6 +38,9 @@ interface NotificationsApi {
      * Responses:
      *  - 200: Notification settings
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getNotificationChannels Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-notification-channels/
@@ -55,6 +58,9 @@ interface NotificationsApi {
      * Responses:
      *  - 200: Notification settings
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getNotificationSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-notification-settings/
@@ -73,6 +79,9 @@ interface NotificationsApi {
      * Responses:
      *  - 200: Room notification settings
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getRoomsNotificationSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-rooms-notification-settings/
@@ -90,6 +99,9 @@ interface NotificationsApi {
      * Responses:
      *  - 200: Notification settings
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for setNotificationSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-notification-settings/
@@ -108,6 +120,9 @@ interface NotificationsApi {
      * Responses:
      *  - 200: Room notification settings
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for setRoomsNotificationStatus Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-rooms-notification-status/

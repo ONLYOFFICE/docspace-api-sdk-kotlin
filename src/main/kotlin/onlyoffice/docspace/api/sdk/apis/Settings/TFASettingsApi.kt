@@ -24,9 +24,9 @@ import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
 import onlyoffice.docspace.api.sdk.models.BooleanWrapper
-import onlyoffice.docspace.api.sdk.models.ObjectArrayWrapper
 import onlyoffice.docspace.api.sdk.models.SetupCodeWrapper
 import onlyoffice.docspace.api.sdk.models.StringWrapper
+import onlyoffice.docspace.api.sdk.models.TfaAppCodeArrayWrapper
 import onlyoffice.docspace.api.sdk.models.TfaRequestsDto
 import onlyoffice.docspace.api.sdk.models.TfaSettingsArrayWrapper
 import onlyoffice.docspace.api.sdk.models.TfaValidateRequestsDto
@@ -40,23 +40,29 @@ interface TFASettingsApi {
      *  - 200: List of TFA application codes
      *  - 405: TFA application settings are not available
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getTfaAppCodes Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tfa-app-codes/
      *
      *
-     * @return [ObjectArrayWrapper]
+     * @return [TfaAppCodeArrayWrapper]
      */
     @GET("api/2.0/settings/tfaappcodes")
-    suspend fun getTfaAppCodes(): Response<ObjectArrayWrapper>
+    suspend fun getTfaAppCodes(): Response<TfaAppCodeArrayWrapper>
 
     /**
      * GET api/2.0/settings/tfaapp/confirm
-     * Get confirmation email
-     * Returns the confirmation email URL for authorization via SMS or TFA application.
+     * Get TFA confirmation URL
+     * Returns the confirmation URL for authorization via SMS or TFA application.
      * Responses:
-     *  - 200: Confirmation email URL
+     *  - 200: TFA confirmation URL
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getTfaConfirmUrl Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tfa-confirm-url/
@@ -74,6 +80,9 @@ interface TFASettingsApi {
      * Responses:
      *  - 200: TFA settings
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getTfaSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tfa-settings/
@@ -92,6 +101,9 @@ interface TFASettingsApi {
      *  - 200: Setup code
      *  - 405: TFA application settings are not available
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for tfaAppGenerateSetupCode Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/tfa-app-generate-setup-code/
@@ -109,6 +121,9 @@ interface TFASettingsApi {
      * Responses:
      *  - 200: True if the code is valid
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for tfaValidateAuthCode Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/tfa-validate-auth-code/
@@ -129,6 +144,9 @@ interface TFASettingsApi {
      *  - 403: No permissions to perform this action
      *  - 405: TFA application settings are not available
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for unlinkTfaApp Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/unlink-tfa-app/
@@ -148,15 +166,18 @@ interface TFASettingsApi {
      *  - 200: New backup codes
      *  - 405: TFA application settings are not available
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for updateTfaAppCodes Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-tfa-app-codes/
      *
      *
-     * @return [ObjectArrayWrapper]
+     * @return [TfaAppCodeArrayWrapper]
      */
     @PUT("api/2.0/settings/tfaappnewcodes")
-    suspend fun updateTfaAppCodes(): Response<ObjectArrayWrapper>
+    suspend fun updateTfaAppCodes(): Response<TfaAppCodeArrayWrapper>
 
     /**
      * PUT api/2.0/settings/tfaapp
@@ -166,6 +187,9 @@ interface TFASettingsApi {
      *  - 200: True if the operation is successful
      *  - 405: SMS settings are not available/TFA application settings are not available
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for updateTfaSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-tfa-settings/
@@ -179,13 +203,16 @@ interface TFASettingsApi {
 
     /**
      * PUT api/2.0/settings/tfaappwithlink
-     * Get a confirmation email for updating TFA settings
-     * Returns the confirmation email URL for updating TFA settings.
+     * Updates TFA settings
+     * Updates TFA settings and returns the confirmation URL for authorization via SMS or TFA application.
      * Responses:
-     *  - 200: Confirmation email URL
+     *  - 200: TFA confirmation URL
      *  - 403: No permissions to perform this action
      *  - 405: SMS settings are not available/TFA application settings are not available
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for updateTfaSettingsLink Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-tfa-settings-link/

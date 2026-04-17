@@ -44,6 +44,9 @@ interface SearchApi {
      *  - 200: Ok
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getAccountsEntriesWithFilesShared Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-accounts-entries-with-files-shared/
@@ -75,6 +78,9 @@ interface SearchApi {
      *  - 200: Ok
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getAccountsEntriesWithFoldersShared Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-accounts-entries-with-folders-shared/
@@ -106,6 +112,9 @@ interface SearchApi {
      *  - 200: Ok
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getAccountsEntriesWithRoomsShared Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-accounts-entries-with-rooms-shared/
@@ -137,6 +146,9 @@ interface SearchApi {
      *  - 200: List of users with the detailed information
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getSearch Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-search/
@@ -170,6 +182,9 @@ interface SearchApi {
      *  - 200: List of users
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getSimpleByFilter Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-simple-by-filter/
@@ -208,6 +223,9 @@ interface SearchApi {
      *  - 200: Ok
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getUsersWithFilesShared Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-users-with-files-shared/
@@ -239,6 +257,9 @@ interface SearchApi {
      *  - 200: Ok
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getUsersWithFoldersShared Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-users-with-folders-shared/
@@ -270,6 +291,9 @@ interface SearchApi {
      *  - 200: Ok
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getUsersWithRoomShared Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-users-with-room-shared/
@@ -313,6 +337,9 @@ interface SearchApi {
      *  - 200: List of users with the detailed information
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for searchUsersByExtendedFilter Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/search-users-by-extended-filter/
@@ -350,6 +377,9 @@ interface SearchApi {
      * Responses:
      *  - 200: List of users
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for searchUsersByQuery Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/search-users-by-query/
@@ -369,6 +399,9 @@ interface SearchApi {
      *  - 200: List of users with the detailed information
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for searchUsersByStatus Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/search-users-by-status/

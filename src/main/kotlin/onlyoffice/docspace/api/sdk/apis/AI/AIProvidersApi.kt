@@ -27,6 +27,8 @@ import onlyoffice.docspace.api.sdk.models.AiProviderArrayWrapper
 import onlyoffice.docspace.api.sdk.models.AiProviderWrapper
 import onlyoffice.docspace.api.sdk.models.CreateProviderRequestDto
 import onlyoffice.docspace.api.sdk.models.DefaultProviderWrapper
+import onlyoffice.docspace.api.sdk.models.ModelSettingsArrayWrapper
+import onlyoffice.docspace.api.sdk.models.PreviewProviderModelsRequestDto
 import onlyoffice.docspace.api.sdk.models.ProviderSettingsArrayWrapper
 import onlyoffice.docspace.api.sdk.models.RemoveProviderRequestDto
 import onlyoffice.docspace.api.sdk.models.SetDefaultProviderRequestDto
@@ -42,6 +44,9 @@ interface AIProvidersApi {
      *  - 400: Invalid connection data or provider with this name already exists
      *  - 403: You don't have enough permission to manage providers
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for addProvider Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/add-provider/
@@ -61,6 +66,9 @@ interface AIProvidersApi {
      *  - 204: The providers were successfully deleted
      *  - 403: You don't have enough permission to manage providers
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for deleteProviders Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-providers/
@@ -79,6 +87,9 @@ interface AIProvidersApi {
      * Responses:
      *  - 200: List of available AI provider types
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getAvailableProviders Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-available-providers/
@@ -96,6 +107,9 @@ interface AIProvidersApi {
      * Responses:
      *  - 200: Default provider information or null if not set
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getDefaultProvider Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-default-provider/
@@ -107,12 +121,38 @@ interface AIProvidersApi {
     suspend fun getDefaultProvider(): Response<DefaultProviderWrapper>
 
     /**
+     * GET api/2.0/ai/providers/{providerId}/models
+     * Get all models for a provider with their settings
+     * Returns the full list of AI models available from a provider, including both recommended and additional models.  Each model includes its current settings: enabled state, display alias, and capabilities (vision, tool calling, thinking).  Recommended models are enabled by default and their alias and capabilities come from configuration.  Additional models are disabled by default and can be configured by the admin.
+     * Responses:
+     *  - 200: List of models with settings
+     *  - 403: You don't have enough permission to manage providers
+     *  - 404: Provider not found
+     *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *
+     * REST API Reference for getProviderModels Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-provider-models/
+     *
+     *
+     * @param providerId The identifier of the AI provider.
+     * @return [ModelSettingsArrayWrapper]
+     */
+    @GET("api/2.0/ai/providers/{providerId}/models")
+    suspend fun getProviderModels(@Path("providerId") providerId: kotlin.Int): Response<ModelSettingsArrayWrapper>
+
+    /**
      * GET api/2.0/ai/providers
      * Get AI providers
      * Returns a paginated list of AI providers configured for the current tenant.  Supports pagination via the startIndex and count query parameters. The total number of providers is included in the response metadata.
      * Responses:
      *  - 200: Paginated list of AI providers
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getProviders Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-providers/
@@ -126,6 +166,29 @@ interface AIProvidersApi {
     suspend fun getProviders(@Query("startIndex") startIndex: kotlin.Int? = null, @Query("count") count: kotlin.Int? = null): Response<AiProviderArrayWrapper>
 
     /**
+     * POST api/2.0/ai/providers/models/preview
+     * Preview models for a new AI provider
+     * Connects to the specified AI provider using the provided credentials and returns the available models  with their default settings. This is used to preview models before saving the provider.  Recommended models are enabled by default with configuration-defined settings.  Additional models are disabled by default with empty capabilities.
+     * Responses:
+     *  - 200: List of models with default settings
+     *  - 400: Invalid connection data or unsupported provider type
+     *  - 403: You don't have enough permission to manage providers
+     *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *
+     * REST API Reference for previewProviderModels Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/preview-provider-models/
+     *
+     *
+     * @param previewProviderModelsRequestDto  (optional)
+     * @return [ModelSettingsArrayWrapper]
+     */
+    @POST("api/2.0/ai/providers/models/preview")
+    suspend fun previewProviderModels(@Body previewProviderModelsRequestDto: PreviewProviderModelsRequestDto? = null): Response<ModelSettingsArrayWrapper>
+
+    /**
      * PUT api/2.0/ai/providers/default
      * Set the default AI provider
      * Sets the default AI provider and model for the current tenant.  The specified provider and model will be used as the default for all new AI chat sessions within the tenant.
@@ -134,6 +197,9 @@ interface AIProvidersApi {
      *  - 403: You don't have enough permission to manage providers
      *  - 404: Provider not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for setDefaultProvider Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-default-provider/
@@ -155,6 +221,9 @@ interface AIProvidersApi {
      *  - 403: You don't have enough permission to manage providers
      *  - 404: The provider with the specified ID was not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for updateProvider Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-provider/

@@ -35,6 +35,9 @@ interface CSPApi {
      *  - 200: Ok
      *  - 400: Exception in Domains
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for configureCsp Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/configure-csp/
@@ -52,6 +55,9 @@ interface CSPApi {
      * Returns the CSP (Content Security Policy) settings for the current portal.
      * Responses:
      *  - 200: Ok
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getCspSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-csp-settings/

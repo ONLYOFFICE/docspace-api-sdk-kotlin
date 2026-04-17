@@ -33,7 +33,6 @@ import com.squareup.moshi.JsonClass
  *
  * @param id The user ID.
  * @param displayName The HTML-encoded user's display name formatted according to the default format for the current culture.
- * @param title The user title.
  * @param avatar The user avatar.
  * @param avatarOriginal The user original size avatar.
  * @param avatarMax The user maximum size avatar.
@@ -47,13 +46,10 @@ import com.squareup.moshi.JsonClass
  * @param userName The user username.
  * @param email The user email.
  * @param contacts The list of user contacts.
- * @param birthday 
- * @param sex The user sex.
  * @param status 
  * @param activationStatus 
  * @param terminated 
  * @param department The user department.
- * @param workFrom 
  * @param groups The list of user groups.
  * @param location The user location.
  * @param notes The user notes.
@@ -91,10 +87,6 @@ data class EmployeeFullDto (
     /* The HTML-encoded user's display name formatted according to the default format for the current culture. */
     @Json(name = "displayName")
     val displayName: kotlin.String? = null,
-
-    /* The user title. */
-    @Json(name = "title")
-    val title: kotlin.String? = null,
 
     /* The user avatar. */
     @Json(name = "avatar")
@@ -148,13 +140,6 @@ data class EmployeeFullDto (
     @Json(name = "contacts")
     val contacts: kotlin.collections.List<Contact>? = null,
 
-    @Json(name = "birthday")
-    val birthday: ApiDateTime? = null,
-
-    /* The user sex. */
-    @Json(name = "sex")
-    val sex: kotlin.String? = null,
-
     @Json(name = "status")
     val status: EmployeeStatus? = null,
 
@@ -167,9 +152,6 @@ data class EmployeeFullDto (
     /* The user department. */
     @Json(name = "department")
     val department: kotlin.String? = null,
-
-    @Json(name = "workFrom")
-    val workFrom: ApiDateTime? = null,
 
     /* The list of user groups. */
     @Json(name = "groups")

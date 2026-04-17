@@ -49,6 +49,7 @@ import onlyoffice.docspace.api.sdk.models.SearchArea
 import onlyoffice.docspace.api.sdk.models.SortOrder
 import onlyoffice.docspace.api.sdk.models.StringWrapper
 import onlyoffice.docspace.api.sdk.models.UploadRequestDto
+import onlyoffice.docspace.api.sdk.models.XlsxReportResponseWrapper
 
 import okhttp3.MultipartBody
 
@@ -60,6 +61,9 @@ interface FoldersApi {
      * Responses:
      *  - 200: Inserted file
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for checkUpload Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/check-upload/
@@ -79,6 +83,9 @@ interface FoldersApi {
      * Responses:
      *  - 200: New folder parameters
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for createFolder Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-folder/
@@ -99,6 +106,9 @@ interface FoldersApi {
      *  - 200: Folders security information
      *  - 404: Not Found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for createFolderPrimaryExternalLink Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-folder-primary-external-link/
@@ -120,6 +130,9 @@ interface FoldersApi {
      *  - 403: You don't have enough permission to perform the operation
      *  - 404: The required folder was not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for createReportFolderHistory Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-report-folder-history/
@@ -138,6 +151,9 @@ interface FoldersApi {
      * Responses:
      *  - 200: List of file operations
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for deleteFolder Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-folder/
@@ -155,20 +171,23 @@ interface FoldersApi {
      * Generate XLSX report by folder
      * Triggers asynchronous XLSX report generation for the specified form results folder.
      * Responses:
-     *  - 200: Original form file information
+     *  - 200: Ok
      *  - 403: You do not have enough permissions to perform this action
-     *  - 404: Form results folder not found
+     *  - 404: The required folder was not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for generateXlsxByFolder Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/generate-xlsx-by-folder/
      *
      *
      * @param folderId The folder unique identifier.
-     * @return [FileIntegerWrapper]
+     * @return [XlsxReportResponseWrapper]
      */
     @POST("api/2.0/files/folder/{folderId}/xlsx")
-    suspend fun generateXlsxByFolder(@Path("folderId") folderId: kotlin.Int): Response<FileIntegerWrapper>
+    suspend fun generateXlsxByFolder(@Path("folderId") folderId: kotlin.Int): Response<XlsxReportResponseWrapper>
 
     /**
      * GET api/2.0/files/@favorites
@@ -179,6 +198,9 @@ interface FoldersApi {
      *  - 403: You don't have enough permission to view the folder content
      *  - 404: The required folder was not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getFavoritesFolder Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-favorites-folder/
@@ -203,6 +225,9 @@ interface FoldersApi {
      * Responses:
      *  - 200: Used space of files in the root folders
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getFilesUsedSpace Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-files-used-space/
@@ -219,6 +244,9 @@ interface FoldersApi {
      * Returns the form filter of a folder with the ID specified in the request.
      * Responses:
      *  - 200: Ok
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getFolder Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder/
@@ -238,6 +266,9 @@ interface FoldersApi {
      *  - 200: Folder contents
      *  - 403: You don't have enough permission to view the folder content
      *  - 404: The required folder was not found
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getFolderByFolderId Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-by-folder-id/
@@ -274,6 +305,9 @@ interface FoldersApi {
      *  - 403: You don't have enough permission to perform the operation
      *  - 404: The required folder was not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getFolderHistory Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-history/
@@ -295,6 +329,9 @@ interface FoldersApi {
      * Returns the detailed information about a folder with the ID specified in the request.
      * Responses:
      *  - 200: Folder parameters
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getFolderInfo Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-info/
@@ -313,6 +350,9 @@ interface FoldersApi {
      * Responses:
      *  - 200: Folder security information
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getFolderLinks Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-links/
@@ -332,6 +372,9 @@ interface FoldersApi {
      *  - 200: List of file entry information
      *  - 403: You don't have enough permission to view the folder content
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getFolderPath Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-path/
@@ -350,6 +393,9 @@ interface FoldersApi {
      * Responses:
      *  - 200: Folder security information
      *  - 404: Not Found
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getFolderPrimaryExternalLink Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-primary-external-link/
@@ -371,6 +417,9 @@ interface FoldersApi {
      *  - 200: List of file entry information
      *  - 403: You don't have enough permission to view the folder content
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getFolders Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folders/
@@ -391,6 +440,9 @@ interface FoldersApi {
      *  - 403: You don't have enough permission to view the folder content
      *  - 404: The required folder was not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getMyFolder Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-my-folder/
@@ -417,6 +469,9 @@ interface FoldersApi {
      *  - 200: List of file entry information
      *  - 403: You don't have enough permission to view the folder content
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getNewFolderItems Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-new-folder-items/
@@ -437,6 +492,9 @@ interface FoldersApi {
      *  - 403: You don't have enough permission to view the folder content
      *  - 404: The required folder was not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getPrivacyFolder Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-privacy-folder/
@@ -463,6 +521,9 @@ interface FoldersApi {
      *  - 403: You don't have enough permission to view the folder content
      *  - 404: The required folder was not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getRecentFolder Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-recent-folder/
@@ -493,6 +554,9 @@ interface FoldersApi {
      *  - 403: You don't have enough permission to view the folder content
      *  - 404: The required folder was not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getRootFolders Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-root-folders/
@@ -520,6 +584,9 @@ interface FoldersApi {
      *  - 403: You don't have enough permission to view the folder content
      *  - 404: The required folder was not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getTrashFolder Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-trash-folder/
@@ -547,6 +614,9 @@ interface FoldersApi {
      *  - 403: You don't have enough permission to create
      *  - 404: Folder not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for insertFile Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/insert-file/
@@ -580,6 +650,9 @@ interface FoldersApi {
      *  - 403: You don't have enough permission to create
      *  - 404: Folder not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for insertFileToMyFromBody Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/insert-file-to-my-from-body/
@@ -611,6 +684,9 @@ interface FoldersApi {
      *  - 200: Folder parameters
      *  - 403: You don't have enough permission to rename the folder
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for renameFolder Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/rename-folder/
@@ -630,6 +706,9 @@ interface FoldersApi {
      * Responses:
      *  - 200: List of file operations
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for setFolderOrder Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-folder-order/
@@ -649,6 +728,9 @@ interface FoldersApi {
      * Responses:
      *  - 200: Folder information
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for setFolderPrimaryExternalLink Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-folder-primary-external-link/
@@ -670,6 +752,9 @@ interface FoldersApi {
      *  - 403: You don't have enough permission to create
      *  - 404: Folder not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for uploadFile Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-file/
@@ -691,6 +776,9 @@ interface FoldersApi {
      *  - 403: You don't have enough permission to create
      *  - 404: File not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for uploadFileToMy Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-file-to-my/

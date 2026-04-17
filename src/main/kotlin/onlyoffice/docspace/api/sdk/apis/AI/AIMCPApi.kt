@@ -50,6 +50,9 @@ interface AIMCPApi {
      *  - 403: You don't have enough permission to perform the operation
      *  - 404: The room with the specified ID was not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for addRoomServers Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/add-room-servers/
@@ -71,6 +74,9 @@ interface AIMCPApi {
      *  - 400: Invalid server name, reserved name, duplicate name, incorrect credentials, or invalid endpoint URL
      *  - 403: You don't have permission to manage MCP servers
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for addServer Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/add-server/
@@ -92,6 +98,9 @@ interface AIMCPApi {
      *  - 403: You don't have enough permission to perform the operation
      *  - 404: The room or MCP server connection was not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for connectServer Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/connect-server/
@@ -114,6 +123,9 @@ interface AIMCPApi {
      *  - 403: You don't have enough permission to perform the operation
      *  - 404: The room with the specified ID was not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for deleteRoomServers Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-room-servers/
@@ -134,6 +146,9 @@ interface AIMCPApi {
      *  - 204: MCP servers were successfully deleted
      *  - 403: You don't have permission to manage MCP servers
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for deleteServer Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-server/
@@ -154,6 +169,9 @@ interface AIMCPApi {
      *  - 403: You don't have enough permission to perform the operation
      *  - 404: The room or MCP server connection was not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for disconnectServer Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/disconnect-server/
@@ -173,6 +191,9 @@ interface AIMCPApi {
      * Responses:
      *  - 200: Paginated list of active MCP servers available for room assignment
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getAvailableServers Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-available-servers/
@@ -194,6 +215,9 @@ interface AIMCPApi {
      *  - 403: You don't have enough permission to perform the operation
      *  - 404: The room with the specified ID was not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getRoomServers Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-servers/
@@ -214,6 +238,9 @@ interface AIMCPApi {
      *  - 403: You don't have permission to manage MCP servers
      *  - 404: The MCP server with the specified ID was not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getServer Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-server/
@@ -233,6 +260,9 @@ interface AIMCPApi {
      *  - 200: Paginated list of all registered MCP servers
      *  - 403: You don't have permission to manage MCP servers
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getServers Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-servers/
@@ -254,6 +284,9 @@ interface AIMCPApi {
      *  - 403: You don't have enough permission to perform the operation
      *  - 404: The room or MCP server was not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getTools Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tools/
@@ -275,6 +308,9 @@ interface AIMCPApi {
      *  - 403: You don't have permission to manage MCP servers
      *  - 404: The MCP server with the specified ID was not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for setServerStatus Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-server-status/
@@ -296,6 +332,9 @@ interface AIMCPApi {
      *  - 403: You don't have enough permission to perform the operation
      *  - 404: The room or MCP server was not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for setTools Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-tools/
@@ -319,6 +358,9 @@ interface AIMCPApi {
      *  - 403: You don't have permission to manage MCP servers
      *  - 404: The MCP server with the specified ID was not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for updateServer Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-server/

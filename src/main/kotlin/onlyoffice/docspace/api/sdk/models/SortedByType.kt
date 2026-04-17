@@ -88,7 +88,7 @@ enum class SortedByType(val value: kotlin.Int) {
          */
         fun decode(data: kotlin.Any?): SortedByType? = data?.let {
           val normalizedData = "$it".lowercase()
-          values().firstOrNull { value ->
+          entries.firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()
           }
         }

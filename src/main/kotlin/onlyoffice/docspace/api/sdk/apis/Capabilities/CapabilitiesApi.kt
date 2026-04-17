@@ -32,6 +32,9 @@ interface CapabilitiesApi {
      * Returns the information about portal capabilities.
      * Responses:
      *  - 200: Portal capabilities
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getPortalCapabilities Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-portal-capabilities/

@@ -36,6 +36,9 @@ interface OwnerApi {
      *  - 400: Owner's email is not activated
      *  - 403: Collaborator can not be an owner
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for sendOwnerChangeInstructions Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/send-owner-change-instructions/
@@ -56,6 +59,9 @@ interface OwnerApi {
      *  - 400: The user could not be found
      *  - 409: 
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for updatePortalOwner Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-portal-owner/

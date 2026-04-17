@@ -19,11 +19,11 @@ package onlyoffice.docspace.api.sdk.models
 import onlyoffice.docspace.api.sdk.models.ApiDateTime
 import onlyoffice.docspace.api.sdk.models.ChatSettingsDto
 import onlyoffice.docspace.api.sdk.models.EmployeeDto
-import onlyoffice.docspace.api.sdk.models.FileEntryDtoIntegerAllOfAvailableShareRights
-import onlyoffice.docspace.api.sdk.models.FileEntryDtoIntegerAllOfSecurity
-import onlyoffice.docspace.api.sdk.models.FileEntryDtoIntegerAllOfShareSettings
 import onlyoffice.docspace.api.sdk.models.FileEntryType
 import onlyoffice.docspace.api.sdk.models.FileShare
+import onlyoffice.docspace.api.sdk.models.FolderDtoIntegerAvailableShareRights
+import onlyoffice.docspace.api.sdk.models.FolderDtoIntegerSecurity
+import onlyoffice.docspace.api.sdk.models.FolderDtoIntegerShareSettings
 import onlyoffice.docspace.api.sdk.models.FolderType
 import onlyoffice.docspace.api.sdk.models.Logo
 import onlyoffice.docspace.api.sdk.models.RoomDataLifetimeDto
@@ -56,7 +56,6 @@ import com.squareup.moshi.JsonClass
  * @param providerId The provider ID of the file entry.
  * @param order The order of the file entry.
  * @param isFavorite Specifies if the file is a favorite or not.
- * @param fileEntryType 
  * @param id The file entry ID.
  * @param rootFolderId The root folder ID of the file entry.
  * @param originId The origin ID of the file entry.
@@ -93,6 +92,7 @@ import com.squareup.moshi.JsonClass
  * @param usedSpace How much folder space is used (counter).
  * @param passwordProtected Specifies if the folder is password protected or not.
  * @param expired Specifies if an external link to the folder is expired or not.
+ * @param fileEntryType 
  * @param chatSettings 
  * @param rootRoomType 
  * @param saveFormAsXLSX Specifies whether to save form data as XLSX file.
@@ -172,9 +172,6 @@ data class FolderDtoString (
     @Json(name = "isFavorite")
     val isFavorite: kotlin.Boolean? = null,
 
-    @Json(name = "fileEntryType")
-    val fileEntryType: FileEntryType? = null,
-
     /* The file entry ID. */
     @Json(name = "id")
     val id: kotlin.String? = null,
@@ -204,13 +201,13 @@ data class FolderDtoString (
     val canShare: kotlin.Boolean? = null,
 
     @Json(name = "shareSettings")
-    val shareSettings: FileEntryDtoIntegerAllOfShareSettings? = null,
+    val shareSettings: FolderDtoIntegerShareSettings? = null,
 
     @Json(name = "security")
-    val security: FileEntryDtoIntegerAllOfSecurity? = null,
+    val security: FolderDtoIntegerSecurity? = null,
 
     @Json(name = "availableShareRights")
-    val availableShareRights: FileEntryDtoIntegerAllOfAvailableShareRights? = null,
+    val availableShareRights: FolderDtoIntegerAvailableShareRights? = null,
 
     /* The request token of the file entry. */
     @Json(name = "requestToken")
@@ -310,6 +307,9 @@ data class FolderDtoString (
     @Json(name = "expired")
     @Deprecated(message = "This property is deprecated.")
     val expired: kotlin.Boolean? = null,
+
+    @Json(name = "fileEntryType")
+    val fileEntryType: FileEntryType? = null,
 
     @Json(name = "chatSettings")
     val chatSettings: ChatSettingsDto? = null,

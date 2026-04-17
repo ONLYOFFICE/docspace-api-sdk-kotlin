@@ -85,6 +85,18 @@ Authentication schemes defined for the API:
 - **Location**: Cookie
 
 
+## Rate Limiting
+
+All API responses may include the following rate limiting headers:
+
+| Header | Description |
+|--------|-------------|
+| `X-RateLimit-Limit` | Sliding window rate limit: 1500 requests per minute per user/IP. |
+| `X-RateLimit-Remaining` | Number of requests remaining in the current sliding window (1500 req/min). Concurrent limits also apply: 50 parallel GET requests, 15 parallel POST/PUT requests. |
+| `X-RateLimit-Reset` | Unix timestamp (seconds) when the current sliding window rate limit resets. |
+| `Retry-After` | Seconds to wait before retrying. Up to 60s for the sliding window (1500 req/min), up to 86400s for the daily POST/PUT limit (10000/day). |
+
+
 <a id="documentation-for-api-endpoints"></a>
 ## Documentation for API Endpoints
 
@@ -313,9 +325,19 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
         <td>Get the default AI provider</td>
       </tr>
       <tr>
+        <td><a href="docs/AIProvidersApi.md#getprovidermodels"><strong>getProviderModels</strong></a></td>
+        <td><strong>GET</strong> api/2.0/ai/providers/{providerId}/models</td>
+        <td>Get all models for a provider with their settings</td>
+      </tr>
+      <tr>
         <td><a href="docs/AIProvidersApi.md#getproviders"><strong>getProviders</strong></a></td>
         <td><strong>GET</strong> api/2.0/ai/providers</td>
         <td>Get AI providers</td>
+      </tr>
+      <tr>
+        <td><a href="docs/AIProvidersApi.md#previewprovidermodels"><strong>previewProviderModels</strong></a></td>
+        <td><strong>POST</strong> api/2.0/ai/providers/models/preview</td>
+        <td>Preview models for a new AI provider</td>
       </tr>
       <tr>
         <td><a href="docs/AIProvidersApi.md#setdefaultprovider"><strong>setDefaultProvider</strong></a></td>
@@ -742,6 +764,11 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
         <td><a href="docs/FilesFilesApi.md#getreferencedata"><strong>getReferenceData</strong></a></td>
         <td><strong>POST</strong> api/2.0/files/file/referencedata</td>
         <td>Get reference data</td>
+      </tr>
+      <tr>
+        <td><a href="docs/FilesFilesApi.md#getxlsx"><strong>getXlsx</strong></a></td>
+        <td><strong>GET</strong> api/2.0/files/file/{fileId}/xlsx</td>
+        <td>Get XLSX report generation status</td>
       </tr>
       <tr>
         <td><a href="docs/FilesFilesApi.md#isformpdf"><strong>isFormPDF</strong></a></td>
@@ -3304,7 +3331,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
       <tr>
         <td><a href="docs/SettingsTFASettingsApi.md#gettfaconfirmurl"><strong>getTfaConfirmUrl</strong></a></td>
         <td><strong>GET</strong> api/2.0/settings/tfaapp/confirm</td>
-        <td>Get confirmation email</td>
+        <td>Get TFA confirmation URL</td>
       </tr>
       <tr>
         <td><a href="docs/SettingsTFASettingsApi.md#gettfasettings"><strong>getTfaSettings</strong></a></td>
@@ -3339,7 +3366,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
       <tr>
         <td><a href="docs/SettingsTFASettingsApi.md#updatetfasettingslink"><strong>updateTfaSettingsLink</strong></a></td>
         <td><strong>PUT</strong> api/2.0/settings/tfaappwithlink</td>
-        <td>Get a confirmation email for updating TFA settings</td>
+        <td>Updates TFA settings</td>
       </tr>
     <tr>
         <td colspan="3" style="text-align: center;"><strong>TelegramApi</strong></td>
@@ -3489,6 +3516,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
  - [onlyoffice.docspace.api.sdk.models.AiChatPrice](docs/AiChatPrice.md)
  - [onlyoffice.docspace.api.sdk.models.AiEmbeddingModelPricing](docs/AiEmbeddingModelPricing.md)
  - [onlyoffice.docspace.api.sdk.models.AiEmbeddingPrice](docs/AiEmbeddingPrice.md)
+ - [onlyoffice.docspace.api.sdk.models.AiModelCapabilities](docs/AiModelCapabilities.md)
  - [onlyoffice.docspace.api.sdk.models.AiPricesResponse](docs/AiPricesResponse.md)
  - [onlyoffice.docspace.api.sdk.models.AiPricesResponseWrapper](docs/AiPricesResponseWrapper.md)
  - [onlyoffice.docspace.api.sdk.models.AiProviderArrayWrapper](docs/AiProviderArrayWrapper.md)
@@ -3723,8 +3751,9 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
  - [onlyoffice.docspace.api.sdk.models.EngineType](docs/EngineType.md)
  - [onlyoffice.docspace.api.sdk.models.EntryType](docs/EntryType.md)
  - [onlyoffice.docspace.api.sdk.models.ExchangeToken200Response](docs/ExchangeToken200Response.md)
- - [onlyoffice.docspace.api.sdk.models.ExportChatRequestBodyInteger](docs/ExportChatRequestBodyInteger.md)
- - [onlyoffice.docspace.api.sdk.models.ExportMessageRequestBodyInteger](docs/ExportMessageRequestBodyInteger.md)
+ - [onlyoffice.docspace.api.sdk.models.ExportChatRequestBody](docs/ExportChatRequestBody.md)
+ - [onlyoffice.docspace.api.sdk.models.ExportChatRequestBodyFolderId](docs/ExportChatRequestBodyFolderId.md)
+ - [onlyoffice.docspace.api.sdk.models.ExportMessageRequestBody](docs/ExportMessageRequestBody.md)
  - [onlyoffice.docspace.api.sdk.models.ExternalDatabaseSettings](docs/ExternalDatabaseSettings.md)
  - [onlyoffice.docspace.api.sdk.models.ExternalDatabaseType](docs/ExternalDatabaseType.md)
  - [onlyoffice.docspace.api.sdk.models.ExternalShareDto](docs/ExternalShareDto.md)
@@ -3734,15 +3763,11 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
  - [onlyoffice.docspace.api.sdk.models.FeedbackConfig](docs/FeedbackConfig.md)
  - [onlyoffice.docspace.api.sdk.models.FileConflictResolveType](docs/FileConflictResolveType.md)
  - [onlyoffice.docspace.api.sdk.models.FileDtoInteger](docs/FileDtoInteger.md)
- - [onlyoffice.docspace.api.sdk.models.FileDtoIntegerAllOfViewAccessibility](docs/FileDtoIntegerAllOfViewAccessibility.md)
+ - [onlyoffice.docspace.api.sdk.models.FileDtoIntegerViewAccessibility](docs/FileDtoIntegerViewAccessibility.md)
  - [onlyoffice.docspace.api.sdk.models.FileEntryBaseArrayWrapper](docs/FileEntryBaseArrayWrapper.md)
  - [onlyoffice.docspace.api.sdk.models.FileEntryBaseDto](docs/FileEntryBaseDto.md)
  - [onlyoffice.docspace.api.sdk.models.FileEntryBaseWrapper](docs/FileEntryBaseWrapper.md)
  - [onlyoffice.docspace.api.sdk.models.FileEntryDtoInteger](docs/FileEntryDtoInteger.md)
- - [onlyoffice.docspace.api.sdk.models.FileEntryDtoIntegerAllOfAvailableShareRights](docs/FileEntryDtoIntegerAllOfAvailableShareRights.md)
- - [onlyoffice.docspace.api.sdk.models.FileEntryDtoIntegerAllOfSecurity](docs/FileEntryDtoIntegerAllOfSecurity.md)
- - [onlyoffice.docspace.api.sdk.models.FileEntryDtoIntegerAllOfShareSettings](docs/FileEntryDtoIntegerAllOfShareSettings.md)
- - [onlyoffice.docspace.api.sdk.models.FileEntryDtoString](docs/FileEntryDtoString.md)
  - [onlyoffice.docspace.api.sdk.models.FileEntryIntegerArrayWrapper](docs/FileEntryIntegerArrayWrapper.md)
  - [onlyoffice.docspace.api.sdk.models.FileEntryType](docs/FileEntryType.md)
  - [onlyoffice.docspace.api.sdk.models.FileIntegerArrayWrapper](docs/FileIntegerArrayWrapper.md)
@@ -3786,6 +3811,9 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
  - [onlyoffice.docspace.api.sdk.models.FolderContentIntegerArrayWrapper](docs/FolderContentIntegerArrayWrapper.md)
  - [onlyoffice.docspace.api.sdk.models.FolderContentIntegerWrapper](docs/FolderContentIntegerWrapper.md)
  - [onlyoffice.docspace.api.sdk.models.FolderDtoInteger](docs/FolderDtoInteger.md)
+ - [onlyoffice.docspace.api.sdk.models.FolderDtoIntegerAvailableShareRights](docs/FolderDtoIntegerAvailableShareRights.md)
+ - [onlyoffice.docspace.api.sdk.models.FolderDtoIntegerSecurity](docs/FolderDtoIntegerSecurity.md)
+ - [onlyoffice.docspace.api.sdk.models.FolderDtoIntegerShareSettings](docs/FolderDtoIntegerShareSettings.md)
  - [onlyoffice.docspace.api.sdk.models.FolderDtoString](docs/FolderDtoString.md)
  - [onlyoffice.docspace.api.sdk.models.FolderIntegerArrayWrapper](docs/FolderIntegerArrayWrapper.md)
  - [onlyoffice.docspace.api.sdk.models.FolderIntegerWrapper](docs/FolderIntegerWrapper.md)
@@ -3904,6 +3932,9 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
  - [onlyoffice.docspace.api.sdk.models.MobileRequestsDto](docs/MobileRequestsDto.md)
  - [onlyoffice.docspace.api.sdk.models.ModelArrayWrapper](docs/ModelArrayWrapper.md)
  - [onlyoffice.docspace.api.sdk.models.ModelDto](docs/ModelDto.md)
+ - [onlyoffice.docspace.api.sdk.models.ModelSettingsArrayWrapper](docs/ModelSettingsArrayWrapper.md)
+ - [onlyoffice.docspace.api.sdk.models.ModelSettingsDto](docs/ModelSettingsDto.md)
+ - [onlyoffice.docspace.api.sdk.models.ModelSettingsItemDto](docs/ModelSettingsItemDto.md)
  - [onlyoffice.docspace.api.sdk.models.Module](docs/Module.md)
  - [onlyoffice.docspace.api.sdk.models.ModuleWrapper](docs/ModuleWrapper.md)
  - [onlyoffice.docspace.api.sdk.models.MultiSizeLogoCover](docs/MultiSizeLogoCover.md)
@@ -3955,6 +3986,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
  - [onlyoffice.docspace.api.sdk.models.PermissionsConfig](docs/PermissionsConfig.md)
  - [onlyoffice.docspace.api.sdk.models.PluginsConfig](docs/PluginsConfig.md)
  - [onlyoffice.docspace.api.sdk.models.PluginsDto](docs/PluginsDto.md)
+ - [onlyoffice.docspace.api.sdk.models.PreviewProviderModelsRequestDto](docs/PreviewProviderModelsRequestDto.md)
  - [onlyoffice.docspace.api.sdk.models.PriceDto](docs/PriceDto.md)
  - [onlyoffice.docspace.api.sdk.models.ProblemDetail](docs/ProblemDetail.md)
  - [onlyoffice.docspace.api.sdk.models.ProductAdministratorDto](docs/ProductAdministratorDto.md)
@@ -4042,7 +4074,6 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
  - [onlyoffice.docspace.api.sdk.models.SettingsWrapper](docs/SettingsWrapper.md)
  - [onlyoffice.docspace.api.sdk.models.SetupCode](docs/SetupCode.md)
  - [onlyoffice.docspace.api.sdk.models.SetupCodeWrapper](docs/SetupCodeWrapper.md)
- - [onlyoffice.docspace.api.sdk.models.SexEnum](docs/SexEnum.md)
  - [onlyoffice.docspace.api.sdk.models.ShareFilterType](docs/ShareFilterType.md)
  - [onlyoffice.docspace.api.sdk.models.SignupAccountRequestDto](docs/SignupAccountRequestDto.md)
  - [onlyoffice.docspace.api.sdk.models.Size](docs/Size.md)
@@ -4132,6 +4163,8 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
  - [onlyoffice.docspace.api.sdk.models.TenantWalletSettingsWrapper](docs/TenantWalletSettingsWrapper.md)
  - [onlyoffice.docspace.api.sdk.models.TenantWrapper](docs/TenantWrapper.md)
  - [onlyoffice.docspace.api.sdk.models.TerminateRequestDto](docs/TerminateRequestDto.md)
+ - [onlyoffice.docspace.api.sdk.models.TfaAppCodeArrayWrapper](docs/TfaAppCodeArrayWrapper.md)
+ - [onlyoffice.docspace.api.sdk.models.TfaAppCodeDto](docs/TfaAppCodeDto.md)
  - [onlyoffice.docspace.api.sdk.models.TfaRequestsDto](docs/TfaRequestsDto.md)
  - [onlyoffice.docspace.api.sdk.models.TfaRequestsDtoType](docs/TfaRequestsDtoType.md)
  - [onlyoffice.docspace.api.sdk.models.TfaSettingsArrayWrapper](docs/TfaSettingsArrayWrapper.md)
@@ -4223,6 +4256,8 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
  - [onlyoffice.docspace.api.sdk.models.WizardRequestsDto](docs/WizardRequestsDto.md)
  - [onlyoffice.docspace.api.sdk.models.WizardSettings](docs/WizardSettings.md)
  - [onlyoffice.docspace.api.sdk.models.WizardSettingsWrapper](docs/WizardSettingsWrapper.md)
+ - [onlyoffice.docspace.api.sdk.models.XlsxReportResponseDto](docs/XlsxReportResponseDto.md)
+ - [onlyoffice.docspace.api.sdk.models.XlsxReportResponseWrapper](docs/XlsxReportResponseWrapper.md)
 
 </details>
 

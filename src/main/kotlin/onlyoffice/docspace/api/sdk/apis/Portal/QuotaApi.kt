@@ -36,6 +36,9 @@ interface QuotaApi {
      *  - 200: Current portal quota
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getPortalQuota Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-portal-quota/
@@ -53,6 +56,9 @@ interface QuotaApi {
      * Responses:
      *  - 200: Current portal tariff
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getPortalTariff Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-portal-tariff/
@@ -71,6 +77,9 @@ interface QuotaApi {
      * Responses:
      *  - 200: Used portal space
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getPortalUsedSpace Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-portal-used-space/
@@ -88,6 +97,9 @@ interface QuotaApi {
      * Responses:
      *  - 200: Recommended portal quota
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getRightQuota Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-right-quota/

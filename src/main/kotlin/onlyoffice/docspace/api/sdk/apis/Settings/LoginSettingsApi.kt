@@ -34,6 +34,9 @@ interface LoginSettingsApi {
      * Responses:
      *  - 200: Login settings
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getLoginSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-login-settings/
@@ -51,6 +54,9 @@ interface LoginSettingsApi {
      * Responses:
      *  - 200: Login settings
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for setDefaultLoginSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-default-login-settings/
@@ -68,6 +74,9 @@ interface LoginSettingsApi {
      * Responses:
      *  - 200: Updated login settings
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for updateLoginSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-login-settings/

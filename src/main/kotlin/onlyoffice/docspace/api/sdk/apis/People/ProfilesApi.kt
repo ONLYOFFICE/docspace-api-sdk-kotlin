@@ -44,6 +44,9 @@ interface ProfilesApi {
      *  - 200: Newly added user with the detailed information
      *  - 403: The invitation link is invalid or its validity has expired
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for addMember Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/add-member/
@@ -63,6 +66,9 @@ interface ProfilesApi {
      *  - 200: Boolean result
      *  - 400: Incorrect email
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for checkUserExistsByEmail Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/check-user-exists-by-email/
@@ -85,6 +91,9 @@ interface ProfilesApi {
      *  - 403: You don't have enough permission to perform the operation or user is not suspended
      *  - 404: User not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for deleteMember Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-member/
@@ -105,6 +114,9 @@ interface ProfilesApi {
      *  - 403: You don't have enough permission to perform the operation
      *  - 404: User not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for deleteProfile Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-profile/
@@ -122,6 +134,9 @@ interface ProfilesApi {
      * Responses:
      *  - 200: List of users with the detailed information
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getAllProfiles Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-all-profiles/
@@ -146,6 +161,9 @@ interface ProfilesApi {
      * Responses:
      *  - 200: Claims
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getClaims Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-claims/
@@ -166,6 +184,9 @@ interface ProfilesApi {
      *  - 403: No permissions to perform this action
      *  - 404: User not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getProfileByEmail Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-profile-by-email/
@@ -188,6 +209,9 @@ interface ProfilesApi {
      *  - 400: Incorrect UserId
      *  - 404: User not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getProfileByUserId Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-profile-by-user-id/
@@ -206,6 +230,9 @@ interface ProfilesApi {
      * Responses:
      *  - 200: Detailed information about my profile
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getSelfProfile Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-self-profile/
@@ -226,6 +253,9 @@ interface ProfilesApi {
      *  - 402: The number of admins exceeds the limit
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for inviteUsers Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/invite-users/
@@ -247,6 +277,9 @@ interface ProfilesApi {
      *  - 403: No permissions to perform this action or users are not suspended
      *  - 409: Data reassign process is not complete
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for removeUsers Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/remove-users/
@@ -266,6 +299,9 @@ interface ProfilesApi {
      *  - 200: List of users with the detailed information
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for resendUserInvites Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/resend-user-invites/
@@ -287,6 +323,9 @@ interface ProfilesApi {
      *  - 403: You don't have enough permission to perform the operation
      *  - 404: User not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for updateMember Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-member/
@@ -309,6 +348,9 @@ interface ProfilesApi {
      *  - 403: You don't have enough permission to perform the operation
      *  - 404: User not found
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for updateMemberCulture Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-member-culture/

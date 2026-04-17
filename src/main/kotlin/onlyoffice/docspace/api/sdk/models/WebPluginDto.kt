@@ -117,11 +117,11 @@ data class WebPluginDto (
 
     /* The web plugin localized name. */
     @Json(name = "nameLocale")
-    val nameLocale: kotlin.collections.Map<kotlin.String, kotlin.String>? = null,
+    val nameLocale: kotlin.collections.Map<kotlin.String, kotlin.String?>? = null,
 
     /* The web plugin localized description. */
     @Json(name = "descriptionLocale")
-    val descriptionLocale: kotlin.collections.Map<kotlin.String, kotlin.String>? = null
+    val descriptionLocale: kotlin.collections.Map<kotlin.String, kotlin.String?>? = null
 
 ) {
 

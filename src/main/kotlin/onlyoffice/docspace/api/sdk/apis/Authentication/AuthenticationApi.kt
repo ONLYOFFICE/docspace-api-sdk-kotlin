@@ -43,6 +43,8 @@ interface AuthenticationApi {
      *  - 401: User authentication failed
      *  - 404: The user could not be found
      *  - 429: Too many login attempts. Please try again later
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for authenticateMe Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/authenticate-me/
@@ -64,6 +66,8 @@ interface AuthenticationApi {
      *  - 401: User authentication failed
      *  - 403: Auth code is not available
      *  - 429: Too many login attempts. Please try again later
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for authenticateMeFromBodyWithCode Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/authenticate-me-from-body-with-code/
@@ -82,6 +86,9 @@ interface AuthenticationApi {
      * Opens a confirmation email URL to validate a certain action (employee invitation, portal removal, phone activation, etc.).
      * Responses:
      *  - 200: Validation result: Ok, Invalid, or Expired
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for checkConfirm Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/check-confirm/
@@ -99,6 +106,9 @@ interface AuthenticationApi {
      * Checks if the current user is authenticated or not.
      * Responses:
      *  - 200: Boolean value: true if the current user is authenticated
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getIsAuthentificated Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-is-authentificated/
@@ -115,6 +125,9 @@ interface AuthenticationApi {
      * Logs out of the current user account.
      * Responses:
      *  - 200: Ok
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for logout Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/logout/
@@ -132,6 +145,9 @@ interface AuthenticationApi {
      * Responses:
      *  - 200: Authentication data
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for saveMobilePhone Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/save-mobile-phone/
@@ -151,6 +167,8 @@ interface AuthenticationApi {
      *  - 200: Authentication data
      *  - 400: userName, password or passworHash is empty
      *  - 429: Too many login attempts. Please try again later
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for sendSmsCode Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/send-sms-code/

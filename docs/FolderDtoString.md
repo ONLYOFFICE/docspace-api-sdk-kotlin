@@ -24,7 +24,6 @@
 | **providerId** | **kotlin.Int** | The provider ID of the file entry. |  [optional] |
 | **order** | **kotlin.String** | The order of the file entry. |  [optional] |
 | **isFavorite** | **kotlin.Boolean** | Specifies if the file is a favorite or not. |  [optional] |
-| **fileEntryType** | [**FileEntryType**](FileEntryType.md) |  |  [optional] |
 | **id** | **kotlin.String** | The file entry ID. |  [optional] |
 | **rootFolderId** | **kotlin.String** | The root folder ID of the file entry. |  [optional] |
 | **originId** | **kotlin.String** | The origin ID of the file entry. |  [optional] |
@@ -32,9 +31,9 @@
 | **originTitle** | **kotlin.String** | The origin title of the file entry. |  [optional] |
 | **originRoomTitle** | **kotlin.String** | The origin room title of the file entry. |  [optional] |
 | **canShare** | **kotlin.Boolean** | Specifies if the file entry can be shared or not. |  [optional] |
-| **shareSettings** | [**FileEntryDtoIntegerAllOfShareSettings**](FileEntryDtoIntegerAllOfShareSettings.md) |  |  [optional] |
-| **security** | [**FileEntryDtoIntegerAllOfSecurity**](FileEntryDtoIntegerAllOfSecurity.md) |  |  [optional] |
-| **availableShareRights** | [**FileEntryDtoIntegerAllOfAvailableShareRights**](FileEntryDtoIntegerAllOfAvailableShareRights.md) |  |  [optional] |
+| **shareSettings** | [**FolderDtoIntegerShareSettings**](FolderDtoIntegerShareSettings.md) |  |  [optional] |
+| **security** | [**FolderDtoIntegerSecurity**](FolderDtoIntegerSecurity.md) |  |  [optional] |
+| **availableShareRights** | [**FolderDtoIntegerAvailableShareRights**](FolderDtoIntegerAvailableShareRights.md) |  |  [optional] |
 | **requestToken** | **kotlin.String** | The request token of the file entry. |  [optional] |
 | **&#x60;external&#x60;** | **kotlin.Boolean** | Specifies if the folder can be accessed via an external link or not. |  [optional] |
 | **expirationDate** | [**ApiDateTime**](ApiDateTime.md) |  |  [optional] |
@@ -61,6 +60,7 @@
 | **usedSpace** | **kotlin.Long** | How much folder space is used (counter). |  [optional] |
 | **passwordProtected** | **kotlin.Boolean** | Specifies if the folder is password protected or not. |  [optional] |
 | **expired** | **kotlin.Boolean** | Specifies if an external link to the folder is expired or not. |  [optional] |
+| **fileEntryType** | [**FileEntryType**](FileEntryType.md) |  |  [optional] |
 | **chatSettings** | [**ChatSettingsDto**](ChatSettingsDto.md) |  |  [optional] |
 | **rootRoomType** | [**RoomType**](RoomType.md) |  |  [optional] |
 | **saveFormAsXLSX** | **kotlin.Boolean** | Specifies whether to save form data as XLSX file. |  [optional] |

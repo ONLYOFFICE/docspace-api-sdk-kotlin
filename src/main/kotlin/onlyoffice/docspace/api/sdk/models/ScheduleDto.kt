@@ -41,7 +41,7 @@ data class ScheduleDto (
 
     /* The backup storage parameters. */
     @Json(name = "storageParams")
-    val storageParams: kotlin.collections.Map<kotlin.String, kotlin.String>?,
+    val storageParams: kotlin.collections.Map<kotlin.String, kotlin.String?>?,
 
     @Json(name = "cronParams")
     val cronParams: CronParams,
