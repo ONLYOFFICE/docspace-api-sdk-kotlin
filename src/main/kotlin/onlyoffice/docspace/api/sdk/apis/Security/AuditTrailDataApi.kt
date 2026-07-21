@@ -64,6 +64,7 @@ interface AuditTrailDataApi {
      * Responses:
      *  - 200: List of filtered audit trail data
      *  - 402: Your pricing plan does not support this option
+     *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
@@ -95,6 +96,7 @@ interface AuditTrailDataApi {
      * Responses:
      *  - 200: Audit settings
      *  - 402: Your pricing plan does not support this option
+     *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
@@ -115,6 +117,8 @@ interface AuditTrailDataApi {
      * Returns the mappers for the audit trail types.
      * Responses:
      *  - 200: Audit trail mappers
+     *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
@@ -136,6 +140,8 @@ interface AuditTrailDataApi {
      * Returns all the available audit trail types.
      * Responses:
      *  - 200: Audit trail types
+     *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
@@ -156,6 +162,7 @@ interface AuditTrailDataApi {
      * Responses:
      *  - 200: List of audit trail data
      *  - 402: Your pricing plan does not support this option
+     *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
@@ -178,6 +185,7 @@ interface AuditTrailDataApi {
      *  - 200: Audit trail settings
      *  - 400: Exception in LoginHistoryLifeTime or AuditTrailLifeTime
      *  - 402: Your pricing plan does not support this option
+     *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.

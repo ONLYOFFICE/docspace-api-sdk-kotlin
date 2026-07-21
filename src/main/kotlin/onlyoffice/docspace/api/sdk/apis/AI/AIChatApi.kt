@@ -26,7 +26,9 @@ import com.squareup.moshi.Json
 import onlyoffice.docspace.api.sdk.models.ChatArrayWrapper
 import onlyoffice.docspace.api.sdk.models.ChatWrapper
 import onlyoffice.docspace.api.sdk.models.ContinueChatBody
+import onlyoffice.docspace.api.sdk.models.EditorToolDecisionRequestBody
 import onlyoffice.docspace.api.sdk.models.ExportChatRequestBody
+import onlyoffice.docspace.api.sdk.models.GeneratedFileWrapper
 import onlyoffice.docspace.api.sdk.models.MessageArrayWrapper
 import onlyoffice.docspace.api.sdk.models.ModelArrayWrapper
 import onlyoffice.docspace.api.sdk.models.RenameChatBody
@@ -265,6 +267,28 @@ interface AIChatApi {
      */
     @PUT("api/2.0/ai/chats/{chatId}")
     suspend fun renameChat(@Path("chatId") chatId: java.util.UUID, @Body renameChatBody: RenameChatBody): Response<ChatWrapper>
+
+    /**
+     * POST api/2.0/ai/chats/tool-files/{callId}/decision
+     * Resolve a pending editor file-generation tool
+     * Submits the user's approval or denial for a pending editor generation tool call (docx, form, presentation).  On approval the file is created from the original tool arguments and information about it is returned,  while the suspended chat tool is resumed with the same result so the AI session can continue.
+     * Responses:
+     *  - 200: Information about the created file, or empty if the request was declined or has expired
+     *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *
+     * REST API Reference for resolveEditorTool Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/resolve-editor-tool/
+     *
+     *
+     * @param callId The unique identifier of the pending tool call awaiting the user's decision.
+     * @param editorToolDecisionRequestBody The decision parameters.
+     * @return [GeneratedFileWrapper]
+     */
+    @POST("api/2.0/ai/chats/tool-files/{callId}/decision")
+    suspend fun resolveEditorTool(@Path("callId") callId: kotlin.String, @Body editorToolDecisionRequestBody: EditorToolDecisionRequestBody): Response<GeneratedFileWrapper>
 
     /**
      * PUT api/2.0/ai/rooms/{roomId}/chats/config

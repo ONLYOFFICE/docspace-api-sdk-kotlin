@@ -17,6 +17,7 @@
 package onlyoffice.docspace.api.sdk.models
 
 import onlyoffice.docspace.api.sdk.models.ApiDateTime
+import onlyoffice.docspace.api.sdk.models.OperationType
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -37,6 +38,7 @@ import com.squareup.moshi.JsonClass
  * @param participantDisplayName The participant display name.
  * @param agentId AI Agent id.
  * @param agentTitle AI Agent name.
+ * @param type 
  */
 
 
@@ -91,7 +93,10 @@ data class OperationDto (
 
     /* AI Agent name. */
     @Json(name = "agentTitle")
-    val agentTitle: kotlin.String? = null
+    val agentTitle: kotlin.String? = null,
+
+    @Json(name = "type")
+    val type: OperationType? = null
 
 ) {
 

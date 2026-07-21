@@ -17,6 +17,7 @@
 | **participantDisplayName** | **kotlin.String** | The participant display name. |  [optional] |
 | **agentId** | **kotlin.String** | AI Agent id. |  [optional] |
 | **agentTitle** | **kotlin.String** | AI Agent name. |  [optional] |
+| **type** | [**OperationType**](OperationType.md) |  |  [optional] |
 
 
 

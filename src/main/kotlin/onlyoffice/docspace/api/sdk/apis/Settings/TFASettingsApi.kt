@@ -27,6 +27,7 @@ import onlyoffice.docspace.api.sdk.models.BooleanWrapper
 import onlyoffice.docspace.api.sdk.models.SetupCodeWrapper
 import onlyoffice.docspace.api.sdk.models.StringWrapper
 import onlyoffice.docspace.api.sdk.models.TfaAppCodeArrayWrapper
+import onlyoffice.docspace.api.sdk.models.TfaConfirmDataWrapper
 import onlyoffice.docspace.api.sdk.models.TfaRequestsDto
 import onlyoffice.docspace.api.sdk.models.TfaSettingsArrayWrapper
 import onlyoffice.docspace.api.sdk.models.TfaValidateRequestsDto
@@ -55,23 +56,23 @@ interface TFASettingsApi {
 
     /**
      * GET api/2.0/settings/tfaapp/confirm
-     * Get TFA confirmation URL
-     * Returns the confirmation URL for authorization via SMS or TFA application.
+     * Get TFA confirmation data
+     * Returns the confirmation data for authorization via SMS or TFA application.
      * Responses:
-     *  - 200: TFA confirmation URL
+     *  - 200: TFA confirmation data
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
-     * REST API Reference for getTfaConfirmUrl Operation
-     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tfa-confirm-url/
+     * REST API Reference for getTfaConfirmData Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tfa-confirm-data/
      *
      *
-     * @return [StringWrapper]
+     * @return [TfaConfirmDataWrapper]
      */
     @GET("api/2.0/settings/tfaapp/confirm")
-    suspend fun getTfaConfirmUrl(): Response<StringWrapper>
+    suspend fun getTfaConfirmData(): Response<TfaConfirmDataWrapper>
 
     /**
      * GET api/2.0/settings/tfaapp

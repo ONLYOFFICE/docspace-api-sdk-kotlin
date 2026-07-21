@@ -27,13 +27,12 @@ import com.squareup.moshi.JsonClass
  * The request parameters for generating a report on client operations.
  *
  * @param serviceName The service name.
- * @param writeOffServiceQuota Write-off of the quota for the service
  * @param startDate The report start date.
  * @param endDate The report end date.
  * @param participantName The participant name.
  * @param credit Specifies whether to include credit operations in the report.
  * @param debit Specifies whether to include debit operations in the report.
- * @param types 
+ * @param type 
  * @param status 
  * @param orderBy The field to order by.
  * @param orderType 
@@ -45,10 +44,6 @@ data class CustomerOperationsReportRequestDto (
     /* The service name. */
     @Json(name = "serviceName")
     val serviceName: kotlin.String? = null,
-
-    /* Write-off of the quota for the service */
-    @Json(name = "writeOffServiceQuota")
-    val writeOffServiceQuota: kotlin.Boolean? = null,
 
     /* The report start date. */
     @Json(name = "startDate")
@@ -70,8 +65,8 @@ data class CustomerOperationsReportRequestDto (
     @Json(name = "debit")
     val debit: kotlin.Boolean? = null,
 
-    @Json(name = "types")
-    val types: OperationType? = null,
+    @Json(name = "type")
+    val type: OperationType? = null,
 
     @Json(name = "status")
     val status: OperationStatus? = null,

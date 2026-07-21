@@ -36,6 +36,7 @@ interface LoginHistoryApi {
      * Responses:
      *  - 200: URL to the xlsx report file
      *  - 402: Your pricing plan does not support this option
+     *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
@@ -57,6 +58,7 @@ interface LoginHistoryApi {
      * Responses:
      *  - 200: List of login events
      *  - 402: Your pricing plan does not support this option
+     *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
@@ -78,6 +80,7 @@ interface LoginHistoryApi {
      * Responses:
      *  - 200: List of filtered login events
      *  - 402: Your pricing plan does not support this option
+     *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.

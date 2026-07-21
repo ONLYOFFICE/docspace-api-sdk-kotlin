@@ -20,6 +20,7 @@
 | **aiReadyNeedReset** | **kotlin.Boolean** | Indicates whether the AI provider API key needs to be reconfigured. |  [optional] |
 | **portalMcpServerId** | [**java.util.UUID**](java.util.UUID.md) | The unique identifier of the portal-level MCP server, if configured. |  [optional] |
 | **systemAiEnabled** | **kotlin.Boolean** | Indicates whether the system-level AI provider is enabled. |  [optional] |
+| **recommendedModelForForms** | **kotlin.String** | The identifier of the model recommended for form generation. |  [optional] |
 
 
 

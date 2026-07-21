@@ -43,6 +43,8 @@ import com.squareup.moshi.JsonClass
  * @param `private` Specifies whether the room to be created is private or not.
  * @param share The collection of sharing parameters.
  * @param chatSettings 
+ * @param sendFormToExternalDB Specifies whether to send form data to external database.
+ * @param saveFormAsXLSX Specifies whether to save form data as XLSX file.
  */
 
 
@@ -97,7 +99,15 @@ data class CreateRoomRequestDto (
     val share: kotlin.collections.List<FileShareParams>? = null,
 
     @Json(name = "chatSettings")
-    val chatSettings: ChatSettings? = null
+    val chatSettings: ChatSettings? = null,
+
+    /* Specifies whether to send form data to external database. */
+    @Json(name = "sendFormToExternalDB")
+    val sendFormToExternalDB: kotlin.Boolean? = null,
+
+    /* Specifies whether to save form data as XLSX file. */
+    @Json(name = "saveFormAsXLSX")
+    val saveFormAsXLSX: kotlin.Boolean? = null
 
 ) {
 

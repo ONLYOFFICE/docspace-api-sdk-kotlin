@@ -5,7 +5,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
 | [**getTfaAppCodes**](SettingsTFASettingsApi.md#getTfaAppCodes) | **GET** api/2.0/settings/tfaappcodes | Get the TFA codes |
-| [**getTfaConfirmUrl**](SettingsTFASettingsApi.md#getTfaConfirmUrl) | **GET** api/2.0/settings/tfaapp/confirm | Get TFA confirmation URL |
+| [**getTfaConfirmData**](SettingsTFASettingsApi.md#getTfaConfirmData) | **GET** api/2.0/settings/tfaapp/confirm | Get TFA confirmation data |
 | [**getTfaSettings**](SettingsTFASettingsApi.md#getTfaSettings) | **GET** api/2.0/settings/tfaapp | Get the TFA settings |
 | [**tfaAppGenerateSetupCode**](SettingsTFASettingsApi.md#tfaAppGenerateSetupCode) | **GET** api/2.0/settings/tfaapp/setup | Generate setup code |
 | [**tfaValidateAuthCode**](SettingsTFASettingsApi.md#tfaValidateAuthCode) | **POST** api/2.0/settings/tfaapp/validate | Validate the TFA code |
@@ -62,20 +62,20 @@ launch(Dispatchers.IO) {
  - **Accept**: application/json
 
 
-<a id="getTfaConfirmUrl"></a>
-# **getTfaConfirmUrl**
-> StringWrapper getTfaConfirmUrl ()
+<a id="getTfaConfirmData"></a>
+# **getTfaConfirmData**
+> TfaConfirmDataWrapper getTfaConfirmData ()
 
-Returns the confirmation URL for authorization via SMS or TFA application.
+Returns the confirmation data for authorization via SMS or TFA application.
 
-For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tfa-confirm-url/).
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tfa-confirm-data/).
 
 ### Parameters
 This endpoint does not need any parameter.
 
 ### Return type
 
-[**StringWrapper**](StringWrapper.md)
+[**TfaConfirmDataWrapper**](TfaConfirmDataWrapper.md)
 
 ### Authorization
 
@@ -98,7 +98,7 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(TFASettingsApi::class.java)
 
 launch(Dispatchers.IO) {
-    val result : StringWrapper = webService.getTfaConfirmUrl()
+    val result : TfaConfirmDataWrapper = webService.getTfaConfirmData()
 }
 ```
 

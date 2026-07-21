@@ -37,6 +37,7 @@ import com.squareup.moshi.JsonClass
  * @param ownedBy 
  * @param shared Specifies if the file entry is shared via link or not.
  * @param sharedForUser Specifies if the file entry is shared for user or not.
+ * @param sharedExternal Specifies if the file entry is shared via a public (non-internal) external link.
  * @param parentShared Indicates whether the parent entity is shared.
  * @param shortWebUrl The short Web URL.
  * @param created 
@@ -91,6 +92,10 @@ data class FileEntryDtoString (
     /* Specifies if the file entry is shared for user or not. */
     @Json(name = "sharedForUser")
     val sharedForUser: kotlin.Boolean? = null,
+
+    /* Specifies if the file entry is shared via a public (non-internal) external link. */
+    @Json(name = "sharedExternal")
+    val sharedExternal: kotlin.Boolean? = null,
 
     /* Indicates whether the parent entity is shared. */
     @Json(name = "parentShared")

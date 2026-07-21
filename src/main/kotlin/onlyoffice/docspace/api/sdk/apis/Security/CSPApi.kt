@@ -34,6 +34,7 @@ interface CSPApi {
      * Responses:
      *  - 200: Ok
      *  - 400: Exception in Domains
+     *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.

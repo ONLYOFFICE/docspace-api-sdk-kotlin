@@ -84,6 +84,10 @@ import com.squareup.moshi.JsonClass
  * @param chunkUploadSize The size of a large file that is uploaded in chunks.
  * @param openEditorInSameTab Specifies whether to open the editor in the same tab or not.
  * @param organizeRoomsGrouping Specifies whether the grouping of rooms is enabled or not.
+ * @param defaultShareLinkInternal Specifies the default sharing link type: true = DocSpace users only (internal), false = Anyone with the link.
+ * @param externalShareApplyToDocuments When external sharing is restricted, specifies whether the restriction applies to the My Documents section.
+ * @param externalShareApplyToRooms When external sharing is restricted, specifies whether the restriction applies to the Rooms section.
+ * @param blockExistingLinksOnRestrict When external sharing is restricted, specifies whether existing public links are blocked immediately.
  * @param extsFilesVectorized List of extensions available for vectorization
  * @param maxVectorizationFileSize The maximum file size for vectorization
  */
@@ -319,6 +323,22 @@ data class FilesSettingsDto (
     /* Specifies whether the grouping of rooms is enabled or not. */
     @Json(name = "organizeRoomsGrouping")
     val organizeRoomsGrouping: kotlin.Boolean? = null,
+
+    /* Specifies the default sharing link type: true = DocSpace users only (internal), false = Anyone with the link. */
+    @Json(name = "defaultShareLinkInternal")
+    val defaultShareLinkInternal: kotlin.Boolean? = null,
+
+    /* When external sharing is restricted, specifies whether the restriction applies to the My Documents section. */
+    @Json(name = "externalShareApplyToDocuments")
+    val externalShareApplyToDocuments: kotlin.Boolean? = null,
+
+    /* When external sharing is restricted, specifies whether the restriction applies to the Rooms section. */
+    @Json(name = "externalShareApplyToRooms")
+    val externalShareApplyToRooms: kotlin.Boolean? = null,
+
+    /* When external sharing is restricted, specifies whether existing public links are blocked immediately. */
+    @Json(name = "blockExistingLinksOnRestrict")
+    val blockExistingLinksOnRestrict: kotlin.Boolean? = null,
 
     /* List of extensions available for vectorization */
     @Json(name = "extsFilesVectorized")

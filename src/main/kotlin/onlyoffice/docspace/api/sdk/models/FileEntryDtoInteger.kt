@@ -18,11 +18,11 @@ package onlyoffice.docspace.api.sdk.models
 
 import onlyoffice.docspace.api.sdk.models.ApiDateTime
 import onlyoffice.docspace.api.sdk.models.EmployeeDto
+import onlyoffice.docspace.api.sdk.models.FileEntryDtoIntegerAllOfAvailableShareRights
+import onlyoffice.docspace.api.sdk.models.FileEntryDtoIntegerAllOfSecurity
+import onlyoffice.docspace.api.sdk.models.FileEntryDtoIntegerAllOfShareSettings
 import onlyoffice.docspace.api.sdk.models.FileEntryType
 import onlyoffice.docspace.api.sdk.models.FileShare
-import onlyoffice.docspace.api.sdk.models.FolderDtoIntegerAvailableShareRights
-import onlyoffice.docspace.api.sdk.models.FolderDtoIntegerSecurity
-import onlyoffice.docspace.api.sdk.models.FolderDtoIntegerShareSettings
 import onlyoffice.docspace.api.sdk.models.FolderType
 
 import com.squareup.moshi.Json
@@ -37,6 +37,7 @@ import com.squareup.moshi.JsonClass
  * @param ownedBy 
  * @param shared Specifies if the file entry is shared via link or not.
  * @param sharedForUser Specifies if the file entry is shared for user or not.
+ * @param sharedExternal Specifies if the file entry is shared via a public (non-internal) external link.
  * @param parentShared Indicates whether the parent entity is shared.
  * @param shortWebUrl The short Web URL.
  * @param created 
@@ -91,6 +92,10 @@ data class FileEntryDtoInteger (
     /* Specifies if the file entry is shared for user or not. */
     @Json(name = "sharedForUser")
     val sharedForUser: kotlin.Boolean? = null,
+
+    /* Specifies if the file entry is shared via a public (non-internal) external link. */
+    @Json(name = "sharedExternal")
+    val sharedExternal: kotlin.Boolean? = null,
 
     /* Indicates whether the parent entity is shared. */
     @Json(name = "parentShared")
@@ -173,13 +178,13 @@ data class FileEntryDtoInteger (
     val canShare: kotlin.Boolean? = null,
 
     @Json(name = "shareSettings")
-    val shareSettings: FolderDtoIntegerShareSettings? = null,
+    val shareSettings: FileEntryDtoIntegerAllOfShareSettings? = null,
 
     @Json(name = "security")
-    val security: FolderDtoIntegerSecurity? = null,
+    val security: FileEntryDtoIntegerAllOfSecurity? = null,
 
     @Json(name = "availableShareRights")
-    val availableShareRights: FolderDtoIntegerAvailableShareRights? = null,
+    val availableShareRights: FileEntryDtoIntegerAllOfAvailableShareRights? = null,
 
     /* The request token of the file entry. */
     @Json(name = "requestToken")

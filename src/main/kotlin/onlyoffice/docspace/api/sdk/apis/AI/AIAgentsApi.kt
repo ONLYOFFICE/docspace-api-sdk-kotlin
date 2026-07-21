@@ -78,7 +78,7 @@ interface AIAgentsApi {
      * @param deleteRoomRequest The parameters for deleting a room.
      * @return [FileOperationWrapper]
      */
-    @DELETE("api/2.0/ai/agents/{id}")
+    @HTTP(method = "DELETE", path = "api/2.0/ai/agents/{id}", hasBody = true)
     suspend fun deleteAgent(@Path("id") id: kotlin.Int, @Body deleteRoomRequest: DeleteRoomRequest): Response<FileOperationWrapper>
 
     /**

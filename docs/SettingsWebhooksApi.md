@@ -162,9 +162,9 @@ launch(Dispatchers.IO) {
 
 <a id="getWebhookTriggers"></a>
 # **getWebhookTriggers**
-> GetWebhookTriggers200Response getWebhookTriggers ()
+> WebhookTriggerArrayWrapper getWebhookTriggers ()
 
-Returns a list of triggers for a webhook.
+Returns a list of triggers for a webhook with their availability for the current user.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-webhook-triggers/).
 
@@ -173,7 +173,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**GetWebhookTriggers200Response**](GetWebhookTriggers200Response.md)
+[**WebhookTriggerArrayWrapper**](WebhookTriggerArrayWrapper.md)
 
 ### Authorization
 
@@ -196,7 +196,7 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(WebhooksApi::class.java)
 
 launch(Dispatchers.IO) {
-    val result : GetWebhookTriggers200Response = webService.getWebhookTriggers()
+    val result : WebhookTriggerArrayWrapper = webService.getWebhookTriggers()
 }
 ```
 

@@ -23,25 +23,25 @@ import com.squareup.moshi.JsonClass
 /**
  * The group request parameters.
  *
- * @param groupManager The group manager ID.
- * @param members The list of group member IDs.
  * @param groupName The group name.
+ * @param members The list of group member IDs.
+ * @param groupManager The group manager ID.
  */
 
 
 data class GroupRequestDto (
 
-    /* The group manager ID. */
-    @Json(name = "groupManager")
-    val groupManager: java.util.UUID,
+    /* The group name. */
+    @Json(name = "groupName")
+    val groupName: kotlin.String?,
 
     /* The list of group member IDs. */
     @Json(name = "members")
     val members: kotlin.collections.List<java.util.UUID>? = null,
 
-    /* The group name. */
-    @Json(name = "groupName")
-    val groupName: kotlin.String? = null
+    /* The group manager ID. */
+    @Json(name = "groupManager")
+    val groupManager: java.util.UUID? = null
 
 ) {
 

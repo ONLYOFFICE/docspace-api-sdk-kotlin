@@ -17,6 +17,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 | [**deleteRoom**](RoomsApi.md#deleteRoom) | **DELETE** api/2.0/files/rooms/{id} | Remove a room |
 | [**deleteRoomLogo**](RoomsApi.md#deleteRoomLogo) | **DELETE** api/2.0/files/rooms/{id}/logo | Remove a room logo |
 | [**deleteRoomTags**](RoomsApi.md#deleteRoomTags) | **DELETE** api/2.0/files/rooms/{id}/tags | Remove the room tags |
+| [**getExternalDbSyncStatus**](RoomsApi.md#getExternalDbSyncStatus) | **GET** api/2.0/files/rooms/{id}/externaldbsync | Get external DB sync status |
 | [**getNewRoomItems**](RoomsApi.md#getNewRoomItems) | **GET** api/2.0/files/rooms/{id}/news | Get the new room items |
 | [**getPublicSettings**](RoomsApi.md#getPublicSettings) | **GET** api/2.0/files/roomtemplate/{id}/public | Get public settings |
 | [**getRoomCovers**](RoomsApi.md#getRoomCovers) | **GET** api/2.0/files/rooms/covers | Get covers |
@@ -37,6 +38,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 | [**setPublicSettings**](RoomsApi.md#setPublicSettings) | **PUT** api/2.0/files/roomtemplate/public | Set public settings |
 | [**setRoomLink**](RoomsApi.md#setRoomLink) | **PUT** api/2.0/files/rooms/{id}/links | Set the room external or invitation link |
 | [**setRoomSecurity**](RoomsApi.md#setRoomSecurity) | **PUT** api/2.0/files/rooms/{id}/share | Set the room access rights |
+| [**startExternalDbSync**](RoomsApi.md#startExternalDbSync) | **POST** api/2.0/files/rooms/{id}/externaldbsync | Start external DB sync |
 | [**startRoomIndexExport**](RoomsApi.md#startRoomIndexExport) | **POST** api/2.0/files/rooms/{id}/indexexport | Start the room index export |
 | [**terminateRoomIndexExport**](RoomsApi.md#terminateRoomIndexExport) | **DELETE** api/2.0/files/rooms/indexexport | Terminate the room index export |
 | [**unarchiveRoom**](RoomsApi.md#unarchiveRoom) | **PUT** api/2.0/files/rooms/{id}/unarchive | Unarchive a room |
@@ -695,6 +697,55 @@ launch(Dispatchers.IO) {
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+<a id="getExternalDbSyncStatus"></a>
+# **getExternalDbSyncStatus**
+> ExternalDbSyncTaskWrapper getExternalDbSyncStatus (kotlin.Int id)
+
+Returns the status of the external DB synchronization task for the specified filling forms room.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-external-db-sync-status/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **kotlin.Int**| The room ID. | |
+
+### Return type
+
+[**ExternalDbSyncTaskWrapper**](ExternalDbSyncTaskWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(RoomsApi::class.java)
+val id : kotlin.Int = 1 // kotlin.Int | The room ID.
+
+launch(Dispatchers.IO) {
+    val result : ExternalDbSyncTaskWrapper = webService.getExternalDbSyncStatus(id)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 
@@ -1708,6 +1759,55 @@ launch(Dispatchers.IO) {
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+<a id="startExternalDbSync"></a>
+# **startExternalDbSync**
+> ExternalDbSyncTaskWrapper startExternalDbSync (kotlin.Int id)
+
+Triggers external DB synchronization for all form templates in the specified filling forms room.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/start-external-db-sync/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **kotlin.Int**| The room ID. | |
+
+### Return type
+
+[**ExternalDbSyncTaskWrapper**](ExternalDbSyncTaskWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(RoomsApi::class.java)
+val id : kotlin.Int = 1 // kotlin.Int | The room ID.
+
+launch(Dispatchers.IO) {
+    val result : ExternalDbSyncTaskWrapper = webService.startExternalDbSync(id)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 

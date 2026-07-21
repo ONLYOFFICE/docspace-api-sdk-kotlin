@@ -26,8 +26,8 @@ import com.squareup.moshi.Json
 import onlyoffice.docspace.api.sdk.models.AiPricesResponseWrapper
 import onlyoffice.docspace.api.sdk.models.BalanceWrapper
 import onlyoffice.docspace.api.sdk.models.BooleanWrapper
-import onlyoffice.docspace.api.sdk.models.BuyWalletServiceRequestDto
 import onlyoffice.docspace.api.sdk.models.ChangeWalletServiceStateRequestDto
+import onlyoffice.docspace.api.sdk.models.CreditAiBalanceRequestDto
 import onlyoffice.docspace.api.sdk.models.CurrenciesArrayWrapper
 import onlyoffice.docspace.api.sdk.models.CustomerInfoWrapper
 import onlyoffice.docspace.api.sdk.models.CustomerOperationsReportRequestDto
@@ -57,35 +57,14 @@ import onlyoffice.docspace.api.sdk.models.WalletServiceWrapper
 
 interface PaymentApi {
     /**
-     * POST api/2.0/portal/payment/buywalletservice
-     * Purchases a wallet service with the specified quantity.
-     * This method processes a payment for a wallet service using the configured payment method.  Requires the tariff service to be configured and a valid payment method to be set for the customer.  Rate limiting is applied according to the payments API policy.
-     * Responses:
-     *  - 200: The service payment information
-     *  - 403: No permissions to perform this action
-     *  - 404: Service could not be found
-     *  - 401: Unauthorized
-     *  - 429: Too Many Requests.
-     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
-     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
-     *
-     * REST API Reference for buyWalletService Operation
-     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/buy-wallet-service/
-     *
-     *
-     * @param buyWalletServiceRequestDto  (optional)
-     * @return [ServicePaymentWrapper]
-     */
-    @POST("api/2.0/portal/payment/buywalletservice")
-    suspend fun buyWalletService(@Body buyWalletServiceRequestDto: BuyWalletServiceRequestDto? = null): Response<ServicePaymentWrapper>
-
-    /**
      * PUT api/2.0/portal/payment/calculatewallet
      * Calculate the wallet payment amount
      * Calculates an amount of the wallet payment with the parameters specified in the request.
      * Responses:
      *  - 200: Payment calculation
+     *  - 400: Invalid request parameters
      *  - 403: No permissions to perform this action
+     *  - 404: Customer could not be found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
@@ -108,6 +87,7 @@ interface PaymentApi {
      * Responses:
      *  - 200: The updated tenant wallet service settings
      *  - 403: No permissions to perform this action
+     *  - 404: Customer could not be found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
@@ -128,9 +108,9 @@ interface PaymentApi {
      * Start the customer operations report generation
      * Starts generating a customer operations report as an xlsx file and saves it in Documents.
      * Responses:
-     *  - 200: Ok
+     *  - 200: Operation execution status
      *  - 403: No permissions to perform this action
-     *  - 404: Service could not be found
+     *  - 404: Customer or service could not be found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
@@ -145,6 +125,30 @@ interface PaymentApi {
      */
     @POST("api/2.0/portal/payment/customer/operationsreport")
     suspend fun createCustomerOperationsReport(@Body customerOperationsReportRequestDto: CustomerOperationsReportRequestDto? = null): Response<DocumentBuilderTaskWrapper>
+
+    /**
+     * POST api/2.0/portal/payment/creditaibalance
+     * Credit AI balance
+     * Credits AI quota to the customer AI sub-account from their main balance.  Requires the customer to have a configured payment method.
+     * Responses:
+     *  - 200: The AI credit operation result
+     *  - 400: Unsupported currency or insufficient balance
+     *  - 403: No permissions to perform this action
+     *  - 404: Customer or AiTools quota could not be found
+     *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *
+     * REST API Reference for creditAiBalance Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/credit-ai-balance/
+     *
+     *
+     * @param creditAiBalanceRequestDto  (optional)
+     * @return [ServicePaymentWrapper]
+     */
+    @POST("api/2.0/portal/payment/creditaibalance")
+    suspend fun creditAiBalance(@Body creditAiBalanceRequestDto: CreditAiBalanceRequestDto? = null): Response<ServicePaymentWrapper>
 
     /**
      * GET api/2.0/portal/payment/ai-prices
@@ -183,11 +187,34 @@ interface PaymentApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-checkout-setup-url/
      *
      *
-     * @param backUrl The URL where the user will be redirected after completing the setup. (optional)
+     * @param backUrl The URL where the user will be redirected after setup cancellation.
+     * @param successUrl The URL where the user will be redirected after successful payment.
      * @return [StringWrapper]
      */
     @GET("api/2.0/portal/payment/checkoutsetupurl")
-    suspend fun getCheckoutSetupUrl(@Query("BackUrl") backUrl: kotlin.String? = null): Response<StringWrapper>
+    suspend fun getCheckoutSetupUrl(@Query("BackUrl") backUrl: java.net.URI, @Query("SuccessUrl") successUrl: java.net.URI): Response<StringWrapper>
+
+    /**
+     * GET api/2.0/portal/payment/customer/aibalance
+     * Get the customer AI balance
+     * Returns the AI quota balance of a customer from the accounting service.
+     * Responses:
+     *  - 200: The customer AI balance
+     *  - 403: No permissions to perform this action
+     *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *
+     * REST API Reference for getCustomerAiBalance Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-customer-ai-balance/
+     *
+     *
+     * @param refresh Specifies whether to refresh the payment information cache or not. (optional)
+     * @return [BalanceWrapper]
+     */
+    @GET("api/2.0/portal/payment/customer/aibalance")
+    suspend fun getCustomerAiBalance(@Query("refresh") refresh: kotlin.Boolean? = null): Response<BalanceWrapper>
 
     /**
      * GET api/2.0/portal/payment/customer/balance
@@ -253,27 +280,28 @@ interface PaymentApi {
      * @param offset The number of items to skip for pagination. The default value is 0. (optional)
      * @param limit The maximum number of items to return for pagination. The default value is 25. (optional)
      * @param serviceName The service name. (optional)
-     * @param writeOffServiceQuota Write-off of the quota for the service (optional)
      * @param startDate The report start date. (optional)
      * @param endDate The report end date. (optional)
      * @param participantName The participant name. (optional)
      * @param credit Specifies whether to include credit operations in the report. (optional)
      * @param debit Specifies whether to include debit operations in the report. (optional)
-     * @param types List of operation types to filter by. (optional)
-     * @param status List of operation status to filter by. (optional)
+     * @param type The operation type to filter by. (optional)
+     * @param status The operation status to filter by. (optional)
      * @param orderBy The field to order by. (optional)
      * @param orderType Order direction: Ascending or Descending. (optional)
      * @return [ReportWrapper]
      */
     @GET("api/2.0/portal/payment/customer/operations")
-    suspend fun getCustomerOperations(@Query("offset") offset: kotlin.Int? = null, @Query("limit") limit: kotlin.Int? = null, @Query("ServiceName") serviceName: kotlin.String? = null, @Query("WriteOffServiceQuota") writeOffServiceQuota: kotlin.Boolean? = null, @Query("StartDate") startDate: java.time.OffsetDateTime? = null, @Query("EndDate") endDate: java.time.OffsetDateTime? = null, @Query("ParticipantName") participantName: kotlin.String? = null, @Query("Credit") credit: kotlin.Boolean? = null, @Query("Debit") debit: kotlin.Boolean? = null, @Query("Types") types: OperationType? = null, @Query("Status") status: OperationStatus? = null, @Query("OrderBy") orderBy: kotlin.String? = null, @Query("OrderType") orderType: OperationOrderType? = null): Response<ReportWrapper>
+    suspend fun getCustomerOperations(@Query("offset") offset: kotlin.Int? = null, @Query("limit") limit: kotlin.Int? = null, @Query("ServiceName") serviceName: kotlin.String? = null, @Query("StartDate") startDate: java.time.OffsetDateTime? = null, @Query("EndDate") endDate: java.time.OffsetDateTime? = null, @Query("ParticipantName") participantName: kotlin.String? = null, @Query("Credit") credit: kotlin.Boolean? = null, @Query("Debit") debit: kotlin.Boolean? = null, @Query("Type") type: OperationType? = null, @Query("Status") status: OperationStatus? = null, @Query("OrderBy") orderBy: kotlin.String? = null, @Query("OrderType") orderType: OperationOrderType? = null): Response<ReportWrapper>
 
     /**
      * GET api/2.0/portal/payment/customer/operationsreport
      * Get the status of the customer operations report generation
      * Returns the status of generating a customer operations report.
      * Responses:
-     *  - 200: Ok
+     *  - 200: Operation execution status
+     *  - 403: No permissions to perform this action
+     *  - 404: Customer could not be found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
@@ -287,30 +315,6 @@ interface PaymentApi {
      */
     @GET("api/2.0/portal/payment/customer/operationsreport")
     suspend fun getCustomerOperationsReport(): Response<DocumentBuilderTaskWrapper>
-
-    /**
-     * GET api/2.0/portal/payment/customer/servicequota
-     * Get the service quota
-     * Returns the service quota from the accounting service.
-     * Responses:
-     *  - 200: The service quota
-     *  - 403: No permissions to perform this action
-     *  - 404: Service could not be found
-     *  - 401: Unauthorized
-     *  - 429: Too Many Requests.
-     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
-     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
-     *
-     * REST API Reference for getCustomerServiceQuota Operation
-     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-customer-service-quota/
-     *
-     *
-     * @param serviceName The service name. (optional)
-     * @param refresh Specifies whether to refresh the payment information cache or not. (optional)
-     * @return [BalanceWrapper]
-     */
-    @GET("api/2.0/portal/payment/customer/servicequota")
-    suspend fun getCustomerServiceQuota(@Query("serviceName") serviceName: kotlin.String? = null, @Query("refresh") refresh: kotlin.Boolean? = null): Response<BalanceWrapper>
 
     /**
      * GET api/2.0/portal/payment/account
@@ -332,7 +336,7 @@ interface PaymentApi {
      * @return [StringWrapper]
      */
     @GET("api/2.0/portal/payment/account")
-    suspend fun getPaymentAccount(@Query("backUrl") backUrl: kotlin.String? = null): Response<StringWrapper>
+    suspend fun getPaymentAccount(@Query("backUrl") backUrl: java.net.URI? = null): Response<StringWrapper>
 
     /**
      * GET api/2.0/portal/payment/currencies
@@ -340,6 +344,7 @@ interface PaymentApi {
      * Returns the available portal currencies.
      * Responses:
      *  - 200: List of available portal currencies
+     *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
@@ -360,6 +365,7 @@ interface PaymentApi {
      * Returns the available portal quotas.
      * Responses:
      *  - 200: List of available portal quotas
+     *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
@@ -381,6 +387,7 @@ interface PaymentApi {
      * Returns the URL to the payment page.
      * Responses:
      *  - 200: The URL to the payment page
+     *  - 400: Invalid request parameters
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
@@ -403,6 +410,7 @@ interface PaymentApi {
      * Returns the available portal prices.
      * Responses:
      *  - 200: List of available portal prices
+     *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
@@ -508,6 +516,8 @@ interface PaymentApi {
      * Returns the specified wallet service.
      * Responses:
      *  - 200: Wallet service
+     *  - 403: No permissions to perform this action
+     *  - 404: Service could not be found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
@@ -529,6 +539,7 @@ interface PaymentApi {
      * Returns the available wallet services.
      * Responses:
      *  - 200: List of available wallet services
+     *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
@@ -550,6 +561,7 @@ interface PaymentApi {
      * Responses:
      *  - 200: Ok
      *  - 400: Incorrect email or message text is empty
+     *  - 403: No permissions to perform this action
      *  - 429: Request limit is exceeded
      *  - 401: Unauthorized
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
@@ -572,6 +584,7 @@ interface PaymentApi {
      * Responses:
      *  - 200: The updated list of restricted AI model IDs
      *  - 403: No permissions to perform this action
+     *  - 404: Customer could not be found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
@@ -594,6 +607,7 @@ interface PaymentApi {
      * Responses:
      *  - 200: The wallet auto top up settings
      *  - 403: No permissions to perform this action
+     *  - 404: Customer could not be found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
@@ -615,6 +629,8 @@ interface PaymentApi {
      * Terminates generating a customer operations report.
      * Responses:
      *  - 200: Ok
+     *  - 403: No permissions to perform this action
+     *  - 404: Customer could not be found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
@@ -635,7 +651,9 @@ interface PaymentApi {
      * Returns the result of putting money on deposit.
      * Responses:
      *  - 200: Boolean value: true if the operation is successful
+     *  - 400: Invalid request parameters
      *  - 403: No permissions to perform this action
+     *  - 404: Customer could not be found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
@@ -657,7 +675,9 @@ interface PaymentApi {
      * Updates the payment quantity with the parameters specified in the request.
      * Responses:
      *  - 200: Boolean value: true if the operation is successful
+     *  - 400: Invalid request parameters
      *  - 403: No permissions to perform this action
+     *  - 404: Customer could not be found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
@@ -679,7 +699,10 @@ interface PaymentApi {
      * Updates the wallet payment quantity with the parameters specified in the request.
      * Responses:
      *  - 200: Boolean value: true if the operation is successful
+     *  - 400: Invalid request parameters
+     *  - 402: Tariff is not paid
      *  - 403: No permissions to perform this action
+     *  - 404: Customer could not be found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.

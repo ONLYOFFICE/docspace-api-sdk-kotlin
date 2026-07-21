@@ -72,9 +72,9 @@ launch(Dispatchers.IO) {
 
 <a id="checkUserExistsByEmail"></a>
 # **checkUserExistsByEmail**
-> BooleanWrapper checkUserExistsByEmail (kotlin.String email, kotlin.String encemail, kotlin.String culture)
+> UserExistsResponseWrapper checkUserExistsByEmail (kotlin.String email, kotlin.String encemail, kotlin.String culture)
 
-Returns a boolean indicating whether a user with the specified email exists on the portal.
+Returns data indicating whether a user with the specified email exists on the portal.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/check-user-exists-by-email/).
 
@@ -87,7 +87,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Return type
 
-[**BooleanWrapper**](BooleanWrapper.md)
+[**UserExistsResponseWrapper**](UserExistsResponseWrapper.md)
 
 ### Authorization
 
@@ -113,7 +113,7 @@ val encemail : kotlin.String = encrypted_email_string // kotlin.String | The use
 val culture : kotlin.String = en-US // kotlin.String | Culture
 
 launch(Dispatchers.IO) {
-    val result : BooleanWrapper = webService.checkUserExistsByEmail(email, encemail, culture)
+    val result : UserExistsResponseWrapper = webService.checkUserExistsByEmail(email, encemail, culture)
 }
 ```
 

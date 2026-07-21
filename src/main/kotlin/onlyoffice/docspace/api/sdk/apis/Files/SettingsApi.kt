@@ -32,6 +32,8 @@ import onlyoffice.docspace.api.sdk.models.DefaultTemplateSettingsResetRequestDto
 import onlyoffice.docspace.api.sdk.models.DefaultTemplateSettingsWrapper
 import onlyoffice.docspace.api.sdk.models.DisplayRequestDto
 import onlyoffice.docspace.api.sdk.models.DocServiceUrlWrapper
+import onlyoffice.docspace.api.sdk.models.ExternalSharingSettingsRequestDto
+import onlyoffice.docspace.api.sdk.models.ExternalSharingSettingsWrapper
 import onlyoffice.docspace.api.sdk.models.FileShareArrayWrapper
 import onlyoffice.docspace.api.sdk.models.FilesSettingsWrapper
 import onlyoffice.docspace.api.sdk.models.HideConfirmConvertRequestDto
@@ -146,6 +148,27 @@ interface SettingsApi {
      */
     @PUT("api/2.0/files/settings/downloadtargz")
     suspend fun changeDownloadZipFromBody(@Body displayRequestDto: DisplayRequestDto? = null): Response<ICompressWrapper>
+
+    /**
+     * PUT api/2.0/files/settings/externalsharingsettings
+     * Change the Access Control external sharing settings
+     * Changes the Access Control external sharing settings.
+     * Responses:
+     *  - 200: External sharing settings
+     *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *
+     * REST API Reference for changeExternalSharingSettings Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/change-external-sharing-settings/
+     *
+     *
+     * @param externalSharingSettingsRequestDto  (optional)
+     * @return [ExternalSharingSettingsWrapper]
+     */
+    @PUT("api/2.0/files/settings/externalsharingsettings")
+    suspend fun changeExternalSharingSettings(@Body externalSharingSettingsRequestDto: ExternalSharingSettingsRequestDto? = null): Response<ExternalSharingSettingsWrapper>
 
     /**
      * PUT api/2.0/files/docservice
@@ -497,7 +520,7 @@ interface SettingsApi {
      * @param defaultTemplateSettingsResetRequestDto  (optional)
      * @return [DefaultTemplateSettingsWrapper]
      */
-    @DELETE("api/2.0/files/settings/defaulttemplate")
+    @HTTP(method = "DELETE", path = "api/2.0/files/settings/defaulttemplate", hasBody = true)
     suspend fun resetDefaultTemplate(@Body defaultTemplateSettingsResetRequestDto: DefaultTemplateSettingsResetRequestDto? = null): Response<DefaultTemplateSettingsWrapper>
 
     /**

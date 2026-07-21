@@ -258,7 +258,7 @@ interface SharingApi {
      * @param baseBatchRequestDto  (optional)
      * @return [BooleanWrapper]
      */
-    @DELETE("api/2.0/files/share")
+    @HTTP(method = "DELETE", path = "api/2.0/files/share", hasBody = true)
     suspend fun removeSecurityInfo(@Body baseBatchRequestDto: BaseBatchRequestDto? = null): Response<BooleanWrapper>
 
     /**

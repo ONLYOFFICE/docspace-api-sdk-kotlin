@@ -100,6 +100,7 @@ interface MigrationApi {
      * Responses:
      *  - 200: Ok
      *  - 403: No permissions to perform this action
+     *  - 404: No migration is in progress
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.

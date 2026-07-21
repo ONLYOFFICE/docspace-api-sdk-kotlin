@@ -23,16 +23,21 @@ import com.squareup.moshi.JsonClass
 /**
  * The request parameters for the payment URL configuration with quantity information.
  *
- * @param backUrl The URL where the user will be redirected after payment processing.
+ * @param backUrl The URL where the user will be redirected after payment cancellation.
+ * @param successUrl The URL where the user will be redirected after successful payment.
  * @param quantity The payment quantity.
  */
 
 
 data class PaymentUrlRequestDto (
 
-    /* The URL where the user will be redirected after payment processing. */
+    /* The URL where the user will be redirected after payment cancellation. */
     @Json(name = "backUrl")
-    val backUrl: kotlin.String? = null,
+    val backUrl: java.net.URI,
+
+    /* The URL where the user will be redirected after successful payment. */
+    @Json(name = "successUrl")
+    val successUrl: java.net.URI,
 
     /* The payment quantity. */
     @Json(name = "quantity")

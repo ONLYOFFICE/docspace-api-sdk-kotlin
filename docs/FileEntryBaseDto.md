@@ -10,6 +10,7 @@
 | **ownedBy** | [**EmployeeDto**](EmployeeDto.md) |  |  [optional] |
 | **shared** | **kotlin.Boolean** | Specifies if the file entry is shared via link or not. |  [optional] |
 | **sharedForUser** | **kotlin.Boolean** | Specifies if the file entry is shared for user or not. |  [optional] |
+| **sharedExternal** | **kotlin.Boolean** | Specifies if the file entry is shared via a public (non-internal) external link. |  [optional] |
 | **parentShared** | **kotlin.Boolean** | Indicates whether the parent entity is shared. |  [optional] |
 | **shortWebUrl** | [**java.net.URI**](java.net.URI.md) | The short Web URL. |  [optional] |
 | **created** | [**ApiDateTime**](ApiDateTime.md) |  |  [optional] |

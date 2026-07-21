@@ -77,7 +77,7 @@ interface AIProvidersApi {
      * @param removeProviderRequestDto  (optional)
      * @return [Unit]
      */
-    @DELETE("api/2.0/ai/providers")
+    @HTTP(method = "DELETE", path = "api/2.0/ai/providers", hasBody = true)
     suspend fun deleteProviders(@Body removeProviderRequestDto: RemoveProviderRequestDto? = null): Response<Unit>
 
     /**

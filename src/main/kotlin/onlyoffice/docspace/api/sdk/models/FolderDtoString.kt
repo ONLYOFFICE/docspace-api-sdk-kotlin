@@ -19,11 +19,11 @@ package onlyoffice.docspace.api.sdk.models
 import onlyoffice.docspace.api.sdk.models.ApiDateTime
 import onlyoffice.docspace.api.sdk.models.ChatSettingsDto
 import onlyoffice.docspace.api.sdk.models.EmployeeDto
+import onlyoffice.docspace.api.sdk.models.FileEntryDtoIntegerAllOfAvailableShareRights
+import onlyoffice.docspace.api.sdk.models.FileEntryDtoIntegerAllOfSecurity
+import onlyoffice.docspace.api.sdk.models.FileEntryDtoIntegerAllOfShareSettings
 import onlyoffice.docspace.api.sdk.models.FileEntryType
 import onlyoffice.docspace.api.sdk.models.FileShare
-import onlyoffice.docspace.api.sdk.models.FolderDtoIntegerAvailableShareRights
-import onlyoffice.docspace.api.sdk.models.FolderDtoIntegerSecurity
-import onlyoffice.docspace.api.sdk.models.FolderDtoIntegerShareSettings
 import onlyoffice.docspace.api.sdk.models.FolderType
 import onlyoffice.docspace.api.sdk.models.Logo
 import onlyoffice.docspace.api.sdk.models.RoomDataLifetimeDto
@@ -42,6 +42,7 @@ import com.squareup.moshi.JsonClass
  * @param ownedBy 
  * @param shared Specifies if the file entry is shared via link or not.
  * @param sharedForUser Specifies if the file entry is shared for user or not.
+ * @param sharedExternal Specifies if the file entry is shared via a public (non-internal) external link.
  * @param parentShared Indicates whether the parent entity is shared.
  * @param shortWebUrl The short Web URL.
  * @param created 
@@ -56,6 +57,7 @@ import com.squareup.moshi.JsonClass
  * @param providerId The provider ID of the file entry.
  * @param order The order of the file entry.
  * @param isFavorite Specifies if the file is a favorite or not.
+ * @param fileEntryType 
  * @param id The file entry ID.
  * @param rootFolderId The root folder ID of the file entry.
  * @param originId The origin ID of the file entry.
@@ -92,11 +94,11 @@ import com.squareup.moshi.JsonClass
  * @param usedSpace How much folder space is used (counter).
  * @param passwordProtected Specifies if the folder is password protected or not.
  * @param expired Specifies if an external link to the folder is expired or not.
- * @param fileEntryType 
  * @param chatSettings 
  * @param rootRoomType 
  * @param saveFormAsXLSX Specifies whether to save form data as XLSX file.
  * @param sendFormToExternalDB Specifies whether to send form data to external database.
+ * @param originalFormId The original form ID that corresponds to this FormFillingFolderDone folder.
  */
 
 
@@ -122,6 +124,10 @@ data class FolderDtoString (
     /* Specifies if the file entry is shared for user or not. */
     @Json(name = "sharedForUser")
     val sharedForUser: kotlin.Boolean? = null,
+
+    /* Specifies if the file entry is shared via a public (non-internal) external link. */
+    @Json(name = "sharedExternal")
+    val sharedExternal: kotlin.Boolean? = null,
 
     /* Indicates whether the parent entity is shared. */
     @Json(name = "parentShared")
@@ -172,6 +178,9 @@ data class FolderDtoString (
     @Json(name = "isFavorite")
     val isFavorite: kotlin.Boolean? = null,
 
+    @Json(name = "fileEntryType")
+    val fileEntryType: FileEntryType? = null,
+
     /* The file entry ID. */
     @Json(name = "id")
     val id: kotlin.String? = null,
@@ -201,13 +210,13 @@ data class FolderDtoString (
     val canShare: kotlin.Boolean? = null,
 
     @Json(name = "shareSettings")
-    val shareSettings: FolderDtoIntegerShareSettings? = null,
+    val shareSettings: FileEntryDtoIntegerAllOfShareSettings? = null,
 
     @Json(name = "security")
-    val security: FolderDtoIntegerSecurity? = null,
+    val security: FileEntryDtoIntegerAllOfSecurity? = null,
 
     @Json(name = "availableShareRights")
-    val availableShareRights: FolderDtoIntegerAvailableShareRights? = null,
+    val availableShareRights: FileEntryDtoIntegerAllOfAvailableShareRights? = null,
 
     /* The request token of the file entry. */
     @Json(name = "requestToken")
@@ -308,9 +317,6 @@ data class FolderDtoString (
     @Deprecated(message = "This property is deprecated.")
     val expired: kotlin.Boolean? = null,
 
-    @Json(name = "fileEntryType")
-    val fileEntryType: FileEntryType? = null,
-
     @Json(name = "chatSettings")
     val chatSettings: ChatSettingsDto? = null,
 
@@ -323,7 +329,11 @@ data class FolderDtoString (
 
     /* Specifies whether to send form data to external database. */
     @Json(name = "sendFormToExternalDB")
-    val sendFormToExternalDB: kotlin.Boolean? = null
+    val sendFormToExternalDB: kotlin.Boolean? = null,
+
+    /* The original form ID that corresponds to this FormFillingFolderDone folder. */
+    @Json(name = "originalFormId")
+    val originalFormId: kotlin.Int? = null
 
 ) {
 

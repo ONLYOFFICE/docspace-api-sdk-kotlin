@@ -70,7 +70,7 @@ interface GuestsApi {
      * @param updateMembersRequestDto  (optional)
      * @return [Unit]
      */
-    @DELETE("api/2.0/people/guests")
+    @HTTP(method = "DELETE", path = "api/2.0/people/guests", hasBody = true)
     suspend fun deleteGuests(@Body updateMembersRequestDto: UpdateMembersRequestDto? = null): Response<Unit>
 
 }

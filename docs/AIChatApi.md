@@ -14,6 +14,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 | [**getUserChatsSettings**](AIChatApi.md#getUserChatsSettings) | **GET** api/2.0/ai/rooms/{roomId}/chats/config | Get user chat settings for a room |
 | [**providePermission**](AIChatApi.md#providePermission) | **POST** api/2.0/ai/chats/tool-permissions/{callId}/decision | Submit a tool execution permission decision |
 | [**renameChat**](AIChatApi.md#renameChat) | **PUT** api/2.0/ai/chats/{chatId} | Rename an AI chat |
+| [**resolveEditorTool**](AIChatApi.md#resolveEditorTool) | **POST** api/2.0/ai/chats/tool-files/{callId}/decision | Resolve a pending editor file-generation tool |
 | [**setUserChatsSettings**](AIChatApi.md#setUserChatsSettings) | **PUT** api/2.0/ai/rooms/{roomId}/chats/config | Update user chat settings for a room |
 | [**startNewChat**](AIChatApi.md#startNewChat) | **POST** api/2.0/ai/rooms/{roomId}/chats | Start a new AI chat |
 
@@ -516,6 +517,57 @@ val renameChatBody : RenameChatBody =  // RenameChatBody | The new chat name.
 
 launch(Dispatchers.IO) {
     val result : ChatWrapper = webService.renameChat(chatId, renameChatBody)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+<a id="resolveEditorTool"></a>
+# **resolveEditorTool**
+> GeneratedFileWrapper resolveEditorTool (kotlin.String callId, EditorToolDecisionRequestBody editorToolDecisionRequestBody)
+
+Submits the user's approval or denial for a pending editor generation tool call (docx, form, presentation).  On approval the file is created from the original tool arguments and information about it is returned,  while the suspended chat tool is resumed with the same result so the AI session can continue.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/resolve-editor-tool/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **callId** | **kotlin.String**| The unique identifier of the pending tool call awaiting the user's decision. | |
+| **editorToolDecisionRequestBody** | [**EditorToolDecisionRequestBody**](EditorToolDecisionRequestBody.md)| The decision parameters. | |
+
+### Return type
+
+[**GeneratedFileWrapper**](GeneratedFileWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(AIChatApi::class.java)
+val callId : kotlin.String = call_abc123 // kotlin.String | The unique identifier of the pending tool call awaiting the user's decision.
+val editorToolDecisionRequestBody : EditorToolDecisionRequestBody =  // EditorToolDecisionRequestBody | The decision parameters.
+
+launch(Dispatchers.IO) {
+    val result : GeneratedFileWrapper = webService.resolveEditorTool(callId, editorToolDecisionRequestBody)
 }
 ```
 

@@ -135,7 +135,7 @@ interface AIMCPApi {
      * @param deleteRoomServersRequestBody Server identifiers to remove.
      * @return [Unit]
      */
-    @DELETE("api/2.0/ai/rooms/{roomId}/servers")
+    @HTTP(method = "DELETE", path = "api/2.0/ai/rooms/{roomId}/servers", hasBody = true)
     suspend fun deleteRoomServers(@Path("roomId") roomId: kotlin.Int, @Body deleteRoomServersRequestBody: DeleteRoomServersRequestBody): Response<Unit>
 
     /**
@@ -157,7 +157,7 @@ interface AIMCPApi {
      * @param deleteServersRequestBody Server identifiers to delete.
      * @return [Unit]
      */
-    @DELETE("api/2.0/ai/servers")
+    @HTTP(method = "DELETE", path = "api/2.0/ai/servers", hasBody = true)
     suspend fun deleteServer(@Body deleteServersRequestBody: DeleteServersRequestBody): Response<Unit>
 
     /**

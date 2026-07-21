@@ -10,6 +10,7 @@
 | **ownedBy** | [**EmployeeDto**](EmployeeDto.md) |  |  [optional] |
 | **shared** | **kotlin.Boolean** | Specifies if the file entry is shared via link or not. |  [optional] |
 | **sharedForUser** | **kotlin.Boolean** | Specifies if the file entry is shared for user or not. |  [optional] |
+| **sharedExternal** | **kotlin.Boolean** | Specifies if the file entry is shared via a public (non-internal) external link. |  [optional] |
 | **parentShared** | **kotlin.Boolean** | Indicates whether the parent entity is shared. |  [optional] |
 | **shortWebUrl** | [**java.net.URI**](java.net.URI.md) | The short Web URL. |  [optional] |
 | **created** | [**ApiDateTime**](ApiDateTime.md) |  |  [optional] |
@@ -32,9 +33,9 @@
 | **originTitle** | **kotlin.String** | The origin title of the file entry. |  [optional] |
 | **originRoomTitle** | **kotlin.String** | The origin room title of the file entry. |  [optional] |
 | **canShare** | **kotlin.Boolean** | Specifies if the file entry can be shared or not. |  [optional] |
-| **shareSettings** | [**FolderDtoIntegerShareSettings**](FolderDtoIntegerShareSettings.md) |  |  [optional] |
-| **security** | [**FolderDtoIntegerSecurity**](FolderDtoIntegerSecurity.md) |  |  [optional] |
-| **availableShareRights** | [**FolderDtoIntegerAvailableShareRights**](FolderDtoIntegerAvailableShareRights.md) |  |  [optional] |
+| **shareSettings** | [**FileEntryDtoIntegerAllOfShareSettings**](FileEntryDtoIntegerAllOfShareSettings.md) |  |  [optional] |
+| **security** | [**FileEntryDtoIntegerAllOfSecurity**](FileEntryDtoIntegerAllOfSecurity.md) |  |  [optional] |
+| **availableShareRights** | [**FileEntryDtoIntegerAllOfAvailableShareRights**](FileEntryDtoIntegerAllOfAvailableShareRights.md) |  |  [optional] |
 | **requestToken** | **kotlin.String** | The request token of the file entry. |  [optional] |
 | **&#x60;external&#x60;** | **kotlin.Boolean** | Specifies if the folder can be accessed via an external link or not. |  [optional] |
 | **expirationDate** | [**ApiDateTime**](ApiDateTime.md) |  |  [optional] |

@@ -288,7 +288,7 @@ interface OperationsApi {
      * @param baseBatchRequestDto  (optional)
      * @return [BooleanWrapper]
      */
-    @DELETE("api/2.0/files/favorites")
+    @HTTP(method = "DELETE", path = "api/2.0/files/favorites", hasBody = true)
     suspend fun deleteFavoritesFromBody(@Body baseBatchRequestDto: BaseBatchRequestDto? = null): Response<BooleanWrapper>
 
     /**

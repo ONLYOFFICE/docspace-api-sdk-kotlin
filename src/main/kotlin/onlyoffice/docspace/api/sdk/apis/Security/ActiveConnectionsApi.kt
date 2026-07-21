@@ -54,7 +54,7 @@ interface ActiveConnectionsApi {
      * Logs out from the connection with the ID specified in the request.
      * Responses:
      *  - 200: Boolean value: true if the operation is successful
-     *  - 403: Method not available
+     *  - 403: Access denied
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
@@ -96,7 +96,7 @@ interface ActiveConnectionsApi {
      * Logs out from all the active connections for the user with the ID specified in the request.
      * Responses:
      *  - 200: Ok
-     *  - 403: Method not available
+     *  - 403: Access denied
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.

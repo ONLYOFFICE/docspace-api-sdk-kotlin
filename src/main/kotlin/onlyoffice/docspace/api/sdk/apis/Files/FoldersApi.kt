@@ -29,6 +29,7 @@ import onlyoffice.docspace.api.sdk.models.CheckUploadRequest
 import onlyoffice.docspace.api.sdk.models.CreateFolder
 import onlyoffice.docspace.api.sdk.models.DeleteFolder
 import onlyoffice.docspace.api.sdk.models.FileEntryBaseArrayWrapper
+import onlyoffice.docspace.api.sdk.models.FileIntegerArrayWrapper
 import onlyoffice.docspace.api.sdk.models.FileIntegerWrapper
 import onlyoffice.docspace.api.sdk.models.FileOperationArrayWrapper
 import onlyoffice.docspace.api.sdk.models.FileShareArrayWrapper
@@ -42,13 +43,11 @@ import onlyoffice.docspace.api.sdk.models.FolderLinkRequest
 import onlyoffice.docspace.api.sdk.models.FormsItemArrayWrapper
 import onlyoffice.docspace.api.sdk.models.HistoryArrayWrapper
 import onlyoffice.docspace.api.sdk.models.Location
-import onlyoffice.docspace.api.sdk.models.ObjectWrapper
 import onlyoffice.docspace.api.sdk.models.OrderRequestDto
 import onlyoffice.docspace.api.sdk.models.STRINGArrayWrapper
 import onlyoffice.docspace.api.sdk.models.SearchArea
 import onlyoffice.docspace.api.sdk.models.SortOrder
 import onlyoffice.docspace.api.sdk.models.StringWrapper
-import onlyoffice.docspace.api.sdk.models.UploadRequestDto
 import onlyoffice.docspace.api.sdk.models.XlsxReportResponseWrapper
 
 import okhttp3.MultipartBody
@@ -104,6 +103,7 @@ interface FoldersApi {
      * Creates a primary external link by the identifier specified in the request.
      * Responses:
      *  - 200: Folders security information
+     *  - 403: You don't have enough permission to perform the operation
      *  - 404: Not Found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
@@ -163,7 +163,7 @@ interface FoldersApi {
      * @param deleteFolder The parameters for deleting a folder.
      * @return [FileOperationArrayWrapper]
      */
-    @DELETE("api/2.0/files/folder/{folderId}")
+    @HTTP(method = "DELETE", path = "api/2.0/files/folder/{folderId}", hasBody = true)
     suspend fun deleteFolder(@Path("folderId") folderId: kotlin.Int, @Body deleteFolder: DeleteFolder): Response<FileOperationArrayWrapper>
 
     /**
@@ -281,6 +281,7 @@ interface FoldersApi {
      * @param roomId The room ID. (optional)
      * @param excludeSubject Specifies whether to exclude search by user or group ID. (optional)
      * @param applyFilterOption Specifies whether to return only files, only folders, or all elements from the specified folder. (optional)
+     * @param withSubFolders Specifies whether to include files from subfolders in the results. (optional)
      * @param extension Specifies whether to search for the specific file extension. (optional)
      * @param searchArea The search area. (optional)
      * @param formsItemKey The forms item key. (optional)
@@ -294,7 +295,7 @@ interface FoldersApi {
      * @return [FolderContentIntegerWrapper]
      */
     @GET("api/2.0/files/{folderId}")
-    suspend fun getFolderByFolderId(@Path("folderId") folderId: kotlin.Int, @Query("userIdOrGroupId") userIdOrGroupId: java.util.UUID? = null, @Query("sharedBy") sharedBy: java.util.UUID? = null, @Query("filterType") filterType: FilterType? = null, @Query("roomId") roomId: kotlin.Int? = null, @Query("excludeSubject") excludeSubject: kotlin.Boolean? = null, @Query("applyFilterOption") applyFilterOption: ApplyFilterOption? = null, @Query("extension") extension: kotlin.String? = null, @Query("searchArea") searchArea: SearchArea? = null, @Query("formsItemKey") formsItemKey: kotlin.String? = null, @Query("formsItemType") formsItemType: kotlin.String? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterValue") filterValue: kotlin.String? = null, @Query("Location") location: Location? = null): Response<FolderContentIntegerWrapper>
+    suspend fun getFolderByFolderId(@Path("folderId") folderId: kotlin.Int, @Query("userIdOrGroupId") userIdOrGroupId: java.util.UUID? = null, @Query("sharedBy") sharedBy: java.util.UUID? = null, @Query("filterType") filterType: FilterType? = null, @Query("roomId") roomId: kotlin.Int? = null, @Query("excludeSubject") excludeSubject: kotlin.Boolean? = null, @Query("applyFilterOption") applyFilterOption: ApplyFilterOption? = null, @Query("withSubFolders") withSubFolders: kotlin.Boolean? = null, @Query("extension") extension: kotlin.String? = null, @Query("searchArea") searchArea: SearchArea? = null, @Query("formsItemKey") formsItemKey: kotlin.String? = null, @Query("formsItemType") formsItemType: kotlin.String? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterValue") filterValue: kotlin.String? = null, @Query("Location") location: Location? = null): Response<FolderContentIntegerWrapper>
 
     /**
      * GET api/2.0/files/folder/{folderId}/log
@@ -392,6 +393,7 @@ interface FoldersApi {
      * Returns the primary external link by the identifier specified in the request.
      * Responses:
      *  - 200: Folder security information
+     *  - 403: You don't have enough permission to perform the operation
      *  - 404: Not Found
      *  - 429: Too Many Requests.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
@@ -761,11 +763,15 @@ interface FoldersApi {
      *
      *
      * @param folderId The folder ID to upload a file.
-     * @param uploadRequestDto The request parameters for uploading a file. (optional)
-     * @return [ObjectWrapper]
+     * @param createNewIfExist Specifies whether to create the new file if it already exists or not. (optional)
+     * @param storeOriginalFile Specifies whether to upload documents in the original formats as well or not. (optional)
+     * @param keepConvertStatus Specifies whether to keep the file converting status or not. (optional)
+     * @param file The file to be uploaded. (optional)
+     * @return [FileIntegerArrayWrapper]
      */
+    @Multipart
     @POST("api/2.0/files/{folderId}/upload")
-    suspend fun uploadFile(@Path("folderId") folderId: kotlin.Int, @Body uploadRequestDto: UploadRequestDto? = null): Response<ObjectWrapper>
+    suspend fun uploadFile(@Path("folderId") folderId: kotlin.Int, @Query("createNewIfExist") createNewIfExist: kotlin.Boolean? = null, @Query("storeOriginalFile") storeOriginalFile: kotlin.Boolean? = null, @Query("keepConvertStatus") keepConvertStatus: kotlin.Boolean? = null, @Part file: MultipartBody.Part? = null): Response<FileIntegerArrayWrapper>
 
     /**
      * POST api/2.0/files/@my/upload
@@ -784,10 +790,14 @@ interface FoldersApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-file-to-my/
      *
      *
-     * @param inDto The request parameters for uploading a file. (optional)
-     * @return [ObjectWrapper]
+     * @param createNewIfExist Specifies whether to create the new file if it already exists or not. (optional)
+     * @param storeOriginalFile Specifies whether to upload documents in the original formats as well or not. (optional)
+     * @param keepConvertStatus Specifies whether to keep the file converting status or not. (optional)
+     * @param file The file to be uploaded. (optional)
+     * @return [FileIntegerArrayWrapper]
      */
+    @Multipart
     @POST("api/2.0/files/@my/upload")
-    suspend fun uploadFileToMy(@Query("inDto") inDto: UploadRequestDto? = null): Response<ObjectWrapper>
+    suspend fun uploadFileToMy(@Query("createNewIfExist") createNewIfExist: kotlin.Boolean? = null, @Query("storeOriginalFile") storeOriginalFile: kotlin.Boolean? = null, @Query("keepConvertStatus") keepConvertStatus: kotlin.Boolean? = null, @Part file: MultipartBody.Part? = null): Response<FileIntegerArrayWrapper>
 
 }

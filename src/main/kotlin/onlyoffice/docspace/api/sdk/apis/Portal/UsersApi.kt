@@ -72,7 +72,7 @@ interface UsersApi {
      * @param invitationLinkDeleteRequestDto The data transfer object containing the details of the invitation link to be deleted. (optional)
      * @return [StringWrapper]
      */
-    @DELETE("api/2.0/portal/users/invitationlink")
+    @HTTP(method = "DELETE", path = "api/2.0/portal/users/invitationlink", hasBody = true)
     suspend fun deleteInvitationLink(@Body invitationLinkDeleteRequestDto: InvitationLinkDeleteRequestDto? = null): Response<StringWrapper>
 
     /**
@@ -144,6 +144,7 @@ interface UsersApi {
      * Returns a user with the ID specified in the request from the current portal.
      * Responses:
      *  - 200: User information
+     *  - 404: The user could not be found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.

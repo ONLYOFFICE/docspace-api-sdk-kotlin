@@ -48,6 +48,7 @@
 | **askAi** | **kotlin.Boolean** |  |  [optional] |
 | **useChat** | **kotlin.Boolean** |  |  [optional] |
 | **updateXlsx** | **kotlin.Boolean** |  |  [optional] |
+| **analyzeResponses** | **kotlin.Boolean** |  |  [optional] |
 
 
 

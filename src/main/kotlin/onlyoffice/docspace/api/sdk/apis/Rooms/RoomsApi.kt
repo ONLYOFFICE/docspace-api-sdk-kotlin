@@ -34,6 +34,7 @@ import onlyoffice.docspace.api.sdk.models.CreateTagRequestDto
 import onlyoffice.docspace.api.sdk.models.CreateThirdPartyRoom
 import onlyoffice.docspace.api.sdk.models.DeleteRoomRequest
 import onlyoffice.docspace.api.sdk.models.DocumentBuilderTaskWrapper
+import onlyoffice.docspace.api.sdk.models.ExternalDbSyncTaskWrapper
 import onlyoffice.docspace.api.sdk.models.FileOperationWrapper
 import onlyoffice.docspace.api.sdk.models.FileShareArrayWrapper
 import onlyoffice.docspace.api.sdk.models.FileShareWrapper
@@ -287,7 +288,7 @@ interface RoomsApi {
      * @param batchTagsRequestDto  (optional)
      * @return [Unit]
      */
-    @DELETE("api/2.0/files/tags")
+    @HTTP(method = "DELETE", path = "api/2.0/files/tags", hasBody = true)
     suspend fun deleteCustomTags(@Body batchTagsRequestDto: BatchTagsRequestDto? = null): Response<Unit>
 
     /**
@@ -309,7 +310,7 @@ interface RoomsApi {
      * @param deleteRoomRequest The parameters for deleting a room.
      * @return [FileOperationWrapper]
      */
-    @DELETE("api/2.0/files/rooms/{id}")
+    @HTTP(method = "DELETE", path = "api/2.0/files/rooms/{id}", hasBody = true)
     suspend fun deleteRoom(@Path("id") id: kotlin.Int, @Body deleteRoomRequest: DeleteRoomRequest): Response<FileOperationWrapper>
 
     /**
@@ -353,8 +354,30 @@ interface RoomsApi {
      * @param batchTagsRequestDto The parameters for managing tags. (optional)
      * @return [FolderIntegerWrapper]
      */
-    @DELETE("api/2.0/files/rooms/{id}/tags")
+    @HTTP(method = "DELETE", path = "api/2.0/files/rooms/{id}/tags", hasBody = true)
     suspend fun deleteRoomTags(@Path("id") id: kotlin.Int, @Body batchTagsRequestDto: BatchTagsRequestDto? = null): Response<FolderIntegerWrapper>
+
+    /**
+     * GET api/2.0/files/rooms/{id}/externaldbsync
+     * Get external DB sync status
+     * Returns the status of the external DB synchronization task for the specified filling forms room.
+     * Responses:
+     *  - 200: Synchronization task information
+     *  - 404: Room not found
+     *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *
+     * REST API Reference for getExternalDbSyncStatus Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-external-db-sync-status/
+     *
+     *
+     * @param id The room ID.
+     * @return [ExternalDbSyncTaskWrapper]
+     */
+    @GET("api/2.0/files/rooms/{id}/externaldbsync")
+    suspend fun getExternalDbSyncStatus(@Path("id") id: kotlin.Int): Response<ExternalDbSyncTaskWrapper>
 
     /**
      * GET api/2.0/files/rooms/{id}/news
@@ -632,6 +655,7 @@ interface RoomsApi {
      * Returns the primary external link of the room with the ID specified in the request.
      * Responses:
      *  - 200: Room security information
+     *  - 403: You don't have enough permission to perform the operation
      *  - 404: Not Found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
@@ -785,7 +809,6 @@ interface RoomsApi {
      * Responses:
      *  - 200: Room security information
      *  - 401: Unauthorized
-     *  - 429: Too Many Requests.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -799,6 +822,30 @@ interface RoomsApi {
      */
     @PUT("api/2.0/files/rooms/{id}/share")
     suspend fun setRoomSecurity(@Path("id") id: kotlin.Int, @Body roomInvitationRequest: RoomInvitationRequest): Response<RoomSecurityWrapper>
+
+    /**
+     * POST api/2.0/files/rooms/{id}/externaldbsync
+     * Start external DB sync
+     * Triggers external DB synchronization for all form templates in the specified filling forms room.
+     * Responses:
+     *  - 200: Synchronization task information
+     *  - 400: External DB is not configured
+     *  - 403: You do not have enough permissions to perform this action
+     *  - 404: Room not found
+     *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *
+     * REST API Reference for startExternalDbSync Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/start-external-db-sync/
+     *
+     *
+     * @param id The room ID.
+     * @return [ExternalDbSyncTaskWrapper]
+     */
+    @POST("api/2.0/files/rooms/{id}/externaldbsync")
+    suspend fun startExternalDbSync(@Path("id") id: kotlin.Int): Response<ExternalDbSyncTaskWrapper>
 
     /**
      * POST api/2.0/files/rooms/{id}/indexexport

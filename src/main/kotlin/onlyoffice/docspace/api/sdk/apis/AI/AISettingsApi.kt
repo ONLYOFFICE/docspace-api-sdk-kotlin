@@ -24,6 +24,8 @@ import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
 import onlyoffice.docspace.api.sdk.models.AiSettingsWrapper
+import onlyoffice.docspace.api.sdk.models.AiUserSettingsWrapper
+import onlyoffice.docspace.api.sdk.models.SetAiUserSettingsRequestDto
 import onlyoffice.docspace.api.sdk.models.SetEmbeddingConfigRequestBody
 import onlyoffice.docspace.api.sdk.models.SetWebSearchSettingsRequestBody
 import onlyoffice.docspace.api.sdk.models.VectorizationSettingsWrapper
@@ -49,6 +51,26 @@ interface AISettingsApi {
      */
     @GET("api/2.0/ai/config")
     suspend fun getAiSettings(): Response<AiSettingsWrapper>
+
+    /**
+     * GET api/2.0/ai/config/user
+     * Get per-user AI settings
+     * Retrieves the current user's AI settings, including the recommended model banner visibility preference.
+     * Responses:
+     *  - 200: Current per-user AI settings
+     *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *
+     * REST API Reference for getAiUserSettings Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-ai-user-settings/
+     *
+     *
+     * @return [AiUserSettingsWrapper]
+     */
+    @GET("api/2.0/ai/config/user")
+    suspend fun getAiUserSettings(): Response<AiUserSettingsWrapper>
 
     /**
      * GET api/2.0/ai/config/vectorization
@@ -89,6 +111,27 @@ interface AISettingsApi {
      */
     @GET("api/2.0/ai/config/web-search")
     suspend fun getWebSearchSettings(): Response<WebSearchSettingsWrapper>
+
+    /**
+     * PUT api/2.0/ai/config/user
+     * Update per-user AI settings
+     * Updates the current user's AI recommended model banner visibility preferences.  Each user's settings are stored independently.
+     * Responses:
+     *  - 200: Updated per-user AI settings
+     *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *
+     * REST API Reference for setAiUserSettings Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-ai-user-settings/
+     *
+     *
+     * @param setAiUserSettingsRequestDto  (optional)
+     * @return [AiUserSettingsWrapper]
+     */
+    @PUT("api/2.0/ai/config/user")
+    suspend fun setAiUserSettings(@Body setAiUserSettingsRequestDto: SetAiUserSettingsRequestDto? = null): Response<AiUserSettingsWrapper>
 
     /**
      * PUT api/2.0/ai/config/vectorization

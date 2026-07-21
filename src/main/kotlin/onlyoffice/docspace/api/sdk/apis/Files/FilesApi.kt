@@ -259,6 +259,7 @@ interface FilesApi {
      * Creates a primary external link by the identifier specified in the request.
      * Responses:
      *  - 200: File security information
+     *  - 403: You don't have enough permission to perform the operation
      *  - 404: Not Found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
@@ -404,7 +405,7 @@ interface FilesApi {
      * @param returnSingleOperation Specifies whether to return only the current operation (optional)
      * @return [FileOperationArrayWrapper]
      */
-    @DELETE("api/2.0/files/file/{fileId}")
+    @HTTP(method = "DELETE", path = "api/2.0/files/file/{fileId}", hasBody = true)
     suspend fun deleteFile(@Path("fileId") fileId: kotlin.Int, @Body delete: Delete, @Query("ReturnSingleOperation") returnSingleOperation: kotlin.Boolean? = null): Response<FileOperationArrayWrapper>
 
     /**
@@ -425,7 +426,7 @@ interface FilesApi {
      * @param baseBatchRequestDto  (optional)
      * @return [NoContentResultWrapper]
      */
-    @DELETE("api/2.0/files/recent")
+    @HTTP(method = "DELETE", path = "api/2.0/files/recent", hasBody = true)
     suspend fun deleteRecent(@Body baseBatchRequestDto: BaseBatchRequestDto? = null): Response<NoContentResultWrapper>
 
     /**
@@ -446,7 +447,7 @@ interface FilesApi {
      * @param requestBody The file IDs. (optional)
      * @return [BooleanWrapper]
      */
-    @DELETE("api/2.0/files/templates")
+    @HTTP(method = "DELETE", path = "api/2.0/files/templates", hasBody = true)
     suspend fun deleteTemplates(@Body requestBody: kotlin.collections.List<kotlin.Int>? = null): Response<BooleanWrapper>
 
     /**
@@ -479,6 +480,7 @@ interface FilesApi {
      * Responses:
      *  - 200: Successfully retrieved all roles for the form
      *  - 403: You do not have enough permissions to view the form roles
+     *  - 404: The required file was not found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
@@ -612,6 +614,7 @@ interface FilesApi {
      * Returns the primary external link by the identifier specified in the request.
      * Responses:
      *  - 200: File security information
+     *  - 403: You don't have enough permission to perform the operation
      *  - 404: Not Found
      *  - 429: Too Many Requests.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.

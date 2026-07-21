@@ -21,28 +21,25 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * [0 - Any, 1 - Pending, 2 - Completed, 4 - Rejected, 8 - Canceled]
+ * [0 - Pending, 1 - Completed, 2 - Rejected, 3 - Canceled]
  *
- * Values: Any,Pending,Completed,Rejected,Canceled
+ * Values: Pending,Completed,Rejected,Canceled
  */
 
 @JsonClass(generateAdapter = false)
 enum class OperationStatus(val value: kotlin.Int) {
 
     @Json(name = "0")
-    Any(0),
+    Pending(0),
 
     @Json(name = "1")
-    Pending(1),
+    Completed(1),
 
     @Json(name = "2")
-    Completed(2),
+    Rejected(2),
 
-    @Json(name = "4")
-    Rejected(4),
-
-    @Json(name = "8")
-    Canceled(8);
+    @Json(name = "3")
+    Canceled(3);
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use

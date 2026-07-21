@@ -39,6 +39,7 @@ import com.squareup.moshi.JsonClass
  * @param aiReadyNeedReset Indicates whether the AI provider API key needs to be reconfigured.
  * @param portalMcpServerId The unique identifier of the portal-level MCP server, if configured.
  * @param systemAiEnabled Indicates whether the system-level AI provider is enabled.
+ * @param recommendedModelForForms The identifier of the model recommended for form generation.
  */
 
 
@@ -106,7 +107,11 @@ data class AiSettingsDto (
 
     /* Indicates whether the system-level AI provider is enabled. */
     @Json(name = "systemAiEnabled")
-    val systemAiEnabled: kotlin.Boolean? = null
+    val systemAiEnabled: kotlin.Boolean? = null,
+
+    /* The identifier of the model recommended for form generation. */
+    @Json(name = "recommendedModelForForms")
+    val recommendedModelForForms: kotlin.String? = null
 
 ) {
 

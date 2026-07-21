@@ -490,7 +490,7 @@ launch(Dispatchers.IO) {
 
 <a id="getFolderByFolderId"></a>
 # **getFolderByFolderId**
-> FolderContentIntegerWrapper getFolderByFolderId (kotlin.Int folderId, java.util.UUID userIdOrGroupId, java.util.UUID sharedBy, FilterType filterType, kotlin.Int roomId, kotlin.Boolean excludeSubject, ApplyFilterOption applyFilterOption, kotlin.String extension, SearchArea searchArea, kotlin.String formsItemKey, kotlin.String formsItemType, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterValue, Location location)
+> FolderContentIntegerWrapper getFolderByFolderId (kotlin.Int folderId, java.util.UUID userIdOrGroupId, java.util.UUID sharedBy, FilterType filterType, kotlin.Int roomId, kotlin.Boolean excludeSubject, ApplyFilterOption applyFilterOption, kotlin.Boolean withSubFolders, kotlin.String extension, SearchArea searchArea, kotlin.String formsItemKey, kotlin.String formsItemType, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterValue, Location location)
 
 Returns the detailed list of files and folders located in the folder with the ID specified in the request.
 
@@ -506,6 +506,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **roomId** | **kotlin.Int**| The room ID. | [optional] |
 | **excludeSubject** | **kotlin.Boolean**| Specifies whether to exclude search by user or group ID. | [optional] |
 | **applyFilterOption** | [**ApplyFilterOption**](.md)| Specifies whether to return only files, only folders, or all elements from the specified folder. | [optional] [enum: 0, 1, 2] |
+| **withSubFolders** | **kotlin.Boolean**| Specifies whether to include files from subfolders in the results. | [optional] |
 | **extension** | **kotlin.String**| Specifies whether to search for the specific file extension. | [optional] |
 | **searchArea** | [**SearchArea**](.md)| The search area. | [optional] [enum: 0, 1, 2, 3, 4, 5, 6, 7] |
 | **formsItemKey** | **kotlin.String**| The forms item key. | [optional] |
@@ -541,6 +542,7 @@ val filterType : FilterType = 1 // FilterType | The filter type.
 val roomId : kotlin.Int = 1 // kotlin.Int | The room ID.
 val excludeSubject : kotlin.Boolean = false // kotlin.Boolean | Specifies whether to exclude search by user or group ID.
 val applyFilterOption : ApplyFilterOption = 1 // ApplyFilterOption | Specifies whether to return only files, only folders, or all elements from the specified folder.
+val withSubFolders : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to include files from subfolders in the results.
 val extension : kotlin.String = .docx // kotlin.String | Specifies whether to search for the specific file extension.
 val searchArea : SearchArea = 1 // SearchArea | The search area.
 val formsItemKey : kotlin.String = doc_key_123 // kotlin.String | The forms item key.
@@ -553,7 +555,7 @@ val filterValue : kotlin.String = My Document // kotlin.String | The text value 
 val location : Location = 1 // Location | The location context of the request, specifying the area  where the operation is performed, such as a room, documents, or a link.
 
 launch(Dispatchers.IO) {
-    val result : FolderContentIntegerWrapper = webService.getFolderByFolderId(folderId, userIdOrGroupId, sharedBy, filterType, roomId, excludeSubject, applyFilterOption, extension, searchArea, formsItemKey, formsItemType, count, startIndex, sortBy, sortOrder, filterValue, location)
+    val result : FolderContentIntegerWrapper = webService.getFolderByFolderId(folderId, userIdOrGroupId, sharedBy, filterType, roomId, excludeSubject, applyFilterOption, withSubFolders, extension, searchArea, formsItemKey, formsItemType, count, startIndex, sortBy, sortOrder, filterValue, location)
 }
 ```
 
@@ -1524,7 +1526,7 @@ launch(Dispatchers.IO) {
 
 <a id="uploadFile"></a>
 # **uploadFile**
-> ObjectWrapper uploadFile (kotlin.Int folderId, UploadRequestDto uploadRequestDto)
+> FileIntegerArrayWrapper uploadFile (kotlin.Int folderId, kotlin.Boolean createNewIfExist, kotlin.Boolean storeOriginalFile, kotlin.Boolean keepConvertStatus, java.io.File file)
 
 Uploads a file specified in the request to the selected folder by single file uploading or standart multipart/form-data method.
 
@@ -1534,11 +1536,14 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **folderId** | **kotlin.Int**| The folder ID to upload a file. | |
-| **uploadRequestDto** | [**UploadRequestDto**](UploadRequestDto.md)| The request parameters for uploading a file. | [optional] |
+| **createNewIfExist** | **kotlin.Boolean**| Specifies whether to create the new file if it already exists or not. | [optional] |
+| **storeOriginalFile** | **kotlin.Boolean**| Specifies whether to upload documents in the original formats as well or not. | [optional] |
+| **keepConvertStatus** | **kotlin.Boolean**| Specifies whether to keep the file converting status or not. | [optional] |
+| **file** | **java.io.File**| The file to be uploaded. | [optional] |
 
 ### Return type
 
-[**ObjectWrapper**](ObjectWrapper.md)
+[**FileIntegerArrayWrapper**](FileIntegerArrayWrapper.md)
 
 ### Authorization
 
@@ -1560,22 +1565,25 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
 val folderId : kotlin.Int = 1 // kotlin.Int | The folder ID to upload a file.
-val uploadRequestDto : UploadRequestDto =  // UploadRequestDto | The request parameters for uploading a file.
+val createNewIfExist : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to create the new file if it already exists or not.
+val storeOriginalFile : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to upload documents in the original formats as well or not.
+val keepConvertStatus : kotlin.Boolean = false // kotlin.Boolean | Specifies whether to keep the file converting status or not.
+val file : java.io.File = BINARY_DATA_HERE // java.io.File | The file to be uploaded.
 
 launch(Dispatchers.IO) {
-    val result : ObjectWrapper = webService.uploadFile(folderId, uploadRequestDto)
+    val result : FileIntegerArrayWrapper = webService.uploadFile(folderId, createNewIfExist, storeOriginalFile, keepConvertStatus, file)
 }
 ```
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
 
 <a id="uploadFileToMy"></a>
 # **uploadFileToMy**
-> ObjectWrapper uploadFileToMy (UploadRequestDto inDto)
+> FileIntegerArrayWrapper uploadFileToMy (kotlin.Boolean createNewIfExist, kotlin.Boolean storeOriginalFile, kotlin.Boolean keepConvertStatus, java.io.File file)
 
 Uploads a file specified in the request to the My documents section by single file uploading or standart multipart/form-data method.
 
@@ -1584,11 +1592,14 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **inDto** | [**UploadRequestDto**](.md)| The request parameters for uploading a file. | [optional] |
+| **createNewIfExist** | **kotlin.Boolean**| Specifies whether to create the new file if it already exists or not. | [optional] |
+| **storeOriginalFile** | **kotlin.Boolean**| Specifies whether to upload documents in the original formats as well or not. | [optional] |
+| **keepConvertStatus** | **kotlin.Boolean**| Specifies whether to keep the file converting status or not. | [optional] |
+| **file** | **java.io.File**| The file to be uploaded. | [optional] |
 
 ### Return type
 
-[**ObjectWrapper**](ObjectWrapper.md)
+[**FileIntegerArrayWrapper**](FileIntegerArrayWrapper.md)
 
 ### Authorization
 
@@ -1609,15 +1620,18 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val inDto : UploadRequestDto =  // UploadRequestDto | The request parameters for uploading a file.
+val createNewIfExist : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to create the new file if it already exists or not.
+val storeOriginalFile : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to upload documents in the original formats as well or not.
+val keepConvertStatus : kotlin.Boolean = false // kotlin.Boolean | Specifies whether to keep the file converting status or not.
+val file : java.io.File = BINARY_DATA_HERE // java.io.File | The file to be uploaded.
 
 launch(Dispatchers.IO) {
-    val result : ObjectWrapper = webService.uploadFileToMy(inDto)
+    val result : FileIntegerArrayWrapper = webService.uploadFileToMy(createNewIfExist, storeOriginalFile, keepConvertStatus, file)
 }
 ```
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 

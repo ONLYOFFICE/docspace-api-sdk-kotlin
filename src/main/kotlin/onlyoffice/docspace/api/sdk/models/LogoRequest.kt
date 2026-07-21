@@ -35,7 +35,7 @@ data class LogoRequest (
 
     /* The path to the temporary image file. */
     @Json(name = "tmpFile")
-    val tmpFile: kotlin.String? = null,
+    val tmpFile: kotlin.String,
 
     /* The X coordinate of the rectangle starting point. */
     @Json(name = "x")

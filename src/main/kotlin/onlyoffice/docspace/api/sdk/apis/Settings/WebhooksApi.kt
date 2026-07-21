@@ -24,11 +24,11 @@ import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
 import onlyoffice.docspace.api.sdk.models.CreateWebhooksConfigRequestsDto
-import onlyoffice.docspace.api.sdk.models.GetWebhookTriggers200Response
 import onlyoffice.docspace.api.sdk.models.UpdateWebhooksConfigRequestsDto
 import onlyoffice.docspace.api.sdk.models.WebhookGroupStatus
 import onlyoffice.docspace.api.sdk.models.WebhookRetryRequestsDto
 import onlyoffice.docspace.api.sdk.models.WebhookTrigger
+import onlyoffice.docspace.api.sdk.models.WebhookTriggerArrayWrapper
 import onlyoffice.docspace.api.sdk.models.WebhooksConfigWithStatusArrayWrapper
 import onlyoffice.docspace.api.sdk.models.WebhooksConfigWrapper
 import onlyoffice.docspace.api.sdk.models.WebhooksLogArrayWrapper
@@ -106,9 +106,9 @@ interface WebhooksApi {
     /**
      * GET api/2.0/settings/webhook/triggers
      * Get webhook triggers
-     * Returns a list of triggers for a webhook.
+     * Returns a list of triggers for a webhook with their availability for the current user.
      * Responses:
-     *  - 200: List of triggers for a webhook
+     *  - 200: List of triggers with availability for the current user
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
@@ -118,10 +118,10 @@ interface WebhooksApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-webhook-triggers/
      *
      *
-     * @return [GetWebhookTriggers200Response]
+     * @return [WebhookTriggerArrayWrapper]
      */
     @GET("api/2.0/settings/webhook/triggers")
-    suspend fun getWebhookTriggers(): Response<GetWebhookTriggers200Response>
+    suspend fun getWebhookTriggers(): Response<WebhookTriggerArrayWrapper>
 
     /**
      * GET api/2.0/settings/webhooks/log

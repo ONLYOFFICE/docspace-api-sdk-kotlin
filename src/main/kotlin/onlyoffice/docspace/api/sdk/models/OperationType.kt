@@ -21,70 +21,73 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * [0 - Any, 1 - Unknown, 2 - ServicePayment, 4 - PackagePayment, 8 - ServiceUsage, 16 - Deposit, 32 - ReceiveProviderInvoice, 64 - ProcessProviderInvoice, 128 - WriteOffServiceProfit, 256 - Profit, 512 - PartnerAccrual, 1024 - ProviderPayment, 2048 - PartnerPayment, 4096 - Refund, 8192 - BankDeposit, 16384 - BankWithdrawal, 32768 - GoodwillCredit, 65536 - WriteOffProfit, 131072 - WriteOffDifferenceCurrency]
+ * [0 - Unknown, 1 - ServicePayment, 2 - PackagePayment, 3 - AiServicePayment, 4 - Deposit, 5 - ReceiveProviderInvoice, 6 - ProcessProviderInvoice, 7 - WriteOffServiceProfit, 8 - Profit, 9 - PartnerAccrual, 10 - ProviderPayment, 11 - PartnerPayment, 12 - Refund, 13 - BankDeposit, 14 - BankWithdrawal, 15 - GoodwillCredit, 16 - WriteOffProfit, 17 - WriteOffDifferenceCurrency, 18 - AiDebit, 19 - AiCredit]
  *
- * Values: Any,Unknown,ServicePayment,PackagePayment,ServiceUsage,Deposit,ReceiveProviderInvoice,ProcessProviderInvoice,WriteOffServiceProfit,Profit,PartnerAccrual,ProviderPayment,PartnerPayment,Refund,BankDeposit,BankWithdrawal,GoodwillCredit,WriteOffProfit,WriteOffDifferenceCurrency
+ * Values: Unknown,ServicePayment,PackagePayment,AiServicePayment,Deposit,ReceiveProviderInvoice,ProcessProviderInvoice,WriteOffServiceProfit,Profit,PartnerAccrual,ProviderPayment,PartnerPayment,Refund,BankDeposit,BankWithdrawal,GoodwillCredit,WriteOffProfit,WriteOffDifferenceCurrency,AiDebit,AiCredit
  */
 
 @JsonClass(generateAdapter = false)
 enum class OperationType(val value: kotlin.Int) {
 
     @Json(name = "0")
-    Any(0),
+    Unknown(0),
 
     @Json(name = "1")
-    Unknown(1),
+    ServicePayment(1),
 
     @Json(name = "2")
-    ServicePayment(2),
+    PackagePayment(2),
+
+    @Json(name = "3")
+    AiServicePayment(3),
 
     @Json(name = "4")
-    PackagePayment(4),
+    Deposit(4),
+
+    @Json(name = "5")
+    ReceiveProviderInvoice(5),
+
+    @Json(name = "6")
+    ProcessProviderInvoice(6),
+
+    @Json(name = "7")
+    WriteOffServiceProfit(7),
 
     @Json(name = "8")
-    ServiceUsage(8),
+    Profit(8),
+
+    @Json(name = "9")
+    PartnerAccrual(9),
+
+    @Json(name = "10")
+    ProviderPayment(10),
+
+    @Json(name = "11")
+    PartnerPayment(11),
+
+    @Json(name = "12")
+    Refund(12),
+
+    @Json(name = "13")
+    BankDeposit(13),
+
+    @Json(name = "14")
+    BankWithdrawal(14),
+
+    @Json(name = "15")
+    GoodwillCredit(15),
 
     @Json(name = "16")
-    Deposit(16),
+    WriteOffProfit(16),
 
-    @Json(name = "32")
-    ReceiveProviderInvoice(32),
+    @Json(name = "17")
+    WriteOffDifferenceCurrency(17),
 
-    @Json(name = "64")
-    ProcessProviderInvoice(64),
+    @Json(name = "18")
+    AiDebit(18),
 
-    @Json(name = "128")
-    WriteOffServiceProfit(128),
-
-    @Json(name = "256")
-    Profit(256),
-
-    @Json(name = "512")
-    PartnerAccrual(512),
-
-    @Json(name = "1024")
-    ProviderPayment(1024),
-
-    @Json(name = "2048")
-    PartnerPayment(2048),
-
-    @Json(name = "4096")
-    Refund(4096),
-
-    @Json(name = "8192")
-    BankDeposit(8192),
-
-    @Json(name = "16384")
-    BankWithdrawal(16384),
-
-    @Json(name = "32768")
-    GoodwillCredit(32768),
-
-    @Json(name = "65536")
-    WriteOffProfit(65536),
-
-    @Json(name = "131072")
-    WriteOffDifferenceCurrency(131072);
+    @Json(name = "19")
+    AiCredit(19);
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use

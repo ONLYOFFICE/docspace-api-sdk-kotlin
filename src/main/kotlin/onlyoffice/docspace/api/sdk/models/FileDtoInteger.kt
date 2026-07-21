@@ -19,14 +19,14 @@ package onlyoffice.docspace.api.sdk.models
 import onlyoffice.docspace.api.sdk.models.ApiDateTime
 import onlyoffice.docspace.api.sdk.models.DraftLocationInteger
 import onlyoffice.docspace.api.sdk.models.EmployeeDto
-import onlyoffice.docspace.api.sdk.models.FileDtoIntegerViewAccessibility
+import onlyoffice.docspace.api.sdk.models.FileDtoIntegerAllOfViewAccessibility
+import onlyoffice.docspace.api.sdk.models.FileEntryDtoIntegerAllOfAvailableShareRights
+import onlyoffice.docspace.api.sdk.models.FileEntryDtoIntegerAllOfSecurity
+import onlyoffice.docspace.api.sdk.models.FileEntryDtoIntegerAllOfShareSettings
 import onlyoffice.docspace.api.sdk.models.FileEntryType
 import onlyoffice.docspace.api.sdk.models.FileShare
 import onlyoffice.docspace.api.sdk.models.FileStatus
 import onlyoffice.docspace.api.sdk.models.FileType
-import onlyoffice.docspace.api.sdk.models.FolderDtoIntegerAvailableShareRights
-import onlyoffice.docspace.api.sdk.models.FolderDtoIntegerSecurity
-import onlyoffice.docspace.api.sdk.models.FolderDtoIntegerShareSettings
 import onlyoffice.docspace.api.sdk.models.FolderType
 import onlyoffice.docspace.api.sdk.models.FormFillingStatus
 import onlyoffice.docspace.api.sdk.models.Size
@@ -45,6 +45,7 @@ import com.squareup.moshi.JsonClass
  * @param ownedBy 
  * @param shared Specifies if the file entry is shared via link or not.
  * @param sharedForUser Specifies if the file entry is shared for user or not.
+ * @param sharedExternal Specifies if the file entry is shared via a public (non-internal) external link.
  * @param parentShared Indicates whether the parent entity is shared.
  * @param shortWebUrl The short Web URL.
  * @param created 
@@ -59,6 +60,7 @@ import com.squareup.moshi.JsonClass
  * @param providerId The provider ID of the file entry.
  * @param order The order of the file entry.
  * @param isFavorite Specifies if the file is a favorite or not.
+ * @param fileEntryType 
  * @param id The file entry ID.
  * @param rootFolderId The root folder ID of the file entry.
  * @param originId The origin ID of the file entry.
@@ -100,12 +102,13 @@ import com.squareup.moshi.JsonClass
  * @param isFillingPreparing Specifies if the form filling has started but the file is still being saved by the document editor. Filling and editing are not allowed.
  * @param inProcessFolderId The InProcess folder ID of the file.
  * @param inProcessFolderTitle The InProcess folder title of the file.
+ * @param resultsFolderId The ID of the FormFillingFolderDone folder that corresponds to this original form.
  * @param draftLocation 
  * @param viewAccessibility 
  * @param lastOpened 
  * @param expired 
- * @param fileEntryType 
  * @param vectorizationStatus 
+ * @param externalDbTableName The name of the table in the external database that corresponds to this form.
  * @param dimensions 
  */
 
@@ -132,6 +135,10 @@ data class FileDtoInteger (
     /* Specifies if the file entry is shared for user or not. */
     @Json(name = "sharedForUser")
     val sharedForUser: kotlin.Boolean? = null,
+
+    /* Specifies if the file entry is shared via a public (non-internal) external link. */
+    @Json(name = "sharedExternal")
+    val sharedExternal: kotlin.Boolean? = null,
 
     /* Indicates whether the parent entity is shared. */
     @Json(name = "parentShared")
@@ -182,6 +189,9 @@ data class FileDtoInteger (
     @Json(name = "isFavorite")
     val isFavorite: kotlin.Boolean? = null,
 
+    @Json(name = "fileEntryType")
+    val fileEntryType: FileEntryType? = null,
+
     /* The file entry ID. */
     @Json(name = "id")
     val id: kotlin.Int? = null,
@@ -211,13 +221,13 @@ data class FileDtoInteger (
     val canShare: kotlin.Boolean? = null,
 
     @Json(name = "shareSettings")
-    val shareSettings: FolderDtoIntegerShareSettings? = null,
+    val shareSettings: FileEntryDtoIntegerAllOfShareSettings? = null,
 
     @Json(name = "security")
-    val security: FolderDtoIntegerSecurity? = null,
+    val security: FileEntryDtoIntegerAllOfSecurity? = null,
 
     @Json(name = "availableShareRights")
-    val availableShareRights: FolderDtoIntegerAvailableShareRights? = null,
+    val availableShareRights: FileEntryDtoIntegerAllOfAvailableShareRights? = null,
 
     /* The request token of the file entry. */
     @Json(name = "requestToken")
@@ -338,11 +348,15 @@ data class FileDtoInteger (
     @Json(name = "inProcessFolderTitle")
     val inProcessFolderTitle: kotlin.String? = null,
 
+    /* The ID of the FormFillingFolderDone folder that corresponds to this original form. */
+    @Json(name = "resultsFolderId")
+    val resultsFolderId: kotlin.Int? = null,
+
     @Json(name = "draftLocation")
     val draftLocation: DraftLocationInteger? = null,
 
     @Json(name = "viewAccessibility")
-    val viewAccessibility: FileDtoIntegerViewAccessibility? = null,
+    val viewAccessibility: FileDtoIntegerAllOfViewAccessibility? = null,
 
     @Json(name = "lastOpened")
     val lastOpened: ApiDateTime? = null,
@@ -350,11 +364,12 @@ data class FileDtoInteger (
     @Json(name = "expired")
     val expired: ApiDateTime? = null,
 
-    @Json(name = "fileEntryType")
-    val fileEntryType: FileEntryType? = null,
-
     @Json(name = "vectorizationStatus")
     val vectorizationStatus: VectorizationStatus? = null,
+
+    /* The name of the table in the external database that corresponds to this form. */
+    @Json(name = "externalDbTableName")
+    val externalDbTableName: kotlin.String? = null,
 
     @Json(name = "dimensions")
     val dimensions: Size? = null

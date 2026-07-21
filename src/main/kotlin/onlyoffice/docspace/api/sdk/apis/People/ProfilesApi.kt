@@ -23,7 +23,6 @@ import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
-import onlyoffice.docspace.api.sdk.models.BooleanWrapper
 import onlyoffice.docspace.api.sdk.models.Culture
 import onlyoffice.docspace.api.sdk.models.EmployeeArrayWrapper
 import onlyoffice.docspace.api.sdk.models.EmployeeFullArrayWrapper
@@ -34,6 +33,7 @@ import onlyoffice.docspace.api.sdk.models.ObjectWrapper
 import onlyoffice.docspace.api.sdk.models.SortOrder
 import onlyoffice.docspace.api.sdk.models.UpdateMemberRequestDto
 import onlyoffice.docspace.api.sdk.models.UpdateMembersRequestDto
+import onlyoffice.docspace.api.sdk.models.UserExistsResponseWrapper
 
 interface ProfilesApi {
     /**
@@ -61,9 +61,9 @@ interface ProfilesApi {
     /**
      * GET api/2.0/people/exists
      * Check if a user exists by email
-     * Returns a boolean indicating whether a user with the specified email exists on the portal.
+     * Returns data indicating whether a user with the specified email exists on the portal.
      * Responses:
-     *  - 200: Boolean result
+     *  - 200: User existence result
      *  - 400: Incorrect email
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
@@ -77,10 +77,10 @@ interface ProfilesApi {
      * @param email The user email address. (optional)
      * @param encemail The user encrypted email address. (optional)
      * @param culture Culture (optional)
-     * @return [BooleanWrapper]
+     * @return [UserExistsResponseWrapper]
      */
     @GET("api/2.0/people/exists")
-    suspend fun checkUserExistsByEmail(@Query("email") email: kotlin.String? = null, @Query("encemail") encemail: kotlin.String? = null, @Query("culture") culture: kotlin.String? = null): Response<BooleanWrapper>
+    suspend fun checkUserExistsByEmail(@Query("email") email: kotlin.String? = null, @Query("encemail") encemail: kotlin.String? = null, @Query("culture") culture: kotlin.String? = null): Response<UserExistsResponseWrapper>
 
     /**
      * DELETE api/2.0/people/{userid}
@@ -253,7 +253,6 @@ interface ProfilesApi {
      *  - 402: The number of admins exceeds the limit
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
-     *  - 429: Too Many Requests.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *

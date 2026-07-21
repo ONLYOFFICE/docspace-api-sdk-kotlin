@@ -214,7 +214,7 @@ interface GroupApi {
      * @param membersRequest The member request.
      * @return [GroupWrapper]
      */
-    @DELETE("api/2.0/group/{id}/members")
+    @HTTP(method = "DELETE", path = "api/2.0/group/{id}/members", hasBody = true)
     suspend fun removeMembersFrom(@Path("id") id: java.util.UUID, @Body membersRequest: MembersRequest): Response<GroupWrapper>
 
     /**

@@ -9,6 +9,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 | [**changeDefaultAccessRights**](FilesSettingsApi.md#changeDefaultAccessRights) | **PUT** api/2.0/files/settings/dafaultaccessrights | Change the default access rights |
 | [**changeDeleteConfirm**](FilesSettingsApi.md#changeDeleteConfirm) | **PUT** api/2.0/files/changedeleteconfrim | Confirm the file deletion |
 | [**changeDownloadZipFromBody**](FilesSettingsApi.md#changeDownloadZipFromBody) | **PUT** api/2.0/files/settings/downloadtargz | Change the archive format (using body parameters) |
+| [**changeExternalSharingSettings**](FilesSettingsApi.md#changeExternalSharingSettings) | **PUT** api/2.0/files/settings/externalsharingsettings | Change the Access Control external sharing settings |
 | [**checkDocServiceUrl**](FilesSettingsApi.md#checkDocServiceUrl) | **PUT** api/2.0/files/docservice | Check the document service URL |
 | [**displayFileExtension**](FilesSettingsApi.md#displayFileExtension) | **PUT** api/2.0/files/displayfileextension | Display a file extension |
 | [**displayRecent**](FilesSettingsApi.md#displayRecent) | **PUT** api/2.0/files/displayrecent | Display the Recent folder |
@@ -272,6 +273,55 @@ val displayRequestDto : DisplayRequestDto =  // DisplayRequestDto |
 
 launch(Dispatchers.IO) {
     val result : ICompressWrapper = webService.changeDownloadZipFromBody(displayRequestDto)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+<a id="changeExternalSharingSettings"></a>
+# **changeExternalSharingSettings**
+> ExternalSharingSettingsWrapper changeExternalSharingSettings (ExternalSharingSettingsRequestDto externalSharingSettingsRequestDto)
+
+Changes the Access Control external sharing settings.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/change-external-sharing-settings/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **externalSharingSettingsRequestDto** | [**ExternalSharingSettingsRequestDto**](ExternalSharingSettingsRequestDto.md)|  | [optional] |
+
+### Return type
+
+[**ExternalSharingSettingsWrapper**](ExternalSharingSettingsWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(SettingsApi::class.java)
+val externalSharingSettingsRequestDto : ExternalSharingSettingsRequestDto =  // ExternalSharingSettingsRequestDto | 
+
+launch(Dispatchers.IO) {
+    val result : ExternalSharingSettingsWrapper = webService.changeExternalSharingSettings(externalSharingSettingsRequestDto)
 }
 ```
 

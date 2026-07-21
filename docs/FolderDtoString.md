@@ -10,6 +10,7 @@
 | **ownedBy** | [**EmployeeDto**](EmployeeDto.md) |  |  [optional] |
 | **shared** | **kotlin.Boolean** | Specifies if the file entry is shared via link or not. |  [optional] |
 | **sharedForUser** | **kotlin.Boolean** | Specifies if the file entry is shared for user or not. |  [optional] |
+| **sharedExternal** | **kotlin.Boolean** | Specifies if the file entry is shared via a public (non-internal) external link. |  [optional] |
 | **parentShared** | **kotlin.Boolean** | Indicates whether the parent entity is shared. |  [optional] |
 | **shortWebUrl** | [**java.net.URI**](java.net.URI.md) | The short Web URL. |  [optional] |
 | **created** | [**ApiDateTime**](ApiDateTime.md) |  |  [optional] |
@@ -24,6 +25,7 @@
 | **providerId** | **kotlin.Int** | The provider ID of the file entry. |  [optional] |
 | **order** | **kotlin.String** | The order of the file entry. |  [optional] |
 | **isFavorite** | **kotlin.Boolean** | Specifies if the file is a favorite or not. |  [optional] |
+| **fileEntryType** | [**FileEntryType**](FileEntryType.md) |  |  [optional] |
 | **id** | **kotlin.String** | The file entry ID. |  [optional] |
 | **rootFolderId** | **kotlin.String** | The root folder ID of the file entry. |  [optional] |
 | **originId** | **kotlin.String** | The origin ID of the file entry. |  [optional] |
@@ -31,9 +33,9 @@
 | **originTitle** | **kotlin.String** | The origin title of the file entry. |  [optional] |
 | **originRoomTitle** | **kotlin.String** | The origin room title of the file entry. |  [optional] |
 | **canShare** | **kotlin.Boolean** | Specifies if the file entry can be shared or not. |  [optional] |
-| **shareSettings** | [**FolderDtoIntegerShareSettings**](FolderDtoIntegerShareSettings.md) |  |  [optional] |
-| **security** | [**FolderDtoIntegerSecurity**](FolderDtoIntegerSecurity.md) |  |  [optional] |
-| **availableShareRights** | [**FolderDtoIntegerAvailableShareRights**](FolderDtoIntegerAvailableShareRights.md) |  |  [optional] |
+| **shareSettings** | [**FileEntryDtoIntegerAllOfShareSettings**](FileEntryDtoIntegerAllOfShareSettings.md) |  |  [optional] |
+| **security** | [**FileEntryDtoIntegerAllOfSecurity**](FileEntryDtoIntegerAllOfSecurity.md) |  |  [optional] |
+| **availableShareRights** | [**FileEntryDtoIntegerAllOfAvailableShareRights**](FileEntryDtoIntegerAllOfAvailableShareRights.md) |  |  [optional] |
 | **requestToken** | **kotlin.String** | The request token of the file entry. |  [optional] |
 | **&#x60;external&#x60;** | **kotlin.Boolean** | Specifies if the folder can be accessed via an external link or not. |  [optional] |
 | **expirationDate** | [**ApiDateTime**](ApiDateTime.md) |  |  [optional] |
@@ -60,11 +62,11 @@
 | **usedSpace** | **kotlin.Long** | How much folder space is used (counter). |  [optional] |
 | **passwordProtected** | **kotlin.Boolean** | Specifies if the folder is password protected or not. |  [optional] |
 | **expired** | **kotlin.Boolean** | Specifies if an external link to the folder is expired or not. |  [optional] |
-| **fileEntryType** | [**FileEntryType**](FileEntryType.md) |  |  [optional] |
 | **chatSettings** | [**ChatSettingsDto**](ChatSettingsDto.md) |  |  [optional] |
 | **rootRoomType** | [**RoomType**](RoomType.md) |  |  [optional] |
 | **saveFormAsXLSX** | **kotlin.Boolean** | Specifies whether to save form data as XLSX file. |  [optional] |
 | **sendFormToExternalDB** | **kotlin.Boolean** | Specifies whether to send form data to external database. |  [optional] |
+| **originalFormId** | **kotlin.Int** | The original form ID that corresponds to this FormFillingFolderDone folder. |  [optional] |
 
 
 

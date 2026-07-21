@@ -96,6 +96,7 @@ interface QuotaApi {
      * Returns the recommended quota for the current portal.
      * Responses:
      *  - 200: Recommended portal quota
+     *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.

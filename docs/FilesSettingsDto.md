@@ -62,6 +62,10 @@
 | **chunkUploadSize** | **kotlin.Long** | The size of a large file that is uploaded in chunks. |  [optional] |
 | **openEditorInSameTab** | **kotlin.Boolean** | Specifies whether to open the editor in the same tab or not. |  [optional] |
 | **organizeRoomsGrouping** | **kotlin.Boolean** | Specifies whether the grouping of rooms is enabled or not. |  [optional] |
+| **defaultShareLinkInternal** | **kotlin.Boolean** | Specifies the default sharing link type: true = DocSpace users only (internal), false = Anyone with the link. |  [optional] |
+| **externalShareApplyToDocuments** | **kotlin.Boolean** | When external sharing is restricted, specifies whether the restriction applies to the My Documents section. |  [optional] |
+| **externalShareApplyToRooms** | **kotlin.Boolean** | When external sharing is restricted, specifies whether the restriction applies to the Rooms section. |  [optional] |
+| **blockExistingLinksOnRestrict** | **kotlin.Boolean** | When external sharing is restricted, specifies whether existing public links are blocked immediately. |  [optional] |
 | **extsFilesVectorized** | **kotlin.collections.List&lt;kotlin.String&gt;** | List of extensions available for vectorization |  [optional] |
 | **maxVectorizationFileSize** | **kotlin.Long** | The maximum file size for vectorization |  [optional] |
 
