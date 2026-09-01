@@ -161,7 +161,7 @@ launch(Dispatchers.IO) {
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 <a id="getRoomGroupInfo"></a>
@@ -217,7 +217,7 @@ launch(Dispatchers.IO) {
 
 <a id="getRoomGroups"></a>
 # **getRoomGroups**
-> RoomGroupArrayWrapper getRoomGroups (kotlin.Int id, kotlin.Boolean includeMembers)
+> RoomGroupArrayWrapper getRoomGroups (kotlin.Boolean includeMembers)
 
 Returns a list of all room groups for the current user.
 
@@ -226,7 +226,6 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **id** | **kotlin.Int**| The group unique identifier. | |
 | **includeMembers** | **kotlin.Boolean**| Whether to include group members. | [optional] |
 
 ### Return type
@@ -252,11 +251,10 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(GroupsApi::class.java)
-val id : kotlin.Int = 10 // kotlin.Int | The group unique identifier.
 val includeMembers : kotlin.Boolean = true // kotlin.Boolean | Whether to include group members.
 
 launch(Dispatchers.IO) {
-    val result : RoomGroupArrayWrapper = webService.getRoomGroups(id, includeMembers)
+    val result : RoomGroupArrayWrapper = webService.getRoomGroups(includeMembers)
 }
 ```
 

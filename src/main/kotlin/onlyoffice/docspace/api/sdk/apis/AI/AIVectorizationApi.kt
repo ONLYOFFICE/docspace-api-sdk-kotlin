@@ -30,7 +30,7 @@ interface AIVectorizationApi {
     /**
      * POST api/2.0/ai/vectorization/tasks
      * Start a vectorization task
-     * 
+     * Starts a vectorization task over the supplied portal files. The indexing itself runs asynchronously on the .NET side.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.

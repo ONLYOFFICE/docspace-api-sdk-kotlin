@@ -22,11 +22,11 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * Per-entry error reported by  {@link  PromptsEngine.importBundle } .
+ * Per-entry error reported by `PromptsEngine.importBundle`.
  *
  * @param kind `folder` or `prompt`, plus the offending name or id.
- * @param ref 
- * @param error 
+ * @param ref The offending entry - its name or its id.
+ * @param error Why the entry was rejected.
  */
 
 

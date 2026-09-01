@@ -21,7 +21,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * An amount of money together with its currency.
  *
  * @param currency The three-character ISO 4217 currency symbol.
  * @param amount The amount in the specified currency.

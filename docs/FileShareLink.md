@@ -7,7 +7,7 @@
 | **id** | [**java.util.UUID**](java.util.UUID.md) | The unique identifier of the shared link. |  [optional] |
 | **title** | **kotlin.String** | The title of the shared content. |  [optional] |
 | **shareLink** | **kotlin.String** | The URL for accessing the shared content. |  [optional] |
-| **expirationDate** | [**ApiDateTime**](ApiDateTime.md) | The API date and time parameters. |  [optional] |
+| **expirationDate** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) | The date when the shared link expires. |  [optional] |
 | **linkType** | [**LinkType**](LinkType.md) | The sharing link type (e.g., Invitation). |  [optional] |
 | **password** | **kotlin.String** | The password protection for accessing the shared content. |  [optional] |
 | **denyDownload** | **kotlin.Boolean** | Indicates whether downloading of the shared content is prohibited. |  [optional] |

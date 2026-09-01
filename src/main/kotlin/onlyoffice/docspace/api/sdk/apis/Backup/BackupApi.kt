@@ -31,6 +31,7 @@ import onlyoffice.docspace.api.sdk.models.BackupScheduleDto
 import onlyoffice.docspace.api.sdk.models.BackupServiceStateWrapper
 import onlyoffice.docspace.api.sdk.models.BackupsCountResultWrapper
 import onlyoffice.docspace.api.sdk.models.BooleanWrapper
+import onlyoffice.docspace.api.sdk.models.ErrorApiResponse
 import onlyoffice.docspace.api.sdk.models.Int32Wrapper
 import onlyoffice.docspace.api.sdk.models.ScheduleWrapper
 
@@ -43,6 +44,7 @@ interface BackupApi {
      *  - 200: Boolean value: true if the operation is successful
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -67,6 +69,7 @@ interface BackupApi {
      *  - 404: The required folder was not found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -89,6 +92,8 @@ interface BackupApi {
      *  - 403: Access denied
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -111,6 +116,8 @@ interface BackupApi {
      *  - 403: Access denied
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -133,6 +140,8 @@ interface BackupApi {
      *  - 403: Access denied
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -155,6 +164,8 @@ interface BackupApi {
      *  - 403: Access denied
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -177,6 +188,8 @@ interface BackupApi {
      *  - 403: Access denied
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -199,6 +212,8 @@ interface BackupApi {
      *  - 403: Access denied
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -222,6 +237,7 @@ interface BackupApi {
      *  - 403: Access denied
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -247,6 +263,7 @@ interface BackupApi {
      *  - 403: Access denied
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -271,6 +288,7 @@ interface BackupApi {
      *  - 403: Access denied
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -290,6 +308,8 @@ interface BackupApi {
      * Responses:
      *  - 200: Backup progress: completed or not, progress percentage, error, tenant ID, backup progress item (Backup, Restore, Transfer), link
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -315,6 +335,7 @@ interface BackupApi {
      *  - 404: The required folder was not found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -340,6 +361,7 @@ interface BackupApi {
      *  - 404: The required file or folder was not found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *

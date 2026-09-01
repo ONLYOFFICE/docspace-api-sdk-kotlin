@@ -22,17 +22,17 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The connection parameters of an external database.
  *
- * @param databaseType 
- * @param databaseTypeEnum 
- * @param dbHost 
- * @param dbPort 
- * @param dbName 
- * @param dbUser 
- * @param dbPassword 
- * @param dbSsl 
- * @param sqliteFilePath 
+ * @param databaseType The engine of the external database.
+ * @param databaseTypeEnum The engine of an external database.
+ * @param dbHost The host name or the IP address of the database server.
+ * @param dbPort The port the database server listens on.
+ * @param dbName The name of the database to connect to.
+ * @param dbUser The user name to connect with.
+ * @param dbPassword The password to connect with.
+ * @param dbSsl Specifies whether the connection to the database is secured with SSL.
+ * @param sqliteFilePath The path to the database file, used by the SQLite engine only.
  */
 
 

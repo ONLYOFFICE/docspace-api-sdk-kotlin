@@ -58,7 +58,7 @@ launch(Dispatchers.IO) {
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 <a id="clearMigration"></a>
@@ -104,7 +104,7 @@ launch(Dispatchers.IO) {
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 <a id="finishMigration"></a>
@@ -153,7 +153,7 @@ launch(Dispatchers.IO) {
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 <a id="getMigrationLogs"></a>
@@ -199,7 +199,7 @@ launch(Dispatchers.IO) {
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 <a id="getMigrationStatus"></a>
@@ -340,7 +340,7 @@ launch(Dispatchers.IO) {
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 <a id="uploadAndInitializeMigration"></a>
@@ -389,5 +389,5 @@ launch(Dispatchers.IO) {
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 

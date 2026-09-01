@@ -34,7 +34,7 @@ interface AIWebSearchApi {
     /**
      * DELETE api/2.0/ai/web-search/clear
      * Clear
-     * 
+     * Removes the web-search configuration of the scope. Does nothing when web search was not configured there.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -52,7 +52,7 @@ interface AIWebSearchApi {
     /**
      * PUT api/2.0/ai/web-search/configure
      * Configure
-     * 
+     * Validates a web-search configuration against the live provider and stores it only when the provider answers, replacing the previous one in a single write.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -70,7 +70,7 @@ interface AIWebSearchApi {
     /**
      * GET api/2.0/ai/web-search/get-active-config
      * Get active config
-     * 
+     * Returns the web-search configuration active in the scope, or an empty result when web search is not configured.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -79,16 +79,16 @@ interface AIWebSearchApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-web-search-get-active-config/
      *
      *
-     * @param entityId 
+     * @param entityId The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. (optional)
      * @return [AiWebSearchConfig]
      */
     @GET("api/2.0/ai/web-search/get-active-config")
-    suspend fun aiWebSearchGetActiveConfig(@Query("entityId") entityId: kotlin.String): Response<AiWebSearchConfig>
+    suspend fun aiWebSearchGetActiveConfig(@Query("entityId") entityId: kotlin.String? = null): Response<AiWebSearchConfig>
 
     /**
      * GET api/2.0/ai/web-search/is-configured
      * Is configured
-     * 
+     * Tells whether web search is configured in the scope.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -97,16 +97,16 @@ interface AIWebSearchApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-web-search-is-configured/
      *
      *
-     * @param entityId 
+     * @param entityId The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. (optional)
      * @return [kotlin.Boolean]
      */
     @GET("api/2.0/ai/web-search/is-configured")
-    suspend fun aiWebSearchIsConfigured(@Query("entityId") entityId: kotlin.String): Response<kotlin.Boolean>
+    suspend fun aiWebSearchIsConfigured(@Query("entityId") entityId: kotlin.String? = null): Response<kotlin.Boolean>
 
     /**
      * POST api/2.0/ai/websearch/v1/contents
      * Web page contents proxied to the portal's active web-search provider
-     * 
+     * Fetches web page contents on behalf of the document editor's AI plugin, against the portal's active web-search provider, the same way as the search passthrough.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -124,7 +124,7 @@ interface AIWebSearchApi {
     /**
      * POST api/2.0/ai/websearch/v1/search
      * Web search proxied to the portal's active web-search provider
-     * 
+     * Runs a web search on behalf of the document editor's AI plugin. The plugin only holds a placeholder configuration; the portal's active provider and its key are resolved here and never reach the browser.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -142,7 +142,7 @@ interface AIWebSearchApi {
     /**
      * PUT api/2.0/ai/web-search/set-active-config
      * Set active config
-     * 
+     * Stores a web-search configuration without contacting the provider first, for forms that validate locally.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -160,7 +160,7 @@ interface AIWebSearchApi {
     /**
      * POST api/2.0/ai/web-search/test-connection
      * Test connection
-     * 
+     * Checks a web-search configuration against the live provider without storing it - for a Test button that must not commit on success.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.

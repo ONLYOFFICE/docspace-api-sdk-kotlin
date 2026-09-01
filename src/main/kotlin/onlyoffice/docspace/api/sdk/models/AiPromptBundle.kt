@@ -25,9 +25,9 @@ import com.squareup.moshi.JsonClass
 /**
  * Versioned, self-contained bundle of every saved prompt and folder. Stable wire format — `version` lets the import path migrate older shapes if the schema ever changes.
  *
- * @param version 
- * @param folders 
- * @param prompts 
+ * @param version The bundle format version, so an import can migrate an older export.
+ * @param folders Every exported prompt folder.
+ * @param prompts Every exported prompt.
  */
 
 
@@ -45,7 +45,7 @@ data class AiPromptBundle (
 ) {
 
     /**
-     * 
+     * The bundle format version, so an import can migrate an older export.
      *
      * Values: _1
      */

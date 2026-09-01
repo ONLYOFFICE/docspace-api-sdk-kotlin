@@ -25,8 +25,8 @@ import com.squareup.moshi.JsonClass
 /**
  * The group member security information.
  *
- * @param user The full list of user parameters.
- * @param groupAccess The access rights type.
+ * @param user The group member parameters.
+ * @param groupAccess The group access rights to the files.
  * @param overridden Specifies if the group access rights are overridden or not.
  * @param canEditAccess Specifies if the group member can edit the group access rights or not.
  * @param owner Specifies if the group member is a group owner or not.

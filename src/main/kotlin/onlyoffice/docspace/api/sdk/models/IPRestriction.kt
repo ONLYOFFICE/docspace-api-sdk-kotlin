@@ -21,12 +21,12 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The IP restiction parameters.
  *
- * @param ip 
- * @param forAdmin 
- * @param id 
- * @param tenantId 
+ * @param ip The IP address.
+ * @param forAdmin Specifies if the IP address is for administrator users only or not.
+ * @param id The IP restiction ID.
+ * @param tenantId The tenant ID.
  */
 
 

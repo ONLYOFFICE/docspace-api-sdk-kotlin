@@ -6,7 +6,7 @@
 | ------------ | ------------- | ------------- | ------------- |
 | **roomId** | **kotlin.Int** | The room template ID. |  |
 | **title** | **kotlin.String** | The room template title. |  |
-| **logo** | [**LogoRequest**](LogoRequest.md) | The logo request parameters. |  [optional] |
+| **logo** | [**LogoRequest**](LogoRequest.md) | The room template logo. |  [optional] |
 | **copyLogo** | **kotlin.Boolean** | Specifies whether to copy room logo or not. |  [optional] |
 | **share** | **kotlin.collections.List&lt;kotlin.String&gt;** | The collection of email addresses of users with whom to share a room. |  [optional] |
 | **groups** | [**kotlin.collections.List&lt;java.util.UUID&gt;**](java.util.UUID.md) | The collection of groups with whom to share a room. |  [optional] |

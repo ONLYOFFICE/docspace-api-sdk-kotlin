@@ -25,7 +25,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 # **aiThreadsAppendUserMessage**
 > AiThreadMessageLike aiThreadsAppendUserMessage (AiThreadsAppendUserMessageRequest aiThreadsAppendUserMessageRequest)
 
-
+Persists a user message in a thread and bumps the thread's last-edit date so it resurfaces in the sidebar. Optionally rebinds the thread to another profile when the model changed mid-conversation.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-threads-append-user-message/).
 
@@ -68,7 +68,7 @@ launch(Dispatchers.IO) {
 # **aiThreadsClearMessages**
 > AiSuccessResponse aiThreadsClearMessages (kotlin.String body)
 
-
+Drops every message of a thread while keeping the thread itself, and bumps its last-edit date.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-threads-clear-messages/).
 
@@ -111,7 +111,7 @@ launch(Dispatchers.IO) {
 # **aiThreadsCreate**
 > AiThread aiThreadsCreate (AiThreadsCreateRequest aiThreadsCreateRequest)
 
-
+Creates a chat thread with a caller-supplied title. Use `open-or-create` instead when the title should be generated from the first user message.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-threads-create/).
 
@@ -154,7 +154,7 @@ launch(Dispatchers.IO) {
 # **aiThreadsDelete**
 > AiSuccessResponse aiThreadsDelete (kotlin.String body)
 
-
+Deletes a chat thread together with its messages.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-threads-delete/).
 
@@ -197,7 +197,7 @@ launch(Dispatchers.IO) {
 # **aiThreadsDeleteMessage**
 > AiSuccessResponse aiThreadsDeleteMessage (kotlin.String body)
 
-
+Deletes one chat message, leaving the rest of the thread untouched.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-threads-delete-message/).
 
@@ -240,14 +240,14 @@ launch(Dispatchers.IO) {
 # **aiThreadsGetById**
 > AiThread aiThreadsGetById (kotlin.String threadId)
 
-
+Returns one chat thread, or an empty result when the identifier is unknown.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-threads-get-by-id/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **threadId** | **kotlin.String**|  | |
+| **threadId** | **kotlin.String**| The chat thread identifier. | |
 
 ### Return type
 
@@ -266,7 +266,7 @@ No authorization required
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(AIThreadsApi::class.java)
-val threadId : kotlin.String = threadId_example // kotlin.String | 
+val threadId : kotlin.String = threadId_example // kotlin.String | The chat thread identifier.
 
 launch(Dispatchers.IO) {
     val result : AiThread = webService.aiThreadsGetById(threadId)
@@ -283,14 +283,14 @@ launch(Dispatchers.IO) {
 # **aiThreadsGetMessageById**
 > AiThreadMessageLike aiThreadsGetMessageById (kotlin.String messageId)
 
-
+Returns one chat message by its globally unique identifier.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-threads-get-message-by-id/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **messageId** | **kotlin.String**|  | |
+| **messageId** | **kotlin.String**| The globally unique chat message identifier. | |
 
 ### Return type
 
@@ -309,7 +309,7 @@ No authorization required
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(AIThreadsApi::class.java)
-val messageId : kotlin.String = messageId_example // kotlin.String | 
+val messageId : kotlin.String = messageId_example // kotlin.String | The globally unique chat message identifier.
 
 launch(Dispatchers.IO) {
     val result : AiThreadMessageLike = webService.aiThreadsGetMessageById(messageId)
@@ -326,17 +326,17 @@ launch(Dispatchers.IO) {
 # **aiThreadsList**
 > kotlin.collections.List&lt;AiThread&gt; aiThreadsList (kotlin.String entityId, kotlin.String count, kotlin.String cursor, kotlin.String query)
 
-
+Lists the chat threads of the scope, most recently edited first. Supports cursor pagination and a server-side case-insensitive title search.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-threads-list/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **entityId** | **kotlin.String**|  | |
-| **count** | **kotlin.String**|  | |
-| **cursor** | **kotlin.String**|  | |
-| **query** | **kotlin.String**|  | |
+| **entityId** | **kotlin.String**| The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. | [optional] |
+| **count** | **kotlin.String**| The maximum number of items to return in one page. | [optional] |
+| **cursor** | **kotlin.String**| The keyset pagination cursor: the JSON-encoded sort key of the last item already received. Omit for the first page. | [optional] |
+| **query** | **kotlin.String**| The full-text query the thread list is filtered by. | [optional] |
 
 ### Return type
 
@@ -355,10 +355,10 @@ No authorization required
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(AIThreadsApi::class.java)
-val entityId : kotlin.String = entityId_example // kotlin.String | 
-val count : kotlin.String = count_example // kotlin.String | 
-val cursor : kotlin.String = cursor_example // kotlin.String | 
-val query : kotlin.String = query_example // kotlin.String | 
+val entityId : kotlin.String = entityId_example // kotlin.String | The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope.
+val count : kotlin.String = count_example // kotlin.String | The maximum number of items to return in one page.
+val cursor : kotlin.String = cursor_example // kotlin.String | The keyset pagination cursor: the JSON-encoded sort key of the last item already received. Omit for the first page.
+val query : kotlin.String = query_example // kotlin.String | The full-text query the thread list is filtered by.
 
 launch(Dispatchers.IO) {
     val result : kotlin.collections.List<AiThread> = webService.aiThreadsList(entityId, count, cursor, query)
@@ -375,7 +375,7 @@ launch(Dispatchers.IO) {
 # **aiThreadsOpenOrCreate**
 > AiOpenOrCreateResult aiThreadsOpenOrCreate (AiThreadsOpenOrCreateRequest aiThreadsOpenOrCreateRequest)
 
-
+Opens a chat thread and returns its history, or creates one with a title generated from the supplied first message. That first message is not persisted - the caller decides whether to follow up with `append-user-message`.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-threads-open-or-create/).
 
@@ -418,17 +418,17 @@ launch(Dispatchers.IO) {
 # **aiThreadsReadMessages**
 > kotlin.collections.List&lt;AiThreadMessageLike&gt; aiThreadsReadMessages (kotlin.String threadId, kotlin.String count, kotlin.String cursor, kotlin.String direction)
 
-
+Reads the messages of a thread, with the same cursor pagination as the thread list.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-threads-read-messages/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **threadId** | **kotlin.String**|  | |
-| **count** | **kotlin.String**|  | |
-| **cursor** | **kotlin.String**|  | |
-| **direction** | **kotlin.String**|  | |
+| **threadId** | **kotlin.String**| The chat thread identifier. | |
+| **count** | **kotlin.String**| The maximum number of items to return in one page. | [optional] |
+| **cursor** | **kotlin.String**| The keyset pagination cursor: the JSON-encoded sort key of the last item already received. Omit for the first page. | [optional] |
+| **direction** | **kotlin.String**| The order the message page is read in. Only desc turns the read around and pages back from the newest message; omit for the forward read. | [optional] |
 
 ### Return type
 
@@ -447,10 +447,10 @@ No authorization required
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(AIThreadsApi::class.java)
-val threadId : kotlin.String = threadId_example // kotlin.String | 
-val count : kotlin.String = count_example // kotlin.String | 
-val cursor : kotlin.String = cursor_example // kotlin.String | 
-val direction : kotlin.String = direction_example // kotlin.String | 
+val threadId : kotlin.String = threadId_example // kotlin.String | The chat thread identifier.
+val count : kotlin.String = count_example // kotlin.String | The maximum number of items to return in one page.
+val cursor : kotlin.String = cursor_example // kotlin.String | The keyset pagination cursor: the JSON-encoded sort key of the last item already received. Omit for the first page.
+val direction : kotlin.String = direction_example // kotlin.String | The order the message page is read in. Only desc turns the read around and pages back from the newest message; omit for the forward read.
 
 launch(Dispatchers.IO) {
     val result : kotlin.collections.List<AiThreadMessageLike> = webService.aiThreadsReadMessages(threadId, count, cursor, direction)
@@ -467,7 +467,7 @@ launch(Dispatchers.IO) {
 # **aiThreadsRegenerateTitle**
 > kotlin.String aiThreadsRegenerateTitle (AiThreadsRegenerateTitleRequest aiThreadsRegenerateTitleRequest)
 
-
+Generates a fresh title from the thread's first user message and persists it. Fails when the thread has no user message yet.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-threads-regenerate-title/).
 
@@ -510,7 +510,7 @@ launch(Dispatchers.IO) {
 # **aiThreadsRename**
 > AiSuccessResponse aiThreadsRename (AiThreadsRenameRequest aiThreadsRenameRequest)
 
-
+Renames a chat thread and bumps its last-edit date so the new title shows up in the sidebar.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-threads-rename/).
 
@@ -553,7 +553,7 @@ launch(Dispatchers.IO) {
 # **aiThreadsTouch**
 > AiSuccessResponse aiThreadsTouch (AiThreadsTouchRequest aiThreadsTouchRequest)
 
-
+Bumps a thread's last-edit date, and optionally rebinds it to another profile, when something other than a new message - a model switch, say - should resurface it.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-threads-touch/).
 
@@ -596,7 +596,7 @@ launch(Dispatchers.IO) {
 # **aiThreadsUpdateMessage**
 > AiSuccessResponse aiThreadsUpdateMessage (AiThreadsUpdateMessageRequest aiThreadsUpdateMessageRequest)
 
-
+Replaces the content of a chat message - used by the edit and regenerate flows that change a message outside the streaming lifecycle.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-threads-update-message/).
 

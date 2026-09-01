@@ -16,7 +16,6 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.ApiDateTime
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -30,7 +29,7 @@ import com.squareup.moshi.JsonClass
  * @param unitOfMeasure The quota unit of measure.
  * @param quantity The quantity that will be charged (the next quantity if set, otherwise the current quantity).
  * @param wallet The quota applies to the wallet or not.
- * @param dueDate The API date and time parameters.
+ * @param dueDate The due date of the upcoming payment in the portal time zone.
  * @param amount The amount that will be charged (unit price multiplied by the quantity).
  * @param currency The three-character ISO 4217 currency symbol of the amount.
  */
@@ -57,7 +56,7 @@ data class UpcomingPaymentDto (
     val wallet: kotlin.Boolean? = null,
 
     @Json(name = "dueDate")
-    val dueDate: ApiDateTime? = null,
+    val dueDate: java.time.OffsetDateTime? = null,
 
     @Json(name = "amount")
     val amount: kotlin.Double? = null,

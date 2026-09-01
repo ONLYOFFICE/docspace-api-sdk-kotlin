@@ -136,7 +136,7 @@ launch(Dispatchers.IO) {
 
 <a id="changeDefaultAccessRights"></a>
 # **changeDefaultAccessRights**
-> FileShareArrayWrapper changeDefaultAccessRights (kotlin.collections.List<kotlin.Int> requestBody)
+> FileShareResponseArrayWrapper changeDefaultAccessRights (kotlin.collections.List<kotlin.Int> requestBody)
 
 Changes the default access rights in the sharing settings.
 
@@ -149,7 +149,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Return type
 
-[**FileShareArrayWrapper**](FileShareArrayWrapper.md)
+[**FileShareResponseArrayWrapper**](FileShareResponseArrayWrapper.md)
 
 ### Authorization
 
@@ -173,7 +173,7 @@ val webService = apiClient.createWebservice(SettingsApi::class.java)
 val requestBody : kotlin.collections.List<kotlin.Int> =  // kotlin.collections.List<kotlin.Int> | Sharing rights (None, ReadWrite, Read, Restrict, Varies, Review, Comment, FillForms, CustomFilter, RoomAdmin, Editing, Collaborator).
 
 launch(Dispatchers.IO) {
-    val result : FileShareArrayWrapper = webService.changeDefaultAccessRights(requestBody)
+    val result : FileShareResponseArrayWrapper = webService.changeDefaultAccessRights(requestBody)
 }
 ```
 

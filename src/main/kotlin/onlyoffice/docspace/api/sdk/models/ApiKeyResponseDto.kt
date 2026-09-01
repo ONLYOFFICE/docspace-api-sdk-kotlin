@@ -16,7 +16,6 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.ApiDateTime
 import onlyoffice.docspace.api.sdk.models.EmployeeDto
 
 import com.squareup.moshi.Json
@@ -31,10 +30,10 @@ import com.squareup.moshi.JsonClass
  * @param permissions The list of permissions granted to the API key.
  * @param isActive Indicates whether the API key is active or not.
  * @param keyPostfix The API key postfix (used for identification).
- * @param lastUsed The API date and time parameters.
- * @param createOn The API date and time parameters.
- * @param createBy The user parameters.
- * @param expiresAt The API date and time parameters.
+ * @param lastUsed The date and time when the API key was last used.
+ * @param createOn The date and time when the API key was created.
+ * @param createBy The identifier of the user who created the API key.
+ * @param expiresAt The date and time when the API key expires.
  */
 
 
@@ -59,16 +58,16 @@ data class ApiKeyResponseDto (
     val keyPostfix: kotlin.String? = null,
 
     @Json(name = "lastUsed")
-    val lastUsed: ApiDateTime? = null,
+    val lastUsed: java.time.OffsetDateTime? = null,
 
     @Json(name = "createOn")
-    val createOn: ApiDateTime? = null,
+    val createOn: java.time.OffsetDateTime? = null,
 
     @Json(name = "createBy")
     val createBy: EmployeeDto? = null,
 
     @Json(name = "expiresAt")
-    val expiresAt: ApiDateTime? = null
+    val expiresAt: java.time.OffsetDateTime? = null
 
 ) {
 

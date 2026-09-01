@@ -26,7 +26,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 
 <a id="deleteAdditionalWhiteLabelSettings"></a>
 # **deleteAdditionalWhiteLabelSettings**
-> AdditionalWhiteLabelSettingsWrapper deleteAdditionalWhiteLabelSettings ()
+> AdditionalWhiteLabelSettingsResponseWrapper deleteAdditionalWhiteLabelSettings ()
 
 Deletes the additional white label settings.
 
@@ -37,7 +37,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**AdditionalWhiteLabelSettingsWrapper**](AdditionalWhiteLabelSettingsWrapper.md)
+[**AdditionalWhiteLabelSettingsResponseWrapper**](AdditionalWhiteLabelSettingsResponseWrapper.md)
 
 ### Authorization
 
@@ -60,7 +60,7 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RebrandingApi::class.java)
 
 launch(Dispatchers.IO) {
-    val result : AdditionalWhiteLabelSettingsWrapper = webService.deleteAdditionalWhiteLabelSettings()
+    val result : AdditionalWhiteLabelSettingsResponseWrapper = webService.deleteAdditionalWhiteLabelSettings()
 }
 ```
 
@@ -72,7 +72,7 @@ launch(Dispatchers.IO) {
 
 <a id="deleteCompanyWhiteLabelSettings"></a>
 # **deleteCompanyWhiteLabelSettings**
-> CompanyWhiteLabelSettingsWrapper deleteCompanyWhiteLabelSettings ()
+> CompanyWhiteLabelSettingsResponseWrapper deleteCompanyWhiteLabelSettings ()
 
 Deletes the company white label settings.
 
@@ -83,7 +83,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**CompanyWhiteLabelSettingsWrapper**](CompanyWhiteLabelSettingsWrapper.md)
+[**CompanyWhiteLabelSettingsResponseWrapper**](CompanyWhiteLabelSettingsResponseWrapper.md)
 
 ### Authorization
 
@@ -106,7 +106,7 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RebrandingApi::class.java)
 
 launch(Dispatchers.IO) {
-    val result : CompanyWhiteLabelSettingsWrapper = webService.deleteCompanyWhiteLabelSettings()
+    val result : CompanyWhiteLabelSettingsResponseWrapper = webService.deleteCompanyWhiteLabelSettings()
 }
 ```
 
@@ -118,7 +118,7 @@ launch(Dispatchers.IO) {
 
 <a id="getAdditionalWhiteLabelSettings"></a>
 # **getAdditionalWhiteLabelSettings**
-> AdditionalWhiteLabelSettingsWrapper getAdditionalWhiteLabelSettings ()
+> AdditionalWhiteLabelSettingsDtoWrapper getAdditionalWhiteLabelSettings ()
 
 Returns the additional white label settings.
 
@@ -129,7 +129,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**AdditionalWhiteLabelSettingsWrapper**](AdditionalWhiteLabelSettingsWrapper.md)
+[**AdditionalWhiteLabelSettingsDtoWrapper**](AdditionalWhiteLabelSettingsDtoWrapper.md)
 
 ### Authorization
 
@@ -152,7 +152,7 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RebrandingApi::class.java)
 
 launch(Dispatchers.IO) {
-    val result : AdditionalWhiteLabelSettingsWrapper = webService.getAdditionalWhiteLabelSettings()
+    val result : AdditionalWhiteLabelSettingsDtoWrapper = webService.getAdditionalWhiteLabelSettings()
 }
 ```
 
@@ -164,7 +164,7 @@ launch(Dispatchers.IO) {
 
 <a id="getCompanyWhiteLabelSettings"></a>
 # **getCompanyWhiteLabelSettings**
-> CompanyWhiteLabelSettingsWrapper getCompanyWhiteLabelSettings ()
+> CompanyWhiteLabelSettingsDtoWrapper getCompanyWhiteLabelSettings ()
 
 Returns the company white label settings.
 
@@ -175,7 +175,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**CompanyWhiteLabelSettingsWrapper**](CompanyWhiteLabelSettingsWrapper.md)
+[**CompanyWhiteLabelSettingsDtoWrapper**](CompanyWhiteLabelSettingsDtoWrapper.md)
 
 ### Authorization
 
@@ -198,7 +198,7 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RebrandingApi::class.java)
 
 launch(Dispatchers.IO) {
-    val result : CompanyWhiteLabelSettingsWrapper = webService.getCompanyWhiteLabelSettings()
+    val result : CompanyWhiteLabelSettingsDtoWrapper = webService.getCompanyWhiteLabelSettings()
 }
 ```
 

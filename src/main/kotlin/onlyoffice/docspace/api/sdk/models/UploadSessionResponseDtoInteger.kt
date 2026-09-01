@@ -30,7 +30,7 @@ import com.squareup.moshi.JsonClass
  * @param title The file title.
  * @param providerKey The third-party provider key.
  * @param uploaded Specifies whether the file has been uploaded.
- * @param file The file parameters.
+ * @param file The uploaded file information.
  */
 
 

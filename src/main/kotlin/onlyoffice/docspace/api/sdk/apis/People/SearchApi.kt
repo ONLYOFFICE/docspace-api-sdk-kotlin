@@ -30,6 +30,7 @@ import onlyoffice.docspace.api.sdk.models.EmployeeArrayWrapper
 import onlyoffice.docspace.api.sdk.models.EmployeeFullArrayWrapper
 import onlyoffice.docspace.api.sdk.models.EmployeeStatus
 import onlyoffice.docspace.api.sdk.models.EmployeeType
+import onlyoffice.docspace.api.sdk.models.ErrorApiResponse
 import onlyoffice.docspace.api.sdk.models.ObjectArrayWrapper
 import onlyoffice.docspace.api.sdk.models.Payments
 import onlyoffice.docspace.api.sdk.models.QuotaFilter
@@ -45,6 +46,8 @@ interface SearchApi {
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -79,6 +82,8 @@ interface SearchApi {
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -113,6 +118,8 @@ interface SearchApi {
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -147,6 +154,8 @@ interface SearchApi {
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -183,6 +192,8 @@ interface SearchApi {
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -224,6 +235,8 @@ interface SearchApi {
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -258,6 +271,8 @@ interface SearchApi {
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -292,6 +307,8 @@ interface SearchApi {
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -338,6 +355,8 @@ interface SearchApi {
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -378,6 +397,8 @@ interface SearchApi {
      *  - 200: List of users
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -400,6 +421,8 @@ interface SearchApi {
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *

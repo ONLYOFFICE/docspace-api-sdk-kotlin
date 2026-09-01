@@ -21,9 +21,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The parameters of an importable API entity.
  *
- * @param shouldImport 
+ * @param shouldImport Specifies whether the API entity should be imported.
  */
 
 

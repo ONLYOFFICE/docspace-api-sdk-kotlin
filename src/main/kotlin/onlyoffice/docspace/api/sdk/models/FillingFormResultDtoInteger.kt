@@ -27,9 +27,9 @@ import com.squareup.moshi.JsonClass
  *
  * @param formNumber The filling form number.
  * @param roomId The room ID where filling the form.
- * @param completedForm The file parameters.
- * @param originalForm The file parameters.
- * @param manager The full list of user parameters.
+ * @param completedForm The file with the completed forms.
+ * @param originalForm The file with the original forms.
+ * @param manager The manager who is filling the form.
  * @param isRoomMember Specifies if the manager who fills the form is a room member or not.
  */
 

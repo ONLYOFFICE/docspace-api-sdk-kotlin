@@ -1,14 +1,14 @@
-# PrivacyroomApi
+# PrivacyRoomApi
 
 All URIs are relative to *https://your-docspace.onlyoffice.com*
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**deleteKeys**](PrivacyroomApi.md#deleteKeys) | **DELETE** api/2.0/privacyroom/keys/{id} | Deletes an encryption key and removes it from the system. |
-| [**getUserKeys**](PrivacyroomApi.md#getUserKeys) | **GET** api/2.0/privacyroom/keys | Retrieves encryption keys associated with the current user. |
-| [**getUserKeysForRoom**](PrivacyroomApi.md#getUserKeysForRoom) | **GET** api/2.0/privacyroom/{roomId}/access | Retrieves the encryption keys associated with a specific privacy room. |
-| [**replaceKey**](PrivacyroomApi.md#replaceKey) | **PUT** api/2.0/privacyroom/keys | Replaces an existing encryption key with a new one for the user. |
-| [**setKeys**](PrivacyroomApi.md#setKeys) | **POST** api/2.0/privacyroom/keys | Creates and sets encryption keys for the user. |
+| [**deleteKeys**](RoomsPrivacyRoomApi.md#deleteKeys) | **DELETE** api/2.0/privacyroom/keys/{id} | Deletes an encryption key and removes it from the system. |
+| [**getUserKeys**](RoomsPrivacyRoomApi.md#getUserKeys) | **GET** api/2.0/privacyroom/keys | Retrieves encryption keys associated with the current user. |
+| [**getUserKeysForRoom**](RoomsPrivacyRoomApi.md#getUserKeysForRoom) | **GET** api/2.0/privacyroom/{roomId}/access | Retrieves the encryption keys associated with a specific privacy room. |
+| [**replaceKey**](RoomsPrivacyRoomApi.md#replaceKey) | **PUT** api/2.0/privacyroom/keys | Replaces an existing encryption key with a new one for the user. |
+| [**setKeys**](RoomsPrivacyRoomApi.md#setKeys) | **POST** api/2.0/privacyroom/keys | Creates and sets encryption keys for the user. |
 
 
 
@@ -47,7 +47,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(PrivacyroomApi::class.java)
+val webService = apiClient.createWebservice(PrivacyRoomApi::class.java)
 val id : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The unique identifier of the encryption key to be deleted.
 
 launch(Dispatchers.IO) {
@@ -58,7 +58,7 @@ launch(Dispatchers.IO) {
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 <a id="getUserKeys"></a>
@@ -94,7 +94,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(PrivacyroomApi::class.java)
+val webService = apiClient.createWebservice(PrivacyRoomApi::class.java)
 
 launch(Dispatchers.IO) {
     val result : EncryptionKeyArrayWrapper = webService.getUserKeys()
@@ -142,7 +142,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(PrivacyroomApi::class.java)
+val webService = apiClient.createWebservice(PrivacyRoomApi::class.java)
 val roomId : kotlin.Int = 56 // kotlin.Int | The identifier of the privacy room.
 
 launch(Dispatchers.IO) {
@@ -191,7 +191,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(PrivacyroomApi::class.java)
+val webService = apiClient.createWebservice(PrivacyRoomApi::class.java)
 val encryptionKeyRequestDto : EncryptionKeyRequestDto =  // EncryptionKeyRequestDto | The request object containing the public and private key information to replace the existing key.
 
 launch(Dispatchers.IO) {
@@ -240,7 +240,7 @@ Configure Bearer:
 val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
-val webService = apiClient.createWebservice(PrivacyroomApi::class.java)
+val webService = apiClient.createWebservice(PrivacyRoomApi::class.java)
 val encryptionKeyRequestDto : EncryptionKeyRequestDto =  // EncryptionKeyRequestDto | The request object containing public and private key information.
 
 launch(Dispatchers.IO) {

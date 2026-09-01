@@ -35,6 +35,7 @@ import onlyoffice.docspace.api.sdk.models.DeleteBatchRequestDto
 import onlyoffice.docspace.api.sdk.models.DeleteVersionBatchRequestDto
 import onlyoffice.docspace.api.sdk.models.DownloadRequestDto
 import onlyoffice.docspace.api.sdk.models.DuplicateRequestDto
+import onlyoffice.docspace.api.sdk.models.ErrorApiResponse
 import onlyoffice.docspace.api.sdk.models.FileEntryBaseArrayWrapper
 import onlyoffice.docspace.api.sdk.models.FileOperationArrayWrapper
 import onlyoffice.docspace.api.sdk.models.FileOperationType
@@ -57,6 +58,8 @@ interface OperationsApi {
      *  - 200: OK
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -80,6 +83,8 @@ interface OperationsApi {
      *  - 403: You don't have enough permission to perform the operation
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -101,6 +106,8 @@ interface OperationsApi {
      *  - 200: List of file operations
      *  - 403: You don't have enough permission to download
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -122,6 +129,8 @@ interface OperationsApi {
      *  - 200: Conversion result
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -145,6 +154,8 @@ interface OperationsApi {
      *  - 403: You don't have enough permission to create
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -167,6 +178,8 @@ interface OperationsApi {
      *  - 403: You don't have enough permission to create
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -189,6 +202,8 @@ interface OperationsApi {
      *  - 403: You don't have enough permission to copy
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -211,6 +226,8 @@ interface OperationsApi {
      *  - 403: You don't have enough permission to create
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -234,6 +251,8 @@ interface OperationsApi {
      *  - 200: OK
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -257,6 +276,8 @@ interface OperationsApi {
      *  - 403: You don't have enough permission to delete
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -278,6 +299,8 @@ interface OperationsApi {
      *  - 200: Boolean value: true if the operation is successful
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -299,6 +322,8 @@ interface OperationsApi {
      *  - 200: List of file operations
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -321,6 +346,8 @@ interface OperationsApi {
      *  - 403: You don't have enough permission to duplicate
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -379,6 +406,8 @@ interface OperationsApi {
      *  - 200: List of file operations
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -401,6 +430,8 @@ interface OperationsApi {
      *  - 200: OK
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -422,6 +453,8 @@ interface OperationsApi {
      * Responses:
      *  - 200: List of file operations
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -442,6 +475,8 @@ interface OperationsApi {
      * Responses:
      *  - 200: List of file operations
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -464,6 +499,8 @@ interface OperationsApi {
      *  - 200: List of file operations
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -486,6 +523,8 @@ interface OperationsApi {
      *  - 403: You don't have enough permission to move
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -507,6 +546,8 @@ interface OperationsApi {
      *  - 200: Conversion result
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -528,6 +569,8 @@ interface OperationsApi {
      * Responses:
      *  - 200: List of file operations
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -549,6 +592,8 @@ interface OperationsApi {
      *  - 200: Updated comment
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -571,6 +616,8 @@ interface OperationsApi {
      *  - 200: OK
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -596,6 +643,8 @@ interface OperationsApi {
      *  - 200: OK
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *

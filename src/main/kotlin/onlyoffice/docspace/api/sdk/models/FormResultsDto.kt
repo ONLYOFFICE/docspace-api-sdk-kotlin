@@ -22,7 +22,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * A single filled-in form submission.
  *
  * @param createOn The date and time when the form was created.
  * @param formsData The list of forms data.

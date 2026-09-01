@@ -24,12 +24,13 @@ import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
 import onlyoffice.docspace.api.sdk.models.BooleanWrapper
-import onlyoffice.docspace.api.sdk.models.SetupCodeWrapper
+import onlyoffice.docspace.api.sdk.models.ErrorApiResponse
 import onlyoffice.docspace.api.sdk.models.StringWrapper
 import onlyoffice.docspace.api.sdk.models.TfaAppCodeArrayWrapper
 import onlyoffice.docspace.api.sdk.models.TfaConfirmDataWrapper
 import onlyoffice.docspace.api.sdk.models.TfaRequestsDto
 import onlyoffice.docspace.api.sdk.models.TfaSettingsArrayWrapper
+import onlyoffice.docspace.api.sdk.models.TfaSetupCodeWrapper
 import onlyoffice.docspace.api.sdk.models.TfaValidateRequestsDto
 
 interface TFASettingsApi {
@@ -42,6 +43,7 @@ interface TFASettingsApi {
      *  - 405: TFA application settings are not available
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -62,6 +64,7 @@ interface TFASettingsApi {
      *  - 200: TFA confirmation data
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -82,6 +85,7 @@ interface TFASettingsApi {
      *  - 200: TFA settings
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -103,6 +107,7 @@ interface TFASettingsApi {
      *  - 405: TFA application settings are not available
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -110,10 +115,10 @@ interface TFASettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/tfa-app-generate-setup-code/
      *
      *
-     * @return [SetupCodeWrapper]
+     * @return [TfaSetupCodeWrapper]
      */
     @GET("api/2.0/settings/tfaapp/setup")
-    suspend fun tfaAppGenerateSetupCode(): Response<SetupCodeWrapper>
+    suspend fun tfaAppGenerateSetupCode(): Response<TfaSetupCodeWrapper>
 
     /**
      * POST api/2.0/settings/tfaapp/validate
@@ -123,6 +128,8 @@ interface TFASettingsApi {
      *  - 200: True if the code is valid
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -146,6 +153,8 @@ interface TFASettingsApi {
      *  - 405: TFA application settings are not available
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -168,6 +177,7 @@ interface TFASettingsApi {
      *  - 405: TFA application settings are not available
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -189,6 +199,8 @@ interface TFASettingsApi {
      *  - 405: SMS settings are not available/TFA application settings are not available
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -212,6 +224,8 @@ interface TFASettingsApi {
      *  - 405: SMS settings are not available/TFA application settings are not available
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *

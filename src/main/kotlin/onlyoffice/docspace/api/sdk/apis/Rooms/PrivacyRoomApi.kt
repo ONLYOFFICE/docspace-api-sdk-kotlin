@@ -15,7 +15,7 @@
  */
 
 
-package onlyoffice.docspace.api.sdk.apis.Privacyroom
+package onlyoffice.docspace.api.sdk.apis.Rooms
 
 import onlyoffice.docspace.api.sdk.infrastructure.CollectionFormats.*
 import retrofit2.http.*
@@ -25,8 +25,9 @@ import com.squareup.moshi.Json
 
 import onlyoffice.docspace.api.sdk.models.EncryptionKeyArrayWrapper
 import onlyoffice.docspace.api.sdk.models.EncryptionKeyRequestDto
+import onlyoffice.docspace.api.sdk.models.ErrorApiResponse
 
-interface PrivacyroomApi {
+interface PrivacyRoomApi {
     /**
      * DELETE api/2.0/privacyroom/keys/{id}
      * Deletes an encryption key and removes it from the system.
@@ -37,6 +38,7 @@ interface PrivacyroomApi {
      *  - 404: The encryption key is not found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -58,6 +60,7 @@ interface PrivacyroomApi {
      *  - 200: OK
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -78,6 +81,8 @@ interface PrivacyroomApi {
      *  - 200: OK
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -101,6 +106,7 @@ interface PrivacyroomApi {
      *  - 404: The encryption key to replace is not found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -124,6 +130,7 @@ interface PrivacyroomApi {
      *  - 409: A key with the same identifier already exists
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *

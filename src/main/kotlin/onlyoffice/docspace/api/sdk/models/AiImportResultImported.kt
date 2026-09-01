@@ -21,7 +21,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * How many folders and prompts were created. Present on success.
  *
  * @param folders 
  * @param prompts 

@@ -23,11 +23,11 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * One choice of a streaming completion, carrying the part this chunk adds.
  *
- * @param index 
- * @param delta 
- * @param finishReason 
+ * @param index The zero-based position of the choice. This service emits a single choice, so always 0.
+ * @param delta What this chunk adds to the choice.
+ * @param finishReason Why the completion stopped, or null while it is still streaming.
  */
 
 

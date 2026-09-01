@@ -39,7 +39,7 @@ interface AIToolsApi {
     /**
      * POST api/2.0/ai/tools/add-custom-server
      * Add custom server
-     * 
+     * Registers a custom MCP server in the scope under the given name.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -57,7 +57,7 @@ interface AIToolsApi {
     /**
      * GET api/2.0/ai/tools/get-allow-always
      * Get allow always
-     * 
+     * Lists the tools on the always-allow list of the scope.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -66,16 +66,16 @@ interface AIToolsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-tools-get-allow-always/
      *
      *
-     * @param entityId 
+     * @param entityId The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. (optional)
      * @return [kotlin.collections.List<kotlin.String>]
      */
     @GET("api/2.0/ai/tools/get-allow-always")
-    suspend fun aiToolsGetAllowAlways(@Query("entityId") entityId: kotlin.String): Response<kotlin.collections.List<kotlin.String>>
+    suspend fun aiToolsGetAllowAlways(@Query("entityId") entityId: kotlin.String? = null): Response<kotlin.collections.List<kotlin.String>>
 
     /**
      * GET api/2.0/ai/tools/get-custom-server
      * Get custom server
-     * 
+     * Returns the configuration of one custom MCP server, or an empty result when it is not registered.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -84,17 +84,17 @@ interface AIToolsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-tools-get-custom-server/
      *
      *
-     * @param name 
-     * @param entityId 
+     * @param name The custom MCP server name.
+     * @param entityId The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. (optional)
      * @return [kotlin.Any]
      */
     @GET("api/2.0/ai/tools/get-custom-server")
-    suspend fun aiToolsGetCustomServer(@Query("name") name: kotlin.String, @Query("entityId") entityId: kotlin.String): Response<kotlin.Any>
+    suspend fun aiToolsGetCustomServer(@Query("name") name: kotlin.String, @Query("entityId") entityId: kotlin.String? = null): Response<kotlin.Any>
 
     /**
      * GET api/2.0/ai/tools/get-disabled
      * Get disabled
-     * 
+     * Returns the switched-off tools of the scope, grouped by server type.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -103,16 +103,16 @@ interface AIToolsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-tools-get-disabled/
      *
      *
-     * @param entityId 
+     * @param entityId The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. (optional)
      * @return [kotlin.collections.Map<kotlin.String, kotlin.collections.List<kotlin.String>>]
      */
     @GET("api/2.0/ai/tools/get-disabled")
-    suspend fun aiToolsGetDisabled(@Query("entityId") entityId: kotlin.String): Response<kotlin.collections.Map<kotlin.String, kotlin.collections.List<kotlin.String>>>
+    suspend fun aiToolsGetDisabled(@Query("entityId") entityId: kotlin.String? = null): Response<kotlin.collections.Map<kotlin.String, kotlin.collections.List<kotlin.String>>>
 
     /**
      * GET api/2.0/ai/tools/is-allow-always
      * Is allow always
-     * 
+     * Tells whether one tool is on the always-allow list.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -121,18 +121,18 @@ interface AIToolsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-tools-is-allow-always/
      *
      *
-     * @param serverType 
-     * @param toolName 
-     * @param entityId 
+     * @param serverType The MCP server type the tool belongs to.
+     * @param toolName The tool name.
+     * @param entityId The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. (optional)
      * @return [kotlin.Boolean]
      */
     @GET("api/2.0/ai/tools/is-allow-always")
-    suspend fun aiToolsIsAllowAlways(@Query("serverType") serverType: kotlin.String, @Query("toolName") toolName: kotlin.String, @Query("entityId") entityId: kotlin.String): Response<kotlin.Boolean>
+    suspend fun aiToolsIsAllowAlways(@Query("serverType") serverType: kotlin.String, @Query("toolName") toolName: kotlin.String, @Query("entityId") entityId: kotlin.String? = null): Response<kotlin.Boolean>
 
     /**
      * GET api/2.0/ai/tools/is-tool-disabled
      * Is tool disabled
-     * 
+     * Tells whether one tool of a server type is switched off.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -141,18 +141,18 @@ interface AIToolsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-tools-is-tool-disabled/
      *
      *
-     * @param serverType 
-     * @param toolName 
-     * @param entityId 
+     * @param serverType The MCP server type the tool belongs to.
+     * @param toolName The tool name.
+     * @param entityId The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. (optional)
      * @return [kotlin.Boolean]
      */
     @GET("api/2.0/ai/tools/is-tool-disabled")
-    suspend fun aiToolsIsToolDisabled(@Query("serverType") serverType: kotlin.String, @Query("toolName") toolName: kotlin.String, @Query("entityId") entityId: kotlin.String): Response<kotlin.Boolean>
+    suspend fun aiToolsIsToolDisabled(@Query("serverType") serverType: kotlin.String, @Query("toolName") toolName: kotlin.String, @Query("entityId") entityId: kotlin.String? = null): Response<kotlin.Boolean>
 
     /**
      * GET api/2.0/ai/tools/list-custom-servers
      * List custom servers
-     * 
+     * Lists the custom MCP servers registered in the scope, keyed by name.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -161,16 +161,16 @@ interface AIToolsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-tools-list-custom-servers/
      *
      *
-     * @param entityId 
+     * @param entityId The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. (optional)
      * @return [kotlin.collections.Map<kotlin.String, kotlin.Any>]
      */
     @GET("api/2.0/ai/tools/list-custom-servers")
-    suspend fun aiToolsListCustomServers(@Query("entityId") entityId: kotlin.String): Response<kotlin.collections.Map<kotlin.String, kotlin.Any>>
+    suspend fun aiToolsListCustomServers(@Query("entityId") entityId: kotlin.String? = null): Response<kotlin.collections.Map<kotlin.String, kotlin.Any>>
 
     /**
      * GET api/2.0/ai/tools/list-system-tools
      * List system tools
-     * 
+     * Lists the tools of the host-configured system MCP servers, grouped by server type. The servers are connected and listed server-side, so the client renders its permission cards from one request and never opens an MCP connection of its own.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -179,16 +179,16 @@ interface AIToolsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-tools-list-system-tools/
      *
      *
-     * @param entityId 
+     * @param entityId The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. (optional)
      * @return [kotlin.collections.Map<kotlin.String, kotlin.collections.List<AiTMCPItem>>]
      */
     @GET("api/2.0/ai/tools/list-system-tools")
-    suspend fun aiToolsListSystemTools(@Query("entityId") entityId: kotlin.String): Response<kotlin.collections.Map<kotlin.String, kotlin.collections.List<AiTMCPItem>>>
+    suspend fun aiToolsListSystemTools(@Query("entityId") entityId: kotlin.String? = null): Response<kotlin.collections.Map<kotlin.String, kotlin.collections.List<AiTMCPItem>>>
 
     /**
      * DELETE api/2.0/ai/tools/remove-custom-server
      * Remove custom server
-     * 
+     * Removes a custom MCP server from the registry.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -206,7 +206,7 @@ interface AIToolsApi {
     /**
      * PUT api/2.0/ai/tools/replace-all-custom-servers
      * Replace all custom servers
-     * 
+     * Replaces the whole custom MCP server registry of the scope with the supplied map.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -224,7 +224,7 @@ interface AIToolsApi {
     /**
      * PUT api/2.0/ai/tools/set-allow-always
      * Set allow always
-     * 
+     * Adds a tool to the always-allow list, or removes it - the tools on that list run without an approval dialog.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -242,7 +242,7 @@ interface AIToolsApi {
     /**
      * PUT api/2.0/ai/tools/set-disabled
      * Set disabled
-     * 
+     * Marks the listed tools of one server type as switched off, so the model is no longer offered them.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -260,7 +260,7 @@ interface AIToolsApi {
     /**
      * PUT api/2.0/ai/tools/update-custom-server
      * Update custom server
-     * 
+     * Updates the configuration of a registered custom MCP server.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.

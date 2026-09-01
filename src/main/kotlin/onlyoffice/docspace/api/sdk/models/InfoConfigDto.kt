@@ -29,7 +29,7 @@ import com.squareup.moshi.JsonClass
  * @param folder The folder of the file.
  * @param owner The file owner.
  * @param sharingSettings The sharing settings of the file.
- * @param type The editor type.
+ * @param type The editor type of the file.
  * @param uploaded The uploaded file.
  */
 

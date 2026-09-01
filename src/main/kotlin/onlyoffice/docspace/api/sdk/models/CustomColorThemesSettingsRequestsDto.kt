@@ -24,7 +24,7 @@ import com.squareup.moshi.JsonClass
 /**
  * The request parameters for managing the portal theme settings.
  *
- * @param theme The custom color theme settings.
+ * @param theme The custom color theme configuration.
  * @param selected Specifies the optional value indicating the selected custom color theme.
  */
 

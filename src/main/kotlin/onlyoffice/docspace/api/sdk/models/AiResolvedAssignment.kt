@@ -24,8 +24,8 @@ import com.squareup.moshi.JsonClass
 /**
  * Resolved profile for an action — both the storage row and its ID.
  *
- * @param profileId 
- * @param profile 
+ * @param profileId The identifier of the resolved profile.
+ * @param profile The resolved profile itself.
  */
 
 

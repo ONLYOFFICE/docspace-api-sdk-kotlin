@@ -32,7 +32,7 @@ interface AISettingsApi {
     /**
      * GET api/2.0/ai/config
      * Get AI settings
-     * 
+     * Reports the portal's combined AI configuration and readiness.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -49,7 +49,7 @@ interface AISettingsApi {
     /**
      * GET api/2.0/ai/config/user
      * Get user AI settings
-     * 
+     * Returns the current user's AI settings.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -66,7 +66,7 @@ interface AISettingsApi {
     /**
      * GET api/2.0/ai/config/vectorization
      * Get vectorization settings
-     * 
+     * Returns the portal's vectorization settings.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -83,7 +83,7 @@ interface AISettingsApi {
     /**
      * PUT api/2.0/ai/config/user
      * Update user AI settings
-     * 
+     * Updates the current user's AI settings.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -101,7 +101,7 @@ interface AISettingsApi {
     /**
      * PUT api/2.0/ai/config/vectorization
      * Update vectorization settings
-     * 
+     * Updates the portal's vectorization settings.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.

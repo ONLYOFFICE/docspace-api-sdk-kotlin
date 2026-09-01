@@ -21,11 +21,11 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The CDN storage settings.
  *
- * @param module 
- * @param props 
- * @param lastModified 
+ * @param module The storage name.
+ * @param props The storage properties.
+ * @param lastModified The date and time when the storage settings were last modified.
  */
 
 

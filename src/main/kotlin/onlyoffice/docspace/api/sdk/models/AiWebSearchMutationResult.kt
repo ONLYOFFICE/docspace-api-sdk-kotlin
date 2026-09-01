@@ -23,11 +23,11 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * Outcome of  {@link  WebSearchEngine.configure }  — either the persisted config or a field-scoped error suitable for the settings form.
+ * Outcome of `WebSearchEngine.configure` — either the persisted config or a field-scoped error suitable for the settings form.
  *
- * @param success 
- * @param config 
- * @param error 
+ * @param success True when the configuration was persisted.
+ * @param config The persisted web-search configuration. Present on success.
+ * @param error Why the configuration was rejected. Present on failure.
  */
 
 

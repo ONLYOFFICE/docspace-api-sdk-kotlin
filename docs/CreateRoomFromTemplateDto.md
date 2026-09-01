@@ -15,7 +15,7 @@
 | **indexing** | **kotlin.Boolean** | Specifies whether to create a room with indexing. |  [optional] |
 | **denyDownload** | **kotlin.Boolean** | Specifies whether to deny downloads from the room. |  [optional] |
 | **lifetime** | [**RoomDataLifetimeDto**](RoomDataLifetimeDto.md) | The room data lifetime information. |  [optional] |
-| **watermark** | [**WatermarkRequestDto**](WatermarkRequestDto.md) | The request parameters for adding watermarks. |  [optional] |
+| **watermark** | [**WatermarkRequestDto**](WatermarkRequestDto.md) | The watermark settings. |  [optional] |
 | **&#x60;private&#x60;** | **kotlin.Boolean** | Specifies whether the room to be created is private or not. |  [optional] |
 
 

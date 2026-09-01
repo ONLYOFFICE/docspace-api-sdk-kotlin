@@ -24,6 +24,7 @@ import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
 import onlyoffice.docspace.api.sdk.models.BooleanWrapper
+import onlyoffice.docspace.api.sdk.models.ErrorApiResponse
 import onlyoffice.docspace.api.sdk.models.StringWrapper
 
 import okhttp3.MultipartBody
@@ -37,6 +38,7 @@ interface LicenseApi {
      *  - 200: Message about the result of activating license
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -56,6 +58,7 @@ interface LicenseApi {
      * Responses:
      *  - 200: Boolean value: true if the license is required
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -76,6 +79,7 @@ interface LicenseApi {
      *  - 200: Boolean value: true if the operation is successful
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -99,6 +103,7 @@ interface LicenseApi {
      *  - 405: Your pricing plan does not support this option
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *

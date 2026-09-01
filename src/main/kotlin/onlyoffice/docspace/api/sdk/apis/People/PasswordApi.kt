@@ -26,6 +26,7 @@ import com.squareup.moshi.Json
 import onlyoffice.docspace.api.sdk.models.ChangePasswordRequest
 import onlyoffice.docspace.api.sdk.models.EmailMemberRequestDto
 import onlyoffice.docspace.api.sdk.models.EmployeeFullWrapper
+import onlyoffice.docspace.api.sdk.models.ErrorApiResponse
 import onlyoffice.docspace.api.sdk.models.StringWrapper
 
 interface PasswordApi {
@@ -40,6 +41,7 @@ interface PasswordApi {
      *  - 404: The user could not be found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -62,6 +64,8 @@ interface PasswordApi {
      *  - 200: Email with the password
      *  - 403: No permissions to perform this action
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *

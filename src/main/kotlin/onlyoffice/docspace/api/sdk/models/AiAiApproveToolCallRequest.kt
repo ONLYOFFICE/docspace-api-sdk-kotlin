@@ -31,9 +31,9 @@ import com.squareup.moshi.JsonClass
  * @param idx Index of the tool-call content part inside `message.content`.
  * @param message Snapshot of the assistant message at the time the tool call surfaced.
  * @param allowAlways Persist auto-approve for this tool's name.
- * @param actionArgs 
- * @param entityId 
- * @param profileId 
+ * @param actionArgs Per-request engine options: extra tools, reasoning, prompt override.
+ * @param entityId Optional entity (room) scope for profile resolution.
+ * @param profileId Session-level profile override for this request only.
  */
 
 

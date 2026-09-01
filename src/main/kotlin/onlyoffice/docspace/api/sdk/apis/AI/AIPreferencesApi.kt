@@ -31,7 +31,7 @@ interface AIPreferencesApi {
     /**
      * DELETE api/2.0/ai/preferences/clear-deep-mode
      * Clear deep mode
-     * 
+     * Drops the persisted deep-mode toggle of the scope, so later reads fall back to the configured default.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -49,7 +49,7 @@ interface AIPreferencesApi {
     /**
      * GET api/2.0/ai/preferences/get-deep-mode
      * Get deep mode
-     * 
+     * Returns the deep-mode toggle of the scope, falling back to the configured default when nothing has been persisted.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -58,16 +58,16 @@ interface AIPreferencesApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-preferences-get-deep-mode/
      *
      *
-     * @param entityId 
+     * @param entityId The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. (optional)
      * @return [kotlin.Boolean]
      */
     @GET("api/2.0/ai/preferences/get-deep-mode")
-    suspend fun aiPreferencesGetDeepMode(@Query("entityId") entityId: kotlin.String): Response<kotlin.Boolean>
+    suspend fun aiPreferencesGetDeepMode(@Query("entityId") entityId: kotlin.String? = null): Response<kotlin.Boolean>
 
     /**
      * GET api/2.0/ai/preferences/is-deep-mode-set
      * Is deep mode set
-     * 
+     * Tells whether the scope has an explicitly persisted deep-mode value, whichever way that value is set.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -76,16 +76,16 @@ interface AIPreferencesApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-preferences-is-deep-mode-set/
      *
      *
-     * @param entityId 
+     * @param entityId The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. (optional)
      * @return [kotlin.Boolean]
      */
     @GET("api/2.0/ai/preferences/is-deep-mode-set")
-    suspend fun aiPreferencesIsDeepModeSet(@Query("entityId") entityId: kotlin.String): Response<kotlin.Boolean>
+    suspend fun aiPreferencesIsDeepModeSet(@Query("entityId") entityId: kotlin.String? = null): Response<kotlin.Boolean>
 
     /**
      * PUT api/2.0/ai/preferences/set-deep-mode
      * Set deep mode
-     * 
+     * Persists the deep-mode toggle of the scope. Idempotent - there is no need to check whether a value already exists.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.

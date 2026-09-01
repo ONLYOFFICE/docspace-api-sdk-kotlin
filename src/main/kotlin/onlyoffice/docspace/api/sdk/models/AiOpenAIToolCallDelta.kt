@@ -22,11 +22,11 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The incremental part of one tool call the model requested.
  *
- * @param index 
- * @param id 
- * @param type 
+ * @param index The zero-based position of the tool call within the message.
+ * @param id The tool call identifier, quoted back when its result is submitted.
+ * @param type Always `function` - the only tool kind the API defines.
  * @param function 
  */
 
@@ -48,7 +48,7 @@ data class AiOpenAIToolCallDelta (
 ) {
 
     /**
-     * 
+     * Always `function` - the only tool kind the API defines.
      *
      * Values: function
      */

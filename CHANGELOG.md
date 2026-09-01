@@ -8,14 +8,10 @@
 - Added per-user AI settings endpoints and the matching models `AiAiUserSettingsDto`, `AiAiUserSettingsWrapper`, `AiAiSettingsDto`, `AiAiSettingsWrapper`
 - Added a runnable usage sample in `samples/sample.kt`: authentication, the "My documents" folder lookup, folder create/rename/delete, the room listing and a backup run with progress polling
 - Added `ValueEnumJsonAdapterFactory` to `infrastructure/Serializer.kt`, so value-backed enums also accept the numeric JSON form the API returns (for example `fileEntryType`, which previously failed with `JsonDataException: Expected one of [1, 2] but was 2`)
-- Added `ApiDateTimeAdapter` to `infrastructure/Serializer.kt`, which maps the API's ISO-8601 date-time string onto the generated `ApiDateTime` model and back
 
 ### Fixed
 
 - Fixed `DELETE`, `GET` and `HEAD` operations that carry a request body (for example `deleteFolder`) dropping that body: they are now declared as `@HTTP(method = ..., hasBody = true)`, because the Retrofit shorthand annotations forbid `@Body`
-- Fixed the generated code not compiling for numeric enums backed by `java.math.BigDecimal` (for example `AiPromptBundle.Version`): the backing value is declared as `kotlin.String`, so the enum constant matches its own type, and `ValueEnumJsonAdapterFactory` still accepts the numeric JSON form
-- Fixed the generated code not compiling for enum values that collide with the members Kotlin's `Enum` already declares (for example `name` in `AiTErrorData.Field`): such constants are now suffixed, as in `nameField`
-- Fixed the generated code not compiling when the specification declares more than one HTTP bearer scheme (`Bearer` and `bearerAuth`): `ApiClient` now emits the bearer import, the bearer constructor and `setBearerToken`/`setOAuthCredentials` once instead of once per scheme
 
 ## 3.7.0
 

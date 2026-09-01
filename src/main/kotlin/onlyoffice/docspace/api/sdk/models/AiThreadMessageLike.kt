@@ -23,7 +23,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * A single chat message as it travels on the wire.
  *
  * @param role Message author role.
  * @param content 

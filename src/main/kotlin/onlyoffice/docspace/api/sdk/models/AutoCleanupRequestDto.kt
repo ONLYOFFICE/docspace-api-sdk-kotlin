@@ -25,7 +25,7 @@ import com.squareup.moshi.JsonClass
  * The request parameters for updating the trash bin auto-clearing setting.
  *
  * @param set Specifies whether to enable the auto-clearing or not.
- * @param gap The period when the trash bin will be cleared.
+ * @param gap The time interval when the auto-clearing will be performed.
  */
 
 

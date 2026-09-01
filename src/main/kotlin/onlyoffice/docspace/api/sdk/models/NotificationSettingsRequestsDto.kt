@@ -24,7 +24,7 @@ import com.squareup.moshi.JsonClass
 /**
  * The request parameters for configuring notification settings.
  *
- * @param type The notification type.
+ * @param type The notification to be configured.
  * @param isEnabled Specifies if the specified notification type is enabled or not.
  */
 

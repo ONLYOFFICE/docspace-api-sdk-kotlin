@@ -16,7 +16,6 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.ApiDateTime
 import onlyoffice.docspace.api.sdk.models.FileShare
 import onlyoffice.docspace.api.sdk.models.LinkType
 
@@ -27,8 +26,8 @@ import com.squareup.moshi.JsonClass
  * The room link parameters.
  *
  * @param linkId The room link ID.
- * @param access The access rights type.
- * @param expirationDate The API date and time parameters.
+ * @param access The link sharing rights.
+ * @param expirationDate The link expiration date.
  * @param `internal` The link scope, whether it is internal or not.
  * @param title The link name.
  * @param linkType The link type.
@@ -48,7 +47,7 @@ data class RoomLinkRequest (
     val access: FileShare? = null,
 
     @Json(name = "expirationDate")
-    val expirationDate: ApiDateTime? = null,
+    val expirationDate: java.time.OffsetDateTime? = null,
 
     @Json(name = "internal")
     val `internal`: kotlin.Boolean? = null,

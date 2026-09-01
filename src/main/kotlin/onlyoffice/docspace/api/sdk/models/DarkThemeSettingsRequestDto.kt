@@ -24,7 +24,7 @@ import com.squareup.moshi.JsonClass
 /**
  * The theme settings request parameters.
  *
- * @param theme The theme type.
+ * @param theme The portal theme settings type.
  */
 
 

@@ -15,7 +15,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 # **aiPreferencesClearDeepMode**
 > AiSuccessResponse aiPreferencesClearDeepMode (kotlin.String body)
 
-
+Drops the persisted deep-mode toggle of the scope, so later reads fall back to the configured default.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-preferences-clear-deep-mode/).
 
@@ -58,14 +58,14 @@ launch(Dispatchers.IO) {
 # **aiPreferencesGetDeepMode**
 > kotlin.Boolean aiPreferencesGetDeepMode (kotlin.String entityId)
 
-
+Returns the deep-mode toggle of the scope, falling back to the configured default when nothing has been persisted.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-preferences-get-deep-mode/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **entityId** | **kotlin.String**|  | |
+| **entityId** | **kotlin.String**| The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. | [optional] |
 
 ### Return type
 
@@ -84,7 +84,7 @@ No authorization required
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(AIPreferencesApi::class.java)
-val entityId : kotlin.String = entityId_example // kotlin.String | 
+val entityId : kotlin.String = entityId_example // kotlin.String | The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope.
 
 launch(Dispatchers.IO) {
     val result : kotlin.Boolean = webService.aiPreferencesGetDeepMode(entityId)
@@ -101,14 +101,14 @@ launch(Dispatchers.IO) {
 # **aiPreferencesIsDeepModeSet**
 > kotlin.Boolean aiPreferencesIsDeepModeSet (kotlin.String entityId)
 
-
+Tells whether the scope has an explicitly persisted deep-mode value, whichever way that value is set.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-preferences-is-deep-mode-set/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **entityId** | **kotlin.String**|  | |
+| **entityId** | **kotlin.String**| The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. | [optional] |
 
 ### Return type
 
@@ -127,7 +127,7 @@ No authorization required
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(AIPreferencesApi::class.java)
-val entityId : kotlin.String = entityId_example // kotlin.String | 
+val entityId : kotlin.String = entityId_example // kotlin.String | The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope.
 
 launch(Dispatchers.IO) {
     val result : kotlin.Boolean = webService.aiPreferencesIsDeepModeSet(entityId)
@@ -144,7 +144,7 @@ launch(Dispatchers.IO) {
 # **aiPreferencesSetDeepMode**
 > AiSuccessResponse aiPreferencesSetDeepMode (AiPreferencesSetDeepModeRequest aiPreferencesSetDeepModeRequest)
 
-
+Persists the deep-mode toggle of the scope. Idempotent - there is no need to check whether a value already exists.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-preferences-set-deep-mode/).
 

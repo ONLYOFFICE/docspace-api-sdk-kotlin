@@ -16,8 +16,8 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 | [**getSharedUsers**](FilesSharingApi.md#getSharedUsers) | **GET** api/2.0/files/file/{fileId}/sharedusers | Get user access rights by file ID |
 | [**removeSecurityInfo**](FilesSharingApi.md#removeSecurityInfo) | **DELETE** api/2.0/files/share | Remove the sharing rights |
 | [**sendEditorNotify**](FilesSharingApi.md#sendEditorNotify) | **POST** api/2.0/files/file/{fileId}/sendeditornotify | Send the mention message |
-| [**setFileSecurityInfo**](FilesSharingApi.md#setFileSecurityInfo) | **PUT** api/2.0/files/file/{fileId}/share | Share a file |
-| [**setFolderSecurityInfo**](FilesSharingApi.md#setFolderSecurityInfo) | **PUT** api/2.0/files/folder/{folderId}/share | Share a folder |
+| [**setFileSecurityInfo**](FilesSharingApi.md#setFileSecurityInfo) | **PUT** api/2.0/files/file/{id}/share | Share a file |
+| [**setFolderSecurityInfo**](FilesSharingApi.md#setFolderSecurityInfo) | **PUT** api/2.0/files/folder/{id}/share | Share a folder |
 | [**setSecurityInfo**](FilesSharingApi.md#setSecurityInfo) | **PUT** api/2.0/files/share | Set the sharing rights |
 
 
@@ -632,7 +632,7 @@ launch(Dispatchers.IO) {
 
 <a id="setFileSecurityInfo"></a>
 # **setFileSecurityInfo**
-> FileShareArrayWrapper setFileSecurityInfo (kotlin.Int fileId, SecurityInfoSimpleRequestDto securityInfoSimpleRequestDto)
+> FileShareArrayWrapper setFileSecurityInfo (kotlin.Int id, SecurityInfoSimpleRequestDto securityInfoSimpleRequestDto)
 
 Sets the sharing settings to a file with the ID specified in the request.
 
@@ -641,7 +641,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **fileId** | **kotlin.Int**| The file ID. | |
+| **id** | **kotlin.Int**| The file ID. | |
 | **securityInfoSimpleRequestDto** | [**SecurityInfoSimpleRequestDto**](SecurityInfoSimpleRequestDto.md)| The parameters of the security information simple request. | |
 
 ### Return type
@@ -667,11 +667,11 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SharingApi::class.java)
-val fileId : kotlin.Int = 1 // kotlin.Int | The file ID.
+val id : kotlin.Int = 1 // kotlin.Int | The file ID.
 val securityInfoSimpleRequestDto : SecurityInfoSimpleRequestDto =  // SecurityInfoSimpleRequestDto | The parameters of the security information simple request.
 
 launch(Dispatchers.IO) {
-    val result : FileShareArrayWrapper = webService.setFileSecurityInfo(fileId, securityInfoSimpleRequestDto)
+    val result : FileShareArrayWrapper = webService.setFileSecurityInfo(id, securityInfoSimpleRequestDto)
 }
 ```
 
@@ -683,7 +683,7 @@ launch(Dispatchers.IO) {
 
 <a id="setFolderSecurityInfo"></a>
 # **setFolderSecurityInfo**
-> FileShareArrayWrapper setFolderSecurityInfo (kotlin.Int folderId, SecurityInfoSimpleRequestDto securityInfoSimpleRequestDto)
+> FileShareArrayWrapper setFolderSecurityInfo (kotlin.Int id, SecurityInfoSimpleRequestDto securityInfoSimpleRequestDto)
 
 Sets the sharing settings to a folder with the ID specified in the request.
 
@@ -692,7 +692,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **folderId** | **kotlin.Int**| The folder ID. | |
+| **id** | **kotlin.Int**| The folder ID. | |
 | **securityInfoSimpleRequestDto** | [**SecurityInfoSimpleRequestDto**](SecurityInfoSimpleRequestDto.md)| The parameters of the security information simple request. | |
 
 ### Return type
@@ -718,11 +718,11 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SharingApi::class.java)
-val folderId : kotlin.Int = 1 // kotlin.Int | The folder ID.
+val id : kotlin.Int = 1 // kotlin.Int | The folder ID.
 val securityInfoSimpleRequestDto : SecurityInfoSimpleRequestDto =  // SecurityInfoSimpleRequestDto | The parameters of the security information simple request.
 
 launch(Dispatchers.IO) {
-    val result : FileShareArrayWrapper = webService.setFolderSecurityInfo(folderId, securityInfoSimpleRequestDto)
+    val result : FileShareArrayWrapper = webService.setFolderSecurityInfo(id, securityInfoSimpleRequestDto)
 }
 ```
 

@@ -25,9 +25,9 @@ import com.squareup.moshi.JsonClass
 /**
  * Outcome of `create` / `update` — either a success carrying the persisted profile, or a failure with a field-level error description from the name check or the provider credential check.
  *
- * @param success 
- * @param profile 
- * @param error 
+ * @param success True when the profile was persisted.
+ * @param profile The persisted profile. Present on success.
+ * @param error Why the profile was rejected - the name check or the provider credential check. Present on failure.
  */
 
 

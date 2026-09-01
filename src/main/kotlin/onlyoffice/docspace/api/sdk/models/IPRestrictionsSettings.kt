@@ -21,10 +21,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The IP restriction settings.
  *
- * @param enable 
- * @param lastModified 
+ * @param enable Specifies if the IP restrictions are enabled or not.
+ * @param lastModified The date and time when the settings were last modified.
  */
 
 

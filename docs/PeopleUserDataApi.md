@@ -497,5 +497,5 @@ launch(Dispatchers.IO) {
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 

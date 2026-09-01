@@ -34,10 +34,10 @@ import com.squareup.moshi.JsonClass
  * @param about Specifies if the customization is about.
  * @param customer The customization customer configuration.
  * @param anonymous The anonymous configuration of the customization.
- * @param feedback The settings for the Feedback & Support menu button.
+ * @param feedback The feedback configuration of the customization.
  * @param forcesave Specifies if the customization should be force saved.
- * @param goback The settings for the Open file location menu button and upper right corner button.
- * @param review Configuration for review display settings.
+ * @param goback The go back configuration of the customization.
+ * @param review The review configuration of the customization.
  * @param logo The logo of the customization.
  * @param mentionShare Specifies if the share should be mentioned.
  * @param submitForm The Complete & Submit button settings.

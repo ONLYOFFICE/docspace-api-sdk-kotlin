@@ -21,7 +21,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The encryption key granting one user access to a file.
  *
  * @param userId User ID
  * @param publicKeyId Public key ID

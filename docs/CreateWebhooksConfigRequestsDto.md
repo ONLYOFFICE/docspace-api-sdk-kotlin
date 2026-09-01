@@ -9,7 +9,7 @@
 | **secretKey** | **kotlin.String** | The webhook secret key used to sign the webhook payloads for the security verification. |  [optional] |
 | **enabled** | **kotlin.Boolean** | Specifies whether the webhook configuration is active or not. |  [optional] |
 | **ssl** | **kotlin.Boolean** | Specifies whether the SSL certificate verification is required or not. |  [optional] |
-| **triggers** | [**WebhookTrigger**](WebhookTrigger.md) | The webhook trigger type. |  [optional] |
+| **triggers** | [**WebhookTrigger**](WebhookTrigger.md) | Defines which events will trigger webhook notifications. |  [optional] |
 | **targetId** | **kotlin.String** | Target ID |  [optional] |
 
 

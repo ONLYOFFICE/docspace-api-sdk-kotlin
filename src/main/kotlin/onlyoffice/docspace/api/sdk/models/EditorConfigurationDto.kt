@@ -37,13 +37,13 @@ import com.squareup.moshi.JsonClass
  * @param coEditing The co-editing configuration parameters.
  * @param createUrl The creation URL of the editor.
  * @param customization The customization configuration.
- * @param embedded The configuration parameters for the embedded document type.
+ * @param embedded The embedded configuration parameters for embedded documents.
  * @param encryptionKeys The encryption keys of the editor configuration.
  * @param modeWrite Specifies if the mode is write of the editor configuration.
- * @param plugins The configuration settings to connect the special add-ons.
+ * @param plugins The plugins configuration.
  * @param recent The recent configuration of the editor.
  * @param templates The templates of the editor configuration.
- * @param user The configuration parameters of the user currently viewing or editing the document.
+ * @param user The user configuration of the editor.
  */
 
 

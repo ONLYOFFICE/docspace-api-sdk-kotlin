@@ -22,10 +22,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * A key-value pair of a list item.
  *
- * @param key 
- * @param `value` The request parameters for the theme-specific logo configurations.
+ * @param key The key that identifies the item within the list.
+ * @param `value` The value associated with the key.
  */
 
 

@@ -28,7 +28,7 @@ import com.squareup.moshi.JsonClass
  * @param isStream Stream the reply (ndjson) when true, else return a single message.
  * @param systemPrompt Caller-supplied system prompt for this one-turn call.
  * @param userMessage 
- * @param actionArgs 
+ * @param actionArgs Per-request engine options: extra tools, reasoning, prompt override.
  */
 
 

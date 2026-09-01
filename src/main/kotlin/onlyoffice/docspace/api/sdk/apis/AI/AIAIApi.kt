@@ -38,7 +38,7 @@ interface AIAIApi {
     /**
      * POST api/2.0/ai/ai/approve-tool-call
      * Approve tool call
-     * 
+     * Resumes a chat round paused on a tool call. The supplied result is persisted onto the assistant message that issued the call and the stream continues with the augmented history.
      * Responses:
      *  - 200: Newline-delimited stream of chat events — one JSON `ChatEvent` object per line.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -56,7 +56,7 @@ interface AIAIApi {
     /**
      * POST api/2.0/ai/ai/deny-tool-call
      * Deny tool call
-     * 
+     * Denies the pending tool call and resumes the chat immediately, with `User deny tool call` standing in for the tool result.
      * Responses:
      *  - 200: Newline-delimited stream of chat events — one JSON `ChatEvent` object per line.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -74,7 +74,7 @@ interface AIAIApi {
     /**
      * POST api/2.0/ai/ai/regenerate-stream
      * Regenerate stream
-     * 
+     * Re-rolls the last assistant reply in an existing thread: every message after the last user message (the previous reply plus any tool-call hops) is dropped and a fresh reply is streamed against the unchanged prompt. The thread must already exist and no title is generated.
      * Responses:
      *  - 200: Newline-delimited stream of chat events — one JSON `ChatEvent` object per line.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -92,7 +92,7 @@ interface AIAIApi {
     /**
      * POST api/2.0/ai/ai/send
      * Send
-     * 
+     * Runs one AI action: the profile bound to `actionType` (falling back to the `Default` slot) is dispatched against a single-message history. Nothing is persisted - no thread, no title generation, no storage writes.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -110,7 +110,7 @@ interface AIAIApi {
     /**
      * POST api/2.0/ai/ai/send-custom
      * Send custom
-     * 
+     * Runs a free-form one-turn call against a caller-supplied system prompt. No thread, no history and no persistence. The profile is the explicit `profileId` when it resolves, otherwise the `Default` assignment slot.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -128,7 +128,7 @@ interface AIAIApi {
     /**
      * POST api/2.0/ai/ai/send-with-stream
      * Send with stream
-     * 
+     * Starts a chat round and streams it back as newline-delimited `ChatEvent` objects. The thread is opened or created, the user message and the reply are persisted, a new thread gets a generated title, and a tool call pauses the round until it is approved or denied.
      * Responses:
      *  - 200: Newline-delimited stream of chat events — one JSON `ChatEvent` object per line.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -146,7 +146,7 @@ interface AIAIApi {
     /**
      * POST api/2.0/ai/ai/send-with-stream-openai
      * Send with stream open ai
-     * 
+     * The same chat round as `send-with-stream`, re-encoded as an OpenAI Chat Completions stream of `chat.completion.chunk` objects. Storage, title generation and tool-call pauses are identical - only the wire shape differs; a tool call ends the stream with `finish_reason: tool_calls`.
      * Responses:
      *  - 200: Server-sent events stream of OpenAI `chat.completion.chunk` objects, terminated by a `[DONE]` sentinel.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.

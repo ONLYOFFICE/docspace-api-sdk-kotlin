@@ -23,15 +23,15 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * Identifies a pending tool call to resume — mirrors the library `ToolCallData` (its serializable fields).
  *
  * @param threadId Thread the assistant message belongs to.
  * @param messageId Storage id of the assistant message holding the tool call.
  * @param idx Index of the tool-call content part inside `message.content`.
  * @param message Snapshot of the assistant message at the time the tool call surfaced.
- * @param actionArgs 
- * @param entityId 
- * @param profileId 
+ * @param actionArgs Per-request engine options: extra tools, reasoning, prompt override.
+ * @param entityId Optional entity (room) scope for profile resolution.
+ * @param profileId Session-level profile override for this request only.
  */
 
 

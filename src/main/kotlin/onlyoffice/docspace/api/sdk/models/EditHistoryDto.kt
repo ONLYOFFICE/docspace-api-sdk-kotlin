@@ -16,7 +16,6 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.ApiDateTime
 import onlyoffice.docspace.api.sdk.models.EditHistoryAuthor
 import onlyoffice.docspace.api.sdk.models.EditHistoryChangesWrapper
 
@@ -30,8 +29,8 @@ import com.squareup.moshi.JsonClass
  * @param key The document identifier used to unambiguously identify the document file.
  * @param version The document version number.
  * @param versionGroup The document version group.
- * @param user The information about the file editing history author.
- * @param created The API date and time parameters.
+ * @param user The user who updated a file.
+ * @param created The document version creation date.
  * @param changesHistory The file history changes in the string format.
  * @param changes The list of file history changes.
  * @param serverVersion The current server version number.
@@ -56,7 +55,7 @@ data class EditHistoryDto (
     val user: EditHistoryAuthor? = null,
 
     @Json(name = "created")
-    val created: ApiDateTime? = null,
+    val created: java.time.OffsetDateTime? = null,
 
     @Json(name = "changesHistory")
     val changesHistory: kotlin.String? = null,

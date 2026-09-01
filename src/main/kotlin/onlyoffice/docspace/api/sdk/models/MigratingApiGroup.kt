@@ -21,12 +21,12 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The migrating group parameters.
  *
- * @param shouldImport 
- * @param groupName 
- * @param moduleName 
- * @param userUidList 
+ * @param shouldImport Specifies whether the API entity should be imported.
+ * @param groupName The group name.
+ * @param moduleName The group module name.
+ * @param userUidList The list of group user UIDs.
  */
 
 

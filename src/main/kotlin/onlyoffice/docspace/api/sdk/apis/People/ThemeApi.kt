@@ -25,6 +25,7 @@ import com.squareup.moshi.Json
 
 import onlyoffice.docspace.api.sdk.models.DarkThemeSettingsRequestDto
 import onlyoffice.docspace.api.sdk.models.DarkThemeSettingsWrapper
+import onlyoffice.docspace.api.sdk.models.ErrorApiResponse
 
 interface ThemeApi {
     /**
@@ -35,6 +36,8 @@ interface ThemeApi {
      *  - 200: Theme
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -56,6 +59,7 @@ interface ThemeApi {
      *  - 200: Theme
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *

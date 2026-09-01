@@ -21,7 +21,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The icon to set on a room group.
  *
  * @param icon Group icon
  */

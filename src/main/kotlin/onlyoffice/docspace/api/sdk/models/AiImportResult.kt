@@ -23,11 +23,11 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * Outcome of  {@link  PromptsEngine.importBundle } . Either every entry persisted with counts, or no entries persisted plus a per-entry error report.
+ * Outcome of `PromptsEngine.importBundle`. Either every entry persisted with counts, or no entries persisted plus a per-entry error report.
  *
- * @param success 
+ * @param success True when the whole bundle was imported.
  * @param imported 
- * @param errors 
+ * @param errors What was rejected, per entry. Present on failure - and then nothing was imported.
  */
 
 

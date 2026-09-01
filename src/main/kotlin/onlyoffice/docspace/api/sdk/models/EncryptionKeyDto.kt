@@ -21,14 +21,14 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The encryption key pair of a user.
  *
- * @param id 
- * @param userId 
- * @param date 
- * @param publicKey 
- * @param privateKeyEnc 
- * @param cryptoEngineId 
+ * @param id The identifier of the key pair.
+ * @param userId The identifier of the user the key pair belongs to.
+ * @param date The date and time when the key pair was created.
+ * @param publicKey The public key of the pair, used to encrypt the file keys.
+ * @param privateKeyEnc The private key of the pair, encrypted with the user password.
+ * @param cryptoEngineId The identifier of the crypto engine the key pair was issued for.
  */
 
 

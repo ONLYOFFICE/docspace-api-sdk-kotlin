@@ -28,7 +28,7 @@ import com.squareup.moshi.JsonClass
  *
  * @param actionType Which AI action to run — selects the assignment slot and action.
  * @param userMessage The user turn to send.
- * @param actionArgs 
+ * @param actionArgs Per-request engine options: extra tools, reasoning, prompt override.
  * @param entityId Optional entity (room) scope for profile resolution.
  */
 

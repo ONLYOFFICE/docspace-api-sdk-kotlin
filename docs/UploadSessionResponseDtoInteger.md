@@ -10,7 +10,7 @@
 | **title** | **kotlin.String** | The file title. |  [optional] |
 | **providerKey** | **kotlin.String** | The third-party provider key. |  [optional] |
 | **uploaded** | **kotlin.Boolean** | Specifies whether the file has been uploaded. |  [optional] |
-| **file** | [**FileDtoInteger**](FileDtoInteger.md) | The file parameters. |  [optional] |
+| **file** | [**FileDtoInteger**](FileDtoInteger.md) | The uploaded file information. |  [optional] |
 
 
 

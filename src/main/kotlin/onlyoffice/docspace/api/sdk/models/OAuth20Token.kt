@@ -21,16 +21,16 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The OAuth 2.0 token issued by a third-party provider.
  *
- * @param accessToken 
- * @param refreshToken 
- * @param expiresIn 
- * @param clientId 
- * @param clientSecret 
- * @param redirectUri 
- * @param timestamp 
- * @param isExpired 
+ * @param accessToken Access token
+ * @param refreshToken Refresh token
+ * @param expiresIn Expires in
+ * @param clientId Client id
+ * @param clientSecret Client secret
+ * @param redirectUri Redirect uri
+ * @param timestamp Timestamp
+ * @param isExpired Is expired
  */
 
 

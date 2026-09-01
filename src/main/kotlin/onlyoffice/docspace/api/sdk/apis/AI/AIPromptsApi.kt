@@ -41,7 +41,7 @@ interface AIPromptsApi {
     /**
      * POST api/2.0/ai/prompts/create
      * Create
-     * 
+     * Saves a new prompt. The name must be non-empty and unique inside its folder, and `folderId` must point at an existing folder - omit it for the root.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -59,7 +59,7 @@ interface AIPromptsApi {
     /**
      * POST api/2.0/ai/prompts/create-folder
      * Create folder
-     * 
+     * Creates a prompt folder. The name must be non-empty and unique across the portal - prompt folders do not nest.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -77,7 +77,7 @@ interface AIPromptsApi {
     /**
      * DELETE api/2.0/ai/prompts/delete
      * Delete
-     * 
+     * Deletes a saved prompt. Does nothing when it no longer exists.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -95,7 +95,7 @@ interface AIPromptsApi {
     /**
      * DELETE api/2.0/ai/prompts/delete-folder
      * Delete folder
-     * 
+     * Deletes a prompt folder together with the prompts inside it.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -113,7 +113,7 @@ interface AIPromptsApi {
     /**
      * GET api/2.0/ai/prompts/export
      * Export
-     * 
+     * Builds a self-contained, versioned bundle of every saved prompt and folder, ready for `import-bundle`.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -130,7 +130,7 @@ interface AIPromptsApi {
     /**
      * GET api/2.0/ai/prompts/get-by-id
      * Get by id
-     * 
+     * Returns one saved prompt, or an empty result when the identifier is unknown.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -139,7 +139,7 @@ interface AIPromptsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-get-by-id/
      *
      *
-     * @param id 
+     * @param id The saved prompt identifier.
      * @return [AiPrompt]
      */
     @GET("api/2.0/ai/prompts/get-by-id")
@@ -148,7 +148,7 @@ interface AIPromptsApi {
     /**
      * GET api/2.0/ai/prompts/get-folder-by-id
      * Get folder by id
-     * 
+     * Returns one prompt folder, or an empty result when the identifier is unknown.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -157,7 +157,7 @@ interface AIPromptsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-get-folder-by-id/
      *
      *
-     * @param id 
+     * @param id The prompt folder identifier.
      * @return [AiPromptFolder]
      */
     @GET("api/2.0/ai/prompts/get-folder-by-id")
@@ -166,7 +166,7 @@ interface AIPromptsApi {
     /**
      * POST api/2.0/ai/prompts/import-bundle
      * Import bundle
-     * 
+     * Restores a prompt bundle. `replace` wipes the current prompts and folders before writing the bundle, `merge` writes the bundle on top of what is already there; both validate the folder references inside the bundle before any write, so a corrupt bundle is rejected whole.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -184,7 +184,7 @@ interface AIPromptsApi {
     /**
      * GET api/2.0/ai/prompts/list
      * List
-     * 
+     * Lists saved prompts. Scope the answer to one folder, ask for the root-level prompts only, or omit the folder to get every prompt newest first.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -193,16 +193,16 @@ interface AIPromptsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-list/
      *
      *
-     * @param folderId 
+     * @param folderId The prompt folder identifier. Omit to list the prompts that sit outside any folder. (optional)
      * @return [kotlin.collections.List<AiPrompt>]
      */
     @GET("api/2.0/ai/prompts/list")
-    suspend fun aiPromptsList(@Query("folderId") folderId: kotlin.String): Response<kotlin.collections.List<AiPrompt>>
+    suspend fun aiPromptsList(@Query("folderId") folderId: kotlin.String? = null): Response<kotlin.collections.List<AiPrompt>>
 
     /**
      * GET api/2.0/ai/prompts/list-folders
      * List folders
-     * 
+     * Lists the prompt folders, newest first.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -219,7 +219,7 @@ interface AIPromptsApi {
     /**
      * PUT api/2.0/ai/prompts/move
      * Move
-     * 
+     * Moves a saved prompt into another folder, or to the root. The name is re-validated in the target folder, so the move fails when a prompt of that name is already there.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -237,7 +237,7 @@ interface AIPromptsApi {
     /**
      * PUT api/2.0/ai/prompts/rename-folder
      * Rename folder
-     * 
+     * Renames a prompt folder, validating the new name against the existing folders.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -255,7 +255,7 @@ interface AIPromptsApi {
     /**
      * PUT api/2.0/ai/prompts/update
      * Update
-     * 
+     * Updates a saved prompt. The name and the folder reference are re-validated whenever either of them changes.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.

@@ -4,14 +4,14 @@
 ## Properties
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
-| **accessToken** | **kotlin.String** |  |  [optional] |
-| **refreshToken** | **kotlin.String** |  |  [optional] |
-| **expiresIn** | **kotlin.Long** |  |  [optional] |
-| **clientId** | **kotlin.String** |  |  [optional] |
-| **clientSecret** | **kotlin.String** |  |  [optional] |
-| **redirectUri** | [**java.net.URI**](java.net.URI.md) |  |  [optional] |
-| **timestamp** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] |
-| **isExpired** | **kotlin.Boolean** |  |  [optional] [readonly] |
+| **accessToken** | **kotlin.String** | Access token |  [optional] |
+| **refreshToken** | **kotlin.String** | Refresh token |  [optional] |
+| **expiresIn** | **kotlin.Long** | Expires in |  [optional] |
+| **clientId** | **kotlin.String** | Client id |  [optional] |
+| **clientSecret** | **kotlin.String** | Client secret |  [optional] |
+| **redirectUri** | [**java.net.URI**](java.net.URI.md) | Redirect uri |  [optional] |
+| **timestamp** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) | Timestamp |  [optional] |
+| **isExpired** | **kotlin.Boolean** | Is expired |  [optional] [readonly] |
 
 
 

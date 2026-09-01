@@ -31,7 +31,7 @@ interface AIExportApi {
     /**
      * POST api/2.0/ai/text-to-docx
      * Start markdown → docx export
-     * 
+     * Starts an asynchronous markdown-to-docx export. The response only acknowledges the task: the AI Worker converts the content and saves the .docx into the target folder (an agent room resolves to its result-storage subfolder), and completion reaches the client as the usual folder-modified socket event.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.

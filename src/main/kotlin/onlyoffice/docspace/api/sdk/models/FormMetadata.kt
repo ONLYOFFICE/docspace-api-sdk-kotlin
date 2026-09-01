@@ -21,7 +21,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The metadata of a single form field.
  *
  * @param key The form field key.
  * @param type The form field type.

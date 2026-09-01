@@ -33,7 +33,7 @@ import com.squareup.moshi.JsonClass
  * @param pluginName The name by which the web plugin is registered in the window object.
  * @param scopes The web plugin scopes.
  * @param image The web plugin image.
- * @param createBy The user parameters.
+ * @param createBy The user who created the web plugin.
  * @param createOn The date and time when the web plugin was created.
  * @param enabled Specifies if the web plugin is enabled or not.
  * @param system Specifies if the web plugin is system or not.

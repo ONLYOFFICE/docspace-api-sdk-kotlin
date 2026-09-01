@@ -25,6 +25,7 @@ import com.squareup.moshi.Json
 
 import onlyoffice.docspace.api.sdk.models.AccountInfoArrayWrapper
 import onlyoffice.docspace.api.sdk.models.EmployeeWrapper
+import onlyoffice.docspace.api.sdk.models.ErrorApiResponse
 import onlyoffice.docspace.api.sdk.models.LinkAccountRequestDto
 import onlyoffice.docspace.api.sdk.models.SignupAccountRequestDto
 
@@ -36,6 +37,8 @@ interface ThirdPartyAccountsApi {
      * Responses:
      *  - 200: List of third-party accounts
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -61,6 +64,8 @@ interface ThirdPartyAccountsApi {
      *  - 405: Error not allowed option
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -83,6 +88,7 @@ interface ThirdPartyAccountsApi {
      *  - 400: Incorrect email
      *  - 403: The invitation link is invalid or its validity has expired
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -104,6 +110,8 @@ interface ThirdPartyAccountsApi {
      *  - 200: OK
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *

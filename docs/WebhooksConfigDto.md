@@ -11,9 +11,9 @@
 | **ssl** | **kotlin.Boolean** | The webhook SSL verification (enabled or not). |  [optional] |
 | **triggers** | [**WebhookTrigger**](WebhookTrigger.md) | The webhook trigger type. |  [optional] |
 | **targetId** | **kotlin.String** | The webhook target ID. |  [optional] |
-| **createdBy** | [**EmployeeDto**](EmployeeDto.md) | The user parameters. |  [optional] |
+| **createdBy** | [**EmployeeDto**](EmployeeDto.md) | The user who created the webhook. |  [optional] |
 | **createdOn** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) | The date and time when the webhook was created. |  [optional] |
-| **modifiedBy** | [**EmployeeDto**](EmployeeDto.md) | The user parameters. |  [optional] |
+| **modifiedBy** | [**EmployeeDto**](EmployeeDto.md) | The user who modified the webhook. |  [optional] |
 | **modifiedOn** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) | The date and time when the webhook was modified. |  [optional] |
 | **lastFailureOn** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) | The date and time of the webhook last failure. |  [optional] |
 | **lastFailureContent** | **kotlin.String** | The webhook last failure content. |  [optional] |

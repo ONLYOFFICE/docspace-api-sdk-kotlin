@@ -125,7 +125,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **refresh** | **kotlin.Boolean**|  | [optional] [default to false] |
+| **refresh** | **kotlin.Boolean**| Specifies whether to bypass the cache and request the tenant from DocsCloud again. | [optional] [default to false] |
 
 ### Return type
 
@@ -150,7 +150,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(DocsCloudApi::class.java)
-val refresh : kotlin.Boolean = true // kotlin.Boolean | 
+val refresh : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to bypass the cache and request the tenant from DocsCloud again.
 
 launch(Dispatchers.IO) {
     val result : DocsCloudTenantWrapper = webService.getTenant(refresh)
@@ -174,7 +174,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **refresh** | **kotlin.Boolean**|  | [optional] [default to false] |
+| **refresh** | **kotlin.Boolean**| Specifies whether to bypass the cache and request the tenant configuration from DocsCloud again. | [optional] [default to false] |
 
 ### Return type
 
@@ -199,7 +199,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(DocsCloudApi::class.java)
-val refresh : kotlin.Boolean = true // kotlin.Boolean | 
+val refresh : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to bypass the cache and request the tenant configuration from DocsCloud again.
 
 launch(Dispatchers.IO) {
     val result : DocsCloudConfigWrapper = webService.getTenantConfig(refresh)
@@ -223,7 +223,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **refresh** | **kotlin.Boolean**|  | [optional] [default to false] |
+| **refresh** | **kotlin.Boolean**| Specifies whether to bypass the cache and request the tenant information from DocsCloud again. | [optional] [default to false] |
 
 ### Return type
 
@@ -248,7 +248,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(DocsCloudApi::class.java)
-val refresh : kotlin.Boolean = true // kotlin.Boolean | 
+val refresh : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to bypass the cache and request the tenant information from DocsCloud again.
 
 launch(Dispatchers.IO) {
     val result : DocsCloudTenantInfoWrapper = webService.getTenantInfo(refresh)
@@ -272,7 +272,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **refresh** | **kotlin.Boolean**|  | [optional] [default to false] |
+| **refresh** | **kotlin.Boolean**| Specifies whether to bypass the cache and request the user quota from DocsCloud again. | [optional] [default to false] |
 
 ### Return type
 
@@ -297,7 +297,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(DocsCloudApi::class.java)
-val refresh : kotlin.Boolean = true // kotlin.Boolean | 
+val refresh : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to bypass the cache and request the user quota from DocsCloud again.
 
 launch(Dispatchers.IO) {
     val result : DocsCloudQuotaWrapper = webService.getTenantQuota(refresh)
@@ -367,7 +367,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **refresh** | **kotlin.Boolean**|  | [optional] [default to false] |
+| **refresh** | **kotlin.Boolean**| Specifies whether to bypass the cache and request the usage statistics from DocsCloud again. | [optional] [default to false] |
 
 ### Return type
 
@@ -392,7 +392,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(DocsCloudApi::class.java)
-val refresh : kotlin.Boolean = true // kotlin.Boolean | 
+val refresh : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to bypass the cache and request the usage statistics from DocsCloud again.
 
 launch(Dispatchers.IO) {
     val result : DocsCloudUsageWrapper = webService.getTenantUsage(refresh)
@@ -543,7 +543,7 @@ launch(Dispatchers.IO) {
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 <a id="updateTenantConfig"></a>

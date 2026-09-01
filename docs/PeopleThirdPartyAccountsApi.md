@@ -106,7 +106,7 @@ launch(Dispatchers.IO) {
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 <a id="signupThirdPartyAccount"></a>
@@ -198,5 +198,5 @@ launch(Dispatchers.IO) {
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 

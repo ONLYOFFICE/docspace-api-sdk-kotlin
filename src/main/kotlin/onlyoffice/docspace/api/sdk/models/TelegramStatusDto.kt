@@ -24,7 +24,7 @@ import com.squareup.moshi.JsonClass
 /**
  * The Telegram connection status parameters.
  *
- * @param status The registration Telegram status.
+ * @param status The Telegram registration status.
  * @param username The Telegram username.
  */
 

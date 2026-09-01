@@ -4,9 +4,9 @@
 ## Properties
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
-| **foldersCount** | **kotlin.Int** |  |  [optional] |
-| **filesCount** | **kotlin.Int** |  |  [optional] |
-| **bytesTotal** | **kotlin.Long** |  |  [optional] |
+| **foldersCount** | **kotlin.Int** | The number of folders. |  [optional] |
+| **filesCount** | **kotlin.Int** | The number of files. |  [optional] |
+| **bytesTotal** | **kotlin.Long** | The total number of bytes. |  [optional] |
 
 
 

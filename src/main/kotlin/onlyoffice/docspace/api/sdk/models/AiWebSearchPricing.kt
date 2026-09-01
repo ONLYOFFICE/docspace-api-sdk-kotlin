@@ -21,12 +21,12 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The pricing of a single web search provider, per request.
  *
- * @param id 
- * @param provider 
- * @param price 
- * @param link 
+ * @param id The identifier of the web search provider.
+ * @param provider The provider that serves the web search requests.
+ * @param price The price of a single web search request.
+ * @param link The link to the pricing page of the provider.
  */
 
 

@@ -22,10 +22,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * Outcome of  {@link  AssignmentsEngine.assign }  /  {@link  AssignmentsEngine.unassign } . Either a success or a field-scoped error suitable for displaying in the profile editor.
+ * Outcome of `AssignmentsEngine.assign` / `AssignmentsEngine.unassign`. Either a success or a field-scoped error suitable for displaying in the profile editor.
  *
- * @param success 
- * @param error 
+ * @param success True when the assignment was persisted.
+ * @param error Why the assignment was rejected. Present on failure.
  */
 
 

@@ -4,7 +4,7 @@
 ## Properties
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
-| **response** | [**kotlin.Any**](.md) |  |  [optional] |
+| **response** | [**kotlin.Any**](.md) | The response payload. |  [optional] |
 | **count** | **kotlin.Int** | The total number of items in the response |  [optional] |
 | **links** | [**kotlin.collections.List&lt;GetPortalPrices200ResponseLinksInner&gt;**](GetPortalPrices200ResponseLinksInner.md) | List of links related to the response |  [optional] |
 | **status** | **kotlin.Int** | HTTP status code of the response |  [optional] |

@@ -9,16 +9,12 @@ import com.squareup.moshi.JsonReader
 import com.squareup.moshi.JsonWriter
 import com.squareup.moshi.Types
 import java.lang.reflect.Type
-import java.time.OffsetDateTime
-import java.time.ZoneOffset
-import onlyoffice.docspace.api.sdk.models.ApiDateTime
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
 object Serializer {
     @JvmStatic
     val moshiBuilder: Moshi.Builder = Moshi.Builder()
         .add(ValueEnumJsonAdapterFactory())
-        .add(ApiDateTimeAdapter())
         .add(OffsetDateTimeAdapter())
         .add(LocalDateTimeAdapter())
         .add(LocalDateAdapter())
@@ -107,29 +103,4 @@ class ValueEnumJsonAdapterFactory : JsonAdapter.Factory {
         }
         else -> value.toString()
     }
-}
-
-/**
- * Moshi adapter for the DocSpace `ApiDateTime` type.
- *
- * The API serializes `ApiDateTime` as a single ISO-8601 string (e.g. `2024-01-31T12:00:00+00:00`),
- * while the generated model is an object (`utcTime` + `timeZoneOffset`). This adapter bridges the
- * two: it parses the string into its components on input and emits the UTC instant on output.
- * An empty or blank string is treated as `null`.
- */
-class ApiDateTimeAdapter {
-    @FromJson
-    fun fromJson(value: kotlin.String?): ApiDateTime? {
-        if (value.isNullOrBlank()) {
-            return null
-        }
-        val odt = OffsetDateTime.parse(value)
-        return ApiDateTime(
-            utcTime = odt.withOffsetSameInstant(ZoneOffset.UTC),
-            timeZoneOffset = odt.offset.toString()
-        )
-    }
-
-    @ToJson
-    fun toJson(value: ApiDateTime?): kotlin.String? = value?.utcTime?.toString()
 }

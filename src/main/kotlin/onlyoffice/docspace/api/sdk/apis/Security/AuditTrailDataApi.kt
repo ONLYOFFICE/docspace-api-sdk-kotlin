@@ -24,15 +24,16 @@ import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
 import onlyoffice.docspace.api.sdk.models.ActionType
-import onlyoffice.docspace.api.sdk.models.ApiDateTime
 import onlyoffice.docspace.api.sdk.models.AuditEventArrayWrapper
 import onlyoffice.docspace.api.sdk.models.AuditReportFormat
 import onlyoffice.docspace.api.sdk.models.DocumentBuilderTaskWrapper
 import onlyoffice.docspace.api.sdk.models.EntryType
+import onlyoffice.docspace.api.sdk.models.ErrorApiResponse
 import onlyoffice.docspace.api.sdk.models.LocationType
 import onlyoffice.docspace.api.sdk.models.MessageAction
 import onlyoffice.docspace.api.sdk.models.ObjectWrapper
 import onlyoffice.docspace.api.sdk.models.ProductType
+import onlyoffice.docspace.api.sdk.models.TenantAuditSettingsResponseWrapper
 import onlyoffice.docspace.api.sdk.models.TenantAuditSettingsWrapper
 
 interface AuditTrailDataApi {
@@ -46,6 +47,8 @@ interface AuditTrailDataApi {
      *  - 403: You don't have enough permission to create
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -69,6 +72,8 @@ interface AuditTrailDataApi {
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -89,7 +94,7 @@ interface AuditTrailDataApi {
      * @return [AuditEventArrayWrapper]
      */
     @GET("api/2.0/security/audit/events/filter")
-    suspend fun getAuditEventsByFilter(@Query("userId") userId: java.util.UUID? = null, @Query("moduleType") moduleType: LocationType? = null, @Query("actionType") actionType: ActionType? = null, @Query("action") action: MessageAction? = null, @Query("entryType") entryType: EntryType? = null, @Query("target") target: kotlin.String? = null, @Query("from") from: ApiDateTime? = null, @Query("to") to: ApiDateTime? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null): Response<AuditEventArrayWrapper>
+    suspend fun getAuditEventsByFilter(@Query("userId") userId: java.util.UUID? = null, @Query("moduleType") moduleType: LocationType? = null, @Query("actionType") actionType: ActionType? = null, @Query("action") action: MessageAction? = null, @Query("entryType") entryType: EntryType? = null, @Query("target") target: kotlin.String? = null, @Query("from") from: java.time.OffsetDateTime? = null, @Query("to") to: java.time.OffsetDateTime? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null): Response<AuditEventArrayWrapper>
 
     /**
      * GET api/2.0/security/audit/settings/lifetime
@@ -101,6 +106,7 @@ interface AuditTrailDataApi {
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -108,10 +114,10 @@ interface AuditTrailDataApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-audit-settings/
      *
      *
-     * @return [TenantAuditSettingsWrapper]
+     * @return [TenantAuditSettingsResponseWrapper]
      */
     @GET("api/2.0/security/audit/settings/lifetime")
-    suspend fun getAuditSettings(): Response<TenantAuditSettingsWrapper>
+    suspend fun getAuditSettings(): Response<TenantAuditSettingsResponseWrapper>
 
     /**
      * GET api/2.0/security/audit/mappers
@@ -122,6 +128,8 @@ interface AuditTrailDataApi {
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -146,6 +154,7 @@ interface AuditTrailDataApi {
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -167,6 +176,7 @@ interface AuditTrailDataApi {
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -189,6 +199,7 @@ interface AuditTrailDataApi {
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -212,6 +223,7 @@ interface AuditTrailDataApi {
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -220,10 +232,10 @@ interface AuditTrailDataApi {
      *
      *
      * @param tenantAuditSettingsWrapper  (optional)
-     * @return [TenantAuditSettingsWrapper]
+     * @return [TenantAuditSettingsResponseWrapper]
      */
     @POST("api/2.0/security/audit/settings/lifetime")
-    suspend fun setAuditSettings(@Body tenantAuditSettingsWrapper: TenantAuditSettingsWrapper? = null): Response<TenantAuditSettingsWrapper>
+    suspend fun setAuditSettings(@Body tenantAuditSettingsWrapper: TenantAuditSettingsWrapper? = null): Response<TenantAuditSettingsResponseWrapper>
 
     /**
      * DELETE api/2.0/security/audit/events/report
@@ -235,6 +247,7 @@ interface AuditTrailDataApi {
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *

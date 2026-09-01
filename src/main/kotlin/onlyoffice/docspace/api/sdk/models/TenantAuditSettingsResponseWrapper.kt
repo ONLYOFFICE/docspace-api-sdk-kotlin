@@ -17,15 +17,15 @@
 package onlyoffice.docspace.api.sdk.models
 
 import onlyoffice.docspace.api.sdk.models.GetPortalPrices200ResponseLinksInner
-import onlyoffice.docspace.api.sdk.models.KeyValuePairBooleanString
+import onlyoffice.docspace.api.sdk.models.TenantAuditSettings
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The successful API response containing the TenantAuditSettings object.
  *
- * @param response 
+ * @param response The TenantAuditSettings object returned by the operation.
  * @param count The total number of items in the response
  * @param links List of links related to the response
  * @param status HTTP status code of the response
@@ -33,10 +33,10 @@ import com.squareup.moshi.JsonClass
  */
 
 
-data class KeyValuePairBooleanStringWrapper (
+data class TenantAuditSettingsResponseWrapper (
 
     @Json(name = "response")
-    val response: KeyValuePairBooleanString? = null,
+    val response: TenantAuditSettings? = null,
 
     @Json(name = "count")
     val count: kotlin.Int? = null,

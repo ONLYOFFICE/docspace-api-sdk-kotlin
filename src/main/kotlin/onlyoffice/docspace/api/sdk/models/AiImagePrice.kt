@@ -21,11 +21,11 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The price of an image model: per prompt token and per generated image.
  *
- * @param prompt 
- * @param completion 
- * @param image 
+ * @param prompt The price of a single prompt token.
+ * @param completion The cost associated with the completion of a prompt in an AI model.
+ * @param image The price of a single generated image.
  */
 
 

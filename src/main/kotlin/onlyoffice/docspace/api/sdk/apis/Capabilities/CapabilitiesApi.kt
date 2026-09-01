@@ -24,6 +24,7 @@ import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
 import onlyoffice.docspace.api.sdk.models.CapabilitiesWrapper
+import onlyoffice.docspace.api.sdk.models.ErrorApiResponse
 
 interface CapabilitiesApi {
     /**
@@ -33,6 +34,7 @@ interface CapabilitiesApi {
      * Responses:
      *  - 200: Portal capabilities
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *

@@ -17,7 +17,6 @@
 package onlyoffice.docspace.api.sdk.models
 
 import onlyoffice.docspace.api.sdk.models.AiAgentNewItemsDto
-import onlyoffice.docspace.api.sdk.models.AiApiDateTime
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -33,7 +32,7 @@ import com.squareup.moshi.JsonClass
 data class AiNewItemsDtoAgentNewItemsDto (
 
     @Json(name = "date")
-    val date: AiApiDateTime,
+    val date: java.time.OffsetDateTime?,
 
     @Json(name = "items")
     val items: kotlin.collections.List<AiAgentNewItemsDto>?

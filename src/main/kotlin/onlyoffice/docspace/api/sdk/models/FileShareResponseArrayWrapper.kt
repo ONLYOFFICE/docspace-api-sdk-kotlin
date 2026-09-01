@@ -16,16 +16,16 @@
 
 package onlyoffice.docspace.api.sdk.models
 
+import onlyoffice.docspace.api.sdk.models.FileShare
 import onlyoffice.docspace.api.sdk.models.GetPortalPrices200ResponseLinksInner
-import onlyoffice.docspace.api.sdk.models.NoContentResult
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The successful API response containing the list of FileShare objects.
  *
- * @param response 
+ * @param response The list of FileShare objects returned by the operation.
  * @param count The total number of items in the response
  * @param links List of links related to the response
  * @param status HTTP status code of the response
@@ -33,10 +33,10 @@ import com.squareup.moshi.JsonClass
  */
 
 
-data class NoContentResultWrapper (
+data class FileShareResponseArrayWrapper (
 
     @Json(name = "response")
-    val response: NoContentResult? = null,
+    val response: kotlin.collections.List<FileShare>? = null,
 
     @Json(name = "count")
     val count: kotlin.Int? = null,

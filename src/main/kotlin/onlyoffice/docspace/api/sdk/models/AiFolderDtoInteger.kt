@@ -16,7 +16,6 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.AiApiDateTime
 import onlyoffice.docspace.api.sdk.models.AiChatSettingsDto
 import onlyoffice.docspace.api.sdk.models.AiEmployeeDto
 import onlyoffice.docspace.api.sdk.models.AiFileEntryType
@@ -132,16 +131,16 @@ data class AiFolderDtoInteger (
     val shortWebUrl: java.net.URI? = null,
 
     @Json(name = "created")
-    val created: AiApiDateTime? = null,
+    val created: java.time.OffsetDateTime? = null,
 
     @Json(name = "createdBy")
     val createdBy: AiEmployeeDto? = null,
 
     @Json(name = "updated")
-    val updated: AiApiDateTime? = null,
+    val updated: java.time.OffsetDateTime? = null,
 
     @Json(name = "autoDelete")
-    val autoDelete: AiApiDateTime? = null,
+    val autoDelete: java.time.OffsetDateTime? = null,
 
     @Json(name = "rootFolderType")
     val rootFolderType: AiFolderType? = null,
@@ -207,7 +206,7 @@ data class AiFolderDtoInteger (
     val `external`: kotlin.Boolean? = null,
 
     @Json(name = "expirationDate")
-    val expirationDate: AiApiDateTime? = null,
+    val expirationDate: java.time.OffsetDateTime? = null,
 
     @Json(name = "isLinkExpired")
     val isLinkExpired: kotlin.Boolean? = null,

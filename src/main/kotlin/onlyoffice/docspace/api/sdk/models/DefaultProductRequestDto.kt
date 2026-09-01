@@ -24,7 +24,7 @@ import com.squareup.moshi.JsonClass
 /**
  * The request parameters for setting the default product configuration.
  *
- * @param defaultFolderType The folder type.
+ * @param defaultFolderType The ID of the product to be set as default.
  */
 
 

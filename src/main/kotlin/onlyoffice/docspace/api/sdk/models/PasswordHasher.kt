@@ -21,11 +21,11 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The password hash parameters.
  *
- * @param propertySize 
- * @param iterations 
- * @param salt 
+ * @param propertySize The password hash size.
+ * @param iterations The number of iterations to generate the ppassword hash.
+ * @param salt The salt to generate the ppassword hash.
  */
 
 

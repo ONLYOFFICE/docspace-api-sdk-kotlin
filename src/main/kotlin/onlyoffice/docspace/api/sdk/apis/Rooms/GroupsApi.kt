@@ -23,6 +23,7 @@ import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
+import onlyoffice.docspace.api.sdk.models.ErrorApiResponse
 import onlyoffice.docspace.api.sdk.models.IconRequest
 import onlyoffice.docspace.api.sdk.models.RoomGroupArrayWrapper
 import onlyoffice.docspace.api.sdk.models.RoomGroupRequestDto
@@ -38,6 +39,8 @@ interface GroupsApi {
      *  - 200: OK
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -59,6 +62,8 @@ interface GroupsApi {
      *  - 200: OK
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -81,6 +86,8 @@ interface GroupsApi {
      *  - 200: OK
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -103,6 +110,8 @@ interface GroupsApi {
      *  - 200: OK
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -125,6 +134,8 @@ interface GroupsApi {
      *  - 200: OK
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -132,12 +143,11 @@ interface GroupsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-groups/
      *
      *
-     * @param id The group unique identifier.
      * @param includeMembers Whether to include group members. (optional)
      * @return [RoomGroupArrayWrapper]
      */
     @GET("api/2.0/files/group")
-    suspend fun getRoomGroups(@Path("id") id: kotlin.Int, @Query("includeMembers") includeMembers: kotlin.Boolean? = null): Response<RoomGroupArrayWrapper>
+    suspend fun getRoomGroups(@Query("includeMembers") includeMembers: kotlin.Boolean? = null): Response<RoomGroupArrayWrapper>
 
     /**
      * PUT api/2.0/files/group/{id}
@@ -147,6 +157,8 @@ interface GroupsApi {
      *  - 200: OK
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *

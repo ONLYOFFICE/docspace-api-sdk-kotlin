@@ -23,9 +23,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The successful API response containing the list of AuthServiceRequestsDto objects.
  *
- * @param response 
+ * @param response The list of AuthServiceRequestsDto objects returned by the operation.
  * @param count The total number of items in the response
  * @param links List of links related to the response
  * @param status HTTP status code of the response

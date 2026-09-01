@@ -23,7 +23,7 @@ import com.squareup.moshi.JsonClass
 /**
  * Error body — a single human-readable message.
  *
- * @param error 
+ * @param error The error message, ready to be shown to the caller.
  */
 
 

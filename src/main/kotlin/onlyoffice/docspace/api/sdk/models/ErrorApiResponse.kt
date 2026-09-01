@@ -16,25 +16,30 @@
 
 package onlyoffice.docspace.api.sdk.models
 
+import onlyoffice.docspace.api.sdk.models.ErrorApiResponseError
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The error body returned with every failed request.
  *
- * @param key 
- * @param `value` 
+ * @param status The response status flag. Always 1 on an error, as opposed to 0 on success.
+ * @param statusCode The HTTP status code of the response, repeated in the body.
+ * @param error 
  */
 
 
-data class KeyValuePairBooleanString (
+data class ErrorApiResponse (
 
-    @Json(name = "key")
-    val key: kotlin.Boolean? = null,
+    @Json(name = "status")
+    val status: kotlin.Int? = null,
 
-    @Json(name = "value")
-    val `value`: kotlin.String? = null
+    @Json(name = "statusCode")
+    val statusCode: kotlin.Int? = null,
+
+    @Json(name = "error")
+    val error: ErrorApiResponseError? = null
 
 ) {
 

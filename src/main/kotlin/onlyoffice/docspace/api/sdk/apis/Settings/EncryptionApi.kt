@@ -26,6 +26,7 @@ import com.squareup.moshi.Json
 import onlyoffice.docspace.api.sdk.models.BooleanWrapper
 import onlyoffice.docspace.api.sdk.models.DoubleNullableWrapper
 import onlyoffice.docspace.api.sdk.models.EncryptionSettingsWrapper
+import onlyoffice.docspace.api.sdk.models.ErrorApiResponse
 import onlyoffice.docspace.api.sdk.models.StorageEncryptionRequestsDto
 
 interface EncryptionApi {
@@ -38,6 +39,7 @@ interface EncryptionApi {
      *  - 405: Method not allowed
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -60,6 +62,7 @@ interface EncryptionApi {
      *  - 405: Method not allowed
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -83,6 +86,8 @@ interface EncryptionApi {
      *  - 405: Method not allowed
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *

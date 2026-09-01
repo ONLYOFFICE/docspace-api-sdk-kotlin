@@ -4,8 +4,8 @@
 ## Properties
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
-| **profileId** | **kotlin.String** |  |  |
-| **profile** | [**AiProfile**](AiProfile.md) |  |  |
+| **profileId** | **kotlin.String** | The identifier of the resolved profile. |  |
+| **profile** | [**AiProfile**](AiProfile.md) | The resolved profile itself. |  |
 
 
 

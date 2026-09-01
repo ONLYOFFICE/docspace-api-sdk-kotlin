@@ -34,7 +34,7 @@ interface AIAttachmentsApi {
     /**
      * DELETE api/2.0/ai/attachments/delete
      * Delete
-     * 
+     * Permanently deletes one attachment, whether it is still a draft or already linked to a message.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -52,7 +52,7 @@ interface AIAttachmentsApi {
     /**
      * DELETE api/2.0/ai/attachments/delete-many
      * Delete many
-     * 
+     * Permanently deletes a batch of attachments in a single round trip.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -70,7 +70,7 @@ interface AIAttachmentsApi {
     /**
      * POST api/2.0/ai/attachments/get
      * Get
-     * 
+     * Returns one attachment by identifier.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -88,7 +88,7 @@ interface AIAttachmentsApi {
     /**
      * POST api/2.0/ai/attachments/get-many
      * Get many
-     * 
+     * Returns a batch of attachments, preserving the requested order; an identifier that no longer exists comes back empty.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -106,7 +106,7 @@ interface AIAttachmentsApi {
     /**
      * POST api/2.0/ai/attachments/link-to-message
      * Link to message
-     * 
+     * Binds draft attachments to the chat message that owns them, once that message has been persisted, so deleting the message removes them too. Identifiers that no longer exist are skipped.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -124,7 +124,7 @@ interface AIAttachmentsApi {
     /**
      * POST api/2.0/ai/attachments/save-file
      * Save file
-     * 
+     * Stores one file attachment as a draft, carrying the host-extracted text of the file. Prefer `save-files-many` when adding several files at once so they land as one round trip.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -142,7 +142,7 @@ interface AIAttachmentsApi {
     /**
      * POST api/2.0/ai/attachments/save-files-many
      * Save files many
-     * 
+     * Stores a batch of file attachments as drafts in a single round trip. The returned records keep the order of the input.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.

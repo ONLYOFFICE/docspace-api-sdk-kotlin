@@ -23,9 +23,9 @@ import com.squareup.moshi.JsonClass
 /**
  * Input for creating a prompt — the engine generates `id`/`createdAt`/`updatedAt`.
  *
- * @param name 
- * @param text 
- * @param folderId 
+ * @param name The prompt name.
+ * @param text The prompt body.
+ * @param folderId The folder to file the prompt under. Omit or send null to leave it outside any folder.
  */
 
 

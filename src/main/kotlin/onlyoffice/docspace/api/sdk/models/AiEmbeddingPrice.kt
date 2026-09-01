@@ -21,9 +21,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The price of an embedding model, per token.
  *
- * @param prompt 
+ * @param prompt The price of a single input token.
  */
 
 

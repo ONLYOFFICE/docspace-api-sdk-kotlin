@@ -4,12 +4,12 @@
 ## Properties
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
-| **id** | **kotlin.String** |  |  |
-| **price** | [**AiChatPrice**](AiChatPrice.md) |  |  |
-| **alias** | **kotlin.String** |  |  [optional] |
-| **ownedBy** | **kotlin.String** |  |  [optional] |
-| **provider** | **kotlin.String** |  |  [optional] |
-| **link** | **kotlin.String** |  |  [optional] |
+| **id** | **kotlin.String** | The identifier of the model, as the provider expects it on the wire. |  |
+| **price** | [**AiChatPrice**](AiChatPrice.md) | The price of a chat model, per token. |  |
+| **alias** | **kotlin.String** | The display name of the model. |  [optional] |
+| **ownedBy** | **kotlin.String** | The owner of the model, as reported by the provider. |  [optional] |
+| **provider** | **kotlin.String** | The provider that serves the model. |  [optional] |
+| **link** | **kotlin.String** | The link to the pricing page of the model. |  [optional] |
 
 
 

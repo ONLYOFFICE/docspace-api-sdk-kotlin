@@ -16,7 +16,6 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.ApiDateTime
 import onlyoffice.docspace.api.sdk.models.Contact
 import onlyoffice.docspace.api.sdk.models.DarkThemeSettingsType
 import onlyoffice.docspace.api.sdk.models.EmployeeActivationStatus
@@ -62,7 +61,7 @@ import com.squareup.moshi.JsonClass
  * @param isCollaborator Specifies if the user is a portal collaborator or not.
  * @param cultureName The user culture code.
  * @param mobilePhone The user mobile phone number.
- * @param mobilePhoneActivationStatus The user mobile phone activation status.
+ * @param mobilePhoneActivationStatus The mobile phone activation status.
  * @param isSSO Specifies if the SSO settings are enabled for the user or not.
  * @param theme The user theme settings.
  * @param quotaLimit The user quota limit.
@@ -132,7 +131,7 @@ data class EmployeeFullDto (
     val activationStatus: EmployeeActivationStatus? = null,
 
     @Json(name = "terminated")
-    val terminated: ApiDateTime? = null,
+    val terminated: java.time.OffsetDateTime? = null,
 
     @Json(name = "department")
     val department: kotlin.String? = null,
@@ -204,7 +203,7 @@ data class EmployeeFullDto (
     val createdBy: EmployeeDto? = null,
 
     @Json(name = "registrationDate")
-    val registrationDate: ApiDateTime? = null,
+    val registrationDate: java.time.OffsetDateTime? = null,
 
     @Json(name = "hasPersonalFolder")
     val hasPersonalFolder: kotlin.Boolean? = null,

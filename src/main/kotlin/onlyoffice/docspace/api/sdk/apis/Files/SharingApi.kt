@@ -28,6 +28,7 @@ import onlyoffice.docspace.api.sdk.models.BaseBatchRequestDto
 import onlyoffice.docspace.api.sdk.models.BooleanWrapper
 import onlyoffice.docspace.api.sdk.models.ChangeOwnerRequestDto
 import onlyoffice.docspace.api.sdk.models.EncryptionKeyArrayWrapper
+import onlyoffice.docspace.api.sdk.models.ErrorApiResponse
 import onlyoffice.docspace.api.sdk.models.ExternalShareRequestParam
 import onlyoffice.docspace.api.sdk.models.ExternalShareWrapper
 import onlyoffice.docspace.api.sdk.models.FileEntryBaseArrayWrapper
@@ -46,6 +47,8 @@ interface SharingApi {
      * Responses:
      *  - 200: External data
      *  - 429: Too many requests
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -68,6 +71,8 @@ interface SharingApi {
      *  - 200: File entry information
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -90,6 +95,8 @@ interface SharingApi {
      *  - 403: You do not have enough permissions to edit the file
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -110,6 +117,8 @@ interface SharingApi {
      * Responses:
      *  - 200: External data
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -133,6 +142,8 @@ interface SharingApi {
      *  - 200: List of shared file information
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -156,6 +167,8 @@ interface SharingApi {
      *  - 200: List of shared file information
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -179,6 +192,8 @@ interface SharingApi {
      *  - 200: Ok
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -204,6 +219,8 @@ interface SharingApi {
      *  - 200: Ok
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -229,6 +246,8 @@ interface SharingApi {
      *  - 200: List of shared files and folders information
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -250,6 +269,8 @@ interface SharingApi {
      *  - 200: List of users with their access rights to the file
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -271,6 +292,8 @@ interface SharingApi {
      *  - 200: Boolean value: true if the operation is successful
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -295,6 +318,7 @@ interface SharingApi {
      *  - 404: The required file was not found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -310,13 +334,15 @@ interface SharingApi {
     suspend fun sendEditorNotify(@Path("fileId") fileId: kotlin.Int, @Body mentionMessageWrapper: MentionMessageWrapper? = null): Response<AceShortWrapperArrayWrapper>
 
     /**
-     * PUT api/2.0/files/file/{fileId}/share
+     * PUT api/2.0/files/file/{id}/share
      * Share a file
      * Sets the sharing settings to a file with the ID specified in the request.
      * Responses:
      *  - 200: List of shared file information: sharing rights, a user who has the access to the specified file, the file is locked by this user or not, this user is an owner of the specified file or not, this user can edit the access to the specified file or not
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -324,21 +350,23 @@ interface SharingApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-file-security-info/
      *
      *
-     * @param fileId The file ID.
+     * @param id The file ID.
      * @param securityInfoSimpleRequestDto The parameters of the security information simple request.
      * @return [FileShareArrayWrapper]
      */
-    @PUT("api/2.0/files/file/{fileId}/share")
-    suspend fun setFileSecurityInfo(@Path("fileId") fileId: kotlin.Int, @Body securityInfoSimpleRequestDto: SecurityInfoSimpleRequestDto): Response<FileShareArrayWrapper>
+    @PUT("api/2.0/files/file/{id}/share")
+    suspend fun setFileSecurityInfo(@Path("id") id: kotlin.Int, @Body securityInfoSimpleRequestDto: SecurityInfoSimpleRequestDto): Response<FileShareArrayWrapper>
 
     /**
-     * PUT api/2.0/files/folder/{folderId}/share
+     * PUT api/2.0/files/folder/{id}/share
      * Share a folder
      * Sets the sharing settings to a folder with the ID specified in the request.
      * Responses:
      *  - 200: List of shared folder information: sharing rights, a user who has the access to the specified folder, the folder is locked by this user or not, this user is an owner of the specified folder or not, this user can edit the access to the specified folder or not
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -346,12 +374,12 @@ interface SharingApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-folder-security-info/
      *
      *
-     * @param folderId The folder ID.
+     * @param id The folder ID.
      * @param securityInfoSimpleRequestDto The parameters of the security information simple request.
      * @return [FileShareArrayWrapper]
      */
-    @PUT("api/2.0/files/folder/{folderId}/share")
-    suspend fun setFolderSecurityInfo(@Path("folderId") folderId: kotlin.Int, @Body securityInfoSimpleRequestDto: SecurityInfoSimpleRequestDto): Response<FileShareArrayWrapper>
+    @PUT("api/2.0/files/folder/{id}/share")
+    suspend fun setFolderSecurityInfo(@Path("id") id: kotlin.Int, @Body securityInfoSimpleRequestDto: SecurityInfoSimpleRequestDto): Response<FileShareArrayWrapper>
 
     /**
      * PUT api/2.0/files/share
@@ -361,6 +389,8 @@ interface SharingApi {
      *  - 200: List of shared files and folders information: sharing rights, a user who has the access to the specified folder, the folder is locked by this user or not, this user is an owner of the specified folder or not, this user can edit the access to the specified folder or not
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *

@@ -18,7 +18,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 # **aiAttachmentsDelete**
 > AiSuccessResponse aiAttachmentsDelete (kotlin.String body)
 
-
+Permanently deletes one attachment, whether it is still a draft or already linked to a message.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-attachments-delete/).
 
@@ -61,7 +61,7 @@ launch(Dispatchers.IO) {
 # **aiAttachmentsDeleteMany**
 > AiSuccessResponse aiAttachmentsDeleteMany (kotlin.collections.List<kotlin.String> requestBody)
 
-
+Permanently deletes a batch of attachments in a single round trip.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-attachments-delete-many/).
 
@@ -104,7 +104,7 @@ launch(Dispatchers.IO) {
 # **aiAttachmentsGet**
 > AiAttachment aiAttachmentsGet (kotlin.String body)
 
-
+Returns one attachment by identifier.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-attachments-get/).
 
@@ -147,7 +147,7 @@ launch(Dispatchers.IO) {
 # **aiAttachmentsGetMany**
 > kotlin.collections.List&lt;AiAttachment?&gt; aiAttachmentsGetMany (kotlin.collections.List<kotlin.String> requestBody)
 
-
+Returns a batch of attachments, preserving the requested order; an identifier that no longer exists comes back empty.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-attachments-get-many/).
 
@@ -190,7 +190,7 @@ launch(Dispatchers.IO) {
 # **aiAttachmentsLinkToMessage**
 > AiSuccessResponse aiAttachmentsLinkToMessage (AiAttachmentsLinkToMessageRequest aiAttachmentsLinkToMessageRequest)
 
-
+Binds draft attachments to the chat message that owns them, once that message has been persisted, so deleting the message removes them too. Identifiers that no longer exist are skipped.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-attachments-link-to-message/).
 
@@ -233,7 +233,7 @@ launch(Dispatchers.IO) {
 # **aiAttachmentsSaveFile**
 > AiAttachment aiAttachmentsSaveFile (AiAttachmentsSaveFileRequest aiAttachmentsSaveFileRequest)
 
-
+Stores one file attachment as a draft, carrying the host-extracted text of the file. Prefer `save-files-many` when adding several files at once so they land as one round trip.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-attachments-save-file/).
 
@@ -276,7 +276,7 @@ launch(Dispatchers.IO) {
 # **aiAttachmentsSaveFilesMany**
 > kotlin.collections.List&lt;AiAttachment&gt; aiAttachmentsSaveFilesMany (AiAttachmentsSaveFilesManyRequest aiAttachmentsSaveFilesManyRequest)
 
-
+Stores a batch of file attachments as drafts in a single round trip. The returned records keep the order of the input.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-attachments-save-files-many/).
 

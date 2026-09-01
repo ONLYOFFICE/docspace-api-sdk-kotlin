@@ -28,7 +28,7 @@ import com.squareup.moshi.JsonClass
  * @param name Human-readable model name for display in the UI.
  * @param provider Provider that offers this model.
  * @param reasoning Whether this model supports extended thinking / chain-of-thought reasoning.
- * @param capabilities Bitmask of model capabilities (Chat, Image, Vision, Tools, etc.). Used to filter models per  {@link  ActionType  } .
+ * @param capabilities Bitmask of model capabilities (Chat, Image, Vision, Tools, etc.). Used to filter models per `ActionType`.
  */
 
 

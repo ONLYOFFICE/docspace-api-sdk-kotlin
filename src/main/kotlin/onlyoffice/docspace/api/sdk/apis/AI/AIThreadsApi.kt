@@ -40,7 +40,7 @@ interface AIThreadsApi {
     /**
      * POST api/2.0/ai/threads/append-user-message
      * Append user message
-     * 
+     * Persists a user message in a thread and bumps the thread's last-edit date so it resurfaces in the sidebar. Optionally rebinds the thread to another profile when the model changed mid-conversation.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -58,7 +58,7 @@ interface AIThreadsApi {
     /**
      * DELETE api/2.0/ai/threads/clear-messages
      * Clear messages
-     * 
+     * Drops every message of a thread while keeping the thread itself, and bumps its last-edit date.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -76,7 +76,7 @@ interface AIThreadsApi {
     /**
      * POST api/2.0/ai/threads/create
      * Create
-     * 
+     * Creates a chat thread with a caller-supplied title. Use `open-or-create` instead when the title should be generated from the first user message.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -94,7 +94,7 @@ interface AIThreadsApi {
     /**
      * DELETE api/2.0/ai/threads/delete
      * Delete
-     * 
+     * Deletes a chat thread together with its messages.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -112,7 +112,7 @@ interface AIThreadsApi {
     /**
      * DELETE api/2.0/ai/threads/delete-message
      * Delete message
-     * 
+     * Deletes one chat message, leaving the rest of the thread untouched.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -130,7 +130,7 @@ interface AIThreadsApi {
     /**
      * GET api/2.0/ai/threads/get-by-id
      * Get by id
-     * 
+     * Returns one chat thread, or an empty result when the identifier is unknown.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -139,7 +139,7 @@ interface AIThreadsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-threads-get-by-id/
      *
      *
-     * @param threadId 
+     * @param threadId The chat thread identifier.
      * @return [AiThread]
      */
     @GET("api/2.0/ai/threads/get-by-id")
@@ -148,7 +148,7 @@ interface AIThreadsApi {
     /**
      * GET api/2.0/ai/threads/get-message-by-id
      * Get message by id
-     * 
+     * Returns one chat message by its globally unique identifier.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -157,7 +157,7 @@ interface AIThreadsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-threads-get-message-by-id/
      *
      *
-     * @param messageId 
+     * @param messageId The globally unique chat message identifier.
      * @return [AiThreadMessageLike]
      */
     @GET("api/2.0/ai/threads/get-message-by-id")
@@ -166,7 +166,7 @@ interface AIThreadsApi {
     /**
      * GET api/2.0/ai/threads/list
      * List
-     * 
+     * Lists the chat threads of the scope, most recently edited first. Supports cursor pagination and a server-side case-insensitive title search.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -175,19 +175,19 @@ interface AIThreadsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-threads-list/
      *
      *
-     * @param entityId 
-     * @param count 
-     * @param cursor 
-     * @param query 
+     * @param entityId The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. (optional)
+     * @param count The maximum number of items to return in one page. (optional)
+     * @param cursor The keyset pagination cursor: the JSON-encoded sort key of the last item already received. Omit for the first page. (optional)
+     * @param query The full-text query the thread list is filtered by. (optional)
      * @return [kotlin.collections.List<AiThread>]
      */
     @GET("api/2.0/ai/threads/list")
-    suspend fun aiThreadsList(@Query("entityId") entityId: kotlin.String, @Query("count") count: kotlin.String, @Query("cursor") cursor: kotlin.String, @Query("query") query: kotlin.String): Response<kotlin.collections.List<AiThread>>
+    suspend fun aiThreadsList(@Query("entityId") entityId: kotlin.String? = null, @Query("count") count: kotlin.String? = null, @Query("cursor") cursor: kotlin.String? = null, @Query("query") query: kotlin.String? = null): Response<kotlin.collections.List<AiThread>>
 
     /**
      * POST api/2.0/ai/threads/open-or-create
      * Open or create
-     * 
+     * Opens a chat thread and returns its history, or creates one with a title generated from the supplied first message. That first message is not persisted - the caller decides whether to follow up with `append-user-message`.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -205,7 +205,7 @@ interface AIThreadsApi {
     /**
      * GET api/2.0/ai/threads/read-messages
      * Read messages
-     * 
+     * Reads the messages of a thread, with the same cursor pagination as the thread list.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -214,19 +214,19 @@ interface AIThreadsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-threads-read-messages/
      *
      *
-     * @param threadId 
-     * @param count 
-     * @param cursor 
-     * @param direction 
+     * @param threadId The chat thread identifier.
+     * @param count The maximum number of items to return in one page. (optional)
+     * @param cursor The keyset pagination cursor: the JSON-encoded sort key of the last item already received. Omit for the first page. (optional)
+     * @param direction The order the message page is read in. Only desc turns the read around and pages back from the newest message; omit for the forward read. (optional)
      * @return [kotlin.collections.List<AiThreadMessageLike>]
      */
     @GET("api/2.0/ai/threads/read-messages")
-    suspend fun aiThreadsReadMessages(@Query("threadId") threadId: kotlin.String, @Query("count") count: kotlin.String, @Query("cursor") cursor: kotlin.String, @Query("direction") direction: kotlin.String): Response<kotlin.collections.List<AiThreadMessageLike>>
+    suspend fun aiThreadsReadMessages(@Query("threadId") threadId: kotlin.String, @Query("count") count: kotlin.String? = null, @Query("cursor") cursor: kotlin.String? = null, @Query("direction") direction: kotlin.String? = null): Response<kotlin.collections.List<AiThreadMessageLike>>
 
     /**
      * POST api/2.0/ai/threads/regenerate-title
      * Regenerate title
-     * 
+     * Generates a fresh title from the thread's first user message and persists it. Fails when the thread has no user message yet.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -244,7 +244,7 @@ interface AIThreadsApi {
     /**
      * PUT api/2.0/ai/threads/rename
      * Rename
-     * 
+     * Renames a chat thread and bumps its last-edit date so the new title shows up in the sidebar.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -262,7 +262,7 @@ interface AIThreadsApi {
     /**
      * POST api/2.0/ai/threads/touch
      * Touch
-     * 
+     * Bumps a thread's last-edit date, and optionally rebinds it to another profile, when something other than a new message - a model switch, say - should resurface it.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -280,7 +280,7 @@ interface AIThreadsApi {
     /**
      * PUT api/2.0/ai/threads/update-message
      * Update message
-     * 
+     * Replaces the content of a chat message - used by the edit and regenerate flows that change a message outside the streaming lifecycle.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.

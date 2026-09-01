@@ -21,11 +21,11 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The request parameters for storing the encryption key pair of a user.
  *
- * @param id 
- * @param publicKey 
- * @param privateKeyEnc 
+ * @param id The identifier of the key pair.
+ * @param publicKey The public key of the pair, used to encrypt the file keys.
+ * @param privateKeyEnc The private key of the pair, encrypted with the user password.
  */
 
 

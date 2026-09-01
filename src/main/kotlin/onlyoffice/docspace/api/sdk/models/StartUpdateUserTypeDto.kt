@@ -24,7 +24,7 @@ import com.squareup.moshi.JsonClass
 /**
  * The parameters for updating the type of the user or guest when reassigning rooms and shared files.
  *
- * @param type The user type.
+ * @param type The new user type.
  * @param userId The user ID.
  * @param reassignUserId The user ID to reassign.
  */

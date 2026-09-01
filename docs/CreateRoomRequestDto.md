@@ -10,8 +10,8 @@
 | **indexing** | **kotlin.Boolean** | Specifies whether to create a room with indexing. |  [optional] |
 | **denyDownload** | **kotlin.Boolean** | Specifies whether to deny downloads from the room. |  [optional] |
 | **lifetime** | [**RoomDataLifetimeDto**](RoomDataLifetimeDto.md) | The room data lifetime information. |  [optional] |
-| **watermark** | [**WatermarkRequestDto**](WatermarkRequestDto.md) | The request parameters for adding watermarks. |  [optional] |
-| **logo** | [**LogoRequest**](LogoRequest.md) | The logo request parameters. |  [optional] |
+| **watermark** | [**WatermarkRequestDto**](WatermarkRequestDto.md) | The watermark settings. |  [optional] |
+| **logo** | [**LogoRequest**](LogoRequest.md) | The room logo. |  [optional] |
 | **tags** | **kotlin.collections.List&lt;kotlin.String&gt;** | The list of tags. |  [optional] |
 | **color** | **kotlin.String** | The room color, as a six-digit hexadecimal value without a leading '#'. |  [optional] |
 | **cover** | **kotlin.String** | The room cover. |  [optional] |

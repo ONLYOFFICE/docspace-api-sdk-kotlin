@@ -16,7 +16,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 # **aiSettingsGet**
 > AiAiSettingsWrapper aiSettingsGet ()
 
-
+Reports the portal's combined AI configuration and readiness.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-settings-get/).
 
@@ -56,7 +56,7 @@ launch(Dispatchers.IO) {
 # **aiSettingsGetUser**
 > AiAiUserSettingsWrapper aiSettingsGetUser ()
 
-
+Returns the current user's AI settings.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-settings-get-user/).
 
@@ -96,7 +96,7 @@ launch(Dispatchers.IO) {
 # **aiSettingsGetVectorization**
 > AiVectorizationSettingsWrapper aiSettingsGetVectorization ()
 
-
+Returns the portal's vectorization settings.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-settings-get-vectorization/).
 
@@ -136,7 +136,7 @@ launch(Dispatchers.IO) {
 # **aiSettingsSetUser**
 > AiAiUserSettingsWrapper aiSettingsSetUser (kotlin.collections.Map<kotlin.String, kotlin.Any> requestBody)
 
-
+Updates the current user's AI settings.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-settings-set-user/).
 
@@ -179,7 +179,7 @@ launch(Dispatchers.IO) {
 # **aiSettingsSetVectorization**
 > AiVectorizationSettingsWrapper aiSettingsSetVectorization (kotlin.collections.Map<kotlin.String, kotlin.Any?> requestBody)
 
-
+Updates the portal's vectorization settings.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-settings-set-vectorization/).
 

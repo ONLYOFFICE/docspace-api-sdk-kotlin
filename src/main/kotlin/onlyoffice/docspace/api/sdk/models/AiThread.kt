@@ -30,7 +30,7 @@ import com.squareup.moshi.JsonClass
  * @param lastEditDate Timestamp (ms since epoch) of the last message in this thread. Used for sorting.
  * @param provider Provider configuration at the time of last message. Used for thread-level provider display.
  * @param model Model info at the time of last message.
- * @param profileId ID of the profile used for this thread. Links to  {@link  Profile.id } .
+ * @param profileId ID of the profile used for this thread. Links to `Profile.id`.
  */
 
 

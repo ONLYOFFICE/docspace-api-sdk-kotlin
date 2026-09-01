@@ -32,9 +32,9 @@ import com.squareup.moshi.JsonClass
  * @param ssl The webhook SSL verification (enabled or not).
  * @param triggers The webhook trigger type.
  * @param targetId The webhook target ID.
- * @param createdBy The user parameters.
+ * @param createdBy The user who created the webhook.
  * @param createdOn The date and time when the webhook was created.
- * @param modifiedBy The user parameters.
+ * @param modifiedBy The user who modified the webhook.
  * @param modifiedOn The date and time when the webhook was modified.
  * @param lastFailureOn The date and time of the webhook last failure.
  * @param lastFailureContent The webhook last failure content.

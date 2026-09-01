@@ -70,7 +70,7 @@ import com.squareup.moshi.JsonClass
  * @param hideConfirmConvertSave Specifies whether to hide the confirmation dialog  for saving the file copy in the original format when converting a file.
  * @param hideConfirmConvertOpen Specifies whether to hide the confirmation dialog  for opening the conversion result.
  * @param hideConfirmRoomLifetime Specifies whether to hide the confirmation dialog about the file lifetime in the room.
- * @param defaultOrder The sorting parameters.
+ * @param defaultOrder The default order of files.
  * @param forcesave Specifies whether to forcesave the files or not.
  * @param storeForcesave Specifies whether to store the forcesaved file versions or not.
  * @param recentSection Specifies if the Recent section is displayed or not.

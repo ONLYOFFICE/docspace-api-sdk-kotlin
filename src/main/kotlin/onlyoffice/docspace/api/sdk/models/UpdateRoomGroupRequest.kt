@@ -22,7 +22,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The changes to apply to a room group: its name and the rooms to add or remove.
  *
  * @param roomsToAdd The list of room IDs to add to the group.
  * @param roomsToRemove The list of room IDs to remove from the group.

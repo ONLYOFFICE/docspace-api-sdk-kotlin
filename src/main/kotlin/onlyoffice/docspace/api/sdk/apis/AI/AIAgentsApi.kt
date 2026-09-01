@@ -39,7 +39,7 @@ interface AIAgentsApi {
     /**
      * POST api/2.0/ai/agents
      * Create an agent
-     * 
+     * Creates an AI agent room in the .NET AI service and binds the supplied `profileId` to it as a `Chat` assignment. The instruction is stored on the room as a prompt-only chat setting; a failed binding is reported as an error even though the room already exists.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -57,7 +57,7 @@ interface AIAgentsApi {
     /**
      * DELETE api/2.0/ai/agents/{id}
      * Delete an agent
-     * 
+     * Deletes an AI agent room.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -66,7 +66,7 @@ interface AIAgentsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-agents-delete/
      *
      *
-     * @param id 
+     * @param id The agent identifier.
      * @param aiAgentsDeleteRequest 
      * @return [AiFileOperationWrapper]
      */
@@ -76,7 +76,7 @@ interface AIAgentsApi {
     /**
      * GET api/2.0/ai/agents/{id}
      * Get an agent
-     * 
+     * Returns one AI agent room, enriched with the `profileId` bound to it so an edit form can prefill the profile selector. A missing assignment simply leaves `profileId` out.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -85,7 +85,7 @@ interface AIAgentsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-agents-get/
      *
      *
-     * @param id 
+     * @param id The agent identifier.
      * @return [AiFolderIntegerWrapper]
      */
     @GET("api/2.0/ai/agents/{id}")
@@ -94,7 +94,7 @@ interface AIAgentsApi {
     /**
      * GET api/2.0/ai/agents
      * List agents
-     * 
+     * Lists the portal's AI agent rooms. Query parameters are forwarded unchanged to the .NET AI service, which answers with its folder-content payload.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -111,7 +111,7 @@ interface AIAgentsApi {
     /**
      * GET api/2.0/ai/agents/news
      * List agent news items
-     * 
+     * Lists the new items across the caller's AI agent rooms.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -128,7 +128,7 @@ interface AIAgentsApi {
     /**
      * PUT api/2.0/ai/agents/resetquota
      * Reset agents' quota
-     * 
+     * Resets the storage quota of the given AI agent rooms.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -146,7 +146,7 @@ interface AIAgentsApi {
     /**
      * PUT api/2.0/ai/agents/{id}
      * Update an agent
-     * 
+     * Updates an AI agent room - title, tags, instruction. `profileId` is not part of the room contract: it is stripped from the forwarded body and re-bound as the agent's assignment afterwards.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -155,7 +155,7 @@ interface AIAgentsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-agents-update/
      *
      *
-     * @param id 
+     * @param id The agent identifier.
      * @param aiAgentsUpdateRequest 
      * @return [AiFolderIntegerWrapper]
      */
@@ -165,7 +165,7 @@ interface AIAgentsApi {
     /**
      * PUT api/2.0/ai/agents/agentquota
      * Update agents' quota
-     * 
+     * Changes the storage quota of the given AI agent rooms.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.

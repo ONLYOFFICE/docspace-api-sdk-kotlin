@@ -25,6 +25,7 @@ import com.squareup.moshi.Json
 
 import onlyoffice.docspace.api.sdk.models.CspRequestsDto
 import onlyoffice.docspace.api.sdk.models.CspWrapper
+import onlyoffice.docspace.api.sdk.models.ErrorApiResponse
 
 interface CSPApi {
     /**
@@ -37,6 +38,7 @@ interface CSPApi {
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -57,6 +59,7 @@ interface CSPApi {
      * Responses:
      *  - 200: Ok
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *

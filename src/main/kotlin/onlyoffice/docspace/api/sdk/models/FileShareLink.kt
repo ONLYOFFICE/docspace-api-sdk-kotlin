@@ -16,7 +16,6 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.ApiDateTime
 import onlyoffice.docspace.api.sdk.models.LinkType
 
 import com.squareup.moshi.Json
@@ -28,7 +27,7 @@ import com.squareup.moshi.JsonClass
  * @param id The unique identifier of the shared link.
  * @param title The title of the shared content.
  * @param shareLink The URL for accessing the shared content.
- * @param expirationDate The API date and time parameters.
+ * @param expirationDate The date when the shared link expires.
  * @param linkType The sharing link type (e.g., Invitation).
  * @param password The password protection for accessing the shared content.
  * @param denyDownload Indicates whether downloading of the shared content is prohibited.
@@ -53,7 +52,7 @@ data class FileShareLink (
     val shareLink: kotlin.String? = null,
 
     @Json(name = "expirationDate")
-    val expirationDate: ApiDateTime? = null,
+    val expirationDate: java.time.OffsetDateTime? = null,
 
     @Json(name = "linkType")
     val linkType: LinkType? = null,

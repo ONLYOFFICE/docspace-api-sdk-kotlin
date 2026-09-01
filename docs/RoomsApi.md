@@ -546,7 +546,7 @@ launch(Dispatchers.IO) {
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 <a id="deleteRoom"></a>
@@ -1422,7 +1422,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **tagName2** | **kotlin.String**|  | |
+| **tagName2** | **kotlin.String**| The tag being checked. Send the same value as the `tagName` query parameter, which is the one the handler reads. | |
 | **tagName** | **kotlin.String**| Represents the name of a tag | [optional] |
 
 ### Return type
@@ -1448,7 +1448,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
-val tagName2 : kotlin.String = tagName_example // kotlin.String | 
+val tagName2 : kotlin.String = tagName_example // kotlin.String | The tag being checked. Send the same value as the `tagName` query parameter, which is the one the handler reads.
 val tagName : kotlin.String = tag1 // kotlin.String | Represents the name of a tag
 
 launch(Dispatchers.IO) {
@@ -1608,7 +1608,7 @@ launch(Dispatchers.IO) {
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 <a id="setPublicSettings"></a>
@@ -1657,7 +1657,7 @@ launch(Dispatchers.IO) {
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 <a id="setRoomLink"></a>
@@ -1903,7 +1903,7 @@ launch(Dispatchers.IO) {
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 <a id="unarchiveRoom"></a>

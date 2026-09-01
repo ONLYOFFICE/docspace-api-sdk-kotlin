@@ -32,6 +32,7 @@ import onlyoffice.docspace.api.sdk.models.DocsCloudTenantInfoWrapper
 import onlyoffice.docspace.api.sdk.models.DocsCloudTenantWrapper
 import onlyoffice.docspace.api.sdk.models.DocsCloudUsageWrapper
 import onlyoffice.docspace.api.sdk.models.DocumentBuilderTaskWrapper
+import onlyoffice.docspace.api.sdk.models.ErrorApiResponse
 import onlyoffice.docspace.api.sdk.models.PaymentCalculationWrapper
 
 interface DocsCloudApi {
@@ -47,6 +48,7 @@ interface DocsCloudApi {
      *  - 404: Customer or service could not be found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -69,6 +71,7 @@ interface DocsCloudApi {
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -89,6 +92,8 @@ interface DocsCloudApi {
      *  - 200: DocsCloud tenant
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -96,7 +101,7 @@ interface DocsCloudApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tenant/
      *
      *
-     * @param refresh  (optional, default to false)
+     * @param refresh Specifies whether to bypass the cache and request the tenant from DocsCloud again. (optional, default to false)
      * @return [DocsCloudTenantWrapper]
      */
     @GET("api/2.0/settings/docscloud/tenant")
@@ -111,6 +116,7 @@ interface DocsCloudApi {
      *  - 400: The DocsCloud tenant is not activated
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -118,7 +124,7 @@ interface DocsCloudApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tenant-config/
      *
      *
-     * @param refresh  (optional, default to false)
+     * @param refresh Specifies whether to bypass the cache and request the tenant configuration from DocsCloud again. (optional, default to false)
      * @return [DocsCloudConfigWrapper]
      */
     @GET("api/2.0/settings/docscloud/tenant/config")
@@ -133,6 +139,7 @@ interface DocsCloudApi {
      *  - 400: The DocsCloud tenant is not activated
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -140,7 +147,7 @@ interface DocsCloudApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tenant-info/
      *
      *
-     * @param refresh  (optional, default to false)
+     * @param refresh Specifies whether to bypass the cache and request the tenant information from DocsCloud again. (optional, default to false)
      * @return [DocsCloudTenantInfoWrapper]
      */
     @GET("api/2.0/settings/docscloud/tenant/info")
@@ -155,6 +162,7 @@ interface DocsCloudApi {
      *  - 400: The DocsCloud tenant is not activated
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -162,7 +170,7 @@ interface DocsCloudApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tenant-quota/
      *
      *
-     * @param refresh  (optional, default to false)
+     * @param refresh Specifies whether to bypass the cache and request the user quota from DocsCloud again. (optional, default to false)
      * @return [DocsCloudQuotaWrapper]
      */
     @GET("api/2.0/settings/docscloud/tenant/quota")
@@ -177,6 +185,7 @@ interface DocsCloudApi {
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -198,6 +207,7 @@ interface DocsCloudApi {
      *  - 400: The DocsCloud tenant is not activated
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -205,7 +215,7 @@ interface DocsCloudApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tenant-usage/
      *
      *
-     * @param refresh  (optional, default to false)
+     * @param refresh Specifies whether to bypass the cache and request the usage statistics from DocsCloud again. (optional, default to false)
      * @return [DocsCloudUsageWrapper]
      */
     @GET("api/2.0/settings/docscloud/tenant/usage")
@@ -223,6 +233,7 @@ interface DocsCloudApi {
      *  - 404: Quota could not be found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -247,6 +258,7 @@ interface DocsCloudApi {
      *  - 404: Customer or service could not be found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -269,6 +281,7 @@ interface DocsCloudApi {
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -290,6 +303,7 @@ interface DocsCloudApi {
      *  - 400: Invalid request parameters, or the DocsCloud tenant is not activated
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *

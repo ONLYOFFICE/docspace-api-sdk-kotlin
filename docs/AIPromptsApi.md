@@ -24,7 +24,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 # **aiPromptsCreate**
 > AiPromptMutationResult aiPromptsCreate (AiCreatePromptInput aiCreatePromptInput)
 
-
+Saves a new prompt. The name must be non-empty and unique inside its folder, and `folderId` must point at an existing folder - omit it for the root.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-create/).
 
@@ -67,7 +67,7 @@ launch(Dispatchers.IO) {
 # **aiPromptsCreateFolder**
 > AiFolderMutationResult aiPromptsCreateFolder (kotlin.String body)
 
-
+Creates a prompt folder. The name must be non-empty and unique across the portal - prompt folders do not nest.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-create-folder/).
 
@@ -110,7 +110,7 @@ launch(Dispatchers.IO) {
 # **aiPromptsDelete**
 > AiSuccessResponse aiPromptsDelete (kotlin.String body)
 
-
+Deletes a saved prompt. Does nothing when it no longer exists.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-delete/).
 
@@ -153,7 +153,7 @@ launch(Dispatchers.IO) {
 # **aiPromptsDeleteFolder**
 > AiSuccessResponse aiPromptsDeleteFolder (kotlin.String body)
 
-
+Deletes a prompt folder together with the prompts inside it.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-delete-folder/).
 
@@ -196,7 +196,7 @@ launch(Dispatchers.IO) {
 # **aiPromptsExport**
 > AiPromptBundle aiPromptsExport ()
 
-
+Builds a self-contained, versioned bundle of every saved prompt and folder, ready for `import-bundle`.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-export/).
 
@@ -236,14 +236,14 @@ launch(Dispatchers.IO) {
 # **aiPromptsGetById**
 > AiPrompt aiPromptsGetById (kotlin.String id)
 
-
+Returns one saved prompt, or an empty result when the identifier is unknown.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-get-by-id/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **id** | **kotlin.String**|  | |
+| **id** | **kotlin.String**| The saved prompt identifier. | |
 
 ### Return type
 
@@ -262,7 +262,7 @@ No authorization required
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(AIPromptsApi::class.java)
-val id : kotlin.String = id_example // kotlin.String | 
+val id : kotlin.String = id_example // kotlin.String | The saved prompt identifier.
 
 launch(Dispatchers.IO) {
     val result : AiPrompt = webService.aiPromptsGetById(id)
@@ -279,14 +279,14 @@ launch(Dispatchers.IO) {
 # **aiPromptsGetFolderById**
 > AiPromptFolder aiPromptsGetFolderById (kotlin.String id)
 
-
+Returns one prompt folder, or an empty result when the identifier is unknown.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-get-folder-by-id/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **id** | **kotlin.String**|  | |
+| **id** | **kotlin.String**| The prompt folder identifier. | |
 
 ### Return type
 
@@ -305,7 +305,7 @@ No authorization required
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(AIPromptsApi::class.java)
-val id : kotlin.String = id_example // kotlin.String | 
+val id : kotlin.String = id_example // kotlin.String | The prompt folder identifier.
 
 launch(Dispatchers.IO) {
     val result : AiPromptFolder = webService.aiPromptsGetFolderById(id)
@@ -322,7 +322,7 @@ launch(Dispatchers.IO) {
 # **aiPromptsImportBundle**
 > AiImportResult aiPromptsImportBundle (AiPromptsImportBundleRequest aiPromptsImportBundleRequest)
 
-
+Restores a prompt bundle. `replace` wipes the current prompts and folders before writing the bundle, `merge` writes the bundle on top of what is already there; both validate the folder references inside the bundle before any write, so a corrupt bundle is rejected whole.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-import-bundle/).
 
@@ -365,14 +365,14 @@ launch(Dispatchers.IO) {
 # **aiPromptsList**
 > kotlin.collections.List&lt;AiPrompt&gt; aiPromptsList (kotlin.String folderId)
 
-
+Lists saved prompts. Scope the answer to one folder, ask for the root-level prompts only, or omit the folder to get every prompt newest first.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-list/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **folderId** | **kotlin.String**|  | |
+| **folderId** | **kotlin.String**| The prompt folder identifier. Omit to list the prompts that sit outside any folder. | [optional] |
 
 ### Return type
 
@@ -391,7 +391,7 @@ No authorization required
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(AIPromptsApi::class.java)
-val folderId : kotlin.String = folderId_example // kotlin.String | 
+val folderId : kotlin.String = folderId_example // kotlin.String | The prompt folder identifier. Omit to list the prompts that sit outside any folder.
 
 launch(Dispatchers.IO) {
     val result : kotlin.collections.List<AiPrompt> = webService.aiPromptsList(folderId)
@@ -408,7 +408,7 @@ launch(Dispatchers.IO) {
 # **aiPromptsListFolders**
 > kotlin.collections.List&lt;AiPromptFolder&gt; aiPromptsListFolders ()
 
-
+Lists the prompt folders, newest first.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-list-folders/).
 
@@ -448,7 +448,7 @@ launch(Dispatchers.IO) {
 # **aiPromptsMove**
 > AiPromptMutationResult aiPromptsMove (AiPromptsMoveRequest aiPromptsMoveRequest)
 
-
+Moves a saved prompt into another folder, or to the root. The name is re-validated in the target folder, so the move fails when a prompt of that name is already there.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-move/).
 
@@ -491,7 +491,7 @@ launch(Dispatchers.IO) {
 # **aiPromptsRenameFolder**
 > AiFolderMutationResult aiPromptsRenameFolder (AiPromptsRenameFolderRequest aiPromptsRenameFolderRequest)
 
-
+Renames a prompt folder, validating the new name against the existing folders.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-rename-folder/).
 
@@ -534,7 +534,7 @@ launch(Dispatchers.IO) {
 # **aiPromptsUpdate**
 > AiPromptMutationResult aiPromptsUpdate (AiPromptsUpdateRequest aiPromptsUpdateRequest)
 
-
+Updates a saved prompt. The name and the folder reference are re-validated whenever either of them changes.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-update/).
 

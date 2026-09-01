@@ -4,10 +4,10 @@
 ## Properties
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
-| **ip** | **kotlin.String** |  |  |
-| **forAdmin** | **kotlin.Boolean** |  |  [optional] |
-| **id** | **kotlin.Int** |  |  [optional] |
-| **tenantId** | **kotlin.Int** |  |  [optional] |
+| **ip** | **kotlin.String** | The IP address. |  |
+| **forAdmin** | **kotlin.Boolean** | Specifies if the IP address is for administrator users only or not. |  [optional] |
+| **id** | **kotlin.Int** | The IP restiction ID. |  [optional] |
+| **tenantId** | **kotlin.Int** | The tenant ID. |  [optional] |
 
 
 

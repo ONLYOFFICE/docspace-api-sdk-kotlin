@@ -22,13 +22,13 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * One `chat.completion.chunk` of an OpenAI-compatible streaming response. Only the fields this service can populate are emitted - an OpenAI client tolerates the rest as absent.
  *
- * @param id 
- * @param `object` 
- * @param created 
- * @param model 
- * @param choices 
+ * @param id The completion identifier, stable across every chunk of one response.
+ * @param `object` Always `chat.completion.chunk`.
+ * @param created When the completion started, in Unix seconds.
+ * @param model The model that produced the completion - the resolved profile's model.
+ * @param choices The choices carried by this chunk. This service emits exactly one.
  */
 
 
@@ -52,7 +52,7 @@ data class AiOpenAIChatCompletionChunk (
 ) {
 
     /**
-     * 
+     * Always `chat.completion.chunk`.
      *
      * Values: chatPeriodCompletionPeriodChunk
      */

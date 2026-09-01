@@ -35,8 +35,8 @@ import com.squareup.moshi.JsonClass
  * @param indexing Specifies whether to create a room with indexing.
  * @param denyDownload Specifies whether to deny downloads from the room.
  * @param lifetime The room data lifetime information.
- * @param watermark The request parameters for adding watermarks.
- * @param logo The logo request parameters.
+ * @param watermark The watermark settings.
+ * @param logo The room logo.
  * @param tags The list of tags.
  * @param color The room color, as a six-digit hexadecimal value without a leading '#'.
  * @param cover The room cover.

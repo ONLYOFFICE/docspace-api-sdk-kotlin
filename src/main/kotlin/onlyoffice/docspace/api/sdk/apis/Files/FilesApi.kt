@@ -24,7 +24,6 @@ import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
 import onlyoffice.docspace.api.sdk.models.AccessRequestKeyDto
-import onlyoffice.docspace.api.sdk.models.ApiDateTime
 import onlyoffice.docspace.api.sdk.models.BaseBatchRequestDto
 import onlyoffice.docspace.api.sdk.models.BooleanWrapper
 import onlyoffice.docspace.api.sdk.models.ChangeHistory
@@ -40,6 +39,7 @@ import onlyoffice.docspace.api.sdk.models.DocumentBuilderTaskWrapper
 import onlyoffice.docspace.api.sdk.models.EditHistoryArrayWrapper
 import onlyoffice.docspace.api.sdk.models.EditHistoryDataWrapper
 import onlyoffice.docspace.api.sdk.models.EditorType
+import onlyoffice.docspace.api.sdk.models.ErrorApiResponse
 import onlyoffice.docspace.api.sdk.models.FileEncryptionInfoWrapper
 import onlyoffice.docspace.api.sdk.models.FileEntryBaseWrapper
 import onlyoffice.docspace.api.sdk.models.FileEntryIntegerArrayWrapper
@@ -56,11 +56,10 @@ import onlyoffice.docspace.api.sdk.models.FormRoleArrayWrapper
 import onlyoffice.docspace.api.sdk.models.FormSubmissionsWrapper
 import onlyoffice.docspace.api.sdk.models.GetReferenceDataDtoInteger
 import onlyoffice.docspace.api.sdk.models.HistoryArrayWrapper
-import onlyoffice.docspace.api.sdk.models.KeyValuePairBooleanStringWrapper
+import onlyoffice.docspace.api.sdk.models.ItemKeyValuePairBooleanStringWrapper
 import onlyoffice.docspace.api.sdk.models.LockFileParameters
 import onlyoffice.docspace.api.sdk.models.ManageFormFillingDtoInteger
 import onlyoffice.docspace.api.sdk.models.MentionWrapperArrayWrapper
-import onlyoffice.docspace.api.sdk.models.NoContentResultWrapper
 import onlyoffice.docspace.api.sdk.models.ObjectArrayWrapper
 import onlyoffice.docspace.api.sdk.models.OrderRequestDto
 import onlyoffice.docspace.api.sdk.models.OrdersRequestDtoInteger
@@ -85,6 +84,8 @@ interface FilesApi {
      *  - 404: File not found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -106,6 +107,8 @@ interface FilesApi {
      *  - 200: Boolean value: true if the operation is successful
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -128,6 +131,8 @@ interface FilesApi {
      *  - 403: You do not have enough permissions to edit the file
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -150,6 +155,8 @@ interface FilesApi {
      *  - 200: Link to the form
      *  - 403: You don't have enough permission to view the file
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -175,6 +182,7 @@ interface FilesApi {
      *  - 404: File not found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -198,6 +206,8 @@ interface FilesApi {
      *  - 403: You don't have enough permission to edit the file
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -220,6 +230,8 @@ interface FilesApi {
      *  - 200: New file information
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -242,6 +254,8 @@ interface FilesApi {
      *  - 200: New file information
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -265,6 +279,8 @@ interface FilesApi {
      *  - 404: Not Found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -288,6 +304,8 @@ interface FilesApi {
      *  - 403: You don't have enough permission to create
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -311,6 +329,8 @@ interface FilesApi {
      *  - 403: You don't have enough permission to create
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -332,6 +352,8 @@ interface FilesApi {
      *  - 200: New file information
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -354,6 +376,8 @@ interface FilesApi {
      *  - 200: New file information
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -374,6 +398,8 @@ interface FilesApi {
      * Responses:
      *  - 200: List of file IDs
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -395,6 +421,8 @@ interface FilesApi {
      *  - 200: List of file operations
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -418,6 +446,8 @@ interface FilesApi {
      *  - 200: No content
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -426,10 +456,10 @@ interface FilesApi {
      *
      *
      * @param baseBatchRequestDto  (optional)
-     * @return [NoContentResultWrapper]
+     * @return [Unit]
      */
     @HTTP(method = "DELETE", path = "api/2.0/files/recent", hasBody = true)
-    suspend fun deleteRecent(@Body baseBatchRequestDto: BaseBatchRequestDto? = null): Response<NoContentResultWrapper>
+    suspend fun deleteRecent(@Body baseBatchRequestDto: BaseBatchRequestDto? = null): Response<Unit>
 
     /**
      * DELETE api/2.0/files/templates
@@ -439,6 +469,8 @@ interface FilesApi {
      *  - 200: Boolean value: true if the operation is successful
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -462,6 +494,8 @@ interface FilesApi {
      *  - 404: The required file was not found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -485,6 +519,8 @@ interface FilesApi {
      *  - 404: The required file was not found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -505,6 +541,8 @@ interface FilesApi {
      * Responses:
      *  - 200: File version history data
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -526,6 +564,8 @@ interface FilesApi {
      * Responses:
      *  - 200: Version history data
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -550,6 +590,7 @@ interface FilesApi {
      *  - 404: File not found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -557,7 +598,7 @@ interface FilesApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-encryption-info/
      *
      *
-     * @param fileId 
+     * @param fileId The file unique identifier.
      * @return [FileEncryptionInfoWrapper]
      */
     @GET("api/2.0/files/{fileId}/access")
@@ -573,6 +614,8 @@ interface FilesApi {
      *  - 404: The required file was not found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -588,7 +631,7 @@ interface FilesApi {
      * @return [HistoryArrayWrapper]
      */
     @GET("api/2.0/files/file/{fileId}/log")
-    suspend fun getFileHistory(@Path("fileId") fileId: kotlin.Int, @Query("fromDate") fromDate: ApiDateTime? = null, @Query("toDate") toDate: ApiDateTime? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null): Response<HistoryArrayWrapper>
+    suspend fun getFileHistory(@Path("fileId") fileId: kotlin.Int, @Query("fromDate") fromDate: java.time.OffsetDateTime? = null, @Query("toDate") toDate: java.time.OffsetDateTime? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null): Response<HistoryArrayWrapper>
 
     /**
      * GET api/2.0/files/file/{fileId}
@@ -597,6 +640,8 @@ interface FilesApi {
      * Responses:
      *  - 200: File information
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -619,6 +664,8 @@ interface FilesApi {
      *  - 200: File security information
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -643,6 +690,8 @@ interface FilesApi {
      *  - 403: You don't have enough permission to perform the operation
      *  - 404: Not Found
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -665,6 +714,8 @@ interface FilesApi {
      * Responses:
      *  - 200: Information about file versions: folder ID, version, version group, content length, pure content length, file status, URL to view a file, web URL, file type, file extension, comment, encrypted or not, thumbnail URL, thumbnail status, locked or not, user ID who locked a file, denies file downloading or not, denies file sharing or not, file accessibility
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -685,6 +736,8 @@ interface FilesApi {
      * Responses:
      *  - 200: Ok
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -707,6 +760,8 @@ interface FilesApi {
      *  - 403: You do not have enough permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -728,6 +783,8 @@ interface FilesApi {
      *  - 200: File download link
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -749,6 +806,8 @@ interface FilesApi {
      *  - 200: File download link
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -770,6 +829,8 @@ interface FilesApi {
      *  - 200: List of users with their access rights to the protected file
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -791,6 +852,8 @@ interface FilesApi {
      *  - 200: File reference data
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -812,6 +875,8 @@ interface FilesApi {
      *  - 200: Ok
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -833,6 +898,8 @@ interface FilesApi {
      *  - 200: Boolean value: true - the PDF file is form, false - the PDF file is not a form
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -854,6 +921,8 @@ interface FilesApi {
      *  - 200: Locked file information
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -877,6 +946,8 @@ interface FilesApi {
      *  - 403: You do not have enough permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -884,7 +955,7 @@ interface FilesApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/manage-form-filling/
      *
      *
-     * @param fileId 
+     * @param fileId The form the action applies to. Send the same value as the `formId` of the request body, which is the one the handler reads.
      * @param manageFormFillingDtoInteger  (optional)
      * @return [Unit]
      */
@@ -899,6 +970,8 @@ interface FilesApi {
      *  - 200: Configuration parameters
      *  - 403: You don't have enough permission to view the file
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -926,6 +999,7 @@ interface FilesApi {
      *  - 400: No file id or folder id toFolderId determine provider
      *  - 403: You do not have enough permissions to edit the file
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -951,6 +1025,7 @@ interface FilesApi {
      *  - 403: You do not have enough permissions to edit the file
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -978,6 +1053,8 @@ interface FilesApi {
      *  - 404: File not found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -1001,6 +1078,8 @@ interface FilesApi {
      *  - 403: You do not have enough permissions to edit the file
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -1008,7 +1087,7 @@ interface FilesApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/save-form-role-mapping/
      *
      *
-     * @param fileId 
+     * @param fileId The form the role mapping belongs to. Send the same value as the `formId` of the request body, which is the one the handler reads.
      * @param saveFormRoleMappingDtoInteger  (optional)
      * @return [Unit]
      */
@@ -1023,6 +1102,8 @@ interface FilesApi {
      *  - 200: File information
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -1047,6 +1128,8 @@ interface FilesApi {
      *  - 404: File not found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -1069,6 +1152,8 @@ interface FilesApi {
      *  - 200: File security information
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -1093,6 +1178,8 @@ interface FilesApi {
      *  - 404: Not Found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -1115,6 +1202,8 @@ interface FilesApi {
      *  - 200: Updated file entries information
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -1136,6 +1225,8 @@ interface FilesApi {
      *  - 200: File key for Document Service
      *  - 403: You don't have enough permission to view the file
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -1159,6 +1250,8 @@ interface FilesApi {
      *  - 403: You do not have enough permissions to edit the file
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -1181,6 +1274,8 @@ interface FilesApi {
      *  - 403: You don't have enough permission to perform the operation
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -1203,6 +1298,8 @@ interface FilesApi {
      *  - 200: File changes
      *  - 403: You don't have enough permission to perform the operation
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -1214,10 +1311,10 @@ interface FilesApi {
      * @param tabId The tab ID to track editing changes. (optional)
      * @param docKeyForTrack The document key for tracking changes. (optional)
      * @param isFinish Specifies whether to finish file tracking or not. (optional)
-     * @return [KeyValuePairBooleanStringWrapper]
+     * @return [ItemKeyValuePairBooleanStringWrapper]
      */
     @GET("api/2.0/files/file/{fileId}/trackeditfile")
-    suspend fun trackEditFile(@Path("fileId") fileId: kotlin.Int, @Query("tabId") tabId: java.util.UUID? = null, @Query("docKeyForTrack") docKeyForTrack: kotlin.String? = null, @Query("isFinish") isFinish: kotlin.Boolean? = null): Response<KeyValuePairBooleanStringWrapper>
+    suspend fun trackEditFile(@Path("fileId") fileId: kotlin.Int, @Query("tabId") tabId: java.util.UUID? = null, @Query("docKeyForTrack") docKeyForTrack: kotlin.String? = null, @Query("isFinish") isFinish: kotlin.Boolean? = null): Response<ItemKeyValuePairBooleanStringWrapper>
 
     /**
      * PUT api/2.0/files/file/{fileId}
@@ -1227,6 +1324,8 @@ interface FilesApi {
      *  - 200: Updated file information
      *  - 403: You do not have enough permissions to edit the file
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *

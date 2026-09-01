@@ -4,7 +4,7 @@
 ## Properties
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
-| **defaultFolderType** | [**FolderType**](FolderType.md) | The folder type. |  |
+| **defaultFolderType** | [**FolderType**](FolderType.md) | The ID of the product to be set as default. |  |
 
 
 

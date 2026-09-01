@@ -40,7 +40,7 @@ import com.squareup.moshi.JsonClass
  * @param deepLink The deep link settings.
  * @param timezone The time zone.
  * @param trustedDomains The list of the trusted domains.
- * @param trustedDomainsType The type of the tenant trusted domains.
+ * @param trustedDomainsType The type of the trusted domains.
  * @param utcOffset The UTC offset in the TimeSpan format.
  * @param utcHoursOffset The UTC offset in hours.
  * @param greetingSettings The greeting settings.
@@ -78,7 +78,7 @@ import com.squareup.moshi.JsonClass
  * @param maxImageUploadSize The maximum image upload size.
  * @param logoText The white label logo text.
  * @param externalResources The external resources settings.
- * @param defaultFolderType The folder type.
+ * @param defaultFolderType Specifies the default folder type for the current settings.
  * @param externalDbEnabled Specifies if an external database is connected for storing form results.
  */
 

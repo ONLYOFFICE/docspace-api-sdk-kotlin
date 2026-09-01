@@ -16,7 +16,6 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.ApiDateTime
 import onlyoffice.docspace.api.sdk.models.FileShare
 
 import com.squareup.moshi.Json
@@ -26,8 +25,8 @@ import com.squareup.moshi.JsonClass
  * The folder link parameters.
  *
  * @param linkId The folder link ID.
- * @param access The access rights type.
- * @param expirationDate The API date and time parameters.
+ * @param access The link sharing rights.
+ * @param expirationDate The link expiration date.
  * @param title The link name.
  * @param password The link password.
  * @param denyDownload Specifies if downloading the file from the link is disabled or not.
@@ -45,7 +44,7 @@ data class FolderLinkRequest (
     val access: FileShare? = null,
 
     @Json(name = "expirationDate")
-    val expirationDate: ApiDateTime? = null,
+    val expirationDate: java.time.OffsetDateTime? = null,
 
     @Json(name = "title")
     val title: kotlin.String? = null,

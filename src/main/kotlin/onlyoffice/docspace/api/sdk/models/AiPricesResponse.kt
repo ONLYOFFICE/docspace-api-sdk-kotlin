@@ -26,13 +26,13 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The AI price list: per-model pricing for every model kind, in a single currency.
  *
- * @param chat 
- * @param embedding 
- * @param image 
- * @param search 
- * @param currency 
+ * @param chat The pricing of every available chat model.
+ * @param embedding The pricing of every available embedding model.
+ * @param image The pricing of every available image model.
+ * @param search The pricing of every available web search provider.
+ * @param currency The currency the AI prices are quoted in.
  */
 
 

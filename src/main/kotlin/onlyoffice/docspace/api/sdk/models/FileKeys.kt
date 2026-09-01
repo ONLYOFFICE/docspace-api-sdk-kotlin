@@ -21,14 +21,14 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The encrypted file key issued to one user.
  *
- * @param userId 
- * @param publicKeyId 
- * @param privateKeyEnc 
- * @param tenantId 
- * @param fileId 
- * @param createOn 
+ * @param userId The identifier of the user the file key was issued to.
+ * @param publicKeyId The identifier of the key pair the file key is encrypted for.
+ * @param privateKeyEnc The file key, encrypted with the public key of the pair.
+ * @param tenantId The identifier of the portal the file belongs to.
+ * @param fileId The identifier of the file the key unlocks.
+ * @param createOn The date and time when the file key was issued.
  */
 
 

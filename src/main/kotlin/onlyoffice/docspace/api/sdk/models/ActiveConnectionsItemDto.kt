@@ -16,7 +16,6 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.ApiDateTime
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -33,7 +32,7 @@ import com.squareup.moshi.JsonClass
  * @param city The active connection city.
  * @param browser The active connection browser.
  * @param platform The active connection platform.
- * @param date The API date and time parameters.
+ * @param date The active connection date.
  * @param page The active connection page.
  */
 
@@ -68,7 +67,7 @@ data class ActiveConnectionsItemDto (
     val platform: kotlin.String? = null,
 
     @Json(name = "date")
-    val date: ApiDateTime? = null,
+    val date: java.time.OffsetDateTime? = null,
 
     @Json(name = "page")
     val page: kotlin.String? = null

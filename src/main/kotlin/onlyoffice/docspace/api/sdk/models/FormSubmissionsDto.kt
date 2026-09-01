@@ -23,7 +23,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * All submissions of a form, together with the metadata of its fields.
  *
  * @param metadata The form field metadata.
  * @param submissions All submissions.

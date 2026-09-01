@@ -25,7 +25,7 @@ import com.squareup.moshi.JsonClass
  * The result of file convertion operation.
  *
  * @param id The conversion operation ID.
- * @param operation The file operation type.
+ * @param operation The conversion operation type.
  * @param progress The conversion operation progress.
  * @param source The source file for the conversion.
  * @param result 

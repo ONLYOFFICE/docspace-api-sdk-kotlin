@@ -23,11 +23,11 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * Shared body of the two streaming send endpoints (`sendWithStream` and its OpenAI-framed twin) — the `Chat` action is implied, so there is no `actionType`.
  *
  * @param userMessage The user turn to send.
  * @param threadId Target thread; a new one is created (with an auto title) when omitted.
- * @param actionArgs 
+ * @param actionArgs Per-request engine options: extra tools, reasoning, prompt override.
  * @param entityId Optional entity (room) scope for profile resolution.
  * @param profileId Session-level profile override for this request only.
  */

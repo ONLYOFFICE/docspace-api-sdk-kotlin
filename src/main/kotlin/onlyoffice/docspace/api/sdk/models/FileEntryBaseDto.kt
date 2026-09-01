@@ -16,7 +16,6 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.ApiDateTime
 import onlyoffice.docspace.api.sdk.models.EmployeeDto
 import onlyoffice.docspace.api.sdk.models.FileEntryType
 import onlyoffice.docspace.api.sdk.models.FileShare
@@ -83,16 +82,16 @@ data class FileEntryBaseDto (
     val shortWebUrl: java.net.URI? = null,
 
     @Json(name = "created")
-    val created: ApiDateTime? = null,
+    val created: java.time.OffsetDateTime? = null,
 
     @Json(name = "createdBy")
     val createdBy: EmployeeDto? = null,
 
     @Json(name = "updated")
-    val updated: ApiDateTime? = null,
+    val updated: java.time.OffsetDateTime? = null,
 
     @Json(name = "autoDelete")
-    val autoDelete: ApiDateTime? = null,
+    val autoDelete: java.time.OffsetDateTime? = null,
 
     @Json(name = "rootFolderType")
     val rootFolderType: FolderType? = null,

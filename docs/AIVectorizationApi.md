@@ -12,7 +12,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 # **aiVectorizationStartTask**
 > AiSuccessResponse aiVectorizationStartTask (kotlin.collections.Map<kotlin.String, kotlin.Any> requestBody)
 
-
+Starts a vectorization task over the supplied portal files. The indexing itself runs asynchronously on the .NET side.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-vectorization-start-task/).
 

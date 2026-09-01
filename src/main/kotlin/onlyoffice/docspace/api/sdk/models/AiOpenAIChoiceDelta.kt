@@ -22,11 +22,11 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The incremental part of one choice - what this chunk adds to the assistant message.
  *
- * @param role 
- * @param content 
- * @param toolCalls 
+ * @param role Sent on the first chunk only, always `assistant`.
+ * @param content The text this chunk appends. Null when the chunk carries no text.
+ * @param toolCalls The tool calls the model requested, emitted in place of text.
  */
 
 
@@ -44,7 +44,7 @@ data class AiOpenAIChoiceDelta (
 ) {
 
     /**
-     * 
+     * Sent on the first chunk only, always `assistant`.
      *
      * Values: assistant
      */

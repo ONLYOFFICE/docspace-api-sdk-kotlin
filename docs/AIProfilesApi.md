@@ -19,7 +19,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 # **aiProfilesCreate**
 > AiProfileMutationResult aiProfilesCreate (AiCreateProfileInput aiCreateProfileInput)
 
-
+Creates an AI provider profile. The name must be unique and the credentials are validated against the provider before the profile is stored; the portal's first profile also takes the `Default` assignment slot.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-profiles-create/).
 
@@ -62,7 +62,7 @@ launch(Dispatchers.IO) {
 # **aiProfilesDelete**
 > AiSuccessResponse aiProfilesDelete (kotlin.String body)
 
-
+Deletes an AI provider profile and cleans up the assignments pointing at it - the `Default` slot moves to the first remaining profile, the other slots are unbound.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-profiles-delete/).
 
@@ -105,14 +105,14 @@ launch(Dispatchers.IO) {
 # **aiProfilesGetById**
 > AiProfilesGetById200Response aiProfilesGetById (kotlin.String id)
 
-
+Returns one AI provider profile, or an empty result when the identifier is unknown.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-profiles-get-by-id/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **id** | **kotlin.String**|  | |
+| **id** | **kotlin.String**| The AI provider profile identifier. | |
 
 ### Return type
 
@@ -131,7 +131,7 @@ No authorization required
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(AIProfilesApi::class.java)
-val id : kotlin.String = id_example // kotlin.String | 
+val id : kotlin.String = id_example // kotlin.String | The AI provider profile identifier.
 
 launch(Dispatchers.IO) {
     val result : AiProfilesGetById200Response = webService.aiProfilesGetById(id)
@@ -148,7 +148,7 @@ launch(Dispatchers.IO) {
 # **aiProfilesList**
 > kotlin.collections.List&lt;AiProfile&gt; aiProfilesList ()
 
-
+Lists the portal's AI provider profiles.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-profiles-list/).
 
@@ -188,14 +188,14 @@ launch(Dispatchers.IO) {
 # **aiProfilesListModels**
 > kotlin.collections.List&lt;AiModel&gt; aiProfilesListModels (kotlin.String profileId)
 
-
+Lists the models the given profile's provider offers, as reported by the provider itself.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-profiles-list-models/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **profileId** | **kotlin.String**|  | |
+| **profileId** | **kotlin.String**| The AI provider profile identifier. | |
 
 ### Return type
 
@@ -214,7 +214,7 @@ No authorization required
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(AIProfilesApi::class.java)
-val profileId : kotlin.String = profileId_example // kotlin.String | 
+val profileId : kotlin.String = profileId_example // kotlin.String | The AI provider profile identifier.
 
 launch(Dispatchers.IO) {
     val result : kotlin.collections.List<AiModel> = webService.aiProfilesListModels(profileId)
@@ -231,7 +231,7 @@ launch(Dispatchers.IO) {
 # **aiProfilesListProviderModels**
 > kotlin.collections.List&lt;AiModel&gt; aiProfilesListProviderModels (AiProfilesListProviderModelsRequest aiProfilesListProviderModelsRequest)
 
-
+Lists the models a provider offers for the supplied endpoint and key, before any profile is created from them.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-profiles-list-provider-models/).
 
@@ -274,7 +274,7 @@ launch(Dispatchers.IO) {
 # **aiProfilesTestConnection**
 > AiProfilesTestConnection200Response aiProfilesTestConnection (kotlin.String body)
 
-
+Checks a stored profile's credentials against its provider and reports the provider's own error when the call fails. Nothing is written.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-profiles-test-connection/).
 
@@ -317,7 +317,7 @@ launch(Dispatchers.IO) {
 # **aiProfilesUpdate**
 > AiProfileMutationResult aiProfilesUpdate (AiProfile aiProfile)
 
-
+Updates an AI provider profile, re-checking name uniqueness and the provider credentials.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-profiles-update/).
 

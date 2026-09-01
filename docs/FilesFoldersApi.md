@@ -577,7 +577,7 @@ launch(Dispatchers.IO) {
 
 <a id="getFolderHistory"></a>
 # **getFolderHistory**
-> HistoryArrayWrapper getFolderHistory (kotlin.Int folderId, ApiDateTime fromDate, ApiDateTime toDate, kotlin.Int count, kotlin.Int startIndex)
+> HistoryArrayWrapper getFolderHistory (kotlin.Int folderId, java.time.OffsetDateTime fromDate, java.time.OffsetDateTime toDate, kotlin.Int count, kotlin.Int startIndex)
 
 Returns the activity history of a folder with a specified identifier.
 
@@ -587,8 +587,8 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **folderId** | **kotlin.Int**| The folder ID of the history request. | |
-| **fromDate** | [**ApiDateTime**](.md)| The start date of the history request. | [optional] |
-| **toDate** | [**ApiDateTime**](.md)| The end date of the history request. | [optional] |
+| **fromDate** | **java.time.OffsetDateTime**| The start date of the history request. | [optional] |
+| **toDate** | **java.time.OffsetDateTime**| The end date of the history request. | [optional] |
 | **count** | **kotlin.Int**| The number of records to retrieve for the folder history. | [optional] |
 | **startIndex** | **kotlin.Int**| The starting index from which the history records are retrieved in the request. | [optional] |
 
@@ -616,8 +616,8 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
 val folderId : kotlin.Int = 1 // kotlin.Int | The folder ID of the history request.
-val fromDate : ApiDateTime = 2025-01-01T00:00:00.0000000Z // ApiDateTime | The start date of the history request.
-val toDate : ApiDateTime = 2025-12-31T23:59:59.0000000Z // ApiDateTime | The end date of the history request.
+val fromDate : java.time.OffsetDateTime = 2025-01-01T00:00:00.0000000Z // java.time.OffsetDateTime | The start date of the history request.
+val toDate : java.time.OffsetDateTime = 2025-12-31T23:59:59.0000000Z // java.time.OffsetDateTime | The end date of the history request.
 val count : kotlin.Int = 25 // kotlin.Int | The number of records to retrieve for the folder history.
 val startIndex : kotlin.Int = 0 // kotlin.Int | The starting index from which the history records are retrieved in the request.
 
@@ -1122,7 +1122,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **folderId** | **kotlin.Int**|  | |
+| **folderId** | **kotlin.Int**| The folder unique identifier. | |
 
 ### Return type
 
@@ -1147,7 +1147,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val folderId : kotlin.Int = 56 // kotlin.Int | 
+val folderId : kotlin.Int = 56 // kotlin.Int | The folder unique identifier.
 
 launch(Dispatchers.IO) {
     val result : DocumentBuilderTaskWrapper = webService.getReportFolderHistory(folderId)
@@ -1594,7 +1594,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **folderId** | **kotlin.Int**|  | |
+| **folderId** | **kotlin.Int**| The folder unique identifier. | |
 
 ### Return type
 
@@ -1619,7 +1619,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val folderId : kotlin.Int = 56 // kotlin.Int | 
+val folderId : kotlin.Int = 56 // kotlin.Int | The folder unique identifier.
 
 launch(Dispatchers.IO) {
     webService.terminateReportFolderHistory(folderId)
@@ -1629,7 +1629,7 @@ launch(Dispatchers.IO) {
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 <a id="uploadFile"></a>

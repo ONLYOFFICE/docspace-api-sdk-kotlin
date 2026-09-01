@@ -19,7 +19,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 # **aiAgentsCreate**
 > AiFolderIntegerWrapper aiAgentsCreate (AiAgentsCreateRequest aiAgentsCreateRequest)
 
-
+Creates an AI agent room in the .NET AI service and binds the supplied `profileId` to it as a `Chat` assignment. The instruction is stored on the room as a prompt-only chat setting; a failed binding is reported as an error even though the room already exists.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-agents-create/).
 
@@ -62,14 +62,14 @@ launch(Dispatchers.IO) {
 # **aiAgentsDelete**
 > AiFileOperationWrapper aiAgentsDelete (kotlin.String id, AiAgentsDeleteRequest aiAgentsDeleteRequest)
 
-
+Deletes an AI agent room.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-agents-delete/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **id** | **kotlin.String**|  | |
+| **id** | **kotlin.String**| The agent identifier. | |
 | **aiAgentsDeleteRequest** | [**AiAgentsDeleteRequest**](AiAgentsDeleteRequest.md)|  | |
 
 ### Return type
@@ -89,7 +89,7 @@ No authorization required
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(AIAgentsApi::class.java)
-val id : kotlin.String = id_example // kotlin.String | 
+val id : kotlin.String = id_example // kotlin.String | The agent identifier.
 val aiAgentsDeleteRequest : AiAgentsDeleteRequest =  // AiAgentsDeleteRequest | 
 
 launch(Dispatchers.IO) {
@@ -107,14 +107,14 @@ launch(Dispatchers.IO) {
 # **aiAgentsGet**
 > AiFolderIntegerWrapper aiAgentsGet (kotlin.String id)
 
-
+Returns one AI agent room, enriched with the `profileId` bound to it so an edit form can prefill the profile selector. A missing assignment simply leaves `profileId` out.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-agents-get/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **id** | **kotlin.String**|  | |
+| **id** | **kotlin.String**| The agent identifier. | |
 
 ### Return type
 
@@ -133,7 +133,7 @@ No authorization required
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(AIAgentsApi::class.java)
-val id : kotlin.String = id_example // kotlin.String | 
+val id : kotlin.String = id_example // kotlin.String | The agent identifier.
 
 launch(Dispatchers.IO) {
     val result : AiFolderIntegerWrapper = webService.aiAgentsGet(id)
@@ -150,7 +150,7 @@ launch(Dispatchers.IO) {
 # **aiAgentsList**
 > AiFolderContentIntegerWrapper aiAgentsList ()
 
-
+Lists the portal's AI agent rooms. Query parameters are forwarded unchanged to the .NET AI service, which answers with its folder-content payload.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-agents-list/).
 
@@ -190,7 +190,7 @@ launch(Dispatchers.IO) {
 # **aiAgentsNews**
 > AiNewItemsAgentNewItemsArrayWrapper aiAgentsNews ()
 
-
+Lists the new items across the caller's AI agent rooms.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-agents-news/).
 
@@ -230,7 +230,7 @@ launch(Dispatchers.IO) {
 # **aiAgentsResetQuota**
 > AiFolderIntegerArrayWrapper aiAgentsResetQuota (AiAgentsResetQuotaRequest aiAgentsResetQuotaRequest)
 
-
+Resets the storage quota of the given AI agent rooms.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-agents-reset-quota/).
 
@@ -273,14 +273,14 @@ launch(Dispatchers.IO) {
 # **aiAgentsUpdate**
 > AiFolderIntegerWrapper aiAgentsUpdate (kotlin.String id, AiAgentsUpdateRequest aiAgentsUpdateRequest)
 
-
+Updates an AI agent room - title, tags, instruction. `profileId` is not part of the room contract: it is stripped from the forwarded body and re-bound as the agent's assignment afterwards.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-agents-update/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **id** | **kotlin.String**|  | |
+| **id** | **kotlin.String**| The agent identifier. | |
 | **aiAgentsUpdateRequest** | [**AiAgentsUpdateRequest**](AiAgentsUpdateRequest.md)|  | |
 
 ### Return type
@@ -300,7 +300,7 @@ No authorization required
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(AIAgentsApi::class.java)
-val id : kotlin.String = id_example // kotlin.String | 
+val id : kotlin.String = id_example // kotlin.String | The agent identifier.
 val aiAgentsUpdateRequest : AiAgentsUpdateRequest =  // AiAgentsUpdateRequest | 
 
 launch(Dispatchers.IO) {
@@ -318,7 +318,7 @@ launch(Dispatchers.IO) {
 # **aiAgentsUpdateQuota**
 > AiFolderIntegerArrayWrapper aiAgentsUpdateQuota (AiAgentsUpdateQuotaRequest aiAgentsUpdateQuotaRequest)
 
-
+Changes the storage quota of the given AI agent rooms.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-agents-update-quota/).
 

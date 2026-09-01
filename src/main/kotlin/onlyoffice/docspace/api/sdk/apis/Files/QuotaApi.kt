@@ -23,6 +23,7 @@ import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
+import onlyoffice.docspace.api.sdk.models.ErrorApiResponse
 import onlyoffice.docspace.api.sdk.models.FolderIntegerArrayWrapper
 import onlyoffice.docspace.api.sdk.models.UpdateRoomsQuotaRequestDtoInteger
 import onlyoffice.docspace.api.sdk.models.UpdateRoomsRoomIdsRequestDtoInteger
@@ -36,6 +37,8 @@ interface QuotaApi {
      *  - 200: List of rooms with the detailed information
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -57,6 +60,8 @@ interface QuotaApi {
      *  - 200: List of rooms with the detailed information
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *

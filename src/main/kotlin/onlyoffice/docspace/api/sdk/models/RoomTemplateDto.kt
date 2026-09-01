@@ -26,7 +26,7 @@ import com.squareup.moshi.JsonClass
  *
  * @param roomId The room template ID.
  * @param title The room template title.
- * @param logo The logo request parameters.
+ * @param logo The room template logo.
  * @param copyLogo Specifies whether to copy room logo or not.
  * @param share The collection of email addresses of users with whom to share a room.
  * @param groups The collection of groups with whom to share a room.

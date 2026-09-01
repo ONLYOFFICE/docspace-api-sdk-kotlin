@@ -21,23 +21,23 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The white label logo size parameters.
  *
- * @param aspectRatio 
- * @param fillArea 
- * @param greater 
- * @param height 
- * @param ignoreAspectRatio 
- * @param isPercentage 
- * @param less 
- * @param limitPixels 
- * @param width 
- * @param x 
- * @param y 
+ * @param aspectRatio Specifies whether the size is an aspect ratio.
+ * @param fillArea Specifies whether the logo is resized based on the smallest fitting dimension.
+ * @param greater Specifies whether the logo is resized only if it is greater than the size.
+ * @param height The logo height, in pixels.
+ * @param ignoreAspectRatio Specifies whether the logo is resized without preserving the aspect ratio.
+ * @param isPercentage Specifies whether the width and height are expressed as percentages.
+ * @param less Specifies whether the logo is resized only if it is less than the size.
+ * @param limitPixels Specifies whether the logo is resized using a pixel area count limit.
+ * @param width The logo width, in pixels.
+ * @param x The X offset from the origin, in pixels.
+ * @param y The Y offset from the origin, in pixels.
  */
 
 
-data class IMagickGeometry (
+data class WhiteLabelItemSizeDto (
 
     @Json(name = "aspectRatio")
     val aspectRatio: kotlin.Boolean? = null,

@@ -21,16 +21,24 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The setup TFA code parameters.
  *
- * @param statusCode 
+ * @param account The account for which the setup code is generated.
+ * @param manualEntryKey The manual entry key.
+ * @param qrCodeSetupImageUrl The QR-code setup image URL (base64-encoded PNG image).
  */
 
 
-data class NoContentResult (
+data class TfaSetupCodeDto (
 
-    @Json(name = "statusCode")
-    val statusCode: kotlin.Int? = null
+    @Json(name = "account")
+    val account: kotlin.String? = null,
+
+    @Json(name = "manualEntryKey")
+    val manualEntryKey: kotlin.String? = null,
+
+    @Json(name = "qrCodeSetupImageUrl")
+    val qrCodeSetupImageUrl: kotlin.String? = null
 
 ) {
 

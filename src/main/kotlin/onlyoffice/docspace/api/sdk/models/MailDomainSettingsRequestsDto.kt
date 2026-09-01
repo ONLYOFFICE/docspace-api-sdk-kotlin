@@ -24,7 +24,7 @@ import com.squareup.moshi.JsonClass
 /**
  * The request parameters for configuring trusted mail domains and visitor invitation settings.
  *
- * @param type The type of the tenant trusted domains.
+ * @param type Defines how trusted domains are handled and validated.
  * @param domains The list of authorized email domains that are considered trusted.
  * @param inviteUsersAsVisitors Specifies the default permission level for the invited users (visitors or not).
  */

@@ -23,16 +23,16 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The migrating user parameters.
  *
- * @param shouldImport 
- * @param key 
- * @param email 
- * @param displayName 
- * @param firstName 
- * @param lastName 
+ * @param shouldImport Specifies whether the API entity should be imported.
+ * @param key The user key.
+ * @param email The user email.
+ * @param displayName The user display name.
+ * @param firstName The user first name.
+ * @param lastName The user last name.
  * @param userType The user type.
- * @param migratingFiles 
+ * @param migratingFiles The user's migrating files.
  */
 
 

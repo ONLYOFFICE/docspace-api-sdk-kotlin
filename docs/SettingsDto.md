@@ -10,7 +10,7 @@
 | **deepLink** | [**DeepLinkDto**](DeepLinkDto.md) | The deep link settings. |  |
 | **timezone** | **kotlin.String** | The time zone. |  [optional] |
 | **trustedDomains** | **kotlin.collections.List&lt;kotlin.String&gt;** | The list of the trusted domains. |  [optional] |
-| **trustedDomainsType** | [**TenantTrustedDomainsType**](TenantTrustedDomainsType.md) | The type of the tenant trusted domains. |  [optional] |
+| **trustedDomainsType** | [**TenantTrustedDomainsType**](TenantTrustedDomainsType.md) | The type of the trusted domains. |  [optional] |
 | **utcOffset** | **kotlin.String** | The UTC offset in the TimeSpan format. |  [optional] |
 | **utcHoursOffset** | **kotlin.Double** | The UTC offset in hours. |  [optional] |
 | **greetingSettings** | **kotlin.String** | The greeting settings. |  [optional] |
@@ -48,7 +48,7 @@
 | **maxImageUploadSize** | **kotlin.Long** | The maximum image upload size. |  [optional] |
 | **logoText** | **kotlin.String** | The white label logo text. |  [optional] |
 | **externalResources** | [**CultureSpecificExternalResources**](CultureSpecificExternalResources.md) | The external resources settings. |  [optional] |
-| **defaultFolderType** | [**FolderType**](FolderType.md) | The folder type. |  [optional] |
+| **defaultFolderType** | [**FolderType**](FolderType.md) | Specifies the default folder type for the current settings. |  [optional] |
 | **externalDbEnabled** | **kotlin.Boolean** | Specifies if an external database is connected for storing form results. |  [optional] |
 
 

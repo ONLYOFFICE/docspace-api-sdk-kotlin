@@ -27,6 +27,7 @@ import onlyoffice.docspace.api.sdk.models.AuthServiceRequestsArrayWrapper
 import onlyoffice.docspace.api.sdk.models.AuthServiceRequestsDto
 import onlyoffice.docspace.api.sdk.models.BooleanWrapper
 import onlyoffice.docspace.api.sdk.models.ConnectionTestResultWrapper
+import onlyoffice.docspace.api.sdk.models.ErrorApiResponse
 import onlyoffice.docspace.api.sdk.models.ExternalDatabaseSettings
 
 interface AuthorizationApi {
@@ -38,6 +39,7 @@ interface AuthorizationApi {
      *  - 200: Authorization services
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -60,6 +62,7 @@ interface AuthorizationApi {
      *  - 402: Your pricing plan does not support this option
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -81,6 +84,8 @@ interface AuthorizationApi {
      *  - 200: Connection test result with Success flag and optional Error message
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *

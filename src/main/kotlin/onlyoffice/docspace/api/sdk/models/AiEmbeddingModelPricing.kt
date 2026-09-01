@@ -22,14 +22,14 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The pricing of a single embedding model.
  *
- * @param id 
- * @param price 
- * @param alias 
- * @param ownedBy 
- * @param provider 
- * @param link 
+ * @param id The identifier of the model, as the provider expects it on the wire.
+ * @param price The price of an embedding model, per token.
+ * @param alias The display name of the model.
+ * @param ownedBy The owner of the model, as reported by the provider.
+ * @param provider The provider that serves the model.
+ * @param link The link to the pricing page of the model.
  */
 
 

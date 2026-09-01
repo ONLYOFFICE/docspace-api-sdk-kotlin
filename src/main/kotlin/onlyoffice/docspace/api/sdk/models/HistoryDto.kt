@@ -16,7 +16,6 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.ApiDateTime
 import onlyoffice.docspace.api.sdk.models.EmployeeDto
 import onlyoffice.docspace.api.sdk.models.HistoryAction
 import onlyoffice.docspace.api.sdk.models.HistoryData
@@ -29,8 +28,8 @@ import com.squareup.moshi.JsonClass
  *
  * @param id The unique identifier for the file history entry.
  * @param action The action performed on the file.
- * @param initiator The user parameters.
- * @param date The API date and time parameters.
+ * @param initiator The action initiator.
+ * @param date The date and time when an action on the file was performed.
  * @param `data` The history data.
  * @param related The list of related history.
  */
@@ -48,7 +47,7 @@ data class HistoryDto (
     val initiator: EmployeeDto,
 
     @Json(name = "date")
-    val date: ApiDateTime,
+    val date: java.time.OffsetDateTime?,
 
     @Json(name = "data")
     val `data`: HistoryData,

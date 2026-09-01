@@ -4,7 +4,7 @@
 ## Properties
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
-| **date** | [**ApiDateTime**](ApiDateTime.md) | The API date and time parameters. |  [optional] |
+| **date** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) | The date when the operation took place. |  [optional] |
 | **service** | **kotlin.String** | The service related to the operation. |  [optional] |
 | **description** | **kotlin.String** | The brief operation description. |  [optional] |
 | **details** | **kotlin.String** | The detailed information about the operation. |  [optional] |
@@ -17,7 +17,7 @@
 | **participantDisplayName** | **kotlin.String** | The participant display name. |  [optional] |
 | **agentId** | **kotlin.String** | AI Agent id. |  [optional] |
 | **agentTitle** | **kotlin.String** | AI Agent name. |  [optional] |
-| **type** | [**OperationType**](OperationType.md) | The operation type |  [optional] |
+| **type** | [**OperationType**](OperationType.md) | Type of the operation |  [optional] |
 
 
 

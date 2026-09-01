@@ -23,7 +23,7 @@ import com.squareup.moshi.JsonClass
 /**
  * Generic success acknowledgement for mutations that return no data.
  *
- * @param success 
+ * @param success Always true — the mutation completed.
  */
 
 

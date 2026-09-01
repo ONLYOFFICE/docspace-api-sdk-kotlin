@@ -24,7 +24,7 @@ import com.squareup.moshi.JsonClass
 /**
  * The request parameters for creating an invitation link.
  *
- * @param employeeType The user type.
+ * @param employeeType The type of employee role for the invitation link (DocSpaceAdmin, RoomAdmin or User).
  * @param expiration The expiration date of the invitation link.
  * @param maxUseCount The maximum number of times the invitation link can be used.
  */

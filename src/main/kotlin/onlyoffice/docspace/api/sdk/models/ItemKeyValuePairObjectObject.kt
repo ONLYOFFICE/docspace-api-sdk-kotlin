@@ -21,7 +21,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * A key-value pair of a list item.
  *
  * @param key 
  * @param `value` 

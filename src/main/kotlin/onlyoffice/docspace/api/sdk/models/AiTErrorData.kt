@@ -21,10 +21,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * A field-scoped validation error: which form field was rejected, and why.
  *
- * @param `field` 
- * @param message 
+ * @param `field` The rejected field.
+ * @param message The human-readable reason the field was rejected.
  */
 
 
@@ -39,7 +39,7 @@ data class AiTErrorData (
 ) {
 
     /**
-     * 
+     * The rejected field.
      *
      * Values: key,url,nameField
      */

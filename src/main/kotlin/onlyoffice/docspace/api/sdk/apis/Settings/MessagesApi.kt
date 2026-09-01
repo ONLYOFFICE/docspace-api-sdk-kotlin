@@ -25,6 +25,7 @@ import com.squareup.moshi.Json
 
 import onlyoffice.docspace.api.sdk.models.AdminMessageBaseSettingsRequestsDto
 import onlyoffice.docspace.api.sdk.models.AdminMessageSettingsRequestsDto
+import onlyoffice.docspace.api.sdk.models.ErrorApiResponse
 import onlyoffice.docspace.api.sdk.models.StringWrapper
 import onlyoffice.docspace.api.sdk.models.TurnOnAdminMessageSettingsRequestDto
 
@@ -37,6 +38,8 @@ interface MessagesApi {
      *  - 200: Message about the result of saving new settings
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -58,6 +61,7 @@ interface MessagesApi {
      *  - 200: Message about the result of sending a message
      *  - 400: Incorrect email or message text is empty
      *  - 429: Request limit is exceeded
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -80,6 +84,7 @@ interface MessagesApi {
      *  - 400: Incorrect email or email already exists
      *  - 403: No permissions to perform this action
      *  - 429: Request limit is exceeded
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *

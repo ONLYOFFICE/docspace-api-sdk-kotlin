@@ -25,9 +25,9 @@ import com.squareup.moshi.JsonClass
 /**
  * Outcome of `createFolder` / `renameFolder` — either the persisted folder or a field-scoped error.
  *
- * @param success 
- * @param folder 
- * @param error 
+ * @param success True when the folder was persisted.
+ * @param folder The persisted folder. Present on success.
+ * @param error Why the folder was rejected. Present on failure.
  */
 
 

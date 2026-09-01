@@ -29,6 +29,7 @@ import onlyoffice.docspace.api.sdk.models.AuthenticationTokenWrapper
 import onlyoffice.docspace.api.sdk.models.BooleanWrapper
 import onlyoffice.docspace.api.sdk.models.ConfirmWrapper
 import onlyoffice.docspace.api.sdk.models.EmailValidationKeyModel
+import onlyoffice.docspace.api.sdk.models.ErrorApiResponse
 import onlyoffice.docspace.api.sdk.models.MobileRequestsDto
 import onlyoffice.docspace.api.sdk.models.StringWrapper
 
@@ -43,6 +44,7 @@ interface AuthenticationApi {
      *  - 401: User authentication failed
      *  - 404: The user could not be found
      *  - 429: Too many login attempts. Please try again later
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -66,6 +68,7 @@ interface AuthenticationApi {
      *  - 401: User authentication failed
      *  - 403: Auth code is not available
      *  - 429: Too many login attempts. Please try again later
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -73,7 +76,7 @@ interface AuthenticationApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/authenticate-me-from-body-with-code/
      *
      *
-     * @param code 
+     * @param code The two-factor authentication code. Send the same value as the `code` of the request body, which is the one the handler reads.
      * @param authWithCodeRequestsDto  (optional)
      * @return [AuthenticationTokenWrapper]
      */
@@ -87,6 +90,8 @@ interface AuthenticationApi {
      * Responses:
      *  - 200: Validation result: Ok, Invalid, or Expired
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -107,6 +112,7 @@ interface AuthenticationApi {
      * Responses:
      *  - 200: Boolean value: true if the current user is authenticated
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -126,6 +132,7 @@ interface AuthenticationApi {
      * Responses:
      *  - 200: Ok
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -146,6 +153,8 @@ interface AuthenticationApi {
      *  - 200: Authentication data
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -167,6 +176,7 @@ interface AuthenticationApi {
      *  - 200: Authentication data
      *  - 400: userName, password or passworHash is empty
      *  - 429: Too many login attempts. Please try again later
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *

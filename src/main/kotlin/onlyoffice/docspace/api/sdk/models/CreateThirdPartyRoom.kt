@@ -26,7 +26,7 @@ import com.squareup.moshi.JsonClass
  * The parameters for creating a third-party room.
  *
  * @param title The third-party room name to be created.
- * @param roomType The room type.
+ * @param roomType The third-party room type to be created.
  * @param createAsNewFolder Specifies whether to create a third-party room as a new folder or not.
  * @param `private` Specifies whether to create the private third-party room or not.
  * @param indexing Specifies whether to create the third-party room with indexing.
@@ -34,7 +34,7 @@ import com.squareup.moshi.JsonClass
  * @param color The color of the third-party room.
  * @param cover The cover of the third-party room.
  * @param tags The list of tags of the third-party room.
- * @param logo The logo request parameters.
+ * @param logo The logo request parameters of the third-party room.
  */
 
 

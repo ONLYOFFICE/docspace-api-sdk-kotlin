@@ -21,7 +21,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The logo cover information, with the cover data in every available size.
  *
  * @param id The logo cover ID.
  * @param `data` The logo cover data.

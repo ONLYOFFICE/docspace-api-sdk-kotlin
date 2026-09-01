@@ -16,8 +16,8 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.IMagickGeometry
 import onlyoffice.docspace.api.sdk.models.WhiteLabelItemPathDto
+import onlyoffice.docspace.api.sdk.models.WhiteLabelItemSizeDto
 import onlyoffice.docspace.api.sdk.models.WhiteLabelLogoType
 
 import com.squareup.moshi.Json
@@ -42,7 +42,7 @@ data class WhiteLabelItemDto (
     val name: kotlin.String? = null,
 
     @Json(name = "size")
-    val propertySize: IMagickGeometry? = null,
+    val propertySize: WhiteLabelItemSizeDto? = null,
 
     @Json(name = "path")
     val path: WhiteLabelItemPathDto? = null

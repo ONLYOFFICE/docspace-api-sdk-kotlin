@@ -13,7 +13,7 @@
 | **city** | **kotlin.String** | The active connection city. |  [optional] |
 | **browser** | **kotlin.String** | The active connection browser. |  [optional] |
 | **platform** | **kotlin.String** | The active connection platform. |  [optional] |
-| **date** | [**ApiDateTime**](ApiDateTime.md) | The API date and time parameters. |  [optional] |
+| **date** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) | The active connection date. |  [optional] |
 | **page** | **kotlin.String** | The active connection page. |  [optional] |
 
 

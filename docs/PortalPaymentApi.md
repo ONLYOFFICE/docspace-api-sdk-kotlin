@@ -683,8 +683,8 @@ val endDate : java.time.OffsetDateTime = 2024-01-31T23:59:59Z // java.time.Offse
 val participantName : kotlin.String = My Own Corporation // kotlin.String | The participant name.
 val credit : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to include credit operations in the report.
 val debit : kotlin.Boolean = false // kotlin.Boolean | Specifies whether to include debit operations in the report.
-val type : OperationType = Any // OperationType | The operation type to filter by.
-val status : OperationStatus = Any // OperationStatus | The operation status to filter by.
+val type : OperationType = ServicePayment // OperationType | The operation type to filter by.
+val status : OperationStatus = Completed // OperationStatus | The operation status to filter by.
 val orderBy : kotlin.String = StartDate // kotlin.String | The field to order by.
 val orderType : OperationOrderType = Descending // OperationOrderType | Order direction: Ascending or Descending.
 
@@ -1288,7 +1288,7 @@ launch(Dispatchers.IO) {
 
 <a id="getTenantWalletSettings"></a>
 # **getTenantWalletSettings**
-> TenantWalletSettingsWrapper getTenantWalletSettings ()
+> TenantWalletSettingsResponseWrapper getTenantWalletSettings ()
 
 Returns the wallet auto top up settings for the current tenant.
 
@@ -1299,7 +1299,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**TenantWalletSettingsWrapper**](TenantWalletSettingsWrapper.md)
+[**TenantWalletSettingsResponseWrapper**](TenantWalletSettingsResponseWrapper.md)
 
 ### Authorization
 
@@ -1322,7 +1322,7 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PaymentApi::class.java)
 
 launch(Dispatchers.IO) {
-    val result : TenantWalletSettingsWrapper = webService.getTenantWalletSettings()
+    val result : TenantWalletSettingsResponseWrapper = webService.getTenantWalletSettings()
 }
 ```
 
@@ -1522,7 +1522,7 @@ launch(Dispatchers.IO) {
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 <a id="setRestrictedAiModels"></a>
@@ -1576,7 +1576,7 @@ launch(Dispatchers.IO) {
 
 <a id="setTenantWalletSettings"></a>
 # **setTenantWalletSettings**
-> TenantWalletSettingsWrapper setTenantWalletSettings (TenantWalletSettingsWrapper tenantWalletSettingsWrapper)
+> TenantWalletSettingsResponseWrapper setTenantWalletSettings (TenantWalletSettingsWrapper tenantWalletSettingsWrapper)
 
 Updates the wallet auto top up settings for the current tenant.  Requires the tariff service to be configured and the user to be authorized as a payer.  Returns null if the tariff service is not configured or customer information/balance cannot be retrieved.
 
@@ -1589,7 +1589,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Return type
 
-[**TenantWalletSettingsWrapper**](TenantWalletSettingsWrapper.md)
+[**TenantWalletSettingsResponseWrapper**](TenantWalletSettingsResponseWrapper.md)
 
 ### Authorization
 
@@ -1613,7 +1613,7 @@ val webService = apiClient.createWebservice(PaymentApi::class.java)
 val tenantWalletSettingsWrapper : TenantWalletSettingsWrapper =  // TenantWalletSettingsWrapper | 
 
 launch(Dispatchers.IO) {
-    val result : TenantWalletSettingsWrapper = webService.setTenantWalletSettings(tenantWalletSettingsWrapper)
+    val result : TenantWalletSettingsResponseWrapper = webService.setTenantWalletSettings(tenantWalletSettingsWrapper)
 }
 ```
 
@@ -1666,7 +1666,7 @@ launch(Dispatchers.IO) {
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 <a id="terminateCustomerOperationsReport"></a>
@@ -1712,7 +1712,7 @@ launch(Dispatchers.IO) {
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 <a id="terminateCustomerServiceUsageReport"></a>
@@ -1758,7 +1758,7 @@ launch(Dispatchers.IO) {
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 <a id="topUpDeposit"></a>

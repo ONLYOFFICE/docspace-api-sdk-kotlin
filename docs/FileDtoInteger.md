@@ -13,10 +13,10 @@
 | **sharedExternal** | **kotlin.Boolean** | Specifies if the file entry is shared via a public (non-internal) external link. |  [optional] |
 | **parentShared** | **kotlin.Boolean** | Indicates whether the parent entity is shared. |  [optional] |
 | **shortWebUrl** | [**java.net.URI**](java.net.URI.md) | The short Web URL. |  [optional] |
-| **created** | [**ApiDateTime**](ApiDateTime.md) | The creation date and time of the file entry. |  [optional] |
+| **created** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) | The creation date and time of the file entry. |  [optional] |
 | **createdBy** | [**EmployeeDto**](EmployeeDto.md) | The file entry author. |  [optional] |
-| **updated** | [**ApiDateTime**](ApiDateTime.md) | The last date and time when the file entry was updated. |  [optional] |
-| **autoDelete** | [**ApiDateTime**](ApiDateTime.md) | The date and time when the file entry will be automatically deleted. |  [optional] |
+| **updated** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) | The last date and time when the file entry was updated. |  [optional] |
+| **autoDelete** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) | The date and time when the file entry will be automatically deleted. |  [optional] |
 | **rootFolderType** | [**FolderType**](FolderType.md) | The root folder type of the file entry. |  [optional] |
 | **parentRoomType** | [**FolderType**](FolderType.md) | The parent room type of the file entry. |  [optional] |
 | **updatedBy** | [**EmployeeDto**](EmployeeDto.md) | The user who updated the file entry. |  [optional] |
@@ -38,7 +38,7 @@
 | **availableShareRights** | [**FileEntryDtoIntegerAllOfAvailableShareRights**](FileEntryDtoIntegerAllOfAvailableShareRights.md) |  |  [optional] |
 | **requestToken** | **kotlin.String** | The request token of the file entry. |  [optional] |
 | **&#x60;external&#x60;** | **kotlin.Boolean** | Specifies if the folder can be accessed via an external link or not. |  [optional] |
-| **expirationDate** | [**ApiDateTime**](ApiDateTime.md) | Represents the expiration date of the file entry. |  [optional] |
+| **expirationDate** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) | Represents the expiration date of the file entry. |  [optional] |
 | **isLinkExpired** | **kotlin.Boolean** | Indicates whether the shareable link associated with the file or folder has expired. |  [optional] |
 | **folderId** | **kotlin.Int** | The folder ID where the file is located. |  [optional] |
 | **version** | **kotlin.Int** | The file version. |  [optional] |
@@ -70,11 +70,11 @@
 | **resultsFolderId** | **kotlin.Int** | The ID of the FormFillingFolderDone folder that corresponds to this original form. |  [optional] |
 | **draftLocation** | [**DraftLocationInteger**](DraftLocationInteger.md) | The file draft information with its location. |  [optional] |
 | **viewAccessibility** | [**FileDtoIntegerAllOfViewAccessibility**](FileDtoIntegerAllOfViewAccessibility.md) |  |  [optional] |
-| **lastOpened** | [**ApiDateTime**](ApiDateTime.md) | The time when the file was last opened. |  [optional] |
-| **expired** | [**ApiDateTime**](ApiDateTime.md) | The date when the file will be expired. |  [optional] |
+| **lastOpened** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) | The time when the file was last opened. |  [optional] |
+| **expired** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) | The date when the file will be expired. |  [optional] |
 | **vectorizationStatus** | [**VectorizationStatus**](VectorizationStatus.md) | The vectorization status of the file. |  [optional] |
 | **externalDbTableName** | **kotlin.String** | The name of the table in the external database that corresponds to this form. |  [optional] |
-| **dimensions** | [**Size**](Size.md) | Represents dimensions with width and height values. |  [optional] |
+| **dimensions** | [**Size**](Size.md) | The dimensions (width and height) of the image file in pixels.  This property is populated only for image files that can be viewed (supported formats like PNG, JPEG, GIF, BMP, etc.).  For non-image files, this property remains null. |  [optional] |
 
 
 

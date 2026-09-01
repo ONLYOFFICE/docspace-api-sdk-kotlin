@@ -21,10 +21,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The price of a chat model, per token.
  *
- * @param prompt 
- * @param completion 
+ * @param prompt The price of a single prompt token.
+ * @param completion The price of a single completion token.
  */
 
 

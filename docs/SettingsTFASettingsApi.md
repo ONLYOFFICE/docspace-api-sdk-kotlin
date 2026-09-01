@@ -156,7 +156,7 @@ launch(Dispatchers.IO) {
 
 <a id="tfaAppGenerateSetupCode"></a>
 # **tfaAppGenerateSetupCode**
-> SetupCodeWrapper tfaAppGenerateSetupCode ()
+> TfaSetupCodeWrapper tfaAppGenerateSetupCode ()
 
 Generates the setup TFA code for the current user.
 
@@ -167,7 +167,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**SetupCodeWrapper**](SetupCodeWrapper.md)
+[**TfaSetupCodeWrapper**](TfaSetupCodeWrapper.md)
 
 ### Authorization
 
@@ -190,7 +190,7 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(TFASettingsApi::class.java)
 
 launch(Dispatchers.IO) {
-    val result : SetupCodeWrapper = webService.tfaAppGenerateSetupCode()
+    val result : TfaSetupCodeWrapper = webService.tfaAppGenerateSetupCode()
 }
 ```
 

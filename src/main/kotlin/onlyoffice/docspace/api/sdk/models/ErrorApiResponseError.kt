@@ -21,20 +21,28 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The API date and time parameters.
+ * What went wrong.
  *
- * @param utcTime The time in UTC format.
- * @param timeZoneOffset The time zone offset.
+ * @param message The human-readable error message.
+ * @param type The .NET type of the underlying exception. Only sent when stack traces are enabled.
+ * @param stack The stack trace of the underlying exception. Only sent when stack traces are enabled.
+ * @param hresult The HRESULT of the underlying exception. Only sent when stack traces are enabled.
  */
 
 
-data class ApiDateTime (
+data class ErrorApiResponseError (
 
-    @Json(name = "utcTime")
-    val utcTime: java.time.OffsetDateTime? = null,
+    @Json(name = "message")
+    val message: kotlin.String? = null,
 
-    @Json(name = "timeZoneOffset")
-    val timeZoneOffset: kotlin.String? = null
+    @Json(name = "type")
+    val type: kotlin.String? = null,
+
+    @Json(name = "stack")
+    val stack: kotlin.String? = null,
+
+    @Json(name = "hresult")
+    val hresult: kotlin.Int? = null
 
 ) {
 

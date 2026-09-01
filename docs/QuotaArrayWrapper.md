@@ -4,7 +4,7 @@
 ## Properties
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
-| **response** | [**kotlin.collections.List&lt;QuotaDto&gt;**](QuotaDto.md) |  |  [optional] |
+| **response** | [**kotlin.collections.List&lt;QuotaDto&gt;**](QuotaDto.md) | The list of QuotaDto objects returned by the operation. |  [optional] |
 | **count** | **kotlin.Int** | The total number of items in the response |  [optional] |
 | **links** | [**kotlin.collections.List&lt;GetPortalPrices200ResponseLinksInner&gt;**](GetPortalPrices200ResponseLinksInner.md) | List of links related to the response |  [optional] |
 | **status** | **kotlin.Int** | HTTP status code of the response |  [optional] |

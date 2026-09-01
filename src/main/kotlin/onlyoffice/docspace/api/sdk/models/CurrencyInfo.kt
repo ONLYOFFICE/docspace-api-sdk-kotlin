@@ -21,10 +21,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The currency the AI prices are quoted in.
  *
- * @param code 
- * @param symbol 
+ * @param code The ISO 4217 code of the currency the prices are quoted in.
+ * @param symbol The display symbol of the currency.
  */
 
 

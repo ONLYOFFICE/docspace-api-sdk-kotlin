@@ -23,12 +23,12 @@ import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
+import onlyoffice.docspace.api.sdk.models.ErrorApiResponse
 import onlyoffice.docspace.api.sdk.models.GroupArrayWrapper
 import onlyoffice.docspace.api.sdk.models.GroupRequestDto
 import onlyoffice.docspace.api.sdk.models.GroupSummaryArrayWrapper
 import onlyoffice.docspace.api.sdk.models.GroupWrapper
 import onlyoffice.docspace.api.sdk.models.MembersRequest
-import onlyoffice.docspace.api.sdk.models.NoContentResultWrapper
 import onlyoffice.docspace.api.sdk.models.SetManagerRequest
 import onlyoffice.docspace.api.sdk.models.SortOrder
 import onlyoffice.docspace.api.sdk.models.UpdateGroupRequest
@@ -42,6 +42,8 @@ interface GroupApi {
      *  - 200: Newly created group with the detailed information
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -64,6 +66,8 @@ interface GroupApi {
      *  - 404: Group not found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -87,6 +91,8 @@ interface GroupApi {
      *  - 404: Group not found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -95,10 +101,10 @@ interface GroupApi {
      *
      *
      * @param id The group ID.
-     * @return [NoContentResultWrapper]
+     * @return [Unit]
      */
     @DELETE("api/2.0/group/{id}")
-    suspend fun deleteGroup(@Path("id") id: java.util.UUID): Response<NoContentResultWrapper>
+    suspend fun deleteGroup(@Path("id") id: java.util.UUID): Response<Unit>
 
     /**
      * GET api/2.0/group/{id}
@@ -109,6 +115,8 @@ interface GroupApi {
      *  - 404: Group not found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -131,6 +139,8 @@ interface GroupApi {
      *  - 200: List of groups
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -152,6 +162,8 @@ interface GroupApi {
      *  - 200: List of groups
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -180,6 +192,8 @@ interface GroupApi {
      *  - 404: Group not found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -203,6 +217,8 @@ interface GroupApi {
      *  - 404: Group not found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -226,6 +242,8 @@ interface GroupApi {
      *  - 404: User not found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -248,6 +266,8 @@ interface GroupApi {
      *  - 200: Group with the detailed information
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -271,6 +291,8 @@ interface GroupApi {
      *  - 404: Group not found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *

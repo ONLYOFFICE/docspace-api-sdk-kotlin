@@ -37,7 +37,7 @@ interface AIProfilesApi {
     /**
      * POST api/2.0/ai/profiles/create
      * Create
-     * 
+     * Creates an AI provider profile. The name must be unique and the credentials are validated against the provider before the profile is stored; the portal's first profile also takes the `Default` assignment slot.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -55,7 +55,7 @@ interface AIProfilesApi {
     /**
      * DELETE api/2.0/ai/profiles/delete
      * Delete
-     * 
+     * Deletes an AI provider profile and cleans up the assignments pointing at it - the `Default` slot moves to the first remaining profile, the other slots are unbound.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -73,7 +73,7 @@ interface AIProfilesApi {
     /**
      * GET api/2.0/ai/profiles/get-by-id
      * Get by id
-     * 
+     * Returns one AI provider profile, or an empty result when the identifier is unknown.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -82,7 +82,7 @@ interface AIProfilesApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-profiles-get-by-id/
      *
      *
-     * @param id 
+     * @param id The AI provider profile identifier.
      * @return [AiProfilesGetById200Response]
      */
     @GET("api/2.0/ai/profiles/get-by-id")
@@ -91,7 +91,7 @@ interface AIProfilesApi {
     /**
      * GET api/2.0/ai/profiles/list
      * List
-     * 
+     * Lists the portal's AI provider profiles.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -108,7 +108,7 @@ interface AIProfilesApi {
     /**
      * GET api/2.0/ai/profiles/list-models
      * List models
-     * 
+     * Lists the models the given profile's provider offers, as reported by the provider itself.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -117,7 +117,7 @@ interface AIProfilesApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-profiles-list-models/
      *
      *
-     * @param profileId 
+     * @param profileId The AI provider profile identifier.
      * @return [kotlin.collections.List<AiModel>]
      */
     @GET("api/2.0/ai/profiles/list-models")
@@ -126,7 +126,7 @@ interface AIProfilesApi {
     /**
      * POST api/2.0/ai/profiles/list-provider-models
      * List provider models
-     * 
+     * Lists the models a provider offers for the supplied endpoint and key, before any profile is created from them.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -144,7 +144,7 @@ interface AIProfilesApi {
     /**
      * POST api/2.0/ai/profiles/test-connection
      * Test connection
-     * 
+     * Checks a stored profile's credentials against its provider and reports the provider's own error when the call fails. Nothing is written.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -162,7 +162,7 @@ interface AIProfilesApi {
     /**
      * PUT api/2.0/ai/profiles/update
      * Update
-     * 
+     * Updates an AI provider profile, re-checking name uniqueness and the provider credentials.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.

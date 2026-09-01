@@ -25,8 +25,8 @@ import com.squareup.moshi.JsonClass
 /**
  * The XLSX report task response parameters.
  *
- * @param form The file parameters.
- * @param task The Document Builder task parameters.
+ * @param form The original form file information.
+ * @param task The Document Builder task information.
  * @param isNewFile Specifies whether the XLSX report file is newly created or an existing file will be updated.
  */
 

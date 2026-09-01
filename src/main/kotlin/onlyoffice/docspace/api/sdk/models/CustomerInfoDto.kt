@@ -26,9 +26,9 @@ import com.squareup.moshi.JsonClass
  * The customer information.
  *
  * @param portalId The portal ID.
- * @param paymentMethodStatus The payment method status.
+ * @param paymentMethodStatus The customer's payment method.
  * @param email The customer email address.
- * @param payer The user parameters.
+ * @param payer The paying user.
  */
 
 

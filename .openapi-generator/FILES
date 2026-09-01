@@ -34,6 +34,8 @@ docs/ActiveServiceArrayWrapper.md
 docs/ActiveServiceDto.md
 docs/AdditionalWhiteLabelSettings.md
 docs/AdditionalWhiteLabelSettingsDto.md
+docs/AdditionalWhiteLabelSettingsDtoWrapper.md
+docs/AdditionalWhiteLabelSettingsResponseWrapper.md
 docs/AdditionalWhiteLabelSettingsWrapper.md
 docs/AdminMessageBaseSettingsRequestsDto.md
 docs/AdminMessageSettingsRequestsDto.md
@@ -57,7 +59,6 @@ docs/AiAiSettingsWrapper.md
 docs/AiAiToolCallData.md
 docs/AiAiUserSettingsDto.md
 docs/AiAiUserSettingsWrapper.md
-docs/AiApiDateTime.md
 docs/AiAssignmentMutationResult.md
 docs/AiAssignmentsAssignRequest.md
 docs/AiAttachment.md
@@ -178,7 +179,6 @@ docs/AiWebSearchConfigureRequest.md
 docs/AiWebSearchMutationResult.md
 docs/AiWebSearchPricing.md
 docs/AnonymousConfigDto.md
-docs/ApiDateTime.md
 docs/ApiKeyResponseArrayWrapper.md
 docs/ApiKeyResponseDto.md
 docs/ApiKeyResponseWrapper.md
@@ -265,6 +265,8 @@ docs/CoEditingConfigMode.md
 docs/CompanyWhiteLabelSettings.md
 docs/CompanyWhiteLabelSettingsArrayWrapper.md
 docs/CompanyWhiteLabelSettingsDto.md
+docs/CompanyWhiteLabelSettingsDtoWrapper.md
+docs/CompanyWhiteLabelSettingsResponseWrapper.md
 docs/CompanyWhiteLabelSettingsWrapper.md
 docs/ConfigurationDtoInteger.md
 docs/ConfigurationIntegerWrapper.md
@@ -426,6 +428,8 @@ docs/EncryptionKeyRequestDto.md
 docs/EncryptionSettings.md
 docs/EncryptionSettingsWrapper.md
 docs/EntryType.md
+docs/ErrorApiResponse.md
+docs/ErrorApiResponseError.md
 docs/ExchangeToken200Response.md
 docs/ExternalDatabaseSettings.md
 docs/ExternalDatabaseType.md
@@ -474,6 +478,7 @@ docs/FileShareArrayWrapper.md
 docs/FileShareDto.md
 docs/FileShareLink.md
 docs/FileShareParams.md
+docs/FileShareResponseArrayWrapper.md
 docs/FileShareWrapper.md
 docs/FileStatus.md
 docs/FileType.md
@@ -545,7 +550,6 @@ docs/HistoryArrayWrapper.md
 docs/HistoryData.md
 docs/HistoryDto.md
 docs/ICompressWrapper.md
-docs/IMagickGeometry.md
 docs/IPRestriction.md
 docs/IPRestrictionArrayWrapper.md
 docs/IPRestrictionsSettings.md
@@ -567,12 +571,12 @@ docs/IpRestrictionsWrapper.md
 docs/IsDefaultWhiteLabelLogosArrayWrapper.md
 docs/IsDefaultWhiteLabelLogosDto.md
 docs/IsDefaultWhiteLabelLogosWrapper.md
+docs/ItemKeyValuePairBooleanString.md
+docs/ItemKeyValuePairBooleanStringWrapper.md
 docs/ItemKeyValuePairObjectObject.md
 docs/ItemKeyValuePairStringBoolean.md
 docs/ItemKeyValuePairStringLogoRequestsDto.md
 docs/ItemKeyValuePairStringString.md
-docs/KeyValuePairBooleanString.md
-docs/KeyValuePairBooleanStringWrapper.md
 docs/LinkAccountRequestDto.md
 docs/LinkType.md
 docs/Location.md
@@ -613,8 +617,6 @@ docs/NewItemsDtoFileEntryBaseDto.md
 docs/NewItemsDtoRoomNewItemsDto.md
 docs/NewItemsFileEntryBaseArrayWrapper.md
 docs/NewItemsRoomNewItemsArrayWrapper.md
-docs/NoContentResult.md
-docs/NoContentResultWrapper.md
 docs/NotificationChannelDto.md
 docs/NotificationChannelStatusDto.md
 docs/NotificationChannelStatusWrapper.md
@@ -678,7 +680,6 @@ docs/PortalQuotaApi.md
 docs/PortalSettingsApi.md
 docs/PortalUsersApi.md
 docs/PriceDto.md
-docs/PrivacyroomApi.md
 docs/ProblemDetail.md
 docs/ProductAdministratorDto.md
 docs/ProductAdministratorWrapper.md
@@ -730,6 +731,7 @@ docs/RoomsGroupsApi.md
 docs/RoomsNotificationSettingsDto.md
 docs/RoomsNotificationSettingsWrapper.md
 docs/RoomsNotificationsSettingsRequestDto.md
+docs/RoomsPrivacyRoomApi.md
 docs/Run.md
 docs/STRINGArrayWrapper.md
 docs/SalesRequestsDto.md
@@ -787,8 +789,6 @@ docs/SettingsTelegramApi.md
 docs/SettingsWebhooksApi.md
 docs/SettingsWebpluginsApi.md
 docs/SettingsWrapper.md
-docs/SetupCode.md
-docs/SetupCodeWrapper.md
 docs/ShareFilterType.md
 docs/SignupAccountRequestDto.md
 docs/Size.md
@@ -842,6 +842,7 @@ docs/TenantAiAccessSettingsWrapper.md
 docs/TenantAiAgentQuotaSettings.md
 docs/TenantAiAgentQuotaSettingsWrapper.md
 docs/TenantAuditSettings.md
+docs/TenantAuditSettingsResponseWrapper.md
 docs/TenantAuditSettingsWrapper.md
 docs/TenantBannerSettings.md
 docs/TenantBannerSettingsDto.md
@@ -874,6 +875,7 @@ docs/TenantWalletService.md
 docs/TenantWalletServiceSettings.md
 docs/TenantWalletServiceSettingsWrapper.md
 docs/TenantWalletSettings.md
+docs/TenantWalletSettingsResponseWrapper.md
 docs/TenantWalletSettingsWrapper.md
 docs/TenantWrapper.md
 docs/TerminateRequestDto.md
@@ -885,6 +887,8 @@ docs/TfaRequestsDto.md
 docs/TfaRequestsDtoType.md
 docs/TfaSettingsArrayWrapper.md
 docs/TfaSettingsDto.md
+docs/TfaSetupCodeDto.md
+docs/TfaSetupCodeWrapper.md
 docs/TfaValidateRequestsDto.md
 docs/ThirdPartyApi.md
 docs/ThirdPartyBackupRequestDto.md
@@ -962,6 +966,7 @@ docs/WebhooksLogWrapper.md
 docs/WhiteLabelItemArrayWrapper.md
 docs/WhiteLabelItemDto.md
 docs/WhiteLabelItemPathDto.md
+docs/WhiteLabelItemSizeDto.md
 docs/WhiteLabelLogoType.md
 docs/WhiteLabelRequestsDto.md
 docs/WizardRequestsDto.md
@@ -1027,8 +1032,8 @@ src/main/kotlin/onlyoffice/docspace/api/sdk/apis/Portal/PaymentApi.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/apis/Portal/QuotaApi.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/apis/Portal/SettingsApi.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/apis/Portal/UsersApi.kt
-src/main/kotlin/onlyoffice/docspace/api/sdk/apis/Privacyroom/PrivacyroomApi.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/apis/Rooms/GroupsApi.kt
+src/main/kotlin/onlyoffice/docspace/api/sdk/apis/Rooms/PrivacyRoomApi.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/apis/Rooms/RoomsApi.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/apis/Security/AccessToDevToolsApi.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/apis/Security/ActiveConnectionsApi.kt
@@ -1098,6 +1103,8 @@ src/main/kotlin/onlyoffice/docspace/api/sdk/models/ActiveServiceArrayWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/ActiveServiceDto.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/AdditionalWhiteLabelSettings.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/AdditionalWhiteLabelSettingsDto.kt
+src/main/kotlin/onlyoffice/docspace/api/sdk/models/AdditionalWhiteLabelSettingsDtoWrapper.kt
+src/main/kotlin/onlyoffice/docspace/api/sdk/models/AdditionalWhiteLabelSettingsResponseWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/AdditionalWhiteLabelSettingsWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/AdminMessageBaseSettingsRequestsDto.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/AdminMessageSettingsRequestsDto.kt
@@ -1121,7 +1128,6 @@ src/main/kotlin/onlyoffice/docspace/api/sdk/models/AiAiSettingsWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/AiAiToolCallData.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/AiAiUserSettingsDto.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/AiAiUserSettingsWrapper.kt
-src/main/kotlin/onlyoffice/docspace/api/sdk/models/AiApiDateTime.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/AiAssignmentMutationResult.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/AiAssignmentsAssignRequest.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/AiAttachment.kt
@@ -1242,7 +1248,6 @@ src/main/kotlin/onlyoffice/docspace/api/sdk/models/AiWebSearchConfigureRequest.k
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/AiWebSearchMutationResult.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/AiWebSearchPricing.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/AnonymousConfigDto.kt
-src/main/kotlin/onlyoffice/docspace/api/sdk/models/ApiDateTime.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/ApiKeyResponseArrayWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/ApiKeyResponseDto.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/ApiKeyResponseWrapper.kt
@@ -1324,6 +1329,8 @@ src/main/kotlin/onlyoffice/docspace/api/sdk/models/CoEditingConfigMode.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/CompanyWhiteLabelSettings.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/CompanyWhiteLabelSettingsArrayWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/CompanyWhiteLabelSettingsDto.kt
+src/main/kotlin/onlyoffice/docspace/api/sdk/models/CompanyWhiteLabelSettingsDtoWrapper.kt
+src/main/kotlin/onlyoffice/docspace/api/sdk/models/CompanyWhiteLabelSettingsResponseWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/CompanyWhiteLabelSettingsWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/ConfigurationDtoInteger.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/ConfigurationIntegerWrapper.kt
@@ -1485,6 +1492,8 @@ src/main/kotlin/onlyoffice/docspace/api/sdk/models/EncryptionKeyRequestDto.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/EncryptionSettings.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/EncryptionSettingsWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/EntryType.kt
+src/main/kotlin/onlyoffice/docspace/api/sdk/models/ErrorApiResponse.kt
+src/main/kotlin/onlyoffice/docspace/api/sdk/models/ErrorApiResponseError.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/ExchangeToken200Response.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/ExternalDatabaseSettings.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/ExternalDatabaseType.kt
@@ -1533,6 +1542,7 @@ src/main/kotlin/onlyoffice/docspace/api/sdk/models/FileShareArrayWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/FileShareDto.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/FileShareLink.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/FileShareParams.kt
+src/main/kotlin/onlyoffice/docspace/api/sdk/models/FileShareResponseArrayWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/FileShareWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/FileStatus.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/FileType.kt
@@ -1595,7 +1605,6 @@ src/main/kotlin/onlyoffice/docspace/api/sdk/models/HistoryArrayWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/HistoryData.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/HistoryDto.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/ICompressWrapper.kt
-src/main/kotlin/onlyoffice/docspace/api/sdk/models/IMagickGeometry.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/IPRestriction.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/IPRestrictionArrayWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/IPRestrictionsSettings.kt
@@ -1617,12 +1626,12 @@ src/main/kotlin/onlyoffice/docspace/api/sdk/models/IpRestrictionsWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/IsDefaultWhiteLabelLogosArrayWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/IsDefaultWhiteLabelLogosDto.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/IsDefaultWhiteLabelLogosWrapper.kt
+src/main/kotlin/onlyoffice/docspace/api/sdk/models/ItemKeyValuePairBooleanString.kt
+src/main/kotlin/onlyoffice/docspace/api/sdk/models/ItemKeyValuePairBooleanStringWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/ItemKeyValuePairObjectObject.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/ItemKeyValuePairStringBoolean.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/ItemKeyValuePairStringLogoRequestsDto.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/ItemKeyValuePairStringString.kt
-src/main/kotlin/onlyoffice/docspace/api/sdk/models/KeyValuePairBooleanString.kt
-src/main/kotlin/onlyoffice/docspace/api/sdk/models/KeyValuePairBooleanStringWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/LinkAccountRequestDto.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/LinkType.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/Location.kt
@@ -1662,8 +1671,6 @@ src/main/kotlin/onlyoffice/docspace/api/sdk/models/NewItemsDtoFileEntryBaseDto.k
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/NewItemsDtoRoomNewItemsDto.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/NewItemsFileEntryBaseArrayWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/NewItemsRoomNewItemsArrayWrapper.kt
-src/main/kotlin/onlyoffice/docspace/api/sdk/models/NoContentResult.kt
-src/main/kotlin/onlyoffice/docspace/api/sdk/models/NoContentResultWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/NotificationChannelDto.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/NotificationChannelStatusDto.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/NotificationChannelStatusWrapper.kt
@@ -1778,8 +1785,6 @@ src/main/kotlin/onlyoffice/docspace/api/sdk/models/SetRestrictedAiModelsRequestD
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/SettingsDto.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/SettingsRequestDto.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/SettingsWrapper.kt
-src/main/kotlin/onlyoffice/docspace/api/sdk/models/SetupCode.kt
-src/main/kotlin/onlyoffice/docspace/api/sdk/models/SetupCodeWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/ShareFilterType.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/SignupAccountRequestDto.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/Size.kt
@@ -1833,6 +1838,7 @@ src/main/kotlin/onlyoffice/docspace/api/sdk/models/TenantAiAccessSettingsWrapper
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/TenantAiAgentQuotaSettings.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/TenantAiAgentQuotaSettingsWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/TenantAuditSettings.kt
+src/main/kotlin/onlyoffice/docspace/api/sdk/models/TenantAuditSettingsResponseWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/TenantAuditSettingsWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/TenantBannerSettings.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/TenantBannerSettingsDto.kt
@@ -1865,6 +1871,7 @@ src/main/kotlin/onlyoffice/docspace/api/sdk/models/TenantWalletService.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/TenantWalletServiceSettings.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/TenantWalletServiceSettingsWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/TenantWalletSettings.kt
+src/main/kotlin/onlyoffice/docspace/api/sdk/models/TenantWalletSettingsResponseWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/TenantWalletSettingsWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/TenantWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/TerminateRequestDto.kt
@@ -1876,6 +1883,8 @@ src/main/kotlin/onlyoffice/docspace/api/sdk/models/TfaRequestsDto.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/TfaRequestsDtoType.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/TfaSettingsArrayWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/TfaSettingsDto.kt
+src/main/kotlin/onlyoffice/docspace/api/sdk/models/TfaSetupCodeDto.kt
+src/main/kotlin/onlyoffice/docspace/api/sdk/models/TfaSetupCodeWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/TfaValidateRequestsDto.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/ThirdPartyBackupRequestDto.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/ThirdPartyParams.kt
@@ -1952,6 +1961,7 @@ src/main/kotlin/onlyoffice/docspace/api/sdk/models/WebhooksLogWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/WhiteLabelItemArrayWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/WhiteLabelItemDto.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/WhiteLabelItemPathDto.kt
+src/main/kotlin/onlyoffice/docspace/api/sdk/models/WhiteLabelItemSizeDto.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/WhiteLabelLogoType.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/WhiteLabelRequestsDto.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/WizardRequestsDto.kt

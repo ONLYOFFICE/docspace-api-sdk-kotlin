@@ -35,11 +35,11 @@ import com.squareup.moshi.JsonClass
  * @param canEditDenyDownload Determines whether the user has permission to modify the deny download setting for the file share.
  * @param canEditExpirationDate Indicates whether the expiration date of access permissions can be edited.
  * @param canRevoke Specifies whether the file sharing access can be revoked by the current user.
- * @param subjectType The subject type of the access right.
+ * @param subjectType The subject type.
  * @param access The access rights type.
  * @param sharedTo 
- * @param sharedToUser The full list of user parameters.
- * @param sharedToGroup The group summary parameters.
+ * @param sharedToUser The user who has the access to the specified file.
+ * @param sharedToGroup The user who has the access to the specified file.
  * @param sharedLink The user who has the access to the specified file.
  */
 

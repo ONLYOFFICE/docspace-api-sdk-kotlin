@@ -16,7 +16,6 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.ApiDateTime
 import onlyoffice.docspace.api.sdk.models.OperationType
 
 import com.squareup.moshi.Json
@@ -25,7 +24,7 @@ import com.squareup.moshi.JsonClass
 /**
  * Represents an operation.
  *
- * @param date The API date and time parameters.
+ * @param date The date when the operation took place.
  * @param service The service related to the operation.
  * @param description The brief operation description.
  * @param details The detailed information about the operation.
@@ -38,14 +37,14 @@ import com.squareup.moshi.JsonClass
  * @param participantDisplayName The participant display name.
  * @param agentId AI Agent id.
  * @param agentTitle AI Agent name.
- * @param type The operation type
+ * @param type Type of the operation
  */
 
 
 data class OperationDto (
 
     @Json(name = "date")
-    val date: ApiDateTime? = null,
+    val date: java.time.OffsetDateTime? = null,
 
     @Json(name = "service")
     val service: kotlin.String? = null,

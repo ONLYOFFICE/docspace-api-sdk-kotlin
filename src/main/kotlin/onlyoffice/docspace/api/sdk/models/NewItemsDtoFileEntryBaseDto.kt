@@ -16,7 +16,6 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.ApiDateTime
 import onlyoffice.docspace.api.sdk.models.FileEntryBaseDto
 
 import com.squareup.moshi.Json
@@ -33,7 +32,7 @@ import com.squareup.moshi.JsonClass
 data class NewItemsDtoFileEntryBaseDto (
 
     @Json(name = "date")
-    val date: ApiDateTime,
+    val date: java.time.OffsetDateTime?,
 
     @Json(name = "items")
     val items: kotlin.collections.List<FileEntryBaseDto>?

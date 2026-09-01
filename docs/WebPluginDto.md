@@ -13,7 +13,7 @@
 | **pluginName** | **kotlin.String** | The name by which the web plugin is registered in the window object. |  |
 | **scopes** | **kotlin.String** | The web plugin scopes. |  |
 | **image** | **kotlin.String** | The web plugin image. |  |
-| **createBy** | [**EmployeeDto**](EmployeeDto.md) | The user parameters. |  |
+| **createBy** | [**EmployeeDto**](EmployeeDto.md) | The user who created the web plugin. |  |
 | **createOn** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) | The date and time when the web plugin was created. |  |
 | **enabled** | **kotlin.Boolean** | Specifies if the web plugin is enabled or not. |  |
 | **system** | **kotlin.Boolean** | Specifies if the web plugin is system or not. |  |

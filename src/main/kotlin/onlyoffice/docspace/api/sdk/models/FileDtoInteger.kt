@@ -16,7 +16,6 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.ApiDateTime
 import onlyoffice.docspace.api.sdk.models.DraftLocationInteger
 import onlyoffice.docspace.api.sdk.models.EmployeeDto
 import onlyoffice.docspace.api.sdk.models.FileDtoIntegerAllOfViewAccessibility
@@ -109,7 +108,7 @@ import com.squareup.moshi.JsonClass
  * @param expired The date when the file will be expired.
  * @param vectorizationStatus The vectorization status of the file.
  * @param externalDbTableName The name of the table in the external database that corresponds to this form.
- * @param dimensions Represents dimensions with width and height values.
+ * @param dimensions The dimensions (width and height) of the image file in pixels.  This property is populated only for image files that can be viewed (supported formats like PNG, JPEG, GIF, BMP, etc.).  For non-image files, this property remains null.
  */
 
 
@@ -143,16 +142,16 @@ data class FileDtoInteger (
     val shortWebUrl: java.net.URI? = null,
 
     @Json(name = "created")
-    val created: ApiDateTime? = null,
+    val created: java.time.OffsetDateTime? = null,
 
     @Json(name = "createdBy")
     val createdBy: EmployeeDto? = null,
 
     @Json(name = "updated")
-    val updated: ApiDateTime? = null,
+    val updated: java.time.OffsetDateTime? = null,
 
     @Json(name = "autoDelete")
-    val autoDelete: ApiDateTime? = null,
+    val autoDelete: java.time.OffsetDateTime? = null,
 
     @Json(name = "rootFolderType")
     val rootFolderType: FolderType? = null,
@@ -218,7 +217,7 @@ data class FileDtoInteger (
     val `external`: kotlin.Boolean? = null,
 
     @Json(name = "expirationDate")
-    val expirationDate: ApiDateTime? = null,
+    val expirationDate: java.time.OffsetDateTime? = null,
 
     @Json(name = "isLinkExpired")
     val isLinkExpired: kotlin.Boolean? = null,
@@ -314,10 +313,10 @@ data class FileDtoInteger (
     val viewAccessibility: FileDtoIntegerAllOfViewAccessibility? = null,
 
     @Json(name = "lastOpened")
-    val lastOpened: ApiDateTime? = null,
+    val lastOpened: java.time.OffsetDateTime? = null,
 
     @Json(name = "expired")
-    val expired: ApiDateTime? = null,
+    val expired: java.time.OffsetDateTime? = null,
 
     @Json(name = "vectorizationStatus")
     val vectorizationStatus: VectorizationStatus? = null,

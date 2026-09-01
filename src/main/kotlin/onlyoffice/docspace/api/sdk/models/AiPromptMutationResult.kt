@@ -25,9 +25,9 @@ import com.squareup.moshi.JsonClass
 /**
  * Outcome of `create` / `update` / `move` on a prompt — either the persisted prompt or a field-scoped error.
  *
- * @param success 
- * @param prompt 
- * @param error 
+ * @param success True when the prompt was persisted.
+ * @param prompt The persisted prompt. Present on success.
+ * @param error Why the prompt was rejected. Present on failure.
  */
 
 

@@ -34,10 +34,10 @@ import com.squareup.moshi.JsonClass
  * @param trial Specifies if the quota is trial or not.
  * @param features The list of tenant quota features.
  * @param title The quota title.
- * @param usersQuota The tenant entity quota settings.
- * @param roomsQuota The tenant entity quota settings.
- * @param aiAgentsQuota The tenant entity quota settings.
- * @param tenantCustomQuota The tenant quota settings.
+ * @param usersQuota The user quota.
+ * @param roomsQuota The room quota.
+ * @param aiAgentsQuota The ai agent quota.
+ * @param tenantCustomQuota The tenant custom quota.
  * @param dueDate The due date.
  * @param innerServices The list of inner services.
  * @param serviceName The service name.

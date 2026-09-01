@@ -21,11 +21,11 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The parameters of the migrating files.
  *
- * @param foldersCount 
- * @param filesCount 
- * @param bytesTotal 
+ * @param foldersCount The number of folders.
+ * @param filesCount The number of files.
+ * @param bytesTotal The total number of bytes.
  */
 
 

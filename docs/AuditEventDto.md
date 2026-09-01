@@ -5,11 +5,11 @@
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
 | **id** | **kotlin.Int** | The audit event ID. |  [optional] |
-| **date** | [**ApiDateTime**](ApiDateTime.md) | The API date and time parameters. |  [optional] |
+| **date** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) | The audit event date. |  [optional] |
 | **user** | **kotlin.String** | The name of the user who triggered the audit event. |  [optional] |
 | **userId** | [**java.util.UUID**](java.util.UUID.md) | The ID of the user who triggered the audit event. |  [optional] |
 | **action** | **kotlin.String** | The audit event action. |  [optional] |
-| **actionId** | [**MessageAction**](MessageAction.md) | The event action ID. |  [optional] |
+| **actionId** | [**MessageAction**](MessageAction.md) | The specific action that occurred within the audit event. |  [optional] |
 | **ip** | **kotlin.String** | The audit event IP. |  [optional] |
 | **country** | **kotlin.String** | The audit event country. |  [optional] |
 | **city** | **kotlin.String** | The audit event city. |  [optional] |

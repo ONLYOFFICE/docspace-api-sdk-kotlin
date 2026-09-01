@@ -17,7 +17,6 @@
 package onlyoffice.docspace.api.sdk.models
 
 import onlyoffice.docspace.api.sdk.models.ActionType
-import onlyoffice.docspace.api.sdk.models.ApiDateTime
 import onlyoffice.docspace.api.sdk.models.EntryType
 import onlyoffice.docspace.api.sdk.models.LocationType
 import onlyoffice.docspace.api.sdk.models.MessageAction
@@ -30,11 +29,11 @@ import com.squareup.moshi.JsonClass
  * The audit event parameters.
  *
  * @param id The audit event ID.
- * @param date The API date and time parameters.
+ * @param date The audit event date.
  * @param user The name of the user who triggered the audit event.
  * @param userId The ID of the user who triggered the audit event.
  * @param action The audit event action.
- * @param actionId The event action ID.
+ * @param actionId The specific action that occurred within the audit event.
  * @param ip The audit event IP.
  * @param country The audit event country.
  * @param city The audit event city.
@@ -56,7 +55,7 @@ data class AuditEventDto (
     val id: kotlin.Int? = null,
 
     @Json(name = "date")
-    val date: ApiDateTime? = null,
+    val date: java.time.OffsetDateTime? = null,
 
     @Json(name = "user")
     val user: kotlin.String? = null,

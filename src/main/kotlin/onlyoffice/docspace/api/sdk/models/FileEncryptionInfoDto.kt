@@ -23,10 +23,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The encryption information of a file: the user key pairs and the per-user file keys.
  *
- * @param userKeys 
- * @param fileKeys 
+ * @param userKeys The key pairs of the users who have access to the file.
+ * @param fileKeys The file keys issued to those users.
  */
 
 

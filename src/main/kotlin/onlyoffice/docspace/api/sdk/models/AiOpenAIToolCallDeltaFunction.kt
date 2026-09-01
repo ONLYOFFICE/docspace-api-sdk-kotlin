@@ -21,7 +21,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The call itself: the function name and its JSON-encoded arguments.
  *
  * @param name 
  * @param arguments 

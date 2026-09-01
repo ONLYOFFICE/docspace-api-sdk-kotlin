@@ -21,20 +21,20 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The API date and time parameters.
+ * A key-value pair of a list item.
  *
- * @param utcTime The time in UTC format.
- * @param timeZoneOffset The time zone offset.
+ * @param key The key that identifies the item within the list.
+ * @param `value` The value associated with the key.
  */
 
 
-data class AiApiDateTime (
+data class ItemKeyValuePairBooleanString (
 
-    @Json(name = "utcTime")
-    val utcTime: java.time.OffsetDateTime? = null,
+    @Json(name = "key")
+    val key: kotlin.Boolean? = null,
 
-    @Json(name = "timeZoneOffset")
-    val timeZoneOffset: kotlin.String? = null
+    @Json(name = "value")
+    val `value`: kotlin.String? = null
 
 ) {
 

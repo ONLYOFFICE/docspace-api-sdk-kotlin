@@ -24,7 +24,7 @@ import com.squareup.moshi.JsonClass
 /**
  * The agent new item's information.
  *
- * @param agent The file entry information.
+ * @param agent The agent file entry.
  * @param items The list of file entry items.
  */
 

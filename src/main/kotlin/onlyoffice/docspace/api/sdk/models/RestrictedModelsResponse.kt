@@ -21,9 +21,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The AI models the portal is not allowed to use.
  *
- * @param models 
+ * @param models The identifiers of the models the portal is not allowed to use.
  */
 
 

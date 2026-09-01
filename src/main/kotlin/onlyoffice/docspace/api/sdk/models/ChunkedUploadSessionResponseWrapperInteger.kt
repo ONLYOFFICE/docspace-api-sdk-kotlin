@@ -25,7 +25,7 @@ import com.squareup.moshi.JsonClass
  * Represents a wrapper for the response of a chunked upload session operation.
  *
  * @param success Gets or sets a value indicating whether the operation was successful.
- * @param `data` Represents the response returned from a chunked upload session.
+ * @param `data` Gets or sets the data of the chunked upload session response.
  */
 
 

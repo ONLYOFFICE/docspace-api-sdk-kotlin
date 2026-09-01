@@ -24,7 +24,7 @@ import com.squareup.moshi.JsonClass
 /**
  * The request parameters for managing the deep link configuration.
  *
- * @param deepLinkSettings The deep link settings.
+ * @param deepLinkSettings The deep link settings for the specified tenant.
  */
 
 

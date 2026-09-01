@@ -16,7 +16,6 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.ApiDateTime
 import onlyoffice.docspace.api.sdk.models.EmployeeType
 
 import com.squareup.moshi.Json
@@ -25,9 +24,9 @@ import com.squareup.moshi.JsonClass
 /**
  * The invitation link parameters.
  *
- * @param employeeType The user type.
+ * @param employeeType The type of employee role for the invitation link.
  * @param id The ID of the invitation link.
- * @param expiration The API date and time parameters.
+ * @param expiration The expiration date of the invitation link.
  * @param isExpired Indicates whether the invitation link has expired.
  * @param maxUseCount The maximum number of times the invitation link can be used.
  * @param currentUseCount The current number of times the invitation link has been used.
@@ -44,7 +43,7 @@ data class InvitationLinkDto (
     val id: java.util.UUID? = null,
 
     @Json(name = "expiration")
-    val expiration: ApiDateTime? = null,
+    val expiration: java.time.OffsetDateTime? = null,
 
     @Json(name = "isExpired")
     val isExpired: kotlin.Boolean? = null,

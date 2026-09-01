@@ -21,7 +21,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The error that ended the stream: its message, type, code and the offending parameter.
  *
  * @param message 
  * @param type 

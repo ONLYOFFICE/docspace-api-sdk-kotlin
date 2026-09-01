@@ -23,10 +23,15 @@ import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
+import onlyoffice.docspace.api.sdk.models.AdditionalWhiteLabelSettingsDtoWrapper
+import onlyoffice.docspace.api.sdk.models.AdditionalWhiteLabelSettingsResponseWrapper
 import onlyoffice.docspace.api.sdk.models.AdditionalWhiteLabelSettingsWrapper
 import onlyoffice.docspace.api.sdk.models.BooleanWrapper
 import onlyoffice.docspace.api.sdk.models.CompanyWhiteLabelSettingsArrayWrapper
+import onlyoffice.docspace.api.sdk.models.CompanyWhiteLabelSettingsDtoWrapper
+import onlyoffice.docspace.api.sdk.models.CompanyWhiteLabelSettingsResponseWrapper
 import onlyoffice.docspace.api.sdk.models.CompanyWhiteLabelSettingsWrapper
+import onlyoffice.docspace.api.sdk.models.ErrorApiResponse
 import onlyoffice.docspace.api.sdk.models.IsDefaultWhiteLabelLogosArrayWrapper
 import onlyoffice.docspace.api.sdk.models.IsDefaultWhiteLabelLogosWrapper
 import onlyoffice.docspace.api.sdk.models.StringWrapper
@@ -43,6 +48,7 @@ interface RebrandingApi {
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -50,10 +56,10 @@ interface RebrandingApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-additional-white-label-settings/
      *
      *
-     * @return [AdditionalWhiteLabelSettingsWrapper]
+     * @return [AdditionalWhiteLabelSettingsResponseWrapper]
      */
     @DELETE("api/2.0/settings/rebranding/additional")
-    suspend fun deleteAdditionalWhiteLabelSettings(): Response<AdditionalWhiteLabelSettingsWrapper>
+    suspend fun deleteAdditionalWhiteLabelSettings(): Response<AdditionalWhiteLabelSettingsResponseWrapper>
 
     /**
      * DELETE api/2.0/settings/rebranding/company
@@ -64,6 +70,7 @@ interface RebrandingApi {
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -71,10 +78,10 @@ interface RebrandingApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-company-white-label-settings/
      *
      *
-     * @return [CompanyWhiteLabelSettingsWrapper]
+     * @return [CompanyWhiteLabelSettingsResponseWrapper]
      */
     @DELETE("api/2.0/settings/rebranding/company")
-    suspend fun deleteCompanyWhiteLabelSettings(): Response<CompanyWhiteLabelSettingsWrapper>
+    suspend fun deleteCompanyWhiteLabelSettings(): Response<CompanyWhiteLabelSettingsResponseWrapper>
 
     /**
      * GET api/2.0/settings/rebranding/additional
@@ -84,6 +91,7 @@ interface RebrandingApi {
      *  - 200: Additional white label settings
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -91,10 +99,10 @@ interface RebrandingApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-additional-white-label-settings/
      *
      *
-     * @return [AdditionalWhiteLabelSettingsWrapper]
+     * @return [AdditionalWhiteLabelSettingsDtoWrapper]
      */
     @GET("api/2.0/settings/rebranding/additional")
-    suspend fun getAdditionalWhiteLabelSettings(): Response<AdditionalWhiteLabelSettingsWrapper>
+    suspend fun getAdditionalWhiteLabelSettings(): Response<AdditionalWhiteLabelSettingsDtoWrapper>
 
     /**
      * GET api/2.0/settings/rebranding/company
@@ -104,6 +112,7 @@ interface RebrandingApi {
      *  - 200: Company white label settings
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -111,10 +120,10 @@ interface RebrandingApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-company-white-label-settings/
      *
      *
-     * @return [CompanyWhiteLabelSettingsWrapper]
+     * @return [CompanyWhiteLabelSettingsDtoWrapper]
      */
     @GET("api/2.0/settings/rebranding/company")
-    suspend fun getCompanyWhiteLabelSettings(): Response<CompanyWhiteLabelSettingsWrapper>
+    suspend fun getCompanyWhiteLabelSettings(): Response<CompanyWhiteLabelSettingsDtoWrapper>
 
     /**
      * GET api/2.0/settings/enablewhitelabel
@@ -124,6 +133,7 @@ interface RebrandingApi {
      *  - 200: Boolean value: true if the white label is enabled
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -144,6 +154,8 @@ interface RebrandingApi {
      *  - 200: Request properties of white label logos
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -166,6 +178,8 @@ interface RebrandingApi {
      *  - 200: Request properties of white label logos
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -188,6 +202,7 @@ interface RebrandingApi {
      *  - 200: List of company white label settings
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -208,6 +223,8 @@ interface RebrandingApi {
      *  - 200: Logo text
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -229,6 +246,8 @@ interface RebrandingApi {
      * Responses:
      *  - 200: White label logos
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -252,6 +271,8 @@ interface RebrandingApi {
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -275,6 +296,8 @@ interface RebrandingApi {
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -299,6 +322,7 @@ interface RebrandingApi {
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -322,6 +346,7 @@ interface RebrandingApi {
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -344,6 +369,8 @@ interface RebrandingApi {
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -368,6 +395,8 @@ interface RebrandingApi {
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -393,6 +422,8 @@ interface RebrandingApi {
      *  - 409: No input files
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *

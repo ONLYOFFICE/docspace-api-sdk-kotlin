@@ -22,7 +22,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The settings that define the folder opened by default after sign-in.
  *
  * @param defaultFolderType Specifies the type of the default folder associated with the settings.
  * @param lastModified The timestamp indicating when the settings were last modified.

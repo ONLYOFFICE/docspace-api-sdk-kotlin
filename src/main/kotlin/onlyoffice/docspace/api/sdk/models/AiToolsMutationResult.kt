@@ -24,8 +24,8 @@ import com.squareup.moshi.JsonClass
 /**
  * Outcome of an MCP-server CRUD call. Either success or a field-scoped error suitable for the settings form.
  *
- * @param success 
- * @param error 
+ * @param success True when the MCP server was persisted.
+ * @param error Why the MCP server was rejected. Present on failure.
  */
 
 

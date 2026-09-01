@@ -21,10 +21,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The outcome of a connection test against an external database.
  *
- * @param success 
- * @param error 
+ * @param success Specifies whether the connection to the database succeeded.
+ * @param error The reason the connection failed, or null when it succeeded.
  */
 
 

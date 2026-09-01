@@ -30,7 +30,7 @@ import com.squareup.moshi.JsonClass
  * @param secretKey The webhook secret key used to sign the webhook payloads for the security verification.
  * @param enabled Specifies whether the webhook configuration is active or not.
  * @param ssl Specifies whether the SSL certificate verification is required or not.
- * @param triggers The webhook trigger type.
+ * @param triggers Defines which events will trigger webhook notifications.
  * @param targetId Target ID
  */
 

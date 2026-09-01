@@ -24,7 +24,7 @@ import com.squareup.moshi.JsonClass
 /**
  * The action performed on the file.
  *
- * @param id The event action ID.
+ * @param id The action performed on the file.
  * @param key The action performed on the file.
  */
 

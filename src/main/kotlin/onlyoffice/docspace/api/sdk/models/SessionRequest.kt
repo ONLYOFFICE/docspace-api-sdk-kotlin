@@ -16,7 +16,6 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.ApiDateTime
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -27,7 +26,7 @@ import com.squareup.moshi.JsonClass
  * @param fileName The file name.
  * @param fileSize The file size.
  * @param relativePath The relative path to the file.
- * @param createOn The API date and time parameters.
+ * @param createOn The date and time when the file was created.
  * @param encrypted Specifies whether the file is encrypted or not.
  * @param createNewIfExist Specifies whether to create a new file if it already exists.
  */
@@ -45,7 +44,7 @@ data class SessionRequest (
     val relativePath: kotlin.String? = null,
 
     @Json(name = "createOn")
-    val createOn: ApiDateTime? = null,
+    val createOn: java.time.OffsetDateTime? = null,
 
     @Json(name = "encrypted")
     val encrypted: kotlin.Boolean? = null,

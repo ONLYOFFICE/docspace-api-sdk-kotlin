@@ -68,7 +68,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **code** | **kotlin.String**|  | |
+| **code** | **kotlin.String**| The two-factor authentication code. Send the same value as the `code` of the request body, which is the one the handler reads. | |
 | **authWithCodeRequestsDto** | [**AuthWithCodeRequestsDto**](AuthWithCodeRequestsDto.md)|  | [optional] |
 
 ### Return type
@@ -88,7 +88,7 @@ No authorization required
 
 val apiClient = ApiClient()
 val webService = apiClient.createWebservice(AuthenticationApi::class.java)
-val code : kotlin.String = code_example // kotlin.String | 
+val code : kotlin.String = code_example // kotlin.String | The two-factor authentication code. Send the same value as the `code` of the request body, which is the one the handler reads.
 val authWithCodeRequestsDto : AuthWithCodeRequestsDto =  // AuthWithCodeRequestsDto | 
 
 launch(Dispatchers.IO) {

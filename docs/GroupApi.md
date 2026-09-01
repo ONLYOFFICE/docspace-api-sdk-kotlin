@@ -120,7 +120,7 @@ launch(Dispatchers.IO) {
 
 <a id="deleteGroup"></a>
 # **deleteGroup**
-> NoContentResultWrapper deleteGroup (java.util.UUID id)
+> void deleteGroup (java.util.UUID id)
 
 Deletes a group with the ID specified in the request from the list of groups on the portal.
 
@@ -133,7 +133,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Return type
 
-[**NoContentResultWrapper**](NoContentResultWrapper.md)
+null (empty response body)
 
 ### Authorization
 
@@ -157,7 +157,7 @@ val webService = apiClient.createWebservice(GroupApi::class.java)
 val id : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The group ID.
 
 launch(Dispatchers.IO) {
-    val result : NoContentResultWrapper = webService.deleteGroup(id)
+    webService.deleteGroup(id)
 }
 ```
 

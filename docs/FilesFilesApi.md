@@ -804,7 +804,7 @@ launch(Dispatchers.IO) {
 
 <a id="deleteRecent"></a>
 # **deleteRecent**
-> NoContentResultWrapper deleteRecent (BaseBatchRequestDto baseBatchRequestDto)
+> void deleteRecent (BaseBatchRequestDto baseBatchRequestDto)
 
 Removes files with the IDs specified in the request from the Recent section.
 
@@ -817,7 +817,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Return type
 
-[**NoContentResultWrapper**](NoContentResultWrapper.md)
+null (empty response body)
 
 ### Authorization
 
@@ -841,7 +841,7 @@ val webService = apiClient.createWebservice(FilesApi::class.java)
 val baseBatchRequestDto : BaseBatchRequestDto =  // BaseBatchRequestDto | 
 
 launch(Dispatchers.IO) {
-    val result : NoContentResultWrapper = webService.deleteRecent(baseBatchRequestDto)
+    webService.deleteRecent(baseBatchRequestDto)
 }
 ```
 
@@ -1097,7 +1097,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **fileId** | **kotlin.Int**|  | |
+| **fileId** | **kotlin.Int**| The file unique identifier. | |
 
 ### Return type
 
@@ -1122,7 +1122,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
-val fileId : kotlin.Int = 56 // kotlin.Int | 
+val fileId : kotlin.Int = 56 // kotlin.Int | The file unique identifier.
 
 launch(Dispatchers.IO) {
     val result : FileEncryptionInfoWrapper = webService.getEncryptionInfo(fileId)
@@ -1137,7 +1137,7 @@ launch(Dispatchers.IO) {
 
 <a id="getFileHistory"></a>
 # **getFileHistory**
-> HistoryArrayWrapper getFileHistory (kotlin.Int fileId, ApiDateTime fromDate, ApiDateTime toDate, kotlin.Int count, kotlin.Int startIndex)
+> HistoryArrayWrapper getFileHistory (kotlin.Int fileId, java.time.OffsetDateTime fromDate, java.time.OffsetDateTime toDate, kotlin.Int count, kotlin.Int startIndex)
 
 Returns the list of actions performed on the file with the specified identifier.
 
@@ -1147,8 +1147,8 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **fileId** | **kotlin.Int**| The file ID of the history request. | |
-| **fromDate** | [**ApiDateTime**](.md)| The start date of the history. | [optional] |
-| **toDate** | [**ApiDateTime**](.md)| The end date of the history. | [optional] |
+| **fromDate** | **java.time.OffsetDateTime**| The start date of the history. | [optional] |
+| **toDate** | **java.time.OffsetDateTime**| The end date of the history. | [optional] |
 | **count** | **kotlin.Int**| The number of history entries to retrieve for the file log. | [optional] |
 | **startIndex** | **kotlin.Int**| The starting index for retrieving a subset of file history entries. | [optional] |
 
@@ -1176,8 +1176,8 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.Int = 1 // kotlin.Int | The file ID of the history request.
-val fromDate : ApiDateTime = 2025-01-01T00:00:00.0000000Z // ApiDateTime | The start date of the history.
-val toDate : ApiDateTime = 2025-12-31T23:59:59.0000000Z // ApiDateTime | The end date of the history.
+val fromDate : java.time.OffsetDateTime = 2025-01-01T00:00:00.0000000Z // java.time.OffsetDateTime | The start date of the history.
+val toDate : java.time.OffsetDateTime = 2025-12-31T23:59:59.0000000Z // java.time.OffsetDateTime | The end date of the history.
 val count : kotlin.Int = 25 // kotlin.Int | The number of history entries to retrieve for the file log.
 val startIndex : kotlin.Int = 0 // kotlin.Int | The starting index for retrieving a subset of file history entries.
 
@@ -1828,7 +1828,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **fileId** | **kotlin.String**|  | |
+| **fileId** | **kotlin.String**| The form the action applies to. Send the same value as the `formId` of the request body, which is the one the handler reads. | |
 | **manageFormFillingDtoInteger** | [**ManageFormFillingDtoInteger**](ManageFormFillingDtoInteger.md)|  | [optional] |
 
 ### Return type
@@ -1854,7 +1854,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
-val fileId : kotlin.String = fileId_example // kotlin.String | 
+val fileId : kotlin.String = fileId_example // kotlin.String | The form the action applies to. Send the same value as the `formId` of the request body, which is the one the handler reads.
 val manageFormFillingDtoInteger : ManageFormFillingDtoInteger =  // ManageFormFillingDtoInteger | 
 
 launch(Dispatchers.IO) {
@@ -1865,7 +1865,7 @@ launch(Dispatchers.IO) {
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 <a id="openEditFile"></a>
@@ -2087,7 +2087,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **fileId** | **kotlin.String**|  | |
+| **fileId** | **kotlin.String**| The form the role mapping belongs to. Send the same value as the `formId` of the request body, which is the one the handler reads. | |
 | **saveFormRoleMappingDtoInteger** | [**SaveFormRoleMappingDtoInteger**](SaveFormRoleMappingDtoInteger.md)|  | [optional] |
 
 ### Return type
@@ -2113,7 +2113,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
-val fileId : kotlin.String = fileId_example // kotlin.String | 
+val fileId : kotlin.String = fileId_example // kotlin.String | The form the role mapping belongs to. Send the same value as the `formId` of the request body, which is the one the handler reads.
 val saveFormRoleMappingDtoInteger : SaveFormRoleMappingDtoInteger =  // SaveFormRoleMappingDtoInteger | 
 
 launch(Dispatchers.IO) {
@@ -2124,7 +2124,7 @@ launch(Dispatchers.IO) {
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 <a id="setCustomFilterTag"></a>
@@ -2226,7 +2226,7 @@ launch(Dispatchers.IO) {
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 <a id="setFileExternalLink"></a>
@@ -2527,7 +2527,7 @@ launch(Dispatchers.IO) {
 
 <a id="trackEditFile"></a>
 # **trackEditFile**
-> KeyValuePairBooleanStringWrapper trackEditFile (kotlin.Int fileId, java.util.UUID tabId, kotlin.String docKeyForTrack, kotlin.Boolean isFinish)
+> ItemKeyValuePairBooleanStringWrapper trackEditFile (kotlin.Int fileId, java.util.UUID tabId, kotlin.String docKeyForTrack, kotlin.Boolean isFinish)
 
 Tracks file changes when editing.
 
@@ -2543,7 +2543,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Return type
 
-[**KeyValuePairBooleanStringWrapper**](KeyValuePairBooleanStringWrapper.md)
+[**ItemKeyValuePairBooleanStringWrapper**](ItemKeyValuePairBooleanStringWrapper.md)
 
 ### Authorization
 
@@ -2564,7 +2564,7 @@ val docKeyForTrack : kotlin.String = abc123 // kotlin.String | The document key 
 val isFinish : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to finish file tracking or not.
 
 launch(Dispatchers.IO) {
-    val result : KeyValuePairBooleanStringWrapper = webService.trackEditFile(fileId, tabId, docKeyForTrack, isFinish)
+    val result : ItemKeyValuePairBooleanStringWrapper = webService.trackEditFile(fileId, tabId, docKeyForTrack, isFinish)
 }
 ```
 

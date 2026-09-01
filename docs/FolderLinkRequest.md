@@ -5,8 +5,8 @@
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
 | **linkId** | [**java.util.UUID**](java.util.UUID.md) | The folder link ID. |  [optional] |
-| **access** | [**FileShare**](FileShare.md) | The access rights type. |  [optional] |
-| **expirationDate** | [**ApiDateTime**](ApiDateTime.md) | The API date and time parameters. |  [optional] |
+| **access** | [**FileShare**](FileShare.md) | The link sharing rights. |  [optional] |
+| **expirationDate** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) | The link expiration date. |  [optional] |
 | **title** | **kotlin.String** | The link name. |  [optional] |
 | **password** | **kotlin.String** | The link password. |  [optional] |
 | **denyDownload** | **kotlin.Boolean** | Specifies if downloading the file from the link is disabled or not. |  [optional] |

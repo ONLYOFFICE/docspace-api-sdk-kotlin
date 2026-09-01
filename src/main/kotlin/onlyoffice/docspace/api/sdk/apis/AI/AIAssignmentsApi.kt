@@ -35,7 +35,7 @@ interface AIAssignmentsApi {
     /**
      * PUT api/2.0/ai/assignments/assign
      * Assign
-     * 
+     * Binds a profile to an AI action, creating the assignment or updating it in place. The profile's declared capabilities are validated against the action, except for the `Default` slot.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -53,7 +53,7 @@ interface AIAssignmentsApi {
     /**
      * PUT api/2.0/ai/assignments/bulk-assign
      * Bulk assign
-     * 
+     * Applies many action-to-profile bindings at once. Every entry is validated first and nothing is written if any of them fails, so the assignment set is never left half-written.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -71,7 +71,7 @@ interface AIAssignmentsApi {
     /**
      * DELETE api/2.0/ai/assignments/cascade-profile-delete
      * Cascade profile delete
-     * 
+     * Cleans up the assignments pointing at a profile that is about to be deleted: the `Default` slot is promoted to the first remaining profile (or dropped when none is left), and every other slot holding that profile is unbound.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -89,7 +89,7 @@ interface AIAssignmentsApi {
     /**
      * GET api/2.0/ai/assignments/get-all-assignments
      * Get all assignments
-     * 
+     * Returns the full action-to-profile assignment map of the scope.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -98,16 +98,16 @@ interface AIAssignmentsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-assignments-get-all-assignments/
      *
      *
-     * @param entityId 
+     * @param entityId The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. (optional)
      * @return [kotlin.collections.Map<kotlin.String, kotlin.String>]
      */
     @GET("api/2.0/ai/assignments/get-all-assignments")
-    suspend fun aiAssignmentsGetAllAssignments(@Query("entityId") entityId: kotlin.String): Response<kotlin.collections.Map<kotlin.String, kotlin.String>>
+    suspend fun aiAssignmentsGetAllAssignments(@Query("entityId") entityId: kotlin.String? = null): Response<kotlin.collections.Map<kotlin.String, kotlin.String>>
 
     /**
      * GET api/2.0/ai/assignments/get-assignment
      * Get assignment
-     * 
+     * Returns the profile bound to one AI action, without the `Default` fallback.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -116,7 +116,7 @@ interface AIAssignmentsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-assignments-get-assignment/
      *
      *
-     * @param actionType 
+     * @param actionType The AI action the request applies to - one of Default, Chat, Code, Summarization, Translation, TextAnalyze, ImageGeneration, OCR, Vision.
      * @return [kotlin.String]
      */
     @GET("api/2.0/ai/assignments/get-assignment")
@@ -125,7 +125,7 @@ interface AIAssignmentsApi {
     /**
      * GET api/2.0/ai/assignments/resolve-for-action
      * Resolve for action
-     * 
+     * Resolves the profile bound to an AI action, falling back to the `Default` slot when the action itself has none. Fails when neither slot is set or the bound profile no longer exists - use `try-resolve-for-action` for an empty answer instead.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -134,17 +134,17 @@ interface AIAssignmentsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-assignments-resolve-for-action/
      *
      *
-     * @param actionType 
-     * @param entityId 
+     * @param actionType The AI action the request applies to - one of Default, Chat, Code, Summarization, Translation, TextAnalyze, ImageGeneration, OCR, Vision.
+     * @param entityId The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. (optional)
      * @return [AiResolvedAssignment]
      */
     @GET("api/2.0/ai/assignments/resolve-for-action")
-    suspend fun aiAssignmentsResolveForAction(@Query("actionType") actionType: kotlin.String, @Query("entityId") entityId: kotlin.String): Response<AiResolvedAssignment>
+    suspend fun aiAssignmentsResolveForAction(@Query("actionType") actionType: kotlin.String, @Query("entityId") entityId: kotlin.String? = null): Response<AiResolvedAssignment>
 
     /**
      * GET api/2.0/ai/assignments/try-resolve-for-action
      * Try resolve for action
-     * 
+     * Resolves the profile bound to an AI action exactly like `resolve-for-action`, but answers with an empty result instead of failing when nothing is configured.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -153,17 +153,17 @@ interface AIAssignmentsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-assignments-try-resolve-for-action/
      *
      *
-     * @param actionType 
-     * @param entityId 
+     * @param actionType The AI action the request applies to - one of Default, Chat, Code, Summarization, Translation, TextAnalyze, ImageGeneration, OCR, Vision.
+     * @param entityId The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. (optional)
      * @return [AiResolvedAssignment]
      */
     @GET("api/2.0/ai/assignments/try-resolve-for-action")
-    suspend fun aiAssignmentsTryResolveForAction(@Query("actionType") actionType: kotlin.String, @Query("entityId") entityId: kotlin.String): Response<AiResolvedAssignment>
+    suspend fun aiAssignmentsTryResolveForAction(@Query("actionType") actionType: kotlin.String, @Query("entityId") entityId: kotlin.String? = null): Response<AiResolvedAssignment>
 
     /**
      * DELETE api/2.0/ai/assignments/unassign
      * Unassign
-     * 
+     * Removes the profile binding of an AI action. Does nothing when that slot is already empty.
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.

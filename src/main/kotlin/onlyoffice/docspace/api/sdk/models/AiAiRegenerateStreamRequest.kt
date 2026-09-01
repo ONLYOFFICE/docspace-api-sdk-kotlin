@@ -25,9 +25,9 @@ import com.squareup.moshi.JsonClass
  * 
  *
  * @param threadId Target thread (must already exist).
- * @param actionArgs 
- * @param entityId 
- * @param profileId 
+ * @param actionArgs Per-request engine options: extra tools, reasoning, prompt override.
+ * @param entityId Optional entity (room) scope for profile resolution.
+ * @param profileId Session-level profile override for this request only.
  */
 
 
