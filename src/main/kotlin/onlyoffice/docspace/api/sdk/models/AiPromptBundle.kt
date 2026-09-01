@@ -50,8 +50,8 @@ data class AiPromptBundle (
      * Values: _1
      */
     @JsonClass(generateAdapter = false)
-    enum class Version(val value: kotlin.String) {
-        @Json(name = "1") _1("1");
+    enum class Version(val value: kotlin.Long) {
+        @Json(name = "1") _1(1);
     }
 
 }
