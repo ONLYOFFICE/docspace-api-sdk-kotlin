@@ -1,0 +1,63 @@
+ /*
+ * (c) Copyright Ascensio System SIA 2026
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package onlyoffice.docspace.api.sdk.models
+
+import onlyoffice.docspace.api.sdk.models.ApiDateTime
+import onlyoffice.docspace.api.sdk.models.EmployeeDto
+import onlyoffice.docspace.api.sdk.models.HistoryAction
+import onlyoffice.docspace.api.sdk.models.HistoryData
+
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
+
+/**
+ * The file history information.
+ *
+ * @param id The unique identifier for the file history entry.
+ * @param action The action performed on the file.
+ * @param initiator The user parameters.
+ * @param date The API date and time parameters.
+ * @param `data` The history data.
+ * @param related The list of related history.
+ */
+
+
+data class HistoryDto (
+
+    @Json(name = "id")
+    val id: kotlin.Int,
+
+    @Json(name = "action")
+    val action: HistoryAction,
+
+    @Json(name = "initiator")
+    val initiator: EmployeeDto,
+
+    @Json(name = "date")
+    val date: ApiDateTime,
+
+    @Json(name = "data")
+    val `data`: HistoryData,
+
+    @Json(name = "related")
+    val related: kotlin.collections.List<HistoryDto>? = null
+
+) {
+
+
+}
+

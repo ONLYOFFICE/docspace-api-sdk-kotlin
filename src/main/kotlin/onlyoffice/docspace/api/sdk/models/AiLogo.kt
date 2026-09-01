@@ -1,0 +1,60 @@
+ /*
+ * (c) Copyright Ascensio System SIA 2026
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package onlyoffice.docspace.api.sdk.models
+
+import onlyoffice.docspace.api.sdk.models.AiLogoCover
+
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
+
+/**
+ * The room logo information.
+ *
+ * @param original The original logo.
+ * @param large The large logo.
+ * @param medium The medium logo.
+ * @param small The small logo.
+ * @param color The logo color.
+ * @param cover The logo cover.
+ */
+
+
+data class AiLogo (
+
+    @Json(name = "original")
+    val original: kotlin.String?,
+
+    @Json(name = "large")
+    val large: kotlin.String?,
+
+    @Json(name = "medium")
+    val medium: kotlin.String?,
+
+    @Json(name = "small")
+    val small: kotlin.String?,
+
+    @Json(name = "color")
+    val color: kotlin.String? = null,
+
+    @Json(name = "cover")
+    val cover: AiLogoCover? = null
+
+) {
+
+
+}
+

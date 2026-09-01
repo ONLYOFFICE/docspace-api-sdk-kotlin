@@ -1,0 +1,12 @@
+
+# OrdersItemRequestDtoInteger
+
+## Properties
+| Name | Type | Description | Notes |
+| ------------ | ------------- | ------------- | ------------- |
+| **entryId** | **kotlin.Int** | The entry unique identifier (file or folder). |  |
+| **entryType** | [**FileEntryType**](FileEntryType.md) | The entry type (file or folder). |  |
+| **order** | **kotlin.Int** | The order value. |  |
+
+
+
