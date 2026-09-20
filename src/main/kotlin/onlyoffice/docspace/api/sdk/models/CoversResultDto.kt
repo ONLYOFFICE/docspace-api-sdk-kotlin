@@ -21,10 +21,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The result of the cover request containing the cover image data.
+ * One drawing of the built-in gallery of room covers.
  *
- * @param id The cover unique identifier.
- * @param `data` The cover image data.
+ * @param id The name of the cover, and the value to send as `cover` when a room is created or changed. The names are the  same on every portal and do not change with the language of the request.
+ * @param `data` The drawing itself, as inline vector markup ready to be rendered as it is. It is the default size of the  cover, and it may change between product versions while the name stays.
  */
 
 

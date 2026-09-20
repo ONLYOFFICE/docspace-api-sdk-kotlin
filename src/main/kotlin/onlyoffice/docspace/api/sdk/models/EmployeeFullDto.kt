@@ -16,6 +16,7 @@
 
 package onlyoffice.docspace.api.sdk.models
 
+import onlyoffice.docspace.api.sdk.models.ApiDateTime
 import onlyoffice.docspace.api.sdk.models.Contact
 import onlyoffice.docspace.api.sdk.models.DarkThemeSettingsType
 import onlyoffice.docspace.api.sdk.models.EmployeeActivationStatus
@@ -131,7 +132,7 @@ data class EmployeeFullDto (
     val activationStatus: EmployeeActivationStatus? = null,
 
     @Json(name = "terminated")
-    val terminated: java.time.OffsetDateTime? = null,
+    val terminated: ApiDateTime? = null,
 
     @Json(name = "department")
     val department: kotlin.String? = null,
@@ -203,7 +204,7 @@ data class EmployeeFullDto (
     val createdBy: EmployeeDto? = null,
 
     @Json(name = "registrationDate")
-    val registrationDate: java.time.OffsetDateTime? = null,
+    val registrationDate: ApiDateTime? = null,
 
     @Json(name = "hasPersonalFolder")
     val hasPersonalFolder: kotlin.Boolean? = null,

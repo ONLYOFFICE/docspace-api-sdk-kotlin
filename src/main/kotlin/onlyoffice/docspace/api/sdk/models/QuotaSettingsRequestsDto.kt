@@ -22,10 +22,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The request parameters for managing the user storage quota configurations.
+ * The default storage limit given to newly created users, rooms or AI agents, and whether it is enforced.
  *
  * @param defaultQuota 
- * @param enableQuota Specifies whether the storage quota restrictions are enabled.
+ * @param enableQuota Whether the limit is enforced at all. While it is false the size is ignored and nothing created afterwards  carries a limit; objects that already have one keep it either way.
  */
 
 

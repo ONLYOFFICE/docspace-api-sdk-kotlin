@@ -24,26 +24,30 @@ import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
 import onlyoffice.docspace.api.sdk.models.AiErrorResponse
-import onlyoffice.docspace.api.sdk.models.AiExportTextToDocx200Response
+import onlyoffice.docspace.api.sdk.models.AiExportTextToDocx202Response
 import onlyoffice.docspace.api.sdk.models.AiExportTextToDocxRequest
 
 interface AIExportApi {
     /**
      * POST api/2.0/ai/text-to-docx
      * Start markdown → docx export
-     * Starts an asynchronous markdown-to-docx export. The response only acknowledges the task: the AI Worker converts the content and saves the .docx into the target folder (an agent room resolves to its result-storage subfolder), and completion reaches the client as the usual folder-modified socket event.
+     * Queues a markdown-to-docx export and answers 202 as soon as the job is accepted, without waiting for it. `title`, `content` and `folderId` are all required, and a `content` of only whitespace counts as missing even though it is not empty. The conversion runs in the AI worker, which saves the .docx into the target folder - an agent room resolves to its own result-storage subfolder - so there is nothing to poll here: completion arrives as the ordinary folder-modified socket event. This route accepts a body of up to 15 MB rather than the 100 KB the rest of the API allows, because a whole thread transcript is sent in one request.
      * Responses:
-     *  - 200: Success.
+     *  - 202: Confirms the export was queued. The .docx arrives in the target folder later, announced by a folder-modified socket event.
+     *  - 400: `title`, `content` or `folderId` is missing.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
+     *  - 403: AI is disabled for this portal, or the caller is a guest. Relayed from the DocSpace AI service.
+     *  - 413: The transcript is larger than 15 MB, this route's own parser limit.
+     *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
      *
      * REST API Reference for aiExportTextToDocx Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-export-text-to-docx/
      *
      *
      * @param aiExportTextToDocxRequest 
-     * @return [AiExportTextToDocx200Response]
+     * @return [AiExportTextToDocx202Response]
      */
     @POST("api/2.0/ai/text-to-docx")
-    suspend fun aiExportTextToDocx(@Body aiExportTextToDocxRequest: AiExportTextToDocxRequest): Response<AiExportTextToDocx200Response>
+    suspend fun aiExportTextToDocx(@Body aiExportTextToDocxRequest: AiExportTextToDocxRequest): Response<AiExportTextToDocx202Response>
 
 }

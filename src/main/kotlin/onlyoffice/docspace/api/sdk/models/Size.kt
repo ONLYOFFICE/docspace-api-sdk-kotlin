@@ -21,10 +21,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * Represents dimensions with width and height values.
+ * A pixel size measured on the image itself.
  *
- * @param height Gets or sets the height dimension of an object, typically measured in pixels or other unit.  It defines the vertical size of the object.
- * @param width Gets or sets the width dimension of an object, typically measured in pixels or other unit.
+ * @param height The height of the image in pixels, read from the stored file rather than from any display setting.
+ * @param width The width of the image in pixels, read from the stored file rather than from any display setting.
  */
 
 

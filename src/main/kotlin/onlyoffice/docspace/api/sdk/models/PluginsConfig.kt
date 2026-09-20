@@ -21,7 +21,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The configuration settings to connect the special add-ons.
+ * Which editor add-ons the portal connects. It currently connects none.
  *
  * @param pluginsData The array of absolute URLs to the plugin configuration files.
  */

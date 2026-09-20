@@ -31,9 +31,9 @@ interface AccessToDevToolsApi {
     /**
      * POST api/2.0/settings/devtoolsaccess
      * Set the Developer Tools access settings
-     * Sets the Developer Tools access settings for the portal.
+     * Sets whether the portal restricts the `User` role from using the developer tools (API keys, OAuth apps,  webhooks); `RoomAdmin` and `DocSpaceAdmin` are never affected by this setting. Requires Owner or DocSpaceAdmin  (the EditPortalSettings permission). This is a mutating, idempotent, portal-wide call: it applies to every  `User` on the tenant immediately. It returns the saved setting; read the current value at any time from  `GET api/2.0/settings/devtoolsaccess`.
      * Responses:
-     *  - 200: Developer Tools access settings
+     *  - 200: Saved developer tools access restriction for the `User` role
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.

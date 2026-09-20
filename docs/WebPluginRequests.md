@@ -4,8 +4,8 @@
 ## Properties
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
-| **settings** | **kotlin.String** | The JSON-formatted configuration settings for the web plugin. |  |
-| **enabled** | **kotlin.Boolean** | Controls whether the web plugin is active and operational. |  [optional] |
+| **settings** | **kotlin.String** | The configuration the plugin reads at run time, as a JSON document serialised into a string. Its shape is  defined by the plugin and not by the portal, which stores it encrypted for this portal alone. It replaces  whatever was stored rather than merging into it, so send `{}` when there is nothing to keep. |  |
+| **enabled** | **kotlin.Boolean** | Whether the plugin runs in this portal. Switching it on adds the domains its manifest declares to the portal  Content Security Policy and switching it off takes them away again; connected clients are told of the new  state without a reload. |  [optional] |
 
 
 

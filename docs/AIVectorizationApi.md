@@ -10,24 +10,26 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 
 <a id="aiVectorizationStartTask"></a>
 # **aiVectorizationStartTask**
-> AiSuccessResponse aiVectorizationStartTask (kotlin.collections.Map<kotlin.String, kotlin.Any> requestBody)
+> AiVectorizationStartTask200Response aiVectorizationStartTask (AiVectorizationStartTaskRequest aiVectorizationStartTaskRequest)
 
-Starts a vectorization task over the supplied portal files. The indexing itself runs asynchronously on the .NET side.
+Queues the indexing of the portal files named in the body so their contents can be retrieved during a chat round. The body is proxied unchanged to the DocSpace AI service, which validates it and owns the job. Indexing is asynchronous and fire-and-forget: the answer acknowledges the request without carrying a job handle, so there is nothing to poll and progress is not reported here. The embedding provider used is the one in `GET api/2.0/ai/config/vectorization`, and changing that setting does not re-index anything already indexed - queue it again for that.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-vectorization-start-task/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **requestBody** | [**kotlin.collections.Map&lt;kotlin.String, kotlin.Any&gt;**](kotlin.Any.md)|  | |
+| **aiVectorizationStartTaskRequest** | [**AiVectorizationStartTaskRequest**](AiVectorizationStartTaskRequest.md)| The files to index, proxied unchanged to the DocSpace AI service, which owns and validates the shape. | |
 
 ### Return type
 
-[**AiSuccessResponse**](AiSuccessResponse.md)
+[**AiVectorizationStartTask200Response**](AiVectorizationStartTask200Response.md)
 
 ### Authorization
 
-No authorization required
+
+Configure bearerAuth:
+    ApiClient().setBearerToken("TOKEN")
 
 ### Example
 ```kotlin
@@ -37,11 +39,12 @@ No authorization required
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
+apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIVectorizationApi::class.java)
-val requestBody : kotlin.collections.Map<kotlin.String, kotlin.Any> = Object // kotlin.collections.Map<kotlin.String, kotlin.Any> | 
+val aiVectorizationStartTaskRequest : AiVectorizationStartTaskRequest =  // AiVectorizationStartTaskRequest | The files to index, proxied unchanged to the DocSpace AI service, which owns and validates the shape.
 
 launch(Dispatchers.IO) {
-    val result : AiSuccessResponse = webService.aiVectorizationStartTask(requestBody)
+    val result : AiVectorizationStartTask200Response = webService.aiVectorizationStartTask(aiVectorizationStartTaskRequest)
 }
 ```
 

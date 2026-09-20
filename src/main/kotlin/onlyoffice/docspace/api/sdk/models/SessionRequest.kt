@@ -16,19 +16,20 @@
 
 package onlyoffice.docspace.api.sdk.models
 
+import onlyoffice.docspace.api.sdk.models.ApiDateTime
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The session request parameters.
+ * The file a chunked upload session is opened for, and how a clash with an existing name is settled.
  *
- * @param fileName The file name.
- * @param fileSize The file size.
- * @param relativePath The relative path to the file.
- * @param createOn The date and time when the file was created.
- * @param encrypted Specifies whether the file is encrypted or not.
- * @param createNewIfExist Specifies whether to create a new file if it already exists.
+ * @param fileName The name to store the file under, extension included. Characters a title cannot hold are replaced and the name  is truncated, so the stored title can differ from the one sent.
+ * @param fileSize The exact number of bytes that will be sent. The size is reserved when the session opens and compared with the  parts as they arrive; below the portal chunk size the session takes the whole payload in one part, and above  the portal limit for chunked uploads it is refused.
+ * @param relativePath A slash-separated chain of folder titles under the target folder to store the file in; folders in the chain  that do not exist yet are created. Leave it empty to store the file in the folder from the path itself.
+ * @param createOn The creation time to stamp on a newly created file instead of the moment the upload finishes. It is ignored  when the upload lands on a file that already exists.
+ * @param encrypted Marks the stored file as client-side encrypted, which is how content uploaded into a private room is kept;  with false the bytes are stored as they arrive.
+ * @param createNewIfExist Settles the clash when the folder already holds a file with this name: true stores the upload beside it under  a name with a numeric suffix, false takes the existing file over and adds the content to it as a new version.
  */
 
 
@@ -44,7 +45,7 @@ data class SessionRequest (
     val relativePath: kotlin.String? = null,
 
     @Json(name = "createOn")
-    val createOn: java.time.OffsetDateTime? = null,
+    val createOn: ApiDateTime? = null,
 
     @Json(name = "encrypted")
     val encrypted: kotlin.Boolean? = null,

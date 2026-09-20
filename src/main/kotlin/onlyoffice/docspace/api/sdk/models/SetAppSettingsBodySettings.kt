@@ -21,7 +21,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * Arbitrary JSON document with application-specific settings.
+ * The configuration the application reads, as any valid JSON value. Its shape is defined by the application and  is neither validated nor interpreted by the portal, which stores it verbatim. It replaces the whole stored  document rather than merging into it, and `null` drops it so the application falls back to its own defaults.
  *
  */
 

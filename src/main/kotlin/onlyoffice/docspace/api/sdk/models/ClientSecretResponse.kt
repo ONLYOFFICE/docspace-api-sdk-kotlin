@@ -21,9 +21,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The response containing the regenerated client secret.
+ * The response carrying a regenerated client secret.
  *
- * @param clientSecret The newly generated client secret.
+ * @param clientSecret The newly generated client secret. It replaces the previous one immediately, so every deployed copy of the client has to be updated with this value.
  */
 
 

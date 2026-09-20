@@ -16,19 +16,21 @@
 
 package onlyoffice.docspace.api.sdk.models
 
+import onlyoffice.docspace.api.sdk.models.FieldError
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * RFC 7807 problem details returned by the registration API for failed requests.
  *
- * @param type 
- * @param title 
- * @param status 
- * @param detail 
- * @param instance 
- * @param properties 
+ * @param type A URI reference that identifies the problem type. This service sets it to the DocSpace API getting-started page.
+ * @param title A short, human-readable summary of the problem type, typically the HTTP status reason phrase.
+ * @param status The HTTP status code for this occurrence of the problem.
+ * @param detail A human-readable explanation specific to this occurrence of the problem.
+ * @param instance A URI reference that identifies the specific occurrence, set to the request path.
+ * @param properties Extension members carried on the problem. Usually empty; validation failures also surface as the top-level errors array.
+ * @param errors Field-specific validation errors. Present when the request body or parameters failed validation, or when a named scope is not in the tenant catalogue.
  */
 
 
@@ -50,7 +52,10 @@ data class ProblemDetail (
     val instance: java.net.URI? = null,
 
     @Json(name = "properties")
-    val properties: kotlin.collections.Map<kotlin.String, kotlin.Any>? = null
+    val properties: kotlin.collections.Map<kotlin.String, kotlin.Any?>? = null,
+
+    @Json(name = "errors")
+    val errors: kotlin.collections.List<FieldError>? = null
 
 ) {
 

@@ -23,9 +23,9 @@ import com.squareup.moshi.JsonClass
 /**
  * The request parameters for updating an existing API key.
  *
- * @param name The new name for the API key.
- * @param permissions The new list of permissions for the API key.
- * @param isActive Indicates whether the API key should be active or not.
+ * @param name The new label of the key, up to 30 characters. Omit it to keep the current name.
+ * @param permissions The scopes that replace the current ones. Every value has to come from `GET api/2.0/keys/permissions`, an  unknown value or an empty array is rejected, and omitting the field keeps the current scopes.
+ * @param isActive Whether the key may authenticate requests. Set it to false to stop the key without deleting it and to true to  let it work again; omit it to keep the current state.
  */
 
 

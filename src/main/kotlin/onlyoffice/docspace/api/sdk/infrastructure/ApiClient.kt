@@ -6,8 +6,8 @@ import onlyoffice.docspace.api.sdk.auth.OAuth
 import onlyoffice.docspace.api.sdk.auth.OAuth.AccessTokenListener
 import onlyoffice.docspace.api.sdk.auth.OAuthFlow
 import onlyoffice.docspace.api.sdk.auth.ApiKeyAuth
-import onlyoffice.docspace.api.sdk.auth.HttpBasicAuth
 import onlyoffice.docspace.api.sdk.auth.HttpBearerAuth
+import onlyoffice.docspace.api.sdk.auth.HttpBasicAuth
 
 import okhttp3.Call
 import okhttp3.Interceptor
@@ -75,6 +75,10 @@ class ApiClient(
     ) : this(baseUrl, okHttpClientBuilder, serializerBuilder) {
         authNames.forEach { authName ->
             val auth: Interceptor? = when (authName) { 
+                "cookieAuth" -> ApiKeyAuth("cookie", "asc_auth_key")
+                
+                "bearerAuth" -> HttpBearerAuth("bearer")
+                
                 "asc_auth_key" -> ApiKeyAuth("cookie", "asc_auth_key")
                 
                 "Basic" -> HttpBasicAuth()
@@ -86,10 +90,6 @@ class ApiClient(
                 "OAuth2" -> OAuth(OAuthFlow.accessCode, "", "", "read, write")
                 
                 "OpenId" -> null
-                "cookieAuth" -> ApiKeyAuth("cookie", "asc_auth_key")
-                
-                "bearerAuth" -> HttpBearerAuth("bearer")
-                
                 "x-signature" -> ApiKeyAuth("cookie", "x-signature")
                 
                 else -> throw RuntimeException("auth name $authName not found in available auth names")
@@ -105,10 +105,9 @@ class ApiClient(
         okHttpClientBuilder: OkHttpClient.Builder? = null,
         serializerBuilder: Moshi.Builder = Serializer.moshiBuilder,
         authName: String,
-        username: String,
-        password: String
+        bearerToken: String
     ) : this(baseUrl, okHttpClientBuilder, serializerBuilder, arrayOf(authName)) {
-        setCredentials(username, password)
+        setBearerToken(bearerToken)
     }
 
     constructor(
@@ -116,9 +115,10 @@ class ApiClient(
         okHttpClientBuilder: OkHttpClient.Builder? = null,
         serializerBuilder: Moshi.Builder = Serializer.moshiBuilder,
         authName: String,
-        bearerToken: String
+        username: String,
+        password: String
     ) : this(baseUrl, okHttpClientBuilder, serializerBuilder, arrayOf(authName)) {
-        setBearerToken(bearerToken)
+        setCredentials(username, password)
     }
 
     constructor(
@@ -138,19 +138,19 @@ class ApiClient(
             ?.setPassword(password)
     }
 
+    fun setBearerToken(bearerToken: String): ApiClient {
+        apiAuthorizations.values.runOnFirst<Interceptor, HttpBearerAuth> {
+            this.bearerToken = bearerToken
+        }
+        return this
+    }
+
     fun setCredentials(username: String, password: String): ApiClient {
         apiAuthorizations.values.runOnFirst<Interceptor, HttpBasicAuth> {
             setCredentials(username, password)
         }
         apiAuthorizations.values.runOnFirst<Interceptor, OAuth> {
             tokenRequestBuilder.setUsername(username).setPassword(password)
-        }
-        return this
-    }
-
-    fun setBearerToken(bearerToken: String): ApiClient {
-        apiAuthorizations.values.runOnFirst<Interceptor, HttpBearerAuth> {
-            this.bearerToken = bearerToken
         }
         return this
     }

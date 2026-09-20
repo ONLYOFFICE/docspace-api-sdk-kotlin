@@ -21,12 +21,12 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The request parameters for configuring the password complexity requirements.
+ * The four values that make up the portal password policy, replaced together.
  *
- * @param minLength The minimum number of characters required for valid passwords.
- * @param upperCase Specifies whether the password should contain the uppercase letters or not.
- * @param digits Specifies whether the password should contain the digits or not.
- * @param specSymbols Specifies whether the password should contain the special symbols or not.
+ * @param minLength The shortest password the portal will accept. It has to sit between the floor the installation is configured  with, 8 characters unless it was changed, and the ceiling of 30; a value outside that is refused with 400.
+ * @param upperCase Whether a password must contain at least one uppercase letter. There is no partial update on this body, so  leaving the flag out stores it as `false` and drops the requirement.
+ * @param digits Whether a password must contain at least one digit. Leaving the flag out stores it as `false` and drops the  requirement.
+ * @param specSymbols Whether a password must contain at least one special symbol. Leaving the flag out stores it as `false` and  drops the requirement.
  */
 
 

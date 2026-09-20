@@ -21,11 +21,11 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The additional confirmation data required for authentication.
+ * The confirmation link a sign-in is authorised with, in place of a password.
  *
- * @param email The email address to confirm the user's identity.
- * @param first Specifies whether this is the first access to the user's account.
- * @param key The unique confirmation key for validating user identity.
+ * @param email The address the confirmation link was issued for. It has to be the same address the key was signed with, and  a value that is not an email address fails the request with 400.
+ * @param first Whether the link is being followed for the first time, taken from the `first` parameter of the confirmation  URL. It is part of what the key was signed over, so passing a different value invalidates the key rather than  changing behaviour.
+ * @param key The `key` parameter of the confirmation URL, copied verbatim. It is bound to the address and to the moment it  was issued, so it stops being accepted once the portal email key lifetime has passed.
  */
 
 

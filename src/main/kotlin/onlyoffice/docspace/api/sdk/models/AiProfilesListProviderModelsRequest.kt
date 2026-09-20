@@ -26,7 +26,7 @@ import com.squareup.moshi.JsonClass
  *
  * @param providerType Provider whose catalog to list.
  * @param baseUrl Provider API base URL.
- * @param apiKey Provider API key.
+ * @param apiKey Provider API key. Omit it for a provider that needs none; the request is then made without one.
  */
 
 
@@ -39,7 +39,7 @@ data class AiProfilesListProviderModelsRequest (
     val baseUrl: kotlin.String,
 
     @Json(name = "apiKey")
-    val apiKey: kotlin.String
+    val apiKey: kotlin.String? = null
 
 ) {
 

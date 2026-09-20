@@ -21,19 +21,19 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The white label logo size parameters.
+ * The pixel box a logo slot is drawn in, in the shape the imaging library reports a geometry.
  *
- * @param aspectRatio Specifies whether the size is an aspect ratio.
- * @param fillArea Specifies whether the logo is resized based on the smallest fitting dimension.
- * @param greater Specifies whether the logo is resized only if it is greater than the size.
- * @param height The logo height, in pixels.
- * @param ignoreAspectRatio Specifies whether the logo is resized without preserving the aspect ratio.
- * @param isPercentage Specifies whether the width and height are expressed as percentages.
- * @param less Specifies whether the logo is resized only if it is less than the size.
- * @param limitPixels Specifies whether the logo is resized using a pixel area count limit.
- * @param width The logo width, in pixels.
- * @param x The X offset from the origin, in pixels.
- * @param y The Y offset from the origin, in pixels.
+ * @param aspectRatio Whether the numbers are to be read as an aspect ratio rather than as pixels. Always `false` on the sizes  this API reports.
+ * @param fillArea Whether an image would be scaled to cover the box rather than to fit inside it. Always `false` here.
+ * @param greater Whether scaling would apply only to an image larger than the box. Always `false` here.
+ * @param height The height of the box in pixels - one of the two fields of this object that carry information.
+ * @param ignoreAspectRatio Whether scaling would be allowed to distort the image. Always `false` here.
+ * @param isPercentage Whether `width` and `height` are to be read as percentages. Always `false` here, so both are pixels.
+ * @param less Whether scaling would apply only to an image smaller than the box. Always `false` here.
+ * @param limitPixels Whether the box is to be read as a total pixel-area budget instead of as two dimensions. Always `false`  here.
+ * @param width The width of the box in pixels - the other field of this object that carries information.
+ * @param x The horizontal offset of the box from the origin. Always `0` here.
+ * @param y The vertical offset of the box from the origin. Always `0` here.
  */
 
 

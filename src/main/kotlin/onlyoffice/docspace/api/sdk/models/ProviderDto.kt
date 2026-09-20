@@ -21,15 +21,15 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The provider information.
+ * One storage service this portal can connect, with the values a connection form needs.
  *
- * @param name The provider name.
- * @param key The provider key.
- * @param connected Specifies whether the provider is connected.
- * @param oauth Specifies if the provider is OAuth.
- * @param redirectUrl The provider redirect URL.
- * @param requiredConnectionUrl The required connection URL flag.
- * @param clientId The provider OAuth client ID.
+ * @param name The display name of the service, and the only thing that tells the WebDAV presets apart: `kDrive`, `Yandex`,  `WebDav`, `Nextcloud` and `ownCloud` all report the same key.
+ * @param key The value to send as `providerKey` when an account of this service is connected.
+ * @param connected Whether the service can be used on this portal: it is enabled in the configuration and, for an OAuth service,  its application is registered. It says nothing about whether an account of it is connected.
+ * @param oauth Whether an account of this service is connected with an OAuth 2.0 authorization code in `token`; when false,  it is connected with `login` and `password`.
+ * @param redirectUrl The redirect URL this portal is registered with at the service, to build the consent screen URL from. It comes  back as null for the services that do not use OAuth.
+ * @param requiredConnectionUrl Whether an account of this service cannot be connected without `url`, which is the case for the WebDAV servers  whose address is not known in advance. The presets with a fixed address and the OAuth services do not need it.
+ * @param clientId The OAuth 2.0 client ID this portal is registered with at the service, to build the consent screen URL from.  It comes back as null for the services that do not use OAuth.
  */
 
 

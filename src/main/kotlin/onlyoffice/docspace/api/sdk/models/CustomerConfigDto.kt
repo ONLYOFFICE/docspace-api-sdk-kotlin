@@ -21,14 +21,14 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The customer config parameters.
+ * The branding of the organization running the portal, as the editor About panel shows it. It is reported on a  server installation only.
  *
- * @param address The address of the customer configuration.
- * @param logo The logo of the customer configuration.
- * @param logoDark The dark logo of the customer configuration.
- * @param mail The mail address of the customer configuration.
- * @param name The name of the customer configuration.
- * @param www The site web address of the customer configuration.
+ * @param address The postal address from the portal branding settings; empty when none was entered.
+ * @param logo The About-panel logo of the organization.
+ * @param logoDark The About-panel logo for a dark interface theme.
+ * @param mail The contact address from the portal branding settings.
+ * @param name The organization name shown in the editor.
+ * @param www The website of the organization.
  */
 
 

@@ -21,9 +21,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The request parameters for terminating the reassignment/deletion process.
+ * The request parameters that address the queued job of a single user - a data reassignment, a data deletion or a  user type change.
  *
- * @param userId The user ID whose data is reassigned/removed.
+ * @param userId The ID of the user whose job is addressed. For a terminate operation it has to be the same ID that was passed  when the job was started.
  */
 
 

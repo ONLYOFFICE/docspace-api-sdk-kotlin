@@ -22,14 +22,14 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The authentication data.
+ * The credentials of a third-party storage account. The portal takes them when an account is connected and does not  give them back afterwards.
  *
- * @param login The authentication login.
- * @param password The authentication password.
- * @param rawToken The authentication raw token.
- * @param url The authentication URL.
- * @param provider The authentication provider.
- * @param token The authentication token.
+ * @param login The account name at the storage service.
+ * @param password The password of the account at the storage service.
+ * @param rawToken The token of the account, kept as the raw JSON document the storage service issued it in.
+ * @param url The address of the storage server the account lives on.
+ * @param provider The storage service the credentials belong to, as the provider key the account was connected with.
+ * @param token The same token as in `rawToken`, parsed into its OAuth 2.0 fields.
  */
 
 

@@ -21,10 +21,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The parameters for updating a file.
+ * The changes to make to a file: a new title, an earlier version to restore, or both.
  *
- * @param title The file title to update.
- * @param lastVersion The number of the latest file version.
+ * @param title The new title of the file, without an extension - the stored extension is kept whatever the title says, so a  rename cannot change the format. Left empty, the file keeps its name.
+ * @param lastVersion The version to restore on top of the history, as reported by `GET api/2.0/files/file/{fileId}/history`; 0 or  less leaves the versions untouched.
  */
 
 

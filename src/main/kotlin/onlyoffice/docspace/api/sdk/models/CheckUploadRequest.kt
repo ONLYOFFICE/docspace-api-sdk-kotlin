@@ -21,9 +21,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The request parameters for checking file uploads.
+ * The names to test against the files the folder already holds.
  *
- * @param filesTitle The list of file titles.
+ * @param filesTitle The names to test, extensions included, spelled as they would be sent to the upload. Matching ignores case,  and a name repeated in the list is answered once.
  */
 
 

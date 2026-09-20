@@ -4,37 +4,53 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**checkUpload**](FilesFoldersApi.md#checkUpload) | **POST** api/2.0/files/{folderId}/upload/check | Check file uploads |
+| [**checkUpload**](FilesFoldersApi.md#checkUpload) | **POST** api/2.0/files/{folderId}/upload/check | Check for upload conflicts |
+| [**checkUpload**](FilesFoldersApi.md#checkUpload-thirdparty) | **POST** api/2.0/files/{folderId}/upload/check | Check for upload conflicts (third-party storage) |
 | [**createFolder**](FilesFoldersApi.md#createFolder) | **POST** api/2.0/files/folder/{folderId} | Create a folder |
-| [**createFolderPrimaryExternalLink**](FilesFoldersApi.md#createFolderPrimaryExternalLink) | **POST** api/2.0/files/folder/{id}/link | Create primary external link |
+| [**createFolder**](FilesFoldersApi.md#createFolder-thirdparty) | **POST** api/2.0/files/folder/{folderId} | Create a folder (third-party storage) |
+| [**createFolderPrimaryExternalLink**](FilesFoldersApi.md#createFolderPrimaryExternalLink) | **POST** api/2.0/files/folder/{id}/link | Create the folder primary external link |
+| [**createFolderPrimaryExternalLink**](FilesFoldersApi.md#createFolderPrimaryExternalLink-thirdparty) | **POST** api/2.0/files/folder/{id}/link | Create the folder primary external link (third-party storage) |
 | [**createReportFolderHistory**](FilesFoldersApi.md#createReportFolderHistory) | **POST** api/2.0/files/folder/{folderId}/log/report | Start the folder history report generation |
 | [**deleteFolder**](FilesFoldersApi.md#deleteFolder) | **DELETE** api/2.0/files/folder/{folderId} | Delete a folder |
+| [**deleteFolder**](FilesFoldersApi.md#deleteFolder-thirdparty) | **DELETE** api/2.0/files/folder/{folderId} | Delete a folder (third-party storage) |
 | [**generateXlsxByFolder**](FilesFoldersApi.md#generateXlsxByFolder) | **POST** api/2.0/files/folder/{folderId}/xlsx | Generate XLSX report by folder |
 | [**getFavoritesFolder**](FilesFoldersApi.md#getFavoritesFolder) | **GET** api/2.0/files/@favorites | Get the Favorites section |
 | [**getFilesUsedSpace**](FilesFoldersApi.md#getFilesUsedSpace) | **GET** api/2.0/files/filesusedspace | Get used space of files |
 | [**getFolder**](FilesFoldersApi.md#getFolder) | **GET** api/2.0/files/{folderId}/formfilter | Get folder form filter |
 | [**getFolderByFolderId**](FilesFoldersApi.md#getFolderByFolderId) | **GET** api/2.0/files/{folderId} | Get a folder by ID |
+| [**getFolderByFolderId**](FilesFoldersApi.md#getFolderByFolderId-thirdparty) | **GET** api/2.0/files/{folderId} | Get a folder by ID (third-party storage) |
 | [**getFolderHistory**](FilesFoldersApi.md#getFolderHistory) | **GET** api/2.0/files/folder/{folderId}/log | Get folder history |
 | [**getFolderInfo**](FilesFoldersApi.md#getFolderInfo) | **GET** api/2.0/files/folder/{folderId} | Get folder information |
-| [**getFolderLinks**](FilesFoldersApi.md#getFolderLinks) | **GET** api/2.0/files/folder/{id}/links | Get the folder links |
+| [**getFolderInfo**](FilesFoldersApi.md#getFolderInfo-thirdparty) | **GET** api/2.0/files/folder/{folderId} | Get folder information (third-party storage) |
+| [**getFolderLinks**](FilesFoldersApi.md#getFolderLinks) | **GET** api/2.0/files/folder/{id}/links | Get folder external links |
+| [**getFolderLinks**](FilesFoldersApi.md#getFolderLinks-thirdparty) | **GET** api/2.0/files/folder/{id}/links | Get folder external links (third-party storage) |
 | [**getFolderPath**](FilesFoldersApi.md#getFolderPath) | **GET** api/2.0/files/folder/{folderId}/path | Get the folder path |
-| [**getFolderPrimaryExternalLink**](FilesFoldersApi.md#getFolderPrimaryExternalLink) | **GET** api/2.0/files/folder/{id}/link | Get primary external link |
+| [**getFolderPath**](FilesFoldersApi.md#getFolderPath-thirdparty) | **GET** api/2.0/files/folder/{folderId}/path | Get the folder path (third-party storage) |
+| [**getFolderPrimaryExternalLink**](FilesFoldersApi.md#getFolderPrimaryExternalLink) | **GET** api/2.0/files/folder/{id}/link | Get the folder primary external link |
+| [**getFolderPrimaryExternalLink**](FilesFoldersApi.md#getFolderPrimaryExternalLink-thirdparty) | **GET** api/2.0/files/folder/{id}/link | Get the folder primary external link (third-party storage) |
 | [**getFolders**](FilesFoldersApi.md#getFolders) | **GET** api/2.0/files/{folderId}/subfolders | Get subfolders |
+| [**getFolders**](FilesFoldersApi.md#getFolders-thirdparty) | **GET** api/2.0/files/{folderId}/subfolders | Get subfolders (third-party storage) |
 | [**getFormsFolder**](FilesFoldersApi.md#getFormsFolder) | **GET** api/2.0/files/@forms | Get the Forms section |
 | [**getMyFolder**](FilesFoldersApi.md#getMyFolder) | **GET** api/2.0/files/@my | Get the My documents section |
 | [**getNewFolderItems**](FilesFoldersApi.md#getNewFolderItems) | **GET** api/2.0/files/{folderId}/news | Get new folder items |
+| [**getNewFolderItems**](FilesFoldersApi.md#getNewFolderItems-thirdparty) | **GET** api/2.0/files/{folderId}/news | Get new folder items (third-party storage) |
 | [**getRecentFolder**](FilesFoldersApi.md#getRecentFolder) | **GET** api/2.0/files/recent | Get the Recent section |
 | [**getReportFolderHistory**](FilesFoldersApi.md#getReportFolderHistory) | **GET** api/2.0/files/folder/{folderId}/log/report | Get the folder history report generation status |
 | [**getRootFolders**](FilesFoldersApi.md#getRootFolders) | **GET** api/2.0/files/@root | Get filtered sections |
 | [**getTrashFolder**](FilesFoldersApi.md#getTrashFolder) | **GET** api/2.0/files/@trash | Get the Trash section |
 | [**insertFile**](FilesFoldersApi.md#insertFile) | **POST** api/2.0/files/{folderId}/insert | Insert a file |
-| [**insertFileToMyFromBody**](FilesFoldersApi.md#insertFileToMyFromBody) | **POST** api/2.0/files/@my/insert | Insert a file to the My documents section |
+| [**insertFile**](FilesFoldersApi.md#insertFile-thirdparty) | **POST** api/2.0/files/{folderId}/insert | Insert a file (third-party storage) |
+| [**insertFileToMyFromBody**](FilesFoldersApi.md#insertFileToMyFromBody) | **POST** api/2.0/files/@my/insert | Insert a file into My documents |
 | [**renameFolder**](FilesFoldersApi.md#renameFolder) | **PUT** api/2.0/files/folder/{folderId} | Rename a folder |
+| [**renameFolder**](FilesFoldersApi.md#renameFolder-thirdparty) | **PUT** api/2.0/files/folder/{folderId} | Rename a folder (third-party storage) |
 | [**setFolderOrder**](FilesFoldersApi.md#setFolderOrder) | **PUT** api/2.0/files/folder/{folderId}/order | Set folder order |
+| [**setFolderOrder**](FilesFoldersApi.md#setFolderOrder-thirdparty) | **PUT** api/2.0/files/folder/{folderId}/order | Set folder order (third-party storage) |
 | [**setFolderPrimaryExternalLink**](FilesFoldersApi.md#setFolderPrimaryExternalLink) | **PUT** api/2.0/files/folder/{id}/links | Set the folder external link |
+| [**setFolderPrimaryExternalLink**](FilesFoldersApi.md#setFolderPrimaryExternalLink-thirdparty) | **PUT** api/2.0/files/folder/{id}/links | Set the folder external link (third-party storage) |
 | [**terminateReportFolderHistory**](FilesFoldersApi.md#terminateReportFolderHistory) | **DELETE** api/2.0/files/folder/{folderId}/log/report | Terminate the folder history report generation |
 | [**uploadFile**](FilesFoldersApi.md#uploadFile) | **POST** api/2.0/files/{folderId}/upload | Upload a file |
-| [**uploadFileToMy**](FilesFoldersApi.md#uploadFileToMy) | **POST** api/2.0/files/@my/upload | Upload a file to the My documents section |
+| [**uploadFile**](FilesFoldersApi.md#uploadFile-thirdparty) | **POST** api/2.0/files/{folderId}/upload | Upload a file (third-party storage) |
+| [**uploadFileToMy**](FilesFoldersApi.md#uploadFileToMy) | **POST** api/2.0/files/@my/upload | Upload a file to My documents |
 
 
 
@@ -42,15 +58,15 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 # **checkUpload**
 > STRINGArrayWrapper checkUpload (kotlin.Int folderId, CheckUploadRequest checkUploadRequest)
 
-Checks the file uploads to the folder with the ID specified in the request.
+Reports which of the submitted titles already belong to a file in the folder, so an upload can decide in  advance whether to overwrite or to ask for another name. Only the clashing titles come back, unordered and  without repetitions, and an empty array means every name is free. Matching is by title and ignores case, so a  name that differs only in capitalisation is still reported; an existing file that is encrypted is left out,  because an upload cannot take it over. The call changes nothing. It needs the same right as the upload itself,  the right to add content to the folder, which room managers and content creators have and readers, editors and  guests do not; an archived room, a section root and a folder the caller cannot write to are all refused, while  an unknown folder is answered as missing. A request without `filesTitle` is rejected as an invalid request, an  empty list is accepted and answers with an empty array.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/check-upload/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **folderId** | **kotlin.Int**| The folder ID. | |
-| **checkUploadRequest** | [**CheckUploadRequest**](CheckUploadRequest.md)| The request parameters for checking file uploads. | |
+| **folderId** | **kotlin.Int**| The folder whose contents the names are tested against; take the id from a listing such as  `GET api/2.0/files/@root`. | |
+| **checkUploadRequest** | [**CheckUploadRequest**](CheckUploadRequest.md)| The names to test against the files the folder already holds. | |
 
 ### Return type
 
@@ -75,8 +91,8 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val folderId : kotlin.Int = 1 // kotlin.Int | The folder ID.
-val checkUploadRequest : CheckUploadRequest =  // CheckUploadRequest | The request parameters for checking file uploads.
+val folderId : kotlin.Int = 1 // kotlin.Int | The folder whose contents the names are tested against; take the id from a listing such as  `GET api/2.0/files/@root`.
+val checkUploadRequest : CheckUploadRequest =  // CheckUploadRequest | The names to test against the files the folder already holds.
 
 launch(Dispatchers.IO) {
     val result : STRINGArrayWrapper = webService.checkUpload(folderId, checkUploadRequest)
@@ -89,23 +105,23 @@ launch(Dispatchers.IO) {
  - **Accept**: application/json
 
 
-<a id="createFolder"></a>
-# **createFolder**
-> FolderIntegerWrapper createFolder (kotlin.Int folderId, CreateFolder createFolder)
+<a id="checkUpload-thirdparty"></a>
+# **checkUpload** (third-party storage)
+> STRINGArrayWrapper checkUpload (kotlin.String folderId, CheckUploadRequest checkUploadRequest)
 
-Creates a new folder with the title specified in the request. The parent folder ID can be also specified.
+Reports which of the submitted titles already belong to a file in the folder, so an upload can decide in  advance whether to overwrite or to ask for another name. Only the clashing titles come back, unordered and  without repetitions, and an empty array means every name is free. Matching is by title and ignores case, so a  name that differs only in capitalisation is still reported; an existing file that is encrypted is left out,  because an upload cannot take it over. The call changes nothing. It needs the same right as the upload itself,  the right to add content to the folder, which room managers and content creators have and readers, editors and  guests do not; an archived room, a section root and a folder the caller cannot write to are all refused, while  an unknown folder is answered as missing. A request without `filesTitle` is rejected as an invalid request, an  empty list is accepted and answers with an empty array.
 
-For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-folder/).
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/check-upload/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **folderId** | **kotlin.Int**| The folder ID for the folder creation. | |
-| **createFolder** | [**CreateFolder**](CreateFolder.md)| The parameters for creating a folder. | |
+| **folderId** | **kotlin.String**| The folder whose contents the names are tested against; take the id from a listing such as  `GET api/2.0/files/@root`. | |
+| **checkUploadRequest** | [**CheckUploadRequest**](CheckUploadRequest.md)| The names to test against the files the folder already holds. | |
 
 ### Return type
 
-[**FolderIntegerWrapper**](FolderIntegerWrapper.md)
+[**STRINGArrayWrapper**](STRINGArrayWrapper.md)
 
 ### Authorization
 
@@ -126,11 +142,113 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val folderId : kotlin.Int = 1 // kotlin.Int | The folder ID for the folder creation.
-val createFolder : CreateFolder =  // CreateFolder | The parameters for creating a folder.
+val folderId : kotlin.String = 1 // kotlin.String | The folder whose contents the names are tested against; take the id from a listing such as  `GET api/2.0/files/@root`.
+val checkUploadRequest : CheckUploadRequest =  // CheckUploadRequest | The names to test against the files the folder already holds.
 
 launch(Dispatchers.IO) {
-    val result : FolderIntegerWrapper = webService.createFolder(folderId, createFolder)
+    val result : STRINGArrayWrapper = webService.checkUpload(folderId, checkUploadRequest)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+<a id="createFolder"></a>
+# **createFolder**
+> FolderWrapper createFolder (kotlin.Int folderId, CreateFolder createFolder)
+
+Creates a folder inside the folder named in the path and answers with the folder as it was stored. The title  is trimmed, may not be blank and is refused when it is longer than the limit the schema prints; titles are not  required to be unique, so creating the same title twice leaves two folders side by side, which makes the call  mutating and not idempotent. The caller needs the right to create content in the parent, which the room  manager, a content creator and the owner of a personal section have; a member without that right, an archived  parent, and a section root that only holds rooms - Rooms, Forms and AI agents - are all refused, as is a  parent that does not exist. Rooms are not created here: use `POST api/2.0/files/rooms` for those, and this  operation for ordinary folders within them. Members of the room are notified of the new folder. Read the  identifier of the new folder from `id` and fill it with `POST api/2.0/files/{folderId}/upload`.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-folder/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **folderId** | **kotlin.Int**| The folder the request is addressed to: when a folder is created it is the parent that receives the new  folder, and when a folder is renamed it is the folder that gets the new title. | |
+| **createFolder** | [**CreateFolder**](CreateFolder.md)| The title carried by the request body. | |
+
+### Return type
+
+[**FolderWrapper**](FolderWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(FoldersApi::class.java)
+val folderId : kotlin.Int = 1 // kotlin.Int | The folder the request is addressed to: when a folder is created it is the parent that receives the new  folder, and when a folder is renamed it is the folder that gets the new title.
+val createFolder : CreateFolder =  // CreateFolder | The title carried by the request body.
+
+launch(Dispatchers.IO) {
+    val result : FolderWrapper = webService.createFolder(folderId, createFolder)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+<a id="createFolder-thirdparty"></a>
+# **createFolder** (third-party storage)
+> ThirdPartyFolderWrapper createFolder (kotlin.String folderId, CreateFolder createFolder)
+
+Creates a folder inside the folder named in the path and answers with the folder as it was stored. The title  is trimmed, may not be blank and is refused when it is longer than the limit the schema prints; titles are not  required to be unique, so creating the same title twice leaves two folders side by side, which makes the call  mutating and not idempotent. The caller needs the right to create content in the parent, which the room  manager, a content creator and the owner of a personal section have; a member without that right, an archived  parent, and a section root that only holds rooms - Rooms, Forms and AI agents - are all refused, as is a  parent that does not exist. Rooms are not created here: use `POST api/2.0/files/rooms` for those, and this  operation for ordinary folders within them. Members of the room are notified of the new folder. Read the  identifier of the new folder from `id` and fill it with `POST api/2.0/files/{folderId}/upload`.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-folder/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **folderId** | **kotlin.String**| The folder the request is addressed to: when a folder is created it is the parent that receives the new  folder, and when a folder is renamed it is the folder that gets the new title. | |
+| **createFolder** | [**CreateFolder**](CreateFolder.md)| The title carried by the request body. | |
+
+### Return type
+
+[**ThirdPartyFolderWrapper**](ThirdPartyFolderWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(FoldersApi::class.java)
+val folderId : kotlin.String = 1 // kotlin.String | The folder the request is addressed to: when a folder is created it is the parent that receives the new  folder, and when a folder is renamed it is the folder that gets the new title.
+val createFolder : CreateFolder =  // CreateFolder | The title carried by the request body.
+
+launch(Dispatchers.IO) {
+    val result : ThirdPartyFolderWrapper = webService.createFolder(folderId, createFolder)
 }
 ```
 
@@ -144,15 +262,15 @@ launch(Dispatchers.IO) {
 # **createFolderPrimaryExternalLink**
 > FileShareWrapper createFolderPrimaryExternalLink (kotlin.Int id, FolderLinkRequest folderLinkRequest)
 
-Creates a primary external link by the identifier specified in the request.
+Answers with the primary external link of a folder or a room, creating it on the first call and returning the  one that already exists afterwards, so the operation is idempotent in effect: a second call with other  parameters does not reconfigure the existing link, and changing one is the business of  `PUT api/2.0/files/folder/{id}/links`. The parameters therefore only shape the link at the moment it is born -  `access` its rights, `title` its name, `expirationDate` its lifetime, which is unlimited here unless one is  given, `internal` whether only signed-in members may follow it, `denyDownload` whether the contents may only  be viewed, and `password` a secret to be asked for. Sending `access` with the value that grants nothing  creates no link and answers with nothing. The caller needs the right to manage the links of the room the  folder belongs to, which its manager and a portal administrator acting as room manager have, and a member with  content-creator or read access is refused with 403; an unknown folder is answered with 404. Read the address  from `sharedTo.shareLink`.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-folder-primary-external-link/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **id** | **kotlin.Int**| The folder ID. | |
-| **folderLinkRequest** | [**FolderLinkRequest**](FolderLinkRequest.md)| The folder link parameters. | |
+| **id** | **kotlin.Int**| The folder or room the link belongs to. | |
+| **folderLinkRequest** | [**FolderLinkRequest**](FolderLinkRequest.md)| The link and the way it is to be shaped. | |
 
 ### Return type
 
@@ -177,8 +295,59 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val id : kotlin.Int = 1 // kotlin.Int | The folder ID.
-val folderLinkRequest : FolderLinkRequest =  // FolderLinkRequest | The folder link parameters.
+val id : kotlin.Int = 1 // kotlin.Int | The folder or room the link belongs to.
+val folderLinkRequest : FolderLinkRequest =  // FolderLinkRequest | The link and the way it is to be shaped.
+
+launch(Dispatchers.IO) {
+    val result : FileShareWrapper = webService.createFolderPrimaryExternalLink(id, folderLinkRequest)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+<a id="createFolderPrimaryExternalLink-thirdparty"></a>
+# **createFolderPrimaryExternalLink** (third-party storage)
+> FileShareWrapper createFolderPrimaryExternalLink (kotlin.String id, FolderLinkRequest folderLinkRequest)
+
+Answers with the primary external link of a folder or a room, creating it on the first call and returning the  one that already exists afterwards, so the operation is idempotent in effect: a second call with other  parameters does not reconfigure the existing link, and changing one is the business of  `PUT api/2.0/files/folder/{id}/links`. The parameters therefore only shape the link at the moment it is born -  `access` its rights, `title` its name, `expirationDate` its lifetime, which is unlimited here unless one is  given, `internal` whether only signed-in members may follow it, `denyDownload` whether the contents may only  be viewed, and `password` a secret to be asked for. Sending `access` with the value that grants nothing  creates no link and answers with nothing. The caller needs the right to manage the links of the room the  folder belongs to, which its manager and a portal administrator acting as room manager have, and a member with  content-creator or read access is refused with 403; an unknown folder is answered with 404. Read the address  from `sharedTo.shareLink`.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-folder-primary-external-link/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **kotlin.String**| The folder or room the link belongs to. | |
+| **folderLinkRequest** | [**FolderLinkRequest**](FolderLinkRequest.md)| The link and the way it is to be shaped. | |
+
+### Return type
+
+[**FileShareWrapper**](FileShareWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(FoldersApi::class.java)
+val id : kotlin.String = 1 // kotlin.String | The folder or room the link belongs to.
+val folderLinkRequest : FolderLinkRequest =  // FolderLinkRequest | The link and the way it is to be shaped.
 
 launch(Dispatchers.IO) {
     val result : FileShareWrapper = webService.createFolderPrimaryExternalLink(id, folderLinkRequest)
@@ -195,17 +364,17 @@ launch(Dispatchers.IO) {
 # **createReportFolderHistory**
 > DocumentBuilderTaskWrapper createReportFolderHistory (kotlin.Int folderId, AuditReportFormat format, java.time.OffsetDateTime from, java.time.OffsetDateTime to)
 
-Starts generating the activity history report of a folder (XLSX by default, or CSV) and saves it to My documents.
+Queues a background job that renders the history of a folder into a spreadsheet, or into a CSV file when  `format` asks for one, and saves the result in the caller's My documents. The answer is the queued task, not  the report: poll `GET api/2.0/files/folder/{folderId}/log/report` until `isCompleted` is true, then take the  file from `resultFileId`, `resultFileName` and `resultFileUrl`, of which a CSV report fills only the last two.  `from` and `to` limit the exported period; leaving both out exports the whole history. While a report for the  same folder and caller is still running, this call joins it and answers with the running task instead of  starting a second one, so retrying is safe. The caller needs read access to the folder and may not be a guest,  and the portal plan has to include the audit feature - otherwise the call is refused, with 403 for the access  rule and 404 for a folder that does not exist. Only a portal administrator gets the address, browser and  platform columns. Give up a running report with `DELETE api/2.0/files/folder/{folderId}/log/report`.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-report-folder-history/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **folderId** | **kotlin.Int**| The folder ID whose history is exported. | |
-| **format** | [**AuditReportFormat**](.md)| The output file format of the report. Defaults to XLSX. | [optional] [enum: 0, 1] |
-| **from** | **java.time.OffsetDateTime**| The start date of the history period to export. | [optional] |
-| **to** | **java.time.OffsetDateTime**| The end date of the history period to export. | [optional] |
+| **folderId** | **kotlin.Int**| The folder whose history is exported; the report covers the folder itself and the entries inside it. | |
+| **format** | [**AuditReportFormat**](.md)| The shape the report is written in: `Xlsx` produces a spreadsheet that is saved as a file of the portal, while  `Csv` produces a comma-separated text file that is uploaded to My documents without being reported back with  a file identifier. | [optional] [enum: 0, 1] |
+| **from** | **java.time.OffsetDateTime**| The earliest moment an exported entry may have, read in the time zone of the portal; left out, the report  starts at the oldest entry the portal still keeps. | [optional] |
+| **to** | **java.time.OffsetDateTime**| The latest moment an exported entry may have, read in the time zone of the portal; left out, the report ends  at the newest entry. | [optional] |
 
 ### Return type
 
@@ -230,10 +399,10 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val folderId : kotlin.Int = 1 // kotlin.Int | The folder ID whose history is exported.
-val format : AuditReportFormat = Xlsx // AuditReportFormat | The output file format of the report. Defaults to XLSX.
-val from : java.time.OffsetDateTime = 2025-01-01T00:00:00 // java.time.OffsetDateTime | The start date of the history period to export.
-val to : java.time.OffsetDateTime = 2025-12-31T23:59:59 // java.time.OffsetDateTime | The end date of the history period to export.
+val folderId : kotlin.Int = 1 // kotlin.Int | The folder whose history is exported; the report covers the folder itself and the entries inside it.
+val format : AuditReportFormat = Xlsx // AuditReportFormat | The shape the report is written in: `Xlsx` produces a spreadsheet that is saved as a file of the portal, while  `Csv` produces a comma-separated text file that is uploaded to My documents without being reported back with  a file identifier.
+val from : java.time.OffsetDateTime = 2025-01-01T00:00:00 // java.time.OffsetDateTime | The earliest moment an exported entry may have, read in the time zone of the portal; left out, the report  starts at the oldest entry the portal still keeps.
+val to : java.time.OffsetDateTime = 2025-12-31T23:59:59 // java.time.OffsetDateTime | The latest moment an exported entry may have, read in the time zone of the portal; left out, the report ends  at the newest entry.
 
 launch(Dispatchers.IO) {
     val result : DocumentBuilderTaskWrapper = webService.createReportFolderHistory(folderId, format, from, to)
@@ -250,15 +419,15 @@ launch(Dispatchers.IO) {
 # **deleteFolder**
 > FileOperationArrayWrapper deleteFolder (kotlin.Int folderId, DeleteFolder deleteFolder)
 
-Deletes a folder with the ID specified in the request.
+Queues the deletion of one folder together with everything inside it, and answers with the file operations of  the caller, the one just created among them. The folder is not gone when the response arrives: poll  `GET api/2.0/files/fileops` until the operation reports `finished`, and read its `error` to learn whether the  deletion succeeded. By default the folder is moved to the Trash section, from where it can be restored;  `immediately=true` discards it for good instead, and inside a room, where there is no Trash, deletion is  always final. `deleteAfter=true` postpones the deletion until the editing sessions on the contents have ended,  so files somebody is working on are not pulled away. The caller needs the right to delete the folder, which  the room manager, a portal administrator acting as room manager and a content creator acting on a folder of  their own have; editing access alone, read access and a guest are refused. The call is destructive. To delete  several items at once use `PUT api/2.0/files/fileops/delete`.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-folder/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **folderId** | **kotlin.Int**| The folder ID to delete. | |
-| **deleteFolder** | [**DeleteFolder**](DeleteFolder.md)| The parameters for deleting a folder. | |
+| **folderId** | **kotlin.Int**| The folder to delete, together with everything it holds. | |
+| **deleteFolder** | [**DeleteFolder**](DeleteFolder.md)| How the deletion is to be carried out. | |
 
 ### Return type
 
@@ -283,8 +452,59 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val folderId : kotlin.Int = 10 // kotlin.Int | The folder ID to delete.
-val deleteFolder : DeleteFolder =  // DeleteFolder | The parameters for deleting a folder.
+val folderId : kotlin.Int = 10 // kotlin.Int | The folder to delete, together with everything it holds.
+val deleteFolder : DeleteFolder =  // DeleteFolder | How the deletion is to be carried out.
+
+launch(Dispatchers.IO) {
+    val result : FileOperationArrayWrapper = webService.deleteFolder(folderId, deleteFolder)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+<a id="deleteFolder-thirdparty"></a>
+# **deleteFolder** (third-party storage)
+> FileOperationArrayWrapper deleteFolder (kotlin.String folderId, DeleteFolder deleteFolder)
+
+Queues the deletion of one folder together with everything inside it, and answers with the file operations of  the caller, the one just created among them. The folder is not gone when the response arrives: poll  `GET api/2.0/files/fileops` until the operation reports `finished`, and read its `error` to learn whether the  deletion succeeded. By default the folder is moved to the Trash section, from where it can be restored;  `immediately=true` discards it for good instead, and inside a room, where there is no Trash, deletion is  always final. `deleteAfter=true` postpones the deletion until the editing sessions on the contents have ended,  so files somebody is working on are not pulled away. The caller needs the right to delete the folder, which  the room manager, a portal administrator acting as room manager and a content creator acting on a folder of  their own have; editing access alone, read access and a guest are refused. The call is destructive. To delete  several items at once use `PUT api/2.0/files/fileops/delete`.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-folder/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **folderId** | **kotlin.String**| The folder to delete, together with everything it holds. | |
+| **deleteFolder** | [**DeleteFolder**](DeleteFolder.md)| How the deletion is to be carried out. | |
+
+### Return type
+
+[**FileOperationArrayWrapper**](FileOperationArrayWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(FoldersApi::class.java)
+val folderId : kotlin.String = 10 // kotlin.String | The folder to delete, together with everything it holds.
+val deleteFolder : DeleteFolder =  // DeleteFolder | How the deletion is to be carried out.
 
 launch(Dispatchers.IO) {
     val result : FileOperationArrayWrapper = webService.deleteFolder(folderId, deleteFolder)
@@ -301,14 +521,14 @@ launch(Dispatchers.IO) {
 # **generateXlsxByFolder**
 > XlsxReportResponseWrapper generateXlsxByFolder (kotlin.Int folderId)
 
-Triggers asynchronous XLSX report generation for the specified form results folder.
+Rebuilds the spreadsheet that gathers the answers submitted to a form, starting from the Complete folder  that holds the filled copies. The answer names the original form the results belong to, says in `isNewFile`  whether the spreadsheet is being created or an existing one rewritten in place, and carries the queued job in  `task`; the file itself is not ready yet, so poll `GET api/2.0/files/file/{fileId}/xlsx` with the identifier  of the form until the task reports completion. The folder has to be the Complete folder of a form-filling  room and has to hold at least one submitted copy whose original form still exists, and the caller needs the  right to maintain that form, which the room manager has. A folder that does not exist, or one that holds  nothing to report on, is answered with 404, and a folder of the wrong kind or a caller without those rights  with 403. The call is mutating: it writes the results file of the form.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/generate-xlsx-by-folder/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **folderId** | **kotlin.Int**| The folder unique identifier. | |
+| **folderId** | **kotlin.Int**| The folder the operation acts on. Take the identifier from a listing such as `GET api/2.0/files/@root` or  `GET api/2.0/files/{folderId}`: a folder stored in the portal is numbered, while a folder in a connected  third-party account is named by an opaque string. | |
 
 ### Return type
 
@@ -333,7 +553,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val folderId : kotlin.Int = 1 // kotlin.Int | The folder unique identifier.
+val folderId : kotlin.Int = 1 // kotlin.Int | The folder the operation acts on. Take the identifier from a listing such as `GET api/2.0/files/@root` or  `GET api/2.0/files/{folderId}`: a folder stored in the portal is numbered, while a folder in a connected  third-party account is named by an opaque string.
 
 launch(Dispatchers.IO) {
     val result : XlsxReportResponseWrapper = webService.generateXlsxByFolder(folderId)
@@ -348,26 +568,26 @@ launch(Dispatchers.IO) {
 
 <a id="getFavoritesFolder"></a>
 # **getFavoritesFolder**
-> FolderContentIntegerWrapper getFavoritesFolder (java.util.UUID userIdOrGroupId, FilterType filterType, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterValue)
+> FolderContentWrapper getFavoritesFolder (java.util.UUID userIdOrGroupId, FilterType filterType, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterValue)
 
-Returns the detailed list of files and folders located in the Favorites section.
+Returns the caller's own Favorites section: the files and folders this account has marked as favorite,  together with the section folder itself. Favorites are per-account, so the entries another member marked are  not listed here, and a guest sees only their own, usually empty, list. Mark a single file with  `GET api/2.0/files/favorites/{fileId}`, or add and remove batches of files and folders with  `POST api/2.0/files/favorites` and `DELETE api/2.0/files/favorites`. Nothing in the section is modified,  though passing `sortBy` saves the requested order as the default order for this account. Entries the caller  can no longer read, and entries that have been moved to the Trash section, drop out of the listing even  though their favorite mark stays, so the section can shrink without an explicit unmark. `folders` and `files`  hold one page of the section, `total` counts the entries matching the request before `count` and `startIndex`  are applied, and `current` describes the section folder itself.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-favorites-folder/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **userIdOrGroupId** | **java.util.UUID**| The user or group ID. | [optional] |
-| **filterType** | [**FilterType**](.md)| The filter type. | [optional] [enum: 0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 17, 20, 22, 23, 24, 25, 26] |
-| **count** | **kotlin.Int**| The maximum number of items to retrieve in the request. | [optional] |
-| **startIndex** | **kotlin.Int**| The zero-based index of the first item to retrieve in a paginated list. | [optional] |
-| **sortBy** | **kotlin.String**| Specifies the field by which the folder content should be sorted. | [optional] |
-| **sortOrder** | [**SortOrder**](.md)| The order in which the results are sorted. | [optional] [enum: 0, 1] |
-| **filterValue** | **kotlin.String**| The text used as a filter or search criterion for folder content queries. | [optional] |
+| **userIdOrGroupId** | **java.util.UUID**| Restricts the listing to the entries authored by this portal member, or by the members of this group; the same  parameter accepts either kind of identifier. Omit it to list everything the caller can read. | [optional] |
+| **filterType** | [**FilterType**](.md)| Narrows the listing to a single kind of entry, such as documents, images or one type of room. Omit it to list  every kind the section holds. | [optional] [enum: 0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 17, 20, 22, 23, 24, 25, 26] |
+| **count** | **kotlin.Int**| The size of one page of section content. Pair it with `startIndex` to walk the listing, and compare the two  with `total` in the response to see when the last page has been read. | [optional] |
+| **startIndex** | **kotlin.Int**| The number of matching entries to skip before the returned page begins; add `count` to it to ask for the next  page. | [optional] |
+| **sortBy** | **kotlin.String**| The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place. | [optional] |
+| **sortOrder** | [**SortOrder**](.md)| The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account. | [optional] [enum: 0, 1] |
+| **filterValue** | **kotlin.String**| The search string the section is filtered by: it is matched as a substring of entry titles and, for files,  against the indexed document content as well. Omit it to list the section unfiltered. | [optional] |
 
 ### Return type
 
-[**FolderContentIntegerWrapper**](FolderContentIntegerWrapper.md)
+[**FolderContentWrapper**](FolderContentWrapper.md)
 
 ### Authorization
 
@@ -388,16 +608,16 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val userIdOrGroupId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The user or group ID.
-val filterType : FilterType = 1 // FilterType | The filter type.
-val count : kotlin.Int = 25 // kotlin.Int | The maximum number of items to retrieve in the request.
-val startIndex : kotlin.Int = 0 // kotlin.Int | The zero-based index of the first item to retrieve in a paginated list.
-val sortBy : kotlin.String = DateAndTime // kotlin.String | Specifies the field by which the folder content should be sorted.
-val sortOrder : SortOrder = 1 // SortOrder | The order in which the results are sorted.
-val filterValue : kotlin.String = My Document // kotlin.String | The text used as a filter or search criterion for folder content queries.
+val userIdOrGroupId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | Restricts the listing to the entries authored by this portal member, or by the members of this group; the same  parameter accepts either kind of identifier. Omit it to list everything the caller can read.
+val filterType : FilterType = 1 // FilterType | Narrows the listing to a single kind of entry, such as documents, images or one type of room. Omit it to list  every kind the section holds.
+val count : kotlin.Int = 25 // kotlin.Int | The size of one page of section content. Pair it with `startIndex` to walk the listing, and compare the two  with `total` in the response to see when the last page has been read.
+val startIndex : kotlin.Int = 0 // kotlin.Int | The number of matching entries to skip before the returned page begins; add `count` to it to ask for the next  page.
+val sortBy : kotlin.String = DateAndTime // kotlin.String | The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place.
+val sortOrder : SortOrder = 1 // SortOrder | The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account.
+val filterValue : kotlin.String = My Document // kotlin.String | The search string the section is filtered by: it is matched as a substring of entry titles and, for files,  against the indexed document content as well. Omit it to list the section unfiltered.
 
 launch(Dispatchers.IO) {
-    val result : FolderContentIntegerWrapper = webService.getFavoritesFolder(userIdOrGroupId, filterType, count, startIndex, sortBy, sortOrder, filterValue)
+    val result : FolderContentWrapper = webService.getFavoritesFolder(userIdOrGroupId, filterType, count, startIndex, sortBy, sortOrder, filterValue)
 }
 ```
 
@@ -411,7 +631,7 @@ launch(Dispatchers.IO) {
 # **getFilesUsedSpace**
 > FilesStatisticsResultWrapper getFilesUsedSpace ()
 
-Returns the used space of files in the root folders.
+Reports how much storage the portal spends on documents, split by section - My documents, Trash, Rooms,  Archive and, where the feature is on, AI agents - each entry naming the section and the space it takes in  bytes. The figures cover the whole portal rather than the calling account, and moving an entry between  sections moves its space with it, which is why deleting a file to the Trash does not free anything until the  Trash is emptied. Only a caller who may change portal settings, that is the owner and the portal  administrators, is allowed here; a room administrator, an ordinary member and a guest are all refused. The  call is read-only, takes no parameters and answers with the sections in a fixed order. The quota of the portal  as a whole, storage outside documents included, is not part of this answer.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-files-used-space/).
 
@@ -457,14 +677,14 @@ launch(Dispatchers.IO) {
 # **getFolder**
 > FormsItemArrayWrapper getFolder (kotlin.Int folderId)
 
-Returns the form filter of a folder with the ID specified in the request.
+Lists the fields the completed forms of a form-filling room carry, each of them a key and the kind of value  behind it, so that a client can offer them as filters. Feed a pair from this list back as `formsItemKey` and  `formsItemType` of `GET api/2.0/files/{folderId}` to keep only the completed forms whose field of that name  holds a value. The fields are read from the search index of one of the forms already gathered, so they appear  once indexing has caught up with the first submission. Only the Complete folder of a form-filling room  carries such fields: for any other folder, for a folder that does not exist and for one that has been deleted  the answer is an empty list rather than a refusal, and the same holds while nothing has been submitted yet.  The operation reads the index alone, changes nothing and needs no authorization.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **folderId** | **kotlin.Int**| The folder unique identifier. | |
+| **folderId** | **kotlin.Int**| The folder the operation acts on. Take the identifier from a listing such as `GET api/2.0/files/@root` or  `GET api/2.0/files/{folderId}`: a folder stored in the portal is numbered, while a folder in a connected  third-party account is named by an opaque string. | |
 
 ### Return type
 
@@ -472,7 +692,9 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Authorization
 
-No authorization required
+
+Configure bearerAuth:
+    ApiClient().setBearerToken("TOKEN")
 
 ### Example
 ```kotlin
@@ -482,8 +704,9 @@ No authorization required
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
+apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val folderId : kotlin.Int = 1 // kotlin.Int | The folder unique identifier.
+val folderId : kotlin.Int = 1 // kotlin.Int | The folder the operation acts on. Take the identifier from a listing such as `GET api/2.0/files/@root` or  `GET api/2.0/files/{folderId}`: a folder stored in the portal is numbered, while a folder in a connected  third-party account is named by an opaque string.
 
 launch(Dispatchers.IO) {
     val result : FormsItemArrayWrapper = webService.getFolder(folderId)
@@ -498,42 +721,44 @@ launch(Dispatchers.IO) {
 
 <a id="getFolderByFolderId"></a>
 # **getFolderByFolderId**
-> FolderContentIntegerWrapper getFolderByFolderId (kotlin.Int folderId, java.util.UUID userIdOrGroupId, java.util.UUID sharedBy, FilterType filterType, kotlin.Int roomId, kotlin.collections.List<kotlin.Int> folderType, kotlin.Boolean excludeSubject, ApplyFilterOption applyFilterOption, kotlin.Boolean withSubFolders, kotlin.String extension, SearchArea searchArea, kotlin.String formsItemKey, kotlin.String formsItemType, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterValue, Location location)
+> FolderContentWrapper getFolderByFolderId (kotlin.Int folderId, java.util.UUID userIdOrGroupId, java.util.UUID sharedBy, FilterType filterType, kotlin.Int roomId, kotlin.collections.List<kotlin.Int> folderType, kotlin.Boolean excludeSubject, ApplyFilterOption applyFilterOption, kotlin.Boolean withSubFolders, kotlin.String extension, SearchArea searchArea, kotlin.String formsItemKey, kotlin.String formsItemType, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterValue, Location location)
 
-Returns the detailed list of files and folders located in the folder with the ID specified in the request.
+Returns one page of the contents of a folder - its subfolders in `folders`, its files in `files`, the folder  itself in `current` and the chain of parents in `pathParts` - and is the operation a client browses the file  tree with. `filterType`, `filterValue`, `extension`, `userIdOrGroupId`, `sharedBy` and `folderType` narrow  what is listed, `applyFilterOption` decides whether those filters bite on the files, on the folders or on  both, and `withSubFolders`, which is on unless it is switched off, lets a narrowed request descend through the  whole subtree instead of the top level alone. `filterValue` is matched against titles and against indexed  document content, and indexing is asynchronous, so a file uploaded a moment ago can be missing from a search  for a short while. `count` and `startIndex` page through the result while `total` counts everything that  matches, and `sortBy` with `sortOrder` both order the page and are saved as the default order of the account.  Reading a room or an ordinary folder clears its new-item marks for the caller. A caller who may not read the  folder is answered with 403, and a folder that does not exist with 404.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-by-folder-id/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **folderId** | **kotlin.Int**| The folder ID. | |
-| **userIdOrGroupId** | **java.util.UUID**| The user or group ID. | [optional] |
-| **sharedBy** | **java.util.UUID**| The identifier of the user who shared the folder or file. | [optional] |
-| **filterType** | [**FilterType**](.md)| The filter type. | [optional] [enum: 0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 17, 20, 22, 23, 24, 25, 26] |
-| **roomId** | **kotlin.Int**| The room ID. | [optional] |
-| **folderType** | [**kotlin.collections.List&lt;kotlin.Int&gt;**](kotlin.Int.md)| The parent folder types used to filter the folder contents by folder type. | [optional] [enum: 0, 1, 2, 3, 5, 6, 8, 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36] |
-| **excludeSubject** | **kotlin.Boolean**| Specifies whether to exclude search by user or group ID. | [optional] |
-| **applyFilterOption** | [**ApplyFilterOption**](.md)| Specifies whether to return only files, only folders, or all elements from the specified folder. | [optional] [enum: 0, 1, 2] |
-| **withSubFolders** | **kotlin.Boolean**| Specifies whether to include files from subfolders in the results. | [optional] |
-| **extension** | **kotlin.String**| Specifies whether to search for the specific file extension. | [optional] |
-| **searchArea** | [**SearchArea**](.md)| The search area. | [optional] [enum: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9] |
-| **formsItemKey** | **kotlin.String**| The forms item key. | [optional] |
-| **formsItemType** | **kotlin.String**| The forms item type. | [optional] |
-| **count** | **kotlin.Int**| The maximum number of items to retrieve in the request. | [optional] |
-| **startIndex** | **kotlin.Int**| The zero-based index of the first item to retrieve in a paginated request. | [optional] |
-| **sortBy** | **kotlin.String**| The property used for sorting the folder request results. | [optional] |
-| **sortOrder** | [**SortOrder**](.md)| The order in which the results are sorted. | [optional] [enum: 0, 1] |
-| **filterValue** | **kotlin.String**| The text value used as a filter parameter for folder content queries. | [optional] |
-| **location** | [**Location**](.md)| The location context of the request, specifying the area  where the operation is performed, such as a room, documents, or a link. | [optional] [enum: 1, 2, 3] |
+| **folderId** | **kotlin.Int**| The folder whose contents are listed. Each section root has an operation of its own, such as  `GET api/2.0/files/@my`, and every other folder is opened by the identifier a listing gave for it. | |
+| **userIdOrGroupId** | **java.util.UUID**| Restricts the listing to the entries authored by this portal member, or by the members of this group; the same  parameter accepts either kind of identifier. Omit it to list everything the caller can read. | [optional] |
+| **sharedBy** | **java.util.UUID**| Restricts the listing to the entries this member shared, which narrows a shared listing down to what one  person handed out. | [optional] |
+| **filterType** | [**FilterType**](.md)| Narrows the listing to a single kind of entry, such as documents, spreadsheets, images or one type of room.  Omit it to list every kind the folder holds. | [optional] [enum: 0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 17, 20, 22, 23, 24, 25, 26] |
+| **roomId** | **kotlin.Int**| Keeps only the entries that lie in this room, which matters when the listing being read gathers entries from  more than one of them. | [optional] |
+| **folderType** | [**kotlin.collections.List&lt;kotlin.Int&gt;**](kotlin.Int.md)| Keeps only the folders of these kinds, each given as the number of a folder type; it is how a listing is  narrowed down to, say, the form-filling folders of a room. | [optional] [enum: 0, 1, 2, 3, 5, 6, 8, 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36] |
+| **excludeSubject** | **kotlin.Boolean**| Turns `userIdOrGroupId` around: with true the entries of that member or group are the ones left out, with  false they are the only ones kept. | [optional] |
+| **applyFilterOption** | [**ApplyFilterOption**](.md)| Chooses which half of the listing `filterType` and `filterValue` are applied to: with `Files` the folders come  back unfiltered, with `Folders` the files do, and with `All` both halves are filtered. | [optional] [enum: 0, 1, 2] |
+| **withSubFolders** | **kotlin.Boolean**| Whether a narrowed request reaches into the subfolders: with true, which is what an omitted parameter means,  matching entries are gathered from the whole subtree, with false only the top level is read. It makes a  difference only once `filterType`, `userIdOrGroupId` or `filterValue` narrows the request, because an  unfiltered listing always shows the top level alone. | [optional] |
+| **extension** | **kotlin.String**| Keeps only the files carrying one of these extensions, several of them separated by commas; the leading dot is  optional. | [optional] |
+| **searchArea** | [**SearchArea**](.md)| Which area a listing that spans several of them is taken from - the active rooms, the archive, the room  templates or the form-filling rooms. A folder that belongs to one area only settles the area itself and  ignores the parameter. | [optional] [enum: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9] |
+| **formsItemKey** | **kotlin.String**| Keeps only the completed forms whose form field of this name holds a value. Take the name from  `GET api/2.0/files/{folderId}/formfilter`, and use it in the folder that gathers the completed copies of a  form-filling room. | [optional] |
+| **formsItemType** | **kotlin.String**| The kind of the form field named by `formsItemKey`, taken from the same list; the two are sent together. | [optional] |
+| **count** | **kotlin.Int**| The size of one page of the listing. Pair it with `startIndex` to walk through the result, and compare the two  with `total` in the response to see when the last page has been read. | [optional] |
+| **startIndex** | **kotlin.Int**| The number of matching entries to skip before the returned page begins; add `count` to it to ask for the next  page. | [optional] |
+| **sortBy** | **kotlin.String**| The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place. | [optional] |
+| **sortOrder** | [**SortOrder**](.md)| The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account. | [optional] [enum: 0, 1] |
+| **filterValue** | **kotlin.String**| The search string the listing is filtered by: it is matched as a substring of entry titles and, for files,  against the indexed document content as well. Omit it to list the folder unfiltered. | [optional] |
+| **location** | [**Location**](.md)| Where the entries of a tag-based listing have to live to be kept: `Room` keeps what lies in a room,  `Documents` what lies in a personal section, and `Link` what was reached through an external link that is  still valid. It shapes the Favorites and Recent listings and does nothing in an ordinary folder. | [optional] [enum: 1, 2, 3] |
 
 ### Return type
 
-[**FolderContentIntegerWrapper**](FolderContentIntegerWrapper.md)
+[**FolderContentWrapper**](FolderContentWrapper.md)
 
 ### Authorization
 
-No authorization required
+
+Configure bearerAuth:
+    ApiClient().setBearerToken("TOKEN")
 
 ### Example
 ```kotlin
@@ -543,29 +768,112 @@ No authorization required
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
+apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val folderId : kotlin.Int = 1 // kotlin.Int | The folder ID.
-val userIdOrGroupId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The user or group ID.
-val sharedBy : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The identifier of the user who shared the folder or file.
-val filterType : FilterType = 1 // FilterType | The filter type.
-val roomId : kotlin.Int = 1 // kotlin.Int | The room ID.
-val folderType : kotlin.collections.List<kotlin.Int> = [2] // kotlin.collections.List<kotlin.Int> | The parent folder types used to filter the folder contents by folder type.
-val excludeSubject : kotlin.Boolean = false // kotlin.Boolean | Specifies whether to exclude search by user or group ID.
-val applyFilterOption : ApplyFilterOption = 1 // ApplyFilterOption | Specifies whether to return only files, only folders, or all elements from the specified folder.
-val withSubFolders : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to include files from subfolders in the results.
-val extension : kotlin.String = .docx // kotlin.String | Specifies whether to search for the specific file extension.
-val searchArea : SearchArea = 1 // SearchArea | The search area.
-val formsItemKey : kotlin.String = doc_key_123 // kotlin.String | The forms item key.
-val formsItemType : kotlin.String = text // kotlin.String | The forms item type.
-val count : kotlin.Int = 25 // kotlin.Int | The maximum number of items to retrieve in the request.
-val startIndex : kotlin.Int = 0 // kotlin.Int | The zero-based index of the first item to retrieve in a paginated request.
-val sortBy : kotlin.String = DateAndTime // kotlin.String | The property used for sorting the folder request results.
-val sortOrder : SortOrder = 1 // SortOrder | The order in which the results are sorted.
-val filterValue : kotlin.String = My Document // kotlin.String | The text value used as a filter parameter for folder content queries.
-val location : Location = 1 // Location | The location context of the request, specifying the area  where the operation is performed, such as a room, documents, or a link.
+val folderId : kotlin.Int = 1 // kotlin.Int | The folder whose contents are listed. Each section root has an operation of its own, such as  `GET api/2.0/files/@my`, and every other folder is opened by the identifier a listing gave for it.
+val userIdOrGroupId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | Restricts the listing to the entries authored by this portal member, or by the members of this group; the same  parameter accepts either kind of identifier. Omit it to list everything the caller can read.
+val sharedBy : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | Restricts the listing to the entries this member shared, which narrows a shared listing down to what one  person handed out.
+val filterType : FilterType = 1 // FilterType | Narrows the listing to a single kind of entry, such as documents, spreadsheets, images or one type of room.  Omit it to list every kind the folder holds.
+val roomId : kotlin.Int = 1 // kotlin.Int | Keeps only the entries that lie in this room, which matters when the listing being read gathers entries from  more than one of them.
+val folderType : kotlin.collections.List<kotlin.Int> = [2] // kotlin.collections.List<kotlin.Int> | Keeps only the folders of these kinds, each given as the number of a folder type; it is how a listing is  narrowed down to, say, the form-filling folders of a room.
+val excludeSubject : kotlin.Boolean = false // kotlin.Boolean | Turns `userIdOrGroupId` around: with true the entries of that member or group are the ones left out, with  false they are the only ones kept.
+val applyFilterOption : ApplyFilterOption = 1 // ApplyFilterOption | Chooses which half of the listing `filterType` and `filterValue` are applied to: with `Files` the folders come  back unfiltered, with `Folders` the files do, and with `All` both halves are filtered.
+val withSubFolders : kotlin.Boolean = true // kotlin.Boolean | Whether a narrowed request reaches into the subfolders: with true, which is what an omitted parameter means,  matching entries are gathered from the whole subtree, with false only the top level is read. It makes a  difference only once `filterType`, `userIdOrGroupId` or `filterValue` narrows the request, because an  unfiltered listing always shows the top level alone.
+val extension : kotlin.String = docx,pdf // kotlin.String | Keeps only the files carrying one of these extensions, several of them separated by commas; the leading dot is  optional.
+val searchArea : SearchArea = 1 // SearchArea | Which area a listing that spans several of them is taken from - the active rooms, the archive, the room  templates or the form-filling rooms. A folder that belongs to one area only settles the area itself and  ignores the parameter.
+val formsItemKey : kotlin.String = first_name // kotlin.String | Keeps only the completed forms whose form field of this name holds a value. Take the name from  `GET api/2.0/files/{folderId}/formfilter`, and use it in the folder that gathers the completed copies of a  form-filling room.
+val formsItemType : kotlin.String = text // kotlin.String | The kind of the form field named by `formsItemKey`, taken from the same list; the two are sent together.
+val count : kotlin.Int = 25 // kotlin.Int | The size of one page of the listing. Pair it with `startIndex` to walk through the result, and compare the two  with `total` in the response to see when the last page has been read.
+val startIndex : kotlin.Int = 0 // kotlin.Int | The number of matching entries to skip before the returned page begins; add `count` to it to ask for the next  page.
+val sortBy : kotlin.String = DateAndTime // kotlin.String | The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place.
+val sortOrder : SortOrder = 1 // SortOrder | The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account.
+val filterValue : kotlin.String = My Document // kotlin.String | The search string the listing is filtered by: it is matched as a substring of entry titles and, for files,  against the indexed document content as well. Omit it to list the folder unfiltered.
+val location : Location = 1 // Location | Where the entries of a tag-based listing have to live to be kept: `Room` keeps what lies in a room,  `Documents` what lies in a personal section, and `Link` what was reached through an external link that is  still valid. It shapes the Favorites and Recent listings and does nothing in an ordinary folder.
 
 launch(Dispatchers.IO) {
-    val result : FolderContentIntegerWrapper = webService.getFolderByFolderId(folderId, userIdOrGroupId, sharedBy, filterType, roomId, folderType, excludeSubject, applyFilterOption, withSubFolders, extension, searchArea, formsItemKey, formsItemType, count, startIndex, sortBy, sortOrder, filterValue, location)
+    val result : FolderContentWrapper = webService.getFolderByFolderId(folderId, userIdOrGroupId, sharedBy, filterType, roomId, folderType, excludeSubject, applyFilterOption, withSubFolders, extension, searchArea, formsItemKey, formsItemType, count, startIndex, sortBy, sortOrder, filterValue, location)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+<a id="getFolderByFolderId-thirdparty"></a>
+# **getFolderByFolderId** (third-party storage)
+> ThirdPartyFolderContentWrapper getFolderByFolderId (kotlin.String folderId, java.util.UUID userIdOrGroupId, java.util.UUID sharedBy, FilterType filterType, kotlin.String roomId, kotlin.collections.List<kotlin.Int> folderType, kotlin.Boolean excludeSubject, ApplyFilterOption applyFilterOption, kotlin.Boolean withSubFolders, kotlin.String extension, SearchArea searchArea, kotlin.String formsItemKey, kotlin.String formsItemType, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterValue, Location location)
+
+Returns one page of the contents of a folder - its subfolders in `folders`, its files in `files`, the folder  itself in `current` and the chain of parents in `pathParts` - and is the operation a client browses the file  tree with. `filterType`, `filterValue`, `extension`, `userIdOrGroupId`, `sharedBy` and `folderType` narrow  what is listed, `applyFilterOption` decides whether those filters bite on the files, on the folders or on  both, and `withSubFolders`, which is on unless it is switched off, lets a narrowed request descend through the  whole subtree instead of the top level alone. `filterValue` is matched against titles and against indexed  document content, and indexing is asynchronous, so a file uploaded a moment ago can be missing from a search  for a short while. `count` and `startIndex` page through the result while `total` counts everything that  matches, and `sortBy` with `sortOrder` both order the page and are saved as the default order of the account.  Reading a room or an ordinary folder clears its new-item marks for the caller. A caller who may not read the  folder is answered with 403, and a folder that does not exist with 404.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-by-folder-id/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **folderId** | **kotlin.String**| The folder whose contents are listed. Each section root has an operation of its own, such as  `GET api/2.0/files/@my`, and every other folder is opened by the identifier a listing gave for it. | |
+| **userIdOrGroupId** | **java.util.UUID**| Restricts the listing to the entries authored by this portal member, or by the members of this group; the same  parameter accepts either kind of identifier. Omit it to list everything the caller can read. | [optional] |
+| **sharedBy** | **java.util.UUID**| Restricts the listing to the entries this member shared, which narrows a shared listing down to what one  person handed out. | [optional] |
+| **filterType** | [**FilterType**](.md)| Narrows the listing to a single kind of entry, such as documents, spreadsheets, images or one type of room.  Omit it to list every kind the folder holds. | [optional] [enum: 0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 17, 20, 22, 23, 24, 25, 26] |
+| **roomId** | **kotlin.String**| Keeps only the entries that lie in this room, which matters when the listing being read gathers entries from  more than one of them. | [optional] |
+| **folderType** | [**kotlin.collections.List&lt;kotlin.Int&gt;**](kotlin.Int.md)| Keeps only the folders of these kinds, each given as the number of a folder type; it is how a listing is  narrowed down to, say, the form-filling folders of a room. | [optional] [enum: 0, 1, 2, 3, 5, 6, 8, 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36] |
+| **excludeSubject** | **kotlin.Boolean**| Turns `userIdOrGroupId` around: with true the entries of that member or group are the ones left out, with  false they are the only ones kept. | [optional] |
+| **applyFilterOption** | [**ApplyFilterOption**](.md)| Chooses which half of the listing `filterType` and `filterValue` are applied to: with `Files` the folders come  back unfiltered, with `Folders` the files do, and with `All` both halves are filtered. | [optional] [enum: 0, 1, 2] |
+| **withSubFolders** | **kotlin.Boolean**| Whether a narrowed request reaches into the subfolders: with true, which is what an omitted parameter means,  matching entries are gathered from the whole subtree, with false only the top level is read. It makes a  difference only once `filterType`, `userIdOrGroupId` or `filterValue` narrows the request, because an  unfiltered listing always shows the top level alone. | [optional] |
+| **extension** | **kotlin.String**| Keeps only the files carrying one of these extensions, several of them separated by commas; the leading dot is  optional. | [optional] |
+| **searchArea** | [**SearchArea**](.md)| Which area a listing that spans several of them is taken from - the active rooms, the archive, the room  templates or the form-filling rooms. A folder that belongs to one area only settles the area itself and  ignores the parameter. | [optional] [enum: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9] |
+| **formsItemKey** | **kotlin.String**| Keeps only the completed forms whose form field of this name holds a value. Take the name from  `GET api/2.0/files/{folderId}/formfilter`, and use it in the folder that gathers the completed copies of a  form-filling room. | [optional] |
+| **formsItemType** | **kotlin.String**| The kind of the form field named by `formsItemKey`, taken from the same list; the two are sent together. | [optional] |
+| **count** | **kotlin.Int**| The size of one page of the listing. Pair it with `startIndex` to walk through the result, and compare the two  with `total` in the response to see when the last page has been read. | [optional] |
+| **startIndex** | **kotlin.Int**| The number of matching entries to skip before the returned page begins; add `count` to it to ask for the next  page. | [optional] |
+| **sortBy** | **kotlin.String**| The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place. | [optional] |
+| **sortOrder** | [**SortOrder**](.md)| The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account. | [optional] [enum: 0, 1] |
+| **filterValue** | **kotlin.String**| The search string the listing is filtered by: it is matched as a substring of entry titles and, for files,  against the indexed document content as well. Omit it to list the folder unfiltered. | [optional] |
+| **location** | [**Location**](.md)| Where the entries of a tag-based listing have to live to be kept: `Room` keeps what lies in a room,  `Documents` what lies in a personal section, and `Link` what was reached through an external link that is  still valid. It shapes the Favorites and Recent listings and does nothing in an ordinary folder. | [optional] [enum: 1, 2, 3] |
+
+### Return type
+
+[**ThirdPartyFolderContentWrapper**](ThirdPartyFolderContentWrapper.md)
+
+### Authorization
+
+
+Configure bearerAuth:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(FoldersApi::class.java)
+val folderId : kotlin.String = 1 // kotlin.String | The folder whose contents are listed. Each section root has an operation of its own, such as  `GET api/2.0/files/@my`, and every other folder is opened by the identifier a listing gave for it.
+val userIdOrGroupId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | Restricts the listing to the entries authored by this portal member, or by the members of this group; the same  parameter accepts either kind of identifier. Omit it to list everything the caller can read.
+val sharedBy : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | Restricts the listing to the entries this member shared, which narrows a shared listing down to what one  person handed out.
+val filterType : FilterType = 1 // FilterType | Narrows the listing to a single kind of entry, such as documents, spreadsheets, images or one type of room.  Omit it to list every kind the folder holds.
+val roomId : kotlin.String = 1 // kotlin.String | Keeps only the entries that lie in this room, which matters when the listing being read gathers entries from  more than one of them.
+val folderType : kotlin.collections.List<kotlin.Int> = [2] // kotlin.collections.List<kotlin.Int> | Keeps only the folders of these kinds, each given as the number of a folder type; it is how a listing is  narrowed down to, say, the form-filling folders of a room.
+val excludeSubject : kotlin.Boolean = false // kotlin.Boolean | Turns `userIdOrGroupId` around: with true the entries of that member or group are the ones left out, with  false they are the only ones kept.
+val applyFilterOption : ApplyFilterOption = 1 // ApplyFilterOption | Chooses which half of the listing `filterType` and `filterValue` are applied to: with `Files` the folders come  back unfiltered, with `Folders` the files do, and with `All` both halves are filtered.
+val withSubFolders : kotlin.Boolean = true // kotlin.Boolean | Whether a narrowed request reaches into the subfolders: with true, which is what an omitted parameter means,  matching entries are gathered from the whole subtree, with false only the top level is read. It makes a  difference only once `filterType`, `userIdOrGroupId` or `filterValue` narrows the request, because an  unfiltered listing always shows the top level alone.
+val extension : kotlin.String = docx,pdf // kotlin.String | Keeps only the files carrying one of these extensions, several of them separated by commas; the leading dot is  optional.
+val searchArea : SearchArea = 1 // SearchArea | Which area a listing that spans several of them is taken from - the active rooms, the archive, the room  templates or the form-filling rooms. A folder that belongs to one area only settles the area itself and  ignores the parameter.
+val formsItemKey : kotlin.String = first_name // kotlin.String | Keeps only the completed forms whose form field of this name holds a value. Take the name from  `GET api/2.0/files/{folderId}/formfilter`, and use it in the folder that gathers the completed copies of a  form-filling room.
+val formsItemType : kotlin.String = text // kotlin.String | The kind of the form field named by `formsItemKey`, taken from the same list; the two are sent together.
+val count : kotlin.Int = 25 // kotlin.Int | The size of one page of the listing. Pair it with `startIndex` to walk through the result, and compare the two  with `total` in the response to see when the last page has been read.
+val startIndex : kotlin.Int = 0 // kotlin.Int | The number of matching entries to skip before the returned page begins; add `count` to it to ask for the next  page.
+val sortBy : kotlin.String = DateAndTime // kotlin.String | The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place.
+val sortOrder : SortOrder = 1 // SortOrder | The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account.
+val filterValue : kotlin.String = My Document // kotlin.String | The search string the listing is filtered by: it is matched as a substring of entry titles and, for files,  against the indexed document content as well. Omit it to list the folder unfiltered.
+val location : Location = 1 // Location | Where the entries of a tag-based listing have to live to be kept: `Room` keeps what lies in a room,  `Documents` what lies in a personal section, and `Link` what was reached through an external link that is  still valid. It shapes the Favorites and Recent listings and does nothing in an ordinary folder.
+
+launch(Dispatchers.IO) {
+    val result : ThirdPartyFolderContentWrapper = webService.getFolderByFolderId(folderId, userIdOrGroupId, sharedBy, filterType, roomId, folderType, excludeSubject, applyFilterOption, withSubFolders, extension, searchArea, formsItemKey, formsItemType, count, startIndex, sortBy, sortOrder, filterValue, location)
 }
 ```
 
@@ -579,18 +887,18 @@ launch(Dispatchers.IO) {
 # **getFolderHistory**
 > HistoryArrayWrapper getFolderHistory (kotlin.Int folderId, java.time.OffsetDateTime fromDate, java.time.OffsetDateTime toDate, kotlin.Int count, kotlin.Int startIndex)
 
-Returns the activity history of a folder with a specified identifier.
+Lists what has happened to a folder and to the entries inside it - creations, renames, uploads, moves,  deletions and changes of access - each record naming the action, the moment it happened and the member behind  it. Records that belong to one action are grouped, so a batch arrives as a single entry carrying the rest of  itself in `related`, and the list runs from the most recent record backwards. `fromDate` and `toDate` narrow  the period, `startIndex` and `count` page through the result, and the number of records matching the request  is reported in the response headers rather than in the body. Any member who can read the folder may read its  history; a caller without access is answered with 403 and a folder that does not exist with 404. When the  folder is a form-filling folder the caller reached through a filling invitation, the history is narrowed to  what that caller may see. The call is read-only. To take the same history away as a spreadsheet, start a  report with `POST api/2.0/files/folder/{folderId}/log/report`.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-history/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **folderId** | **kotlin.Int**| The folder ID of the history request. | |
-| **fromDate** | **java.time.OffsetDateTime**| The start date of the history request. | [optional] |
-| **toDate** | **java.time.OffsetDateTime**| The end date of the history request. | [optional] |
-| **count** | **kotlin.Int**| The number of records to retrieve for the folder history. | [optional] |
-| **startIndex** | **kotlin.Int**| The starting index from which the history records are retrieved in the request. | [optional] |
+| **folderId** | **kotlin.Int**| The folder whose activity log is read; the log covers the folder itself and the entries inside it. | |
+| **fromDate** | **java.time.OffsetDateTime**| The earliest moment an entry may have, read in the time zone of the portal; left out, the log starts at the  oldest entry the portal still keeps. | [optional] |
+| **toDate** | **java.time.OffsetDateTime**| The latest moment an entry may have, read in the time zone of the portal; left out, the log ends at the newest  entry. | [optional] |
+| **count** | **kotlin.Int**| How many entries one page holds. The number of entries that match the query is reported in the response  headers, not in the body. | [optional] |
+| **startIndex** | **kotlin.Int**| How many entries to skip before the page begins, counted from the newest one, so pages are taken by adding the  page size to it. | [optional] |
 
 ### Return type
 
@@ -615,11 +923,11 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val folderId : kotlin.Int = 1 // kotlin.Int | The folder ID of the history request.
-val fromDate : java.time.OffsetDateTime = 2025-01-01T00:00:00.0000000Z // java.time.OffsetDateTime | The start date of the history request.
-val toDate : java.time.OffsetDateTime = 2025-12-31T23:59:59.0000000Z // java.time.OffsetDateTime | The end date of the history request.
-val count : kotlin.Int = 25 // kotlin.Int | The number of records to retrieve for the folder history.
-val startIndex : kotlin.Int = 0 // kotlin.Int | The starting index from which the history records are retrieved in the request.
+val folderId : kotlin.Int = 1 // kotlin.Int | The folder whose activity log is read; the log covers the folder itself and the entries inside it.
+val fromDate : java.time.OffsetDateTime = 2025-01-01T00:00:00.0000000Z // java.time.OffsetDateTime | The earliest moment an entry may have, read in the time zone of the portal; left out, the log starts at the  oldest entry the portal still keeps.
+val toDate : java.time.OffsetDateTime = 2025-12-31T23:59:59.0000000Z // java.time.OffsetDateTime | The latest moment an entry may have, read in the time zone of the portal; left out, the log ends at the newest  entry.
+val count : kotlin.Int = 25 // kotlin.Int | How many entries one page holds. The number of entries that match the query is reported in the response  headers, not in the body.
+val startIndex : kotlin.Int = 0 // kotlin.Int | How many entries to skip before the page begins, counted from the newest one, so pages are taken by adding the  page size to it.
 
 launch(Dispatchers.IO) {
     val result : HistoryArrayWrapper = webService.getFolderHistory(folderId, fromDate, toDate, count, startIndex)
@@ -634,24 +942,26 @@ launch(Dispatchers.IO) {
 
 <a id="getFolderInfo"></a>
 # **getFolderInfo**
-> FolderIntegerWrapper getFolderInfo (kotlin.Int folderId)
+> FolderWrapper getFolderInfo (kotlin.Int folderId)
 
-Returns the detailed information about a folder with the ID specified in the request.
+Returns one folder as an object - its title, its parent, the moments it was created and last changed, the  access the caller has to it, the number of items that are new for them, and the room settings when the folder  is a room - without listing anything inside it. Use it to resolve a folder identifier into something  displayable, and `GET api/2.0/files/{folderId}` when the contents are what is wanted; unlike that operation,  this one leaves the new-item marks of the folder alone. Any member who can read the folder may call it, and an  anonymous caller only through an external link that grants access, everybody else being refused; a folder that  does not exist is answered as not found. The call is read-only. The chain of parents above the folder is not  part of the answer and is read with `GET api/2.0/files/folder/{folderId}/path`.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-info/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **folderId** | **kotlin.Int**| The folder unique identifier. | |
+| **folderId** | **kotlin.Int**| The folder the operation acts on. Take the identifier from a listing such as `GET api/2.0/files/@root` or  `GET api/2.0/files/{folderId}`: a folder stored in the portal is numbered, while a folder in a connected  third-party account is named by an opaque string. | |
 
 ### Return type
 
-[**FolderIntegerWrapper**](FolderIntegerWrapper.md)
+[**FolderWrapper**](FolderWrapper.md)
 
 ### Authorization
 
-No authorization required
+
+Configure bearerAuth:
+    ApiClient().setBearerToken("TOKEN")
 
 ### Example
 ```kotlin
@@ -661,11 +971,58 @@ No authorization required
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
+apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val folderId : kotlin.Int = 1 // kotlin.Int | The folder unique identifier.
+val folderId : kotlin.Int = 1 // kotlin.Int | The folder the operation acts on. Take the identifier from a listing such as `GET api/2.0/files/@root` or  `GET api/2.0/files/{folderId}`: a folder stored in the portal is numbered, while a folder in a connected  third-party account is named by an opaque string.
 
 launch(Dispatchers.IO) {
-    val result : FolderIntegerWrapper = webService.getFolderInfo(folderId)
+    val result : FolderWrapper = webService.getFolderInfo(folderId)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+<a id="getFolderInfo-thirdparty"></a>
+# **getFolderInfo** (third-party storage)
+> ThirdPartyFolderWrapper getFolderInfo (kotlin.String folderId)
+
+Returns one folder as an object - its title, its parent, the moments it was created and last changed, the  access the caller has to it, the number of items that are new for them, and the room settings when the folder  is a room - without listing anything inside it. Use it to resolve a folder identifier into something  displayable, and `GET api/2.0/files/{folderId}` when the contents are what is wanted; unlike that operation,  this one leaves the new-item marks of the folder alone. Any member who can read the folder may call it, and an  anonymous caller only through an external link that grants access, everybody else being refused; a folder that  does not exist is answered as not found. The call is read-only. The chain of parents above the folder is not  part of the answer and is read with `GET api/2.0/files/folder/{folderId}/path`.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-info/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **folderId** | **kotlin.String**| The folder the operation acts on. Take the identifier from a listing such as `GET api/2.0/files/@root` or  `GET api/2.0/files/{folderId}`: a folder stored in the portal is numbered, while a folder in a connected  third-party account is named by an opaque string. | |
+
+### Return type
+
+[**ThirdPartyFolderWrapper**](ThirdPartyFolderWrapper.md)
+
+### Authorization
+
+
+Configure bearerAuth:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(FoldersApi::class.java)
+val folderId : kotlin.String = 1 // kotlin.String | The folder the operation acts on. Take the identifier from a listing such as `GET api/2.0/files/@root` or  `GET api/2.0/files/{folderId}`: a folder stored in the portal is numbered, while a folder in a connected  third-party account is named by an opaque string.
+
+launch(Dispatchers.IO) {
+    val result : ThirdPartyFolderWrapper = webService.getFolderInfo(folderId)
 }
 ```
 
@@ -679,14 +1036,14 @@ launch(Dispatchers.IO) {
 # **getFolderLinks**
 > FileShareArrayWrapper getFolderLinks (kotlin.Int id)
 
-Returns the links of the folder with the ID specified in the request.
+Lists the external links of a folder or a room, each with its identifier, title, address, rights, expiration  date, password flag and download restriction, the primary link among them once it exists. At most the first  hundred links are answered and the number returned is reported in the response headers; there are no paging  parameters here. A folder that has never been shared by link answers with an empty list, and so does a member  who may read the folder but not manage its links - the empty answer therefore means nothing to show you  rather than no links exist. A member without access to the room is refused, an anonymous caller is rejected,  and a folder that does not exist is answered as not found. The call is read-only. Take an identifier from here  to `PUT api/2.0/files/folder/{id}/links` to change or remove that link, and read the primary one alone with  `GET api/2.0/files/folder/{id}/link`.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-links/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **id** | **kotlin.Int**| The folder ID. | |
+| **id** | **kotlin.Int**| The folder or room whose external links are listed. | |
 
 ### Return type
 
@@ -711,7 +1068,56 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val id : kotlin.Int = 1 // kotlin.Int | The folder ID.
+val id : kotlin.Int = 1 // kotlin.Int | The folder or room whose external links are listed.
+
+launch(Dispatchers.IO) {
+    val result : FileShareArrayWrapper = webService.getFolderLinks(id)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+<a id="getFolderLinks-thirdparty"></a>
+# **getFolderLinks** (third-party storage)
+> FileShareArrayWrapper getFolderLinks (kotlin.String id)
+
+Lists the external links of a folder or a room, each with its identifier, title, address, rights, expiration  date, password flag and download restriction, the primary link among them once it exists. At most the first  hundred links are answered and the number returned is reported in the response headers; there are no paging  parameters here. A folder that has never been shared by link answers with an empty list, and so does a member  who may read the folder but not manage its links - the empty answer therefore means nothing to show you  rather than no links exist. A member without access to the room is refused, an anonymous caller is rejected,  and a folder that does not exist is answered as not found. The call is read-only. Take an identifier from here  to `PUT api/2.0/files/folder/{id}/links` to change or remove that link, and read the primary one alone with  `GET api/2.0/files/folder/{id}/link`.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-links/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **kotlin.String**| The folder or room whose external links are listed. | |
+
+### Return type
+
+[**FileShareArrayWrapper**](FileShareArrayWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(FoldersApi::class.java)
+val id : kotlin.String = 1 // kotlin.String | The folder or room whose external links are listed.
 
 launch(Dispatchers.IO) {
     val result : FileShareArrayWrapper = webService.getFolderLinks(id)
@@ -728,14 +1134,14 @@ launch(Dispatchers.IO) {
 # **getFolderPath**
 > FileEntryBaseArrayWrapper getFolderPath (kotlin.Int folderId)
 
-Returns a path to the folder with the ID specified in the request.
+Returns the chain of folders that leads to the folder named in the path, ordered from the section root down to  the folder itself, which is the last entry. It is what a breadcrumb trail is built from, and it also tells a  client which section - a room, the personal section, the archive - a bare folder identifier belongs to. Only  the folders the caller may see are part of the chain, so a member who was given access to a folder deep inside  a room gets a shorter path than the room manager does. The caller needs read access to the folder and is  otherwise answered with 403, while a folder that does not exist is answered as not found. The call is  read-only and takes no paging parameters. To go the other way, from a folder down into its contents, call  `GET api/2.0/files/{folderId}`.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-path/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **folderId** | **kotlin.Int**| The folder unique identifier. | |
+| **folderId** | **kotlin.Int**| The folder the operation acts on. Take the identifier from a listing such as `GET api/2.0/files/@root` or  `GET api/2.0/files/{folderId}`: a folder stored in the portal is numbered, while a folder in a connected  third-party account is named by an opaque string. | |
 
 ### Return type
 
@@ -760,7 +1166,56 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val folderId : kotlin.Int = 1 // kotlin.Int | The folder unique identifier.
+val folderId : kotlin.Int = 1 // kotlin.Int | The folder the operation acts on. Take the identifier from a listing such as `GET api/2.0/files/@root` or  `GET api/2.0/files/{folderId}`: a folder stored in the portal is numbered, while a folder in a connected  third-party account is named by an opaque string.
+
+launch(Dispatchers.IO) {
+    val result : FileEntryBaseArrayWrapper = webService.getFolderPath(folderId)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+<a id="getFolderPath-thirdparty"></a>
+# **getFolderPath** (third-party storage)
+> FileEntryBaseArrayWrapper getFolderPath (kotlin.String folderId)
+
+Returns the chain of folders that leads to the folder named in the path, ordered from the section root down to  the folder itself, which is the last entry. It is what a breadcrumb trail is built from, and it also tells a  client which section - a room, the personal section, the archive - a bare folder identifier belongs to. Only  the folders the caller may see are part of the chain, so a member who was given access to a folder deep inside  a room gets a shorter path than the room manager does. The caller needs read access to the folder and is  otherwise answered with 403, while a folder that does not exist is answered as not found. The call is  read-only and takes no paging parameters. To go the other way, from a folder down into its contents, call  `GET api/2.0/files/{folderId}`.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-path/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **folderId** | **kotlin.String**| The folder the operation acts on. Take the identifier from a listing such as `GET api/2.0/files/@root` or  `GET api/2.0/files/{folderId}`: a folder stored in the portal is numbered, while a folder in a connected  third-party account is named by an opaque string. | |
+
+### Return type
+
+[**FileEntryBaseArrayWrapper**](FileEntryBaseArrayWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(FoldersApi::class.java)
+val folderId : kotlin.String = 1 // kotlin.String | The folder the operation acts on. Take the identifier from a listing such as `GET api/2.0/files/@root` or  `GET api/2.0/files/{folderId}`: a folder stored in the portal is numbered, while a folder in a connected  third-party account is named by an opaque string.
 
 launch(Dispatchers.IO) {
     val result : FileEntryBaseArrayWrapper = webService.getFolderPath(folderId)
@@ -777,16 +1232,16 @@ launch(Dispatchers.IO) {
 # **getFolderPrimaryExternalLink**
 > FileShareWrapper getFolderPrimaryExternalLink (kotlin.Int id, kotlin.Int count, kotlin.Int startIndex)
 
-Returns the primary external link by the identifier specified in the request.
+Answers with the primary external link of a folder or a room - the one the Copy link action of a client  hands out - with its address in `sharedTo.shareLink`, its rights in `access`, and its title, expiration date,  password flag and download restriction beside them. The link is created on the first read if the folder has  none, with read rights, no password and no expiry, so this operation mutates on that first call and is a plain  read afterwards; repeated calls answer with the same link identifier. The caller needs the right to manage the  links of the room the folder belongs to, which its manager and a portal administrator acting as room manager  have; a member with read access alone is refused with 403 and an anonymous caller is rejected, while a link  that was deliberately revoked is answered with 404 rather than being recreated. The paging parameters are  accepted for compatibility and leave the single link answered here unchanged. Every external link of the same  folder is listed by `GET api/2.0/files/folder/{id}/links`.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-primary-external-link/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **id** | **kotlin.Int**| The folder unique identifier. | |
-| **count** | **kotlin.Int**| The number of items to retrieve in the request. | [optional] |
-| **startIndex** | **kotlin.Int**| The starting index for the query results. | [optional] |
+| **id** | **kotlin.Int**| The folder or room the operation addresses. A folder stored on the portal is numbered, while a folder in a  connected third-party account is named by an opaque string. | |
+| **count** | **kotlin.Int**| How many entries at most to answer with, in the operations of this folder that return a list; an operation  that answers with a single object is not affected by it. | [optional] |
+| **startIndex** | **kotlin.Int**| How many entries of such a list to skip before answering, used together with `count` to walk through it page  by page. | [optional] |
 
 ### Return type
 
@@ -794,7 +1249,9 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Authorization
 
-No authorization required
+
+Configure bearerAuth:
+    ApiClient().setBearerToken("TOKEN")
 
 ### Example
 ```kotlin
@@ -804,10 +1261,61 @@ No authorization required
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
+apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val id : kotlin.Int = 10 // kotlin.Int | The folder unique identifier.
-val count : kotlin.Int = 25 // kotlin.Int | The number of items to retrieve in the request.
-val startIndex : kotlin.Int = 0 // kotlin.Int | The starting index for the query results.
+val id : kotlin.Int = 10 // kotlin.Int | The folder or room the operation addresses. A folder stored on the portal is numbered, while a folder in a  connected third-party account is named by an opaque string.
+val count : kotlin.Int = 25 // kotlin.Int | How many entries at most to answer with, in the operations of this folder that return a list; an operation  that answers with a single object is not affected by it.
+val startIndex : kotlin.Int = 0 // kotlin.Int | How many entries of such a list to skip before answering, used together with `count` to walk through it page  by page.
+
+launch(Dispatchers.IO) {
+    val result : FileShareWrapper = webService.getFolderPrimaryExternalLink(id, count, startIndex)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+<a id="getFolderPrimaryExternalLink-thirdparty"></a>
+# **getFolderPrimaryExternalLink** (third-party storage)
+> FileShareWrapper getFolderPrimaryExternalLink (kotlin.String id, kotlin.Int count, kotlin.Int startIndex)
+
+Answers with the primary external link of a folder or a room - the one the Copy link action of a client  hands out - with its address in `sharedTo.shareLink`, its rights in `access`, and its title, expiration date,  password flag and download restriction beside them. The link is created on the first read if the folder has  none, with read rights, no password and no expiry, so this operation mutates on that first call and is a plain  read afterwards; repeated calls answer with the same link identifier. The caller needs the right to manage the  links of the room the folder belongs to, which its manager and a portal administrator acting as room manager  have; a member with read access alone is refused with 403 and an anonymous caller is rejected, while a link  that was deliberately revoked is answered with 404 rather than being recreated. The paging parameters are  accepted for compatibility and leave the single link answered here unchanged. Every external link of the same  folder is listed by `GET api/2.0/files/folder/{id}/links`.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-primary-external-link/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **kotlin.String**| The folder or room the operation addresses. A folder stored on the portal is numbered, while a folder in a  connected third-party account is named by an opaque string. | |
+| **count** | **kotlin.Int**| How many entries at most to answer with, in the operations of this folder that return a list; an operation  that answers with a single object is not affected by it. | [optional] |
+| **startIndex** | **kotlin.Int**| How many entries of such a list to skip before answering, used together with `count` to walk through it page  by page. | [optional] |
+
+### Return type
+
+[**FileShareWrapper**](FileShareWrapper.md)
+
+### Authorization
+
+
+Configure bearerAuth:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(FoldersApi::class.java)
+val id : kotlin.String = 10 // kotlin.String | The folder or room the operation addresses. A folder stored on the portal is numbered, while a folder in a  connected third-party account is named by an opaque string.
+val count : kotlin.Int = 25 // kotlin.Int | How many entries at most to answer with, in the operations of this folder that return a list; an operation  that answers with a single object is not affected by it.
+val startIndex : kotlin.Int = 0 // kotlin.Int | How many entries of such a list to skip before answering, used together with `count` to walk through it page  by page.
 
 launch(Dispatchers.IO) {
     val result : FileShareWrapper = webService.getFolderPrimaryExternalLink(id, count, startIndex)
@@ -824,14 +1332,14 @@ launch(Dispatchers.IO) {
 # **getFolders**
 > FileEntryBaseArrayWrapper getFolders (kotlin.Int folderId)
 
-Returns a list of all the subfolders from a folder with the ID specified in the request.
+Lists the folders that sit directly inside the folder named in the path, ordered by title, without their own  contents and without the files that lie beside them. The whole list arrives at once - there are no paging or  filtering parameters here - so for a large folder, or when the files are wanted as well, use  `GET api/2.0/files/{folderId}`, which pages and filters. A folder that holds no subfolders answers with an  empty list. The caller needs read access to the folder, and only the subfolders they may see are listed, so a  member of a room can get fewer entries than its manager; a caller without access is answered with 403, and a  folder that does not exist, or one that has been deleted for good, is answered as not found. The call is  read-only and leaves the new-item marks of the folder alone.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folders/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **folderId** | **kotlin.Int**| The folder unique identifier. | |
+| **folderId** | **kotlin.Int**| The folder the operation acts on. Take the identifier from a listing such as `GET api/2.0/files/@root` or  `GET api/2.0/files/{folderId}`: a folder stored in the portal is numbered, while a folder in a connected  third-party account is named by an opaque string. | |
 
 ### Return type
 
@@ -856,7 +1364,56 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val folderId : kotlin.Int = 1 // kotlin.Int | The folder unique identifier.
+val folderId : kotlin.Int = 1 // kotlin.Int | The folder the operation acts on. Take the identifier from a listing such as `GET api/2.0/files/@root` or  `GET api/2.0/files/{folderId}`: a folder stored in the portal is numbered, while a folder in a connected  third-party account is named by an opaque string.
+
+launch(Dispatchers.IO) {
+    val result : FileEntryBaseArrayWrapper = webService.getFolders(folderId)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+<a id="getFolders-thirdparty"></a>
+# **getFolders** (third-party storage)
+> FileEntryBaseArrayWrapper getFolders (kotlin.String folderId)
+
+Lists the folders that sit directly inside the folder named in the path, ordered by title, without their own  contents and without the files that lie beside them. The whole list arrives at once - there are no paging or  filtering parameters here - so for a large folder, or when the files are wanted as well, use  `GET api/2.0/files/{folderId}`, which pages and filters. A folder that holds no subfolders answers with an  empty list. The caller needs read access to the folder, and only the subfolders they may see are listed, so a  member of a room can get fewer entries than its manager; a caller without access is answered with 403, and a  folder that does not exist, or one that has been deleted for good, is answered as not found. The call is  read-only and leaves the new-item marks of the folder alone.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folders/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **folderId** | **kotlin.String**| The folder the operation acts on. Take the identifier from a listing such as `GET api/2.0/files/@root` or  `GET api/2.0/files/{folderId}`: a folder stored in the portal is numbered, while a folder in a connected  third-party account is named by an opaque string. | |
+
+### Return type
+
+[**FileEntryBaseArrayWrapper**](FileEntryBaseArrayWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(FoldersApi::class.java)
+val folderId : kotlin.String = 1 // kotlin.String | The folder the operation acts on. Take the identifier from a listing such as `GET api/2.0/files/@root` or  `GET api/2.0/files/{folderId}`: a folder stored in the portal is numbered, while a folder in a connected  third-party account is named by an opaque string.
 
 launch(Dispatchers.IO) {
     val result : FileEntryBaseArrayWrapper = webService.getFolders(folderId)
@@ -871,26 +1428,26 @@ launch(Dispatchers.IO) {
 
 <a id="getFormsFolder"></a>
 # **getFormsFolder**
-> FolderContentIntegerWrapper getFormsFolder (java.util.UUID userIdOrGroupId, FilterType filterType, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterValue)
+> FolderContentWrapper getFormsFolder (java.util.UUID userIdOrGroupId, FilterType filterType, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterValue)
 
-Returns the detailed list of rooms used for filling out forms located in the Forms section.
+Returns the Forms section: the flat list of form-filling rooms the caller may read. Such rooms are stored  under the Rooms tree but are surfaced only here, so `GET api/2.0/files/rooms` leaves them out of the active  area and lists them when `searchArea` names the forms area instead. The section is not expanded into room  content, so `folders` carries the rooms while `files` comes back empty; to read what is inside one of them,  call `GET api/2.0/files/{folderId}` with the room identifier. Nothing is modified, though passing `sortBy`  saves the requested order as the default order for this account. `filterType`, `filterValue`,  `userIdOrGroupId` and the sorting parameters narrow and order the room list, `count` and `startIndex` page  through it, `total` reports how many rooms match the request in full, and `current` describes the section  folder itself.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-forms-folder/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **userIdOrGroupId** | **java.util.UUID**| The user or group ID. | [optional] |
-| **filterType** | [**FilterType**](.md)| The filter type. | [optional] [enum: 0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 17, 20, 22, 23, 24, 25, 26] |
-| **count** | **kotlin.Int**| The maximum number of items to retrieve in the request. | [optional] |
-| **startIndex** | **kotlin.Int**| The zero-based index of the first item to retrieve in a paginated list. | [optional] |
-| **sortBy** | **kotlin.String**| Specifies the field by which the folder content should be sorted. | [optional] |
-| **sortOrder** | [**SortOrder**](.md)| The order in which the results are sorted. | [optional] [enum: 0, 1] |
-| **filterValue** | **kotlin.String**| The text used as a filter or search criterion for folder content queries. | [optional] |
+| **userIdOrGroupId** | **java.util.UUID**| Restricts the listing to the entries authored by this portal member, or by the members of this group; the same  parameter accepts either kind of identifier. Omit it to list everything the caller can read. | [optional] |
+| **filterType** | [**FilterType**](.md)| Narrows the listing to a single kind of entry, such as documents, images or one type of room. Omit it to list  every kind the section holds. | [optional] [enum: 0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 17, 20, 22, 23, 24, 25, 26] |
+| **count** | **kotlin.Int**| The size of one page of section content. Pair it with `startIndex` to walk the listing, and compare the two  with `total` in the response to see when the last page has been read. | [optional] |
+| **startIndex** | **kotlin.Int**| The number of matching entries to skip before the returned page begins; add `count` to it to ask for the next  page. | [optional] |
+| **sortBy** | **kotlin.String**| The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place. | [optional] |
+| **sortOrder** | [**SortOrder**](.md)| The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account. | [optional] [enum: 0, 1] |
+| **filterValue** | **kotlin.String**| The search string the section is filtered by: it is matched as a substring of entry titles and, for files,  against the indexed document content as well. Omit it to list the section unfiltered. | [optional] |
 
 ### Return type
 
-[**FolderContentIntegerWrapper**](FolderContentIntegerWrapper.md)
+[**FolderContentWrapper**](FolderContentWrapper.md)
 
 ### Authorization
 
@@ -911,16 +1468,16 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val userIdOrGroupId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The user or group ID.
-val filterType : FilterType = 1 // FilterType | The filter type.
-val count : kotlin.Int = 25 // kotlin.Int | The maximum number of items to retrieve in the request.
-val startIndex : kotlin.Int = 0 // kotlin.Int | The zero-based index of the first item to retrieve in a paginated list.
-val sortBy : kotlin.String = DateAndTime // kotlin.String | Specifies the field by which the folder content should be sorted.
-val sortOrder : SortOrder = 1 // SortOrder | The order in which the results are sorted.
-val filterValue : kotlin.String = My Document // kotlin.String | The text used as a filter or search criterion for folder content queries.
+val userIdOrGroupId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | Restricts the listing to the entries authored by this portal member, or by the members of this group; the same  parameter accepts either kind of identifier. Omit it to list everything the caller can read.
+val filterType : FilterType = 1 // FilterType | Narrows the listing to a single kind of entry, such as documents, images or one type of room. Omit it to list  every kind the section holds.
+val count : kotlin.Int = 25 // kotlin.Int | The size of one page of section content. Pair it with `startIndex` to walk the listing, and compare the two  with `total` in the response to see when the last page has been read.
+val startIndex : kotlin.Int = 0 // kotlin.Int | The number of matching entries to skip before the returned page begins; add `count` to it to ask for the next  page.
+val sortBy : kotlin.String = DateAndTime // kotlin.String | The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place.
+val sortOrder : SortOrder = 1 // SortOrder | The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account.
+val filterValue : kotlin.String = My Document // kotlin.String | The search string the section is filtered by: it is matched as a substring of entry titles and, for files,  against the indexed document content as well. Omit it to list the section unfiltered.
 
 launch(Dispatchers.IO) {
-    val result : FolderContentIntegerWrapper = webService.getFormsFolder(userIdOrGroupId, filterType, count, startIndex, sortBy, sortOrder, filterValue)
+    val result : FolderContentWrapper = webService.getFormsFolder(userIdOrGroupId, filterType, count, startIndex, sortBy, sortOrder, filterValue)
 }
 ```
 
@@ -932,27 +1489,27 @@ launch(Dispatchers.IO) {
 
 <a id="getMyFolder"></a>
 # **getMyFolder**
-> FolderContentIntegerWrapper getMyFolder (java.util.UUID userIdOrGroupId, FilterType filterType, ApplyFilterOption applyFilterOption, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterValue)
+> FolderContentWrapper getMyFolder (java.util.UUID userIdOrGroupId, FilterType filterType, ApplyFilterOption applyFilterOption, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterValue)
 
-Returns the detailed list of files and folders located in the My documents section.
+Returns the contents of the caller's My documents section, the personal storage that belongs to this account  alone and stays invisible to other members until something in it is shared explicitly. Any authenticated  member that has a personal section can read it; guest accounts are not given one, and the call then answers  404. Nothing in the section is modified, though passing `sortBy` saves the requested order as the default  order for this account. Without a filter only the top level of the section is listed; as soon as `filterType`,  `userIdOrGroupId` or `filterValue` narrows the request, the search descends through the whole subtree.  `filterValue` is matched against titles and against indexed document content, and the index is written  asynchronously, so a file uploaded a moment ago can be missing from a search for a short while. `folders` and  `files` hold one page of the result, `total` counts everything that matches before `count` and `startIndex`  are applied, and `current` describes the section folder. To open a folder inside the section, call  `GET api/2.0/files/{folderId}` with its identifier.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-my-folder/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **userIdOrGroupId** | **java.util.UUID**| The user or group ID. | [optional] |
-| **filterType** | [**FilterType**](.md)| The filter type. | [optional] [enum: 0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 17, 20, 22, 23, 24, 25, 26] |
-| **applyFilterOption** | [**ApplyFilterOption**](.md)| Specifies whether to return only files, only folders or all elements. | [optional] [enum: 0, 1, 2] |
-| **count** | **kotlin.Int**| The maximum number of items to retrieve in the response. | [optional] |
-| **startIndex** | **kotlin.Int**| The starting position of the items to be retrieved. | [optional] |
-| **sortBy** | **kotlin.String**| The property used to specify the sorting criteria for folder contents. | [optional] |
-| **sortOrder** | [**SortOrder**](.md)| The order in which the results are sorted. | [optional] [enum: 0, 1] |
-| **filterValue** | **kotlin.String**| The text used for filtering or searching folder contents. | [optional] |
+| **userIdOrGroupId** | **java.util.UUID**| Restricts the listing to the entries authored by this portal member, or by the members of this group; the same  parameter accepts either kind of identifier. Omit it to list everything the caller can read. | [optional] |
+| **filterType** | [**FilterType**](.md)| Narrows the listing to a single kind of entry, such as documents, images or one type of room. Omit it to list  every kind the section holds. | [optional] [enum: 0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 17, 20, 22, 23, 24, 25, 26] |
+| **applyFilterOption** | [**ApplyFilterOption**](.md)| Chooses which half of the listing `filterType` and `filterValue` are applied to: with `Files` the folders come  back unfiltered, with `Folders` the files do, and with `All` both halves are filtered. | [optional] [enum: 0, 1, 2] |
+| **count** | **kotlin.Int**| The size of one page of section content. Pair it with `startIndex` to walk the listing, and compare the two  with `total` in the response to see when the last page has been read. | [optional] |
+| **startIndex** | **kotlin.Int**| The number of matching entries to skip before the returned page begins; add `count` to it to ask for the next  page. | [optional] |
+| **sortBy** | **kotlin.String**| The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place. | [optional] |
+| **sortOrder** | [**SortOrder**](.md)| The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account. | [optional] [enum: 0, 1] |
+| **filterValue** | **kotlin.String**| The search string the section is filtered by, matched as a substring of entry titles. Omit it to list the  section unfiltered. | [optional] |
 
 ### Return type
 
-[**FolderContentIntegerWrapper**](FolderContentIntegerWrapper.md)
+[**FolderContentWrapper**](FolderContentWrapper.md)
 
 ### Authorization
 
@@ -973,17 +1530,17 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val userIdOrGroupId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The user or group ID.
-val filterType : FilterType = 1 // FilterType | The filter type.
-val applyFilterOption : ApplyFilterOption = 1 // ApplyFilterOption | Specifies whether to return only files, only folders or all elements.
-val count : kotlin.Int = 25 // kotlin.Int | The maximum number of items to retrieve in the response.
-val startIndex : kotlin.Int = 0 // kotlin.Int | The starting position of the items to be retrieved.
-val sortBy : kotlin.String = DateAndTime // kotlin.String | The property used to specify the sorting criteria for folder contents.
-val sortOrder : SortOrder = 1 // SortOrder | The order in which the results are sorted.
-val filterValue : kotlin.String = My Document // kotlin.String | The text used for filtering or searching folder contents.
+val userIdOrGroupId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | Restricts the listing to the entries authored by this portal member, or by the members of this group; the same  parameter accepts either kind of identifier. Omit it to list everything the caller can read.
+val filterType : FilterType = 1 // FilterType | Narrows the listing to a single kind of entry, such as documents, images or one type of room. Omit it to list  every kind the section holds.
+val applyFilterOption : ApplyFilterOption = 1 // ApplyFilterOption | Chooses which half of the listing `filterType` and `filterValue` are applied to: with `Files` the folders come  back unfiltered, with `Folders` the files do, and with `All` both halves are filtered.
+val count : kotlin.Int = 25 // kotlin.Int | The size of one page of section content. Pair it with `startIndex` to walk the listing, and compare the two  with `total` in the response to see when the last page has been read.
+val startIndex : kotlin.Int = 0 // kotlin.Int | The number of matching entries to skip before the returned page begins; add `count` to it to ask for the next  page.
+val sortBy : kotlin.String = DateAndTime // kotlin.String | The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place.
+val sortOrder : SortOrder = 1 // SortOrder | The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account.
+val filterValue : kotlin.String = My Document // kotlin.String | The search string the section is filtered by, matched as a substring of entry titles. Omit it to list the  section unfiltered.
 
 launch(Dispatchers.IO) {
-    val result : FolderContentIntegerWrapper = webService.getMyFolder(userIdOrGroupId, filterType, applyFilterOption, count, startIndex, sortBy, sortOrder, filterValue)
+    val result : FolderContentWrapper = webService.getMyFolder(userIdOrGroupId, filterType, applyFilterOption, count, startIndex, sortBy, sortOrder, filterValue)
 }
 ```
 
@@ -997,14 +1554,14 @@ launch(Dispatchers.IO) {
 # **getNewFolderItems**
 > FileEntryBaseArrayWrapper getNewFolderItems (kotlin.Int folderId)
 
-Returns a list of all the new items from a folder with the ID specified in the request.
+Lists the entries of a folder that are new for the calling member - the files and folders created or changed  there since they last opened it - ordered from the most recently changed backwards. It is what the badge of a  room is filled from, and it is personal: two members of the same room get different answers. Reading this list  does not clear the marks, so the same entries come back until the folder itself is opened with  `GET api/2.0/files/{folderId}`, which does clear them. A folder with nothing new answers with an empty list,  and marks disappear on their own when the entry behind them is deleted or moved out of reach. The caller needs  read access to the folder and is otherwise answered with 403. The whole list arrives at once, without paging  or filtering, and the call is read-only.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-new-folder-items/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **folderId** | **kotlin.Int**| The folder unique identifier. | |
+| **folderId** | **kotlin.Int**| The folder the operation acts on. Take the identifier from a listing such as `GET api/2.0/files/@root` or  `GET api/2.0/files/{folderId}`: a folder stored in the portal is numbered, while a folder in a connected  third-party account is named by an opaque string. | |
 
 ### Return type
 
@@ -1029,7 +1586,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val folderId : kotlin.Int = 1 // kotlin.Int | The folder unique identifier.
+val folderId : kotlin.Int = 1 // kotlin.Int | The folder the operation acts on. Take the identifier from a listing such as `GET api/2.0/files/@root` or  `GET api/2.0/files/{folderId}`: a folder stored in the portal is numbered, while a folder in a connected  third-party account is named by an opaque string.
 
 launch(Dispatchers.IO) {
     val result : FileEntryBaseArrayWrapper = webService.getNewFolderItems(folderId)
@@ -1042,32 +1599,22 @@ launch(Dispatchers.IO) {
  - **Accept**: application/json
 
 
-<a id="getRecentFolder"></a>
-# **getRecentFolder**
-> FolderContentIntegerWrapper getRecentFolder (java.util.UUID userIdOrGroupId, FilterType filterType, kotlin.Boolean excludeSubject, ApplyFilterOption applyFilterOption, SearchArea searchArea, kotlin.collections.List<kotlin.String> extension, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterValue)
+<a id="getNewFolderItems-thirdparty"></a>
+# **getNewFolderItems** (third-party storage)
+> FileEntryBaseArrayWrapper getNewFolderItems (kotlin.String folderId)
 
-Returns the detailed list of files located in the Recent section.
+Lists the entries of a folder that are new for the calling member - the files and folders created or changed  there since they last opened it - ordered from the most recently changed backwards. It is what the badge of a  room is filled from, and it is personal: two members of the same room get different answers. Reading this list  does not clear the marks, so the same entries come back until the folder itself is opened with  `GET api/2.0/files/{folderId}`, which does clear them. A folder with nothing new answers with an empty list,  and marks disappear on their own when the entry behind them is deleted or moved out of reach. The caller needs  read access to the folder and is otherwise answered with 403. The whole list arrives at once, without paging  or filtering, and the call is read-only.
 
-For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-recent-folder/).
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-new-folder-items/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **userIdOrGroupId** | **java.util.UUID**| The user or group ID. | [optional] |
-| **filterType** | [**FilterType**](.md)| The filter type. | [optional] [enum: 0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 17, 20, 22, 23, 24, 25, 26] |
-| **excludeSubject** | **kotlin.Boolean**| Specifies whether to exclude search by user or group ID. | [optional] |
-| **applyFilterOption** | [**ApplyFilterOption**](.md)| Specifies whether to return only files, only folders or all elements. | [optional] [enum: 0, 1, 2] |
-| **searchArea** | [**SearchArea**](.md)| The search area. | [optional] [enum: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9] |
-| **extension** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)| Specifies whether to search for a specific file extension in the Recent folder. | [optional] |
-| **count** | **kotlin.Int**| The maximum number of items to return. | [optional] |
-| **startIndex** | **kotlin.Int**| The starting position of the results to be returned in the query response. | [optional] |
-| **sortBy** | **kotlin.String**| Specifies the sorting criteria for the folder request. | [optional] |
-| **sortOrder** | [**SortOrder**](.md)| The order in which the results are sorted. | [optional] [enum: 0, 1] |
-| **filterValue** | **kotlin.String**| The text used for filtering or searching folder contents. | [optional] |
+| **folderId** | **kotlin.String**| The folder the operation acts on. Take the identifier from a listing such as `GET api/2.0/files/@root` or  `GET api/2.0/files/{folderId}`: a folder stored in the portal is numbered, while a folder in a connected  third-party account is named by an opaque string. | |
 
 ### Return type
 
-[**FolderContentIntegerWrapper**](FolderContentIntegerWrapper.md)
+[**FileEntryBaseArrayWrapper**](FileEntryBaseArrayWrapper.md)
 
 ### Authorization
 
@@ -1088,20 +1635,79 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val userIdOrGroupId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The user or group ID.
-val filterType : FilterType = 1 // FilterType | The filter type.
-val excludeSubject : kotlin.Boolean = false // kotlin.Boolean | Specifies whether to exclude search by user or group ID.
-val applyFilterOption : ApplyFilterOption = 1 // ApplyFilterOption | Specifies whether to return only files, only folders or all elements.
-val searchArea : SearchArea = 1 // SearchArea | The search area.
-val extension : kotlin.collections.List<kotlin.String> = .docx // kotlin.collections.List<kotlin.String> | Specifies whether to search for a specific file extension in the Recent folder.
-val count : kotlin.Int = 25 // kotlin.Int | The maximum number of items to return.
-val startIndex : kotlin.Int = 0 // kotlin.Int | The starting position of the results to be returned in the query response.
-val sortBy : kotlin.String = DateAndTime // kotlin.String | Specifies the sorting criteria for the folder request.
-val sortOrder : SortOrder = 1 // SortOrder | The order in which the results are sorted.
-val filterValue : kotlin.String = My Document // kotlin.String | The text used for filtering or searching folder contents.
+val folderId : kotlin.String = 1 // kotlin.String | The folder the operation acts on. Take the identifier from a listing such as `GET api/2.0/files/@root` or  `GET api/2.0/files/{folderId}`: a folder stored in the portal is numbered, while a folder in a connected  third-party account is named by an opaque string.
 
 launch(Dispatchers.IO) {
-    val result : FolderContentIntegerWrapper = webService.getRecentFolder(userIdOrGroupId, filterType, excludeSubject, applyFilterOption, searchArea, extension, count, startIndex, sortBy, sortOrder, filterValue)
+    val result : FileEntryBaseArrayWrapper = webService.getNewFolderItems(folderId)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+<a id="getRecentFolder"></a>
+# **getRecentFolder**
+> FolderContentWrapper getRecentFolder (java.util.UUID userIdOrGroupId, FilterType filterType, kotlin.Boolean excludeSubject, ApplyFilterOption applyFilterOption, SearchArea searchArea, kotlin.collections.List<kotlin.String> extension, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterValue)
+
+Returns the Recent section: the files the calling account has opened lately. The section holds files only,  so `folders` comes back empty, and it is personal, so another member's history is not visible here. A file is  added when it is opened and can also be added explicitly with `POST api/2.0/files/file/{fileId}/recent`;  `DELETE api/2.0/files/recent` clears the whole history, and `PUT api/2.0/files/displayrecent` switches the  section on and off for the account, which also decides whether `GET api/2.0/files/@root` includes it. Nothing  in the section is modified, though passing `sortBy` saves the requested order as the default order for this  account. The listing is ordered by the moment the caller last opened each file, newest first, and `sortBy` and  `sortOrder` do not change that order. `files` holds one page, `total` counts the files matching the request  before `count` and `startIndex` are applied, and `current` describes the section folder itself.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-recent-folder/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **userIdOrGroupId** | **java.util.UUID**| Restricts the listing to the files authored by this portal member, or by the members of this group; the same  parameter accepts either kind of identifier. Omit it to list the whole history. | [optional] |
+| **filterType** | [**FilterType**](.md)| Narrows the listing to a single kind of file, such as documents, spreadsheets or images. Omit it to list every  kind the history holds. | [optional] [enum: 0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 17, 20, 22, 23, 24, 25, 26] |
+| **excludeSubject** | **kotlin.Boolean**| Inverts `userIdOrGroupId`: with `true` the files of that member or group are the ones left out of the listing  instead of the only ones kept. | [optional] |
+| **applyFilterOption** | [**ApplyFilterOption**](.md)| Chooses which half of a listing `filterType` and `filterValue` are applied to. The Recent section holds  files only, so the value does not change what comes back. | [optional] [enum: 0, 1, 2] |
+| **searchArea** | [**SearchArea**](.md)| The area a listing is taken from. The Recent section is assembled from the caller's own open history rather  than from an area, so the value does not change which files are returned. | [optional] [enum: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9] |
+| **extension** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)| The file extensions the listing is limited to, matched against the end of the file name. The leading dot is  optional, and the parameter is repeated once per extension. | [optional] |
+| **count** | **kotlin.Int**| The size of one page of section content. Pair it with `startIndex` to walk the listing, and compare the two  with `total` in the response to see when the last page has been read. | [optional] |
+| **startIndex** | **kotlin.Int**| The number of matching entries to skip before the returned page begins; add `count` to it to ask for the next  page. | [optional] |
+| **sortBy** | **kotlin.String**| The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place. The Recent section keeps its own newest-first order, so the value does not  reorder this listing. | [optional] |
+| **sortOrder** | [**SortOrder**](.md)| The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account. The Recent section keeps its own newest-first order, so the value does not reorder this  listing. | [optional] [enum: 0, 1] |
+| **filterValue** | **kotlin.String**| The search string the history is filtered by: it is matched as a substring of file titles and against the  indexed document content as well. Omit it to list the whole history. | [optional] |
+
+### Return type
+
+[**FolderContentWrapper**](FolderContentWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(FoldersApi::class.java)
+val userIdOrGroupId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | Restricts the listing to the files authored by this portal member, or by the members of this group; the same  parameter accepts either kind of identifier. Omit it to list the whole history.
+val filterType : FilterType = 1 // FilterType | Narrows the listing to a single kind of file, such as documents, spreadsheets or images. Omit it to list every  kind the history holds.
+val excludeSubject : kotlin.Boolean = false // kotlin.Boolean | Inverts `userIdOrGroupId`: with `true` the files of that member or group are the ones left out of the listing  instead of the only ones kept.
+val applyFilterOption : ApplyFilterOption = 1 // ApplyFilterOption | Chooses which half of a listing `filterType` and `filterValue` are applied to. The Recent section holds  files only, so the value does not change what comes back.
+val searchArea : SearchArea = 1 // SearchArea | The area a listing is taken from. The Recent section is assembled from the caller's own open history rather  than from an area, so the value does not change which files are returned.
+val extension : kotlin.collections.List<kotlin.String> = .docx // kotlin.collections.List<kotlin.String> | The file extensions the listing is limited to, matched against the end of the file name. The leading dot is  optional, and the parameter is repeated once per extension.
+val count : kotlin.Int = 25 // kotlin.Int | The size of one page of section content. Pair it with `startIndex` to walk the listing, and compare the two  with `total` in the response to see when the last page has been read.
+val startIndex : kotlin.Int = 0 // kotlin.Int | The number of matching entries to skip before the returned page begins; add `count` to it to ask for the next  page.
+val sortBy : kotlin.String = DateAndTime // kotlin.String | The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place. The Recent section keeps its own newest-first order, so the value does not  reorder this listing.
+val sortOrder : SortOrder = 1 // SortOrder | The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account. The Recent section keeps its own newest-first order, so the value does not reorder this  listing.
+val filterValue : kotlin.String = My Document // kotlin.String | The search string the history is filtered by: it is matched as a substring of file titles and against the  indexed document content as well. Omit it to list the whole history.
+
+launch(Dispatchers.IO) {
+    val result : FolderContentWrapper = webService.getRecentFolder(userIdOrGroupId, filterType, excludeSubject, applyFilterOption, searchArea, extension, count, startIndex, sortBy, sortOrder, filterValue)
 }
 ```
 
@@ -1115,14 +1721,14 @@ launch(Dispatchers.IO) {
 # **getReportFolderHistory**
 > DocumentBuilderTaskWrapper getReportFolderHistory (kotlin.Int folderId)
 
-Returns the status of generating the folder history report.
+Reports how far the history report of a folder has got, and is the operation to poll after  `POST api/2.0/files/folder/{folderId}/log/report` has queued one. `percentage` climbs to 100, `isCompleted`  turns true when the job is over however it ended, `error` carries the reason when it failed, and  `resultFileId`, `resultFileName` and `resultFileUrl` name the file that was saved in the caller's My  documents - a CSV report leaving the identifier empty. An empty answer means there is no report for this  folder and caller, either because none was started or because a finished one has already been picked up by an  earlier poll. The caller needs read access to the folder and may not be a guest, and the portal plan has to  include the audit feature; a caller who fails the access rule is answered with 403 and a folder that does not  exist with 404. The call is read-only, and each caller sees only their own report.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-report-folder-history/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **folderId** | **kotlin.Int**| The folder unique identifier. | |
+| **folderId** | **kotlin.Int**| The folder whose history report is being polled. It is the folder that was              passed to the operation that started the report. | |
 
 ### Return type
 
@@ -1147,7 +1753,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val folderId : kotlin.Int = 56 // kotlin.Int | The folder unique identifier.
+val folderId : kotlin.Int = 56 // kotlin.Int | The folder whose history report is being polled. It is the folder that was              passed to the operation that started the report.
 
 launch(Dispatchers.IO) {
     val result : DocumentBuilderTaskWrapper = webService.getReportFolderHistory(folderId)
@@ -1162,27 +1768,27 @@ launch(Dispatchers.IO) {
 
 <a id="getRootFolders"></a>
 # **getRootFolders**
-> FolderContentIntegerArrayWrapper getRootFolders (java.util.UUID userIdOrGroupId, FilterType filterType, kotlin.Boolean withoutTrash, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterValue)
+> FolderContentArrayWrapper getRootFolders (java.util.UUID userIdOrGroupId, FilterType filterType, kotlin.Boolean withoutTrash, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterValue)
 
-Returns all the sections matching the parameters specified in the request.
+Returns every top-level section the calling account can see in one response, each of them a full section  object carrying its own first page of content: Favorites, Recent, Shared with me, My documents,  Trash, Rooms, Forms, Archive and, while AI access is enabled for the portal, AI agents. A section is  left out when the account has none of it, which is why a guest gets no personal section, and Recent is  listed only while it is switched on with `PUT api/2.0/files/displayrecent`. Pass `withoutTrash=true` to drop  the Trash section. The filters, `count` and `startIndex` are applied to each section separately, so  `count=1` returns one entry per section and every section reports its own `total`. Because it builds the  content of all of them, this is the most expensive listing in the module: when a single section is enough,  read it directly, for example with `GET api/2.0/files/@my`. The call modifies nothing in the sections and  leaves their new-item badges untouched, though passing `sortBy` saves the requested order as the default order  for this account.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-root-folders/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **userIdOrGroupId** | **java.util.UUID**| The user or group ID. | [optional] |
-| **filterType** | [**FilterType**](.md)| The filter type. | [optional] [enum: 0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 17, 20, 22, 23, 24, 25, 26] |
-| **withoutTrash** | **kotlin.Boolean**| Specifies whether to return the Trash section or not. | [optional] |
-| **count** | **kotlin.Int**| The maximum number of items to retrieve in the response. | [optional] |
-| **startIndex** | **kotlin.Int**| The starting position of the items to be retrieved. | [optional] |
-| **sortBy** | **kotlin.String**| Specifies the field by which the folder content should be sorted. | [optional] |
-| **sortOrder** | [**SortOrder**](.md)| The order in which the results are sorted. | [optional] [enum: 0, 1] |
-| **filterValue** | **kotlin.String**| The text used as a filter for searching or retrieving folder contents. | [optional] |
+| **userIdOrGroupId** | **java.util.UUID**| Restricts the listing to the entries authored by this portal member, or by the members of this group; the same  parameter accepts either kind of identifier. Omit it to list everything the caller can read. | [optional] |
+| **filterType** | [**FilterType**](.md)| Narrows the content listed inside every returned section to a single kind of entry, such as documents, images  or one type of room. Omit it to list every kind the sections hold. | [optional] [enum: 0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 17, 20, 22, 23, 24, 25, 26] |
+| **withoutTrash** | **kotlin.Boolean**| Set it to `true` to leave the Trash section out of the returned set of sections; with `false`, or when the  parameter is omitted, the section is returned whenever the account has one of its own. | [optional] |
+| **count** | **kotlin.Int**| The size of the content page returned for each section separately, so a value of 1 yields one entry per  section rather than one entry in total. | [optional] |
+| **startIndex** | **kotlin.Int**| The number of matching entries skipped in each section before its page begins; add `count` to it to ask for  the next page of every section. | [optional] |
+| **sortBy** | **kotlin.String**| The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place. | [optional] |
+| **sortOrder** | [**SortOrder**](.md)| The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account. | [optional] [enum: 0, 1] |
+| **filterValue** | **kotlin.String**| The search string the content of every section is filtered by: it is matched as a substring of entry titles  and, for files, against the indexed document content as well. Omit it to list the sections unfiltered. | [optional] |
 
 ### Return type
 
-[**FolderContentIntegerArrayWrapper**](FolderContentIntegerArrayWrapper.md)
+[**FolderContentArrayWrapper**](FolderContentArrayWrapper.md)
 
 ### Authorization
 
@@ -1203,17 +1809,17 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val userIdOrGroupId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The user or group ID.
-val filterType : FilterType = 1 // FilterType | The filter type.
-val withoutTrash : kotlin.Boolean = false // kotlin.Boolean | Specifies whether to return the Trash section or not.
-val count : kotlin.Int = 25 // kotlin.Int | The maximum number of items to retrieve in the response.
-val startIndex : kotlin.Int = 0 // kotlin.Int | The starting position of the items to be retrieved.
-val sortBy : kotlin.String = DateAndTime // kotlin.String | Specifies the field by which the folder content should be sorted.
-val sortOrder : SortOrder = 1 // SortOrder | The order in which the results are sorted.
-val filterValue : kotlin.String = My Document // kotlin.String | The text used as a filter for searching or retrieving folder contents.
+val userIdOrGroupId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | Restricts the listing to the entries authored by this portal member, or by the members of this group; the same  parameter accepts either kind of identifier. Omit it to list everything the caller can read.
+val filterType : FilterType = 1 // FilterType | Narrows the content listed inside every returned section to a single kind of entry, such as documents, images  or one type of room. Omit it to list every kind the sections hold.
+val withoutTrash : kotlin.Boolean = false // kotlin.Boolean | Set it to `true` to leave the Trash section out of the returned set of sections; with `false`, or when the  parameter is omitted, the section is returned whenever the account has one of its own.
+val count : kotlin.Int = 25 // kotlin.Int | The size of the content page returned for each section separately, so a value of 1 yields one entry per  section rather than one entry in total.
+val startIndex : kotlin.Int = 0 // kotlin.Int | The number of matching entries skipped in each section before its page begins; add `count` to it to ask for  the next page of every section.
+val sortBy : kotlin.String = DateAndTime // kotlin.String | The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place.
+val sortOrder : SortOrder = 1 // SortOrder | The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account.
+val filterValue : kotlin.String = My Document // kotlin.String | The search string the content of every section is filtered by: it is matched as a substring of entry titles  and, for files, against the indexed document content as well. Omit it to list the sections unfiltered.
 
 launch(Dispatchers.IO) {
-    val result : FolderContentIntegerArrayWrapper = webService.getRootFolders(userIdOrGroupId, filterType, withoutTrash, count, startIndex, sortBy, sortOrder, filterValue)
+    val result : FolderContentArrayWrapper = webService.getRootFolders(userIdOrGroupId, filterType, withoutTrash, count, startIndex, sortBy, sortOrder, filterValue)
 }
 ```
 
@@ -1225,27 +1831,27 @@ launch(Dispatchers.IO) {
 
 <a id="getTrashFolder"></a>
 # **getTrashFolder**
-> FolderContentIntegerWrapper getTrashFolder (java.util.UUID userIdOrGroupId, FilterType filterType, ApplyFilterOption applyFilterOption, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterValue)
+> FolderContentWrapper getTrashFolder (java.util.UUID userIdOrGroupId, FilterType filterType, ApplyFilterOption applyFilterOption, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterValue)
 
-Returns the detailed list of files and folders located in the Trash section.
+Returns the caller's Trash section: the files and folders this account has deleted, kept there until they  are restored or discarded. Each member has a Trash of their own and sees only what they deleted themselves.  Restore an entry by moving it back with `PUT api/2.0/files/fileops/move`, or discard the whole section with  `PUT api/2.0/files/fileops/emptytrash`; both start a background operation that is polled through  `GET api/2.0/files/fileops`. This call itself modifies nothing, though passing `sortBy` saves the requested  order as the default order for this account. Only the top level of the section is listed, so the contents of a  deleted folder are not expanded into it, and `filterValue` is matched against titles alone here rather than  against document content. `folders` and `files` hold one page of the result, `total` counts everything that  matches before `count` and `startIndex` are applied, and `current` describes the section folder. An account  that is given no Trash of its own, an outsider for instance, receives 404.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-trash-folder/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **userIdOrGroupId** | **java.util.UUID**| The user or group ID. | [optional] |
-| **filterType** | [**FilterType**](.md)| The filter type. | [optional] [enum: 0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 17, 20, 22, 23, 24, 25, 26] |
-| **applyFilterOption** | [**ApplyFilterOption**](.md)| Specifies whether to return only files, only folders or all elements. | [optional] [enum: 0, 1, 2] |
-| **count** | **kotlin.Int**| The maximum number of items to retrieve in the response. | [optional] |
-| **startIndex** | **kotlin.Int**| The starting position of the items to be retrieved. | [optional] |
-| **sortBy** | **kotlin.String**| The property used to specify the sorting criteria for folder contents. | [optional] |
-| **sortOrder** | [**SortOrder**](.md)| The order in which the results are sorted. | [optional] [enum: 0, 1] |
-| **filterValue** | **kotlin.String**| The text used for filtering or searching folder contents. | [optional] |
+| **userIdOrGroupId** | **java.util.UUID**| Restricts the listing to the entries authored by this portal member, or by the members of this group; the same  parameter accepts either kind of identifier. Omit it to list everything the caller can read. | [optional] |
+| **filterType** | [**FilterType**](.md)| Narrows the listing to a single kind of entry, such as documents, images or one type of room. Omit it to list  every kind the section holds. | [optional] [enum: 0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 17, 20, 22, 23, 24, 25, 26] |
+| **applyFilterOption** | [**ApplyFilterOption**](.md)| Chooses which half of the listing `filterType` and `filterValue` are applied to: with `Files` the folders come  back unfiltered, with `Folders` the files do, and with `All` both halves are filtered. | [optional] [enum: 0, 1, 2] |
+| **count** | **kotlin.Int**| The size of one page of section content. Pair it with `startIndex` to walk the listing, and compare the two  with `total` in the response to see when the last page has been read. | [optional] |
+| **startIndex** | **kotlin.Int**| The number of matching entries to skip before the returned page begins; add `count` to it to ask for the next  page. | [optional] |
+| **sortBy** | **kotlin.String**| The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place. | [optional] |
+| **sortOrder** | [**SortOrder**](.md)| The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account. | [optional] [enum: 0, 1] |
+| **filterValue** | **kotlin.String**| The search string the section is filtered by, matched as a substring of entry titles. Omit it to list the  section unfiltered. | [optional] |
 
 ### Return type
 
-[**FolderContentIntegerWrapper**](FolderContentIntegerWrapper.md)
+[**FolderContentWrapper**](FolderContentWrapper.md)
 
 ### Authorization
 
@@ -1266,17 +1872,17 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val userIdOrGroupId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The user or group ID.
-val filterType : FilterType = 1 // FilterType | The filter type.
-val applyFilterOption : ApplyFilterOption = 1 // ApplyFilterOption | Specifies whether to return only files, only folders or all elements.
-val count : kotlin.Int = 25 // kotlin.Int | The maximum number of items to retrieve in the response.
-val startIndex : kotlin.Int = 0 // kotlin.Int | The starting position of the items to be retrieved.
-val sortBy : kotlin.String = DateAndTime // kotlin.String | The property used to specify the sorting criteria for folder contents.
-val sortOrder : SortOrder = 1 // SortOrder | The order in which the results are sorted.
-val filterValue : kotlin.String = My Document // kotlin.String | The text used for filtering or searching folder contents.
+val userIdOrGroupId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | Restricts the listing to the entries authored by this portal member, or by the members of this group; the same  parameter accepts either kind of identifier. Omit it to list everything the caller can read.
+val filterType : FilterType = 1 // FilterType | Narrows the listing to a single kind of entry, such as documents, images or one type of room. Omit it to list  every kind the section holds.
+val applyFilterOption : ApplyFilterOption = 1 // ApplyFilterOption | Chooses which half of the listing `filterType` and `filterValue` are applied to: with `Files` the folders come  back unfiltered, with `Folders` the files do, and with `All` both halves are filtered.
+val count : kotlin.Int = 25 // kotlin.Int | The size of one page of section content. Pair it with `startIndex` to walk the listing, and compare the two  with `total` in the response to see when the last page has been read.
+val startIndex : kotlin.Int = 0 // kotlin.Int | The number of matching entries to skip before the returned page begins; add `count` to it to ask for the next  page.
+val sortBy : kotlin.String = DateAndTime // kotlin.String | The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place.
+val sortOrder : SortOrder = 1 // SortOrder | The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account.
+val filterValue : kotlin.String = My Document // kotlin.String | The search string the section is filtered by, matched as a substring of entry titles. Omit it to list the  section unfiltered.
 
 launch(Dispatchers.IO) {
-    val result : FolderContentIntegerWrapper = webService.getTrashFolder(userIdOrGroupId, filterType, applyFilterOption, count, startIndex, sortBy, sortOrder, filterValue)
+    val result : FolderContentWrapper = webService.getTrashFolder(userIdOrGroupId, filterType, applyFilterOption, count, startIndex, sortBy, sortOrder, filterValue)
 }
 ```
 
@@ -1288,20 +1894,20 @@ launch(Dispatchers.IO) {
 
 <a id="insertFile"></a>
 # **insertFile**
-> FileIntegerWrapper insertFile (kotlin.Int folderId, java.io.File insertFileFile, kotlin.String insertFileTitle, kotlin.Boolean insertFileCreateNewIfExist, kotlin.Boolean insertFileKeepConvertStatus, kotlin.Boolean insertFileStreamCanRead, kotlin.Boolean insertFileStreamCanWrite, kotlin.Boolean insertFileStreamCanSeek, kotlin.Boolean insertFileStreamCanTimeout, kotlin.Long insertFileStreamLength, kotlin.Long insertFileStreamPosition, kotlin.Int insertFileStreamReadTimeout, kotlin.Int insertFileStreamWriteTimeout)
+> FileWrapper insertFile (kotlin.Int folderId, java.io.File insertFileFile, kotlin.String insertFileTitle, kotlin.Boolean insertFileCreateNewIfExist, kotlin.Boolean insertFileKeepConvertStatus, kotlin.Boolean insertFileStreamCanRead, kotlin.Boolean insertFileStreamCanWrite, kotlin.Boolean insertFileStreamCanSeek, kotlin.Boolean insertFileStreamCanTimeout, kotlin.Long insertFileStreamLength, kotlin.Long insertFileStreamPosition, kotlin.Int insertFileStreamReadTimeout, kotlin.Int insertFileStreamWriteTimeout)
 
-Inserts a file specified in the request to the selected folder by single file uploading.
+Stores a file in the folder named by the path in a single request, taking its name from `title` rather than  from the uploaded part, which is what separates it from `POST api/2.0/files/{folderId}/upload`. The content  may arrive either as a multipart part or as the raw request body. The name is stripped of characters a title  cannot hold and truncated, and `createNewIfExist` settles the clash: false adds a new version to the file that  already carries the name, true keeps both by giving the new one a numeric suffix. The caller needs the right  to add content to the folder, so a reader, an editor and a guest get 403, a section root and an archived room  are refused as well, and an unknown folder gives 404. Formats the portal converts are converted afterwards in  the background; pass `keepConvertStatus` to keep the outcome readable through  `GET api/2.0/files/file/{fileId}/checkconversion`. The answer is the stored file. A large payload belongs in a  chunked session instead.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/insert-file/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **folderId** | **kotlin.Int**| The folder ID for inserting a file. | |
-| **insertFileFile** | **java.io.File**| The file to be inserted. | [optional] |
-| **insertFileTitle** | **kotlin.String**| The file title to be inserted. | [optional] |
-| **insertFileCreateNewIfExist** | **kotlin.Boolean**| Specifies whether to create a new file if it already exists or not. | [optional] |
-| **insertFileKeepConvertStatus** | **kotlin.Boolean**| Specifies whether to keep the file converting status or not. | [optional] |
+| **folderId** | **kotlin.Int**| The folder that receives the file; take the id from a listing such as `GET api/2.0/files/@root`. A room or an  ordinary folder inside one is accepted, a section root is not. | |
+| **insertFileFile** | **java.io.File**| The content to store, sent as a `multipart/form-data` part. The same content may instead be sent as the raw  request body, which is what a client that cannot build a form does; when both are present the form part wins. | [optional] |
+| **insertFileTitle** | **kotlin.String**| The name to store the file under, extension included. It wins over the name of the uploaded part, which is the  reason to choose this operation over the plain upload, and it is the only name available when the content  arrives as a raw body. Characters a title cannot hold are replaced with underscores and the name is cut to 170  characters before the file is stored. | [optional] |
+| **insertFileCreateNewIfExist** | **kotlin.Boolean**| Settles the clash with a file already carrying that title: left out, the content is written as the next  version of that file; set to true, both survive and the new one gets a numeric suffix in its title. | [optional] |
+| **insertFileKeepConvertStatus** | **kotlin.Boolean**| Decides whether the outcome of the background conversion outlives the conversion itself. True keeps the queue  record, so `GET api/2.0/files/file/{fileId}/checkconversion` can still report the result or the error; left  out, the record is cleared the moment the conversion ends and that call finds nothing. | [optional] |
 | **insertFileStreamCanRead** | **kotlin.Boolean**|  | [optional] |
 | **insertFileStreamCanWrite** | **kotlin.Boolean**|  | [optional] |
 | **insertFileStreamCanSeek** | **kotlin.Boolean**|  | [optional] |
@@ -1313,7 +1919,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Return type
 
-[**FileIntegerWrapper**](FileIntegerWrapper.md)
+[**FileWrapper**](FileWrapper.md)
 
 ### Authorization
 
@@ -1334,11 +1940,11 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val folderId : kotlin.Int = 1 // kotlin.Int | The folder ID for inserting a file.
-val insertFileFile : java.io.File = BINARY_DATA_HERE // java.io.File | The file to be inserted.
-val insertFileTitle : kotlin.String = insertFileTitle_example // kotlin.String | The file title to be inserted.
-val insertFileCreateNewIfExist : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to create a new file if it already exists or not.
-val insertFileKeepConvertStatus : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to keep the file converting status or not.
+val folderId : kotlin.Int = 1 // kotlin.Int | The folder that receives the file; take the id from a listing such as `GET api/2.0/files/@root`. A room or an  ordinary folder inside one is accepted, a section root is not.
+val insertFileFile : java.io.File = BINARY_DATA_HERE // java.io.File | The content to store, sent as a `multipart/form-data` part. The same content may instead be sent as the raw  request body, which is what a client that cannot build a form does; when both are present the form part wins.
+val insertFileTitle : kotlin.String = insertFileTitle_example // kotlin.String | The name to store the file under, extension included. It wins over the name of the uploaded part, which is the  reason to choose this operation over the plain upload, and it is the only name available when the content  arrives as a raw body. Characters a title cannot hold are replaced with underscores and the name is cut to 170  characters before the file is stored.
+val insertFileCreateNewIfExist : kotlin.Boolean = true // kotlin.Boolean | Settles the clash with a file already carrying that title: left out, the content is written as the next  version of that file; set to true, both survive and the new one gets a numeric suffix in its title.
+val insertFileKeepConvertStatus : kotlin.Boolean = true // kotlin.Boolean | Decides whether the outcome of the background conversion outlives the conversion itself. True keeps the queue  record, so `GET api/2.0/files/file/{fileId}/checkconversion` can still report the result or the error; left  out, the record is cleared the moment the conversion ends and that call finds nothing.
 val insertFileStreamCanRead : kotlin.Boolean = true // kotlin.Boolean | 
 val insertFileStreamCanWrite : kotlin.Boolean = true // kotlin.Boolean | 
 val insertFileStreamCanSeek : kotlin.Boolean = true // kotlin.Boolean | 
@@ -1349,7 +1955,80 @@ val insertFileStreamReadTimeout : kotlin.Int = 56 // kotlin.Int |
 val insertFileStreamWriteTimeout : kotlin.Int = 56 // kotlin.Int | 
 
 launch(Dispatchers.IO) {
-    val result : FileIntegerWrapper = webService.insertFile(folderId, insertFileFile, insertFileTitle, insertFileCreateNewIfExist, insertFileKeepConvertStatus, insertFileStreamCanRead, insertFileStreamCanWrite, insertFileStreamCanSeek, insertFileStreamCanTimeout, insertFileStreamLength, insertFileStreamPosition, insertFileStreamReadTimeout, insertFileStreamWriteTimeout)
+    val result : FileWrapper = webService.insertFile(folderId, insertFileFile, insertFileTitle, insertFileCreateNewIfExist, insertFileKeepConvertStatus, insertFileStreamCanRead, insertFileStreamCanWrite, insertFileStreamCanSeek, insertFileStreamCanTimeout, insertFileStreamLength, insertFileStreamPosition, insertFileStreamReadTimeout, insertFileStreamWriteTimeout)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
+
+<a id="insertFile-thirdparty"></a>
+# **insertFile** (third-party storage)
+> ThirdPartyFileWrapper insertFile (kotlin.String folderId, java.io.File insertFileFile, kotlin.String insertFileTitle, kotlin.Boolean insertFileCreateNewIfExist, kotlin.Boolean insertFileKeepConvertStatus, kotlin.Boolean insertFileStreamCanRead, kotlin.Boolean insertFileStreamCanWrite, kotlin.Boolean insertFileStreamCanSeek, kotlin.Boolean insertFileStreamCanTimeout, kotlin.Long insertFileStreamLength, kotlin.Long insertFileStreamPosition, kotlin.Int insertFileStreamReadTimeout, kotlin.Int insertFileStreamWriteTimeout)
+
+Stores a file in the folder named by the path in a single request, taking its name from `title` rather than  from the uploaded part, which is what separates it from `POST api/2.0/files/{folderId}/upload`. The content  may arrive either as a multipart part or as the raw request body. The name is stripped of characters a title  cannot hold and truncated, and `createNewIfExist` settles the clash: false adds a new version to the file that  already carries the name, true keeps both by giving the new one a numeric suffix. The caller needs the right  to add content to the folder, so a reader, an editor and a guest get 403, a section root and an archived room  are refused as well, and an unknown folder gives 404. Formats the portal converts are converted afterwards in  the background; pass `keepConvertStatus` to keep the outcome readable through  `GET api/2.0/files/file/{fileId}/checkconversion`. The answer is the stored file. A large payload belongs in a  chunked session instead.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/insert-file/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **folderId** | **kotlin.String**| The folder that receives the file; take the id from a listing such as `GET api/2.0/files/@root`. A room or an  ordinary folder inside one is accepted, a section root is not. | |
+| **insertFileFile** | **java.io.File**| The content to store, sent as a `multipart/form-data` part. The same content may instead be sent as the raw  request body, which is what a client that cannot build a form does; when both are present the form part wins. | [optional] |
+| **insertFileTitle** | **kotlin.String**| The name to store the file under, extension included. It wins over the name of the uploaded part, which is the  reason to choose this operation over the plain upload, and it is the only name available when the content  arrives as a raw body. Characters a title cannot hold are replaced with underscores and the name is cut to 170  characters before the file is stored. | [optional] |
+| **insertFileCreateNewIfExist** | **kotlin.Boolean**| Settles the clash with a file already carrying that title: left out, the content is written as the next  version of that file; set to true, both survive and the new one gets a numeric suffix in its title. | [optional] |
+| **insertFileKeepConvertStatus** | **kotlin.Boolean**| Decides whether the outcome of the background conversion outlives the conversion itself. True keeps the queue  record, so `GET api/2.0/files/file/{fileId}/checkconversion` can still report the result or the error; left  out, the record is cleared the moment the conversion ends and that call finds nothing. | [optional] |
+| **insertFileStreamCanRead** | **kotlin.Boolean**|  | [optional] |
+| **insertFileStreamCanWrite** | **kotlin.Boolean**|  | [optional] |
+| **insertFileStreamCanSeek** | **kotlin.Boolean**|  | [optional] |
+| **insertFileStreamCanTimeout** | **kotlin.Boolean**|  | [optional] |
+| **insertFileStreamLength** | **kotlin.Long**|  | [optional] |
+| **insertFileStreamPosition** | **kotlin.Long**|  | [optional] |
+| **insertFileStreamReadTimeout** | **kotlin.Int**|  | [optional] |
+| **insertFileStreamWriteTimeout** | **kotlin.Int**|  | [optional] |
+
+### Return type
+
+[**ThirdPartyFileWrapper**](ThirdPartyFileWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(FoldersApi::class.java)
+val folderId : kotlin.String = 1 // kotlin.String | The folder that receives the file; take the id from a listing such as `GET api/2.0/files/@root`. A room or an  ordinary folder inside one is accepted, a section root is not.
+val insertFileFile : java.io.File = BINARY_DATA_HERE // java.io.File | The content to store, sent as a `multipart/form-data` part. The same content may instead be sent as the raw  request body, which is what a client that cannot build a form does; when both are present the form part wins.
+val insertFileTitle : kotlin.String = insertFileTitle_example // kotlin.String | The name to store the file under, extension included. It wins over the name of the uploaded part, which is the  reason to choose this operation over the plain upload, and it is the only name available when the content  arrives as a raw body. Characters a title cannot hold are replaced with underscores and the name is cut to 170  characters before the file is stored.
+val insertFileCreateNewIfExist : kotlin.Boolean = true // kotlin.Boolean | Settles the clash with a file already carrying that title: left out, the content is written as the next  version of that file; set to true, both survive and the new one gets a numeric suffix in its title.
+val insertFileKeepConvertStatus : kotlin.Boolean = true // kotlin.Boolean | Decides whether the outcome of the background conversion outlives the conversion itself. True keeps the queue  record, so `GET api/2.0/files/file/{fileId}/checkconversion` can still report the result or the error; left  out, the record is cleared the moment the conversion ends and that call finds nothing.
+val insertFileStreamCanRead : kotlin.Boolean = true // kotlin.Boolean | 
+val insertFileStreamCanWrite : kotlin.Boolean = true // kotlin.Boolean | 
+val insertFileStreamCanSeek : kotlin.Boolean = true // kotlin.Boolean | 
+val insertFileStreamCanTimeout : kotlin.Boolean = true // kotlin.Boolean | 
+val insertFileStreamLength : kotlin.Long = 789 // kotlin.Long | 
+val insertFileStreamPosition : kotlin.Long = 789 // kotlin.Long | 
+val insertFileStreamReadTimeout : kotlin.Int = 56 // kotlin.Int | 
+val insertFileStreamWriteTimeout : kotlin.Int = 56 // kotlin.Int | 
+
+launch(Dispatchers.IO) {
+    val result : ThirdPartyFileWrapper = webService.insertFile(folderId, insertFileFile, insertFileTitle, insertFileCreateNewIfExist, insertFileKeepConvertStatus, insertFileStreamCanRead, insertFileStreamCanWrite, insertFileStreamCanSeek, insertFileStreamCanTimeout, insertFileStreamLength, insertFileStreamPosition, insertFileStreamReadTimeout, insertFileStreamWriteTimeout)
 }
 ```
 
@@ -1361,19 +2040,19 @@ launch(Dispatchers.IO) {
 
 <a id="insertFileToMyFromBody"></a>
 # **insertFileToMyFromBody**
-> FileIntegerWrapper insertFileToMyFromBody (java.io.File file, kotlin.String title, kotlin.Boolean createNewIfExist, kotlin.Boolean keepConvertStatus, kotlin.Boolean streamCanRead, kotlin.Boolean streamCanWrite, kotlin.Boolean streamCanSeek, kotlin.Boolean streamCanTimeout, kotlin.Long streamLength, kotlin.Long streamPosition, kotlin.Int streamReadTimeout, kotlin.Int streamWriteTimeout)
+> FileWrapper insertFileToMyFromBody (java.io.File file, kotlin.String title, kotlin.Boolean createNewIfExist, kotlin.Boolean keepConvertStatus, kotlin.Boolean streamCanRead, kotlin.Boolean streamCanWrite, kotlin.Boolean streamCanSeek, kotlin.Boolean streamCanTimeout, kotlin.Long streamLength, kotlin.Long streamPosition, kotlin.Int streamReadTimeout, kotlin.Int streamWriteTimeout)
 
-Inserts a file specified in the request to the My documents section by single file uploading.
+Stores one file in the caller's own My documents section, the personal storage every portal member has, and  returns the stored file. The destination takes no identifier: it is resolved from the calling account and  created on first use, while a guest account has none and is answered as missing (404). Send the content as a  `multipart/form-data` part or as the raw request body, and name it with `title`, which wins over the name of  the uploaded part and has invalid characters replaced before storing. The call is not idempotent: by default a  file of the same title is overwritten as a new version, while `createNewIfExist=true` stores a separate copy  under a title made unique with a numeric suffix; a title held by a file that is locked or open in the editor  cannot be overwritten either, and a second file appears under the same title. Formats listed in  `extsMustConvert` of `GET api/2.0/files/settings` are converted after the response is sent;  `keepConvertStatus=true` keeps that result readable through `GET api/2.0/files/file/{fileId}/checkconversion`,  which otherwise drops it. Files over the single-request size limit or the account's storage quota are refused:  send those through `POST api/2.0/files/{folderId}/upload/create_session`, and use  `POST api/2.0/files/{folderId}/insert` for any other destination.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/insert-file-to-my-from-body/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **file** | **java.io.File**| The file to be inserted. | [optional] |
-| **title** | **kotlin.String**| The file title to be inserted. | [optional] |
-| **createNewIfExist** | **kotlin.Boolean**| Specifies whether to create a new file if it already exists or not. | [optional] |
-| **keepConvertStatus** | **kotlin.Boolean**| Specifies whether to keep the file converting status or not. | [optional] |
+| **file** | **java.io.File**| The content to store, sent as a `multipart/form-data` part. The same content may instead be sent as the raw  request body, which is what a client that cannot build a form does; when both are present the form part wins. | [optional] |
+| **title** | **kotlin.String**| The name to store the file under, extension included. It wins over the name of the uploaded part, which is the  reason to choose this operation over the plain upload, and it is the only name available when the content  arrives as a raw body. Characters a title cannot hold are replaced with underscores and the name is cut to 170  characters before the file is stored. | [optional] |
+| **createNewIfExist** | **kotlin.Boolean**| Settles the clash with a file already carrying that title: left out, the content is written as the next  version of that file; set to true, both survive and the new one gets a numeric suffix in its title. | [optional] |
+| **keepConvertStatus** | **kotlin.Boolean**| Decides whether the outcome of the background conversion outlives the conversion itself. True keeps the queue  record, so `GET api/2.0/files/file/{fileId}/checkconversion` can still report the result or the error; left  out, the record is cleared the moment the conversion ends and that call finds nothing. | [optional] |
 | **streamCanRead** | **kotlin.Boolean**|  | [optional] |
 | **streamCanWrite** | **kotlin.Boolean**|  | [optional] |
 | **streamCanSeek** | **kotlin.Boolean**|  | [optional] |
@@ -1385,7 +2064,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Return type
 
-[**FileIntegerWrapper**](FileIntegerWrapper.md)
+[**FileWrapper**](FileWrapper.md)
 
 ### Authorization
 
@@ -1406,10 +2085,10 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val file : java.io.File = BINARY_DATA_HERE // java.io.File | The file to be inserted.
-val title : kotlin.String = title_example // kotlin.String | The file title to be inserted.
-val createNewIfExist : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to create a new file if it already exists or not.
-val keepConvertStatus : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to keep the file converting status or not.
+val file : java.io.File = BINARY_DATA_HERE // java.io.File | The content to store, sent as a `multipart/form-data` part. The same content may instead be sent as the raw  request body, which is what a client that cannot build a form does; when both are present the form part wins.
+val title : kotlin.String = title_example // kotlin.String | The name to store the file under, extension included. It wins over the name of the uploaded part, which is the  reason to choose this operation over the plain upload, and it is the only name available when the content  arrives as a raw body. Characters a title cannot hold are replaced with underscores and the name is cut to 170  characters before the file is stored.
+val createNewIfExist : kotlin.Boolean = true // kotlin.Boolean | Settles the clash with a file already carrying that title: left out, the content is written as the next  version of that file; set to true, both survive and the new one gets a numeric suffix in its title.
+val keepConvertStatus : kotlin.Boolean = true // kotlin.Boolean | Decides whether the outcome of the background conversion outlives the conversion itself. True keeps the queue  record, so `GET api/2.0/files/file/{fileId}/checkconversion` can still report the result or the error; left  out, the record is cleared the moment the conversion ends and that call finds nothing.
 val streamCanRead : kotlin.Boolean = true // kotlin.Boolean | 
 val streamCanWrite : kotlin.Boolean = true // kotlin.Boolean | 
 val streamCanSeek : kotlin.Boolean = true // kotlin.Boolean | 
@@ -1420,7 +2099,7 @@ val streamReadTimeout : kotlin.Int = 56 // kotlin.Int |
 val streamWriteTimeout : kotlin.Int = 56 // kotlin.Int | 
 
 launch(Dispatchers.IO) {
-    val result : FileIntegerWrapper = webService.insertFileToMyFromBody(file, title, createNewIfExist, keepConvertStatus, streamCanRead, streamCanWrite, streamCanSeek, streamCanTimeout, streamLength, streamPosition, streamReadTimeout, streamWriteTimeout)
+    val result : FileWrapper = webService.insertFileToMyFromBody(file, title, createNewIfExist, keepConvertStatus, streamCanRead, streamCanWrite, streamCanSeek, streamCanTimeout, streamLength, streamPosition, streamReadTimeout, streamWriteTimeout)
 }
 ```
 
@@ -1432,21 +2111,21 @@ launch(Dispatchers.IO) {
 
 <a id="renameFolder"></a>
 # **renameFolder**
-> FolderIntegerWrapper renameFolder (kotlin.Int folderId, CreateFolder createFolder)
+> FolderWrapper renameFolder (kotlin.Int folderId, CreateFolder createFolder)
 
-Renames the selected folder with a new title specified in the request.
+Gives a folder a new title and answers with the folder as it now stands. The title is trimmed, may not be  blank and is refused when it is longer than the limit the schema prints; a title that matches the current one  leaves the folder untouched, and titles need not be unique among the neighbours. The caller needs the right to  rename the folder, which the room manager, a content creator acting on a folder of their own and the owner of  a personal section have, while a guest is refused with 403 whatever their access; a folder in the Trash  section or in an archived room cannot be renamed either, and a folder that does not exist is answered as  not found. A room may be renamed here as well, in which case the caller needs the right to edit the  room, and `PUT api/2.0/files/rooms/{id}` is the operation that changes its other settings. The call is  mutating and idempotent; on a folder stored in a connected third-party account the identifier of the folder  may change with the title.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/rename-folder/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **folderId** | **kotlin.Int**| The folder ID for the folder creation. | |
-| **createFolder** | [**CreateFolder**](CreateFolder.md)| The parameters for creating a folder. | |
+| **folderId** | **kotlin.Int**| The folder the request is addressed to: when a folder is created it is the parent that receives the new  folder, and when a folder is renamed it is the folder that gets the new title. | |
+| **createFolder** | [**CreateFolder**](CreateFolder.md)| The title carried by the request body. | |
 
 ### Return type
 
-[**FolderIntegerWrapper**](FolderIntegerWrapper.md)
+[**FolderWrapper**](FolderWrapper.md)
 
 ### Authorization
 
@@ -1467,11 +2146,62 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val folderId : kotlin.Int = 1 // kotlin.Int | The folder ID for the folder creation.
-val createFolder : CreateFolder =  // CreateFolder | The parameters for creating a folder.
+val folderId : kotlin.Int = 1 // kotlin.Int | The folder the request is addressed to: when a folder is created it is the parent that receives the new  folder, and when a folder is renamed it is the folder that gets the new title.
+val createFolder : CreateFolder =  // CreateFolder | The title carried by the request body.
 
 launch(Dispatchers.IO) {
-    val result : FolderIntegerWrapper = webService.renameFolder(folderId, createFolder)
+    val result : FolderWrapper = webService.renameFolder(folderId, createFolder)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+<a id="renameFolder-thirdparty"></a>
+# **renameFolder** (third-party storage)
+> ThirdPartyFolderWrapper renameFolder (kotlin.String folderId, CreateFolder createFolder)
+
+Gives a folder a new title and answers with the folder as it now stands. The title is trimmed, may not be  blank and is refused when it is longer than the limit the schema prints; a title that matches the current one  leaves the folder untouched, and titles need not be unique among the neighbours. The caller needs the right to  rename the folder, which the room manager, a content creator acting on a folder of their own and the owner of  a personal section have, while a guest is refused with 403 whatever their access; a folder in the Trash  section or in an archived room cannot be renamed either, and a folder that does not exist is answered as  not found. A room may be renamed here as well, in which case the caller needs the right to edit the  room, and `PUT api/2.0/files/rooms/{id}` is the operation that changes its other settings. The call is  mutating and idempotent; on a folder stored in a connected third-party account the identifier of the folder  may change with the title.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/rename-folder/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **folderId** | **kotlin.String**| The folder the request is addressed to: when a folder is created it is the parent that receives the new  folder, and when a folder is renamed it is the folder that gets the new title. | |
+| **createFolder** | [**CreateFolder**](CreateFolder.md)| The title carried by the request body. | |
+
+### Return type
+
+[**ThirdPartyFolderWrapper**](ThirdPartyFolderWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(FoldersApi::class.java)
+val folderId : kotlin.String = 1 // kotlin.String | The folder the request is addressed to: when a folder is created it is the parent that receives the new  folder, and when a folder is renamed it is the folder that gets the new title.
+val createFolder : CreateFolder =  // CreateFolder | The title carried by the request body.
+
+launch(Dispatchers.IO) {
+    val result : ThirdPartyFolderWrapper = webService.renameFolder(folderId, createFolder)
 }
 ```
 
@@ -1483,21 +2213,21 @@ launch(Dispatchers.IO) {
 
 <a id="setFolderOrder"></a>
 # **setFolderOrder**
-> FolderIntegerWrapper setFolderOrder (kotlin.Int folderId, OrderRequestDto orderRequestDto)
+> FolderWrapper setFolderOrder (kotlin.Int folderId, OrderRequestDto orderRequestDto)
 
-Sets the order of a folder with ID specified in the request.
+Puts a folder at a given position among the entries of its parent and answers with the folder, its `order`  reporting where it now stands. Positions count from 1, and the entry that held the wanted position, together  with everything after it, is shifted to make room, so the numbering of the parent stays without gaps; a  position beyond the end places the folder last. The value may also be sent as a dotted path, as in 1.2.3, in  which case only its last segment is read. Ordering is what the manual arrangement of a room is built on, and  it only means something in rooms whose contents are indexed - elsewhere the value is stored and ignored. The  caller needs edit access to the folder, which room managers and content creators have, and a member without it  is refused, while a folder that does not exist is answered as not found. The call is mutating and idempotent.  To move several entries in one go use `PUT api/2.0/files/order`.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/set-folder-order/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **folderId** | **kotlin.Int**| The folder unique identifier. | |
-| **orderRequestDto** | [**OrderRequestDto**](OrderRequestDto.md)| The folder order information. | [optional] |
+| **folderId** | **kotlin.Int**| The folder to move. | |
+| **orderRequestDto** | [**OrderRequestDto**](OrderRequestDto.md)| The position the folder is to take. | [optional] |
 
 ### Return type
 
-[**FolderIntegerWrapper**](FolderIntegerWrapper.md)
+[**FolderWrapper**](FolderWrapper.md)
 
 ### Authorization
 
@@ -1518,11 +2248,62 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val folderId : kotlin.Int = 1 // kotlin.Int | The folder unique identifier.
-val orderRequestDto : OrderRequestDto =  // OrderRequestDto | The folder order information.
+val folderId : kotlin.Int = 1 // kotlin.Int | The folder to move.
+val orderRequestDto : OrderRequestDto =  // OrderRequestDto | The position the folder is to take.
 
 launch(Dispatchers.IO) {
-    val result : FolderIntegerWrapper = webService.setFolderOrder(folderId, orderRequestDto)
+    val result : FolderWrapper = webService.setFolderOrder(folderId, orderRequestDto)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+<a id="setFolderOrder-thirdparty"></a>
+# **setFolderOrder** (third-party storage)
+> ThirdPartyFolderWrapper setFolderOrder (kotlin.String folderId, OrderRequestDto orderRequestDto)
+
+Puts a folder at a given position among the entries of its parent and answers with the folder, its `order`  reporting where it now stands. Positions count from 1, and the entry that held the wanted position, together  with everything after it, is shifted to make room, so the numbering of the parent stays without gaps; a  position beyond the end places the folder last. The value may also be sent as a dotted path, as in 1.2.3, in  which case only its last segment is read. Ordering is what the manual arrangement of a room is built on, and  it only means something in rooms whose contents are indexed - elsewhere the value is stored and ignored. The  caller needs edit access to the folder, which room managers and content creators have, and a member without it  is refused, while a folder that does not exist is answered as not found. The call is mutating and idempotent.  To move several entries in one go use `PUT api/2.0/files/order`.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/set-folder-order/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **folderId** | **kotlin.String**| The folder to move. | |
+| **orderRequestDto** | [**OrderRequestDto**](OrderRequestDto.md)| The position the folder is to take. | [optional] |
+
+### Return type
+
+[**ThirdPartyFolderWrapper**](ThirdPartyFolderWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(FoldersApi::class.java)
+val folderId : kotlin.String = 1 // kotlin.String | The folder to move.
+val orderRequestDto : OrderRequestDto =  // OrderRequestDto | The position the folder is to take.
+
+launch(Dispatchers.IO) {
+    val result : ThirdPartyFolderWrapper = webService.setFolderOrder(folderId, orderRequestDto)
 }
 ```
 
@@ -1536,15 +2317,15 @@ launch(Dispatchers.IO) {
 # **setFolderPrimaryExternalLink**
 > FileShareWrapper setFolderPrimaryExternalLink (kotlin.Int id, FolderLinkRequest folderLinkRequest)
 
-Sets the folder external link with the ID specified in the request.
+Creates an external link to a folder or a room, or changes or revokes an existing one, and answers with the  link as it now stands. `linkId` decides which: an identifier that is not yet in use, the empty one included,  creates a link, while the identifier of an existing link rewrites it, so the whole set of parameters is  applied every time and a field left out is reset rather than kept. `access` carries the rights the link  grants, and `access` set to the value that denies everything revokes the link instead - the answer is then  empty, and a revoked primary link is not recreated by a later read. `title` names the link for the people who  manage it, `expirationDate` limits its lifetime and is ignored when it lies in the past, `password` asks  visitors for a secret, `denyDownload` leaves them with viewing only, `internal` admits signed-in members  alone, and `primary=true` makes it the primary link of the folder. The caller needs the right to manage the  links of the room, which its manager and a portal administrator acting as room manager have; anyone else is  refused and an unknown folder is answered as not found. The call is mutating.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/set-folder-primary-external-link/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **id** | **kotlin.Int**| The folder ID. | |
-| **folderLinkRequest** | [**FolderLinkRequest**](FolderLinkRequest.md)| The folder link parameters. | |
+| **id** | **kotlin.Int**| The folder or room the link belongs to. | |
+| **folderLinkRequest** | [**FolderLinkRequest**](FolderLinkRequest.md)| The link and the way it is to be shaped. | |
 
 ### Return type
 
@@ -1569,8 +2350,59 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val id : kotlin.Int = 1 // kotlin.Int | The folder ID.
-val folderLinkRequest : FolderLinkRequest =  // FolderLinkRequest | The folder link parameters.
+val id : kotlin.Int = 1 // kotlin.Int | The folder or room the link belongs to.
+val folderLinkRequest : FolderLinkRequest =  // FolderLinkRequest | The link and the way it is to be shaped.
+
+launch(Dispatchers.IO) {
+    val result : FileShareWrapper = webService.setFolderPrimaryExternalLink(id, folderLinkRequest)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+<a id="setFolderPrimaryExternalLink-thirdparty"></a>
+# **setFolderPrimaryExternalLink** (third-party storage)
+> FileShareWrapper setFolderPrimaryExternalLink (kotlin.String id, FolderLinkRequest folderLinkRequest)
+
+Creates an external link to a folder or a room, or changes or revokes an existing one, and answers with the  link as it now stands. `linkId` decides which: an identifier that is not yet in use, the empty one included,  creates a link, while the identifier of an existing link rewrites it, so the whole set of parameters is  applied every time and a field left out is reset rather than kept. `access` carries the rights the link  grants, and `access` set to the value that denies everything revokes the link instead - the answer is then  empty, and a revoked primary link is not recreated by a later read. `title` names the link for the people who  manage it, `expirationDate` limits its lifetime and is ignored when it lies in the past, `password` asks  visitors for a secret, `denyDownload` leaves them with viewing only, `internal` admits signed-in members  alone, and `primary=true` makes it the primary link of the folder. The caller needs the right to manage the  links of the room, which its manager and a portal administrator acting as room manager have; anyone else is  refused and an unknown folder is answered as not found. The call is mutating.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/set-folder-primary-external-link/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **kotlin.String**| The folder or room the link belongs to. | |
+| **folderLinkRequest** | [**FolderLinkRequest**](FolderLinkRequest.md)| The link and the way it is to be shaped. | |
+
+### Return type
+
+[**FileShareWrapper**](FileShareWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(FoldersApi::class.java)
+val id : kotlin.String = 1 // kotlin.String | The folder or room the link belongs to.
+val folderLinkRequest : FolderLinkRequest =  // FolderLinkRequest | The link and the way it is to be shaped.
 
 launch(Dispatchers.IO) {
     val result : FileShareWrapper = webService.setFolderPrimaryExternalLink(id, folderLinkRequest)
@@ -1587,14 +2419,14 @@ launch(Dispatchers.IO) {
 # **terminateReportFolderHistory**
 > void terminateReportFolderHistory (kotlin.Int folderId)
 
-Terminates generating the folder history report.
+Gives up the history report the caller has started for a folder with  `POST api/2.0/files/folder/{folderId}/log/report`. The request only asks the background worker to stop, and  the answer carries no body, so a following `GET api/2.0/files/folder/{folderId}/log/report` is what shows the  task ending as cancelled. Asking to terminate when nothing is running is accepted and changes nothing, which  makes the call safe to repeat. A report that has already finished is not undone by this call and its file  stays in My documents. The caller needs read access to the folder and may not be a guest, and the portal  plan has to include the audit feature; a caller who fails the access rule is answered with 403 and a folder  that does not exist with 404. Each caller can only terminate their own report.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/terminate-report-folder-history/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **folderId** | **kotlin.Int**| The folder unique identifier. | |
+| **folderId** | **kotlin.Int**| The folder whose running history report is to be given up. It is the folder that              was passed to the operation that started the report. | |
 
 ### Return type
 
@@ -1619,7 +2451,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val folderId : kotlin.Int = 56 // kotlin.Int | The folder unique identifier.
+val folderId : kotlin.Int = 56 // kotlin.Int | The folder whose running history report is to be given up. It is the folder that              was passed to the operation that started the report.
 
 launch(Dispatchers.IO) {
     webService.terminateReportFolderHistory(folderId)
@@ -1634,24 +2466,24 @@ launch(Dispatchers.IO) {
 
 <a id="uploadFile"></a>
 # **uploadFile**
-> FileIntegerArrayWrapper uploadFile (kotlin.Int folderId, kotlin.Boolean createNewIfExist, kotlin.Boolean storeOriginalFile, kotlin.Boolean keepConvertStatus, java.io.File file)
+> FileArrayWrapper uploadFile (kotlin.Int folderId, kotlin.Boolean createNewIfExist, kotlin.Boolean storeOriginalFile, kotlin.Boolean keepConvertStatus, java.io.File file)
 
-Uploads a file specified in the request to the selected folder by single file uploading or standart multipart/form-data method.
+Stores a file in the folder named by the path in a single multipart request, taking its name from the uploaded  part; use `POST api/2.0/files/{folderId}/insert` when the name has to be given separately or the content is  sent as a raw body. The answer is a list that always holds exactly one file. `createNewIfExist` settles the  clash: false adds a new version to the file that already carries the name, true keeps both by giving the new  one a numeric suffix. `storeOriginalFile` reaches further than this call, because it saves the setting on the  calling account, the same one `PUT api/2.0/files/storeoriginal` writes, and it stays in force for later  uploads. The caller needs the right to add content to the folder, so a reader, an editor and a guest get 403,  a section root and an archived room are refused as well, and an unknown folder gives 404. A request without a  file is rejected as invalid, and a payload above the portal upload limit is refused.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-file/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **folderId** | **kotlin.Int**| The folder ID to upload a file. | |
-| **createNewIfExist** | **kotlin.Boolean**| Specifies whether to create the new file if it already exists or not. | [optional] |
-| **storeOriginalFile** | **kotlin.Boolean**| Specifies whether to upload documents in the original formats as well or not. | [optional] |
-| **keepConvertStatus** | **kotlin.Boolean**| Specifies whether to keep the file converting status or not. | [optional] |
-| **file** | **java.io.File**| The file to be uploaded. | [optional] |
+| **folderId** | **kotlin.Int**| The folder that receives the file; take the id from a listing such as `GET api/2.0/files/@root`. A room or an  ordinary folder inside one is accepted, a section root is not. | |
+| **createNewIfExist** | **kotlin.Boolean**| Settles the clash with a file already carrying that title: left out, the content is written as the next  version of that file; set to true, both survive and the new one gets a numeric suffix in its title. | [optional] |
+| **storeOriginalFile** | **kotlin.Boolean**| Reaches further than this request: it writes a setting on the calling account, the same one  `PUT api/2.0/files/storeoriginal` writes, and it stays in force for later uploads. True keeps both the  uploaded file and the copy the portal converts it into, false replaces the uploaded file with the converted  one, and leaving it out keeps whatever the account already has. | [optional] |
+| **keepConvertStatus** | **kotlin.Boolean**| Decides whether the outcome of the background conversion outlives the conversion itself. True keeps the queue  record, so `GET api/2.0/files/file/{fileId}/checkconversion` can still report the result or the error; left  out, the record is cleared the moment the conversion ends and that call finds nothing. | [optional] |
+| **file** | **java.io.File**| The content to store, sent as a `multipart/form-data` part; the name of that part becomes the title of the  stored file, with characters a title cannot hold replaced and the name cut to 170 characters. A request  without it is rejected as invalid. | [optional] |
 
 ### Return type
 
-[**FileIntegerArrayWrapper**](FileIntegerArrayWrapper.md)
+[**FileArrayWrapper**](FileArrayWrapper.md)
 
 ### Authorization
 
@@ -1672,14 +2504,71 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val folderId : kotlin.Int = 1 // kotlin.Int | The folder ID to upload a file.
-val createNewIfExist : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to create the new file if it already exists or not.
-val storeOriginalFile : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to upload documents in the original formats as well or not.
-val keepConvertStatus : kotlin.Boolean = false // kotlin.Boolean | Specifies whether to keep the file converting status or not.
-val file : java.io.File = BINARY_DATA_HERE // java.io.File | The file to be uploaded.
+val folderId : kotlin.Int = 1 // kotlin.Int | The folder that receives the file; take the id from a listing such as `GET api/2.0/files/@root`. A room or an  ordinary folder inside one is accepted, a section root is not.
+val createNewIfExist : kotlin.Boolean = true // kotlin.Boolean | Settles the clash with a file already carrying that title: left out, the content is written as the next  version of that file; set to true, both survive and the new one gets a numeric suffix in its title.
+val storeOriginalFile : kotlin.Boolean = true // kotlin.Boolean | Reaches further than this request: it writes a setting on the calling account, the same one  `PUT api/2.0/files/storeoriginal` writes, and it stays in force for later uploads. True keeps both the  uploaded file and the copy the portal converts it into, false replaces the uploaded file with the converted  one, and leaving it out keeps whatever the account already has.
+val keepConvertStatus : kotlin.Boolean = true // kotlin.Boolean | Decides whether the outcome of the background conversion outlives the conversion itself. True keeps the queue  record, so `GET api/2.0/files/file/{fileId}/checkconversion` can still report the result or the error; left  out, the record is cleared the moment the conversion ends and that call finds nothing.
+val file : java.io.File = BINARY_DATA_HERE // java.io.File | The content to store, sent as a `multipart/form-data` part; the name of that part becomes the title of the  stored file, with characters a title cannot hold replaced and the name cut to 170 characters. A request  without it is rejected as invalid.
 
 launch(Dispatchers.IO) {
-    val result : FileIntegerArrayWrapper = webService.uploadFile(folderId, createNewIfExist, storeOriginalFile, keepConvertStatus, file)
+    val result : FileArrayWrapper = webService.uploadFile(folderId, createNewIfExist, storeOriginalFile, keepConvertStatus, file)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
+
+<a id="uploadFile-thirdparty"></a>
+# **uploadFile** (third-party storage)
+> ThirdPartyFileArrayWrapper uploadFile (kotlin.String folderId, kotlin.Boolean createNewIfExist, kotlin.Boolean storeOriginalFile, kotlin.Boolean keepConvertStatus, java.io.File file)
+
+Stores a file in the folder named by the path in a single multipart request, taking its name from the uploaded  part; use `POST api/2.0/files/{folderId}/insert` when the name has to be given separately or the content is  sent as a raw body. The answer is a list that always holds exactly one file. `createNewIfExist` settles the  clash: false adds a new version to the file that already carries the name, true keeps both by giving the new  one a numeric suffix. `storeOriginalFile` reaches further than this call, because it saves the setting on the  calling account, the same one `PUT api/2.0/files/storeoriginal` writes, and it stays in force for later  uploads. The caller needs the right to add content to the folder, so a reader, an editor and a guest get 403,  a section root and an archived room are refused as well, and an unknown folder gives 404. A request without a  file is rejected as invalid, and a payload above the portal upload limit is refused.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-file/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **folderId** | **kotlin.String**| The folder that receives the file; take the id from a listing such as `GET api/2.0/files/@root`. A room or an  ordinary folder inside one is accepted, a section root is not. | |
+| **createNewIfExist** | **kotlin.Boolean**| Settles the clash with a file already carrying that title: left out, the content is written as the next  version of that file; set to true, both survive and the new one gets a numeric suffix in its title. | [optional] |
+| **storeOriginalFile** | **kotlin.Boolean**| Reaches further than this request: it writes a setting on the calling account, the same one  `PUT api/2.0/files/storeoriginal` writes, and it stays in force for later uploads. True keeps both the  uploaded file and the copy the portal converts it into, false replaces the uploaded file with the converted  one, and leaving it out keeps whatever the account already has. | [optional] |
+| **keepConvertStatus** | **kotlin.Boolean**| Decides whether the outcome of the background conversion outlives the conversion itself. True keeps the queue  record, so `GET api/2.0/files/file/{fileId}/checkconversion` can still report the result or the error; left  out, the record is cleared the moment the conversion ends and that call finds nothing. | [optional] |
+| **file** | **java.io.File**| The content to store, sent as a `multipart/form-data` part; the name of that part becomes the title of the  stored file, with characters a title cannot hold replaced and the name cut to 170 characters. A request  without it is rejected as invalid. | [optional] |
+
+### Return type
+
+[**ThirdPartyFileArrayWrapper**](ThirdPartyFileArrayWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(FoldersApi::class.java)
+val folderId : kotlin.String = 1 // kotlin.String | The folder that receives the file; take the id from a listing such as `GET api/2.0/files/@root`. A room or an  ordinary folder inside one is accepted, a section root is not.
+val createNewIfExist : kotlin.Boolean = true // kotlin.Boolean | Settles the clash with a file already carrying that title: left out, the content is written as the next  version of that file; set to true, both survive and the new one gets a numeric suffix in its title.
+val storeOriginalFile : kotlin.Boolean = true // kotlin.Boolean | Reaches further than this request: it writes a setting on the calling account, the same one  `PUT api/2.0/files/storeoriginal` writes, and it stays in force for later uploads. True keeps both the  uploaded file and the copy the portal converts it into, false replaces the uploaded file with the converted  one, and leaving it out keeps whatever the account already has.
+val keepConvertStatus : kotlin.Boolean = true // kotlin.Boolean | Decides whether the outcome of the background conversion outlives the conversion itself. True keeps the queue  record, so `GET api/2.0/files/file/{fileId}/checkconversion` can still report the result or the error; left  out, the record is cleared the moment the conversion ends and that call finds nothing.
+val file : java.io.File = BINARY_DATA_HERE // java.io.File | The content to store, sent as a `multipart/form-data` part; the name of that part becomes the title of the  stored file, with characters a title cannot hold replaced and the name cut to 170 characters. A request  without it is rejected as invalid.
+
+launch(Dispatchers.IO) {
+    val result : ThirdPartyFileArrayWrapper = webService.uploadFile(folderId, createNewIfExist, storeOriginalFile, keepConvertStatus, file)
 }
 ```
 
@@ -1691,23 +2580,23 @@ launch(Dispatchers.IO) {
 
 <a id="uploadFileToMy"></a>
 # **uploadFileToMy**
-> FileIntegerArrayWrapper uploadFileToMy (kotlin.Boolean createNewIfExist, kotlin.Boolean storeOriginalFile, kotlin.Boolean keepConvertStatus, java.io.File file)
+> FileArrayWrapper uploadFileToMy (kotlin.Boolean createNewIfExist, kotlin.Boolean storeOriginalFile, kotlin.Boolean keepConvertStatus, java.io.File file)
 
-Uploads a file specified in the request to the My documents section by single file uploading or standart multipart/form-data method.
+Uploads one file into the caller's own My documents section and returns it inside a single-element array; one  request stores exactly one file. The destination takes no identifier: it is resolved from the calling account  and created on first use, while a guest account has none and is answered as missing (404). The body has to be  `multipart/form-data` carrying the file part; a request without it is rejected as invalid, and the stored name  comes from that part, since unlike `POST api/2.0/files/@my/insert` there is no separate title. The call is not  idempotent: by default a file of the same title is overwritten as a new version, while `createNewIfExist=true`  stores a separate copy under a title made unique with a numeric suffix. `storeOriginalFile` is not a  per-request switch: it writes the same account setting as `PUT api/2.0/files/storeoriginal`, which decides  what happens to the formats listed in `extsMustConvert` of `GET api/2.0/files/settings` when they are  converted after the response - false replaces the uploaded file with the converted one, true keeps both;  `keepConvertStatus=true` keeps that conversion result readable through  `GET api/2.0/files/file/{fileId}/checkconversion`. Files over the single-request size limit or the account's  storage quota are refused; send those through `POST api/2.0/files/{folderId}/upload/create_session`.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-file-to-my/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **createNewIfExist** | **kotlin.Boolean**| Specifies whether to create the new file if it already exists or not. | [optional] |
-| **storeOriginalFile** | **kotlin.Boolean**| Specifies whether to upload documents in the original formats as well or not. | [optional] |
-| **keepConvertStatus** | **kotlin.Boolean**| Specifies whether to keep the file converting status or not. | [optional] |
-| **file** | **java.io.File**| The file to be uploaded. | [optional] |
+| **createNewIfExist** | **kotlin.Boolean**| Settles the clash with a file already carrying that title: left out, the content is written as the next  version of that file; set to true, both survive and the new one gets a numeric suffix in its title. | [optional] |
+| **storeOriginalFile** | **kotlin.Boolean**| Reaches further than this request: it writes a setting on the calling account, the same one  `PUT api/2.0/files/storeoriginal` writes, and it stays in force for later uploads. True keeps both the  uploaded file and the copy the portal converts it into, false replaces the uploaded file with the converted  one, and leaving it out keeps whatever the account already has. | [optional] |
+| **keepConvertStatus** | **kotlin.Boolean**| Decides whether the outcome of the background conversion outlives the conversion itself. True keeps the queue  record, so `GET api/2.0/files/file/{fileId}/checkconversion` can still report the result or the error; left  out, the record is cleared the moment the conversion ends and that call finds nothing. | [optional] |
+| **file** | **java.io.File**| The content to store, sent as a `multipart/form-data` part; the name of that part becomes the title of the  stored file, with characters a title cannot hold replaced and the name cut to 170 characters. A request  without it is rejected as invalid. | [optional] |
 
 ### Return type
 
-[**FileIntegerArrayWrapper**](FileIntegerArrayWrapper.md)
+[**FileArrayWrapper**](FileArrayWrapper.md)
 
 ### Authorization
 
@@ -1728,13 +2617,13 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
-val createNewIfExist : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to create the new file if it already exists or not.
-val storeOriginalFile : kotlin.Boolean = true // kotlin.Boolean | Specifies whether to upload documents in the original formats as well or not.
-val keepConvertStatus : kotlin.Boolean = false // kotlin.Boolean | Specifies whether to keep the file converting status or not.
-val file : java.io.File = BINARY_DATA_HERE // java.io.File | The file to be uploaded.
+val createNewIfExist : kotlin.Boolean = true // kotlin.Boolean | Settles the clash with a file already carrying that title: left out, the content is written as the next  version of that file; set to true, both survive and the new one gets a numeric suffix in its title.
+val storeOriginalFile : kotlin.Boolean = true // kotlin.Boolean | Reaches further than this request: it writes a setting on the calling account, the same one  `PUT api/2.0/files/storeoriginal` writes, and it stays in force for later uploads. True keeps both the  uploaded file and the copy the portal converts it into, false replaces the uploaded file with the converted  one, and leaving it out keeps whatever the account already has.
+val keepConvertStatus : kotlin.Boolean = true // kotlin.Boolean | Decides whether the outcome of the background conversion outlives the conversion itself. True keeps the queue  record, so `GET api/2.0/files/file/{fileId}/checkconversion` can still report the result or the error; left  out, the record is cleared the moment the conversion ends and that call finds nothing.
+val file : java.io.File = BINARY_DATA_HERE // java.io.File | The content to store, sent as a `multipart/form-data` part; the name of that part becomes the title of the  stored file, with characters a title cannot hold replaced and the name cut to 170 characters. A request  without it is rejected as invalid.
 
 launch(Dispatchers.IO) {
-    val result : FileIntegerArrayWrapper = webService.uploadFileToMy(createNewIfExist, storeOriginalFile, keepConvertStatus, file)
+    val result : FileArrayWrapper = webService.uploadFileToMy(createNewIfExist, storeOriginalFile, keepConvertStatus, file)
 }
 ```
 

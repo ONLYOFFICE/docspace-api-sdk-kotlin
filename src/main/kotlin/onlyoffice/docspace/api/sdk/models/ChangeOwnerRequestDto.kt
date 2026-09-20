@@ -22,11 +22,11 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The request parameters for changing the file owner.
+ * The rooms and files to hand over, together with the account that takes them.
  *
- * @param userId The new file owner ID.
- * @param folderIds The list of folder IDs to change the owner.
- * @param fileIds The list of file IDs to change the owner.
+ * @param userId The account that becomes the owner of every listed entry. It has to be an active member allowed to manage  rooms, so a deactivated account, a guest or a plain member is rejected, and for a private room the account  must have set up its encryption keys beforehand.
+ * @param folderIds The rooms to hand over, identified as `GET api/2.0/files/rooms` returns them - a number for a room stored on  the portal and a string for one that lives on a connected third-party account. Only rooms belong here; a  folder inside a room is refused.
+ * @param fileIds The files to hand over, identified as a listing operation returns them - a number for a file stored on the  portal and a string for one on a connected third-party account. Only a file kept in the portal's common  section is accepted.
  */
 
 

@@ -22,13 +22,13 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The request parameters for inviting users to the room.
+ * One batch of membership changes for a room.
  *
- * @param invitations The collection of invitation parameters.
- * @param notify Specifies whether to notify users about the shared room or not.
- * @param message The message to send when notifying about the shared room.
- * @param culture The language of the room invitation.
- * @param force Specifies whether to forcibly delete a user with form roles from the room.
+ * @param invitations Who is added, changed or removed, one entry per subject. The same subject named twice keeps the level of the  last entry, and an empty list is accepted and changes nothing.
+ * @param notify Whether the subjects that gained access are told about it by email. With it off the change is silent, which is  the usual choice when membership is synchronised from another system.
+ * @param message The line added to the invitation email. It is used only while the notification is on, and it reaches nobody  whose access was removed.
+ * @param culture The language of the invitation email, as a portal culture name such as en-US. Leaving it out sends each  message in the language of its recipient.
+ * @param force Whether a member who still holds a role in an unfinished form is removed anyway. With it off such a removal is  refused and reported through the error of the answer, so the form can be reassigned first.
  */
 
 

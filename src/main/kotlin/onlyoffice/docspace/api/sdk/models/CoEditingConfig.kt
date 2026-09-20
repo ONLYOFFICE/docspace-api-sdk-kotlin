@@ -22,11 +22,11 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The co-editing configuration parameters.
+ * How co-editing is preset when the document opens, and whether the user may switch it afterwards.
  *
- * @param change Specifies if the co-editing mode can be changed in the editor interface or not.
- * @param fast Specifies if the co-editing mode is fast.
- * @param mode The co-editing mode (fast or strict).
+ * @param change Whether the user may switch between the two co-editing modes from the editor interface, or is held to the one  the portal preset.
+ * @param fast Whether other participants see each change as it is typed. Left off, changes are exchanged only when a  participant saves, and the paragraph being edited is locked for the others meanwhile.
+ * @param mode The mode the two settings above amount to, as the editors name it.
  */
 
 

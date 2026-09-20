@@ -23,7 +23,7 @@ import com.squareup.moshi.JsonClass
 /**
  * The request for setting a group manager.
  *
- * @param userId The user ID.
+ * @param userId The account to make the manager. It has to exist, otherwise the operation answers 404, and it is added to the  group at the same time, so it does not have to be a member beforehand.
  */
 
 

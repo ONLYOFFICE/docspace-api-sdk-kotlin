@@ -24,7 +24,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 # **aiToolsAddCustomServer**
 > AiToolsMutationResult aiToolsAddCustomServer (AiToolsAddCustomServerRequest aiToolsAddCustomServerRequest)
 
-Registers a custom MCP server in the scope under the given name.
+Registers a custom MCP server under the given name so the model may call its tools. The name becomes a URL path segment, so it may not be `.`, `..`, or contain a path separator or a control character. `config` may be omitted in two cases: a name matching a host-configured system server pins the entry to that server's canonical settings as a whitelist marker, and a name already registered portal-wide copies the portal-level configuration into this scope; anything else without a config is rejected. `entityId` scopes the registration and has to name a room the caller can open - a room that is not an agent room folds to the portal-wide scope, while an unreachable one is refused so it cannot silently rewrite the portal's own registry.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-tools-add-custom-server/).
 
@@ -39,7 +39,9 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Authorization
 
-No authorization required
+
+Configure bearerAuth:
+    ApiClient().setBearerToken("TOKEN")
 
 ### Example
 ```kotlin
@@ -49,6 +51,7 @@ No authorization required
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
+apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIToolsApi::class.java)
 val aiToolsAddCustomServerRequest : AiToolsAddCustomServerRequest =  // AiToolsAddCustomServerRequest | 
 
@@ -67,7 +70,7 @@ launch(Dispatchers.IO) {
 # **aiToolsGetAllowAlways**
 > kotlin.collections.List&lt;kotlin.String&gt; aiToolsGetAllowAlways (kotlin.String entityId)
 
-Lists the tools on the always-allow list of the scope.
+Returns the always-allow list of the scope - the tools whose calls run without pausing the round for approval. `entityId` picks the scope and omitting it reads the portal-wide setting. An empty answer means every tool call has to be approved through `POST api/2.0/ai/ai/approve-tool-call`. Use `GET api/2.0/ai/tools/is-allow-always` to ask about a single tool.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-tools-get-allow-always/).
 
@@ -82,7 +85,9 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Authorization
 
-No authorization required
+
+Configure bearerAuth:
+    ApiClient().setBearerToken("TOKEN")
 
 ### Example
 ```kotlin
@@ -92,8 +97,9 @@ No authorization required
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
+apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIToolsApi::class.java)
-val entityId : kotlin.String = entityId_example // kotlin.String | The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope.
+val entityId : kotlin.String = 1234 // kotlin.String | The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope.
 
 launch(Dispatchers.IO) {
     val result : kotlin.collections.List<kotlin.String> = webService.aiToolsGetAllowAlways(entityId)
@@ -110,7 +116,7 @@ launch(Dispatchers.IO) {
 # **aiToolsGetCustomServer**
 > kotlin.Any aiToolsGetCustomServer (kotlin.String name, kotlin.String entityId)
 
-Returns the configuration of one custom MCP server, or an empty result when it is not registered.
+Returns the stored configuration of one registered custom MCP server. The name is required and is read from the query; `entityId` picks the scope, and omitting it reads the portal-wide registry. A name that is not registered answers a null body with status 200 rather than 404. The configuration of a system server is returned empty on purpose: those run server-side only, so neither their endpoint nor their credentials are handed to a browser.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-tools-get-custom-server/).
 
@@ -126,7 +132,9 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Authorization
 
-No authorization required
+
+Configure bearerAuth:
+    ApiClient().setBearerToken("TOKEN")
 
 ### Example
 ```kotlin
@@ -136,9 +144,10 @@ No authorization required
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
+apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIToolsApi::class.java)
-val name : kotlin.String = name_example // kotlin.String | The custom MCP server name.
-val entityId : kotlin.String = entityId_example // kotlin.String | The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope.
+val name : kotlin.String = acme-mcp // kotlin.String | The custom MCP server name.
+val entityId : kotlin.String = 1234 // kotlin.String | The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope.
 
 launch(Dispatchers.IO) {
     val result : kotlin.Any = webService.aiToolsGetCustomServer(name, entityId)
@@ -155,7 +164,7 @@ launch(Dispatchers.IO) {
 # **aiToolsGetDisabled**
 > kotlin.collections.Map&lt;kotlin.String, kotlin.collections.List&lt;kotlin.String&gt;&gt; aiToolsGetDisabled (kotlin.String entityId)
 
-Returns the switched-off tools of the scope, grouped by server type.
+Returns the tools switched off in the scope, as a map of server type to tool names. `entityId` picks the scope and omitting it reads the portal-wide setting. An absent server type means nothing is switched off for it, so an empty answer means every tool is on offer. Use `GET api/2.0/ai/tools/is-tool-disabled` to ask about one tool instead of reading the whole map.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-tools-get-disabled/).
 
@@ -170,7 +179,9 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Authorization
 
-No authorization required
+
+Configure bearerAuth:
+    ApiClient().setBearerToken("TOKEN")
 
 ### Example
 ```kotlin
@@ -180,8 +191,9 @@ No authorization required
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
+apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIToolsApi::class.java)
-val entityId : kotlin.String = entityId_example // kotlin.String | The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope.
+val entityId : kotlin.String = 1234 // kotlin.String | The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope.
 
 launch(Dispatchers.IO) {
     val result : kotlin.collections.Map<kotlin.String, kotlin.collections.List<kotlin.String>> = webService.aiToolsGetDisabled(entityId)
@@ -198,7 +210,7 @@ launch(Dispatchers.IO) {
 # **aiToolsIsAllowAlways**
 > kotlin.Boolean aiToolsIsAllowAlways (kotlin.String serverType, kotlin.String toolName, kotlin.String entityId)
 
-Tells whether one tool is on the always-allow list.
+Tells whether one named tool runs without an approval pause in the scope. Both `serverType` and `toolName` are required and are read from the query; `entityId` picks the scope. The answer is a bare boolean. A false answer means a call to that tool pauses the round, and the caller resumes it with the approve or deny operation.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-tools-is-allow-always/).
 
@@ -215,7 +227,9 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Authorization
 
-No authorization required
+
+Configure bearerAuth:
+    ApiClient().setBearerToken("TOKEN")
 
 ### Example
 ```kotlin
@@ -225,10 +239,11 @@ No authorization required
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
+apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIToolsApi::class.java)
-val serverType : kotlin.String = serverType_example // kotlin.String | The MCP server type the tool belongs to.
-val toolName : kotlin.String = toolName_example // kotlin.String | The tool name.
-val entityId : kotlin.String = entityId_example // kotlin.String | The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope.
+val serverType : kotlin.String = docspace // kotlin.String | The MCP server type the tool belongs to.
+val toolName : kotlin.String = docspace_get_folder // kotlin.String | The tool name.
+val entityId : kotlin.String = 1234 // kotlin.String | The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope.
 
 launch(Dispatchers.IO) {
     val result : kotlin.Boolean = webService.aiToolsIsAllowAlways(serverType, toolName, entityId)
@@ -245,7 +260,7 @@ launch(Dispatchers.IO) {
 # **aiToolsIsToolDisabled**
 > kotlin.Boolean aiToolsIsToolDisabled (kotlin.String serverType, kotlin.String toolName, kotlin.String entityId)
 
-Tells whether one tool of a server type is switched off.
+Tells whether one named tool of one server type is switched off in the scope. Both `serverType` and `toolName` are required and are read from the query; `entityId` picks the scope. The answer is a bare boolean. It reflects only the disable list - a tool that is on offer may still require approval, which `GET api/2.0/ai/tools/is-allow-always` reports.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-tools-is-tool-disabled/).
 
@@ -262,7 +277,9 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Authorization
 
-No authorization required
+
+Configure bearerAuth:
+    ApiClient().setBearerToken("TOKEN")
 
 ### Example
 ```kotlin
@@ -272,10 +289,11 @@ No authorization required
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
+apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIToolsApi::class.java)
-val serverType : kotlin.String = serverType_example // kotlin.String | The MCP server type the tool belongs to.
-val toolName : kotlin.String = toolName_example // kotlin.String | The tool name.
-val entityId : kotlin.String = entityId_example // kotlin.String | The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope.
+val serverType : kotlin.String = docspace // kotlin.String | The MCP server type the tool belongs to.
+val toolName : kotlin.String = docspace_get_folder // kotlin.String | The tool name.
+val entityId : kotlin.String = 1234 // kotlin.String | The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope.
 
 launch(Dispatchers.IO) {
     val result : kotlin.Boolean = webService.aiToolsIsToolDisabled(serverType, toolName, entityId)
@@ -292,7 +310,7 @@ launch(Dispatchers.IO) {
 # **aiToolsListCustomServers**
 > kotlin.collections.Map&lt;kotlin.String, kotlin.Any&gt; aiToolsListCustomServers (kotlin.String entityId)
 
-Lists the custom MCP servers registered in the scope, keyed by name.
+Lists the custom MCP servers registered in the scope as a map of name to configuration. `entityId` picks the scope and omitting it lists the portal-wide registry. The configuration of any entry that names a host-configured system server comes back empty, for the same reason as in the single-server read, and the portal's own built-in MCP server is left out of the list entirely because it is always enabled and cannot be configured. The names in the answer are what the disable and always-allow operations accept as `serverType`.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-tools-list-custom-servers/).
 
@@ -307,7 +325,9 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Authorization
 
-No authorization required
+
+Configure bearerAuth:
+    ApiClient().setBearerToken("TOKEN")
 
 ### Example
 ```kotlin
@@ -317,8 +337,9 @@ No authorization required
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
+apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIToolsApi::class.java)
-val entityId : kotlin.String = entityId_example // kotlin.String | The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope.
+val entityId : kotlin.String = 1234 // kotlin.String | The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope.
 
 launch(Dispatchers.IO) {
     val result : kotlin.collections.Map<kotlin.String, kotlin.Any> = webService.aiToolsListCustomServers(entityId)
@@ -333,9 +354,9 @@ launch(Dispatchers.IO) {
 
 <a id="aiToolsListSystemTools"></a>
 # **aiToolsListSystemTools**
-> kotlin.collections.Map&lt;kotlin.String, kotlin.collections.List&lt;AiTMCPItem&gt;&gt; aiToolsListSystemTools (kotlin.String entityId)
+> AiToolsListSystemTools200Response aiToolsListSystemTools (kotlin.String entityId)
 
-Lists the tools of the host-configured system MCP servers, grouped by server type. The servers are connected and listed server-side, so the client renders its permission cards from one request and never opens an MCP connection of its own.
+Lists every tool the scope can offer the model, as a map of server type to tool group. The answer merges two sources - the host-configured system servers and the live tools of the scope's registered custom MCP servers - and names the system ones separately in `system`, so a client can tell the two apart. `errors` carries the reason a registered server delivered no tools, which is the text to show on a permission card, because the browser cannot reach a server-executed MCP server to find out for itself. The connections are opened server-side, so one request is enough and the client never speaks MCP itself; the portal's own built-in server is left out because it is always enabled.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-tools-list-system-tools/).
 
@@ -346,11 +367,13 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Return type
 
-**kotlin.collections.Map&lt;kotlin.String, kotlin.collections.List&lt;AiTMCPItem&gt;&gt;**
+[**AiToolsListSystemTools200Response**](AiToolsListSystemTools200Response.md)
 
 ### Authorization
 
-No authorization required
+
+Configure bearerAuth:
+    ApiClient().setBearerToken("TOKEN")
 
 ### Example
 ```kotlin
@@ -360,11 +383,12 @@ No authorization required
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
+apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIToolsApi::class.java)
-val entityId : kotlin.String = entityId_example // kotlin.String | The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope.
+val entityId : kotlin.String = 1234 // kotlin.String | The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope.
 
 launch(Dispatchers.IO) {
-    val result : kotlin.collections.Map<kotlin.String, kotlin.collections.List<AiTMCPItem>> = webService.aiToolsListSystemTools(entityId)
+    val result : AiToolsListSystemTools200Response = webService.aiToolsListSystemTools(entityId)
 }
 ```
 
@@ -378,7 +402,7 @@ launch(Dispatchers.IO) {
 # **aiToolsRemoveCustomServer**
 > AiSuccessResponse aiToolsRemoveCustomServer (AiToolsRemoveCustomServerRequest aiToolsRemoveCustomServerRequest)
 
-Removes a custom MCP server from the registry.
+Unregisters a custom MCP server from the scope, so the model is no longer offered its tools. The name is required and may be sent in the body or as a query parameter, and `entityId` has to name a room the caller can open. A name that is not registered is not reported: the call answers success without removing anything. The server itself is untouched - only this portal's registration is dropped.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-tools-remove-custom-server/).
 
@@ -393,7 +417,9 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Authorization
 
-No authorization required
+
+Configure bearerAuth:
+    ApiClient().setBearerToken("TOKEN")
 
 ### Example
 ```kotlin
@@ -403,6 +429,7 @@ No authorization required
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
+apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIToolsApi::class.java)
 val aiToolsRemoveCustomServerRequest : AiToolsRemoveCustomServerRequest =  // AiToolsRemoveCustomServerRequest | 
 
@@ -421,7 +448,7 @@ launch(Dispatchers.IO) {
 # **aiToolsReplaceAllCustomServers**
 > AiToolsBulkResult aiToolsReplaceAllCustomServers (AiToolsReplaceAllCustomServersRequest aiToolsReplaceAllCustomServersRequest)
 
-Replaces the whole custom MCP server registry of the scope with the supplied map.
+Replaces the whole custom MCP server registry of the scope with the supplied map in one write, which makes it the operation a settings screen saves with. `map` is required: without it the registry would be emptied, so a missing or non-object value is rejected rather than treated as none. Every name in the map is validated as a routable path segment and every configuration is resolved before anything is written, so a map with one bad entry changes nothing. `entityId` has to name a room the caller can open - this is the operation where an unreachable one would otherwise have wiped the portal-wide registry.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-tools-replace-all-custom-servers/).
 
@@ -436,7 +463,9 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Authorization
 
-No authorization required
+
+Configure bearerAuth:
+    ApiClient().setBearerToken("TOKEN")
 
 ### Example
 ```kotlin
@@ -446,6 +475,7 @@ No authorization required
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
+apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIToolsApi::class.java)
 val aiToolsReplaceAllCustomServersRequest : AiToolsReplaceAllCustomServersRequest =  // AiToolsReplaceAllCustomServersRequest | 
 
@@ -464,7 +494,7 @@ launch(Dispatchers.IO) {
 # **aiToolsSetAllowAlways**
 > AiSuccessResponse aiToolsSetAllowAlways (AiToolsSetAllowAlwaysRequest aiToolsSetAllowAlwaysRequest)
 
-Adds a tool to the always-allow list, or removes it - the tools on that list run without an approval dialog.
+Adds one tool to the scope's always-allow list, or takes it off, which decides whether a call to it pauses the round for approval. `value` is coerced to a boolean, so any truthy value adds and any falsy one removes. Unlike the disable operation, `serverType` is not validated here: an unknown one is stored and then simply never matches, so a wrong value fails silently. `entityId` has to name a room the caller can open.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-tools-set-allow-always/).
 
@@ -479,7 +509,9 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Authorization
 
-No authorization required
+
+Configure bearerAuth:
+    ApiClient().setBearerToken("TOKEN")
 
 ### Example
 ```kotlin
@@ -489,6 +521,7 @@ No authorization required
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
+apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIToolsApi::class.java)
 val aiToolsSetAllowAlwaysRequest : AiToolsSetAllowAlwaysRequest =  // AiToolsSetAllowAlwaysRequest | 
 
@@ -507,7 +540,7 @@ launch(Dispatchers.IO) {
 # **aiToolsSetDisabled**
 > AiSuccessResponse aiToolsSetDisabled (AiToolsSetDisabledRequest aiToolsSetDisabledRequest)
 
-Marks the listed tools of one server type as switched off, so the model is no longer offered them.
+Switches off the listed tools of one server type in the scope, so the model is no longer offered them. `serverType` has to be a key the round's tool filter actually matches - a host-configured system server, one of the two DocSpace integration groups, web search, image generation, or one of the scope's registered custom servers - and an unknown value is rejected with the list of valid ones in the message, rather than stored and silently ignored. `toolNames` replaces the previous selection for that server type, so send the full list and pass an empty one to switch everything back on. `entityId` has to name a room the caller can open.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-tools-set-disabled/).
 
@@ -522,7 +555,9 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Authorization
 
-No authorization required
+
+Configure bearerAuth:
+    ApiClient().setBearerToken("TOKEN")
 
 ### Example
 ```kotlin
@@ -532,6 +567,7 @@ No authorization required
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
+apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIToolsApi::class.java)
 val aiToolsSetDisabledRequest : AiToolsSetDisabledRequest =  // AiToolsSetDisabledRequest | 
 
@@ -550,7 +586,7 @@ launch(Dispatchers.IO) {
 # **aiToolsUpdateCustomServer**
 > AiToolsMutationResult aiToolsUpdateCustomServer (AiToolsUpdateCustomServerRequest aiToolsUpdateCustomServerRequest)
 
-Updates the configuration of a registered custom MCP server.
+Replaces the stored configuration of a registered custom MCP server, under the same name and scope rules as the add operation. The name is re-validated as a routable path segment, and an omitted `config` resolves the same way - to a system server's canonical settings, or to the portal-level entry of that name. `entityId` has to name a room the caller can open. The answer carries the stored registry entry.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-tools-update-custom-server/).
 
@@ -565,7 +601,9 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Authorization
 
-No authorization required
+
+Configure bearerAuth:
+    ApiClient().setBearerToken("TOKEN")
 
 ### Example
 ```kotlin
@@ -575,6 +613,7 @@ No authorization required
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
+apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIToolsApi::class.java)
 val aiToolsUpdateCustomServerRequest : AiToolsUpdateCustomServerRequest =  // AiToolsUpdateCustomServerRequest | 
 

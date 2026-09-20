@@ -21,10 +21,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The parameters for changing version history.
+ * The change to make to a revision group of a file.
  *
- * @param version The file version of the change history.
- * @param continueVersion Specifies whether to start a new version or continue revision of the change history.
+ * @param version The version the change applies to; 0 means the current version of the file.
+ * @param continueVersion What to do with the revision group: `false` completes the named version, storing its content again as a fresh  version that opens a new group, while `true` folds the last group back into the group before it, so the next  save continues that revision.
  */
 
 

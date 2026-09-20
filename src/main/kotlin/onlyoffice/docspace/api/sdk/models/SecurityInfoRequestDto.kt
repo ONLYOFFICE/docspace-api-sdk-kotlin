@@ -23,13 +23,13 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The security information request parameters.
+ * The entries whose sharing rights are being changed, and the rights to apply to them.
  *
- * @param folderIds The list of the shared folder IDs.
- * @param fileIds The list of the shared file IDs.
- * @param share The collection of sharing parameters.
- * @param notify Specifies whether to notify users about the shared file or not.
- * @param sharingMessage The message to send when notifying about the shared file.
+ * @param folderIds The folders and rooms whose rights are being changed, identified as a listing operation returns them - a  number on the portal, a string on a connected third-party account.
+ * @param fileIds The files whose rights are being changed, identified as a listing operation returns them - a number on the  portal, a string on a connected third-party account.
+ * @param share One record per account or group whose rights are being set, each naming the subject and the level it gets on  all of the listed entries; a level of `None` takes the access away. An empty collection makes the call change  nothing.
+ * @param notify Set to true to have every account named in `share` emailed about the access it just received; false changes  the rights without telling anyone.
+ * @param sharingMessage The text put into that email, ignored while `notify` is false. Markup is stripped before sending, so only the  plain text of the value survives.
  */
 
 

@@ -23,9 +23,9 @@ import com.squareup.moshi.JsonClass
 /**
  * The account information parameters.
  *
- * @param provider The account provider.
- * @param url The account URL.
- * @param linked Specifies if an account is linked with other profiles or not.
+ * @param provider The name of the identity provider, in lowercase, as every other operation of this group expects it: `google`,  `zoom`, `linkedin`, `facebook`, `twitter`, `microsoft`, `appleid`, `weixin` or `nextcloud`.
+ * @param url The URL that starts the login with this provider. Open it as it is - it already carries the provider and the  popup or redirect mode the request asked for.
+ * @param linked Whether this provider is already linked to the calling profile. It is always false for an anonymous caller,  because there is no profile to compare against.
  */
 
 

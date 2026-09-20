@@ -21,11 +21,11 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The request parameters for managing user security and access permissions.
+ * Which member is granted or denied the administrator role of which portal module.
  *
- * @param productId The product ID for which permissions are being set.
- * @param userId The ID of the user whose permissions are being configured.
- * @param administrator Specifies whether the user has administrative privileges.
+ * @param productId The module the role applies to, given by its GUID. The all-zero GUID stands for the portal itself and grants  or revokes the DocSpace administrator role, which covers every module at once; a GUID that names no module  group is stored without effect rather than refused.
+ * @param userId The portal member the role is given to or taken from, by user ID. The member has to exist already - nobody is  created here - and promoting a guest or a plain member turns them into a paid one.
+ * @param administrator Which way the role goes: `true` adds the member to the module administrator group, `false` removes them from  it. Taking away the portal-wide role also drops the member from every product group.
  */
 
 

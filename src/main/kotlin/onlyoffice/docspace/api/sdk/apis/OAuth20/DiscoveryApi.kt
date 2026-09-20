@@ -27,18 +27,18 @@ import com.squareup.moshi.Json
 interface DiscoveryApi {
     /**
      * OPTIONS .well-known/oauth-authorization-server
-     * 
-     * 
+     * Probe the discovery endpoint
+     * Answers the CORS preflight for the OAuth 2.0 Authorization Server metadata endpoint. The endpoint needs no authentication and reads nothing from the request: it always answers 200 with an empty body, and the CORS headers are added by the surrounding filter chain rather than by this handler. It changes no state, and it does not return the authorization server metadata document - issue a GET against the same path for that.
      * Responses:
-     *  - 200: OK
+     *  - 200: Preflight accepted; the response carries no body
      *
      * REST API Reference for handleOptions Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/handle-options/
      *
      *
-     * @return [kotlin.Any]
+     * @return [Unit]
      */
     @OPTIONS(".well-known/oauth-authorization-server")
-    suspend fun handleOptions(): Response<kotlin.Any>
+    suspend fun handleOptions(): Response<Unit>
 
 }

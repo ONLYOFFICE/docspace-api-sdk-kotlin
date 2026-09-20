@@ -23,7 +23,7 @@ import com.squareup.moshi.JsonClass
 /**
  * Client activation change request
  *
- * @param status The activation status of the client
+ * @param status Whether the client may obtain tokens from now on. Sending false leaves the registration and the already issued tokens in place but refuses new authorization requests; sending true allows them again.
  */
 
 

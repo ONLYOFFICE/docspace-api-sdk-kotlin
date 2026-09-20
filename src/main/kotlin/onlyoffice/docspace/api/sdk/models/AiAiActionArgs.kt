@@ -17,16 +17,18 @@
 package onlyoffice.docspace.api.sdk.models
 
 import onlyoffice.docspace.api.sdk.models.AiAiActionArgsPrompt
+import onlyoffice.docspace.api.sdk.models.AiAiReasoningLevel
 import onlyoffice.docspace.api.sdk.models.AiTMCPItem
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * Wire-serializable subset of the engine's `ActionArgs` — drops the engine-injected `signal`/`fetch`; `profile`/`messages` are owned by the engine and never sent by the caller.
+ * 
  *
  * @param tools Extra tools offered to the model for this request.
- * @param isReasoning Enable extended thinking / reasoning for this request.
+ * @param isReasoning Legacy extended-thinking switch; stands for `medium`. `reasoningLevel` wins when both are set.
+ * @param reasoningLevel Depth of extended thinking for the round; providers clamp it to what the model accepts.
  * @param prompt 
  */
 
@@ -38,6 +40,9 @@ data class AiAiActionArgs (
 
     @Json(name = "isReasoning")
     val isReasoning: kotlin.Boolean? = null,
+
+    @Json(name = "reasoningLevel")
+    val reasoningLevel: AiAiReasoningLevel? = null,
 
     @Json(name = "prompt")
     val prompt: AiAiActionArgsPrompt? = null

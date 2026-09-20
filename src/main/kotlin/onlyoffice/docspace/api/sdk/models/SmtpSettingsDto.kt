@@ -21,18 +21,18 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The SMTP settings parameters.
+ * The mail server the portal sends its letters through.
  *
- * @param host The SMTP host.
- * @param port The SMTP port.
- * @param senderAddress The sender address.
- * @param senderDisplayName The sender display name.
- * @param credentialsUserName The credentials username.
- * @param credentialsUserPassword The credentials user password.
- * @param enableSSL Specifies whether the SSL is enabled or not.
- * @param enableAuth Specifies whether the authentication is enabled or not.
- * @param useNtlm Specifies whether to use NTLM or not.
- * @param isDefaultSettings Specifies if the current settings are default or not.
+ * @param host The host name or address of the mail server. On a cloud portal that has saved no relay of its own every  field of this object comes back empty, because the installation's own server is not disclosed - only  `isDefaultSettings` is set there.
+ * @param port The port the mail server is reached on - conventionally 25 or 587 without encryption from the start, 465  with it. It is empty when no port was stored, in which case the portal falls back to its own default.
+ * @param senderAddress The address the letters are sent from, which appears in the From header and is what a reply goes to.
+ * @param senderDisplayName The name shown beside that address in a recipient's mailbox.
+ * @param credentialsUserName The account the portal signs in to the mail server as, meaningful only while `enableAuth` is `true`.
+ * @param credentialsUserPassword Always empty here: the stored password is never returned, so a client that sends these settings back has  to supply it again rather than echoing what it read.
+ * @param enableSSL Whether the connection to the mail server is encrypted.
+ * @param enableAuth Whether the portal signs in to the mail server at all. While it is `false` the credentials above are  ignored and the server is expected to accept mail unauthenticated.
+ * @param useNtlm Always `false` here: the flag is accepted when settings are saved but is not stored, so it never comes  back set and says nothing about how the portal authenticates.
+ * @param isDefaultSettings Whether the portal is still on the mail configuration of the installation rather than on a relay of its  own. `DELETE api/2.0/smtpsettings/smtp` puts it back to `true`, and while it is `true` on a cloud portal  the fields above are blank rather than showing the installation's server.
  */
 
 

@@ -21,9 +21,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The parameters for deleting a room.
+ * The body of a room deletion request.
  *
- * @param deleteAfter Specifies whether to delete a room after the editing session is finished or not.
+ * @param deleteAfter Carried by the contract but not acted upon: the deletion behaves the same either way, and the record of the  finished job is kept until it is read once.
  */
 
 

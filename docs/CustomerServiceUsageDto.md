@@ -4,15 +4,15 @@
 ## Properties
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
-| **service** | **kotlin.String** | The name of the service. |  [optional] |
-| **title** | **kotlin.String** | The title of the service. |  [optional] |
-| **serviceUnit** | **kotlin.String** | The unit of measurement for the service. |  [optional] |
-| **currency** | **kotlin.String** | The three-character ISO 4217 currency symbol of the amounts. |  [optional] |
-| **totalQuantity** | **kotlin.Int** | The total number of units consumed. |  [optional] |
-| **totalAmount** | **kotlin.Double** | The total amount charged for the service. |  [optional] |
-| **operationCount** | **kotlin.Int** | The number of individual purchase operations. |  [optional] |
-| **price** | **kotlin.Double** | The price of the service. |  [optional] |
-| **subscription** | **kotlin.Boolean** | Indicates whether the service is subscription-based. |  [optional] |
+| **service** | **kotlin.String** | The stable key of the service, which is what the `serviceName` filter of this operation matches on and  what `GET api/2.0/portal/payment/walletservice` looks a service up by. |  [optional] |
+| **title** | **kotlin.String** | The service name in the portal language, for printing rather than matching. |  [optional] |
+| **serviceUnit** | **kotlin.String** | What `totalQuantity` counts, in the portal language. AI consumption is reported in tokens here rather  than in the AI credits the service is sold in, so it does not line up with the price list. |  [optional] |
+| **currency** | **kotlin.String** | The currency `totalAmount` and `price` are expressed in, as a three-letter ISO 4217 code. |  [optional] |
+| **totalQuantity** | **kotlin.Int** | How many units of the service were consumed over the period, in the unit named by `serviceUnit`. |  [optional] |
+| **totalAmount** | **kotlin.Double** | What that consumption cost over the period. It is what was actually charged, so it can differ from  `price` times `totalQuantity` when the price changed inside the period. |  [optional] |
+| **operationCount** | **kotlin.Int** | How many separate charges the total was added up from. The charges themselves are in  `GET api/2.0/portal/payment/customer/operations`. |  [optional] |
+| **price** | **kotlin.Double** | What one unit of the service costs today, not what it cost during the period. It is `0` when the service  is no longer on the installation's price list. |  [optional] |
+| **subscription** | **kotlin.Boolean** | Whether the service is billed as a standing subscription rather than per unit consumed. It is derived  from today's price list, so it describes the service as it is sold now. |  [optional] |
 
 
 

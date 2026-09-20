@@ -23,8 +23,8 @@ import com.squareup.moshi.JsonClass
 /**
  * The request parameters for updating a user email.
  *
- * @param email The user email address.
- * @param encEmail The user encrypted email address.
+ * @param email The new address in plain text, up to 255 characters. It is stored in lowercase, and one of this field and  `encEmail` is required.
+ * @param encEmail The new address in the encrypted form the confirmation link carries. Pass the value from the link unchanged;  it is used only when `email` is empty.
  */
 
 

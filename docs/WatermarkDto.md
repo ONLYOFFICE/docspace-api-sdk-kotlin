@@ -4,13 +4,13 @@
 ## Properties
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
-| **additions** | [**WatermarkAdditions**](WatermarkAdditions.md) | Specifies whether to display in the watermark: username, user email, user ip-adress, current date, and room name. |  |
-| **rotate** | **kotlin.Int** | The watermark text and image rotate. |  |
-| **imageScale** | **kotlin.Int** | The watermark image scale. |  |
-| **imageHeight** | **kotlin.Double** | The watermark image height. |  |
-| **imageWidth** | **kotlin.Double** | The watermark image width. |  |
-| **text** | **kotlin.String** | The watermark text. |  [optional] |
-| **imageUrl** | **kotlin.String** | The watermark image url. |  [optional] |
+| **additions** | [**WatermarkAdditions**](WatermarkAdditions.md) | Which details of the reader and of the room are stamped alongside the text. The values combine, so a number  that is not a member on its own is the sum of several of them, and 0 means that only the text is stamped. |  |
+| **rotate** | **kotlin.Int** | How far the stamp is turned, in degrees, with negative values turning it anticlockwise and 0 drawing it  horizontally. |  |
+| **imageScale** | **kotlin.Int** | How large the image is drawn, as a percentage of its own size. It is 0 for a text watermark, where nothing is  scaled. |  |
+| **imageHeight** | **kotlin.Double** | The height the picture is drawn with, in pixels, kept together with the width so that the proportions survive.  It is 0 for a text watermark. |  |
+| **imageWidth** | **kotlin.Double** | The width the picture is drawn with, in pixels, kept together with the height so that the proportions survive.  It is 0 for a text watermark. |  |
+| **text** | **kotlin.String** | The fixed line drawn over the document, printed before the details selected alongside it. Empty when the room  stamps an image instead. |  [optional] |
+| **imageUrl** | **kotlin.String** | The address the stamped picture is served from, inside the storage of the room. Empty for a text watermark. |  [optional] |
 
 
 

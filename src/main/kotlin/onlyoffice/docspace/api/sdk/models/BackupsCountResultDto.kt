@@ -21,10 +21,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The number of backups.
+ * The backups of a portal, split by who paid for them.
  *
- * @param free The number of free backups.
- * @param paid The number of paid backups.
+ * @param free The number of backups covered by the free monthly allowance.
+ * @param paid The number of backups charged to the portal wallet.
  */
 
 

@@ -21,9 +21,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The anonymous config parameters.
+ * How the editors treat a participant who opened the document without an account.
  *
- * @param request Specifies if the anonymous is a request.
+ * @param request Whether the editors ask an anonymous participant for a display name before letting them in. It follows the  chat permission of the document, since a nameless participant cannot take part in one.
  */
 
 

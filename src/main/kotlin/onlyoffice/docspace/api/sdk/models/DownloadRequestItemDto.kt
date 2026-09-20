@@ -22,11 +22,11 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The download request item with conversion parameters and security settings.
+ * One file of a bulk download, together with the format it is converted to.
  *
  * @param key 
- * @param `value` The target format or conversion type for the file download.
- * @param password The optional password for accessing protected files.
+ * @param `value` The format the file is converted to before it is packed, as a file extension without a leading dot.
+ * @param password The password that opens the source file, for a file protected with one; a protected file cannot be converted  without it.
  */
 
 

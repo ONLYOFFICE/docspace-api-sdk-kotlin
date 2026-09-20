@@ -4,9 +4,9 @@
 ## Properties
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
-| **change** | **kotlin.Boolean** | Specifies if the co-editing mode can be changed in the editor interface or not. |  [optional] |
-| **fast** | **kotlin.Boolean** | Specifies if the co-editing mode is fast. |  [optional] |
-| **mode** | [**CoEditingConfigMode**](CoEditingConfigMode.md) | The co-editing mode (fast or strict). |  [optional] |
+| **change** | **kotlin.Boolean** | Whether the user may switch between the two co-editing modes from the editor interface, or is held to the one  the portal preset. |  [optional] |
+| **fast** | **kotlin.Boolean** | Whether other participants see each change as it is typed. Left off, changes are exchanged only when a  participant saves, and the paragraph being edited is locked for the others meanwhile. |  [optional] |
+| **mode** | [**CoEditingConfigMode**](CoEditingConfigMode.md) | The mode the two settings above amount to, as the editors name it. |  [optional] |
 
 
 

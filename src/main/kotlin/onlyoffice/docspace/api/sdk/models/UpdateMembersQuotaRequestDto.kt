@@ -24,7 +24,7 @@ import com.squareup.moshi.JsonClass
 /**
  * The request parameters for updating a user quota.
  *
- * @param userIds The list of user IDs.
+ * @param userIds The accounts the operation applies to. System accounts are dropped from the list without an error.
  * @param quota 
  */
 

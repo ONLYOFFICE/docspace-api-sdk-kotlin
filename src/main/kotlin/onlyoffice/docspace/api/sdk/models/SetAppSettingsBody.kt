@@ -22,7 +22,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * Request body for saving application-specific settings.
+ * The configuration document a portal application keeps.
  *
  * @param settings 
  */

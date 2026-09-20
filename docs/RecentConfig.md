@@ -4,9 +4,9 @@
 ## Properties
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
-| **folder** | **kotlin.String** | The folder where the document is stored. |  [optional] |
-| **title** | **kotlin.String** | The document title that will be displayed in the Open Recent... menu option. |  [optional] |
-| **url** | [**java.net.URI**](java.net.URI.md) | The absolute URL to the document where it is stored. |  [optional] |
+| **folder** | **kotlin.String** | The folder shown next to the entry, as a readable name rather than an id. |  [optional] |
+| **title** | **kotlin.String** | The name shown for the entry. |  [optional] |
+| **url** | [**java.net.URI**](java.net.URI.md) | Where the entry opens. |  [optional] |
 
 
 

@@ -21,10 +21,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The used space parameters of the tenant quota feature.
+ * How much of one quota feature the portal has already consumed.
  *
  * @param `value` 
- * @param title The used space title.
+ * @param title The same figure as a sentence in the portal language, ready to print. It is empty when this build ships no  wording for the feature.
  */
 
 

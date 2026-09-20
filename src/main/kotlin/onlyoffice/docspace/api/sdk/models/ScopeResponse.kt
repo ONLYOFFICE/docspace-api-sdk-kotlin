@@ -21,11 +21,11 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The response containing the scope information.
+ * One scope from the tenant scope catalogue, as it may be requested by a client.
  *
- * @param name The scope name.
- * @param group The group the scope belongs to.
- * @param type The scope type.
+ * @param name The scope exactly as it is written in an authorization request, for example files:read or openid.
+ * @param group The area of the portal the scope belongs to, which is what groups the scopes on the consent screen: files, rooms, contacts, profiles or openid.
+ * @param type What the scope allows inside its group: read for read-only access, write for changes, and openid for the identity scope itself.
  */
 
 

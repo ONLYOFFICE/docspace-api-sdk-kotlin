@@ -21,11 +21,11 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The plugins parameters.
+ * What the installation allows to be done with web plugins.
  *
- * @param enabled Specifies if the plugins are enabled or not.
- * @param upload Specifies if the plugins can be uploaded or not.
- * @param delete Specifies if the plugins can be deleted or not.
+ * @param enabled Whether web plugins run on this portal at all. While it is `false` the operations under  `api/2.0/settings/webplugins` are of no use, whatever the other two flags say. All three are `false`  unless the installation switched plugins on in its configuration.
+ * @param upload Whether an administrator may add a plugin of their own through  `POST api/2.0/settings/webplugins`. While it is `false` only the plugins that ship with the installation  are available.
+ * @param delete Whether an added plugin may be removed again through `DELETE api/2.0/settings/webplugins/{name}`. The  plugins that ship with the installation cannot be removed regardless of this flag.
  */
 
 

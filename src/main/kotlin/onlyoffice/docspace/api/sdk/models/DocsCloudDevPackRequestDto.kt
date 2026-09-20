@@ -21,9 +21,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The request parameters for switch the DocsCloud subscription to DocsCloudDevPack.
+ * The request parameters for switching the DocsCloud subscription to DocsCloudDevPack, or for calculating  the cost of that switch.
  *
- * @param quantity The number of users for DocsCloudDevPack subscription.
+ * @param quantity The number of users to subscribe to DocsCloudDevPack for. It must be at least the number of users of  the currently purchased DocsCloud subscription, and at least the DocsCloudDevPack minimum configured  for the installation, which is 10 users by default; a smaller value is rejected with 400.
  */
 
 

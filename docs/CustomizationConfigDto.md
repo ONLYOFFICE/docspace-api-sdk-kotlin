@@ -4,17 +4,18 @@
 ## Properties
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
-| **about** | **kotlin.Boolean** | Specifies if the customization is about. |  [optional] |
-| **customer** | [**CustomerConfigDto**](CustomerConfigDto.md) | The customization customer configuration. |  [optional] |
-| **anonymous** | [**AnonymousConfigDto**](AnonymousConfigDto.md) | The anonymous configuration of the customization. |  [optional] |
-| **feedback** | [**FeedbackConfig**](FeedbackConfig.md) | The feedback configuration of the customization. |  [optional] |
-| **forcesave** | **kotlin.Boolean** | Specifies if the customization should be force saved. |  [optional] |
-| **goback** | [**GobackConfig**](GobackConfig.md) | The go back configuration of the customization. |  [optional] |
-| **review** | [**ReviewConfig**](ReviewConfig.md) | The review configuration of the customization. |  [optional] |
-| **logo** | [**LogoConfigDto**](LogoConfigDto.md) | The logo of the customization. |  [optional] |
-| **mentionShare** | **kotlin.Boolean** | Specifies if the share should be mentioned. |  [optional] |
-| **submitForm** | [**SubmitForm**](SubmitForm.md) | The Complete & Submit button settings. |  [optional] |
-| **startFillingForm** | [**StartFillingForm**](StartFillingForm.md) | The parameters of the button that starts filling out the form. |  [optional] |
+| **about** | **kotlin.Boolean** | Whether the About entry of the editor menu is shown. |  [optional] |
+| **customer** | [**CustomerConfigDto**](CustomerConfigDto.md) | The branding of the organization running the portal. It is filled in on a server installation only and is  empty in the cloud. |  [optional] |
+| **anonymous** | [**AnonymousConfigDto**](AnonymousConfigDto.md) | How an anonymous participant is treated in this session. |  [optional] |
+| **feedback** | [**FeedbackConfig**](FeedbackConfig.md) | The support link the editor offers behind its feedback button. |  [optional] |
+| **forcesave** | **kotlin.Boolean** | Whether the editors write intermediate revisions while the document stays open. It is empty when the portal  leaves the decision to the editors themselves. |  [optional] |
+| **goback** | [**GobackConfig**](GobackConfig.md) | Where the editor returns the user to when they leave the document. It is empty when there is nowhere to go  back to, as in an embedded opening. |  [optional] |
+| **review** | [**ReviewConfig**](ReviewConfig.md) | How tracked changes are displayed when the document opens; it depends on whether this session may write. |  [optional] |
+| **logo** | [**LogoConfigDto**](LogoConfigDto.md) | The logo the editor shows, in the variants the current layout and file type need. |  [optional] |
+| **mentionShare** | **kotlin.Boolean** | Whether mentioning a user who cannot yet open the document offers to share it with them, instead of silently  notifying nobody. |  [optional] |
+| **submitForm** | [**SubmitForm**](SubmitForm.md) | The submit button of a form: whether it is shown and what it says. |  [optional] |
+| **startFillingForm** | [**StartFillingForm**](StartFillingForm.md) | The button that starts filling out the form. It is empty when this opening offers no such button. |  [optional] |
+| **ai** | [**AIConfig**](AIConfig.md) | The AI configuration settings. |  [optional] |
 
 
 

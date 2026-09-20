@@ -21,9 +21,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The request parameters for managing the Developer Tools access settings for the current tenant.
+ * Whether the `User` role is barred from the portal developer tools.
  *
- * @param limitedAccessForUsers Determines if users have restricted access to the Developer Tools.
+ * @param limitedAccessForUsers Whether members holding the `User` role are barred from the developer tools - API keys, OAuth applications  and webhooks. Room administrators and DocSpace administrators keep their access either way.
  */
 
 

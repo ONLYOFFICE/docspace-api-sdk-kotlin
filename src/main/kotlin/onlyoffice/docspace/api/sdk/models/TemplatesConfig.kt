@@ -21,7 +21,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The presence or absence of the templates in the Create New... menu option.
+ * One creation template offered in the editor. The portal no longer offers any, so this never appears in an editor  configuration.
  *
  * @param image The absolute URL to the image for template.
  * @param title The template title that will be displayed in the Create New... menu option.
