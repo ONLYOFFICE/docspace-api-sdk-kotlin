@@ -23,14 +23,14 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The information config parameters.
+ * The facts the editor information panel shows about the open document.
  *
- * @param favorite Specifies if the file is favorite or not.
- * @param folder The folder of the file.
- * @param owner The file owner.
- * @param sharingSettings The sharing settings of the file.
- * @param type The editor type of the file.
- * @param uploaded The uploaded file.
+ * @param favorite Whether the caller has this document among their favorites. It is empty when favorites do not apply - for an  anonymous caller, for a guest, and for an encrypted document.
+ * @param folder The place of the document as a readable path, its folders joined from the root downwards. It is empty in the  embedded layout, which shows no such panel.
+ * @param owner The display name of the owner of the document. It is empty for an anonymous session.
+ * @param sharingSettings Who the document is shared with, as the information panel lists it. An empty list means it is shared with  nobody beyond its owner.
+ * @param type The layout the information panel is rendered for.
+ * @param uploaded When the document was created on the portal, already formatted for reading in the culture of the caller rather  than as a machine timestamp.
  */
 
 

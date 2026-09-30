@@ -4,8 +4,8 @@
 ## Properties
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
-| **name** | **kotlin.String** | The notification channel name. |  |
-| **isEnabled** | **kotlin.Boolean** | Specifies whether the notification channel is enabled. |  |
+| **name** | **kotlin.String** | The internal name of the channel as the notification service knows it - `email.sender` for letters,  `telegram.sender` for Telegram messages. It is a key to match on, not a label to print. |  |
+| **isEnabled** | **kotlin.Boolean** | Whether the channel can deliver for this portal. Letters are enabled whenever the channel is listed at  all, while Telegram is enabled only while the portal has a bot name and token stored. It says nothing  about the caller, who also has to connect their own Telegram account through  `GET api/2.0/settings/telegram/link`. |  |
 
 
 

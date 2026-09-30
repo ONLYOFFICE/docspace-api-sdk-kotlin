@@ -21,7 +21,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * Represents the user limits of a DocsCloud license.
+ * Represents the user limits of a Docs Connect license.
  *
  * @param edit The maximum number of users who can edit documents.
  * @param view The maximum number of users who can view documents.

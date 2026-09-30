@@ -21,9 +21,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The request parameters for enabling or disabling administrator messaging system.
+ * Whether the sign-in page offers the form for writing to the portal administrators.
  *
- * @param turnOn The global switch for the administrator messaging functionality.
+ * @param turnOn Whether the form is offered. Switching it off hides the form for everybody and makes the operation that  submits it refuse new messages; letters already sent are untouched.
  */
 
 

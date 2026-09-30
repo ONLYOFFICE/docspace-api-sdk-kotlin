@@ -16,16 +16,15 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.AppDtoSettings
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The portal application information.
+ * One feature module of the portal: whether it is switched on here, and the settings stored for it.
  *
- * @param id The application identifier (stable slug). The client maps this to its title, description and icon.
- * @param enabled Whether the application is enabled for the current tenant.
+ * @param id The application's stable key, declared in the installation configuration - `ai-rooms`, `docs-cloud` and  the like. It is what every other operation of this group addresses an application by, and a client maps it  to a title and an icon of its own; the portal ships no display name for it.
+ * @param enabled Whether the application is switched on for this portal. It is the portal's own flag where one has been  saved, and the default the installation configuration gives the application otherwise.
  * @param settings 
  */
 
@@ -39,7 +38,7 @@ data class AppDto (
     val enabled: kotlin.Boolean? = null,
 
     @Json(name = "settings")
-    val settings: AppDtoSettings? = null
+    val settings: kotlin.Any? = null
 
 ) {
 

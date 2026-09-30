@@ -21,10 +21,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The current license information.
+ * The two facts about the subscription in force that a payment page needs.
  *
- * @param trial Specifies whether the license is trial or not.
- * @param dueDate The date when the license expires.
+ * @param trial Whether the portal is on a trial rather than a paid subscription. A trial expires at `dueDate` and is not  extended by paying - a plan has to be bought instead.
+ * @param dueDate The day the subscription runs out, with the time of day cut off. The largest value a date can hold means  it never runs out, which is how a free or unlimited plan is expressed.
  */
 
 

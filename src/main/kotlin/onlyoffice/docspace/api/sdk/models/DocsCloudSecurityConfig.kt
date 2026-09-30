@@ -21,7 +21,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * Represents the security configuration of a DocsCloud tenant.
+ * Represents the security configuration of a Docs Connect tenant.
  *
  * @param secret The security secret.
  * @param header The security header name.

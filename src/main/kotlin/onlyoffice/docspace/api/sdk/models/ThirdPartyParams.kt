@@ -22,14 +22,14 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The third-party account parameters.
+ * A third-party storage account connected to the portal.
  *
- * @param authData The authentication data.
- * @param corporate Specifies if this is a corporate account or not.
- * @param roomsStorage Specifies if this is a room storage or not.
- * @param customerTitle The customer title.
- * @param providerId The provider ID.
- * @param providerKey The provider key.
+ * @param authData The stored credentials of the account. They are not filled in here: the portal does not give back credentials  once an account is saved.
+ * @param corporate Whether the account is attached to the legacy Common section, which is the case only for accounts inherited  from an older portal.
+ * @param roomsStorage Whether the account is attached to the Rooms section, room templates and the archive counted in. This is where  `POST api/2.0/files/thirdparty` puts every account it connects.
+ * @param customerTitle The name the account is shown under in the portal, as it was saved when the account was connected.
+ * @param providerId The account ID to send to `DELETE api/2.0/files/thirdparty/{providerId}`, or as `providerId` to  re-authenticate the account.
+ * @param providerKey The storage service behind the account. `WebDav` stands for every WebDAV preset, so it does not tell which of  them was chosen when the account was connected.
  */
 
 

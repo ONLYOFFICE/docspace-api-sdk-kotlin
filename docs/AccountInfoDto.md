@@ -4,9 +4,9 @@
 ## Properties
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
-| **provider** | **kotlin.String** | The account provider. |  |
-| **url** | [**java.net.URI**](java.net.URI.md) | The account URL. |  |
-| **linked** | **kotlin.Boolean** | Specifies if an account is linked with other profiles or not. |  |
+| **provider** | **kotlin.String** | The name of the identity provider, in lowercase, as every other operation of this group expects it: `google`,  `zoom`, `linkedin`, `facebook`, `twitter`, `microsoft`, `appleid`, `weixin` or `nextcloud`. |  |
+| **url** | [**java.net.URI**](java.net.URI.md) | The URL that starts the login with this provider. Open it as it is - it already carries the provider and the  popup or redirect mode the request asked for. |  |
+| **linked** | **kotlin.Boolean** | Whether this provider is already linked to the calling profile. It is always false for an anonymous caller,  because there is no profile to compare against. |  |
 
 
 

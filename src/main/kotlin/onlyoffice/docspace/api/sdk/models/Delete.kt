@@ -21,10 +21,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The parameters for deleting a file.
+ * The parameters of a single file deletion.
  *
- * @param deleteAfter Specifies whether to delete a file after the editing session is finished or not.
- * @param immediately Specifies whether to move a file to the \\Trash\\ folder or delete it immediately.
+ * @param deleteAfter When to delete: `true` waits until the editing session on the file has ended, `false` deletes at once, pulling  the file away from whoever is working on it.
+ * @param immediately Where the file goes: `false` moves it to Trash, from where it can be restored, `true` deletes it for good.  Inside a room, where there is no Trash, deletion is always final.
  */
 
 

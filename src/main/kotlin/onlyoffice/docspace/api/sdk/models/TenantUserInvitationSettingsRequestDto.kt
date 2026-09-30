@@ -21,10 +21,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The request parameters for updating the user invitation settings.
+ * Whether the portal still lets its members invite new members and new guests.
  *
- * @param allowInvitingMembers Specifies whether to allow inviting new DocSpace members through the Contacts section.
- * @param allowInvitingGuests Specifies whether to allow all DocSpace members to invite external guests to the rooms.
+ * @param allowInvitingMembers Whether new DocSpace members may be invited through the Contacts section. Switching it off only stops new  invitations being created; links already issued keep working and members already invited stay.
+ * @param allowInvitingGuests Whether every DocSpace member, and not only an administrator, may invite external guests into rooms.  Switching it off leaves the guests already invited in place.
  */
 
 

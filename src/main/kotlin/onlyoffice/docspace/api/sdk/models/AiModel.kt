@@ -17,6 +17,7 @@
 package onlyoffice.docspace.api.sdk.models
 
 import onlyoffice.docspace.api.sdk.models.AiProviderType
+import onlyoffice.docspace.api.sdk.models.AiReasoningSupport
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -28,6 +29,7 @@ import com.squareup.moshi.JsonClass
  * @param name Human-readable model name for display in the UI.
  * @param provider Provider that offers this model.
  * @param reasoning Whether this model supports extended thinking / chain-of-thought reasoning.
+ * @param reasoningSupport What the model can do with extended thinking, when the provider's catalogue says so (OpenRouter and the ONLYOFFICE route report a per-model `reasoning` object). Copied onto the profile at save time; absent, the widget falls back to the provider's id-based table.
  * @param capabilities Bitmask of model capabilities (Chat, Image, Vision, Tools, etc.). Used to filter models per `ActionType`.
  */
 
@@ -45,6 +47,9 @@ data class AiModel (
 
     @Json(name = "reasoning")
     val reasoning: kotlin.Boolean? = null,
+
+    @Json(name = "reasoningSupport")
+    val reasoningSupport: AiReasoningSupport? = null,
 
     @Json(name = "capabilities")
     val capabilities: java.math.BigDecimal? = null

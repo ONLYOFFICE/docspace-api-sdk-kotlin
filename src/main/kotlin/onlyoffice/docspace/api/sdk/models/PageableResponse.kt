@@ -21,12 +21,12 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The response containing paginated data.
+ * One page of results together with the cursor that asks for the next page.
  *
- * @param `data` The paginated data.
- * @param limit The maximum number of results returned per page.
- * @param lastClientId The identifier of the last retrieved client.
- * @param lastCreatedOn The creation date of the last retrieved client.
+ * @param `data` 
+ * @param limit The page size that was applied to this request, between 1 and 50.
+ * @param lastClientId The cursor to send back as last_client_id to ask for the next page, together with last_created_on. It is null when the page is empty.
+ * @param lastCreatedOn The cursor to send back as last_created_on to ask for the next page, together with last_client_id. It is null when the page is empty.
  */
 
 

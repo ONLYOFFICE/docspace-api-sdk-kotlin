@@ -4,28 +4,28 @@
 ## Properties
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
-| **title** | **kotlin.String** | The file entry title. |  [optional] |
-| **access** | [**AiFileShare**](AiFileShare.md) | The access rights to the file entry. |  [optional] |
-| **sharedBy** | [**AiEmployeeDto**](AiEmployeeDto.md) | Provides information about the employee who shared the file or folder. |  [optional] |
-| **ownedBy** | [**AiEmployeeDto**](AiEmployeeDto.md) | The information about the employee who owns the file entry. |  [optional] |
-| **shared** | **kotlin.Boolean** | Specifies if the file entry is shared via link or not. |  [optional] |
-| **sharedForUser** | **kotlin.Boolean** | Specifies if the file entry is shared for user or not. |  [optional] |
-| **sharedExternal** | **kotlin.Boolean** | Specifies if the file entry is shared via a public (non-internal) external link. |  [optional] |
-| **parentShared** | **kotlin.Boolean** | Indicates whether the parent entity is shared. |  [optional] |
-| **shortWebUrl** | [**java.net.URI**](java.net.URI.md) | The short Web URL. |  [optional] |
-| **created** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) | The creation date and time of the file entry. |  [optional] |
-| **createdBy** | [**AiEmployeeDto**](AiEmployeeDto.md) | The file entry author. |  [optional] |
-| **updated** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) | The last date and time when the file entry was updated. |  [optional] |
-| **autoDelete** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) | The date and time when the file entry will be automatically deleted. |  [optional] |
-| **rootFolderType** | [**AiFolderType**](AiFolderType.md) | The root folder type of the file entry. |  [optional] |
-| **parentRoomType** | [**AiFolderType**](AiFolderType.md) | The parent room type of the file entry. |  [optional] |
-| **updatedBy** | [**AiEmployeeDto**](AiEmployeeDto.md) | The user who updated the file entry. |  [optional] |
-| **providerItem** | **kotlin.Boolean** | Specifies if the file entry provider is specified or not. |  [optional] |
-| **providerKey** | **kotlin.String** | The provider key of the file entry. |  [optional] |
-| **providerId** | **kotlin.Int** | The provider ID of the file entry. |  [optional] |
-| **order** | **kotlin.String** | The order of the file entry. |  [optional] |
-| **isFavorite** | **kotlin.Boolean** | Specifies if the file is a favorite or not. |  [optional] |
-| **fileEntryType** | [**AiFileEntryType**](AiFileEntryType.md) | The file entry type. |  [optional] |
+| **title** | **kotlin.String** | The name shown for the entry. For a file it carries the extension, which is how the format is recognised, and  for a room it is the room name. |  [optional] |
+| **access** | [**AiFileShare**](AiFileShare.md) | The level the calling account holds on this entry, resolved from its own rights, the groups it belongs to and  any link it came in through. It is the level itself, not what the account may do with it - the action flags  below answer that. |  [optional] |
+| **sharedBy** | [**AiEmployeeDto**](AiEmployeeDto.md) | Who gave the calling account the access it is using. It is filled in only while the entry is being read  through a share, and never for a caller without an account. |  [optional] |
+| **ownedBy** | [**AiEmployeeDto**](AiEmployeeDto.md) | Who owns the place the entry is shared from - the creator of the room it lies in, or of the personal section  that holds it. It is filled in only while the entry is being read through a share, and never for a caller  without an account. |  [optional] |
+| **shared** | **kotlin.Boolean** | Whether at least one external link exists for the entry, whichever kind. It says nothing about accounts and  groups - those are counted by the flag for members below. |  [optional] |
+| **sharedForUser** | **kotlin.Boolean** | Whether at least one account or group has been given rights on the entry directly, as opposed to reaching it  through a link or through the room around it. |  [optional] |
+| **sharedExternal** | **kotlin.Boolean** | Whether one of the entry's links is open to people outside the portal, as opposed to a link that only its own  members can follow. This is the flag to watch when the concern is who can reach the content from outside. |  [optional] |
+| **parentShared** | **kotlin.Boolean** | Whether the entry is reachable because the room or folder around it is shared, rather than through rights of  its own. A copy or a move takes the entry out of that scope. |  [optional] |
+| **shortWebUrl** | [**java.net.URI**](java.net.URI.md) | A shortened address that opens the entry through the link it is being read with. It is an empty string  whenever no link applies, which is the usual case for a member browsing their own rooms. |  [optional] |
+| **created** | [**AiApiDateTime**](AiApiDateTime.md) | When the entry was created, written with the offset of the portal's time zone. For a file restored from an  older version this is still the moment the file first appeared. |  [optional] |
+| **createdBy** | [**AiEmployeeDto**](AiEmployeeDto.md) | Who created the entry. It is null for a caller without an account, who is told nothing about the portal's  members. |  [optional] |
+| **updated** | [**AiApiDateTime**](AiApiDateTime.md) | When the entry last changed, written with the offset of the portal's time zone. It is never reported as  earlier than the creation moment, so the two can be compared safely. |  [optional] |
+| **autoDelete** | [**AiApiDateTime**](AiApiDateTime.md) | When the entry will disappear on its own, written with the offset of the portal's time zone. It is filled in  only where a removal is actually scheduled - something in the trash while the portal cleans it up  automatically, or a guest's own documents - so a null means nothing is scheduled rather than that the entry is  permanent. |  [optional] |
+| **rootFolderType** | [**AiFolderType**](AiFolderType.md) | The section the entry ultimately belongs to, which is what tells a personal document from one inside a room,  from a template and from something in the trash or the archive. |  [optional] |
+| **parentRoomType** | [**AiFolderType**](AiFolderType.md) | The kind of room the entry lies in, which decides what the room allows - filling forms, public links,  indexing. It is null for an entry that is not inside a room at all. |  [optional] |
+| **updatedBy** | [**AiEmployeeDto**](AiEmployeeDto.md) | Who changed the entry last. It is null for a caller without an account. |  [optional] |
+| **providerItem** | **kotlin.Boolean** | Set when the entry is stored on a connected third-party account rather than on the portal, and null when it is  stored on the portal. Such an entry is identified by a string rather than a number, and some operations skip  it. |  [optional] |
+| **providerKey** | **kotlin.String** | Which third-party service holds the entry, matching the keys accepted by the third-party operations. It is  null for an entry stored on the portal. |  [optional] |
+| **providerId** | **kotlin.Int** | The connected account the entry comes from, for telling apart two connections to the same service. It is null  for an entry stored on the portal. |  [optional] |
+| **order** | **kotlin.String** | The place of the entry in a room where the members arrange the content themselves, given as the position of  the entry preceded by the positions of the folders leading to it, separated by dots. It is empty when nothing  has been arranged. |  [optional] |
+| **isFavorite** | **kotlin.Boolean** | Set when the calling account has marked the entry as a favorite, which is what puts it into the favorites  listing. For a file that is not marked it is null rather than false. |  [optional] |
+| **fileEntryType** | [**AiFileEntryType**](AiFileEntryType.md) | Tells a folder from a file, and so which of the two shapes the rest of the object has. A room is reported as a  folder here. |  [optional] |
 
 
 

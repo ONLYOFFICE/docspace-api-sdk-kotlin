@@ -21,7 +21,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * Represents the server configuration of a DocsCloud tenant.
+ * Represents the server configuration of a Docs Connect tenant.
  *
  * @param isAnonymousSupport Whether anonymous access is supported.
  * @param fileSizeLimit The maximum file size in bytes.

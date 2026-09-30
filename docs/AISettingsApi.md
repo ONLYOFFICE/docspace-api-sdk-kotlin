@@ -16,7 +16,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 # **aiSettingsGet**
 > AiAiSettingsWrapper aiSettingsGet ()
 
-Reports the portal's combined AI configuration and readiness.
+Reports the portal's AI configuration and whether AI is usable at all, which is the first call a client makes before offering any AI feature. It takes no parameters and is proxied unchanged to the DocSpace AI service, so the answer is that service's settings payload. Among other things it says whether the portal runs on the central AI gateway, which decides whether provider profiles can be edited here at all. This is a read-only operation.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-settings-get/).
 
@@ -29,7 +29,9 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+
+Configure bearerAuth:
+    ApiClient().setBearerToken("TOKEN")
 
 ### Example
 ```kotlin
@@ -39,6 +41,7 @@ No authorization required
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
+apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AISettingsApi::class.java)
 
 launch(Dispatchers.IO) {
@@ -56,7 +59,7 @@ launch(Dispatchers.IO) {
 # **aiSettingsGetUser**
 > AiAiUserSettingsWrapper aiSettingsGetUser ()
 
-Returns the current user's AI settings.
+Returns the AI settings of the calling user, as opposed to the portal-wide ones. It takes no parameters - the user is the authenticated caller, and there is no way to read somebody else's settings - and is proxied unchanged to the DocSpace AI service. Use `GET api/2.0/ai/config` for the portal-wide configuration. This is a read-only operation.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-settings-get-user/).
 
@@ -69,7 +72,9 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+
+Configure bearerAuth:
+    ApiClient().setBearerToken("TOKEN")
 
 ### Example
 ```kotlin
@@ -79,6 +84,7 @@ No authorization required
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
+apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AISettingsApi::class.java)
 
 launch(Dispatchers.IO) {
@@ -96,7 +102,7 @@ launch(Dispatchers.IO) {
 # **aiSettingsGetVectorization**
 > AiVectorizationSettingsWrapper aiSettingsGetVectorization ()
 
-Returns the portal's vectorization settings.
+Returns the portal's vectorization settings - the embedding provider and the options used when portal content is indexed for retrieval. It takes no parameters and is proxied unchanged to the DocSpace AI service. Vectorization is a portal-wide setting, so there is no room-scoped form of it. Change it with `PUT api/2.0/ai/config/vectorization`.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-settings-get-vectorization/).
 
@@ -109,7 +115,9 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+
+Configure bearerAuth:
+    ApiClient().setBearerToken("TOKEN")
 
 ### Example
 ```kotlin
@@ -119,6 +127,7 @@ No authorization required
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
+apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AISettingsApi::class.java)
 
 launch(Dispatchers.IO) {
@@ -134,16 +143,16 @@ launch(Dispatchers.IO) {
 
 <a id="aiSettingsSetUser"></a>
 # **aiSettingsSetUser**
-> AiAiUserSettingsWrapper aiSettingsSetUser (kotlin.collections.Map<kotlin.String, kotlin.Any> requestBody)
+> AiAiUserSettingsWrapper aiSettingsSetUser (kotlin.collections.Map<kotlin.String, kotlin.Any?> requestBody)
 
-Updates the current user's AI settings.
+Replaces the AI settings of the calling user and returns the stored result. The body is proxied unchanged to the DocSpace AI service, which validates it, so a rejected value comes back with that service's verdict. Only the caller's own settings can be written. Portal-wide configuration is not touched by this operation.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-settings-set-user/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **requestBody** | [**kotlin.collections.Map&lt;kotlin.String, kotlin.Any&gt;**](kotlin.Any.md)|  | |
+| **requestBody** | [**kotlin.collections.Map&lt;kotlin.String, kotlin.Any?&gt;**](kotlin.Any.md)| The user's AI settings, proxied unchanged to the DocSpace AI service, which owns and validates the shape. Read the current one with `GET api/2.0/ai/config/user` and send it back changed. | |
 
 ### Return type
 
@@ -151,7 +160,9 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Authorization
 
-No authorization required
+
+Configure bearerAuth:
+    ApiClient().setBearerToken("TOKEN")
 
 ### Example
 ```kotlin
@@ -161,8 +172,9 @@ No authorization required
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
+apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AISettingsApi::class.java)
-val requestBody : kotlin.collections.Map<kotlin.String, kotlin.Any> = Object // kotlin.collections.Map<kotlin.String, kotlin.Any> | 
+val requestBody : kotlin.collections.Map<kotlin.String, kotlin.Any?> = Object // kotlin.collections.Map<kotlin.String, kotlin.Any?> | The user's AI settings, proxied unchanged to the DocSpace AI service, which owns and validates the shape. Read the current one with `GET api/2.0/ai/config/user` and send it back changed.
 
 launch(Dispatchers.IO) {
     val result : AiAiUserSettingsWrapper = webService.aiSettingsSetUser(requestBody)
@@ -179,14 +191,14 @@ launch(Dispatchers.IO) {
 # **aiSettingsSetVectorization**
 > AiVectorizationSettingsWrapper aiSettingsSetVectorization (kotlin.collections.Map<kotlin.String, kotlin.Any?> requestBody)
 
-Updates the portal's vectorization settings.
+Replaces the portal's vectorization settings and returns the stored result. The body is proxied unchanged to the DocSpace AI service, which validates it, so a rejected value is reported with that service's own verdict rather than being checked here. Changing the embedding provider does not re-index anything already indexed - start that separately with `POST api/2.0/ai/vectorization/tasks`. This is a portal-wide setting and requires the permissions the AI service demands for it.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-settings-set-vectorization/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **requestBody** | [**kotlin.collections.Map&lt;kotlin.String, kotlin.Any?&gt;**](kotlin.Any.md)|  | |
+| **requestBody** | [**kotlin.collections.Map&lt;kotlin.String, kotlin.Any?&gt;**](kotlin.Any.md)| The portal's vectorization settings, proxied unchanged to the DocSpace AI service, which owns and validates the shape. Read the current one with `GET api/2.0/ai/config/vectorization` and send it back changed. | |
 
 ### Return type
 
@@ -194,7 +206,9 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Authorization
 
-No authorization required
+
+Configure bearerAuth:
+    ApiClient().setBearerToken("TOKEN")
 
 ### Example
 ```kotlin
@@ -204,8 +218,9 @@ No authorization required
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
+apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AISettingsApi::class.java)
-val requestBody : kotlin.collections.Map<kotlin.String, kotlin.Any?> = Object // kotlin.collections.Map<kotlin.String, kotlin.Any?> | 
+val requestBody : kotlin.collections.Map<kotlin.String, kotlin.Any?> = Object // kotlin.collections.Map<kotlin.String, kotlin.Any?> | The portal's vectorization settings, proxied unchanged to the DocSpace AI service, which owns and validates the shape. Read the current one with `GET api/2.0/ai/config/vectorization` and send it back changed.
 
 launch(Dispatchers.IO) {
     val result : AiVectorizationSettingsWrapper = webService.aiSettingsSetVectorization(requestBody)

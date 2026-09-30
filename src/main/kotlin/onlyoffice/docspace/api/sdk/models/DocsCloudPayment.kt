@@ -21,7 +21,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * Represents the payment information of a DocsCloud tenant.
+ * Represents the payment information of a Docs Connect tenant.
  *
  * @param cartId The cart ID.
  * @param productId The product ID.

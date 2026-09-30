@@ -21,7 +21,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * Represents the WOPI configuration of a DocsCloud tenant.
+ * Represents the WOPI configuration of a Docs Connect tenant.
  *
  * @param enable Whether WOPI is enabled.
  */

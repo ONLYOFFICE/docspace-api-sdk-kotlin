@@ -4,9 +4,9 @@
 ## Properties
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
-| **attemptCount** | **kotlin.Int** | The maximum number of consecutive failed login attempts allowed before triggering account suspension. |  [optional] |
-| **blockTime** | **kotlin.Int** | The duration (in minutes) for which an account remains suspended after exceeding maximum login attempts. |  [optional] |
-| **checkPeriod** | **kotlin.Int** | The maximum time (in seconds) allowed for server to process and respond to login requests. |  [optional] |
+| **attemptCount** | **kotlin.Int** | How many failed sign-in attempts inside one window are tolerated before the offender is blocked. Attempts are  counted per user name and client address together, so one member being blocked leaves the rest of the portal  signing in normally. |  [optional] |
+| **blockTime** | **kotlin.Int** | How long, in seconds, a blocked user name and address pair stays refused. While the block lasts the sign-in  is refused even when the password is finally correct. |  [optional] |
+| **checkPeriod** | **kotlin.Int** | The length, in seconds, of the rolling window the failed attempts are counted over. A wider window makes the  same `attemptCount` stricter, because failures further apart still add up. |  [optional] |
 
 
 

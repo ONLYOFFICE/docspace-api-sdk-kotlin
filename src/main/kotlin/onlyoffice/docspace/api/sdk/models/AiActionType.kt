@@ -23,7 +23,7 @@ import com.squareup.moshi.JsonClass
 /**
  * The AI action a request or an assignment applies to. Each action has its own assignment slot; `Default` is the profile used when an action's own slot is empty.
  *
- * Values: Default,Chat,Code,Summarization,Translation,TextAnalyze,ImageGeneration,OCR,Vision
+ * Values: Default,Chat,Code,Summarization,Translation,TextAnalyze,ImageGeneration,OCR,Vision,FormAnalysis
  */
 
 @JsonClass(generateAdapter = false)
@@ -54,7 +54,10 @@ enum class AiActionType(val value: kotlin.String) {
     OCR("OCR"),
 
     @Json(name = "Vision")
-    Vision("Vision");
+    Vision("Vision"),
+
+    @Json(name = "FormAnalysis")
+    FormAnalysis("FormAnalysis");
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use

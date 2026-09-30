@@ -16,15 +16,16 @@
 
 package onlyoffice.docspace.api.sdk.models
 
+import onlyoffice.docspace.api.sdk.models.EditorToolCallParametersDto
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The editor tool call state. Used to run the agent flow in the editor.
+ * A generation the editor is expected to run as soon as the document opens, left behind by an AI agent that created  the file but not its content.
  *
- * @param toolName The tool name.
- * @param parameters The tool call parameters.
+ * @param toolName Which generation to run, which also decides the shape of the parameters below.
+ * @param parameters The arguments of the generation named above.
  */
 
 
@@ -34,7 +35,7 @@ data class EditorToolCallStateDto (
     val toolName: kotlin.String?,
 
     @Json(name = "parameters")
-    val parameters: kotlin.Any
+    val parameters: EditorToolCallParametersDto
 
 ) {
 

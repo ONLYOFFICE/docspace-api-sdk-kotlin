@@ -21,7 +21,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * Represents the DocsCloud server information.
+ * Represents the Docs Connect server information.
  *
  * @param version The server version.
  * @param packageType The server package type (Open Source, Enterprise Edition or Developer Edition).

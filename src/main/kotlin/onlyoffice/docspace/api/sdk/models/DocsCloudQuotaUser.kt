@@ -21,7 +21,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * Represents a single user entry of a DocsCloud quota.
+ * Represents a single user entry of a Docs Connect quota.
  *
  * @param userId The user ID.
  * @param expire The expiration date of the user.

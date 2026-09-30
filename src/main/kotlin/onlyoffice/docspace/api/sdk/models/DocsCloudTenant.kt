@@ -22,7 +22,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * Represents a DocsCloud tenant of a portal.
+ * Represents a Docs Connect tenant of a portal.
  *
  * @param dedicatedResourceExId The external ID of the dedicated resource the tenant is hosted on.
  * @param alias The tenant alias.

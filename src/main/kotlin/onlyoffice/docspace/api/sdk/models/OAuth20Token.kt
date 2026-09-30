@@ -23,14 +23,14 @@ import com.squareup.moshi.JsonClass
 /**
  * The OAuth 2.0 token issued by a third-party provider.
  *
- * @param accessToken Access token
- * @param refreshToken Refresh token
- * @param expiresIn Expires in
- * @param clientId Client id
- * @param clientSecret Client secret
- * @param redirectUri Redirect uri
- * @param timestamp Timestamp
- * @param isExpired Is expired
+ * @param accessToken The token sent to the provider with every request made on behalf of the account.
+ * @param refreshToken The token used to obtain a new access token when the current one expires. A provider that issues no refresh  token leaves it empty, and the account then has to be connected again to keep working.
+ * @param expiresIn How long the access token stays usable, in seconds counted from `timestamp`. Zero means the provider did not  say, and the token is then treated as expired.
+ * @param clientId The OAuth 2.0 client ID of the application the token was issued to.
+ * @param clientSecret The client secret of the application the token was issued to, needed when the token is refreshed.
+ * @param redirectUri The redirect URL the authorization code behind this token was obtained with; providers require the same value  again when the token is refreshed.
+ * @param timestamp When the token was issued, in UTC. This is the point `expires_in` is counted from.
+ * @param isExpired Whether the access token can no longer be used and has to be refreshed. It is also true when the provider did  not say how long the token lives.
  */
 
 

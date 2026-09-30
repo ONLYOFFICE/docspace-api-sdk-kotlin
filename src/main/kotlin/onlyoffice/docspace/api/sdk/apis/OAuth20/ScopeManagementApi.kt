@@ -28,23 +28,24 @@ import onlyoffice.docspace.api.sdk.models.ScopeResponse
 
 interface ScopeManagementApi {
     /**
-     * GET api/2.0/scopes
+     * GET api/2.0/oauth2/scopes
      * List available OAuth2 scopes
-     * Retrieves a list of all available OAuth2 scopes for the specified tenant. The scopes define the permissions that can be requested by OAuth2 clients. The list is ordered alphabetically, with the 'openid' scope always appearing first.
+     * Retrieves a list of all available OAuth2 scopes for the specified tenant. The scopes define the permissions that can be requested by OAuth2 clients. The list is ordered alphabetically, with the 'openid' scope always appearing first. It is a read-only catalogue that does not depend on which clients exist: a valid portal signature is the only requirement, with no role restriction, and every caller of the portal sees the same list.
      * Responses:
      *  - 200: Scopes successfully retrieved
-     *  - 400: Invalid request parameters
      *  - 403: Insufficient permissions to list scopes
+     *  - 406: The Accept header does not allow application/json
      *  - 429: Too many requests - rate limit exceeded
      *  - 500: Internal server error occurred
+     *  - 405: The HTTP method is not allowed for this path
      *
      * REST API Reference for getScopes Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-scopes/
      *
      *
-     * @return [ScopeResponse]
+     * @return [kotlin.collections.List<ScopeResponse>]
      */
-    @GET("api/2.0/scopes")
-    suspend fun getScopes(): Response<ScopeResponse>
+    @GET("api/2.0/oauth2/scopes")
+    suspend fun getScopes(): Response<kotlin.collections.List<ScopeResponse>>
 
 }

@@ -21,10 +21,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The request parameters for managing the tenant storage quota settings in a multi-tenant system.
+ * The storage limit set on one tenant of a self-hosted installation.
  *
- * @param tenantId The ID of the tenant whose quota is being configured.
- * @param quota The storage quota limit in bytes allocated to the tenant.
+ * @param tenantId The tenant the limit applies to, by tenant ID. Only a self-hosted installation has more than one, which is  why the operation is refused on SaaS.
+ * @param quota The limit in bytes. A negative value is not a smaller limit but the absence of one: it removes whatever limit  the tenant had. The value is a ceiling on stored data and says nothing about how much of it is already used.
  */
 
 

@@ -21,7 +21,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * Represents the IP filter rule of a DocsCloud tenant.
+ * Represents the IP filter rule of a Docs Connect tenant.
  *
  * @param address The IP address.
  * @param allowed Whether the IP address is allowed.

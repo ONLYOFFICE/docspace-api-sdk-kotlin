@@ -22,7 +22,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * Represents the usage statistics of a DocsCloud tenant for the current period.
+ * Represents the usage statistics of a Docs Connect tenant for the current period.
  *
  * @param periodDay The length of the statistics period in days.
  * @param editor The statistics for editor users.

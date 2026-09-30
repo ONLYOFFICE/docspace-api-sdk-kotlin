@@ -22,14 +22,14 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The parameters of a user mentioned in a message.
+ * A user the editor may offer: to be mentioned in a comment, or to be picked when protecting a document.
  *
- * @param user The user information.
- * @param email The user email address.
- * @param id The user unique identification.
- * @param image The path to the user's avatar.
- * @param hasAccess Specifies whether the user has the access to the file where they are mentioned.
- * @param name The user full name.
+ * @param user The account itself, in the shape the people listings use.
+ * @param email Where a mention notification for this user is delivered.
+ * @param id The account id as text, the same value the account object carries; it is what identifies the user in a sharing  request built from this list.
+ * @param image An absolute address of the medium-sized avatar. A generated default avatar is reported when the user never  uploaded one, so the field is never empty.
+ * @param hasAccess Not filled in by the operations that return this list: it always comes back false. Whether a user can already  open the document has to be read from the sharing settings of the file.
+ * @param name The name to display, assembled the way the portal is configured to show names.
  */
 
 

@@ -23,8 +23,8 @@ import com.squareup.moshi.JsonClass
 /**
  * The request parameters for updating the user information.
  *
- * @param userIds The list of user IDs.
- * @param resendAll Specifies whether to resend invitation letters to all the users or not.
+ * @param userIds The accounts the operation applies to. System accounts are dropped from the list without an error, and the  remaining ones are processed in the order they are given.
+ * @param resendAll Reaches every pending account of the portal instead of the ones in `userIds`. It is read only by  `PUT api/2.0/people/invite` and is ignored by every other operation that binds this body.
  */
 
 

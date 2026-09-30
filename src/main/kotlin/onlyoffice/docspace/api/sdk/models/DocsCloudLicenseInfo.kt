@@ -21,7 +21,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * Represents the license information of a DocsCloud tenant.
+ * Represents the license information of a Docs Connect tenant.
  *
  * @param valid The date and time until which the license is valid.
  * @param trial Whether the license is a trial.

@@ -4,7 +4,7 @@
 ## Properties
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
-| **settings** | [**SetAppSettingsBodySettings**](SetAppSettingsBodySettings.md) |  |  [optional] |
+| **settings** | [**kotlin.Any**](.md) |  |  [optional] |
 
 
 

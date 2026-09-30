@@ -21,13 +21,13 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The thumbnail request.
+ * The crop rectangle to apply to an avatar image.
  *
- * @param tmpFile The path to the temporary thumbnail file.
- * @param x The thumbnail horizontal coordinate.
- * @param y The thumbnail vertical coordinate.
- * @param width The thumbnail width.
- * @param height The thumbnail height.
+ * @param tmpFile The temporary image to crop, as returned in the `data` of an upload made with `autosave` off. Only the file  name part of the value is used. Omit it to re-crop the photo the profile already has.
+ * @param x The distance in pixels from the left edge of the original image to the left edge of the crop rectangle.
+ * @param y The distance in pixels from the top edge of the original image to the top edge of the crop rectangle.
+ * @param width The width of the crop rectangle in pixels. Passing 0 together with `height` and `tmpFile` keeps the whole  uploaded image instead of cropping it.
+ * @param height The height of the crop rectangle in pixels. Passing 0 together with `width` and `tmpFile` keeps the whole  uploaded image instead of cropping it.
  */
 
 

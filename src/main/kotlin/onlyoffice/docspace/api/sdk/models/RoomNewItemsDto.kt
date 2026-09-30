@@ -22,10 +22,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The room new items information.
+ * The unseen entries of one room inside a day group.
  *
- * @param room The room file entry.
- * @param items The list of file entry items.
+ * @param room The room the entries were found in, in its short form: only the identifier, the title, the room type and the  logo are filled in.
+ * @param items The files of that room the caller has not opened yet, the most recently changed first. Reading them here does  not clear the badges; opening the room itself does.
  */
 
 

@@ -25,10 +25,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * Represents the license and server information of a DocsCloud tenant, with usage statistics for the current period.
+ * Represents the license and server information of a Docs Connect tenant, with usage statistics for the current period.
  *
  * @param license The license information.
- * @param server The DocsCloud server information.
+ * @param server The Docs Connect server information.
  * @param usersLimit The user limits of the license.
  * @param stats The usage statistics for the current period.
  */

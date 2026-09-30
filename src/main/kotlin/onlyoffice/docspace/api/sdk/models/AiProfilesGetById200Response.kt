@@ -18,6 +18,7 @@ package onlyoffice.docspace.api.sdk.models
 
 import onlyoffice.docspace.api.sdk.models.AiBuiltinProviderType
 import onlyoffice.docspace.api.sdk.models.AiProviderType
+import onlyoffice.docspace.api.sdk.models.AiReasoningSupport
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -32,6 +33,7 @@ import com.squareup.moshi.JsonClass
  * @param modelId Selected model ID within this provider.
  * @param basedOn Selects the response-format parser used by the `external` provider. Ignored for any other `providerType`.  Supported values are `openai`, `anthropic`, `mistral` and `openrouter`. Remaining values (`genai`, `stabilityai`, …) are accepted by the type but not yet implemented; passing one raises an error at request time.
  * @param reasoning Whether extended thinking is enabled for this profile's model.
+ * @param reasoningSupport Extended-thinking capabilities of the selected model as reported by the provider's catalogue at save time (see `Model.reasoningSupport`). When present the composer's Effort row follows it exactly; when absent the provider's id-based table answers. Hosts persist it with the rest of the profile.
  * @param capabilities Bitmask of capabilities supported by the selected model.
  * @param canUseTool Result of the live tool-capability probe performed at create time and on changes to `modelId` / `providerType` / `baseUrl`. `undefined` means the probe has never run for this profile (legacy record).
  * @param useResponsesApi Result of the live Responses-API probe (parallel to `canUseTool`). `true` means the model speaks `/v1/responses` and the OpenAI provider must route through `client.responses.create` — required for gpt-5+ reasoning models that reject `reasoning_effort` together with `tools` on `/v1/chat/completions`. Probed at create time and whenever `modelId` / `providerType` / `baseUrl` change. `undefined` means the probe never ran (legacy record) — readers treat that as `false`.
@@ -63,6 +65,9 @@ data class AiProfilesGetById200Response (
 
     @Json(name = "reasoning")
     val reasoning: kotlin.Boolean? = null,
+
+    @Json(name = "reasoningSupport")
+    val reasoningSupport: AiReasoningSupport? = null,
 
     @Json(name = "capabilities")
     val capabilities: java.math.BigDecimal? = null,

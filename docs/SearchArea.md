@@ -4,25 +4,25 @@
 ## Enum
 
 
-    * `Active` (value: `0`)
+    * `Active` (value: `"Active"`)
 
-    * `Archive` (value: `1`)
+    * `Archive` (value: `"Archive"`)
 
-    * `Any` (value: `2`)
+    * `Any` (value: `"Any"`)
 
-    * `RecentByLinks` (value: `3`)
+    * `RecentByLinks` (value: `"RecentByLinks"`)
 
-    * `Templates` (value: `4`)
+    * `Templates` (value: `"Templates"`)
 
-    * `Knowledge` (value: `5`)
+    * `Knowledge` (value: `"Knowledge"`)
 
-    * `ResultStorage` (value: `6`)
+    * `ResultStorage` (value: `"ResultStorage"`)
 
-    * `AiAgents` (value: `7`)
+    * `AiAgents` (value: `"AiAgents"`)
 
-    * `Forms` (value: `8`)
+    * `Forms` (value: `"Forms"`)
 
-    * `FormTemplates` (value: `9`)
+    * `FormTemplates` (value: `"FormTemplates"`)
 
 
 

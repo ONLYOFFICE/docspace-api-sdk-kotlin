@@ -21,7 +21,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * Represents the usage statistics of a DocsCloud tenant.
+ * Represents the usage statistics of a Docs Connect tenant.
  *
  * @param since The date and time the usage statistics are counted from.
  * @param activeCount The number of active users.

@@ -21,13 +21,13 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The configuration parameters for the embedded document type.
+ * The addresses the framed viewer needs. It is reported for the embedded layout only.
  *
- * @param embedUrl The absolute URL to the document serving as a source file for the document embedded into the web page.
- * @param saveUrl The absolute URL that will allow the document to be saved onto the user personal computer.
- * @param shareLinkParam The shared URL parameter.
- * @param shareUrl The absolute URL that will allow other users to share this document.
- * @param toolbarDocked The place for the embedded viewer toolbar, can be either top or bottom.
+ * @param embedUrl The page to put into the frame. It is empty when the opening carries no external share key, since a framed  viewer cannot authenticate a portal member.
+ * @param saveUrl Where the download button of the framed viewer leads.
+ * @param shareLinkParam The query fragment carrying the external share key, ampersand included, out of which the addresses around it  are built.
+ * @param shareUrl The address behind the share button of the framed viewer, the document opened full-screen for reading. It is  empty when the opening carries no external share key.
+ * @param toolbarDocked Where the framed viewer puts its toolbar. The portal always asks for the top.
  */
 
 

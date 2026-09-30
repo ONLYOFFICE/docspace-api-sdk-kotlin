@@ -21,10 +21,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The information about the file editing history author.
+ * The person a saved revision of a file, or one single change in it, is attributed to.
  *
- * @param id The author ID.
- * @param name The author name.
+ * @param id The account the revision or the change is attributed to, as the editing service stored it. It is normally the  identifier of a portal account; the empty identifier stands for a change nobody could be named for.
+ * @param name The display name of that account as the portal spells it now, which need not be the name that was stored with  the revision. An account that cannot be resolved - one removed from the portal, or a change made through an  anonymous link - is reported as a guest.
  */
 
 

@@ -22,15 +22,15 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The request parameters for creating the webhook configuration.
+ * The target a webhook subscription calls, the events it listens for, and the secret it signs with.
  *
- * @param name The human-readable name of the webhook configuration.
- * @param uri The destination URL where the webhook events will be sent.
- * @param secretKey The webhook secret key used to sign the webhook payloads for the security verification.
- * @param enabled Specifies whether the webhook configuration is active or not.
- * @param ssl Specifies whether the SSL certificate verification is required or not.
- * @param triggers Defines which events will trigger webhook notifications.
- * @param targetId Target ID
+ * @param name The label the subscription is listed under. It is for the administrator reading the list and is never sent to  the target; it does not have to be unique.
+ * @param uri The address the portal posts the event payload to. It has to be an absolute `http` or `https` address outside  the installation own network, and it is probed before anything is stored: it must answer a HEAD request with  a success code, and a redirect does not count as one.
+ * @param secretKey The shared secret the payload signature is computed with, so the receiver can tell a genuine call from a  forged one. It has to satisfy the portal password rules published by  `GET api/2.0/settings/security/password`, and it is never echoed back by any operation. On an update an empty  value keeps the secret already stored.
+ * @param enabled Whether the subscription delivers at all. While it is off the matching events are dropped rather than queued,  so nothing from that period arrives once it is switched on again.
+ * @param ssl Whether the target certificate is verified. Setting it demands an `https` target with a valid certificate;  leaving it off delivers without checking the certificate at all.
+ * @param triggers The events the subscription listens for, as a bitmask combining the flags; 0 subscribes to all of them. Take  the flags the caller role is allowed to use from `GET api/2.0/settings/webhook/triggers`, since a flag beyond  that set is refused with 400. A subscription still only fires for events its creator may see.
+ * @param targetId The single entity the subscription is narrowed to, by its identifier - a room or a file, for instance.  Leaving it out delivers events about every entity the subscribed triggers cover.
  */
 
 

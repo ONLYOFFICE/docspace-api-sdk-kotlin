@@ -21,9 +21,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The parameters of the button that starts filling out the form.
+ * The button the editor shows to begin filling out a form.
  *
- * @param text The caption of the button that starts filling out the form.
+ * @param text The caption to put on the button, already translated into the language of the caller.
  */
 
 

@@ -21,11 +21,11 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The file editing history URL parameters.
+ * The address, document key and format of the revision a comparison is made against.
  *
- * @param key The document identifier of the previous version of the document.
- * @param url The url address of the previous version of the document.
- * @param fileType The document extension.
+ * @param key The document key of that revision. When the file has no earlier revision the portal generates a fresh key for  the template it falls back to, so the value is not always one an earlier revision ever had.
+ * @param url The address that revision's content is served from. It is meant for the editing service and carries its own  key, which is valid for a limited time.
+ * @param fileType The format of that revision, as an extension without the leading dot.
  */
 
 

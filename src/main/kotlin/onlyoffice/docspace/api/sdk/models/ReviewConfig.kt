@@ -21,9 +21,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * Configuration for review display settings.
+ * How tracked changes are displayed when the document opens.
  *
- * @param reviewDisplay The review display string representation.
+ * @param reviewDisplay How the editors render tracked changes at first: with the markup, in a simplified markup, as the final text,  or as the original text. A session that may not write opens on the final text.
  */
 
 

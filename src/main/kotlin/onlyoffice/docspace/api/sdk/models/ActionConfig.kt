@@ -21,10 +21,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The information about the action in the document that will be scrolled to.
+ * An anchor inside a document, as the editor writes it.
  *
- * @param `data` The action data that will be scrolled to.
- * @param type The action type.
+ * @param `data` The anchor value produced by the editor, opaque to the portal: it names the comment, the mention or the  place the document is scrolled to.
+ * @param type What the anchor points at, as the editor names it - a comment thread, for instance.
  */
 
 

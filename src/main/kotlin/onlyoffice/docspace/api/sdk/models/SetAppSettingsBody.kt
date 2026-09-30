@@ -16,13 +16,12 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.SetAppSettingsBodySettings
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * Request body for saving application-specific settings.
+ * The configuration document a portal application keeps.
  *
  * @param settings 
  */
@@ -31,7 +30,7 @@ import com.squareup.moshi.JsonClass
 data class SetAppSettingsBody (
 
     @Json(name = "settings")
-    val settings: SetAppSettingsBodySettings? = null
+    val settings: kotlin.Any? = null
 
 ) {
 

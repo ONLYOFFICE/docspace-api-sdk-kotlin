@@ -22,13 +22,13 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The parameters for copying a file.
+ * The parameters of a file copy that may change the format on the way.
  *
- * @param destTitle The copied file name.
+ * @param destTitle The title of the copy, extension included. That extension decides the format: the same one as the source  copies the content as it is, a different one has it converted first.
  * @param destFolderId 
- * @param enableExternalExt Specifies whether to allow creating the copied file of an external extension or not.
- * @param password The copied file password.
- * @param toForm Specifies whether to convert the file to form or not.
+ * @param enableExternalExt Whether the extension of the new title may be one the portal does not edit itself.
+ * @param password The password that opens the source document, for a file that is protected by one.
+ * @param toForm Whether the copy is to become a PDF form rather than a plain document, which the conversion supports for the  text formats it can read.
  */
 
 

@@ -22,7 +22,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * Represents the current user quota of a DocsCloud tenant.
+ * Represents the current user quota of a Docs Connect tenant.
  *
  * @param users The editor users.
  * @param usersView The viewer users.

@@ -24,6 +24,7 @@ import com.squareup.moshi.JsonClass
 /**
  * The external resources settings.
  *
+ * @param adminPanel The link to the administration panel. It is returned only to the full administrators of a licensed (Enterprise) server (standalone) portal.
  * @param api The link to the product API.
  * @param common The link to the common product information.
  * @param forum The link to the forum.
@@ -37,6 +38,9 @@ import com.squareup.moshi.JsonClass
 
 
 data class CultureSpecificExternalResources (
+
+    @Json(name = "adminPanel")
+    val adminPanel: CultureSpecificExternalResource? = null,
 
     @Json(name = "api")
     val api: CultureSpecificExternalResource? = null,

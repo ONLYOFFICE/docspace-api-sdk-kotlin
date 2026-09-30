@@ -21,14 +21,14 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The logo config parameters.
+ * The logo the editor shows, resolved for the file type and the layout of this opening.
  *
- * @param image The image of the logo.
- * @param imageDark The dark image of the logo.
- * @param imageLight The light image of the logo.
- * @param imageEmbedded The embedded image of the logo.
- * @param url The url link of the logo.
- * @param visible Specifies if the logo is visible.
+ * @param image The logo for the current layout and file type, as the portal branding defines it.
+ * @param imageDark The variant for a dark interface theme.
+ * @param imageLight The variant for a light interface theme.
+ * @param imageEmbedded The variant for the framed viewer. It is empty in every layout but the embedded one.
+ * @param url Where clicking the logo takes the user.
+ * @param visible Whether the logo is shown at all; the mobile layout hides it.
  */
 
 

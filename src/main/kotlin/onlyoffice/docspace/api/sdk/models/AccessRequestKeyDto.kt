@@ -21,11 +21,11 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The encryption key granting one user access to a file.
+ * The file key issued to one account.
  *
- * @param userId User ID
- * @param publicKeyId Public key ID
- * @param privateKeyEnc Encrypted private key
+ * @param userId The account that is to open the file with this key; it has to have read access to the file.
+ * @param publicKeyId The public key the file key was encrypted with, as reported for that account by  `GET api/2.0/files/file/{fileId}/publickeys`.
+ * @param privateKeyEnc The key of the file itself, encrypted by the client with that public key, so that the plain key never reaches  the portal.
  */
 
 

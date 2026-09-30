@@ -21,43 +21,43 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * [0 - Active, 1 - Archive, 2 - Any, 3 - Recent by links, 4 - Template, 5 - Knowledge, 6 - Result storage, 7 - AiAgents, 8 - Forms, 9 - Form templates]
+ * [Active - Active, Archive - Archive, Any - Any, RecentByLinks - Recent by links, Templates - Template, Knowledge - Knowledge, ResultStorage - Result storage, AiAgents - AiAgents, Forms - Forms, FormTemplates - Form templates]
  *
  * Values: Active,Archive,Any,RecentByLinks,Templates,Knowledge,ResultStorage,AiAgents,Forms,FormTemplates
  */
 
 @JsonClass(generateAdapter = false)
-enum class SearchArea(val value: kotlin.Int) {
+enum class SearchArea(val value: kotlin.String) {
 
-    @Json(name = "0")
-    Active(0),
+    @Json(name = "Active")
+    Active("Active"),
 
-    @Json(name = "1")
-    Archive(1),
+    @Json(name = "Archive")
+    Archive("Archive"),
 
-    @Json(name = "2")
-    Any(2),
+    @Json(name = "Any")
+    Any("Any"),
 
-    @Json(name = "3")
-    RecentByLinks(3),
+    @Json(name = "RecentByLinks")
+    RecentByLinks("RecentByLinks"),
 
-    @Json(name = "4")
-    Templates(4),
+    @Json(name = "Templates")
+    Templates("Templates"),
 
-    @Json(name = "5")
-    Knowledge(5),
+    @Json(name = "Knowledge")
+    Knowledge("Knowledge"),
 
-    @Json(name = "6")
-    ResultStorage(6),
+    @Json(name = "ResultStorage")
+    ResultStorage("ResultStorage"),
 
-    @Json(name = "7")
-    AiAgents(7),
+    @Json(name = "AiAgents")
+    AiAgents("AiAgents"),
 
-    @Json(name = "8")
-    Forms(8),
+    @Json(name = "Forms")
+    Forms("Forms"),
 
-    @Json(name = "9")
-    FormTemplates(9);
+    @Json(name = "FormTemplates")
+    FormTemplates("FormTemplates");
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use
@@ -66,7 +66,7 @@ enum class SearchArea(val value: kotlin.Int) {
      * This solves a problem when the variable name and its value are different, and ensures that
      * the client sends the correct enum values to the server always.
      */
-    override fun toString(): kotlin.String = value.toString()
+    override fun toString(): kotlin.String = value
 
     companion object {
         /**

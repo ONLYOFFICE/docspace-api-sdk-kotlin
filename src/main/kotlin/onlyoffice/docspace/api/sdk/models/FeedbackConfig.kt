@@ -24,7 +24,7 @@ import com.squareup.moshi.JsonClass
  * The settings for the Feedback & Support menu button.
  *
  * @param url The absolute URL to the website address which will be opened when clicking the Feedback & Support menu button.
- * @param visible Shows or hides the Feedback & Support menu button.
+ * @param visible Whether the support button is shown. The portal always asks for it to be shown.
  */
 
 

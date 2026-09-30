@@ -23,7 +23,7 @@ import com.squareup.moshi.JsonClass
 /**
  * The settings for the Open file location menu button and upper right corner button.
  *
- * @param url The absolute URL to the website address which will be opened when clicking the Open file location menu button.
+ * @param url Where the user is taken when they leave the document, normally the folder or the room it lies in. It is empty  when there is nowhere to return to, as in a framed opening.
  */
 
 

@@ -22,10 +22,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The auto-clearing setting parameters.
+ * The trash auto-clearing setting of an account.
  *
- * @param isAutoCleanUp Specifies whether to permanently delete files in the Trash folder.
- * @param gap The period when the trash bin will be cleared.
+ * @param isAutoCleanUp Whether the trash of the account is cleared automatically. While it is false nothing is removed by the portal  and the interval below is kept but unused.
+ * @param gap How long an item may stay in the trash before it is removed for good. It is reported even while clearing is  off, and it is what the moment in the `autoDelete` field of a trashed entry is computed from.
  */
 
 

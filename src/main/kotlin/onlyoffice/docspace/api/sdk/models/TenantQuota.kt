@@ -66,9 +66,9 @@ import com.squareup.moshi.JsonClass
  * @param countAIAgent The number of AI agents.
  * @param aiTools Specifies if the AI tools enabled as a wallet service or not.
  * @param aiSearch Specifies if the AI search enabled as a wallet service or not.
- * @param docsCloud The number of DocsCloud users.
- * @param docsCloudDevPack Specifies if the DocsCloudDevPack enabled or not.
- * @param docsCloudTrial Specifies if the DocsCloudTrial enabled or not.
+ * @param docsCloud The number of Docs Connect users.
+ * @param docsCloudDevPack Specifies if the Docs Connect Dev Pack enabled or not.
+ * @param docsCloudTrial Specifies if the Docs Connect trial enabled or not.
  */
 
 

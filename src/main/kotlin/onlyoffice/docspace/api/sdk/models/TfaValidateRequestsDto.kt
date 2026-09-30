@@ -21,10 +21,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The request parameters for validating the two-factor authentication codes.
+ * The one-time code that completes a pending two-factor step, and how long the resulting sign-in lasts.
  *
- * @param code The verification code provided by the user.
- * @param session Specifies whether the authentication is session-based.
+ * @param code The code to check - either one from the authenticator application or one of the account's unused backup  codes, which is spent by the check. A wrong code is refused with 400 and counts against the portal login  attempt limit.
+ * @param session Whether the sign-in that follows is tied to the browser session. When it is, the session ends with the  browser rather than lasting for the portal session lifetime.
  */
 
 
