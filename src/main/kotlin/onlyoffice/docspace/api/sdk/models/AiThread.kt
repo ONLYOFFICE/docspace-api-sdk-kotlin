@@ -17,7 +17,7 @@
 package onlyoffice.docspace.api.sdk.models
 
 import onlyoffice.docspace.api.sdk.models.AiModel
-import onlyoffice.docspace.api.sdk.models.AiTProvider
+import onlyoffice.docspace.api.sdk.models.AiProvider
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -46,7 +46,7 @@ data class AiThread (
     val lastEditDate: java.math.BigDecimal? = null,
 
     @Json(name = "provider")
-    val provider: AiTProvider? = null,
+    val provider: AiProvider? = null,
 
     @Json(name = "model")
     val model: AiModel? = null,

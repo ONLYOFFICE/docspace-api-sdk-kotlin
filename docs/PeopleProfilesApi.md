@@ -6,18 +6,18 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 | ------------- | ------------- | ------------- |
 | [**addMember**](PeopleProfilesApi.md#addMember) | **POST** api/2.0/people | Add a user |
 | [**checkUserExistsByEmail**](PeopleProfilesApi.md#checkUserExistsByEmail) | **GET** api/2.0/people/exists | Check whether an email is taken |
-| [**deleteMember**](PeopleProfilesApi.md#deleteMember) | **DELETE** api/2.0/people/{userid} | Delete a user |
+| [**deleteMember**](PeopleProfilesApi.md#deleteMember) | **DELETE** api/2.0/people/{userId} | Delete a user |
 | [**deleteProfile**](PeopleProfilesApi.md#deleteProfile) | **DELETE** api/2.0/people/@self | Close my own profile |
 | [**getAllProfiles**](PeopleProfilesApi.md#getAllProfiles) | **GET** api/2.0/people | Get the active profiles |
 | [**getClaims**](PeopleProfilesApi.md#getClaims) | **GET** api/2.0/people/tokendiagnostics | Get user claims |
 | [**getProfileByEmail**](PeopleProfilesApi.md#getProfileByEmail) | **GET** api/2.0/people/email | Get a profile by user email |
-| [**getProfileByUserId**](PeopleProfilesApi.md#getProfileByUserId) | **GET** api/2.0/people/{userid} | Get a profile by user ID |
+| [**getProfileByUserId**](PeopleProfilesApi.md#getProfileByUserId) | **GET** api/2.0/people/{userId} | Get a profile by user ID |
 | [**getSelfProfile**](PeopleProfilesApi.md#getSelfProfile) | **GET** api/2.0/people/@self | Get my profile |
 | [**inviteUsers**](PeopleProfilesApi.md#inviteUsers) | **POST** api/2.0/people/invite | Invite users |
 | [**removeUsers**](PeopleProfilesApi.md#removeUsers) | **PUT** api/2.0/people/delete | Delete users |
 | [**resendUserInvites**](PeopleProfilesApi.md#resendUserInvites) | **PUT** api/2.0/people/invite | Resend activation emails |
-| [**updateMember**](PeopleProfilesApi.md#updateMember) | **PUT** api/2.0/people/{userid} | Update a user |
-| [**updateMemberCulture**](PeopleProfilesApi.md#updateMemberCulture) | **PUT** api/2.0/people/{userid}/culture | Update a user culture |
+| [**updateMember**](PeopleProfilesApi.md#updateMember) | **PUT** api/2.0/people/{userId} | Update a user |
+| [**updateMemberCulture**](PeopleProfilesApi.md#updateMemberCulture) | **PUT** api/2.0/people/{userId}/culture | Update a user culture |
 
 
 
@@ -125,16 +125,16 @@ launch(Dispatchers.IO) {
 
 <a id="deleteMember"></a>
 # **deleteMember**
-> EmployeeFullWrapper deleteMember (kotlin.String userid)
+> EmployeeFullWrapper deleteMember (kotlin.String userId)
 
-Deletes a portal profile and queues the erasure of the data behind it.  The account has to be disabled first - set the `Terminated` status through  `PUT api/2.0/people/status/{status}`, otherwise the operation answers 403 - and it must not be a system  account or one imported from LDAP.  The caller needs the permission to add and remove users, and has to be the portal owner to delete a DocSpace  administrator.  The profile disappears at once, together with its avatar, its group memberships, its file shares and its  OAuth clients, while the data it owned is erased by a queued job afterwards, which can be watched through  `GET api/2.0/people/remove/progress/{userid}`.  The removal is permanent and cannot be undone, so hand the rooms and the shared files over first through  `POST api/2.0/people/reassign/start` - an account whose reassignment has not finished cannot be deleted.  The call raises a `UserDeleted` webhook and answers with the profile as it was just before it was removed.  To delete several accounts at once use `PUT api/2.0/people/delete`.
+Deletes a portal profile and queues the erasure of the data behind it.  The account has to be disabled first - set the `Terminated` status through  `PUT api/2.0/people/status/{status}`, otherwise the operation answers 403 - and it must not be a system  account or one imported from LDAP.  The caller needs the permission to add and remove users, and has to be the portal owner to delete a DocSpace  administrator.  The profile disappears at once, together with its avatar, its group memberships, its file shares and its  OAuth clients, while the data it owned is erased by a queued job afterwards, which can be watched through  `GET api/2.0/people/remove/progress/{userId}`.  The removal is permanent and cannot be undone, so hand the rooms and the shared files over first through  `POST api/2.0/people/reassign/start` - an account whose reassignment has not finished cannot be deleted.  The call raises a `UserDeleted` webhook and answers with the profile as it was just before it was removed.  To delete several accounts at once use `PUT api/2.0/people/delete`.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-member/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **userid** | **kotlin.String**| The user ID. | |
+| **userId** | **kotlin.String**| The user ID. | |
 
 ### Return type
 
@@ -159,10 +159,10 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ProfilesApi::class.java)
-val userid : kotlin.String = 00000000-0000-0000-0000-000000000000 // kotlin.String | The user ID.
+val userId : kotlin.String = 00000000-0000-0000-0000-000000000000 // kotlin.String | The user ID.
 
 launch(Dispatchers.IO) {
-    val result : EmployeeFullWrapper = webService.deleteMember(userid)
+    val result : EmployeeFullWrapper = webService.deleteMember(userId)
 }
 ```
 
@@ -176,7 +176,7 @@ launch(Dispatchers.IO) {
 # **deleteProfile**
 > EmployeeFullWrapper deleteProfile ()
 
-Closes the calling account at its owner's request: it does not erase the profile, it disables it, ends every  session it has and tells the portal administrators that the account asked to be removed.  It is the second step of the self-service removal - the first is `PUT api/2.0/people/self/delete`, which mails  the confirmation link - so the request has to carry the confirmation token from that link rather than an  ordinary session.  It always acts on the calling account and takes no parameters; the portal owner and an account imported from  LDAP cannot close themselves and get 403.  After the call the account has the `Terminated` status and can no longer sign in, but its rooms, files and  group memberships are untouched, which is why an administrator still has to erase it through  `DELETE api/2.0/people/{userid}` - that operation requires exactly this disabled state.  The step is reversible until then: re-enabling the account through `PUT api/2.0/people/status/{status}`  restores it.  The call raises a `UserUpdated` webhook, not a delete one, and answers with the profile in its new state.
+Closes the calling account at its owner's request: it does not erase the profile, it disables it, ends every  session it has and tells the portal administrators that the account asked to be removed.  It is the second step of the self-service removal - the first is `PUT api/2.0/people/self/delete`, which mails  the confirmation link - so the request has to carry the confirmation token from that link rather than an  ordinary session.  It always acts on the calling account and takes no parameters; the portal owner and an account imported from  LDAP cannot close themselves and get 403.  After the call the account has the `Terminated` status and can no longer sign in, but its rooms, files and  group memberships are untouched, which is why an administrator still has to erase it through  `DELETE api/2.0/people/{userId}` - that operation requires exactly this disabled state.  The step is reversible until then: re-enabling the account through `PUT api/2.0/people/status/{status}`  restores it.  The call raises a `UserUpdated` webhook, not a delete one, and answers with the profile in its new state.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-profile/).
 
@@ -329,7 +329,7 @@ launch(Dispatchers.IO) {
 # **getProfileByEmail**
 > EmployeeFullWrapper getProfileByEmail (kotlin.String email, kotlin.String encemail, kotlin.String culture)
 
-Returns the full profile of the account that owns an email address.  Pass the address either in plain text as `email` or, when it arrived inside an invitation link, encrypted as  `encemail`; one of the two is required and a malformed or overlong address answers 400.  The caller has to be allowed to see that account - a guest, for instance, only sees the accounts it is  related to - and an address that belongs to nobody answers 404.  The call is read-only, and `culture` changes nothing about the profile: it only picks the language of the  error message when the lookup fails.  To find out whether an address is taken without the right to see its owner, use  `GET api/2.0/people/exists`, and to look an account up by its ID or user name use  `GET api/2.0/people/{userid}`.
+Returns the full profile of the account that owns an email address.  Pass the address either in plain text as `email` or, when it arrived inside an invitation link, encrypted as  `encemail`; one of the two is required and a malformed or overlong address answers 400.  The caller has to be allowed to see that account - a guest, for instance, only sees the accounts it is  related to - and an address that belongs to nobody answers 404.  The call is read-only, and `culture` changes nothing about the profile: it only picks the language of the  error message when the lookup fails.  To find out whether an address is taken without the right to see its owner, use  `GET api/2.0/people/exists`, and to look an account up by its ID or user name use  `GET api/2.0/people/{userId}`.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-profile-by-email/).
 
@@ -380,7 +380,7 @@ launch(Dispatchers.IO) {
 
 <a id="getProfileByUserId"></a>
 # **getProfileByUserId**
-> EmployeeFullWrapper getProfileByUserId (kotlin.String userid)
+> EmployeeFullWrapper getProfileByUserId (kotlin.String userId)
 
 Returns the profile of one account, looked up by its user name first and by its ID if the name matches  nothing, so both forms work in the route.  The caller has to be allowed to see that account - a guest, for instance, only sees the accounts it is  related to - and a value that matches neither a name nor an ID answers 404.  A request authenticated with an invitation link is treated differently: it skips that visibility check and  gets a reduced profile with the identifying fields only, which is what an invitation page needs.  The call is read-only and is available on an unpaid portal.  To read the calling account use `GET api/2.0/people/@self`, and to look an account up by address use  `GET api/2.0/people/email`.
 
@@ -389,7 +389,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **userid** | **kotlin.String**| The user ID. | |
+| **userId** | **kotlin.String**| The user ID. | |
 
 ### Return type
 
@@ -414,10 +414,10 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ProfilesApi::class.java)
-val userid : kotlin.String = 00000000-0000-0000-0000-000000000000 // kotlin.String | The user ID.
+val userId : kotlin.String = 00000000-0000-0000-0000-000000000000 // kotlin.String | The user ID.
 
 launch(Dispatchers.IO) {
-    val result : EmployeeFullWrapper = webService.getProfileByUserId(userid)
+    val result : EmployeeFullWrapper = webService.getProfileByUserId(userId)
 }
 ```
 
@@ -431,7 +431,7 @@ launch(Dispatchers.IO) {
 # **getSelfProfile**
 > EmployeeFullWrapper getSelfProfile ()
 
-Returns the profile of the account the request is authenticated as, together with the session details only  this operation reports.  It takes no parameters, needs no permission and always describes the caller, so it is the operation to call  right after signing in to find out who the token belongs to and what that account may do.  The call is read-only and available on an unpaid portal.  Beyond the ordinary profile fields it fills in four that stay empty everywhere else: `theme` with the  interface theme the account chose, `loginEventId` with the identifier of the current session,  `hasPersonalFolder` with whether the account has a personal folder, and `authCookieLifetime` with the seconds  the session has left - the last one only when less than a day remains or the portal is configured to expose  it, so an absent value means neither, not an endless session.  To read somebody else use `GET api/2.0/people/{userid}`, which reports none of these four.
+Returns the profile of the account the request is authenticated as, together with the session details only  this operation reports.  It takes no parameters, needs no permission and always describes the caller, so it is the operation to call  right after signing in to find out who the token belongs to and what that account may do.  The call is read-only and available on an unpaid portal.  Beyond the ordinary profile fields it fills in four that stay empty everywhere else: `theme` with the  interface theme the account chose, `loginEventId` with the identifier of the current session,  `hasPersonalFolder` with whether the account has a personal folder, and `authCookieLifetime` with the seconds  the session has left - the last one only when less than a day remains or the portal is configured to expose  it, so an absent value means neither, not an endless session.  To read somebody else use `GET api/2.0/people/{userId}`, which reports none of these four.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-self-profile/).
 
@@ -526,7 +526,7 @@ launch(Dispatchers.IO) {
 # **removeUsers**
 > EmployeeFullArrayWrapper removeUsers (UpdateMembersRequestDto updateMembersRequestDto)
 
-Deletes several portal profiles in one call and queues the erasure of the data behind each of them.  Every listed account has to be disabled already - set the `Terminated` status through  `PUT api/2.0/people/status/{status}` first, because a single account that is still active rejects the whole  call with 403 - and the caller needs the permission to add and remove users.  System and LDAP accounts are dropped from the list without an error, and so are the accounts the caller may  not delete: a room admin when the caller is not a DocSpace admin, and a DocSpace admin when the caller is not  the portal owner.  The answer lists every account that was asked for, including the ones that were skipped, so it is not proof  that an account was deleted - read `GET api/2.0/people/{userid}` for that, which then answers 404.  The removal is permanent and cannot be undone, and each deleted account raises a `UserDeleted` webhook while  its data is erased by a queued job that can be watched through  `GET api/2.0/people/remove/progress/{userid}`.  Hand the rooms and the shared files over first through `POST api/2.0/people/reassign/start` - an account with  an unfinished reassignment cannot be deleted.
+Deletes several portal profiles in one call and queues the erasure of the data behind each of them.  Every listed account has to be disabled already - set the `Terminated` status through  `PUT api/2.0/people/status/{status}` first, because a single account that is still active rejects the whole  call with 403 - and the caller needs the permission to add and remove users.  System and LDAP accounts are dropped from the list without an error, and so are the accounts the caller may  not delete: a room admin when the caller is not a DocSpace admin, and a DocSpace admin when the caller is not  the portal owner.  The answer lists every account that was asked for, including the ones that were skipped, so it is not proof  that an account was deleted - read `GET api/2.0/people/{userId}` for that, which then answers 404.  The removal is permanent and cannot be undone, and each deleted account raises a `UserDeleted` webhook while  its data is erased by a queued job that can be watched through  `GET api/2.0/people/remove/progress/{userId}`.  Hand the rooms and the shared files over first through `POST api/2.0/people/reassign/start` - an account with  an unfinished reassignment cannot be deleted.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/remove-users/).
 
@@ -622,16 +622,16 @@ launch(Dispatchers.IO) {
 
 <a id="updateMember"></a>
 # **updateMember**
-> EmployeeFullWrapper updateMember (kotlin.String userid, UpdateMemberRequestDto updateMemberRequestDto)
+> EmployeeFullWrapper updateMember (kotlin.String userId, UpdateMemberRequestDto updateMemberRequestDto)
 
-Updates a portal profile, and which fields it accepts depends on whose profile it is - the two halves of this  operation do not overlap.  On the caller's own profile it applies `firstName`, `lastName`, `location`, `comment`, `spam`, `contacts`,  `department` and the avatar named in `files`, while `disable` and `isUser` are ignored; on somebody else's  profile only `disable` and `isUser` are applied and every descriptive field is ignored, so an administrator  cannot rename another account through this operation.  The caller needs the permission to edit that profile, cannot touch the portal owner, and has to be the portal  owner to touch another DocSpace administrator; on an account imported from LDAP or SSO the name and the  location are silently left alone even on one's own profile.  Omitted fields keep their current values, an unusable pair of names answers 400, and `disable` set to true  gives the account the `Terminated` status and ends every session it has, which is the state  `DELETE api/2.0/people/{userid}` then requires.  The `isUser` flag turns the account into a guest when true and back into a member when false, both of which  can answer 402 because either direction takes a seat; a request to make the portal owner, a DocSpace  administrator or a module administrator a guest is ignored without an error.  A change raises a `UserUpdated` webhook and the answer holds the profile as it is afterwards, so read it  instead of assuming the request was applied.  For the language use `PUT api/2.0/people/{userid}/culture`, for the type  `PUT api/2.0/people/type/{type}`, and for the status of several accounts at once  `PUT api/2.0/people/status/{status}`.
+Updates a portal profile, and which fields it accepts depends on whose profile it is - the two halves of this  operation do not overlap.  On the caller's own profile it applies `firstName`, `lastName`, `location`, `comment`, `spam`, `contacts`,  `department` and the avatar named in `files`, while `disable` and `isUser` are ignored; on somebody else's  profile only `disable` and `isUser` are applied and every descriptive field is ignored, so an administrator  cannot rename another account through this operation.  The caller needs the permission to edit that profile, cannot touch the portal owner, and has to be the portal  owner to touch another DocSpace administrator; on an account imported from LDAP or SSO the name and the  location are silently left alone even on one's own profile.  Omitted fields keep their current values, an unusable pair of names answers 400, and `disable` set to true  gives the account the `Terminated` status and ends every session it has, which is the state  `DELETE api/2.0/people/{userId}` then requires.  The `isUser` flag turns the account into a guest when true and back into a member when false, both of which  can answer 402 because either direction takes a seat; a request to make the portal owner, a DocSpace  administrator or a module administrator a guest is ignored without an error.  A change raises a `UserUpdated` webhook and the answer holds the profile as it is afterwards, so read it  instead of assuming the request was applied.  For the language use `PUT api/2.0/people/{userId}/culture`, for the type  `PUT api/2.0/people/type/{type}`, and for the status of several accounts at once  `PUT api/2.0/people/status/{status}`.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/update-member/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **userid** | **kotlin.String**| The user ID. | |
+| **userId** | **kotlin.String**| The user ID. | |
 | **updateMemberRequestDto** | [**UpdateMemberRequestDto**](UpdateMemberRequestDto.md)| The request parameters for updating the user information. | |
 
 ### Return type
@@ -657,11 +657,11 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ProfilesApi::class.java)
-val userid : kotlin.String = 00000000-0000-0000-0000-000000000000 // kotlin.String | The user ID.
+val userId : kotlin.String = 00000000-0000-0000-0000-000000000000 // kotlin.String | The user ID.
 val updateMemberRequestDto : UpdateMemberRequestDto =  // UpdateMemberRequestDto | The request parameters for updating the user information.
 
 launch(Dispatchers.IO) {
-    val result : EmployeeFullWrapper = webService.updateMember(userid, updateMemberRequestDto)
+    val result : EmployeeFullWrapper = webService.updateMember(userId, updateMemberRequestDto)
 }
 ```
 
@@ -673,17 +673,17 @@ launch(Dispatchers.IO) {
 
 <a id="updateMemberCulture"></a>
 # **updateMemberCulture**
-> EmployeeFullWrapper updateMemberCulture (kotlin.String userid, Culture culture)
+> EmployeeFullWrapper updateMemberCulture (kotlin.String userId, UpdateMemberCultureRequest updateMemberCultureRequest)
 
-Changes the interface language of a profile, which decides the language of the portal for that account and of  the emails it receives.  The culture has to be one the portal has enabled, otherwise the operation answers 400; read the enabled list  from the portal settings rather than guessing a code.  A caller may only change their own language - the ID in the route has to be the calling account, and an  administrator gets 403 for anybody else - and the account must be allowed to edit its own profile.  The change takes effect immediately, raises a `UserUpdated` webhook, and answers with the profile carrying  the new `cultureName`.  Other profile fields are not touched here; use `PUT api/2.0/people/{userid}` for those.
+Changes the interface language of a profile, which decides the language of the portal for that account and of  the emails it receives.  The culture has to be one the portal has enabled, otherwise the operation answers 400; read the enabled list  from the portal settings rather than guessing a code.  A caller may only change their own language - the ID in the route has to be the calling account, and an  administrator gets 403 for anybody else - and the account must be allowed to edit its own profile.  The change takes effect immediately, raises a `UserUpdated` webhook, and answers with the profile carrying  the new `cultureName`.  Other profile fields are not touched here; use `PUT api/2.0/people/{userId}` for those.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/update-member-culture/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **userid** | **kotlin.String**| The user ID. | |
-| **culture** | [**Culture**](Culture.md)| The culture name parameters. | [optional] |
+| **userId** | **kotlin.String**| The user ID. | |
+| **updateMemberCultureRequest** | [**UpdateMemberCultureRequest**](UpdateMemberCultureRequest.md)| The culture name parameters. | [optional] |
 
 ### Return type
 
@@ -708,11 +708,11 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ProfilesApi::class.java)
-val userid : kotlin.String = 00000000-0000-0000-0000-000000000000 // kotlin.String | The user ID.
-val culture : Culture =  // Culture | The culture name parameters.
+val userId : kotlin.String = 00000000-0000-0000-0000-000000000000 // kotlin.String | The user ID.
+val updateMemberCultureRequest : UpdateMemberCultureRequest =  // UpdateMemberCultureRequest | The culture name parameters.
 
 launch(Dispatchers.IO) {
-    val result : EmployeeFullWrapper = webService.updateMemberCulture(userid, culture)
+    val result : EmployeeFullWrapper = webService.updateMemberCulture(userId, updateMemberCultureRequest)
 }
 ```
 

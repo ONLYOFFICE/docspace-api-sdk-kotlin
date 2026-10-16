@@ -18,7 +18,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 
 <a id="createWebhook"></a>
 # **createWebhook**
-> WebhooksConfigWrapper createWebhook (CreateWebhooksConfigRequestsDto createWebhooksConfigRequestsDto)
+> WebhooksConfigWrapper createWebhook (CreateWebhooksConfigRequestDto createWebhooksConfigRequestDto)
 
 Creates a webhook subscription for the current portal: a target URL that the portal calls with a signed JSON  payload whenever one of the subscribed events happens. The target is checked before anything is stored, so it  has to be an absolute `http` or `https` address outside the installation's own network, and it has to answer a  HEAD request with a success code, redirects not being followed. `secretKey` is mandatory here, has to satisfy  the portal password rules published by `GET api/2.0/settings/security/password`, and signs the payloads; it  does not appear in any response. `triggers` is a bitmask of the subscribed events with 0 standing for all of  them; a flag the caller's role may not use is rejected, so take the allowed set from  `GET api/2.0/settings/webhook/triggers`. `ssl=true` additionally demands an `https` target with a valid  certificate, while `ssl=false` leaves the certificate unchecked. Set `targetId` to deliver events about a  single entity only. A subscription fires only for events its creator is allowed to see, and only while it is  enabled. Any role except `Guest` may create one, and each call adds another subscription rather than replacing  an existing one.
 
@@ -27,7 +27,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **createWebhooksConfigRequestsDto** | [**CreateWebhooksConfigRequestsDto**](CreateWebhooksConfigRequestsDto.md)|  | [optional] |
+| **createWebhooksConfigRequestDto** | [**CreateWebhooksConfigRequestDto**](CreateWebhooksConfigRequestDto.md)|  | [optional] |
 
 ### Return type
 
@@ -52,10 +52,10 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(WebhooksApi::class.java)
-val createWebhooksConfigRequestsDto : CreateWebhooksConfigRequestsDto =  // CreateWebhooksConfigRequestsDto | 
+val createWebhooksConfigRequestDto : CreateWebhooksConfigRequestDto =  // CreateWebhooksConfigRequestDto | 
 
 launch(Dispatchers.IO) {
-    val result : WebhooksConfigWrapper = webService.createWebhook(createWebhooksConfigRequestsDto)
+    val result : WebhooksConfigWrapper = webService.createWebhook(createWebhooksConfigRequestDto)
 }
 ```
 
@@ -67,7 +67,7 @@ launch(Dispatchers.IO) {
 
 <a id="enableWebhook"></a>
 # **enableWebhook**
-> WebhooksConfigWrapper enableWebhook (UpdateWebhooksConfigRequestsDto updateWebhooksConfigRequestsDto)
+> WebhooksConfigWrapper enableWebhook (UpdateWebhooksConfigRequestDto updateWebhooksConfigRequestDto)
 
 Switches one webhook subscription on or off, leaving the rest of its parameters as they are. Only `id` and  `enabled` are read from the body: `name`, `uri`, `secretKey`, `ssl`, `triggers` and `targetId` are demanded by  the schema but ignored here, so change any of them with `PUT api/2.0/settings/webhook` instead. Switching a  subscription on re-checks what is already stored, probing the saved URL with a HEAD request and re-validating  the saved secret against the current portal password rules, and the call is refused with 400 when either  fails: a subscription whose target has gone away, or whose secret predates a tightening of the password rules,  cannot be switched on until it is updated. Switching one off is not validated. While a subscription is off its  events are dropped rather than queued, so nothing arrives from that period once it is switched on again. A  `DocSpaceAdmin` may switch any subscription in the portal, anyone else only their own, and a `Guest` is  refused. The response carries the subscription in its new state, and repeating the call changes nothing  further.
 
@@ -76,7 +76,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **updateWebhooksConfigRequestsDto** | [**UpdateWebhooksConfigRequestsDto**](UpdateWebhooksConfigRequestsDto.md)|  | [optional] |
+| **updateWebhooksConfigRequestDto** | [**UpdateWebhooksConfigRequestDto**](UpdateWebhooksConfigRequestDto.md)|  | [optional] |
 
 ### Return type
 
@@ -101,10 +101,10 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(WebhooksApi::class.java)
-val updateWebhooksConfigRequestsDto : UpdateWebhooksConfigRequestsDto =  // UpdateWebhooksConfigRequestsDto | 
+val updateWebhooksConfigRequestDto : UpdateWebhooksConfigRequestDto =  // UpdateWebhooksConfigRequestDto | 
 
 launch(Dispatchers.IO) {
-    val result : WebhooksConfigWrapper = webService.enableWebhook(updateWebhooksConfigRequestsDto)
+    val result : WebhooksConfigWrapper = webService.enableWebhook(updateWebhooksConfigRequestDto)
 }
 ```
 
@@ -373,7 +373,7 @@ launch(Dispatchers.IO) {
 
 <a id="retryWebhooks"></a>
 # **retryWebhooks**
-> WebhooksLogArrayWrapper retryWebhooks (WebhookRetryRequestsDto webhookRetryRequestsDto)
+> WebhooksLogArrayWrapper retryWebhooks (WebhookRetryRequestDto webhookRetryRequestDto)
 
 Sends a batch of past webhook deliveries again. `ids` holds the identifiers of delivery records from  `GET api/2.0/settings/webhooks/log`; each of them is sent once more to the subscription it belongs to as a  fresh delivery record, queued for asynchronous delivery, and the response lists those new records with  `status` and `delivery` not filled in yet. Records that do not exist, and records of another member's  subscription when the caller is not a `DocSpaceAdmin`, are skipped in silence instead of failing the call, so  a response shorter than `ids` is the only sign that something was left out: compare the counts rather than  assuming everything was queued. An empty `ids` list is accepted and queues nothing. Read the outcomes from  `GET api/2.0/settings/webhooks/log`, matching the returned identifiers with `eventId`. Every call queues  another round of attempts, and the original records stay as they are. A `Guest` is refused. The operation is  rate limited, so a burst of calls is answered with 429. For a single record  `PUT api/2.0/settings/webhook/{id}/retry` reports a missing or forbidden record instead of skipping it.
 
@@ -382,7 +382,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **webhookRetryRequestsDto** | [**WebhookRetryRequestsDto**](WebhookRetryRequestsDto.md)|  | [optional] |
+| **webhookRetryRequestDto** | [**WebhookRetryRequestDto**](WebhookRetryRequestDto.md)|  | [optional] |
 
 ### Return type
 
@@ -407,10 +407,10 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(WebhooksApi::class.java)
-val webhookRetryRequestsDto : WebhookRetryRequestsDto =  // WebhookRetryRequestsDto | 
+val webhookRetryRequestDto : WebhookRetryRequestDto =  // WebhookRetryRequestDto | 
 
 launch(Dispatchers.IO) {
-    val result : WebhooksLogArrayWrapper = webService.retryWebhooks(webhookRetryRequestsDto)
+    val result : WebhooksLogArrayWrapper = webService.retryWebhooks(webhookRetryRequestDto)
 }
 ```
 
@@ -422,7 +422,7 @@ launch(Dispatchers.IO) {
 
 <a id="updateWebhook"></a>
 # **updateWebhook**
-> WebhooksConfigWrapper updateWebhook (UpdateWebhooksConfigRequestsDto updateWebhooksConfigRequestsDto)
+> WebhooksConfigWrapper updateWebhook (UpdateWebhooksConfigRequestDto updateWebhooksConfigRequestDto)
 
 Replaces the stored parameters of one webhook subscription, which is addressed by `id` in the body rather than  in the path. Every field of the request overwrites the stored one, so a payload that leaves out `enabled`,  `ssl`, `triggers` or `targetId` resets them to off, all events and no target: read the current values with  `GET api/2.0/settings/webhook` first and send back whatever should stay. `secretKey` is the one exception, an  empty value keeping the existing secret and a new one having to satisfy the portal password rules. The new  target is validated exactly as on creation, that is it must sit outside the installation's own network and  answer a HEAD request, and trigger flags the caller's role may not use are rejected. That validation runs  before the subscription is looked up, so an unusable payload is refused with 400 even when no subscription  with this `id` exists. A `DocSpaceAdmin` may update any subscription in the portal, anyone else only their  own, and a `Guest` is refused. Sending the same payload twice leaves the same state. Use  `PUT api/2.0/settings/webhook/enable` to switch a subscription on or off without touching anything else.
 
@@ -431,7 +431,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **updateWebhooksConfigRequestsDto** | [**UpdateWebhooksConfigRequestsDto**](UpdateWebhooksConfigRequestsDto.md)|  | [optional] |
+| **updateWebhooksConfigRequestDto** | [**UpdateWebhooksConfigRequestDto**](UpdateWebhooksConfigRequestDto.md)|  | [optional] |
 
 ### Return type
 
@@ -456,10 +456,10 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(WebhooksApi::class.java)
-val updateWebhooksConfigRequestsDto : UpdateWebhooksConfigRequestsDto =  // UpdateWebhooksConfigRequestsDto | 
+val updateWebhooksConfigRequestDto : UpdateWebhooksConfigRequestDto =  // UpdateWebhooksConfigRequestDto | 
 
 launch(Dispatchers.IO) {
-    val result : WebhooksConfigWrapper = webService.updateWebhook(updateWebhooksConfigRequestsDto)
+    val result : WebhooksConfigWrapper = webService.updateWebhook(updateWebhooksConfigRequestDto)
 }
 ```
 

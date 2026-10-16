@@ -16,16 +16,16 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.ConnectionTestResult
+import onlyoffice.docspace.api.sdk.models.ConnectionTestResultDto
 import onlyoffice.docspace.api.sdk.models.GetPortalPrices200ResponseLinksInner
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The successful API response containing the ConnectionTestResult object.
+ * The successful API response containing the ConnectionTestResultDto object.
  *
- * @param response The ConnectionTestResult object returned by the operation.
+ * @param response The ConnectionTestResultDto object returned by the operation.
  * @param count The total number of items in the response
  * @param links List of links related to the response
  * @param status HTTP status code of the response
@@ -36,7 +36,7 @@ import com.squareup.moshi.JsonClass
 data class ConnectionTestResultWrapper (
 
     @Json(name = "response")
-    val response: ConnectionTestResult? = null,
+    val response: ConnectionTestResultDto? = null,
 
     @Json(name = "count")
     val count: kotlin.Int? = null,

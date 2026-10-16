@@ -28,6 +28,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 | [**getNewRoomItems**](RoomsApi.md#getNewRoomItems) | **GET** api/2.0/files/rooms/{id}/news | Get new items in a room |
 | [**getNewRoomItems**](RoomsApi.md#getNewRoomItems-thirdparty) | **GET** api/2.0/files/rooms/{id}/news | Get new items in a room (third-party storage) |
 | [**getPublicSettings**](RoomsApi.md#getPublicSettings) | **GET** api/2.0/files/roomtemplate/{id}/public | Get room template public access |
+| [**getRoomAiFolder**](RoomsApi.md#getRoomAiFolder) | **GET** api/2.0/files/rooms/{id}/ai | Get the .ai folder of a room |
 | [**getRoomCovers**](RoomsApi.md#getRoomCovers) | **GET** api/2.0/files/rooms/covers | Get room cover gallery |
 | [**getRoomCreatingStatus**](RoomsApi.md#getRoomCreatingStatus) | **GET** api/2.0/files/rooms/fromtemplate/status | Get the room creation progress |
 | [**getRoomIndexExport**](RoomsApi.md#getRoomIndexExport) | **GET** api/2.0/files/rooms/indexexport | Get the room index export |
@@ -50,6 +51,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 | [**reorderRoom**](RoomsApi.md#reorderRoom-thirdparty) | **PUT** api/2.0/files/rooms/{id}/reorder | Reorder room contents (third-party storage) |
 | [**resendEmailInvitations**](RoomsApi.md#resendEmailInvitations) | **POST** api/2.0/files/rooms/{id}/resend | Resend the room invitations |
 | [**resendEmailInvitations**](RoomsApi.md#resendEmailInvitations-thirdparty) | **POST** api/2.0/files/rooms/{id}/resend | Resend the room invitations (third-party storage) |
+| [**searchRooms**](RoomsApi.md#searchRooms) | **POST** api/2.0/files/rooms/search | Search the rooms by metadata |
 | [**setPublicSettings**](RoomsApi.md#setPublicSettings) | **PUT** api/2.0/files/roomtemplate/public | Set room template public access |
 | [**setRoomLink**](RoomsApi.md#setRoomLink) | **PUT** api/2.0/files/rooms/{id}/links | Set the room external or invitation link |
 | [**setRoomLink**](RoomsApi.md#setRoomLink-thirdparty) | **PUT** api/2.0/files/rooms/{id}/links | Set the room external or invitation link (third-party storage) |
@@ -675,9 +677,9 @@ launch(Dispatchers.IO) {
 
 <a id="createRoomThirdParty"></a>
 # **createRoomThirdParty**
-> ThirdPartyFolderWrapper createRoomThirdParty (kotlin.String id, CreateThirdPartyRoom createThirdPartyRoom)
+> ThirdPartyFolderWrapper createRoomThirdParty (kotlin.String id, CreateThirdPartyRoomRequest createThirdPartyRoomRequest)
 
-Turns a folder of a connected third-party storage account into a room of the `Rooms` section, so that the  files of the room keep living in that storage instead of the portal. Connect the account first with  `POST api/2.0/files/thirdparty` and take the path parameter from a folder listing of that account: it is the  identifier of a folder in the storage, not of a room. One connected account can back one room only, so a  second call over the same account is refused, and so is an account that was not connected for room storage.  The caller needs the right to create rooms, which a portal user and a guest do not have; a public room is  refused while the administrator restricts external access, and reaching the room limit of the tariff is  refused too. With `createAsNewFolder` the room is a new subfolder named after `title`, otherwise the folder  from the path becomes the room itself and `indexing`, `denyDownload`, `tags` and `logo` are then dropped. The  answer is the new room, whose identifiers are strings; a public or a form-filling room already has its primary  link, readable with `GET api/2.0/files/rooms/{id}/link`.
+Turns a folder of a connected third-party storage account into a room of the `Rooms` section, so that the  files of the room keep living in that storage instead of the portal. Connect the account first with  `POST api/2.0/files/thirdparty` and take the path parameter from a folder listing of that account: it is the  identifier of a folder in the storage, not of a room. One connected account can back one room only, so a  second call over the same account is refused, and so is an account that was not connected for room storage.  The caller needs the right to create rooms, which a portal user and a guest do not have; a public room is  refused while the administrator restricts external access, and reaching the room limit of the tariff is  refused too. With `createAsNewFolder` the room is a new subfolder named after `title`, otherwise the folder  from the path becomes the room itself and `tags` and `logo` are then dropped. A third-party room keeps neither  `indexing` nor `denyDownload` in either mode: both are accepted and ignored, and the room reads back with them  off. The  answer is the new room, whose identifiers are strings; a public or a form-filling room already has its primary  link, readable with `GET api/2.0/files/rooms/{id}/link`.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-room-third-party/).
 
@@ -685,7 +687,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **kotlin.String**| The identifier of the folder in the connected third-party storage that becomes the room, or receives it as a  subfolder. Folder identifiers of a connected account are strings and are returned by the folder listings of  that account. | |
-| **createThirdPartyRoom** | [**CreateThirdPartyRoom**](CreateThirdPartyRoom.md)| The settings of the room to be created out of the folder. | |
+| **createThirdPartyRoomRequest** | [**CreateThirdPartyRoomRequest**](CreateThirdPartyRoomRequest.md)| The settings of the room to be created out of the folder. | |
 
 ### Return type
 
@@ -711,10 +713,10 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(RoomsApi::class.java)
 val id : kotlin.String = box-12-|280143035119 // kotlin.String | The identifier of the folder in the connected third-party storage that becomes the room, or receives it as a  subfolder. Folder identifiers of a connected account are strings and are returned by the folder listings of  that account.
-val createThirdPartyRoom : CreateThirdPartyRoom =  // CreateThirdPartyRoom | The settings of the room to be created out of the folder.
+val createThirdPartyRoomRequest : CreateThirdPartyRoomRequest =  // CreateThirdPartyRoomRequest | The settings of the room to be created out of the folder.
 
 launch(Dispatchers.IO) {
-    val result : ThirdPartyFolderWrapper = webService.createRoomThirdParty(id, createThirdPartyRoom)
+    val result : ThirdPartyFolderWrapper = webService.createRoomThirdParty(id, createThirdPartyRoomRequest)
 }
 ```
 
@@ -1271,6 +1273,67 @@ launch(Dispatchers.IO) {
  - **Accept**: application/json
 
 
+<a id="getRoomAiFolder"></a>
+# **getRoomAiFolder**
+> FolderContentWrapper getRoomAiFolder (kotlin.Int id, FilterType filterType, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterValue)
+
+Returns one page of the contents of the .ai folder that lies in the root of a room, in the same shape as  `GET api/2.0/files/{folderId}` returns for any other folder. The rooms that hold such a folder are listed with  `GET api/2.0/files/rooms?withAiFolder=true`. Any member who can read the room may call it; somebody who cannot  is refused, and a room that does not exist is answered as not found. A room that holds no .ai folder is  answered with an empty page: no files and folders, a zero `total`, no `current` folder and empty `pathParts`.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-ai-folder/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **kotlin.Int**| The room whose .ai folder is listed, named by the identifier that `GET api/2.0/files/rooms` reports for it. | |
+| **filterType** | [**FilterType**](.md)| Narrows the listing to a single kind of entry, such as documents, spreadsheets or images. Omit it to list every  kind the folder holds. | [optional] [enum: 0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 17, 20, 22, 23, 24, 25, 26] |
+| **count** | **kotlin.Int**| The size of one page of the listing. Pair it with `startIndex` to walk through the result, and compare the two  with `total` in the response to see when the last page has been read. | [optional] |
+| **startIndex** | **kotlin.Int**| The number of matching entries to skip before the returned page begins; add `count` to it to ask for the next  page. | [optional] |
+| **sortBy** | **kotlin.String**| The name of the field the entries are ordered by, matched case-insensitively against the file sort fields,  such as `DateAndTime`, `AZ`, `Size` or `Type`. | [optional] |
+| **sortOrder** | [**SortOrder**](.md)| The direction in which the `sortBy` field is ordered. | [optional] [enum: 0, 1] |
+| **filterValue** | **kotlin.String**| The search string the listing is filtered by: it is matched as a substring of entry titles. Omit it to list  the folder unfiltered. | [optional] |
+
+### Return type
+
+[**FolderContentWrapper**](FolderContentWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(RoomsApi::class.java)
+val id : kotlin.Int = 1 // kotlin.Int | The room whose .ai folder is listed, named by the identifier that `GET api/2.0/files/rooms` reports for it.
+val filterType : FilterType = 1 // FilterType | Narrows the listing to a single kind of entry, such as documents, spreadsheets or images. Omit it to list every  kind the folder holds.
+val count : kotlin.Int = 25 // kotlin.Int | The size of one page of the listing. Pair it with `startIndex` to walk through the result, and compare the two  with `total` in the response to see when the last page has been read.
+val startIndex : kotlin.Int = 0 // kotlin.Int | The number of matching entries to skip before the returned page begins; add `count` to it to ask for the next  page.
+val sortBy : kotlin.String = DateAndTime // kotlin.String | The name of the field the entries are ordered by, matched case-insensitively against the file sort fields,  such as `DateAndTime`, `AZ`, `Size` or `Type`.
+val sortOrder : SortOrder = 1 // SortOrder | The direction in which the `sortBy` field is ordered.
+val filterValue : kotlin.String = skill // kotlin.String | The search string the listing is filtered by: it is matched as a substring of entry titles. Omit it to list  the folder unfiltered.
+
+launch(Dispatchers.IO) {
+    val result : FolderContentWrapper = webService.getRoomAiFolder(id, filterType, count, startIndex, sortBy, sortOrder, filterValue)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
 <a id="getRoomCovers"></a>
 # **getRoomCovers**
 > CoversResultArrayWrapper getRoomCovers ()
@@ -1725,7 +1788,7 @@ launch(Dispatchers.IO) {
 
 <a id="getRoomTagsInfo"></a>
 # **getRoomTagsInfo**
-> STRINGArrayWrapper getRoomTagsInfo (kotlin.Int count, kotlin.Int startIndex, kotlin.String filterValue)
+> StringArrayWrapper getRoomTagsInfo (kotlin.Int count, kotlin.Int startIndex, kotlin.String filterValue)
 
 Returns the custom room tags available to the caller as a flat array of names, not of objects. What the array  holds depends on the account: a portal administrator gets the whole catalog, including tags that no room uses  yet, while every other account gets only the tags attached to rooms it can see, with duplicates removed. An  empty answer therefore means that this caller sees no tagged room, not that the portal has no tags.  `filterValue` keeps the names that contain the given text, ignoring case, while `count` and `startIndex` page  the result; no total is returned, so a page shorter than `count` is the signal that the list is exhausted. The  names are exactly the values accepted by the `tags` filter of `GET api/2.0/files/rooms` and by the room tag  calls, which makes this the call to fill a tag picker with. Add a tag with `POST api/2.0/files/tags` and check  whether one is still in use with `GET api/2.0/files/tags/{tagName}/haslinks`.
 
@@ -1740,7 +1803,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Return type
 
-[**STRINGArrayWrapper**](STRINGArrayWrapper.md)
+[**StringArrayWrapper**](StringArrayWrapper.md)
 
 ### Authorization
 
@@ -1766,7 +1829,7 @@ val startIndex : kotlin.Int = 0 // kotlin.Int | How many tag names to skip befor
 val filterValue : kotlin.String = conf // kotlin.String | Keeps only the tag names that contain this text, ignoring case. It is a substring match, so a fragment from  the middle of a name is enough.
 
 launch(Dispatchers.IO) {
-    val result : STRINGArrayWrapper = webService.getRoomTagsInfo(count, startIndex, filterValue)
+    val result : StringArrayWrapper = webService.getRoomTagsInfo(count, startIndex, filterValue)
 }
 ```
 
@@ -1824,7 +1887,7 @@ launch(Dispatchers.IO) {
 
 <a id="getRoomsFolder"></a>
 # **getRoomsFolder**
-> FolderContentWrapper getRoomsFolder (kotlin.collections.List<RoomType> type, java.util.UUID subjectId, java.util.UUID subjectOwnerId, SearchArea searchArea, kotlin.Boolean withoutTags, kotlin.String tags, kotlin.Boolean excludeSubject, ProviderFilter provider, QuotaFilter quotaFilter, StorageFilter storageFilter, RoomPrivacyFilter privacyFilter, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterValue, kotlin.Int groupId)
+> FolderContentWrapper getRoomsFolder (kotlin.collections.List<RoomType> type, java.util.UUID subjectId, java.util.UUID subjectOwnerId, SearchArea searchArea, kotlin.Boolean withoutTags, kotlin.String tags, kotlin.Boolean excludeSubject, ProviderFilter provider, QuotaFilter quotaFilter, StorageFilter storageFilter, RoomPrivacyFilter privacyFilter, kotlin.Boolean withAiFolder, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterValue, kotlin.Int groupId, kotlin.Int metadataTemplateId, kotlin.String metadataFilters, kotlin.Boolean includeHiddenMetadata)
 
 Lists the rooms of one section of the portal: the active rooms by default, or the archive, the form-filling  section or the room templates, chosen with `searchArea`. The rooms arrive in `folders` while `files` stays  empty, `current` describes the section itself, and `total` counts every room that matched the filters before  paging. A caller sees only the rooms they created or were invited to, while a portal administrator sees all of  them, so an empty answer means nothing is visible to this account rather than nothing exists. The remaining  parameters narrow the same set, by room type, title, tags, member, owner, storage, quota and privacy, and they  combine with each other. Sorting is not free of side effects: a `sortBy` value is also stored as this  account's default order for later listings, and omitting it reuses the stored order. Page the result with  `count` and `startIndex`. Read a single room with `GET api/2.0/files/rooms/{id}`, and create one with  `POST api/2.0/files/rooms`.
 
@@ -1844,12 +1907,16 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **quotaFilter** | [**QuotaFilter**](.md)| Splits the rooms by whether a storage quota was set on the room itself or it follows the portal default, which  is how rooms with a custom limit are found. | [optional] [enum: 0, 1, 2] |
 | **storageFilter** | [**StorageFilter**](.md)| Splits the rooms by where their content is stored, in the portal itself or in a connected third-party account.  It is the coarse form of the provider filter. | [optional] [enum: 0, 1, 2] |
 | **privacyFilter** | [**RoomPrivacyFilter**](.md)| Splits the rooms by whether they are private, that is encrypted rooms whose content the portal cannot read.  Omitting it returns both kinds. | [optional] [enum: 0, 1, 2] |
+| **withAiFolder** | **kotlin.Boolean**| Keeps only the rooms that hold a .ai folder in their root. The content of that folder is read with  `GET api/2.0/files/rooms/{id}/ai`. Omitting it returns rooms with and without the folder. | [optional] |
 | **count** | **kotlin.Int**| How many rooms one page may carry. Ask for the next page by raising the start index by the number of rooms  already received. | [optional] |
 | **startIndex** | **kotlin.Int**| How many matching rooms to skip before the page begins. Page through the answer until the skip plus the rooms  received reaches the total it reports. | [optional] |
 | **sortBy** | **kotlin.String**| The field to order the rooms by, named as in the file listings: `AZ` for the title, `DateAndTime` for the last  change, `DateAndTimeCreation`, `Author`, `Size`, `Type`, `RoomType`, `Tags`, `UsedSpace`, `LastOpened`. The  name is matched ignoring case, an unknown one is rejected rather than ignored, and the accepted one also  becomes this account's stored order. | [optional] |
 | **sortOrder** | [**SortOrder**](.md)| The direction of the order chosen by the sort field. It has no effect when no sort field is given and the  stored order of the account is used. | [optional] [enum: 0, 1] |
 | **filterValue** | **kotlin.String**| Keeps only the rooms whose title contains this text, ignoring case. It is a substring match over the title  alone: room content and tags are not searched. | [optional] |
 | **groupId** | **kotlin.Int**| Keeps only the rooms that belong to this room group. The identifier comes from `GET api/2.0/files/group`; the  groups of portal members are a different concept and their identifiers do not match here. | [optional] |
+| **metadataTemplateId** | **kotlin.Int**| The ID of the metadata template the entries must be assigned to. On its own it narrows the listing to the entries  carrying the template; together with the metadata filters it also pins the template the filtered fields belong to. | [optional] |
+| **metadataFilters** | **kotlin.String**| The URL-encoded JSON array of the metadata filter conditions,  e.g. [{fieldId:1,op:contains,value:ACME},{fieldId:2,op:range,from:2026-01-01,to:2026-06-30},{fieldId:3,op:in,optionIds:[...]}].  A string field takes eq (the whole value) or contains (a part of it); a number or a date field takes range with inclusive bounds,  or gt, gte, lt, lte with the single bound in value; a choice field takes in. A date-only bound covers the whole day,  so to:2026-06-30 includes the values stored on 30 June and gt:2026-06-30 starts after it.  A custom field is addressed by its name instead of the fieldId: {name:Client,op:eq,value:ACME}.  The same filter is taken as a typed request body by POST api/2.0/files/rooms/search. | [optional] |
+| **includeHiddenMetadata** | **kotlin.Boolean**| Whether the text search, and the metadataMatches it reports, also look at the values of the hidden metadata  templates (created with visible false for the metadata a service keeps for itself, which the web client never  shows). False, the default, leaves them out, so an entry is not found by such a value; true takes them in.  metadataTemplateId and metadataFilters are not concerned: a hidden template or field named there is searched  either way. | [optional] |
 
 ### Return type
 
@@ -1885,15 +1952,19 @@ val provider : ProviderFilter = 1 // ProviderFilter | Keeps only the rooms whose
 val quotaFilter : QuotaFilter = 1 // QuotaFilter | Splits the rooms by whether a storage quota was set on the room itself or it follows the portal default, which  is how rooms with a custom limit are found.
 val storageFilter : StorageFilter = 1 // StorageFilter | Splits the rooms by where their content is stored, in the portal itself or in a connected third-party account.  It is the coarse form of the provider filter.
 val privacyFilter : RoomPrivacyFilter = 1 // RoomPrivacyFilter | Splits the rooms by whether they are private, that is encrypted rooms whose content the portal cannot read.  Omitting it returns both kinds.
+val withAiFolder : kotlin.Boolean = true // kotlin.Boolean | Keeps only the rooms that hold a .ai folder in their root. The content of that folder is read with  `GET api/2.0/files/rooms/{id}/ai`. Omitting it returns rooms with and without the folder.
 val count : kotlin.Int = 25 // kotlin.Int | How many rooms one page may carry. Ask for the next page by raising the start index by the number of rooms  already received.
 val startIndex : kotlin.Int = 0 // kotlin.Int | How many matching rooms to skip before the page begins. Page through the answer until the skip plus the rooms  received reaches the total it reports.
 val sortBy : kotlin.String = DateAndTime // kotlin.String | The field to order the rooms by, named as in the file listings: `AZ` for the title, `DateAndTime` for the last  change, `DateAndTimeCreation`, `Author`, `Size`, `Type`, `RoomType`, `Tags`, `UsedSpace`, `LastOpened`. The  name is matched ignoring case, an unknown one is rejected rather than ignored, and the accepted one also  becomes this account's stored order.
 val sortOrder : SortOrder = 1 // SortOrder | The direction of the order chosen by the sort field. It has no effect when no sort field is given and the  stored order of the account is used.
 val filterValue : kotlin.String = Sales // kotlin.String | Keeps only the rooms whose title contains this text, ignoring case. It is a substring match over the title  alone: room content and tags are not searched.
 val groupId : kotlin.Int = 1 // kotlin.Int | Keeps only the rooms that belong to this room group. The identifier comes from `GET api/2.0/files/group`; the  groups of portal members are a different concept and their identifiers do not match here.
+val metadataTemplateId : kotlin.Int = 1 // kotlin.Int | The ID of the metadata template the entries must be assigned to. On its own it narrows the listing to the entries  carrying the template; together with the metadata filters it also pins the template the filtered fields belong to.
+val metadataFilters : kotlin.String = [{"fieldId":1,"op":"eq","value":"ACME"}] // kotlin.String | The URL-encoded JSON array of the metadata filter conditions,  e.g. [{fieldId:1,op:contains,value:ACME},{fieldId:2,op:range,from:2026-01-01,to:2026-06-30},{fieldId:3,op:in,optionIds:[...]}].  A string field takes eq (the whole value) or contains (a part of it); a number or a date field takes range with inclusive bounds,  or gt, gte, lt, lte with the single bound in value; a choice field takes in. A date-only bound covers the whole day,  so to:2026-06-30 includes the values stored on 30 June and gt:2026-06-30 starts after it.  A custom field is addressed by its name instead of the fieldId: {name:Client,op:eq,value:ACME}.  The same filter is taken as a typed request body by POST api/2.0/files/rooms/search.
+val includeHiddenMetadata : kotlin.Boolean = false // kotlin.Boolean | Whether the text search, and the metadataMatches it reports, also look at the values of the hidden metadata  templates (created with visible false for the metadata a service keeps for itself, which the web client never  shows). False, the default, leaves them out, so an entry is not found by such a value; true takes them in.  metadataTemplateId and metadataFilters are not concerned: a hidden template or field named there is searched  either way.
 
 launch(Dispatchers.IO) {
-    val result : FolderContentWrapper = webService.getRoomsFolder(type, subjectId, subjectOwnerId, searchArea, withoutTags, tags, excludeSubject, provider, quotaFilter, storageFilter, privacyFilter, count, startIndex, sortBy, sortOrder, filterValue, groupId)
+    val result : FolderContentWrapper = webService.getRoomsFolder(type, subjectId, subjectOwnerId, searchArea, withoutTags, tags, excludeSubject, provider, quotaFilter, storageFilter, privacyFilter, withAiFolder, count, startIndex, sortBy, sortOrder, filterValue, groupId, metadataTemplateId, metadataFilters, includeHiddenMetadata)
 }
 ```
 
@@ -2387,6 +2458,55 @@ val userInvitation : UserInvitation =  // UserInvitation | Which pending invitat
 
 launch(Dispatchers.IO) {
     webService.resendEmailInvitations(id, userInvitation)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+<a id="searchRooms"></a>
+# **searchRooms**
+> FolderContentWrapper searchRooms (RoomsMetadataSearchRequestDto roomsMetadataSearchRequestDto)
+
+Searches the rooms by metadata. The same filter the rooms listing takes in the metadataTemplateId and metadataFilters  query parameters, here as a typed request body for the clients that build the conditions as objects rather than as a JSON string.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/search-rooms/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **roomsMetadataSearchRequestDto** | [**RoomsMetadataSearchRequestDto**](RoomsMetadataSearchRequestDto.md)|  | [optional] |
+
+### Return type
+
+[**FolderContentWrapper**](FolderContentWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(RoomsApi::class.java)
+val roomsMetadataSearchRequestDto : RoomsMetadataSearchRequestDto =  // RoomsMetadataSearchRequestDto | 
+
+launch(Dispatchers.IO) {
+    val result : FolderContentWrapper = webService.searchRooms(roomsMetadataSearchRequestDto)
 }
 ```
 

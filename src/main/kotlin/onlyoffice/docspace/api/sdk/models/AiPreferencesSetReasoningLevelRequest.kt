@@ -16,7 +16,7 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.AiAiReasoningLevel
+import onlyoffice.docspace.api.sdk.models.AiReasoningLevel
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -32,7 +32,7 @@ import com.squareup.moshi.JsonClass
 data class AiPreferencesSetReasoningLevelRequest (
 
     @Json(name = "value")
-    val `value`: AiAiReasoningLevel,
+    val `value`: AiReasoningLevel,
 
     @Json(name = "entityId")
     val entityId: kotlin.String? = null

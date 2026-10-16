@@ -23,15 +23,15 @@ import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
+import onlyoffice.docspace.api.sdk.models.AccountEntryArrayWrapper
 import onlyoffice.docspace.api.sdk.models.AccountLoginType
-import onlyoffice.docspace.api.sdk.models.Area
+import onlyoffice.docspace.api.sdk.models.AccountSearchArea
 import onlyoffice.docspace.api.sdk.models.EmployeeActivationStatus
 import onlyoffice.docspace.api.sdk.models.EmployeeArrayWrapper
 import onlyoffice.docspace.api.sdk.models.EmployeeFullArrayWrapper
 import onlyoffice.docspace.api.sdk.models.EmployeeStatus
 import onlyoffice.docspace.api.sdk.models.EmployeeType
 import onlyoffice.docspace.api.sdk.models.ErrorApiResponse
-import onlyoffice.docspace.api.sdk.models.IAccountEntryArrayWrapper
 import onlyoffice.docspace.api.sdk.models.Payments
 import onlyoffice.docspace.api.sdk.models.QuotaFilter
 import onlyoffice.docspace.api.sdk.models.SortOrder
@@ -43,12 +43,12 @@ interface SearchApi {
      * Searches the portal users and groups that can be given access to the file with the ID given in the route, and  reports for each of them whether it already has access to that file.  The caller has to be allowed to manage the access of that file, and the ID has to belong to an existing file,  so the operation answers 403 for a file the caller cannot share and 404 for an ID that matches nothing.  The search is read-only and needs `filterValue`: while it is empty the operation returns an empty list and a  total of 0 instead of every account, so it cannot be used to enumerate the portal.  `filterValue` is matched case-insensitively against the first name, the last name and the email; without  `filterSeparator` it is split on spaces and every term has to match, and with a separator it is split on that  separator and any term may match.  Matching groups are streamed first and users after them, both paged together by `count` and `startIndex`,  while the number of matches is reported in the total count of the response.  Pass `excludeShared` to keep only the accounts that have no access yet, `includeShared` to keep only those  that already have it, and neither to get both kinds with the `shared` field telling them apart.
      * Responses:
      *  - 200: The matching users and groups, each with its access state for the file
+     *  - 400: A parameter has the wrong type, or the `count` is outside its allowed range
      *  - 403: No permissions to perform this action
      *  - 404: No file has the specified ID
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -69,10 +69,10 @@ interface SearchApi {
      * @param startIndex The number of matches to skip before the page starts, counted over the groups and users together. It defaults  to 0, and the total number of matches is reported in the total count of the response. (optional)
      * @param filterSeparator The character that splits `filterValue` into several terms, of which any one may match. Omit it to split the  value on spaces instead, in which case every term has to match. (optional)
      * @param filterValue The text to search for, matched case-insensitively against the first name, the last name and the email. It is  required in practice: while it is empty the search returns nothing at all rather than every account. (optional)
-     * @return [IAccountEntryArrayWrapper]
+     * @return [AccountEntryArrayWrapper]
      */
     @GET("api/2.0/accounts/file/{id}/search")
-    suspend fun getAccountsEntriesWithFilesShared(@Path("id") id: kotlin.Int, @Query("employeeStatus") employeeStatus: EmployeeStatus? = null, @Query("activationStatus") activationStatus: EmployeeActivationStatus? = null, @Query("excludeShared") excludeShared: kotlin.Boolean? = null, @Query("includeShared") includeShared: kotlin.Boolean? = null, @Query("invitedByMe") invitedByMe: kotlin.Boolean? = null, @Query("inviterId") inviterId: java.util.UUID? = null, @Query("area") area: Area? = null, @Query("employeeTypes") employeeTypes: @JvmSuppressWildcards kotlin.collections.List<EmployeeType>? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<IAccountEntryArrayWrapper>
+    suspend fun getAccountsEntriesWithFilesShared(@Path("id") id: kotlin.Int, @Query("employeeStatus") employeeStatus: EmployeeStatus? = null, @Query("activationStatus") activationStatus: EmployeeActivationStatus? = null, @Query("excludeShared") excludeShared: kotlin.Boolean? = null, @Query("includeShared") includeShared: kotlin.Boolean? = null, @Query("invitedByMe") invitedByMe: kotlin.Boolean? = null, @Query("inviterId") inviterId: java.util.UUID? = null, @Query("area") area: AccountSearchArea? = null, @Query("employeeTypes") employeeTypes: @JvmSuppressWildcards kotlin.collections.List<EmployeeType>? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<AccountEntryArrayWrapper>
 
     /**
      * GET api/2.0/accounts/file/{id}/search
@@ -80,12 +80,12 @@ interface SearchApi {
      * Searches the portal users and groups that can be given access to the file with the ID given in the route, and  reports for each of them whether it already has access to that file.  The caller has to be allowed to manage the access of that file, and the ID has to belong to an existing file,  so the operation answers 403 for a file the caller cannot share and 404 for an ID that matches nothing.  The search is read-only and needs `filterValue`: while it is empty the operation returns an empty list and a  total of 0 instead of every account, so it cannot be used to enumerate the portal.  `filterValue` is matched case-insensitively against the first name, the last name and the email; without  `filterSeparator` it is split on spaces and every term has to match, and with a separator it is split on that  separator and any term may match.  Matching groups are streamed first and users after them, both paged together by `count` and `startIndex`,  while the number of matches is reported in the total count of the response.  Pass `excludeShared` to keep only the accounts that have no access yet, `includeShared` to keep only those  that already have it, and neither to get both kinds with the `shared` field telling them apart.
      * Responses:
      *  - 200: The matching users and groups, each with its access state for the file
+     *  - 400: A parameter has the wrong type, or the `count` is outside its allowed range
      *  - 403: No permissions to perform this action
      *  - 404: No file has the specified ID
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -106,10 +106,10 @@ interface SearchApi {
      * @param startIndex The number of matches to skip before the page starts, counted over the groups and users together. It defaults  to 0, and the total number of matches is reported in the total count of the response. (optional)
      * @param filterSeparator The character that splits `filterValue` into several terms, of which any one may match. Omit it to split the  value on spaces instead, in which case every term has to match. (optional)
      * @param filterValue The text to search for, matched case-insensitively against the first name, the last name and the email. It is  required in practice: while it is empty the search returns nothing at all rather than every account. (optional)
-     * @return [IAccountEntryArrayWrapper]
+     * @return [AccountEntryArrayWrapper]
      */
     @GET("api/2.0/accounts/file/{id}/search")
-    suspend fun getAccountsEntriesWithFilesShared(@Path("id") id: kotlin.String, @Query("employeeStatus") employeeStatus: EmployeeStatus? = null, @Query("activationStatus") activationStatus: EmployeeActivationStatus? = null, @Query("excludeShared") excludeShared: kotlin.Boolean? = null, @Query("includeShared") includeShared: kotlin.Boolean? = null, @Query("invitedByMe") invitedByMe: kotlin.Boolean? = null, @Query("inviterId") inviterId: java.util.UUID? = null, @Query("area") area: Area? = null, @Query("employeeTypes") employeeTypes: @JvmSuppressWildcards kotlin.collections.List<EmployeeType>? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<IAccountEntryArrayWrapper>
+    suspend fun getAccountsEntriesWithFilesShared(@Path("id") id: kotlin.String, @Query("employeeStatus") employeeStatus: EmployeeStatus? = null, @Query("activationStatus") activationStatus: EmployeeActivationStatus? = null, @Query("excludeShared") excludeShared: kotlin.Boolean? = null, @Query("includeShared") includeShared: kotlin.Boolean? = null, @Query("invitedByMe") invitedByMe: kotlin.Boolean? = null, @Query("inviterId") inviterId: java.util.UUID? = null, @Query("area") area: AccountSearchArea? = null, @Query("employeeTypes") employeeTypes: @JvmSuppressWildcards kotlin.collections.List<EmployeeType>? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<AccountEntryArrayWrapper>
 
     /**
      * GET api/2.0/accounts/folder/{id}/search
@@ -117,12 +117,12 @@ interface SearchApi {
      * Searches the portal users and groups that can be given access to the folder with the ID given in the route,  and reports for each of them whether it already has access to that folder.  The caller has to be allowed to manage the access of that folder, and the ID has to belong to an existing  folder, so the operation answers 403 for a folder the caller cannot share and 404 for an ID that matches  nothing.  The search is read-only and needs `filterValue`: while it is empty the operation returns an empty list and a  total of 0 instead of every account, so it cannot be used to enumerate the portal.  `filterValue` is matched case-insensitively against the first name, the last name and the email; without  `filterSeparator` it is split on spaces and every term has to match, and with a separator it is split on that  separator and any term may match.  Matching groups are streamed first and users after them, both paged together by `count` and `startIndex`,  while the number of matches is reported in the total count of the response.  Pass `excludeShared` to keep only the accounts that have no access yet, `includeShared` to keep only those  that already have it, and neither to get both kinds with the `shared` field telling them apart.
      * Responses:
      *  - 200: The matching users and groups, each with its access state for the folder
+     *  - 400: A parameter has the wrong type, or the `count` is outside its allowed range
      *  - 403: No permissions to perform this action
      *  - 404: No folder has the specified ID
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -143,10 +143,10 @@ interface SearchApi {
      * @param startIndex The number of matches to skip before the page starts, counted over the groups and users together. It defaults  to 0, and the total number of matches is reported in the total count of the response. (optional)
      * @param filterSeparator The character that splits `filterValue` into several terms, of which any one may match. Omit it to split the  value on spaces instead, in which case every term has to match. (optional)
      * @param filterValue The text to search for, matched case-insensitively against the first name, the last name and the email. It is  required in practice: while it is empty the search returns nothing at all rather than every account. (optional)
-     * @return [IAccountEntryArrayWrapper]
+     * @return [AccountEntryArrayWrapper]
      */
     @GET("api/2.0/accounts/folder/{id}/search")
-    suspend fun getAccountsEntriesWithFoldersShared(@Path("id") id: kotlin.Int, @Query("employeeStatus") employeeStatus: EmployeeStatus? = null, @Query("activationStatus") activationStatus: EmployeeActivationStatus? = null, @Query("excludeShared") excludeShared: kotlin.Boolean? = null, @Query("includeShared") includeShared: kotlin.Boolean? = null, @Query("invitedByMe") invitedByMe: kotlin.Boolean? = null, @Query("inviterId") inviterId: java.util.UUID? = null, @Query("area") area: Area? = null, @Query("employeeTypes") employeeTypes: @JvmSuppressWildcards kotlin.collections.List<EmployeeType>? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<IAccountEntryArrayWrapper>
+    suspend fun getAccountsEntriesWithFoldersShared(@Path("id") id: kotlin.Int, @Query("employeeStatus") employeeStatus: EmployeeStatus? = null, @Query("activationStatus") activationStatus: EmployeeActivationStatus? = null, @Query("excludeShared") excludeShared: kotlin.Boolean? = null, @Query("includeShared") includeShared: kotlin.Boolean? = null, @Query("invitedByMe") invitedByMe: kotlin.Boolean? = null, @Query("inviterId") inviterId: java.util.UUID? = null, @Query("area") area: AccountSearchArea? = null, @Query("employeeTypes") employeeTypes: @JvmSuppressWildcards kotlin.collections.List<EmployeeType>? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<AccountEntryArrayWrapper>
 
     /**
      * GET api/2.0/accounts/folder/{id}/search
@@ -154,12 +154,12 @@ interface SearchApi {
      * Searches the portal users and groups that can be given access to the folder with the ID given in the route,  and reports for each of them whether it already has access to that folder.  The caller has to be allowed to manage the access of that folder, and the ID has to belong to an existing  folder, so the operation answers 403 for a folder the caller cannot share and 404 for an ID that matches  nothing.  The search is read-only and needs `filterValue`: while it is empty the operation returns an empty list and a  total of 0 instead of every account, so it cannot be used to enumerate the portal.  `filterValue` is matched case-insensitively against the first name, the last name and the email; without  `filterSeparator` it is split on spaces and every term has to match, and with a separator it is split on that  separator and any term may match.  Matching groups are streamed first and users after them, both paged together by `count` and `startIndex`,  while the number of matches is reported in the total count of the response.  Pass `excludeShared` to keep only the accounts that have no access yet, `includeShared` to keep only those  that already have it, and neither to get both kinds with the `shared` field telling them apart.
      * Responses:
      *  - 200: The matching users and groups, each with its access state for the folder
+     *  - 400: A parameter has the wrong type, or the `count` is outside its allowed range
      *  - 403: No permissions to perform this action
      *  - 404: No folder has the specified ID
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -180,10 +180,10 @@ interface SearchApi {
      * @param startIndex The number of matches to skip before the page starts, counted over the groups and users together. It defaults  to 0, and the total number of matches is reported in the total count of the response. (optional)
      * @param filterSeparator The character that splits `filterValue` into several terms, of which any one may match. Omit it to split the  value on spaces instead, in which case every term has to match. (optional)
      * @param filterValue The text to search for, matched case-insensitively against the first name, the last name and the email. It is  required in practice: while it is empty the search returns nothing at all rather than every account. (optional)
-     * @return [IAccountEntryArrayWrapper]
+     * @return [AccountEntryArrayWrapper]
      */
     @GET("api/2.0/accounts/folder/{id}/search")
-    suspend fun getAccountsEntriesWithFoldersShared(@Path("id") id: kotlin.String, @Query("employeeStatus") employeeStatus: EmployeeStatus? = null, @Query("activationStatus") activationStatus: EmployeeActivationStatus? = null, @Query("excludeShared") excludeShared: kotlin.Boolean? = null, @Query("includeShared") includeShared: kotlin.Boolean? = null, @Query("invitedByMe") invitedByMe: kotlin.Boolean? = null, @Query("inviterId") inviterId: java.util.UUID? = null, @Query("area") area: Area? = null, @Query("employeeTypes") employeeTypes: @JvmSuppressWildcards kotlin.collections.List<EmployeeType>? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<IAccountEntryArrayWrapper>
+    suspend fun getAccountsEntriesWithFoldersShared(@Path("id") id: kotlin.String, @Query("employeeStatus") employeeStatus: EmployeeStatus? = null, @Query("activationStatus") activationStatus: EmployeeActivationStatus? = null, @Query("excludeShared") excludeShared: kotlin.Boolean? = null, @Query("includeShared") includeShared: kotlin.Boolean? = null, @Query("invitedByMe") invitedByMe: kotlin.Boolean? = null, @Query("inviterId") inviterId: java.util.UUID? = null, @Query("area") area: AccountSearchArea? = null, @Query("employeeTypes") employeeTypes: @JvmSuppressWildcards kotlin.collections.List<EmployeeType>? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<AccountEntryArrayWrapper>
 
     /**
      * GET api/2.0/accounts/room/{id}/search
@@ -191,12 +191,12 @@ interface SearchApi {
      * Searches the portal users and groups that can be given access to the room with the ID given in the route, and  reports for each of them whether it already has access to that room.  The caller has to be allowed to manage the access of that room, and the ID has to belong to an existing room,  so the operation answers 403 for a room the caller cannot share and 404 for an ID that matches nothing.  The search is read-only and needs `filterValue`: while it is empty the operation returns an empty list and a  total of 0 instead of every account, so it cannot be used to enumerate the portal.  `filterValue` is matched case-insensitively against the first name, the last name and the email; without  `filterSeparator` it is split on spaces and every term has to match, and with a separator it is split on that  separator and any term may match.  Matching groups are streamed first and users after them, both paged together by `count` and `startIndex`,  while the number of matches is reported in the total count of the response.  Pass `excludeShared` to keep only the accounts that have no access yet, `includeShared` to keep only those  that already have it, and neither to get both kinds with the `shared` field telling them apart.
      * Responses:
      *  - 200: The matching users and groups, each with its access state for the room
+     *  - 400: A parameter has the wrong type, or the `count` is outside its allowed range
      *  - 403: No permissions to perform this action
      *  - 404: No room has the specified ID
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -217,10 +217,10 @@ interface SearchApi {
      * @param startIndex The number of matches to skip before the page starts, counted over the groups and users together. It defaults  to 0, and the total number of matches is reported in the total count of the response. (optional)
      * @param filterSeparator The character that splits `filterValue` into several terms, of which any one may match. Omit it to split the  value on spaces instead, in which case every term has to match. (optional)
      * @param filterValue The text to search for, matched case-insensitively against the first name, the last name and the email. It is  required in practice: while it is empty the search returns nothing at all rather than every account. (optional)
-     * @return [IAccountEntryArrayWrapper]
+     * @return [AccountEntryArrayWrapper]
      */
     @GET("api/2.0/accounts/room/{id}/search")
-    suspend fun getAccountsEntriesWithRoomsShared(@Path("id") id: kotlin.Int, @Query("employeeStatus") employeeStatus: EmployeeStatus? = null, @Query("activationStatus") activationStatus: EmployeeActivationStatus? = null, @Query("excludeShared") excludeShared: kotlin.Boolean? = null, @Query("includeShared") includeShared: kotlin.Boolean? = null, @Query("invitedByMe") invitedByMe: kotlin.Boolean? = null, @Query("inviterId") inviterId: java.util.UUID? = null, @Query("area") area: Area? = null, @Query("employeeTypes") employeeTypes: @JvmSuppressWildcards kotlin.collections.List<EmployeeType>? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<IAccountEntryArrayWrapper>
+    suspend fun getAccountsEntriesWithRoomsShared(@Path("id") id: kotlin.Int, @Query("employeeStatus") employeeStatus: EmployeeStatus? = null, @Query("activationStatus") activationStatus: EmployeeActivationStatus? = null, @Query("excludeShared") excludeShared: kotlin.Boolean? = null, @Query("includeShared") includeShared: kotlin.Boolean? = null, @Query("invitedByMe") invitedByMe: kotlin.Boolean? = null, @Query("inviterId") inviterId: java.util.UUID? = null, @Query("area") area: AccountSearchArea? = null, @Query("employeeTypes") employeeTypes: @JvmSuppressWildcards kotlin.collections.List<EmployeeType>? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<AccountEntryArrayWrapper>
 
     /**
      * GET api/2.0/accounts/room/{id}/search
@@ -228,12 +228,12 @@ interface SearchApi {
      * Searches the portal users and groups that can be given access to the room with the ID given in the route, and  reports for each of them whether it already has access to that room.  The caller has to be allowed to manage the access of that room, and the ID has to belong to an existing room,  so the operation answers 403 for a room the caller cannot share and 404 for an ID that matches nothing.  The search is read-only and needs `filterValue`: while it is empty the operation returns an empty list and a  total of 0 instead of every account, so it cannot be used to enumerate the portal.  `filterValue` is matched case-insensitively against the first name, the last name and the email; without  `filterSeparator` it is split on spaces and every term has to match, and with a separator it is split on that  separator and any term may match.  Matching groups are streamed first and users after them, both paged together by `count` and `startIndex`,  while the number of matches is reported in the total count of the response.  Pass `excludeShared` to keep only the accounts that have no access yet, `includeShared` to keep only those  that already have it, and neither to get both kinds with the `shared` field telling them apart.
      * Responses:
      *  - 200: The matching users and groups, each with its access state for the room
+     *  - 400: A parameter has the wrong type, or the `count` is outside its allowed range
      *  - 403: No permissions to perform this action
      *  - 404: No room has the specified ID
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -254,10 +254,10 @@ interface SearchApi {
      * @param startIndex The number of matches to skip before the page starts, counted over the groups and users together. It defaults  to 0, and the total number of matches is reported in the total count of the response. (optional)
      * @param filterSeparator The character that splits `filterValue` into several terms, of which any one may match. Omit it to split the  value on spaces instead, in which case every term has to match. (optional)
      * @param filterValue The text to search for, matched case-insensitively against the first name, the last name and the email. It is  required in practice: while it is empty the search returns nothing at all rather than every account. (optional)
-     * @return [IAccountEntryArrayWrapper]
+     * @return [AccountEntryArrayWrapper]
      */
     @GET("api/2.0/accounts/room/{id}/search")
-    suspend fun getAccountsEntriesWithRoomsShared(@Path("id") id: kotlin.String, @Query("employeeStatus") employeeStatus: EmployeeStatus? = null, @Query("activationStatus") activationStatus: EmployeeActivationStatus? = null, @Query("excludeShared") excludeShared: kotlin.Boolean? = null, @Query("includeShared") includeShared: kotlin.Boolean? = null, @Query("invitedByMe") invitedByMe: kotlin.Boolean? = null, @Query("inviterId") inviterId: java.util.UUID? = null, @Query("area") area: Area? = null, @Query("employeeTypes") employeeTypes: @JvmSuppressWildcards kotlin.collections.List<EmployeeType>? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<IAccountEntryArrayWrapper>
+    suspend fun getAccountsEntriesWithRoomsShared(@Path("id") id: kotlin.String, @Query("employeeStatus") employeeStatus: EmployeeStatus? = null, @Query("activationStatus") activationStatus: EmployeeActivationStatus? = null, @Query("excludeShared") excludeShared: kotlin.Boolean? = null, @Query("includeShared") includeShared: kotlin.Boolean? = null, @Query("invitedByMe") invitedByMe: kotlin.Boolean? = null, @Query("inviterId") inviterId: java.util.UUID? = null, @Query("area") area: AccountSearchArea? = null, @Query("employeeTypes") employeeTypes: @JvmSuppressWildcards kotlin.collections.List<EmployeeType>? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<AccountEntryArrayWrapper>
 
     /**
      * GET api/2.0/people/@search/{query}
@@ -303,11 +303,11 @@ interface SearchApi {
      * Returns a page of portal accounts selected by the full set of account filters, with the short profile of each  of them - the identifying fields, the avatar and the display name, without the contacts, the groups or the  quota.  The caller has to be a room admin, a DocSpace admin or a People module admin; a member or a guest gets 403.  The call is read-only, paged by `count` and `startIndex`, ordered by `sortBy` and `sortOrder`, and reports  the number of matches in the total count of the response.  It accepts exactly the same filters as `GET api/2.0/people/filter` and differs only in how much of each  profile comes back, so prefer this one for pickers, mentions and any list that shows names, and switch to the  other only when the full profile is needed.  Filters combine as conditions that all have to hold, and the same interactions apply: `withoutGroup` makes  `groupId` irrelevant, `employeeType` wins over `employeeTypes`, and `area` cancels the type filters that  contradict it.
      * Responses:
      *  - 200: A page of matching accounts, with their short profiles
+     *  - 400: A parameter has the wrong type, or the `count` is outside its allowed range
      *  - 403: The caller is a member or a guest
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -338,7 +338,7 @@ interface SearchApi {
      * @return [EmployeeArrayWrapper]
      */
     @GET("api/2.0/people/simple/filter")
-    suspend fun getSimpleByFilter(@Query("employeeStatus") employeeStatus: EmployeeStatus? = null, @Query("groupId") groupId: java.util.UUID? = null, @Query("activationStatus") activationStatus: EmployeeActivationStatus? = null, @Query("employeeType") employeeType: EmployeeType? = null, @Query("employeeTypes") employeeTypes: @JvmSuppressWildcards kotlin.collections.List<kotlin.Int>? = null, @Query("isAdministrator") isAdministrator: kotlin.Boolean? = null, @Query("payments") payments: Payments? = null, @Query("accountLoginType") accountLoginType: AccountLoginType? = null, @Query("quotaFilter") quotaFilter: QuotaFilter? = null, @Query("withoutGroup") withoutGroup: kotlin.Boolean? = null, @Query("excludeGroup") excludeGroup: kotlin.Boolean? = null, @Query("invitedByMe") invitedByMe: kotlin.Boolean? = null, @Query("inviterId") inviterId: java.util.UUID? = null, @Query("area") area: Area? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<EmployeeArrayWrapper>
+    suspend fun getSimpleByFilter(@Query("employeeStatus") employeeStatus: EmployeeStatus? = null, @Query("groupId") groupId: java.util.UUID? = null, @Query("activationStatus") activationStatus: EmployeeActivationStatus? = null, @Query("employeeType") employeeType: EmployeeType? = null, @Query("employeeTypes") employeeTypes: @JvmSuppressWildcards kotlin.collections.List<kotlin.Int>? = null, @Query("isAdministrator") isAdministrator: kotlin.Boolean? = null, @Query("payments") payments: Payments? = null, @Query("accountLoginType") accountLoginType: AccountLoginType? = null, @Query("quotaFilter") quotaFilter: QuotaFilter? = null, @Query("withoutGroup") withoutGroup: kotlin.Boolean? = null, @Query("excludeGroup") excludeGroup: kotlin.Boolean? = null, @Query("invitedByMe") invitedByMe: kotlin.Boolean? = null, @Query("inviterId") inviterId: java.util.UUID? = null, @Query("area") area: AccountSearchArea? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<EmployeeArrayWrapper>
 
     /**
      * GET api/2.0/people/file/{id}
@@ -346,12 +346,12 @@ interface SearchApi {
      * Returns the accounts that are relevant to the file with the ID given in the route, and reports for each of  them whether it already has access to that file.  The caller only needs read access to the file, not the right to manage its access, but a guest may not call  it at all; an ID that matches no file answers 404.  The call is read-only, works without a filter - leaving `filterValue` empty returns every matching account  rather than nothing - and is paged by `count` and `startIndex`, with the number of matches in the total count  of the response.  Pass `excludeShared` to keep only the accounts that have no access yet, `includeShared` to keep only those  that already have it, and neither to get both kinds with the `shared` field telling them apart.  A DocSpace administrator additionally sees the guests that are not related to the caller.  To search users and groups together, or to build an access dialog that needs the right to manage sharing, use  `GET api/2.0/accounts/file/{id}/search` instead.
      * Responses:
      *  - 200: The matching accounts, each with its access state for the file
+     *  - 400: A parameter has the wrong type, or the `count` is outside its allowed range
      *  - 403: The caller is a guest or cannot read the file
      *  - 404: No file has the specified ID
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -375,7 +375,7 @@ interface SearchApi {
      * @return [EmployeeFullArrayWrapper]
      */
     @GET("api/2.0/people/file/{id}")
-    suspend fun getUsersWithFilesShared(@Path("id") id: kotlin.Int, @Query("employeeStatus") employeeStatus: EmployeeStatus? = null, @Query("activationStatus") activationStatus: EmployeeActivationStatus? = null, @Query("excludeShared") excludeShared: kotlin.Boolean? = null, @Query("includeShared") includeShared: kotlin.Boolean? = null, @Query("invitedByMe") invitedByMe: kotlin.Boolean? = null, @Query("inviterId") inviterId: java.util.UUID? = null, @Query("area") area: Area? = null, @Query("employeeTypes") employeeTypes: @JvmSuppressWildcards kotlin.collections.List<EmployeeType>? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<EmployeeFullArrayWrapper>
+    suspend fun getUsersWithFilesShared(@Path("id") id: kotlin.Int, @Query("employeeStatus") employeeStatus: EmployeeStatus? = null, @Query("activationStatus") activationStatus: EmployeeActivationStatus? = null, @Query("excludeShared") excludeShared: kotlin.Boolean? = null, @Query("includeShared") includeShared: kotlin.Boolean? = null, @Query("invitedByMe") invitedByMe: kotlin.Boolean? = null, @Query("inviterId") inviterId: java.util.UUID? = null, @Query("area") area: AccountSearchArea? = null, @Query("employeeTypes") employeeTypes: @JvmSuppressWildcards kotlin.collections.List<EmployeeType>? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<EmployeeFullArrayWrapper>
 
     /**
      * GET api/2.0/people/file/{id}
@@ -383,12 +383,12 @@ interface SearchApi {
      * Returns the accounts that are relevant to the file with the ID given in the route, and reports for each of  them whether it already has access to that file.  The caller only needs read access to the file, not the right to manage its access, but a guest may not call  it at all; an ID that matches no file answers 404.  The call is read-only, works without a filter - leaving `filterValue` empty returns every matching account  rather than nothing - and is paged by `count` and `startIndex`, with the number of matches in the total count  of the response.  Pass `excludeShared` to keep only the accounts that have no access yet, `includeShared` to keep only those  that already have it, and neither to get both kinds with the `shared` field telling them apart.  A DocSpace administrator additionally sees the guests that are not related to the caller.  To search users and groups together, or to build an access dialog that needs the right to manage sharing, use  `GET api/2.0/accounts/file/{id}/search` instead.
      * Responses:
      *  - 200: The matching accounts, each with its access state for the file
+     *  - 400: A parameter has the wrong type, or the `count` is outside its allowed range
      *  - 403: The caller is a guest or cannot read the file
      *  - 404: No file has the specified ID
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -412,7 +412,7 @@ interface SearchApi {
      * @return [EmployeeFullArrayWrapper]
      */
     @GET("api/2.0/people/file/{id}")
-    suspend fun getUsersWithFilesShared(@Path("id") id: kotlin.String, @Query("employeeStatus") employeeStatus: EmployeeStatus? = null, @Query("activationStatus") activationStatus: EmployeeActivationStatus? = null, @Query("excludeShared") excludeShared: kotlin.Boolean? = null, @Query("includeShared") includeShared: kotlin.Boolean? = null, @Query("invitedByMe") invitedByMe: kotlin.Boolean? = null, @Query("inviterId") inviterId: java.util.UUID? = null, @Query("area") area: Area? = null, @Query("employeeTypes") employeeTypes: @JvmSuppressWildcards kotlin.collections.List<EmployeeType>? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<EmployeeFullArrayWrapper>
+    suspend fun getUsersWithFilesShared(@Path("id") id: kotlin.String, @Query("employeeStatus") employeeStatus: EmployeeStatus? = null, @Query("activationStatus") activationStatus: EmployeeActivationStatus? = null, @Query("excludeShared") excludeShared: kotlin.Boolean? = null, @Query("includeShared") includeShared: kotlin.Boolean? = null, @Query("invitedByMe") invitedByMe: kotlin.Boolean? = null, @Query("inviterId") inviterId: java.util.UUID? = null, @Query("area") area: AccountSearchArea? = null, @Query("employeeTypes") employeeTypes: @JvmSuppressWildcards kotlin.collections.List<EmployeeType>? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<EmployeeFullArrayWrapper>
 
     /**
      * GET api/2.0/people/folder/{id}
@@ -420,12 +420,12 @@ interface SearchApi {
      * Returns the accounts that are relevant to the folder with the ID given in the route, and reports for each of  them whether it already has access to that folder.  The caller only needs read access to the folder, not the right to manage its access, but a guest may not call  it at all; an ID that matches no folder answers 404.  The call is read-only, works without a filter - leaving `filterValue` empty returns every matching account  rather than nothing - and is paged by `count` and `startIndex`, with the number of matches in the total count  of the response.  Pass `excludeShared` to keep only the accounts that have no access yet, `includeShared` to keep only those  that already have it, and neither to get both kinds with the `shared` field telling them apart.  A DocSpace administrator additionally sees the guests that are not related to the caller.  To search users and groups together, or to build an access dialog that needs the right to manage sharing, use  `GET api/2.0/accounts/folder/{id}/search` instead.
      * Responses:
      *  - 200: The matching accounts, each with its access state for the folder
+     *  - 400: A parameter has the wrong type, or the `count` is outside its allowed range
      *  - 403: The caller is a guest or cannot read the folder
      *  - 404: No folder has the specified ID
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -449,7 +449,7 @@ interface SearchApi {
      * @return [EmployeeFullArrayWrapper]
      */
     @GET("api/2.0/people/folder/{id}")
-    suspend fun getUsersWithFoldersShared(@Path("id") id: kotlin.Int, @Query("employeeStatus") employeeStatus: EmployeeStatus? = null, @Query("activationStatus") activationStatus: EmployeeActivationStatus? = null, @Query("excludeShared") excludeShared: kotlin.Boolean? = null, @Query("includeShared") includeShared: kotlin.Boolean? = null, @Query("invitedByMe") invitedByMe: kotlin.Boolean? = null, @Query("inviterId") inviterId: java.util.UUID? = null, @Query("area") area: Area? = null, @Query("employeeTypes") employeeTypes: @JvmSuppressWildcards kotlin.collections.List<EmployeeType>? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<EmployeeFullArrayWrapper>
+    suspend fun getUsersWithFoldersShared(@Path("id") id: kotlin.Int, @Query("employeeStatus") employeeStatus: EmployeeStatus? = null, @Query("activationStatus") activationStatus: EmployeeActivationStatus? = null, @Query("excludeShared") excludeShared: kotlin.Boolean? = null, @Query("includeShared") includeShared: kotlin.Boolean? = null, @Query("invitedByMe") invitedByMe: kotlin.Boolean? = null, @Query("inviterId") inviterId: java.util.UUID? = null, @Query("area") area: AccountSearchArea? = null, @Query("employeeTypes") employeeTypes: @JvmSuppressWildcards kotlin.collections.List<EmployeeType>? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<EmployeeFullArrayWrapper>
 
     /**
      * GET api/2.0/people/folder/{id}
@@ -457,12 +457,12 @@ interface SearchApi {
      * Returns the accounts that are relevant to the folder with the ID given in the route, and reports for each of  them whether it already has access to that folder.  The caller only needs read access to the folder, not the right to manage its access, but a guest may not call  it at all; an ID that matches no folder answers 404.  The call is read-only, works without a filter - leaving `filterValue` empty returns every matching account  rather than nothing - and is paged by `count` and `startIndex`, with the number of matches in the total count  of the response.  Pass `excludeShared` to keep only the accounts that have no access yet, `includeShared` to keep only those  that already have it, and neither to get both kinds with the `shared` field telling them apart.  A DocSpace administrator additionally sees the guests that are not related to the caller.  To search users and groups together, or to build an access dialog that needs the right to manage sharing, use  `GET api/2.0/accounts/folder/{id}/search` instead.
      * Responses:
      *  - 200: The matching accounts, each with its access state for the folder
+     *  - 400: A parameter has the wrong type, or the `count` is outside its allowed range
      *  - 403: The caller is a guest or cannot read the folder
      *  - 404: No folder has the specified ID
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -486,7 +486,7 @@ interface SearchApi {
      * @return [EmployeeFullArrayWrapper]
      */
     @GET("api/2.0/people/folder/{id}")
-    suspend fun getUsersWithFoldersShared(@Path("id") id: kotlin.String, @Query("employeeStatus") employeeStatus: EmployeeStatus? = null, @Query("activationStatus") activationStatus: EmployeeActivationStatus? = null, @Query("excludeShared") excludeShared: kotlin.Boolean? = null, @Query("includeShared") includeShared: kotlin.Boolean? = null, @Query("invitedByMe") invitedByMe: kotlin.Boolean? = null, @Query("inviterId") inviterId: java.util.UUID? = null, @Query("area") area: Area? = null, @Query("employeeTypes") employeeTypes: @JvmSuppressWildcards kotlin.collections.List<EmployeeType>? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<EmployeeFullArrayWrapper>
+    suspend fun getUsersWithFoldersShared(@Path("id") id: kotlin.String, @Query("employeeStatus") employeeStatus: EmployeeStatus? = null, @Query("activationStatus") activationStatus: EmployeeActivationStatus? = null, @Query("excludeShared") excludeShared: kotlin.Boolean? = null, @Query("includeShared") includeShared: kotlin.Boolean? = null, @Query("invitedByMe") invitedByMe: kotlin.Boolean? = null, @Query("inviterId") inviterId: java.util.UUID? = null, @Query("area") area: AccountSearchArea? = null, @Query("employeeTypes") employeeTypes: @JvmSuppressWildcards kotlin.collections.List<EmployeeType>? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<EmployeeFullArrayWrapper>
 
     /**
      * GET api/2.0/people/room/{id}
@@ -494,12 +494,12 @@ interface SearchApi {
      * Returns the accounts that are relevant to the room with the ID given in the route, and reports for each of  them whether it already has access to that room.  The caller only needs read access to the room, not the right to manage its access, but a guest may not call  it at all; an ID that matches no room answers 404.  The call is read-only, works without a filter - leaving `filterValue` empty returns every matching account  rather than nothing - and is paged by `count` and `startIndex`, with the number of matches in the total count  of the response.  Pass `excludeShared` to keep only the accounts that have no access yet, `includeShared` to keep only those  that already have it, and neither to get both kinds with the `shared` field telling them apart.  A DocSpace administrator additionally sees the guests that are not related to the caller.  To search users and groups together, or to build an access dialog that needs the right to manage sharing, use  `GET api/2.0/accounts/room/{id}/search` instead.
      * Responses:
      *  - 200: The matching accounts, each with its access state for the room
+     *  - 400: A parameter has the wrong type, or the `count` is outside its allowed range
      *  - 403: The caller is a guest or cannot read the room
      *  - 404: No room has the specified ID
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -523,7 +523,7 @@ interface SearchApi {
      * @return [EmployeeFullArrayWrapper]
      */
     @GET("api/2.0/people/room/{id}")
-    suspend fun getUsersWithRoomShared(@Path("id") id: kotlin.Int, @Query("employeeStatus") employeeStatus: EmployeeStatus? = null, @Query("activationStatus") activationStatus: EmployeeActivationStatus? = null, @Query("excludeShared") excludeShared: kotlin.Boolean? = null, @Query("includeShared") includeShared: kotlin.Boolean? = null, @Query("invitedByMe") invitedByMe: kotlin.Boolean? = null, @Query("inviterId") inviterId: java.util.UUID? = null, @Query("area") area: Area? = null, @Query("employeeTypes") employeeTypes: @JvmSuppressWildcards kotlin.collections.List<EmployeeType>? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<EmployeeFullArrayWrapper>
+    suspend fun getUsersWithRoomShared(@Path("id") id: kotlin.Int, @Query("employeeStatus") employeeStatus: EmployeeStatus? = null, @Query("activationStatus") activationStatus: EmployeeActivationStatus? = null, @Query("excludeShared") excludeShared: kotlin.Boolean? = null, @Query("includeShared") includeShared: kotlin.Boolean? = null, @Query("invitedByMe") invitedByMe: kotlin.Boolean? = null, @Query("inviterId") inviterId: java.util.UUID? = null, @Query("area") area: AccountSearchArea? = null, @Query("employeeTypes") employeeTypes: @JvmSuppressWildcards kotlin.collections.List<EmployeeType>? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<EmployeeFullArrayWrapper>
 
     /**
      * GET api/2.0/people/room/{id}
@@ -531,12 +531,12 @@ interface SearchApi {
      * Returns the accounts that are relevant to the room with the ID given in the route, and reports for each of  them whether it already has access to that room.  The caller only needs read access to the room, not the right to manage its access, but a guest may not call  it at all; an ID that matches no room answers 404.  The call is read-only, works without a filter - leaving `filterValue` empty returns every matching account  rather than nothing - and is paged by `count` and `startIndex`, with the number of matches in the total count  of the response.  Pass `excludeShared` to keep only the accounts that have no access yet, `includeShared` to keep only those  that already have it, and neither to get both kinds with the `shared` field telling them apart.  A DocSpace administrator additionally sees the guests that are not related to the caller.  To search users and groups together, or to build an access dialog that needs the right to manage sharing, use  `GET api/2.0/accounts/room/{id}/search` instead.
      * Responses:
      *  - 200: The matching accounts, each with its access state for the room
+     *  - 400: A parameter has the wrong type, or the `count` is outside its allowed range
      *  - 403: The caller is a guest or cannot read the room
      *  - 404: No room has the specified ID
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -560,7 +560,7 @@ interface SearchApi {
      * @return [EmployeeFullArrayWrapper]
      */
     @GET("api/2.0/people/room/{id}")
-    suspend fun getUsersWithRoomShared(@Path("id") id: kotlin.String, @Query("employeeStatus") employeeStatus: EmployeeStatus? = null, @Query("activationStatus") activationStatus: EmployeeActivationStatus? = null, @Query("excludeShared") excludeShared: kotlin.Boolean? = null, @Query("includeShared") includeShared: kotlin.Boolean? = null, @Query("invitedByMe") invitedByMe: kotlin.Boolean? = null, @Query("inviterId") inviterId: java.util.UUID? = null, @Query("area") area: Area? = null, @Query("employeeTypes") employeeTypes: @JvmSuppressWildcards kotlin.collections.List<EmployeeType>? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<EmployeeFullArrayWrapper>
+    suspend fun getUsersWithRoomShared(@Path("id") id: kotlin.String, @Query("employeeStatus") employeeStatus: EmployeeStatus? = null, @Query("activationStatus") activationStatus: EmployeeActivationStatus? = null, @Query("excludeShared") excludeShared: kotlin.Boolean? = null, @Query("includeShared") includeShared: kotlin.Boolean? = null, @Query("invitedByMe") invitedByMe: kotlin.Boolean? = null, @Query("inviterId") inviterId: java.util.UUID? = null, @Query("area") area: AccountSearchArea? = null, @Query("employeeTypes") employeeTypes: @JvmSuppressWildcards kotlin.collections.List<EmployeeType>? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<EmployeeFullArrayWrapper>
 
 
     /**
@@ -580,11 +580,11 @@ interface SearchApi {
      * Returns a page of portal accounts selected by the full set of account filters, with the complete profile of  each of them.  The caller has to be a room admin, a DocSpace admin or a People module admin; a member or a guest gets 403,  and a DocSpace admin additionally sees the accounts an ordinary admin does not.  The call is read-only, paged by `count` and `startIndex`, ordered by `sortBy` and `sortOrder`, and reports  the number of matches in the total count of the response.  Filters combine as conditions that all have to hold, with three interactions worth knowing: `withoutGroup`  makes `groupId` irrelevant, `employeeType` wins over `employeeTypes` when both are sent, and `area` set to  `Guests` or `People` cancels the type filters that contradict it.  `GET api/2.0/people/simple/filter` accepts exactly the same filters and returns the short profile instead, so  use that one for pickers and lists and this one when the full profile is really needed.  It is available on an unpaid portal.
      * Responses:
      *  - 200: A page of matching accounts, with their full profiles
+     *  - 400: A parameter has the wrong type, or the `count` is outside its allowed range
      *  - 403: The caller is a member or a guest
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -615,7 +615,7 @@ interface SearchApi {
      * @return [EmployeeFullArrayWrapper]
      */
     @GET("api/2.0/people/filter")
-    suspend fun searchUsersByExtendedFilter(@Query("employeeStatus") employeeStatus: EmployeeStatus? = null, @Query("groupId") groupId: java.util.UUID? = null, @Query("activationStatus") activationStatus: EmployeeActivationStatus? = null, @Query("employeeType") employeeType: EmployeeType? = null, @Query("employeeTypes") employeeTypes: @JvmSuppressWildcards kotlin.collections.List<kotlin.Int>? = null, @Query("isAdministrator") isAdministrator: kotlin.Boolean? = null, @Query("payments") payments: Payments? = null, @Query("accountLoginType") accountLoginType: AccountLoginType? = null, @Query("quotaFilter") quotaFilter: QuotaFilter? = null, @Query("withoutGroup") withoutGroup: kotlin.Boolean? = null, @Query("excludeGroup") excludeGroup: kotlin.Boolean? = null, @Query("invitedByMe") invitedByMe: kotlin.Boolean? = null, @Query("inviterId") inviterId: java.util.UUID? = null, @Query("area") area: Area? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<EmployeeFullArrayWrapper>
+    suspend fun searchUsersByExtendedFilter(@Query("employeeStatus") employeeStatus: EmployeeStatus? = null, @Query("groupId") groupId: java.util.UUID? = null, @Query("activationStatus") activationStatus: EmployeeActivationStatus? = null, @Query("employeeType") employeeType: EmployeeType? = null, @Query("employeeTypes") employeeTypes: @JvmSuppressWildcards kotlin.collections.List<kotlin.Int>? = null, @Query("isAdministrator") isAdministrator: kotlin.Boolean? = null, @Query("payments") payments: Payments? = null, @Query("accountLoginType") accountLoginType: AccountLoginType? = null, @Query("quotaFilter") quotaFilter: QuotaFilter? = null, @Query("withoutGroup") withoutGroup: kotlin.Boolean? = null, @Query("excludeGroup") excludeGroup: kotlin.Boolean? = null, @Query("invitedByMe") invitedByMe: kotlin.Boolean? = null, @Query("inviterId") inviterId: java.util.UUID? = null, @Query("area") area: AccountSearchArea? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterSeparator") filterSeparator: kotlin.String? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<EmployeeFullArrayWrapper>
 
     /**
      * GET api/2.0/people/search
@@ -647,11 +647,11 @@ interface SearchApi {
      * Searches the accounts that are in one particular state - the status is taken from the route - and whose name,  user name, email or contacts contain the search term.  Only a DocSpace administrator may call it; every other account, including a room admin, gets 403.  The call is read-only and is not paged: it matches in memory over every account of that status and streams  all of them, so it is meant for administrative lookups rather than for a user-facing list - use  `GET api/2.0/people/filter` when a page and a total are needed.  The term is matched as a case-insensitive substring and is required; `filterBy` set to `group` turns `text`  into a group ID and keeps only the members of that group, so `text` then has to be a valid identifier.  The answer holds full profiles, in no particular order.
      * Responses:
      *  - 200: The full profiles of the matching accounts
+     *  - 400: A parameter has the wrong type, or `query` is missing
      *  - 403: The caller is not a DocSpace administrator
+     *  - 500: The `filterBy` is `group` and the `filterValue` is not a GUID
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
-     *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *

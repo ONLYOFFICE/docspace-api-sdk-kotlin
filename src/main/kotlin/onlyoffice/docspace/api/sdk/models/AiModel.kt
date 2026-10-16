@@ -31,6 +31,7 @@ import com.squareup.moshi.JsonClass
  * @param reasoning Whether this model supports extended thinking / chain-of-thought reasoning.
  * @param reasoningSupport What the model can do with extended thinking, when the provider's catalogue says so (OpenRouter and the ONLYOFFICE route report a per-model `reasoning` object). Copied onto the profile at save time; absent, the widget falls back to the provider's id-based table.
  * @param capabilities Bitmask of model capabilities (Chat, Image, Vision, Tools, etc.). Used to filter models per `ActionType`.
+ * @param created Release date as a Unix timestamp in **seconds**, when the provider's catalogue reports one (OpenAI-shaped `/models` responses and OpenRouter carry `created`; Anthropic carries an ISO `created_at`). The model picker sorts on it so the newest releases come first; entries without it fall back to alphabetical order.
  */
 
 
@@ -52,7 +53,10 @@ data class AiModel (
     val reasoningSupport: AiReasoningSupport? = null,
 
     @Json(name = "capabilities")
-    val capabilities: java.math.BigDecimal? = null
+    val capabilities: java.math.BigDecimal? = null,
+
+    @Json(name = "created")
+    val created: java.math.BigDecimal? = null
 
 ) {
 

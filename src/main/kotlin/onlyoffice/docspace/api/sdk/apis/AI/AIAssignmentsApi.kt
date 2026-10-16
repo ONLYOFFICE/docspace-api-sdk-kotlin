@@ -41,7 +41,7 @@ interface AIAssignmentsApi {
      *  - 200: Whether the binding was stored. A failure is reported in `error` rather than as a status.
      *  - 400: `actionType` or `profileId` is missing.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
-     *  - 403: AI is disabled for this portal, or the caller is a guest. Relayed from the DocSpace AI service.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
      *  - 413: The request body is larger than 100 KB, the JSON parser's limit on this route.
      *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
      *
@@ -63,7 +63,7 @@ interface AIAssignmentsApi {
      *  - 200: Whether the set was stored, with `errors` listing the entries that were refused.
      *  - 400: The body is not a map of action type to profile ID, or one of its keys is not a known action type.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
-     *  - 403: AI is disabled for this portal, or the caller is a guest. Relayed from the DocSpace AI service.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
      *  - 413: The request body is larger than 100 KB, the JSON parser's limit on this route.
      *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
      *
@@ -71,11 +71,11 @@ interface AIAssignmentsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-assignments-bulk-assign/
      *
      *
-     * @param requestBody A map of action type to profile ID. Every key has to be a known action type and every value a profile ID; one bad entry rejects the whole map.
+     * @param aiAssignmentsBulkAssignRequest A map of action type to profile ID. Every key has to be a known action type and every value a profile ID; one bad entry rejects the whole map.
      * @return [AiBulkAssignmentResult]
      */
     @PUT("api/2.0/ai/assignments/bulk-assign")
-    suspend fun aiAssignmentsBulkAssign(@Body requestBody: kotlin.collections.Map<kotlin.String, kotlin.String>): Response<AiBulkAssignmentResult>
+    suspend fun aiAssignmentsBulkAssign(@Body aiAssignmentsBulkAssignRequest: kotlin.collections.Map<kotlin.String, kotlin.String>): Response<AiBulkAssignmentResult>
 
     /**
      * DELETE api/2.0/ai/assignments/cascade-profile-delete
@@ -85,7 +85,7 @@ interface AIAssignmentsApi {
      *  - 200: Confirms no assignment points at the profile any more.
      *  - 400: `profileId` is missing.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
-     *  - 403: AI is disabled for this portal, or the caller is a guest. Relayed from the DocSpace AI service.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
      *  - 413: The request body is larger than 100 KB, the JSON parser's limit on this route.
      *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
      *
@@ -106,8 +106,8 @@ interface AIAssignmentsApi {
      * Responses:
      *  - 200: The scope's bindings as a map of action type to profile ID. An action with no binding is absent.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
-     *  - 403: AI is disabled for this portal, or the caller is a guest. Relayed from the DocSpace AI service.
-     *  - 404: The referenced object does not exist, or the caller cannot access it - the two are deliberately indistinguishable, so a room the caller may not open answers 404 rather than 403.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
+     *  - 404: The referenced object does not exist: an unknown or deleted room named by `entityId`, or an object the caller cannot read - for those the two cases are deliberately indistinguishable.
      *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
      *
      * REST API Reference for aiAssignmentsGetAllAssignments Operation
@@ -128,7 +128,7 @@ interface AIAssignmentsApi {
      *  - 200: The profile bound to the action, or an empty result when it has none of its own.
      *  - 400: `actionType` is missing.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
-     *  - 403: AI is disabled for this portal, or the caller is a guest. Relayed from the DocSpace AI service.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
      *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
      *
      * REST API Reference for aiAssignmentsGetAssignment Operation
@@ -144,12 +144,13 @@ interface AIAssignmentsApi {
     /**
      * GET api/2.0/ai/assignments/resolve-for-action
      * Resolve for action
-     * Returns the profile that will serve one AI action, falling back to the `Default` slot when the action has no profile of its own. `actionType` is required and has to be one of the known actions - an unknown or misspelled value is rejected rather than resolved to the default. `entityId` narrows the lookup to a room, and a room with no assignment of its own degrades to the portal-wide one. This fails when neither slot is set or the bound profile is gone, so use `GET api/2.0/ai/assignments/try-resolve-for-action` when an unconfigured portal should answer empty instead.
+     * Returns the profile that will serve one AI action, falling back to the `Default` slot when the action has no profile of its own. `actionType` is required and has to be one of the known actions - an unknown or misspelled value is rejected rather than resolved to the default. `entityId` narrows the lookup to a room and has to name one the caller can open - an unknown room answers 404 rather than quietly resolving portal-wide - while an accessible room with no assignment of its own degrades to the portal-wide one. When neither slot is set, the slot names a profile that no longer exists, or the `Default` profile cannot serve the action, the call answers 404, so use `GET api/2.0/ai/assignments/try-resolve-for-action` when an unconfigured portal should answer empty instead.
      * Responses:
      *  - 200: The profile that will serve the action.
-     *  - 400: `actionType` is missing.
+     *  - 400: `actionType` is missing or unknown.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
-     *  - 403: AI is disabled for this portal, or the caller is a guest. Relayed from the DocSpace AI service.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
+     *  - 404: No profile can serve the action, or `entityId` names a room that does not exist.
      *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
      *
      * REST API Reference for aiAssignmentsResolveForAction Operation
@@ -166,12 +167,13 @@ interface AIAssignmentsApi {
     /**
      * GET api/2.0/ai/assignments/try-resolve-for-action
      * Try resolve for action
-     * Returns the profile that will serve one AI action, exactly as `GET api/2.0/ai/assignments/resolve-for-action` does, but answers with an empty result rather than failing when nothing is configured. `actionType` is required and is validated the same way, and `entityId` narrows the lookup to a room. This is the operation to call when the absence of a profile is a normal state to render - a settings screen, or a feature that hides itself. Both operations are read-only.
+     * Returns the profile that will serve one AI action, exactly as `GET api/2.0/ai/assignments/resolve-for-action` does, but answers with an empty result rather than failing when nothing is configured. `actionType` is required and is validated the same way, and `entityId` narrows the lookup to a room the caller can open - an unknown one answers 404 here as well. This is the operation to call when the absence of a profile is a normal state to render - a settings screen, or a feature that hides itself. Both operations are read-only.
      * Responses:
      *  - 200: The profile that will serve the action, or an empty result when none is configured.
-     *  - 400: `actionType` is missing.
+     *  - 400: `actionType` is missing or unknown.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
-     *  - 403: AI is disabled for this portal, or the caller is a guest. Relayed from the DocSpace AI service.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
+     *  - 404: `entityId` names a room that does not exist.
      *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
      *
      * REST API Reference for aiAssignmentsTryResolveForAction Operation
@@ -193,7 +195,7 @@ interface AIAssignmentsApi {
      *  - 200: Confirms the action now has no profile of its own.
      *  - 400: `actionType` is missing.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
-     *  - 403: AI is disabled for this portal, or the caller is a guest. Relayed from the DocSpace AI service.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
      *  - 413: The request body is larger than 100 KB, the JSON parser's limit on this route.
      *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
      *
@@ -201,10 +203,10 @@ interface AIAssignmentsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-assignments-unassign/
      *
      *
-     * @param body 
+     * @param aiActionType 
      * @return [AiSuccessResponse]
      */
     @HTTP(method = "DELETE", path = "api/2.0/ai/assignments/unassign", hasBody = true)
-    suspend fun aiAssignmentsUnassign(@Body body: kotlin.String): Response<AiSuccessResponse>
+    suspend fun aiAssignmentsUnassign(@Body aiActionType: kotlin.String): Response<AiSuccessResponse>
 
 }

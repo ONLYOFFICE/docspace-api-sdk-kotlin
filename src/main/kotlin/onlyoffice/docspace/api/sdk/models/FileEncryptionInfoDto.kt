@@ -17,7 +17,7 @@
 package onlyoffice.docspace.api.sdk.models
 
 import onlyoffice.docspace.api.sdk.models.EncryptionKeyDto
-import onlyoffice.docspace.api.sdk.models.FileKeys
+import onlyoffice.docspace.api.sdk.models.FileKeysDto
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -36,7 +36,7 @@ data class FileEncryptionInfoDto (
     val userKeys: kotlin.collections.List<EncryptionKeyDto>? = null,
 
     @Json(name = "fileKeys")
-    val fileKeys: kotlin.collections.List<FileKeys>? = null
+    val fileKeys: kotlin.collections.List<FileKeysDto>? = null
 
 ) {
 

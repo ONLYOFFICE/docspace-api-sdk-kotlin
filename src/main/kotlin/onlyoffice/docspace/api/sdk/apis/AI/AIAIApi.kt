@@ -23,16 +23,16 @@ import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
-import onlyoffice.docspace.api.sdk.models.AiAiApproveToolCallRequest
-import onlyoffice.docspace.api.sdk.models.AiAiRegenerateStreamRequest
-import onlyoffice.docspace.api.sdk.models.AiAiSendCustomRequest
-import onlyoffice.docspace.api.sdk.models.AiAiSendRequest
-import onlyoffice.docspace.api.sdk.models.AiAiSendStreamBody
-import onlyoffice.docspace.api.sdk.models.AiAiToolCallData
+import onlyoffice.docspace.api.sdk.models.AiApproveToolCallRequest
 import onlyoffice.docspace.api.sdk.models.AiChatEvent
 import onlyoffice.docspace.api.sdk.models.AiErrorResponse
 import onlyoffice.docspace.api.sdk.models.AiOpenAIStreamChunk
+import onlyoffice.docspace.api.sdk.models.AiRegenerateStreamRequest
+import onlyoffice.docspace.api.sdk.models.AiSendCustomRequest
+import onlyoffice.docspace.api.sdk.models.AiSendRequest
+import onlyoffice.docspace.api.sdk.models.AiSendStreamBody
 import onlyoffice.docspace.api.sdk.models.AiThreadMessageLike
+import onlyoffice.docspace.api.sdk.models.AiToolCallData
 
 interface AIAIApi {
     /**
@@ -42,19 +42,19 @@ interface AIAIApi {
      * Responses:
      *  - 200: Newline-delimited stream of chat events — one JSON `ChatEvent` object per line.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
-     *  - 403: AI is disabled for this portal, or the caller is a guest. Relayed from the DocSpace AI service.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
      *  - 413: The request body is larger than 100 KB, the JSON parser's limit on this route.
      *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
      *
-     * REST API Reference for aiAiApproveToolCall Operation
-     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-ai-approve-tool-call/
+     * REST API Reference for aiApproveToolCall Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-approve-tool-call/
      *
      *
-     * @param aiAiApproveToolCallRequest 
+     * @param aiApproveToolCallRequest 
      * @return [AiChatEvent]
      */
     @POST("api/2.0/ai/ai/approve-tool-call")
-    suspend fun aiAiApproveToolCall(@Body aiAiApproveToolCallRequest: AiAiApproveToolCallRequest): Response<AiChatEvent>
+    suspend fun aiApproveToolCall(@Body aiApproveToolCallRequest: AiApproveToolCallRequest): Response<AiChatEvent>
 
     /**
      * POST api/2.0/ai/ai/deny-tool-call
@@ -63,19 +63,19 @@ interface AIAIApi {
      * Responses:
      *  - 200: Newline-delimited stream of chat events — one JSON `ChatEvent` object per line.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
-     *  - 403: AI is disabled for this portal, or the caller is a guest. Relayed from the DocSpace AI service.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
      *  - 413: The request body is larger than 100 KB, the JSON parser's limit on this route.
      *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
      *
-     * REST API Reference for aiAiDenyToolCall Operation
-     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-ai-deny-tool-call/
+     * REST API Reference for aiDenyToolCall Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-deny-tool-call/
      *
      *
-     * @param aiAiToolCallData 
+     * @param aiToolCallData 
      * @return [AiChatEvent]
      */
     @POST("api/2.0/ai/ai/deny-tool-call")
-    suspend fun aiAiDenyToolCall(@Body aiAiToolCallData: AiAiToolCallData): Response<AiChatEvent>
+    suspend fun aiDenyToolCall(@Body aiToolCallData: AiToolCallData): Response<AiChatEvent>
 
     /**
      * POST api/2.0/ai/ai/regenerate-stream
@@ -84,61 +84,63 @@ interface AIAIApi {
      * Responses:
      *  - 200: Newline-delimited stream of chat events — one JSON `ChatEvent` object per line.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
-     *  - 403: AI is disabled for this portal, or the caller is a guest. Relayed from the DocSpace AI service.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
      *  - 413: The request body is larger than 100 KB, the JSON parser's limit on this route.
      *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
      *
-     * REST API Reference for aiAiRegenerateStream Operation
-     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-ai-regenerate-stream/
+     * REST API Reference for aiRegenerateStream Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-regenerate-stream/
      *
      *
-     * @param aiAiRegenerateStreamRequest 
+     * @param aiRegenerateStreamRequest 
      * @return [AiChatEvent]
      */
     @POST("api/2.0/ai/ai/regenerate-stream")
-    suspend fun aiAiRegenerateStream(@Body aiAiRegenerateStreamRequest: AiAiRegenerateStreamRequest): Response<AiChatEvent>
+    suspend fun aiRegenerateStream(@Body aiRegenerateStreamRequest: AiRegenerateStreamRequest): Response<AiChatEvent>
 
     /**
      * POST api/2.0/ai/ai/send
      * Run an AI action
-     * Runs one AI action and returns the whole answer as a single JSON document. The model is the profile bound to `actionType`, falling back to the `Default` assignment slot, so this operation accepts no `profileId` of its own. Nothing is persisted - no thread is opened, no message is stored and no title is generated - which makes it the one to use for a stand-alone completion rather than for a conversation. `entityId` and `contextEntityId` set the scope of the round, which decides the workspace context and the custom MCP servers it may reach. For a conversation that keeps its history, use `POST api/2.0/ai/ai/send-with-stream` instead.
+     * Runs one AI action and returns the whole answer as a single JSON document. The model is the profile bound to `actionType`, falling back to the `Default` assignment slot, so this operation accepts no `profileId` of its own. `actionType` has to be a known action and `userMessage` has to carry text or an attachment, or the call answers 400 before anything runs. Nothing is persisted - no thread is opened, no message is stored and no title is generated - which makes it the one to use for a stand-alone completion rather than for a conversation. `entityId` and `contextEntityId` set the scope of the round, which decides the workspace context and the custom MCP servers it may reach. For a conversation that keeps its history, use `POST api/2.0/ai/ai/send-with-stream` instead.
      * Responses:
      *  - 200: The assistant's reply as one message. Nothing was persisted.
+     *  - 400: `actionType` is missing or unknown, or `userMessage` carries neither text nor an attachment.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
-     *  - 403: AI is disabled for this portal, or the caller is a guest. Relayed from the DocSpace AI service.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
      *  - 413: The request body is larger than 100 KB, the JSON parser's limit on this route.
      *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
      *
-     * REST API Reference for aiAiSend Operation
-     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-ai-send/
+     * REST API Reference for aiSend Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-send/
      *
      *
-     * @param aiAiSendRequest 
+     * @param aiSendRequest 
      * @return [AiThreadMessageLike]
      */
     @POST("api/2.0/ai/ai/send")
-    suspend fun aiAiSend(@Body aiAiSendRequest: AiAiSendRequest): Response<AiThreadMessageLike>
+    suspend fun aiSend(@Body aiSendRequest: AiSendRequest): Response<AiThreadMessageLike>
 
     /**
      * POST api/2.0/ai/ai/send-custom
      * Send custom
-     * Runs a free-form one-turn call against a system prompt supplied in the request, with no thread, no history and nothing persisted. The model is the explicit `profileId` when it resolves, otherwise the `Default` assignment slot. The shape of the answer depends on the body rather than on the route: with `isStream` set it arrives as a newline-delimited stream of chat events, and without it as a single JSON document, so a client has to handle both. Use `POST api/2.0/ai/ai/send` when the prompt should come from the portal's own action configuration instead of from the caller.
+     * Runs a free-form one-turn call against a system prompt supplied in the request, with no thread, no history and nothing persisted. The model is the explicit `profileId` when it resolves, otherwise the `Default` assignment slot. `systemPrompt` is required and `userMessage` has to carry text or an attachment, or the call answers 400 before anything runs. The shape of the answer depends on the body rather than on the route: with `isStream: true` it arrives as a newline-delimited stream of chat events, and without it as a single JSON document, so a client has to handle both; `isStream` has to be a real boolean when sent, a string is refused. Use `POST api/2.0/ai/ai/send` when the prompt should come from the portal's own action configuration instead of from the caller.
      * Responses:
      *  - 200: The assistant's reply as one message, or a newline-delimited stream of chat events when `isStream` was set. Nothing was persisted.
+     *  - 400: `systemPrompt` is missing or empty, `userMessage` carries neither text nor an attachment, or `isStream` is not a boolean.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
-     *  - 403: AI is disabled for this portal, or the caller is a guest. Relayed from the DocSpace AI service.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
      *  - 413: The request body is larger than 100 KB, the JSON parser's limit on this route.
      *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
      *
-     * REST API Reference for aiAiSendCustom Operation
-     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-ai-send-custom/
+     * REST API Reference for aiSendCustom Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-send-custom/
      *
      *
-     * @param aiAiSendCustomRequest 
+     * @param aiSendCustomRequest 
      * @return [AiThreadMessageLike]
      */
     @POST("api/2.0/ai/ai/send-custom")
-    suspend fun aiAiSendCustom(@Body aiAiSendCustomRequest: AiAiSendCustomRequest): Response<AiThreadMessageLike>
+    suspend fun aiSendCustom(@Body aiSendCustomRequest: AiSendCustomRequest): Response<AiThreadMessageLike>
 
     /**
      * POST api/2.0/ai/ai/send-with-stream
@@ -148,21 +150,21 @@ interface AIAIApi {
      *  - 200: Newline-delimited stream of chat events — one JSON `ChatEvent` object per line.
      *  - 400: The prompt is empty, more attachments were sent than the limit allows, or no AI profile could be resolved for the requested action.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
-     *  - 402: The portal has no paid AI quota left, so the profile bound to this action cannot be dispatched.
-     *  - 403: AI is disabled for this portal, or the caller is a guest. Relayed from the DocSpace AI service.
+     *  - 402: The portal has no paid AI quota left, so the profile bound to this action cannot be dispatched. `error` carries the portal's explanation in the caller's language.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
      *  - 404: The `entityId` names a room the caller cannot open, or no live profile is bound to it.
      *  - 413: The request body is larger than 100 KB, the JSON parser's limit on this route.
      *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
      *
-     * REST API Reference for aiAiSendWithStream Operation
-     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-ai-send-with-stream/
+     * REST API Reference for aiSendWithStream Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-send-with-stream/
      *
      *
-     * @param aiAiSendStreamBody 
+     * @param aiSendStreamBody 
      * @return [AiChatEvent]
      */
     @POST("api/2.0/ai/ai/send-with-stream")
-    suspend fun aiAiSendWithStream(@Body aiAiSendStreamBody: AiAiSendStreamBody): Response<AiChatEvent>
+    suspend fun aiSendWithStream(@Body aiSendStreamBody: AiSendStreamBody): Response<AiChatEvent>
 
     /**
      * POST api/2.0/ai/ai/send-with-stream-openai
@@ -172,19 +174,19 @@ interface AIAIApi {
      *  - 200: Server-sent events stream of OpenAI `chat.completion.chunk` objects, terminated by a `[DONE]` sentinel.
      *  - 400: The prompt is empty, or no AI profile could be resolved for the requested action.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
-     *  - 402: The portal has no paid AI quota left, so the profile bound to this action cannot be dispatched.
-     *  - 403: AI is disabled for this portal, or the caller is a guest. Relayed from the DocSpace AI service.
+     *  - 402: The portal has no paid AI quota left, so the profile bound to this action cannot be dispatched. `error` carries the portal's explanation in the caller's language.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
      *  - 413: The request body is larger than 100 KB, the JSON parser's limit on this route.
      *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
      *
-     * REST API Reference for aiAiSendWithStreamOpenAI Operation
-     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-ai-send-with-stream-open-ai/
+     * REST API Reference for aiSendWithStreamOpenAI Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-send-with-stream-open-ai/
      *
      *
-     * @param aiAiSendStreamBody 
+     * @param aiSendStreamBody 
      * @return [AiOpenAIStreamChunk]
      */
     @POST("api/2.0/ai/ai/send-with-stream-openai")
-    suspend fun aiAiSendWithStreamOpenAI(@Body aiAiSendStreamBody: AiAiSendStreamBody): Response<AiOpenAIStreamChunk>
+    suspend fun aiSendWithStreamOpenAI(@Body aiSendStreamBody: AiSendStreamBody): Response<AiOpenAIStreamChunk>
 
 }

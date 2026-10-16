@@ -23,7 +23,7 @@ import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
-import onlyoffice.docspace.api.sdk.models.AceShortWrapperArrayWrapper
+import onlyoffice.docspace.api.sdk.models.AceShortArrayWrapper
 import onlyoffice.docspace.api.sdk.models.BaseBatchRequestDto
 import onlyoffice.docspace.api.sdk.models.BooleanWrapper
 import onlyoffice.docspace.api.sdk.models.ChangeOwnerRequestDto
@@ -33,9 +33,9 @@ import onlyoffice.docspace.api.sdk.models.ExternalShareRequestParam
 import onlyoffice.docspace.api.sdk.models.ExternalShareWrapper
 import onlyoffice.docspace.api.sdk.models.FileEntryBaseArrayWrapper
 import onlyoffice.docspace.api.sdk.models.FileShareArrayWrapper
-import onlyoffice.docspace.api.sdk.models.GroupMemberSecurityRequestArrayWrapper
-import onlyoffice.docspace.api.sdk.models.MentionMessageWrapper
-import onlyoffice.docspace.api.sdk.models.MentionWrapperArrayWrapper
+import onlyoffice.docspace.api.sdk.models.GroupMemberSecurityArrayWrapper
+import onlyoffice.docspace.api.sdk.models.MentionArrayWrapper
+import onlyoffice.docspace.api.sdk.models.MentionMessageRequest
 import onlyoffice.docspace.api.sdk.models.SecurityInfoRequestDto
 import onlyoffice.docspace.api.sdk.models.SecurityInfoSimpleRequestDto
 
@@ -46,6 +46,7 @@ interface SharingApi {
      * Submits the password of a protected external share link and answers with the same resolved link data as  `GET api/2.0/files/share/{key}`, so this operation is called only after that one reported that a password is  required. The token in the path is the `requestToken` of the link, and the password is the one chosen by the  member who shared the entry. The call needs no authentication; a signed-in caller that may already read the  room is let through by the resolve operation itself and does not need the password at all. A correct password  is remembered for the caller, so later requests with the same token resolve without repeating it, and a wrong  one is reported in the `status` field as an invalid password rather than as an HTTP error, while the  remembered password is dropped. Attempts are counted per link and per calling address: once the portal's limit  is reached, further attempts are rejected until the block expires, which makes the operation unsuitable for  trying passwords in a loop. Nothing about the entry is changed by the call itself.
      * Responses:
      *  - 200: The entry the token points at, with the status the link reached after the password was checked
+     *  - 403: Too many attempts were made for this link from the calling address, and the block has not expired yet
      *  - 429: Too many requests
      *  - 500: Internal Server Error.
      *  - 400: Bad Request.
@@ -69,10 +70,11 @@ interface SharingApi {
      * Hands the ownership of the listed rooms and files over to a single account, and returns the entries as they  look afterwards. Among folders only rooms are accepted - take their identifiers from  `GET api/2.0/files/rooms`; a plain folder is refused. A file is accepted only while it lies in the portal's  common section, so a file kept inside a room or in a personal section is refused as well, and so is a file  that is locked or currently open in the editor. The new owner has to be an active account that is allowed to  manage rooms, and a private room additionally requires that this account has already set up its encryption  keys; a deactivated account, a guest or a plain member is rejected. The caller must be the creator of every  listed room, or a portal administrator. The call mutates the entries one at a time and stops at the first item  it may not touch, leaving the entries already processed changed, so a partial answer is possible; an item  whose owner is already the target account is returned untouched, which makes a repeat safe. The previous owner  keeps access to a transferred room as its manager, while a transferred file is saved as a new version authored  by the new owner. An entry that lives on a connected third-party account is quietly left out.
      * Responses:
      *  - 200: The rooms and files whose owner has been changed, as folder and file objects
+     *  - 400: The request body cannot be read or has no `userId`
+     *  - 403: The new owner is not an active account allowed to manage rooms or has not set up encryption keys for a listed private room, the caller may not change the owner of a listed entry, a listed folder lies outside the rooms and common sections, or a listed file is locked, being edited or lies outside the common section
+     *  - 500: An id is a number that is not a 32-bit integer
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
-     *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -93,6 +95,8 @@ interface SharingApi {
      * Responses:
      *  - 200: The keys of the members who can open the file, the private half only for the caller
      *  - 403: The caller may not read the file
+     *  - 404: The file does not exist
+     *  - 415: The file lies neither in a private room nor in the encrypted section
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
@@ -117,6 +121,8 @@ interface SharingApi {
      * Responses:
      *  - 200: The keys of the members who can open the file, the private half only for the caller
      *  - 403: The caller may not read the file
+     *  - 404: The file does not exist
+     *  - 415: The file lies neither in a private room nor in the encrypted section
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
@@ -164,10 +170,12 @@ interface SharingApi {
      * Lists the accounts and groups that hold rights on one file, one entry per subject, with the level each of them  has, whether the caller may still change that level, and which of them owns the file. The owner comes first,  then room managers, groups, ordinary members, guests, and last the accounts that have not accepted their  invitation yet, each of those ranked by access level and by name. External links are left out and are listed  by `GET api/2.0/files/file/{id}/links` instead, while a PDF form kept in a form-filling room also reports the  link of that room, because the form is filled out through it. `startIndex` and `count` page through the  subjects, and their total number is reported in the response headers rather than in the body. Listing takes  the right to change the sharing of the file, which its creator, the manager of its room and a portal  administrator acting as room manager have, while inside a public room reading the file is enough; a member who  may read but not share is answered with an empty list although the header still counts the subjects, and a  caller with no access, a guest included, is refused. A file that does not exist, or was deleted permanently,  is answered as missing. The call is read-only; for several entries at once use `POST api/2.0/files/share`.
      * Responses:
      *  - 200: The accounts and groups that hold rights on the file, the owner first
+     *  - 400: A parameter has the wrong type, or the `count` is outside its allowed range
+     *  - 403: The caller is a guest or may not read the file
+     *  - 404: The file does not exist
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -189,10 +197,12 @@ interface SharingApi {
      * Lists the accounts and groups that hold rights on one file, one entry per subject, with the level each of them  has, whether the caller may still change that level, and which of them owns the file. The owner comes first,  then room managers, groups, ordinary members, guests, and last the accounts that have not accepted their  invitation yet, each of those ranked by access level and by name. External links are left out and are listed  by `GET api/2.0/files/file/{id}/links` instead, while a PDF form kept in a form-filling room also reports the  link of that room, because the form is filled out through it. `startIndex` and `count` page through the  subjects, and their total number is reported in the response headers rather than in the body. Listing takes  the right to change the sharing of the file, which its creator, the manager of its room and a portal  administrator acting as room manager have, while inside a public room reading the file is enough; a member who  may read but not share is answered with an empty list although the header still counts the subjects, and a  caller with no access, a guest included, is refused. A file that does not exist, or was deleted permanently,  is answered as missing. The call is read-only; for several entries at once use `POST api/2.0/files/share`.
      * Responses:
      *  - 200: The accounts and groups that hold rights on the file, the owner first
+     *  - 400: A parameter has the wrong type, or the `count` is outside its allowed range
+     *  - 403: The caller is a guest or may not read the file
+     *  - 404: The file does not exist
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -214,10 +224,12 @@ interface SharingApi {
      * Lists the accounts and groups that hold rights on one folder or room, one entry per subject, with the level  each of them has, whether the caller may still change that level, and which of them owns the entry. The owner  comes first, then room managers, groups, ordinary members, guests, and last the accounts that have not  accepted their invitation yet, each of those ranked by access level and by name. External links are left out  and are listed by `GET api/2.0/files/folder/{id}/links` instead. `startIndex` and `count` page through the  subjects, and their total number is reported in the response headers rather than in the body. For a room, and  for a folder inside a public room, read access is enough; any other folder is listed only to a caller who may  change its sharing, which the manager of its room and a portal administrator acting as room manager may, and a  member who may only read such a folder is answered with an empty list although the header still counts the  subjects. A caller with no access, a guest included, is refused, and a folder that does not exist is answered  as missing. The call is read-only. For a room prefer `GET api/2.0/files/rooms/{id}/share`, which filters the  same subjects by kind and by name.
      * Responses:
      *  - 200: The accounts and groups that hold rights on the folder, the owner first
+     *  - 400: A parameter has the wrong type, or the `count` is outside its allowed range
+     *  - 403: The caller is a guest or may not read the folder
+     *  - 404: The folder does not exist
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -239,10 +251,12 @@ interface SharingApi {
      * Lists the accounts and groups that hold rights on one folder or room, one entry per subject, with the level  each of them has, whether the caller may still change that level, and which of them owns the entry. The owner  comes first, then room managers, groups, ordinary members, guests, and last the accounts that have not  accepted their invitation yet, each of those ranked by access level and by name. External links are left out  and are listed by `GET api/2.0/files/folder/{id}/links` instead. `startIndex` and `count` page through the  subjects, and their total number is reported in the response headers rather than in the body. For a room, and  for a folder inside a public room, read access is enough; any other folder is listed only to a caller who may  change its sharing, which the manager of its room and a portal administrator acting as room manager may, and a  member who may only read such a folder is answered with an empty list although the header still counts the  subjects. A caller with no access, a guest included, is refused, and a folder that does not exist is answered  as missing. The call is read-only. For a room prefer `GET api/2.0/files/rooms/{id}/share`, which filters the  same subjects by kind and by name.
      * Responses:
      *  - 200: The accounts and groups that hold rights on the folder, the owner first
+     *  - 400: A parameter has the wrong type, or the `count` is outside its allowed range
+     *  - 403: The caller is a guest or may not read the folder
+     *  - 404: The folder does not exist
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -264,10 +278,11 @@ interface SharingApi {
      * Lists the members of one portal group together with the access each of them has on a file that group was  granted rights to: `groupAccess` is the level the group itself carries, `userAccess` is the level set on that  member alone, `overridden` says which of the two applies, `owner` marks the member who created the file, and  `canEditAccess` says whether the caller may still change that member's level. Take the group identifier from  the group entries of `GET api/2.0/files/file/{id}/share`. `startIndex` and `count` page through the members,  `filterValue` keeps only those whose first name, last name or email contains the value - the comparison is  made in lower case, so an uppercase value matches nothing - and the number of members is reported in the  response headers. Members come back ordered by first name. A group that holds no rights on this file, a file  the caller cannot read and a file that does not exist are all answered with an empty list rather than an  error, so an empty answer does not mean that the group has no members. A guest is refused. The call is  read-only.
      * Responses:
      *  - 200: The members of the group with the access each of them has on the file
+     *  - 400: A parameter has the wrong type, or the `count` is outside its allowed range
+     *  - 403: The caller is a guest
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -280,10 +295,10 @@ interface SharingApi {
      * @param count How many members at most to answer with. (optional)
      * @param startIndex How many members to skip before answering, used together with `count` to page through a large group. (optional)
      * @param filterValue Keeps only the members whose first name, last name or email contains this value. The value is matched in lower  case, so an uppercase one finds nothing. (optional)
-     * @return [GroupMemberSecurityRequestArrayWrapper]
+     * @return [GroupMemberSecurityArrayWrapper]
      */
     @GET("api/2.0/files/file/{fileId}/group/{groupId}/share")
-    suspend fun getGroupsMembersWithFileSecurity(@Path("fileId") fileId: kotlin.Int, @Path("groupId") groupId: java.util.UUID, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<GroupMemberSecurityRequestArrayWrapper>
+    suspend fun getGroupsMembersWithFileSecurity(@Path("fileId") fileId: kotlin.Int, @Path("groupId") groupId: java.util.UUID, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<GroupMemberSecurityArrayWrapper>
 
     /**
      * GET api/2.0/files/file/{fileId}/group/{groupId}/share
@@ -291,10 +306,11 @@ interface SharingApi {
      * Lists the members of one portal group together with the access each of them has on a file that group was  granted rights to: `groupAccess` is the level the group itself carries, `userAccess` is the level set on that  member alone, `overridden` says which of the two applies, `owner` marks the member who created the file, and  `canEditAccess` says whether the caller may still change that member's level. Take the group identifier from  the group entries of `GET api/2.0/files/file/{id}/share`. `startIndex` and `count` page through the members,  `filterValue` keeps only those whose first name, last name or email contains the value - the comparison is  made in lower case, so an uppercase value matches nothing - and the number of members is reported in the  response headers. Members come back ordered by first name. A group that holds no rights on this file, a file  the caller cannot read and a file that does not exist are all answered with an empty list rather than an  error, so an empty answer does not mean that the group has no members. A guest is refused. The call is  read-only.
      * Responses:
      *  - 200: The members of the group with the access each of them has on the file
+     *  - 400: A parameter has the wrong type, or the `count` is outside its allowed range
+     *  - 403: The caller is a guest
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -307,10 +323,10 @@ interface SharingApi {
      * @param count How many members at most to answer with. (optional)
      * @param startIndex How many members to skip before answering, used together with `count` to page through a large group. (optional)
      * @param filterValue Keeps only the members whose first name, last name or email contains this value. The value is matched in lower  case, so an uppercase one finds nothing. (optional)
-     * @return [GroupMemberSecurityRequestArrayWrapper]
+     * @return [GroupMemberSecurityArrayWrapper]
      */
     @GET("api/2.0/files/file/{fileId}/group/{groupId}/share")
-    suspend fun getGroupsMembersWithFileSecurity(@Path("fileId") fileId: kotlin.String, @Path("groupId") groupId: java.util.UUID, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<GroupMemberSecurityRequestArrayWrapper>
+    suspend fun getGroupsMembersWithFileSecurity(@Path("fileId") fileId: kotlin.String, @Path("groupId") groupId: java.util.UUID, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<GroupMemberSecurityArrayWrapper>
 
     /**
      * GET api/2.0/files/folder/{folderId}/group/{groupId}/share
@@ -318,10 +334,11 @@ interface SharingApi {
      * Lists the members of one portal group together with the access each of them has on a folder or room that group  was granted rights to: `groupAccess` is the level the group itself carries, `userAccess` is the level set on  that member alone, `overridden` says which of the two applies, `owner` marks the member who created the entry,  and `canEditAccess` says whether the caller may still change that member's level. Take the group identifier  from the group entries of `GET api/2.0/files/folder/{id}/share`. `startIndex` and `count` page through the  members, `filterValue` keeps only those whose first name, last name or email contains the value - the  comparison is made in lower case, so an uppercase value matches nothing - and the number of members is  reported in the response headers. Members come back ordered by first name. A group that holds no rights on  this folder, a folder the caller cannot read and a folder that does not exist are all answered with an empty  list rather than an error, so an empty answer does not mean that the group has no members. A guest is refused.  The call is read-only.
      * Responses:
      *  - 200: The members of the group with the access each of them has on the folder
+     *  - 400: A parameter has the wrong type, or the `count` is outside its allowed range
+     *  - 403: The caller is a guest
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -334,10 +351,10 @@ interface SharingApi {
      * @param count How many members at most to answer with. (optional)
      * @param startIndex How many members to skip before answering, used together with `count` to page through a large group. (optional)
      * @param filterValue Keeps only the members whose first name, last name or email contains this value. The value is matched in lower  case, so an uppercase one finds nothing. (optional)
-     * @return [GroupMemberSecurityRequestArrayWrapper]
+     * @return [GroupMemberSecurityArrayWrapper]
      */
     @GET("api/2.0/files/folder/{folderId}/group/{groupId}/share")
-    suspend fun getGroupsMembersWithFolderSecurity(@Path("folderId") folderId: kotlin.Int, @Path("groupId") groupId: java.util.UUID, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<GroupMemberSecurityRequestArrayWrapper>
+    suspend fun getGroupsMembersWithFolderSecurity(@Path("folderId") folderId: kotlin.Int, @Path("groupId") groupId: java.util.UUID, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<GroupMemberSecurityArrayWrapper>
 
     /**
      * GET api/2.0/files/folder/{folderId}/group/{groupId}/share
@@ -345,10 +362,11 @@ interface SharingApi {
      * Lists the members of one portal group together with the access each of them has on a folder or room that group  was granted rights to: `groupAccess` is the level the group itself carries, `userAccess` is the level set on  that member alone, `overridden` says which of the two applies, `owner` marks the member who created the entry,  and `canEditAccess` says whether the caller may still change that member's level. Take the group identifier  from the group entries of `GET api/2.0/files/folder/{id}/share`. `startIndex` and `count` page through the  members, `filterValue` keeps only those whose first name, last name or email contains the value - the  comparison is made in lower case, so an uppercase value matches nothing - and the number of members is  reported in the response headers. Members come back ordered by first name. A group that holds no rights on  this folder, a folder the caller cannot read and a folder that does not exist are all answered with an empty  list rather than an error, so an empty answer does not mean that the group has no members. A guest is refused.  The call is read-only.
      * Responses:
      *  - 200: The members of the group with the access each of them has on the folder
+     *  - 400: A parameter has the wrong type, or the `count` is outside its allowed range
+     *  - 403: The caller is a guest
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -361,10 +379,10 @@ interface SharingApi {
      * @param count How many members at most to answer with. (optional)
      * @param startIndex How many members to skip before answering, used together with `count` to page through a large group. (optional)
      * @param filterValue Keeps only the members whose first name, last name or email contains this value. The value is matched in lower  case, so an uppercase one finds nothing. (optional)
-     * @return [GroupMemberSecurityRequestArrayWrapper]
+     * @return [GroupMemberSecurityArrayWrapper]
      */
     @GET("api/2.0/files/folder/{folderId}/group/{groupId}/share")
-    suspend fun getGroupsMembersWithFolderSecurity(@Path("folderId") folderId: kotlin.String, @Path("groupId") groupId: java.util.UUID, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<GroupMemberSecurityRequestArrayWrapper>
+    suspend fun getGroupsMembersWithFolderSecurity(@Path("folderId") folderId: kotlin.String, @Path("groupId") groupId: java.util.UUID, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<GroupMemberSecurityArrayWrapper>
 
     /**
      * POST api/2.0/files/share
@@ -372,9 +390,10 @@ interface SharingApi {
      * Returns who has access to the files and folders listed in the request, merged into one list of subjects, and  is the batch counterpart of `GET api/2.0/files/file/{id}/share` and `GET api/2.0/files/rooms/{id}/share`.  Identifiers come from any listing operation, such as `GET api/2.0/files/{folderId}`. The caller needs read  access to every listed entry: a single entry it cannot read makes the whole call fail instead of dropping that  entry, so the list has to be filtered beforehand. Identifiers that match nothing are skipped without an error,  and an empty list of identifiers gives an empty answer. The call is read-only. Each account or group appears  once: the caller's own record comes first, the owner's record second, and the rest are ordered by display  name. When the same subject holds different rights on the listed entries, its access is reported as the  `Varies` value instead of a real level, which means the entries have to be inspected one by one to see the  difference. Records that describe external links are included only for a caller that is allowed to read the  links of the entry.
      * Responses:
      *  - 200: The merged sharing rights of the listed files and folders, one record per account or group
+     *  - 403: The caller may not read one of the listed files or folders
+     *  - 500: An id is a number that is not a 32-bit integer
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
-     *  - 500: Internal Server Error.
      *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
@@ -395,6 +414,8 @@ interface SharingApi {
      * Lists the portal members who can read the file, which is what an editor client offers when somebody types a  mention. The set holds the readers of the file plus everyone who reads it by role rather than by share - the  portal owner, the DocSpace administrators and the author of the file - while the caller themselves, the  subjects standing behind external links and deactivated accounts are left out. It is ordered by display name  as the portal renders it. A guest receives a single entry, the owner of the file, because a guest is not a  portal member and may not learn who else works on the document. The caller needs read access to the file, and  an unknown file id is reported as missing. The call only reads. A caller who reached the file through an  external link instead of an account is answered with nothing at all. For the users to offer when protecting a  document use `GET api/2.0/files/file/{fileId}/protectusers`.
      * Responses:
      *  - 200: The portal members who can read the file, ordered by display name
+     *  - 403: The caller cannot read the file
+     *  - 404: The file id resolves to nothing
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
@@ -407,10 +428,10 @@ interface SharingApi {
      *
      *
      * @param fileId The file the operation addresses. Take the identifier from a listing such as `GET api/2.0/files/{folderId}`: a  file stored on the portal is numbered, while a file in a connected third-party account is named by an opaque  string.
-     * @return [MentionWrapperArrayWrapper]
+     * @return [MentionArrayWrapper]
      */
     @GET("api/2.0/files/file/{fileId}/sharedusers")
-    suspend fun getSharedUsers(@Path("fileId") fileId: kotlin.Int): Response<MentionWrapperArrayWrapper>
+    suspend fun getSharedUsers(@Path("fileId") fileId: kotlin.Int): Response<MentionArrayWrapper>
 
     /**
      * GET api/2.0/files/file/{fileId}/sharedusers
@@ -418,6 +439,8 @@ interface SharingApi {
      * Lists the portal members who can read the file, which is what an editor client offers when somebody types a  mention. The set holds the readers of the file plus everyone who reads it by role rather than by share - the  portal owner, the DocSpace administrators and the author of the file - while the caller themselves, the  subjects standing behind external links and deactivated accounts are left out. It is ordered by display name  as the portal renders it. A guest receives a single entry, the owner of the file, because a guest is not a  portal member and may not learn who else works on the document. The caller needs read access to the file, and  an unknown file id is reported as missing. The call only reads. A caller who reached the file through an  external link instead of an account is answered with nothing at all. For the users to offer when protecting a  document use `GET api/2.0/files/file/{fileId}/protectusers`.
      * Responses:
      *  - 200: The portal members who can read the file, ordered by display name
+     *  - 403: The caller cannot read the file
+     *  - 404: The file id resolves to nothing
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
@@ -430,10 +453,10 @@ interface SharingApi {
      *
      *
      * @param fileId The file the operation addresses. Take the identifier from a listing such as `GET api/2.0/files/{folderId}`: a  file stored on the portal is numbered, while a file in a connected third-party account is named by an opaque  string.
-     * @return [MentionWrapperArrayWrapper]
+     * @return [MentionArrayWrapper]
      */
     @GET("api/2.0/files/file/{fileId}/sharedusers")
-    suspend fun getSharedUsers(@Path("fileId") fileId: kotlin.String): Response<MentionWrapperArrayWrapper>
+    suspend fun getSharedUsers(@Path("fileId") fileId: kotlin.String): Response<MentionArrayWrapper>
 
     /**
      * DELETE api/2.0/files/share
@@ -441,9 +464,10 @@ interface SharingApi {
      * Revokes the access of every account and group on the files and folders listed in the request, and clears the  entries from the caller's own favorites, recent and unread marks. The owner's own record is kept, since  removing it would take the entry away from the account that owns it, and external links survive untouched -  remove those through the link operations of the entry. The caller must be allowed to change the access of each  entry, which means the creator of the room, a portal administrator, or a member with the rights to manage it;  a caller whose only access came through an external link may use this call to drop the entry from its own  list, while a directly invited member or an unrelated account is refused. The answer is always `true` and  identifiers that match nothing are skipped silently, so a successful answer is not proof that anything was  revoked - read the rights back with `POST api/2.0/files/share`. The call is destructive and safe to repeat. To  take the rights of one account away instead of all of them, call `PUT api/2.0/files/share` with that account's  access set to `None`.
      * Responses:
      *  - 200: Always true: the accounts and groups that had access to the listed entries no longer have it
+     *  - 403: The caller may not change the access of a listed entry and may not drop it from their own list either, because it was shared with them directly or they cannot read it
+     *  - 500: An id is a number that is not a 32-bit integer
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
-     *  - 500: Internal Server Error.
      *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
@@ -478,11 +502,11 @@ interface SharingApi {
      *
      *
      * @param fileId The file the mention was made in. A file stored on the portal is numbered, while a file in a connected  third-party account is named by an opaque string.
-     * @param mentionMessageWrapper The notification to send. (optional)
-     * @return [AceShortWrapperArrayWrapper]
+     * @param mentionMessageRequest The notification to send. (optional)
+     * @return [AceShortArrayWrapper]
      */
     @POST("api/2.0/files/file/{fileId}/sendeditornotify")
-    suspend fun sendEditorNotify(@Path("fileId") fileId: kotlin.Int, @Body mentionMessageWrapper: MentionMessageWrapper? = null): Response<AceShortWrapperArrayWrapper>
+    suspend fun sendEditorNotify(@Path("fileId") fileId: kotlin.Int, @Body mentionMessageRequest: MentionMessageRequest? = null): Response<AceShortArrayWrapper>
 
     /**
      * POST api/2.0/files/file/{fileId}/sendeditornotify
@@ -504,11 +528,11 @@ interface SharingApi {
      *
      *
      * @param fileId The file the mention was made in. A file stored on the portal is numbered, while a file in a connected  third-party account is named by an opaque string.
-     * @param mentionMessageWrapper The notification to send. (optional)
-     * @return [AceShortWrapperArrayWrapper]
+     * @param mentionMessageRequest The notification to send. (optional)
+     * @return [AceShortArrayWrapper]
      */
     @POST("api/2.0/files/file/{fileId}/sendeditornotify")
-    suspend fun sendEditorNotify(@Path("fileId") fileId: kotlin.String, @Body mentionMessageWrapper: MentionMessageWrapper? = null): Response<AceShortWrapperArrayWrapper>
+    suspend fun sendEditorNotify(@Path("fileId") fileId: kotlin.String, @Body mentionMessageRequest: MentionMessageRequest? = null): Response<AceShortArrayWrapper>
 
     /**
      * PUT api/2.0/files/file/{id}/share
@@ -516,10 +540,11 @@ interface SharingApi {
      * Grants, changes or withdraws the rights of the listed accounts and groups on one file, and answers with the  rights those subjects hold afterwards. Every element of `share` names a subject and the level it is to get,  and the level that denies everything takes the access away instead; an empty `share` changes nothing and is  answered with an empty list. A subject the caller is not allowed to share with, such as a guest who belongs to  another member, is dropped without an error, so compare the answer with what was sent. With `notify` set, each  account named is emailed about the access it received and `sharingMessage` is put into that mail with its  markup stripped, while a message longer than the field allows is rejected as an invalid request. The caller  has to be allowed to change the sharing of the file, which its creator, the manager of the room it lies in and  a portal administrator acting as room manager are; anyone else, a guest and a member with read access  included, is refused. The call is mutating and safe to repeat. For several files and folders in one request  use `PUT api/2.0/files/share`.
      * Responses:
      *  - 200: The rights the listed subjects hold on the file after the change
+     *  - 400: The request body cannot be read, an `email` in `share` is malformed or longer than 255 characters, `share` invites more addresses by email than the portal allows at once, or `sharingMessage` is longer than 255 characters
+     *  - 403: The caller may not change the sharing of the file, or a listed subject cannot be given the requested access on it
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -540,10 +565,11 @@ interface SharingApi {
      * Grants, changes or withdraws the rights of the listed accounts and groups on one file, and answers with the  rights those subjects hold afterwards. Every element of `share` names a subject and the level it is to get,  and the level that denies everything takes the access away instead; an empty `share` changes nothing and is  answered with an empty list. A subject the caller is not allowed to share with, such as a guest who belongs to  another member, is dropped without an error, so compare the answer with what was sent. With `notify` set, each  account named is emailed about the access it received and `sharingMessage` is put into that mail with its  markup stripped, while a message longer than the field allows is rejected as an invalid request. The caller  has to be allowed to change the sharing of the file, which its creator, the manager of the room it lies in and  a portal administrator acting as room manager are; anyone else, a guest and a member with read access  included, is refused. The call is mutating and safe to repeat. For several files and folders in one request  use `PUT api/2.0/files/share`.
      * Responses:
      *  - 200: The rights the listed subjects hold on the file after the change
+     *  - 400: The request body cannot be read, an `email` in `share` is malformed or longer than 255 characters, `share` invites more addresses by email than the portal allows at once, or `sharingMessage` is longer than 255 characters
+     *  - 403: The caller may not change the sharing of the file, or a listed subject cannot be given the requested access on it
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -564,10 +590,11 @@ interface SharingApi {
      * Grants, changes or withdraws the rights of the listed accounts and groups on one folder, and answers with the  rights those subjects hold afterwards. Every element of `share` names a subject and the level it is to get,  and the level that denies everything takes the access away instead; an empty `share` changes nothing and is  answered with an empty list. A subject the caller is not allowed to share with, such as a guest who belongs to  another member, is dropped without an error. With `notify` set, each account named is emailed about the access  it received and `sharingMessage` is put into that mail with its markup stripped, while a message longer than  the field allows is rejected as an invalid request. The caller has to be allowed to change the sharing of the  folder, which the manager of the room it belongs to and a portal administrator acting as room manager are;  anyone else, a guest and a member with read access included, is refused. The call is mutating and safe to  repeat. For a room use `PUT api/2.0/files/rooms/{id}/share`, which invites people by email as well.
      * Responses:
      *  - 200: The rights the listed subjects hold on the folder after the change
+     *  - 400: The request body cannot be read, an `email` in `share` is malformed or longer than 255 characters, `share` invites more addresses by email than the portal allows at once, or `sharingMessage` is longer than 255 characters
+     *  - 403: The caller may not change the sharing of the folder, a listed subject cannot be given the requested access on it, or the folder is a private room and a listed account has not set up its encryption keys
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -588,10 +615,11 @@ interface SharingApi {
      * Grants, changes or withdraws the rights of the listed accounts and groups on one folder, and answers with the  rights those subjects hold afterwards. Every element of `share` names a subject and the level it is to get,  and the level that denies everything takes the access away instead; an empty `share` changes nothing and is  answered with an empty list. A subject the caller is not allowed to share with, such as a guest who belongs to  another member, is dropped without an error. With `notify` set, each account named is emailed about the access  it received and `sharingMessage` is put into that mail with its markup stripped, while a message longer than  the field allows is rejected as an invalid request. The caller has to be allowed to change the sharing of the  folder, which the manager of the room it belongs to and a portal administrator acting as room manager are;  anyone else, a guest and a member with read access included, is refused. The call is mutating and safe to  repeat. For a room use `PUT api/2.0/files/rooms/{id}/share`, which invites people by email as well.
      * Responses:
      *  - 200: The rights the listed subjects hold on the folder after the change
+     *  - 400: The request body cannot be read, an `email` in `share` is malformed or longer than 255 characters, `share` invites more addresses by email than the portal allows at once, or `sharingMessage` is longer than 255 characters
+     *  - 403: The caller may not change the sharing of the folder, a listed subject cannot be given the requested access on it, or the folder is a private room and a listed account has not set up its encryption keys
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -612,10 +640,11 @@ interface SharingApi {
      * Grants, changes or withdraws the access of the listed accounts and groups on every file and folder named in  the request at once, and returns the resulting rights. Entry identifiers come from a listing operation, and  the accounts and groups come from the portal's own account and group lists; an access of `None` withdraws the  rights instead of granting them. The caller must be allowed to change the access of every listed entry - the  creator of the room, a member with the rights to manage it, or a portal administrator - and a read-only member  or a guest is refused even when the payload changes nothing. A subject the caller is not allowed to share  with, such as a guest that belongs to another member, is skipped without an error, and an empty `share`  collection makes the call do nothing and answer with an empty list. Repeating the same request leaves the same  rights in place. The answer holds one record per listed subject for each entry that was actually processed, so  it is shorter than the request when something was skipped and worth comparing against it. For a single room  prefer `PUT api/2.0/files/rooms/{id}/share`, which also invites members by email.
      * Responses:
      *  - 200: The rights of the listed accounts and groups on every entry that was processed
+     *  - 400: The request body cannot be read, an `email` in `share` is malformed or longer than 255 characters, `share` invites more addresses by email than the portal allows at once, or `sharingMessage` is longer than 255 characters
+     *  - 403: The caller may not change the sharing of a listed entry, a listed subject cannot be given the requested access on it, or a listed private room has an account in `share` that has not set up its encryption keys
+     *  - 500: An id is a number that is not a 32-bit integer
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
-     *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *

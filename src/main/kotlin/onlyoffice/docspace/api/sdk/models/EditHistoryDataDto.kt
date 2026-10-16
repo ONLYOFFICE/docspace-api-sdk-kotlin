@@ -16,7 +16,7 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.EditHistoryUrl
+import onlyoffice.docspace.api.sdk.models.EditHistoryUrlDto
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -52,7 +52,7 @@ data class EditHistoryDataDto (
     val changesUrl: java.net.URI? = null,
 
     @Json(name = "previous")
-    val previous: EditHistoryUrl? = null,
+    val previous: EditHistoryUrlDto? = null,
 
     @Json(name = "token")
     val token: kotlin.String? = null

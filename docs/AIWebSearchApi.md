@@ -17,7 +17,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 
 <a id="aiWebSearchClear"></a>
 # **aiWebSearchClear**
-> AiSuccessResponse aiWebSearchClear (kotlin.String body)
+> AiSuccessResponse aiWebSearchClear (kotlin.String aiWebSearchClearRequest)
 
 Removes the portal's web-search configuration, after which web search is unavailable everywhere it was not configured separately. This is not scoped: it takes no `entityId` and any body sent with it is ignored, so it cannot be used to clear one room's configuration. Clearing an already-unconfigured portal is not an error and the call answers success either way. The stored provider key is destroyed with the configuration and has to be entered again.
 
@@ -26,7 +26,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **body** | **kotlin.String**| Ignored. The operation always clears the portal-wide configuration, so send an empty body; a value here does not scope it to a room. | |
+| **aiWebSearchClearRequest** | **kotlin.String**| Ignored. The operation always clears the portal-wide configuration, so send an empty body; a value here does not scope it to a room. | |
 
 ### Return type
 
@@ -48,10 +48,10 @@ Configure bearerAuth:
 val apiClient = ApiClient()
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIWebSearchApi::class.java)
-val body : kotlin.String = body_example // kotlin.String | Ignored. The operation always clears the portal-wide configuration, so send an empty body; a value here does not scope it to a room.
+val aiWebSearchClearRequest : kotlin.String = aiWebSearchClearRequest_example // kotlin.String | Ignored. The operation always clears the portal-wide configuration, so send an empty body; a value here does not scope it to a room.
 
 launch(Dispatchers.IO) {
-    val result : AiSuccessResponse = webService.aiWebSearchClear(body)
+    val result : AiSuccessResponse = webService.aiWebSearchClear(aiWebSearchClearRequest)
 }
 ```
 
@@ -201,16 +201,16 @@ launch(Dispatchers.IO) {
 
 <a id="aiWebSearchPassthroughContents"></a>
 # **aiWebSearchPassthroughContents**
-> kotlin.collections.Map&lt;kotlin.String, kotlin.Any&gt; aiWebSearchPassthroughContents (kotlin.collections.Map<kotlin.String, kotlin.Any?> requestBody)
+> kotlin.collections.Map&lt;kotlin.String, kotlin.Any&gt; aiWebSearchPassthroughContents (kotlin.collections.Map<kotlin.String, kotlin.Any?> aiWebSearchPassthroughContentsRequest)
 
-Fetches the contents of web pages on behalf of the document editor's AI plugin, against the portal's active web-search provider, exactly as the search passthrough does — including the `entityId` / `entityKind` billing attribution. The portal-wide configuration is used and a portal without one answers 404. The provider's status, body and content type are relayed verbatim, so its 429 and its failures surface unchanged. This is the follow-up to `POST api/2.0/ai/websearch/v1/search`, which returns the results whose contents this operation retrieves.
+Fetches the contents of web pages on behalf of the document editor's AI plugin, against the portal's active web-search provider, exactly as the search passthrough does — including the `entityId` / `entityKind` billing attribution. The portal-wide configuration is used and a portal without one answers 404. `urls` has to be a non-empty array of strings, or the call answers 400 naming the field. The provider's 4xx status, body and content type are relayed, so its 429 surfaces unchanged, while a 5xx is replaced by a fixed 502 with the detail kept in the server log. This is the follow-up to `POST api/2.0/ai/websearch/v1/search`, which returns the results whose contents this operation retrieves.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-web-search-passthrough-contents/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **requestBody** | [**kotlin.collections.Map&lt;kotlin.String, kotlin.Any?&gt;**](kotlin.Any.md)| A page-contents request in the shape the portal's active web-search provider expects, forwarded to it unchanged. The endpoint and the key come from the stored configuration. | |
+| **aiWebSearchPassthroughContentsRequest** | [**kotlin.collections.Map&lt;kotlin.String, kotlin.Any?&gt;**](kotlin.Any.md)| A page-contents request in the shape the portal's active web-search provider expects, forwarded to it once `urls` passes a type check. The endpoint and the key come from the stored configuration. | |
 
 ### Return type
 
@@ -232,10 +232,10 @@ Configure bearerAuth:
 val apiClient = ApiClient()
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIWebSearchApi::class.java)
-val requestBody : kotlin.collections.Map<kotlin.String, kotlin.Any?> = Object // kotlin.collections.Map<kotlin.String, kotlin.Any?> | A page-contents request in the shape the portal's active web-search provider expects, forwarded to it unchanged. The endpoint and the key come from the stored configuration.
+val aiWebSearchPassthroughContentsRequest : kotlin.collections.Map<kotlin.String, kotlin.Any?> = Object // kotlin.collections.Map<kotlin.String, kotlin.Any?> | A page-contents request in the shape the portal's active web-search provider expects, forwarded to it once `urls` passes a type check. The endpoint and the key come from the stored configuration.
 
 launch(Dispatchers.IO) {
-    val result : kotlin.collections.Map<kotlin.String, kotlin.Any> = webService.aiWebSearchPassthroughContents(requestBody)
+    val result : kotlin.collections.Map<kotlin.String, kotlin.Any> = webService.aiWebSearchPassthroughContents(aiWebSearchPassthroughContentsRequest)
 }
 ```
 
@@ -247,20 +247,20 @@ launch(Dispatchers.IO) {
 
 <a id="aiWebSearchPassthroughSearch"></a>
 # **aiWebSearchPassthroughSearch**
-> kotlin.collections.Map&lt;kotlin.String, kotlin.Any&gt; aiWebSearchPassthroughSearch (kotlin.collections.Map<kotlin.String, kotlin.Any?> requestBody)
+> kotlin.collections.Map&lt;kotlin.String, kotlin.Any?&gt; aiWebSearchPassthroughSearch (kotlin.collections.Map<kotlin.String, kotlin.Any?> aiWebSearchPassthroughSearchRequest)
 
-Runs a web search on behalf of the document editor's AI plugin, which holds only a placeholder configuration - the portal's active provider and its key are resolved here, so neither ever reaches the browser. The portal-wide configuration is used, and a portal without one answers 404. The `entityId` and `entityKind` query parameters name the document the search is billed to; with the ONLYOFFICE provider the entry is resolved under the caller's credentials and sent to the gateway as the request `metadata` (`source_id` / `source_type` / `source_title`), and an entry the caller cannot open sends none. The provider's own status, body and content type are relayed as they stand, so a provider that rate-limits answers 429 and one that is unreachable answers 502. Closing the connection aborts the upstream request.
+Runs a web search on behalf of the document editor's AI plugin, which holds only a placeholder configuration - the portal's active provider and its key are resolved here, so neither ever reaches the browser. The portal-wide configuration is used, and a portal without one answers 404. The `entityId` and `entityKind` query parameters name the document the search is billed to; with the ONLYOFFICE provider the entry is resolved under the caller's credentials and sent to the gateway as the request `metadata` (`source_id` / `source_type` / `source_title`), and an entry the caller cannot open sends none. `query` has to be a non-empty string and `numResults`, when sent, a positive integer; a body failing that answers 400 naming the field, before anything is sent on. The provider's own 4xx status, body and content type are relayed as they stand, so a provider that rate-limits answers 429; a 5xx from the provider or from the hop in front of it is not relayed, its detail stays in the server log and the call answers a fixed 502, which is also what an unreachable provider answers. Closing the connection aborts the upstream request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-web-search-passthrough-search/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **requestBody** | [**kotlin.collections.Map&lt;kotlin.String, kotlin.Any?&gt;**](kotlin.Any.md)| A search request in the shape the portal's active web-search provider expects, forwarded to it unchanged. The endpoint and the key come from the stored configuration and must not be sent here. | |
+| **aiWebSearchPassthroughSearchRequest** | [**kotlin.collections.Map&lt;kotlin.String, kotlin.Any?&gt;**](kotlin.Any.md)| A search request in the shape the portal's active web-search provider expects, forwarded to it once `query` and `numResults` pass a type check. The endpoint and the key come from the stored configuration and must not be sent here. | |
 
 ### Return type
 
-[**kotlin.collections.Map&lt;kotlin.String, kotlin.Any&gt;**](kotlin.Any.md)
+[**kotlin.collections.Map&lt;kotlin.String, kotlin.Any?&gt;**](kotlin.Any.md)
 
 ### Authorization
 
@@ -278,10 +278,10 @@ Configure bearerAuth:
 val apiClient = ApiClient()
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIWebSearchApi::class.java)
-val requestBody : kotlin.collections.Map<kotlin.String, kotlin.Any?> = Object // kotlin.collections.Map<kotlin.String, kotlin.Any?> | A search request in the shape the portal's active web-search provider expects, forwarded to it unchanged. The endpoint and the key come from the stored configuration and must not be sent here.
+val aiWebSearchPassthroughSearchRequest : kotlin.collections.Map<kotlin.String, kotlin.Any?> = Object // kotlin.collections.Map<kotlin.String, kotlin.Any?> | A search request in the shape the portal's active web-search provider expects, forwarded to it once `query` and `numResults` pass a type check. The endpoint and the key come from the stored configuration and must not be sent here.
 
 launch(Dispatchers.IO) {
-    val result : kotlin.collections.Map<kotlin.String, kotlin.Any> = webService.aiWebSearchPassthroughSearch(requestBody)
+    val result : kotlin.collections.Map<kotlin.String, kotlin.Any?> = webService.aiWebSearchPassthroughSearch(aiWebSearchPassthroughSearchRequest)
 }
 ```
 
@@ -293,7 +293,7 @@ launch(Dispatchers.IO) {
 
 <a id="aiWebSearchSetActiveConfig"></a>
 # **aiWebSearchSetActiveConfig**
-> AiSuccessResponse aiWebSearchSetActiveConfig (AiWebSearchConfigureRequest aiWebSearchConfigureRequest)
+> AiSuccessResponse aiWebSearchSetActiveConfig (AiWebSearchSetActiveConfigRequest aiWebSearchSetActiveConfigRequest)
 
 Stores a web-search configuration without contacting the provider first, for a form that has already validated its input or for restoring a known-good configuration. `entityId` scopes it to a room and has to name one the caller can open. A `baseUrl` pointing at a private network address is still refused, because that check is local. Nothing guarantees the stored provider works: follow up with `POST api/2.0/ai/web-search/test-connection`, or use `PUT api/2.0/ai/web-search/configure` to have the store gated on a live probe.
 
@@ -302,7 +302,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **aiWebSearchConfigureRequest** | [**AiWebSearchConfigureRequest**](AiWebSearchConfigureRequest.md)|  | |
+| **aiWebSearchSetActiveConfigRequest** | [**AiWebSearchSetActiveConfigRequest**](AiWebSearchSetActiveConfigRequest.md)|  | |
 
 ### Return type
 
@@ -324,10 +324,10 @@ Configure bearerAuth:
 val apiClient = ApiClient()
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIWebSearchApi::class.java)
-val aiWebSearchConfigureRequest : AiWebSearchConfigureRequest =  // AiWebSearchConfigureRequest | 
+val aiWebSearchSetActiveConfigRequest : AiWebSearchSetActiveConfigRequest =  // AiWebSearchSetActiveConfigRequest | 
 
 launch(Dispatchers.IO) {
-    val result : AiSuccessResponse = webService.aiWebSearchSetActiveConfig(aiWebSearchConfigureRequest)
+    val result : AiSuccessResponse = webService.aiWebSearchSetActiveConfig(aiWebSearchSetActiveConfigRequest)
 }
 ```
 

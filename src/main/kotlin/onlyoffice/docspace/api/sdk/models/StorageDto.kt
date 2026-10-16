@@ -16,7 +16,7 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.AuthKey
+import onlyoffice.docspace.api.sdk.models.AuthKeyDto
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -47,7 +47,7 @@ data class StorageDto (
     val isSet: kotlin.Boolean,
 
     @Json(name = "properties")
-    val properties: kotlin.collections.List<AuthKey>? = null
+    val properties: kotlin.collections.List<AuthKeyDto>? = null
 
 ) {
 

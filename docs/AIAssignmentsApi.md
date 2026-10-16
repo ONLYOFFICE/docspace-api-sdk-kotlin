@@ -63,7 +63,7 @@ launch(Dispatchers.IO) {
 
 <a id="aiAssignmentsBulkAssign"></a>
 # **aiAssignmentsBulkAssign**
-> AiBulkAssignmentResult aiAssignmentsBulkAssign (kotlin.collections.Map<kotlin.String, kotlin.String> requestBody)
+> AiBulkAssignmentResult aiAssignmentsBulkAssign (kotlin.collections.Map<kotlin.String, kotlin.String> aiAssignmentsBulkAssignRequest)
 
 Applies many action-to-profile bindings in one write, which is how a settings screen saves the whole set. The body is a plain map of action type to profile ID, and every entry is validated before anything is written: one unknown action or one non-string profile ID rejects the request whole, so the set is never left half-applied. Each entry behaves as the single assign operation does, capability checks included. The answer carries the resulting assignment set.
 
@@ -72,7 +72,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **requestBody** | [**kotlin.collections.Map&lt;kotlin.String, kotlin.String&gt;**](kotlin.String.md)| A map of action type to profile ID. Every key has to be a known action type and every value a profile ID; one bad entry rejects the whole map. | |
+| **aiAssignmentsBulkAssignRequest** | [**kotlin.collections.Map&lt;kotlin.String, kotlin.String&gt;**](kotlin.String.md)| A map of action type to profile ID. Every key has to be a known action type and every value a profile ID; one bad entry rejects the whole map. | |
 
 ### Return type
 
@@ -94,10 +94,10 @@ Configure bearerAuth:
 val apiClient = ApiClient()
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIAssignmentsApi::class.java)
-val requestBody : kotlin.collections.Map<kotlin.String, kotlin.String> = Object // kotlin.collections.Map<kotlin.String, kotlin.String> | A map of action type to profile ID. Every key has to be a known action type and every value a profile ID; one bad entry rejects the whole map.
+val aiAssignmentsBulkAssignRequest : kotlin.collections.Map<kotlin.String, kotlin.String> = Object // kotlin.collections.Map<kotlin.String, kotlin.String> | A map of action type to profile ID. Every key has to be a known action type and every value a profile ID; one bad entry rejects the whole map.
 
 launch(Dispatchers.IO) {
-    val result : AiBulkAssignmentResult = webService.aiAssignmentsBulkAssign(requestBody)
+    val result : AiBulkAssignmentResult = webService.aiAssignmentsBulkAssign(aiAssignmentsBulkAssignRequest)
 }
 ```
 
@@ -249,7 +249,7 @@ launch(Dispatchers.IO) {
 # **aiAssignmentsResolveForAction**
 > AiResolvedAssignment aiAssignmentsResolveForAction (kotlin.String actionType, kotlin.String entityId)
 
-Returns the profile that will serve one AI action, falling back to the `Default` slot when the action has no profile of its own. `actionType` is required and has to be one of the known actions - an unknown or misspelled value is rejected rather than resolved to the default. `entityId` narrows the lookup to a room, and a room with no assignment of its own degrades to the portal-wide one. This fails when neither slot is set or the bound profile is gone, so use `GET api/2.0/ai/assignments/try-resolve-for-action` when an unconfigured portal should answer empty instead.
+Returns the profile that will serve one AI action, falling back to the `Default` slot when the action has no profile of its own. `actionType` is required and has to be one of the known actions - an unknown or misspelled value is rejected rather than resolved to the default. `entityId` narrows the lookup to a room and has to name one the caller can open - an unknown room answers 404 rather than quietly resolving portal-wide - while an accessible room with no assignment of its own degrades to the portal-wide one. When neither slot is set, the slot names a profile that no longer exists, or the `Default` profile cannot serve the action, the call answers 404, so use `GET api/2.0/ai/assignments/try-resolve-for-action` when an unconfigured portal should answer empty instead.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-assignments-resolve-for-action/).
 
@@ -297,7 +297,7 @@ launch(Dispatchers.IO) {
 # **aiAssignmentsTryResolveForAction**
 > AiResolvedAssignment aiAssignmentsTryResolveForAction (kotlin.String actionType, kotlin.String entityId)
 
-Returns the profile that will serve one AI action, exactly as `GET api/2.0/ai/assignments/resolve-for-action` does, but answers with an empty result rather than failing when nothing is configured. `actionType` is required and is validated the same way, and `entityId` narrows the lookup to a room. This is the operation to call when the absence of a profile is a normal state to render - a settings screen, or a feature that hides itself. Both operations are read-only.
+Returns the profile that will serve one AI action, exactly as `GET api/2.0/ai/assignments/resolve-for-action` does, but answers with an empty result rather than failing when nothing is configured. `actionType` is required and is validated the same way, and `entityId` narrows the lookup to a room the caller can open - an unknown one answers 404 here as well. This is the operation to call when the absence of a profile is a normal state to render - a settings screen, or a feature that hides itself. Both operations are read-only.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-assignments-try-resolve-for-action/).
 
@@ -343,7 +343,7 @@ launch(Dispatchers.IO) {
 
 <a id="aiAssignmentsUnassign"></a>
 # **aiAssignmentsUnassign**
-> AiSuccessResponse aiAssignmentsUnassign (kotlin.String body)
+> AiSuccessResponse aiAssignmentsUnassign (kotlin.String aiActionType)
 
 Clears the portal-wide binding of one AI action, after which the action falls back to the `Default` slot. `actionType` is required and may be sent in the body or as a query parameter. An action whose slot is already empty is not reported as an error - the call answers success either way, so it is safe to repeat. Clearing `Default` itself leaves the actions that relied on it unresolvable.
 
@@ -352,7 +352,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **body** | **kotlin.String**|  | |
+| **aiActionType** | **kotlin.String**|  | |
 
 ### Return type
 
@@ -374,10 +374,10 @@ Configure bearerAuth:
 val apiClient = ApiClient()
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIAssignmentsApi::class.java)
-val body : kotlin.String =  // kotlin.String | 
+val aiActionType : kotlin.String =  // kotlin.String | 
 
 launch(Dispatchers.IO) {
-    val result : AiSuccessResponse = webService.aiAssignmentsUnassign(body)
+    val result : AiSuccessResponse = webService.aiAssignmentsUnassign(aiActionType)
 }
 ```
 

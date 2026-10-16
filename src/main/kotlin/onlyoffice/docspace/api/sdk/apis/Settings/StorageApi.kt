@@ -24,11 +24,10 @@ import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
 import onlyoffice.docspace.api.sdk.models.AmazonS3RegionArrayWrapper
-import onlyoffice.docspace.api.sdk.models.CdnStorageSettingsWrapper
 import onlyoffice.docspace.api.sdk.models.DoubleWrapper
 import onlyoffice.docspace.api.sdk.models.ErrorApiResponse
 import onlyoffice.docspace.api.sdk.models.StorageArrayWrapper
-import onlyoffice.docspace.api.sdk.models.StorageRequestsDto
+import onlyoffice.docspace.api.sdk.models.StorageRequestDto
 import onlyoffice.docspace.api.sdk.models.StorageSettingsWrapper
 
 interface StorageApi {
@@ -54,7 +53,7 @@ interface StorageApi {
      * @return [StorageArrayWrapper]
      */
     @GET("api/2.0/settings/storage/backup")
-    suspend fun getAllBackupStorages(@Query("Dump") dump: kotlin.Boolean? = null): Response<StorageArrayWrapper>
+    suspend fun getAllBackupStorages(@Query("dump") dump: kotlin.Boolean? = null): Response<StorageArrayWrapper>
 
     /**
      * GET api/2.0/settings/storage/cdn
@@ -127,6 +126,7 @@ interface StorageApi {
      * Returns how far the current portal has got in moving its data to another storage, as a percentage from 0 to  100. The migration itself is started by `PUT api/2.0/settings/storage` or `DELETE api/2.0/settings/storage`,  which put the portal into the migrating state; poll this operation until the value reaches 100, then the  portal is served from the new storage. A value of -1 means storage migration is not offered on this  installation, which is the case for every portal that is not a server one. Ask for the progress only once a  migration has actually been started: for a portal whose migration the server does not remember, the call fails  instead of answering with a zero. The response carries the percentage only, without the error flag the  migration service reports internally, so a value that stops advancing is a reason to check the portal state  with `GET api/2.0/portal` rather than proof of progress. The caller needs the permission to edit portal  settings, which in practice means the portal owner or a DocSpace admin, and the call is accepted even when the  portal payment has lapsed. Nothing is written and the call is safe to repeat.
      * Responses:
      *  - 200: Migration progress as a percentage, or -1 where storage migration is not offered
+     *  - 403: The caller has no portal-settings right
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
@@ -192,7 +192,7 @@ interface StorageApi {
      * Selects the content delivery network that serves the static content of the portal and saves the credentials it  needs: `module` is the identifier of one of the entries of `GET api/2.0/settings/storage/cdn`, and `props`  carries that provider's authentication keys as name and value pairs. The provider has to be available on the  server, which the `isSet` flag of the listing tells, otherwise the request is rejected as invalid. Sending the  module the portal already uses changes nothing and returns the saved settings as they are. Any other module is  saved and the upload of the static content is handed to the storage service; the settings come back only when  that hand-over succeeds, a failure being reported as a server error. Unlike the portal storage this has no  progress operation, so there is nothing to poll: the content appears on the CDN once the service has copied  it. Only static content is affected here, never documents; for those use `PUT api/2.0/settings/storage`. The  caller needs the permission to edit portal settings, which in practice means the portal owner or a DocSpace  admin, on a server installation with an unrestricted access space. The response is the stored CDN  configuration.
      * Responses:
      *  - 200: The saved CDN configuration; the upload of the static content has been handed to the storage service
-     *  - 400: The requested CDN module is not configured on this installation
+     *  - 400: The request body cannot be read or has no `module`, or the requested CDN module is unknown or not configured on this installation
      *  - 403: The caller may not edit portal settings, or this installation does not allow changing the storage
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
@@ -204,11 +204,11 @@ interface StorageApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-cdn-storage/
      *
      *
-     * @param storageRequestsDto  (optional)
-     * @return [CdnStorageSettingsWrapper]
+     * @param storageRequestDto  (optional)
+     * @return [StorageSettingsWrapper]
      */
     @PUT("api/2.0/settings/storage/cdn")
-    suspend fun updateCdnStorage(@Body storageRequestsDto: StorageRequestsDto? = null): Response<CdnStorageSettingsWrapper>
+    suspend fun updateCdnStorage(@Body storageRequestDto: StorageRequestDto? = null): Response<StorageSettingsWrapper>
 
     /**
      * PUT api/2.0/settings/storage
@@ -216,7 +216,7 @@ interface StorageApi {
      * Points the current portal at another storage and saves the credentials it needs: `module` is the identifier of  one of the storages listed by `GET api/2.0/settings/storage`, and `props` carries that provider's  authentication keys as name and value pairs, for example the bucket, region and access key of an Amazon S3  storage. The provider has to be available on the server, which the `isSet` flag of the listing tells,  otherwise the request is rejected as invalid. Sending the module the portal already uses changes nothing and  returns the saved settings as they are. Any other module starts an asynchronous migration of the portal data:  the portal moves into the migrating state and stays unavailable until the transfer ends, so follow it with  `GET api/2.0/settings/storage/progress` and do not send a second switch while it runs. The caller needs the  permission to edit portal settings, which in practice means the portal owner or a DocSpace admin, on a server  installation with an unrestricted access space. The response is the stored configuration, module and  properties, not the state of the migration. To return to the built-in local storage call  `DELETE api/2.0/settings/storage`, and for the CDN use `PUT api/2.0/settings/storage/cdn`.
      * Responses:
      *  - 200: The saved storage configuration; migration of the portal data to it has been started
-     *  - 400: The requested storage module is not configured on this installation
+     *  - 400: The request body cannot be read or has no `module`, or the requested storage module is unknown or not configured on this installation
      *  - 403: The caller may not edit portal settings, or this installation does not allow changing the storage
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
@@ -228,10 +228,10 @@ interface StorageApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-storage/
      *
      *
-     * @param storageRequestsDto  (optional)
+     * @param storageRequestDto  (optional)
      * @return [StorageSettingsWrapper]
      */
     @PUT("api/2.0/settings/storage")
-    suspend fun updateStorage(@Body storageRequestsDto: StorageRequestsDto? = null): Response<StorageSettingsWrapper>
+    suspend fun updateStorage(@Body storageRequestDto: StorageRequestDto? = null): Response<StorageSettingsWrapper>
 
 }

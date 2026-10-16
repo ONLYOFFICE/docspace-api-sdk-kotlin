@@ -27,7 +27,7 @@ import onlyoffice.docspace.api.sdk.models.ErrorApiResponse
 import onlyoffice.docspace.api.sdk.models.FinishDto
 import onlyoffice.docspace.api.sdk.models.MigrationApiInfo
 import onlyoffice.docspace.api.sdk.models.MigrationStatusWrapper
-import onlyoffice.docspace.api.sdk.models.STRINGArrayWrapper
+import onlyoffice.docspace.api.sdk.models.StringArrayWrapper
 
 interface MigrationApi {
     /**
@@ -80,11 +80,11 @@ interface MigrationApi {
      * Closes a completed import: it can send every user the import created the activation email they need before  they can sign in, and it then discards the job and the data uploaded for it. Call it once  `GET api/2.0/migration/status` reports `isCompleted` for the import; a DocSpace administrator is required, and  with `isSendWelcomeEmail` set to true the job must still be in the queue, so do not clear it first. That flag  decides what happens to the imported people: true mails the activation link to each of them who has not  activated their account yet and skips the ones that are already active, false ends the import quietly and  leaves inviting them for later. The call writes to the portal and is not idempotent - the emails go out again  on every call - while its second half repeats what `POST api/2.0/migration/clear` does, removing the finished  job and the uploaded backup and leaving everything already imported in place. It answers with an empty body,  after which `GET api/2.0/migration/status` returns an empty result and `GET api/2.0/migration/logs` answers  404, so download the log first.
      * Responses:
      *  - 200: The activation emails have been sent if they were asked for and the clean-up has been queued. The response carries no content
+     *  - 400: The request body cannot be read or has no `isSendWelcomeEmail`
      *  - 403: The caller is not a DocSpace administrator
+     *  - 500: `isSendWelcomeEmail` is true and the portal holds no import that has reached the user step: no job at all, only a parse pass, or an import still running or stopped before that step
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
-     *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -160,10 +160,10 @@ interface MigrationApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/list-migrations/
      *
      *
-     * @return [STRINGArrayWrapper]
+     * @return [StringArrayWrapper]
      */
     @GET("api/2.0/migration/list")
-    suspend fun listMigrations(): Response<STRINGArrayWrapper>
+    suspend fun listMigrations(): Response<StringArrayWrapper>
 
     /**
      * POST api/2.0/migration/migrate
@@ -171,7 +171,7 @@ interface MigrationApi {
      * Starts the import itself: the users, the groups and the files selected in the request body are created on this  portal from the backup that the parse pass has read. Run `POST api/2.0/migration/init/{migratorName}` first  and wait for `isCompleted` in `GET api/2.0/migration/status`, then send `parseResult` from that answer back  here with `shouldImport` set on the users and groups to take and the `import...Files` flags set for the  content to copy. A DocSpace administrator is required, and importing a user as `DocSpaceAdmin` additionally  requires the caller to be the portal owner unless a user with that email is an administrator of this portal  already, otherwise the whole call is rejected with 403 before anything is imported. The job is queued and the  call answers with an empty body at once: watch `progress`, `successedUsers`, `failedUsers` and `error` in  `GET api/2.0/migration/status` and read what each step did from `GET api/2.0/migration/logs`. The import  writes to the portal and cannot be undone, and a repeat is no help: a call made while the job runs is ignored,  and once the job has ended the uploaded backup is deleted, so a new call has nothing to read until the archive  is uploaded and parsed again. When the import is done, close it with `POST api/2.0/migration/finish`, which can  also mail the imported users their activation link.
      * Responses:
      *  - 200: The import has been queued; the response carries no content and the progress is read from `GET api/2.0/migration/status`
-     *  - 400: The request body is missing or could not be read as a parse result
+     *  - 400: The request body is missing or could not be read as a parse result, including an unknown `userType` name, or a user in `users`, `withoutEmailUsers` or `existUsers` has an `email` that is empty or not a valid address
      *  - 403: The caller is not a DocSpace administrator, or is not the portal owner and asked to import a user as `DocSpaceAdmin` who is not an administrator of this portal yet
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.

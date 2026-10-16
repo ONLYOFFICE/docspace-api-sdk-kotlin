@@ -250,7 +250,7 @@ launch(Dispatchers.IO) {
 
 <a id="listMigrations"></a>
 # **listMigrations**
-> STRINGArrayWrapper listMigrations ()
+> StringArrayWrapper listMigrations ()
 
 Lists the source products this installation can import a portal from, as the migrator names every other  operation in this group expects. Nothing has to be called first, a DocSpace administrator is required as  everywhere here, and the call is read-only and idempotent. The answer is a plain list of names such as  `GoogleWorkspace`, `Nextcloud` or `Workspace`, never localized and ordered as the migrators are registered;  pass one of them as `migratorName` to `POST api/2.0/migration/init/{migratorName}`, where the match ignores  case. The list depends on the installation rather than on the portal, so it does not change while the portal  runs, and a name that is not in it is not rejected by the operation that takes it - the queued job ends with  the failure reported in `error` of `GET api/2.0/migration/status`.
 
@@ -261,7 +261,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**STRINGArrayWrapper**](STRINGArrayWrapper.md)
+[**StringArrayWrapper**](StringArrayWrapper.md)
 
 ### Authorization
 
@@ -284,7 +284,7 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(MigrationApi::class.java)
 
 launch(Dispatchers.IO) {
-    val result : STRINGArrayWrapper = webService.listMigrations()
+    val result : StringArrayWrapper = webService.listMigrations()
 }
 ```
 

@@ -23,14 +23,14 @@ import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
-import onlyoffice.docspace.api.sdk.models.AuthRequestsDto
-import onlyoffice.docspace.api.sdk.models.AuthWithCodeRequestsDto
+import onlyoffice.docspace.api.sdk.models.AuthRequestDto
+import onlyoffice.docspace.api.sdk.models.AuthWithCodeRequestDto
 import onlyoffice.docspace.api.sdk.models.AuthenticationTokenWrapper
 import onlyoffice.docspace.api.sdk.models.BooleanWrapper
+import onlyoffice.docspace.api.sdk.models.CheckConfirmRequestDto
 import onlyoffice.docspace.api.sdk.models.ConfirmWrapper
-import onlyoffice.docspace.api.sdk.models.EmailValidationKeyModel
 import onlyoffice.docspace.api.sdk.models.ErrorApiResponse
-import onlyoffice.docspace.api.sdk.models.MobileRequestsDto
+import onlyoffice.docspace.api.sdk.models.MobileRequestDto
 import onlyoffice.docspace.api.sdk.models.StringWrapper
 
 interface AuthenticationApi {
@@ -53,11 +53,11 @@ interface AuthenticationApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/authenticate-me/
      *
      *
-     * @param authRequestsDto  (optional)
+     * @param authRequestDto  (optional)
      * @return [AuthenticationTokenWrapper]
      */
     @POST("api/2.0/authentication")
-    suspend fun authenticateMe(@Body authRequestsDto: AuthRequestsDto? = null): Response<AuthenticationTokenWrapper>
+    suspend fun authenticateMe(@Body authRequestDto: AuthRequestDto? = null): Response<AuthenticationTokenWrapper>
 
     /**
      * POST api/2.0/authentication/{code}
@@ -79,11 +79,11 @@ interface AuthenticationApi {
      *
      *
      * @param code The two-factor authentication code. Send the same value as the `code` of the request body, which is the one the handler reads.
-     * @param authWithCodeRequestsDto  (optional)
+     * @param authWithCodeRequestDto  (optional)
      * @return [AuthenticationTokenWrapper]
      */
     @POST("api/2.0/authentication/{code}")
-    suspend fun authenticateMeFromBodyWithCode(@Path("code") code: kotlin.String, @Body authWithCodeRequestsDto: AuthWithCodeRequestsDto? = null): Response<AuthenticationTokenWrapper>
+    suspend fun authenticateMeFromBodyWithCode(@Path("code") code: kotlin.String, @Body authWithCodeRequestDto: AuthWithCodeRequestDto? = null): Response<AuthenticationTokenWrapper>
 
     /**
      * POST api/2.0/authentication/confirm
@@ -91,10 +91,10 @@ interface AuthenticationApi {
      * Checks the key of a confirmation link that the portal sent by email and reports whether the action behind that  link can still be carried out - an employee invitation, phone activation, a password change, portal removal  and so on. Take `key` and `type` from the query string of the link; when `key` is left empty, the key saved in  the confirmation cookie of the same `type` is used instead. Open to unauthenticated callers and read-only: it  neither accepts the invitation nor signs anyone in. `result` is `Ok` when the link may be used, `Invalid` when  the key does not match the type or the email, `Expired` when it is too old, and `TariffLimit`, `UserExisted`,  `UserExcluded` or `QuotaFailed` when the key is sound but the invitation behind it cannot be accepted. Only  `Ok` should be followed by the operation that performs the action - `POST api/2.0/people` with  `fromInviteLink` for an invitation, `POST api/2.0/authentication` with `confirmData` for a sign-in link - and  for an invitation to a room the answer also carries the identifier and the title of that room.
      * Responses:
      *  - 200: Whether the confirmation link may be used, with the room and the email it was issued for when it is an invitation
+     *  - 400: The request body cannot be read, or `email` is sent but empty or not a valid email address
      *  - 403: The portal's IP restrictions do not allow this address to check an invitation link
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -102,11 +102,11 @@ interface AuthenticationApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/check-confirm/
      *
      *
-     * @param emailValidationKeyModel  (optional)
+     * @param checkConfirmRequestDto  (optional)
      * @return [ConfirmWrapper]
      */
     @POST("api/2.0/authentication/confirm")
-    suspend fun checkConfirm(@Body emailValidationKeyModel: EmailValidationKeyModel? = null): Response<ConfirmWrapper>
+    suspend fun checkConfirm(@Body checkConfirmRequestDto: CheckConfirmRequestDto? = null): Response<ConfirmWrapper>
 
     /**
      * GET api/2.0/authentication
@@ -165,11 +165,11 @@ interface AuthenticationApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/save-mobile-phone/
      *
      *
-     * @param mobileRequestsDto  (optional)
+     * @param mobileRequestDto  (optional)
      * @return [AuthenticationTokenWrapper]
      */
     @POST("api/2.0/authentication/setphone")
-    suspend fun saveMobilePhone(@Body mobileRequestsDto: MobileRequestsDto? = null): Response<AuthenticationTokenWrapper>
+    suspend fun saveMobilePhone(@Body mobileRequestDto: MobileRequestDto? = null): Response<AuthenticationTokenWrapper>
 
     /**
      * POST api/2.0/authentication/sendsms
@@ -190,10 +190,10 @@ interface AuthenticationApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/send-sms-code/
      *
      *
-     * @param authRequestsDto  (optional)
+     * @param authRequestDto  (optional)
      * @return [AuthenticationTokenWrapper]
      */
     @POST("api/2.0/authentication/sendsms")
-    suspend fun sendSmsCode(@Body authRequestsDto: AuthRequestsDto? = null): Response<AuthenticationTokenWrapper>
+    suspend fun sendSmsCode(@Body authRequestDto: AuthRequestDto? = null): Response<AuthenticationTokenWrapper>
 
 }

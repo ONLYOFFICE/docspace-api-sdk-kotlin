@@ -16,6 +16,7 @@
 
 package onlyoffice.docspace.api.sdk.models
 
+import onlyoffice.docspace.api.sdk.models.AiChatToolPrefsScope
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -26,6 +27,7 @@ import com.squareup.moshi.JsonClass
  * @param serverType 
  * @param toolNames Tool names to disable.
  * @param entityId 
+ * @param scope The list the write lands in; omitted means the caller's own.
  */
 
 
@@ -38,7 +40,10 @@ data class AiToolsSetDisabledRequest (
     val toolNames: kotlin.collections.List<kotlin.String>,
 
     @Json(name = "entityId")
-    val entityId: kotlin.String? = null
+    val entityId: kotlin.String? = null,
+
+    @Json(name = "scope")
+    val scope: AiChatToolPrefsScope? = null
 
 ) {
 

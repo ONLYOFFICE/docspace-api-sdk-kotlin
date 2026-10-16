@@ -17,7 +17,7 @@
 package onlyoffice.docspace.api.sdk.models
 
 import onlyoffice.docspace.api.sdk.models.AiActionType
-import onlyoffice.docspace.api.sdk.models.AiTErrorData
+import onlyoffice.docspace.api.sdk.models.AiErrorData
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -36,7 +36,7 @@ data class AiBulkAssignmentResultErrorsInner (
     val actionType: AiActionType,
 
     @Json(name = "error")
-    val error: AiTErrorData
+    val error: AiErrorData
 
 ) {
 

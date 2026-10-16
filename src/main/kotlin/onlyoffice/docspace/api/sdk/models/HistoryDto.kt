@@ -18,8 +18,8 @@ package onlyoffice.docspace.api.sdk.models
 
 import onlyoffice.docspace.api.sdk.models.ApiDateTime
 import onlyoffice.docspace.api.sdk.models.EmployeeDto
-import onlyoffice.docspace.api.sdk.models.HistoryAction
-import onlyoffice.docspace.api.sdk.models.HistoryData
+import onlyoffice.docspace.api.sdk.models.HistoryActionDto
+import onlyoffice.docspace.api.sdk.models.HistoryDataDto
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -42,7 +42,7 @@ data class HistoryDto (
     val id: kotlin.Int,
 
     @Json(name = "action")
-    val action: HistoryAction,
+    val action: HistoryActionDto,
 
     @Json(name = "initiator")
     val initiator: EmployeeDto,
@@ -51,7 +51,7 @@ data class HistoryDto (
     val date: ApiDateTime,
 
     @Json(name = "data")
-    val `data`: HistoryData? = null,
+    val `data`: HistoryDataDto? = null,
 
     @Json(name = "related")
     val related: kotlin.collections.List<HistoryDto>? = null

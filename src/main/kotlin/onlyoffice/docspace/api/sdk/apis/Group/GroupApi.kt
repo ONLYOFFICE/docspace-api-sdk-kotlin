@@ -40,7 +40,7 @@ interface GroupApi {
      * Creates a group with the given name and, optionally, a manager and a first set of members.  The caller needs the permissions to edit groups and to add and remove users.  The name is required and cannot be blank, and unlike the operations that add members later, this one checks  every listed account upfront and rejects the whole call with 400 if any of them is unusable - a guest, a  disabled account or an ID that matches nobody.  The call is not idempotent: names are not unique, so repeating it creates a second group with the same name.  Creating a group raises a `GroupCreated` webhook, and the answer holds the new group with its members  included.  Members can be changed afterwards through `PUT api/2.0/group/{id}` or the dedicated member operations.
      * Responses:
      *  - 200: The new group, with its members
-     *  - 400: The group name is empty, or one of the listed accounts is a guest, is disabled or does not exist
+     *  - 400: The request body cannot be read or has no `groupName`, the group name is `null`, blank or longer than 128 characters, or one of the listed members or the manager is a guest, is disabled or does not exist
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
@@ -136,7 +136,7 @@ interface GroupApi {
     suspend fun getGroup(@Path("id") id: java.util.UUID, @Query("includeMembers") includeMembers: kotlin.Boolean? = null): Response<GroupWrapper>
 
     /**
-     * GET api/2.0/group/user/{userid}
+     * GET api/2.0/group/user/{userId}
      * Get user groups
      * Returns every group the account with the ID in the route belongs to, as a flat list of ID and name pairs.  The caller needs the permission to read groups.  The call is read-only, is not paged, and answers an empty list both for an account that belongs to no group  and for an ID that matches no account, so an empty answer does not prove the account exists.  The entries are summaries and carry neither the manager nor the members - read `GET api/2.0/group/{id}` for  the full picture of one of them.
      * Responses:
@@ -153,23 +153,23 @@ interface GroupApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-group-by-user-id/
      *
      *
-     * @param userid The ID of the account whose groups are listed, taken from the route. An ID that matches no account yields an  empty list rather than 404.
+     * @param userId The ID of the account whose groups are listed, taken from the route. An ID that matches no account yields an  empty list rather than 404.
      * @return [GroupSummaryArrayWrapper]
      */
-    @GET("api/2.0/group/user/{userid}")
-    suspend fun getGroupByUserId(@Path("userid") userid: java.util.UUID): Response<GroupSummaryArrayWrapper>
+    @GET("api/2.0/group/user/{userId}")
+    suspend fun getGroupByUserId(@Path("userId") userId: java.util.UUID): Response<GroupSummaryArrayWrapper>
 
     /**
      * GET api/2.0/group
      * Get groups
-     * Returns the groups of the portal, one page at a time, with the summary information about each of them - the  ID, the name and the manager - but without the member list.  The caller needs the permission to read groups.  The call is read-only, and the number of groups that match the filters is reported in the total count of the  response, so a client can page through them with `count` and `startIndex`.  Narrow the result with `filterValue` on the group name, with `userId` to keep only the groups that account  belongs to, and with `manager` set to true to keep only the groups it manages; order it with `sortBy` and  `sortOrder`, and an unknown `sortBy` falls back to sorting by title.  The entries carry no members - read `GET api/2.0/group/{id}` with `includeMembers` for one group, or  `GET api/2.0/group/user/{userid}` to find the groups of a single account.
+     * Returns the groups of the portal, one page at a time, with the summary information about each of them - the  ID, the name and the manager - but without the member list.  The caller needs the permission to read groups.  The call is read-only, and the number of groups that match the filters is reported in the total count of the  response, so a client can page through them with `count` and `startIndex`.  Narrow the result with `filterValue` on the group name, with `userId` to keep only the groups that account  belongs to, and with `manager` set to true to keep only the groups it manages; order it with `sortBy` and  `sortOrder`, and an unknown `sortBy` falls back to sorting by title.  The entries carry no members - read `GET api/2.0/group/{id}` with `includeMembers` for one group, or  `GET api/2.0/group/user/{userId}` to find the groups of a single account.
      * Responses:
      *  - 200: The matching groups, with their summary information
+     *  - 400: A parameter has the wrong type, or the `count` is outside its allowed range
      *  - 403: No permissions to perform this action
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -247,12 +247,12 @@ interface GroupApi {
      * Makes an account the manager of a group, replacing whoever managed it before.  The caller needs the permissions to edit groups and to add and remove users.  Both the group and the account have to exist: the operation answers 404 when the ID in the route matches no  live group and also when `userId` matches no account, so the message of the error says which of the two was  not found.  The account is added to the group at the same time, so a manager does not have to be a member beforehand, and  the previous manager stays in the group as an ordinary member.  A group has one manager, which makes the call idempotent when it names the account that manages it already.  The answer is the group with its new manager.  To change the members rather than the manager, use `PUT api/2.0/group/{id}/members`.
      * Responses:
      *  - 200: The group with its new manager
+     *  - 400: The request body cannot be read or has no `userId`
      *  - 403: No permissions to perform this action
      *  - 404: No group has the specified ID, or no account has the specified userId
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -273,7 +273,7 @@ interface GroupApi {
      * Replaces the whole member list of a group with the accounts given in the request, removing everybody who is  not in that list.  The caller needs the permissions to edit groups and to add and remove users, and the ID has to belong to a  group that has not been deleted, otherwise the operation answers 404.  At least one of the listed accounts has to be usable as a group member, otherwise the call is rejected with  400 and the group is left untouched; the accounts that cannot be members - a guest, a disabled account or an  ID that matches nobody - are then silently skipped while the rest are applied.  The replacement is not atomic: the current members are removed first and the new ones added afterwards, so a  failure in between can leave the group empty.  The answer is the group with the members it ends up with, which is why it should be read instead of assuming  the request was applied verbatim.  To add or remove a few accounts without touching the others, use `PUT api/2.0/group/{id}/members` and  `DELETE api/2.0/group/{id}/members`.
      * Responses:
      *  - 200: The group with the members it ends up with
-     *  - 400: None of the listed accounts can be a group member
+     *  - 400: The request body cannot be read or has no `members` list, or none of the listed accounts can be a group member
      *  - 403: No permissions to perform this action
      *  - 404: No group has the specified ID
      *  - 401: Unauthorized
@@ -299,12 +299,12 @@ interface GroupApi {
      * Changes the name and the manager of a group and adds or removes members, in one call.  The caller needs the permissions to edit groups and to add and remove users, and the ID has to belong to a  group that has not been deleted, otherwise the operation answers 404.  Every field is optional and the ones that are left out are kept: omitting `groupName` keeps the current name,  and omitting `groupManager` keeps the current manager rather than clearing it.  Accounts in `membersToAdd` that cannot be group members - a guest, a disabled account or an ID that matches  nobody - are silently skipped instead of failing the call, so compare the members in the answer with what was  sent to see what was actually applied.  Members are added first and removed afterwards, an account listed in both lists therefore ends up removed,  and removing an account that is not a member changes nothing.  The change raises a `GroupUpdated` webhook, and the answer holds the group as it is after the update.
      * Responses:
      *  - 200: The group as it is after the update
+     *  - 400: The request body cannot be read, or `groupName` is longer than 128 characters
      *  - 403: No permissions to perform this action
      *  - 404: No group has the specified ID
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *

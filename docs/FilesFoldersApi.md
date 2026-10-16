@@ -43,6 +43,8 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 | [**insertFileToMyFromBody**](FilesFoldersApi.md#insertFileToMyFromBody) | **POST** api/2.0/files/@my/insert | Insert a file into My documents |
 | [**renameFolder**](FilesFoldersApi.md#renameFolder) | **PUT** api/2.0/files/folder/{folderId} | Rename a folder |
 | [**renameFolder**](FilesFoldersApi.md#renameFolder-thirdparty) | **PUT** api/2.0/files/folder/{folderId} | Rename a folder (third-party storage) |
+| [**searchFolder**](FilesFoldersApi.md#searchFolder) | **POST** api/2.0/files/{folderId}/search | Search a folder by metadata |
+| [**searchFolder**](FilesFoldersApi.md#searchFolder-thirdparty) | **POST** api/2.0/files/{folderId}/search | Search a folder by metadata (third-party storage) |
 | [**setFolderOrder**](FilesFoldersApi.md#setFolderOrder) | **PUT** api/2.0/files/folder/{folderId}/order | Set folder order |
 | [**setFolderOrder**](FilesFoldersApi.md#setFolderOrder-thirdparty) | **PUT** api/2.0/files/folder/{folderId}/order | Set folder order (third-party storage) |
 | [**setFolderPrimaryExternalLink**](FilesFoldersApi.md#setFolderPrimaryExternalLink) | **PUT** api/2.0/files/folder/{id}/links | Set the folder external link |
@@ -56,7 +58,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 
 <a id="checkUpload"></a>
 # **checkUpload**
-> STRINGArrayWrapper checkUpload (kotlin.Int folderId, CheckUploadRequest checkUploadRequest)
+> StringArrayWrapper checkUpload (kotlin.Int folderId, CheckUploadRequest checkUploadRequest)
 
 Reports which of the submitted titles already belong to a file in the folder, so an upload can decide in  advance whether to overwrite or to ask for another name. Only the clashing titles come back, unordered and  without repetitions, and an empty array means every name is free. Matching is by title and ignores case, so a  name that differs only in capitalisation is still reported; an existing file that is encrypted is left out,  because an upload cannot take it over. The call changes nothing. It needs the same right as the upload itself,  the right to add content to the folder, which room managers and content creators have and readers, editors and  guests do not; an archived room, a section root and a folder the caller cannot write to are all refused, while  an unknown folder is answered as missing. A request without `filesTitle` is rejected as an invalid request, an  empty list is accepted and answers with an empty array.
 
@@ -70,7 +72,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Return type
 
-[**STRINGArrayWrapper**](STRINGArrayWrapper.md)
+[**StringArrayWrapper**](StringArrayWrapper.md)
 
 ### Authorization
 
@@ -95,7 +97,7 @@ val folderId : kotlin.Int = 1 // kotlin.Int | The folder whose contents the name
 val checkUploadRequest : CheckUploadRequest =  // CheckUploadRequest | The names to test against the files the folder already holds.
 
 launch(Dispatchers.IO) {
-    val result : STRINGArrayWrapper = webService.checkUpload(folderId, checkUploadRequest)
+    val result : StringArrayWrapper = webService.checkUpload(folderId, checkUploadRequest)
 }
 ```
 
@@ -107,7 +109,7 @@ launch(Dispatchers.IO) {
 
 <a id="checkUpload-thirdparty"></a>
 # **checkUpload** (third-party storage)
-> STRINGArrayWrapper checkUpload (kotlin.String folderId, CheckUploadRequest checkUploadRequest)
+> StringArrayWrapper checkUpload (kotlin.String folderId, CheckUploadRequest checkUploadRequest)
 
 Reports which of the submitted titles already belong to a file in the folder, so an upload can decide in  advance whether to overwrite or to ask for another name. Only the clashing titles come back, unordered and  without repetitions, and an empty array means every name is free. Matching is by title and ignores case, so a  name that differs only in capitalisation is still reported; an existing file that is encrypted is left out,  because an upload cannot take it over. The call changes nothing. It needs the same right as the upload itself,  the right to add content to the folder, which room managers and content creators have and readers, editors and  guests do not; an archived room, a section root and a folder the caller cannot write to are all refused, while  an unknown folder is answered as missing. A request without `filesTitle` is rejected as an invalid request, an  empty list is accepted and answers with an empty array.
 
@@ -121,7 +123,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Return type
 
-[**STRINGArrayWrapper**](STRINGArrayWrapper.md)
+[**StringArrayWrapper**](StringArrayWrapper.md)
 
 ### Authorization
 
@@ -146,7 +148,7 @@ val folderId : kotlin.String = sbox-42 // kotlin.String | The folder whose conte
 val checkUploadRequest : CheckUploadRequest =  // CheckUploadRequest | The names to test against the files the folder already holds.
 
 launch(Dispatchers.IO) {
-    val result : STRINGArrayWrapper = webService.checkUpload(folderId, checkUploadRequest)
+    val result : StringArrayWrapper = webService.checkUpload(folderId, checkUploadRequest)
 }
 ```
 
@@ -158,7 +160,7 @@ launch(Dispatchers.IO) {
 
 <a id="createFolder"></a>
 # **createFolder**
-> FolderWrapper createFolder (kotlin.Int folderId, CreateFolder createFolder)
+> FolderWrapper createFolder (kotlin.Int folderId, CreateFolderRequest createFolderRequest)
 
 Creates a folder inside the folder named in the path and answers with the folder as it was stored. The title  is trimmed, may not be blank and is refused when it is longer than the limit the schema prints; titles are not  required to be unique, so creating the same title twice leaves two folders side by side, which makes the call  mutating and not idempotent. The caller needs the right to create content in the parent, which the room  manager, a content creator and the owner of a personal section have; a member without that right, an archived  parent, and a section root that only holds rooms - Rooms, Forms and AI agents - are all refused, as is a  parent that does not exist. Rooms are not created here: use `POST api/2.0/files/rooms` for those, and this  operation for ordinary folders within them. Members of the room are notified of the new folder. Read the  identifier of the new folder from `id` and fill it with `POST api/2.0/files/{folderId}/upload`.
 
@@ -168,7 +170,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **folderId** | **kotlin.Int**| The folder the request is addressed to: when a folder is created it is the parent that receives the new  folder, and when a folder is renamed it is the folder that gets the new title. | |
-| **createFolder** | [**CreateFolder**](CreateFolder.md)| The title carried by the request body. | |
+| **createFolderRequest** | [**CreateFolderRequest**](CreateFolderRequest.md)| The title carried by the request body. | |
 
 ### Return type
 
@@ -194,10 +196,10 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
 val folderId : kotlin.Int = 1 // kotlin.Int | The folder the request is addressed to: when a folder is created it is the parent that receives the new  folder, and when a folder is renamed it is the folder that gets the new title.
-val createFolder : CreateFolder =  // CreateFolder | The title carried by the request body.
+val createFolderRequest : CreateFolderRequest =  // CreateFolderRequest | The title carried by the request body.
 
 launch(Dispatchers.IO) {
-    val result : FolderWrapper = webService.createFolder(folderId, createFolder)
+    val result : FolderWrapper = webService.createFolder(folderId, createFolderRequest)
 }
 ```
 
@@ -209,7 +211,7 @@ launch(Dispatchers.IO) {
 
 <a id="createFolder-thirdparty"></a>
 # **createFolder** (third-party storage)
-> ThirdPartyFolderWrapper createFolder (kotlin.String folderId, CreateFolder createFolder)
+> ThirdPartyFolderWrapper createFolder (kotlin.String folderId, CreateFolderRequest createFolderRequest)
 
 Creates a folder inside the folder named in the path and answers with the folder as it was stored. The title  is trimmed, may not be blank and is refused when it is longer than the limit the schema prints; titles are not  required to be unique, so creating the same title twice leaves two folders side by side, which makes the call  mutating and not idempotent. The caller needs the right to create content in the parent, which the room  manager, a content creator and the owner of a personal section have; a member without that right, an archived  parent, and a section root that only holds rooms - Rooms, Forms and AI agents - are all refused, as is a  parent that does not exist. Rooms are not created here: use `POST api/2.0/files/rooms` for those, and this  operation for ordinary folders within them. Members of the room are notified of the new folder. Read the  identifier of the new folder from `id` and fill it with `POST api/2.0/files/{folderId}/upload`.
 
@@ -219,7 +221,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **folderId** | **kotlin.String**| The folder the request is addressed to: when a folder is created it is the parent that receives the new  folder, and when a folder is renamed it is the folder that gets the new title. | |
-| **createFolder** | [**CreateFolder**](CreateFolder.md)| The title carried by the request body. | |
+| **createFolderRequest** | [**CreateFolderRequest**](CreateFolderRequest.md)| The title carried by the request body. | |
 
 ### Return type
 
@@ -245,10 +247,10 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
 val folderId : kotlin.String = sbox-42 // kotlin.String | The folder the request is addressed to: when a folder is created it is the parent that receives the new  folder, and when a folder is renamed it is the folder that gets the new title.
-val createFolder : CreateFolder =  // CreateFolder | The title carried by the request body.
+val createFolderRequest : CreateFolderRequest =  // CreateFolderRequest | The title carried by the request body.
 
 launch(Dispatchers.IO) {
-    val result : ThirdPartyFolderWrapper = webService.createFolder(folderId, createFolder)
+    val result : ThirdPartyFolderWrapper = webService.createFolder(folderId, createFolderRequest)
 }
 ```
 
@@ -364,7 +366,7 @@ launch(Dispatchers.IO) {
 # **createReportFolderHistory**
 > DocumentBuilderTaskWrapper createReportFolderHistory (kotlin.Int folderId, AuditReportFormat format, java.time.OffsetDateTime from, java.time.OffsetDateTime to)
 
-Queues a background job that renders the history of a folder into a spreadsheet, or into a CSV file when  `format` asks for one, and saves the result in the caller's My documents. The answer is the queued task, not  the report: poll `GET api/2.0/files/folder/{folderId}/log/report` until `isCompleted` is true, then take the  file from `resultFileId`, `resultFileName` and `resultFileUrl`, of which a CSV report fills only the last two.  `from` and `to` limit the exported period; leaving both out exports the whole history. While a report for the  same folder and caller is still running, this call joins it and answers with the running task instead of  starting a second one, so retrying is safe. The caller needs read access to the folder and may not be a guest,  and the portal plan has to include the audit feature - otherwise the call is refused, with 403 for the access  rule and 404 for a folder that does not exist. Only a portal administrator gets the address, browser and  platform columns. Give up a running report with `DELETE api/2.0/files/folder/{folderId}/log/report`.
+Queues a background job that renders the history of a folder into a spreadsheet, or into a CSV file when  `format` asks for one, and saves the result in the caller's My documents. The answer is the queued task, not  the report: poll `GET api/2.0/files/folder/{folderId}/log/report` until `isCompleted` is true, then take the  file from `resultFileId`, `resultFileName` and `resultFileUrl`; the URL of a CSV file too large for the editor  downloads it instead of opening it. An XLSX report keeps only the most recent events, at most 200,000 by default  and fewer when the events are long, and its header says how many were left out; `format=Csv` exports every event  of the period. `from` and `to` limit the exported period; leaving both out exports the whole history. While a  report for the same folder and caller is still running, this call joins it and answers with the running task  instead of starting a second one, so retrying is safe. The caller needs read access to the folder and may not be  a guest - otherwise the call is refused with 403, and a folder that does not exist with 404; the report is  available on every pricing plan, and 402 comes only when the login history and audit trail section is turned  off for the portal. Only a portal administrator gets the address, browser and  platform columns. Give up a running report with `DELETE api/2.0/files/folder/{folderId}/log/report`.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-report-folder-history/).
 
@@ -372,7 +374,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **folderId** | **kotlin.Int**| The folder whose history is exported; the report covers the folder itself and the entries inside it. | |
-| **format** | [**AuditReportFormat**](.md)| The shape the report is written in: `Xlsx` produces a spreadsheet that is saved as a file of the portal, while  `Csv` produces a comma-separated text file that is uploaded to My documents without being reported back with  a file identifier. | [optional] [enum: 0, 1] |
+| **format** | [**AuditReportFormat**](.md)| The shape the report is written in: `Xlsx` produces a spreadsheet and `Csv` a comma-separated text file, and  either is saved as a file in My documents. | [optional] [enum: 0, 1] |
 | **from** | **java.time.OffsetDateTime**| The earliest moment an exported entry may have, read in the time zone of the portal; left out, the report  starts at the oldest entry the portal still keeps. | [optional] |
 | **to** | **java.time.OffsetDateTime**| The latest moment an exported entry may have, read in the time zone of the portal; left out, the report ends  at the newest entry. | [optional] |
 
@@ -400,7 +402,7 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
 val folderId : kotlin.Int = 1 // kotlin.Int | The folder whose history is exported; the report covers the folder itself and the entries inside it.
-val format : AuditReportFormat = Xlsx // AuditReportFormat | The shape the report is written in: `Xlsx` produces a spreadsheet that is saved as a file of the portal, while  `Csv` produces a comma-separated text file that is uploaded to My documents without being reported back with  a file identifier.
+val format : AuditReportFormat = Xlsx // AuditReportFormat | The shape the report is written in: `Xlsx` produces a spreadsheet and `Csv` a comma-separated text file, and  either is saved as a file in My documents.
 val from : java.time.OffsetDateTime = 2025-01-01T00:00:00 // java.time.OffsetDateTime | The earliest moment an exported entry may have, read in the time zone of the portal; left out, the report  starts at the oldest entry the portal still keeps.
 val to : java.time.OffsetDateTime = 2025-12-31T23:59:59 // java.time.OffsetDateTime | The latest moment an exported entry may have, read in the time zone of the portal; left out, the report ends  at the newest entry.
 
@@ -417,7 +419,7 @@ launch(Dispatchers.IO) {
 
 <a id="deleteFolder"></a>
 # **deleteFolder**
-> FileOperationArrayWrapper deleteFolder (kotlin.Int folderId, DeleteFolder deleteFolder)
+> FileOperationArrayWrapper deleteFolder (kotlin.Int folderId, DeleteFolderRequest deleteFolderRequest)
 
 Queues the deletion of one folder together with everything inside it, and answers with the file operations of  the caller, the one just created among them. The folder is not gone when the response arrives: poll  `GET api/2.0/files/fileops` until the operation reports `finished`, and read its `error` to learn whether the  deletion succeeded. By default the folder is moved to the Trash section, from where it can be restored;  `immediately=true` discards it for good instead, and inside a room, where there is no Trash, deletion is  always final. `deleteAfter=true` postpones the deletion until the editing sessions on the contents have ended,  so files somebody is working on are not pulled away. The caller needs the right to delete the folder, which  the room manager, a portal administrator acting as room manager and a content creator acting on a folder of  their own have; editing access alone, read access and a guest are refused. The call is destructive. To delete  several items at once use `PUT api/2.0/files/fileops/delete`.
 
@@ -427,7 +429,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **folderId** | **kotlin.Int**| The folder to delete, together with everything it holds. | |
-| **deleteFolder** | [**DeleteFolder**](DeleteFolder.md)| How the deletion is to be carried out. | |
+| **deleteFolderRequest** | [**DeleteFolderRequest**](DeleteFolderRequest.md)| How the deletion is to be carried out. | |
 
 ### Return type
 
@@ -453,10 +455,10 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
 val folderId : kotlin.Int = 10 // kotlin.Int | The folder to delete, together with everything it holds.
-val deleteFolder : DeleteFolder =  // DeleteFolder | How the deletion is to be carried out.
+val deleteFolderRequest : DeleteFolderRequest =  // DeleteFolderRequest | How the deletion is to be carried out.
 
 launch(Dispatchers.IO) {
-    val result : FileOperationArrayWrapper = webService.deleteFolder(folderId, deleteFolder)
+    val result : FileOperationArrayWrapper = webService.deleteFolder(folderId, deleteFolderRequest)
 }
 ```
 
@@ -468,7 +470,7 @@ launch(Dispatchers.IO) {
 
 <a id="deleteFolder-thirdparty"></a>
 # **deleteFolder** (third-party storage)
-> FileOperationArrayWrapper deleteFolder (kotlin.String folderId, DeleteFolder deleteFolder)
+> FileOperationArrayWrapper deleteFolder (kotlin.String folderId, DeleteFolderRequest deleteFolderRequest)
 
 Queues the deletion of one folder together with everything inside it, and answers with the file operations of  the caller, the one just created among them. The folder is not gone when the response arrives: poll  `GET api/2.0/files/fileops` until the operation reports `finished`, and read its `error` to learn whether the  deletion succeeded. By default the folder is moved to the Trash section, from where it can be restored;  `immediately=true` discards it for good instead, and inside a room, where there is no Trash, deletion is  always final. `deleteAfter=true` postpones the deletion until the editing sessions on the contents have ended,  so files somebody is working on are not pulled away. The caller needs the right to delete the folder, which  the room manager, a portal administrator acting as room manager and a content creator acting on a folder of  their own have; editing access alone, read access and a guest are refused. The call is destructive. To delete  several items at once use `PUT api/2.0/files/fileops/delete`.
 
@@ -478,7 +480,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **folderId** | **kotlin.String**| The folder to delete, together with everything it holds. | |
-| **deleteFolder** | [**DeleteFolder**](DeleteFolder.md)| How the deletion is to be carried out. | |
+| **deleteFolderRequest** | [**DeleteFolderRequest**](DeleteFolderRequest.md)| How the deletion is to be carried out. | |
 
 ### Return type
 
@@ -504,10 +506,10 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
 val folderId : kotlin.String = sbox-42 // kotlin.String | The folder to delete, together with everything it holds.
-val deleteFolder : DeleteFolder =  // DeleteFolder | How the deletion is to be carried out.
+val deleteFolderRequest : DeleteFolderRequest =  // DeleteFolderRequest | How the deletion is to be carried out.
 
 launch(Dispatchers.IO) {
-    val result : FileOperationArrayWrapper = webService.deleteFolder(folderId, deleteFolder)
+    val result : FileOperationArrayWrapper = webService.deleteFolder(folderId, deleteFolderRequest)
 }
 ```
 
@@ -568,7 +570,7 @@ launch(Dispatchers.IO) {
 
 <a id="getFavoritesFolder"></a>
 # **getFavoritesFolder**
-> FolderContentWrapper getFavoritesFolder (java.util.UUID userIdOrGroupId, FilterType filterType, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterValue)
+> FolderContentWrapper getFavoritesFolder (java.util.UUID userIdOrGroupId, FilterType filterType, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterValue, kotlin.Int metadataTemplateId, kotlin.String metadataFilters, kotlin.Boolean includeHiddenMetadata)
 
 Returns the caller's own Favorites section: the files and folders this account has marked as favorite,  together with the section folder itself. Favorites are per-account, so the entries another member marked are  not listed here, and a guest sees only their own, usually empty, list. Mark a single file with  `GET api/2.0/files/favorites/{fileId}`, or add and remove batches of files and folders with  `POST api/2.0/files/favorites` and `DELETE api/2.0/files/favorites`. Nothing in the section is modified,  though passing `sortBy` saves the requested order as the default order for this account. Entries the caller  can no longer read, and entries that have been moved to the Trash section, drop out of the listing even  though their favorite mark stays, so the section can shrink without an explicit unmark. `folders` and `files`  hold one page of the section, `total` counts the entries matching the request before `count` and `startIndex`  are applied, and `current` describes the section folder itself.
 
@@ -584,6 +586,9 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **sortBy** | **kotlin.String**| The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place. | [optional] |
 | **sortOrder** | [**SortOrder**](.md)| The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account. | [optional] [enum: 0, 1] |
 | **filterValue** | **kotlin.String**| The search string the section is filtered by: it is matched as a substring of entry titles and, for files,  against the indexed document content as well. Omit it to list the section unfiltered. | [optional] |
+| **metadataTemplateId** | **kotlin.Int**| The ID of the metadata template the entries must be assigned to. On its own it narrows the listing to the entries  carrying the template; together with the metadata filters it also pins the template the filtered fields belong to.  The third-party entries never carry metadata and are left out when the filter is set. | [optional] |
+| **metadataFilters** | **kotlin.String**| The URL-encoded JSON array of the metadata filter conditions,  e.g. [{fieldId:1,op:contains,value:ACME},{fieldId:2,op:range,from:2026-01-01,to:2026-06-30},{fieldId:3,op:in,optionIds:[...]}].  A string field takes eq or contains; a number or a date field takes range with inclusive bounds, or gt, gte, lt, lte with the bound in value;  a date-only bound covers the whole day. A custom field is addressed by its name instead of the fieldId: {name:Client,op:eq,value:ACME}. | [optional] |
+| **includeHiddenMetadata** | **kotlin.Boolean**| Whether the text search, and the metadataMatches it reports, also look at the values of the hidden metadata  templates (created with visible false for the metadata a service keeps for itself, which the web client never  shows). False, the default, leaves them out, so an entry is not found by such a value; true takes them in.  metadataTemplateId and metadataFilters are not concerned: a hidden template or field named there is searched  either way. | [optional] |
 
 ### Return type
 
@@ -615,9 +620,12 @@ val startIndex : kotlin.Int = 0 // kotlin.Int | The number of matching entries t
 val sortBy : kotlin.String = DateAndTime // kotlin.String | The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place.
 val sortOrder : SortOrder = 1 // SortOrder | The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account.
 val filterValue : kotlin.String = My Document // kotlin.String | The search string the section is filtered by: it is matched as a substring of entry titles and, for files,  against the indexed document content as well. Omit it to list the section unfiltered.
+val metadataTemplateId : kotlin.Int = 1 // kotlin.Int | The ID of the metadata template the entries must be assigned to. On its own it narrows the listing to the entries  carrying the template; together with the metadata filters it also pins the template the filtered fields belong to.  The third-party entries never carry metadata and are left out when the filter is set.
+val metadataFilters : kotlin.String = [{"fieldId":1,"op":"eq","value":"ACME"}] // kotlin.String | The URL-encoded JSON array of the metadata filter conditions,  e.g. [{fieldId:1,op:contains,value:ACME},{fieldId:2,op:range,from:2026-01-01,to:2026-06-30},{fieldId:3,op:in,optionIds:[...]}].  A string field takes eq or contains; a number or a date field takes range with inclusive bounds, or gt, gte, lt, lte with the bound in value;  a date-only bound covers the whole day. A custom field is addressed by its name instead of the fieldId: {name:Client,op:eq,value:ACME}.
+val includeHiddenMetadata : kotlin.Boolean = false // kotlin.Boolean | Whether the text search, and the metadataMatches it reports, also look at the values of the hidden metadata  templates (created with visible false for the metadata a service keeps for itself, which the web client never  shows). False, the default, leaves them out, so an entry is not found by such a value; true takes them in.  metadataTemplateId and metadataFilters are not concerned: a hidden template or field named there is searched  either way.
 
 launch(Dispatchers.IO) {
-    val result : FolderContentWrapper = webService.getFavoritesFolder(userIdOrGroupId, filterType, count, startIndex, sortBy, sortOrder, filterValue)
+    val result : FolderContentWrapper = webService.getFavoritesFolder(userIdOrGroupId, filterType, count, startIndex, sortBy, sortOrder, filterValue, metadataTemplateId, metadataFilters, includeHiddenMetadata)
 }
 ```
 
@@ -724,7 +732,7 @@ launch(Dispatchers.IO) {
 
 <a id="getFolderByFolderId"></a>
 # **getFolderByFolderId**
-> FolderContentWrapper getFolderByFolderId (kotlin.Int folderId, java.util.UUID userIdOrGroupId, java.util.UUID sharedBy, FilterType filterType, kotlin.Int roomId, kotlin.collections.List<kotlin.Int> folderType, kotlin.Boolean excludeSubject, ApplyFilterOption applyFilterOption, kotlin.Boolean withSubFolders, kotlin.String extension, SearchArea searchArea, kotlin.String formsItemKey, kotlin.String formsItemType, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterValue, Location location)
+> FolderContentWrapper getFolderByFolderId (kotlin.Int folderId, java.util.UUID userIdOrGroupId, java.util.UUID sharedBy, FilterType filterType, kotlin.Int roomId, kotlin.collections.List<kotlin.Int> folderType, kotlin.Boolean excludeSubject, ApplyFilterOption applyFilterOption, kotlin.Boolean withSubFolders, kotlin.String extension, SearchArea searchArea, kotlin.String formsItemKey, kotlin.String formsItemType, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterValue, RequestLocation location, kotlin.Int metadataTemplateId, kotlin.String metadataFilters, kotlin.Boolean includeHiddenMetadata)
 
 Returns one page of the contents of a folder - its subfolders in `folders`, its files in `files`, the folder  itself in `current` and the chain of parents in `pathParts` - and is the operation a client browses the file  tree with. `filterType`, `filterValue`, `extension`, `userIdOrGroupId`, `sharedBy` and `folderType` narrow  what is listed, `applyFilterOption` decides whether those filters bite on the files, on the folders or on  both, and `withSubFolders`, which is on unless it is switched off, lets a narrowed request descend through the  whole subtree instead of the top level alone. `filterValue` is matched against titles and against indexed  document content, and indexing is asynchronous, so a file uploaded a moment ago can be missing from a search  for a short while. `count` and `startIndex` page through the result while `total` counts everything that  matches, and `sortBy` with `sortOrder` both order the page and are saved as the default order of the account.  Reading a room or an ordinary folder clears its new-item marks for the caller. A caller who may not read the  folder is answered with 403, and a folder that does not exist with 404.
 
@@ -738,7 +746,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **sharedBy** | **java.util.UUID**| Restricts the listing to the entries this member shared, which narrows a shared listing down to what one  person handed out. | [optional] |
 | **filterType** | [**FilterType**](.md)| Narrows the listing to a single kind of entry, such as documents, spreadsheets, images or one type of room.  Omit it to list every kind the folder holds. | [optional] [enum: 0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 17, 20, 22, 23, 24, 25, 26] |
 | **roomId** | **kotlin.Int**| Keeps only the entries that lie in this room, which matters when the listing being read gathers entries from  more than one of them. | [optional] |
-| **folderType** | [**kotlin.collections.List&lt;kotlin.Int&gt;**](kotlin.Int.md)| Keeps only the folders of these kinds, each given as the number of a folder type; it is how a listing is  narrowed down to, say, the form-filling folders of a room. | [optional] [enum: 0, 1, 2, 3, 5, 6, 8, 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36] |
+| **folderType** | [**kotlin.collections.List&lt;kotlin.Int&gt;**](kotlin.Int.md)| Keeps only the folders of these kinds, each given as the number of a folder type; it is how a listing is  narrowed down to, say, the form-filling folders of a room. | [optional] [enum: 0, 1, 2, 3, 5, 6, 8, 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37] |
 | **excludeSubject** | **kotlin.Boolean**| Turns `userIdOrGroupId` around: with true the entries of that member or group are the ones left out, with  false they are the only ones kept. | [optional] |
 | **applyFilterOption** | [**ApplyFilterOption**](.md)| Chooses which half of the listing `filterType` and `filterValue` are applied to: with `Files` the folders come  back unfiltered, with `Folders` the files do, and with `All` both halves are filtered. | [optional] [enum: 0, 1, 2] |
 | **withSubFolders** | **kotlin.Boolean**| Whether a narrowed request reaches into the subfolders: with true, which is what an omitted parameter means,  matching entries are gathered from the whole subtree, with false only the top level is read. It makes a  difference only once `filterType`, `userIdOrGroupId` or `filterValue` narrows the request, because an  unfiltered listing always shows the top level alone. | [optional] |
@@ -751,7 +759,10 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **sortBy** | **kotlin.String**| The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place. | [optional] |
 | **sortOrder** | [**SortOrder**](.md)| The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account. | [optional] [enum: 0, 1] |
 | **filterValue** | **kotlin.String**| The search string the listing is filtered by: it is matched as a substring of entry titles and, for files,  against the indexed document content as well. Omit it to list the folder unfiltered. | [optional] |
-| **location** | [**Location**](.md)| Where the entries of a tag-based listing have to live to be kept: `Room` keeps what lies in a room,  `Documents` what lies in a personal section, and `Link` what was reached through an external link that is  still valid. It shapes the Favorites and Recent listings and does nothing in an ordinary folder. | [optional] [enum: 1, 2, 3] |
+| **location** | [**RequestLocation**](.md)| Where the entries of a tag-based listing have to live to be kept: `Room` keeps what lies in a room,  `Documents` what lies in a personal section, and `Link` what was reached through an external link that is  still valid. It shapes the Favorites and Recent listings and does nothing in an ordinary folder. | [optional] [enum: 1, 2, 3] |
+| **metadataTemplateId** | **kotlin.Int**| The ID of the metadata template the entries must be assigned to. On its own it narrows the listing to the entries  carrying the template; together with the metadata filters it also pins the template the filtered fields belong to.  Supported for the rooms, the trash, the regular folders and the Shared with me, Recent and Favorites sections  (the third-party entries never carry metadata and are left out); the Templates and Private sections reject it with 400. | [optional] |
+| **metadataFilters** | **kotlin.String**| The URL-encoded JSON array of the metadata filter conditions,  e.g. [{fieldId:1,op:contains,value:ACME},{fieldId:2,op:range,from:2026-01-01,to:2026-06-30},{fieldId:3,op:in,optionIds:[...]}].  A string field takes eq (the whole value) or contains (a part of it); a number or a date field takes range with inclusive bounds,  or gt, gte, lt, lte with the single bound in value; a choice field takes in. A date-only bound covers the whole day,  so to:2026-06-30 includes the values stored on 30 June and gt:2026-06-30 starts after it.  A custom field is addressed by its name instead of the fieldId: {name:Client,op:eq,value:ACME}.  The same filter is taken as a typed request body by POST api/2.0/files/{folderId}/search. | [optional] |
+| **includeHiddenMetadata** | **kotlin.Boolean**| Whether the text search, and the metadataMatches it reports, also look at the values of the hidden metadata  templates (created with visible false for the metadata a service keeps for itself, which the web client never  shows). False, the default, leaves them out, so an entry is not found by such a value; true takes them in.  metadataTemplateId and metadataFilters are not concerned: a hidden template or field named there is searched  either way. | [optional] |
 
 ### Return type
 
@@ -794,10 +805,13 @@ val startIndex : kotlin.Int = 0 // kotlin.Int | The number of matching entries t
 val sortBy : kotlin.String = DateAndTime // kotlin.String | The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place.
 val sortOrder : SortOrder = 1 // SortOrder | The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account.
 val filterValue : kotlin.String = My Document // kotlin.String | The search string the listing is filtered by: it is matched as a substring of entry titles and, for files,  against the indexed document content as well. Omit it to list the folder unfiltered.
-val location : Location = 1 // Location | Where the entries of a tag-based listing have to live to be kept: `Room` keeps what lies in a room,  `Documents` what lies in a personal section, and `Link` what was reached through an external link that is  still valid. It shapes the Favorites and Recent listings and does nothing in an ordinary folder.
+val location : RequestLocation = 1 // RequestLocation | Where the entries of a tag-based listing have to live to be kept: `Room` keeps what lies in a room,  `Documents` what lies in a personal section, and `Link` what was reached through an external link that is  still valid. It shapes the Favorites and Recent listings and does nothing in an ordinary folder.
+val metadataTemplateId : kotlin.Int = 1 // kotlin.Int | The ID of the metadata template the entries must be assigned to. On its own it narrows the listing to the entries  carrying the template; together with the metadata filters it also pins the template the filtered fields belong to.  Supported for the rooms, the trash, the regular folders and the Shared with me, Recent and Favorites sections  (the third-party entries never carry metadata and are left out); the Templates and Private sections reject it with 400.
+val metadataFilters : kotlin.String = [{"fieldId":1,"op":"eq","value":"ACME"}] // kotlin.String | The URL-encoded JSON array of the metadata filter conditions,  e.g. [{fieldId:1,op:contains,value:ACME},{fieldId:2,op:range,from:2026-01-01,to:2026-06-30},{fieldId:3,op:in,optionIds:[...]}].  A string field takes eq (the whole value) or contains (a part of it); a number or a date field takes range with inclusive bounds,  or gt, gte, lt, lte with the single bound in value; a choice field takes in. A date-only bound covers the whole day,  so to:2026-06-30 includes the values stored on 30 June and gt:2026-06-30 starts after it.  A custom field is addressed by its name instead of the fieldId: {name:Client,op:eq,value:ACME}.  The same filter is taken as a typed request body by POST api/2.0/files/{folderId}/search.
+val includeHiddenMetadata : kotlin.Boolean = false // kotlin.Boolean | Whether the text search, and the metadataMatches it reports, also look at the values of the hidden metadata  templates (created with visible false for the metadata a service keeps for itself, which the web client never  shows). False, the default, leaves them out, so an entry is not found by such a value; true takes them in.  metadataTemplateId and metadataFilters are not concerned: a hidden template or field named there is searched  either way.
 
 launch(Dispatchers.IO) {
-    val result : FolderContentWrapper = webService.getFolderByFolderId(folderId, userIdOrGroupId, sharedBy, filterType, roomId, folderType, excludeSubject, applyFilterOption, withSubFolders, extension, searchArea, formsItemKey, formsItemType, count, startIndex, sortBy, sortOrder, filterValue, location)
+    val result : FolderContentWrapper = webService.getFolderByFolderId(folderId, userIdOrGroupId, sharedBy, filterType, roomId, folderType, excludeSubject, applyFilterOption, withSubFolders, extension, searchArea, formsItemKey, formsItemType, count, startIndex, sortBy, sortOrder, filterValue, location, metadataTemplateId, metadataFilters, includeHiddenMetadata)
 }
 ```
 
@@ -809,7 +823,7 @@ launch(Dispatchers.IO) {
 
 <a id="getFolderByFolderId-thirdparty"></a>
 # **getFolderByFolderId** (third-party storage)
-> ThirdPartyFolderContentWrapper getFolderByFolderId (kotlin.String folderId, java.util.UUID userIdOrGroupId, java.util.UUID sharedBy, FilterType filterType, kotlin.String roomId, kotlin.collections.List<kotlin.Int> folderType, kotlin.Boolean excludeSubject, ApplyFilterOption applyFilterOption, kotlin.Boolean withSubFolders, kotlin.String extension, SearchArea searchArea, kotlin.String formsItemKey, kotlin.String formsItemType, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterValue, Location location)
+> ThirdPartyFolderContentWrapper getFolderByFolderId (kotlin.String folderId, java.util.UUID userIdOrGroupId, java.util.UUID sharedBy, FilterType filterType, kotlin.String roomId, kotlin.collections.List<kotlin.Int> folderType, kotlin.Boolean excludeSubject, ApplyFilterOption applyFilterOption, kotlin.Boolean withSubFolders, kotlin.String extension, SearchArea searchArea, kotlin.String formsItemKey, kotlin.String formsItemType, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterValue, RequestLocation location, kotlin.Int metadataTemplateId, kotlin.String metadataFilters, kotlin.Boolean includeHiddenMetadata)
 
 Returns one page of the contents of a folder - its subfolders in `folders`, its files in `files`, the folder  itself in `current` and the chain of parents in `pathParts` - and is the operation a client browses the file  tree with. `filterType`, `filterValue`, `extension`, `userIdOrGroupId`, `sharedBy` and `folderType` narrow  what is listed, `applyFilterOption` decides whether those filters bite on the files, on the folders or on  both, and `withSubFolders`, which is on unless it is switched off, lets a narrowed request descend through the  whole subtree instead of the top level alone. `filterValue` is matched against titles and against indexed  document content, and indexing is asynchronous, so a file uploaded a moment ago can be missing from a search  for a short while. `count` and `startIndex` page through the result while `total` counts everything that  matches, and `sortBy` with `sortOrder` both order the page and are saved as the default order of the account.  Reading a room or an ordinary folder clears its new-item marks for the caller. A caller who may not read the  folder is answered with 403, and a folder that does not exist with 404.
 
@@ -823,7 +837,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **sharedBy** | **java.util.UUID**| Restricts the listing to the entries this member shared, which narrows a shared listing down to what one  person handed out. | [optional] |
 | **filterType** | [**FilterType**](.md)| Narrows the listing to a single kind of entry, such as documents, spreadsheets, images or one type of room.  Omit it to list every kind the folder holds. | [optional] [enum: 0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 17, 20, 22, 23, 24, 25, 26] |
 | **roomId** | **kotlin.String**| Keeps only the entries that lie in this room, which matters when the listing being read gathers entries from  more than one of them. | [optional] |
-| **folderType** | [**kotlin.collections.List&lt;kotlin.Int&gt;**](kotlin.Int.md)| Keeps only the folders of these kinds, each given as the number of a folder type; it is how a listing is  narrowed down to, say, the form-filling folders of a room. | [optional] [enum: 0, 1, 2, 3, 5, 6, 8, 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36] |
+| **folderType** | [**kotlin.collections.List&lt;kotlin.Int&gt;**](kotlin.Int.md)| Keeps only the folders of these kinds, each given as the number of a folder type; it is how a listing is  narrowed down to, say, the form-filling folders of a room. | [optional] [enum: 0, 1, 2, 3, 5, 6, 8, 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37] |
 | **excludeSubject** | **kotlin.Boolean**| Turns `userIdOrGroupId` around: with true the entries of that member or group are the ones left out, with  false they are the only ones kept. | [optional] |
 | **applyFilterOption** | [**ApplyFilterOption**](.md)| Chooses which half of the listing `filterType` and `filterValue` are applied to: with `Files` the folders come  back unfiltered, with `Folders` the files do, and with `All` both halves are filtered. | [optional] [enum: 0, 1, 2] |
 | **withSubFolders** | **kotlin.Boolean**| Whether a narrowed request reaches into the subfolders: with true, which is what an omitted parameter means,  matching entries are gathered from the whole subtree, with false only the top level is read. It makes a  difference only once `filterType`, `userIdOrGroupId` or `filterValue` narrows the request, because an  unfiltered listing always shows the top level alone. | [optional] |
@@ -836,7 +850,10 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **sortBy** | **kotlin.String**| The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place. | [optional] |
 | **sortOrder** | [**SortOrder**](.md)| The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account. | [optional] [enum: 0, 1] |
 | **filterValue** | **kotlin.String**| The search string the listing is filtered by: it is matched as a substring of entry titles and, for files,  against the indexed document content as well. Omit it to list the folder unfiltered. | [optional] |
-| **location** | [**Location**](.md)| Where the entries of a tag-based listing have to live to be kept: `Room` keeps what lies in a room,  `Documents` what lies in a personal section, and `Link` what was reached through an external link that is  still valid. It shapes the Favorites and Recent listings and does nothing in an ordinary folder. | [optional] [enum: 1, 2, 3] |
+| **location** | [**RequestLocation**](.md)| Where the entries of a tag-based listing have to live to be kept: `Room` keeps what lies in a room,  `Documents` what lies in a personal section, and `Link` what was reached through an external link that is  still valid. It shapes the Favorites and Recent listings and does nothing in an ordinary folder. | [optional] [enum: 1, 2, 3] |
+| **metadataTemplateId** | **kotlin.Int**| The ID of the metadata template the entries must be assigned to. On its own it narrows the listing to the entries  carrying the template; together with the metadata filters it also pins the template the filtered fields belong to.  Supported for the rooms, the trash, the regular folders and the Shared with me, Recent and Favorites sections  (the third-party entries never carry metadata and are left out); the Templates and Private sections reject it with 400. | [optional] |
+| **metadataFilters** | **kotlin.String**| The URL-encoded JSON array of the metadata filter conditions,  e.g. [{fieldId:1,op:contains,value:ACME},{fieldId:2,op:range,from:2026-01-01,to:2026-06-30},{fieldId:3,op:in,optionIds:[...]}].  A string field takes eq (the whole value) or contains (a part of it); a number or a date field takes range with inclusive bounds,  or gt, gte, lt, lte with the single bound in value; a choice field takes in. A date-only bound covers the whole day,  so to:2026-06-30 includes the values stored on 30 June and gt:2026-06-30 starts after it.  A custom field is addressed by its name instead of the fieldId: {name:Client,op:eq,value:ACME}.  The same filter is taken as a typed request body by POST api/2.0/files/{folderId}/search. | [optional] |
+| **includeHiddenMetadata** | **kotlin.Boolean**| Whether the text search, and the metadataMatches it reports, also look at the values of the hidden metadata  templates (created with visible false for the metadata a service keeps for itself, which the web client never  shows). False, the default, leaves them out, so an entry is not found by such a value; true takes them in.  metadataTemplateId and metadataFilters are not concerned: a hidden template or field named there is searched  either way. | [optional] |
 
 ### Return type
 
@@ -879,10 +896,13 @@ val startIndex : kotlin.Int = 0 // kotlin.Int | The number of matching entries t
 val sortBy : kotlin.String = DateAndTime // kotlin.String | The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place.
 val sortOrder : SortOrder = 1 // SortOrder | The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account.
 val filterValue : kotlin.String = My Document // kotlin.String | The search string the listing is filtered by: it is matched as a substring of entry titles and, for files,  against the indexed document content as well. Omit it to list the folder unfiltered.
-val location : Location = 1 // Location | Where the entries of a tag-based listing have to live to be kept: `Room` keeps what lies in a room,  `Documents` what lies in a personal section, and `Link` what was reached through an external link that is  still valid. It shapes the Favorites and Recent listings and does nothing in an ordinary folder.
+val location : RequestLocation = 1 // RequestLocation | Where the entries of a tag-based listing have to live to be kept: `Room` keeps what lies in a room,  `Documents` what lies in a personal section, and `Link` what was reached through an external link that is  still valid. It shapes the Favorites and Recent listings and does nothing in an ordinary folder.
+val metadataTemplateId : kotlin.Int = 1 // kotlin.Int | The ID of the metadata template the entries must be assigned to. On its own it narrows the listing to the entries  carrying the template; together with the metadata filters it also pins the template the filtered fields belong to.  Supported for the rooms, the trash, the regular folders and the Shared with me, Recent and Favorites sections  (the third-party entries never carry metadata and are left out); the Templates and Private sections reject it with 400.
+val metadataFilters : kotlin.String = [{"fieldId":1,"op":"eq","value":"ACME"}] // kotlin.String | The URL-encoded JSON array of the metadata filter conditions,  e.g. [{fieldId:1,op:contains,value:ACME},{fieldId:2,op:range,from:2026-01-01,to:2026-06-30},{fieldId:3,op:in,optionIds:[...]}].  A string field takes eq (the whole value) or contains (a part of it); a number or a date field takes range with inclusive bounds,  or gt, gte, lt, lte with the single bound in value; a choice field takes in. A date-only bound covers the whole day,  so to:2026-06-30 includes the values stored on 30 June and gt:2026-06-30 starts after it.  A custom field is addressed by its name instead of the fieldId: {name:Client,op:eq,value:ACME}.  The same filter is taken as a typed request body by POST api/2.0/files/{folderId}/search.
+val includeHiddenMetadata : kotlin.Boolean = false // kotlin.Boolean | Whether the text search, and the metadataMatches it reports, also look at the values of the hidden metadata  templates (created with visible false for the metadata a service keeps for itself, which the web client never  shows). False, the default, leaves them out, so an entry is not found by such a value; true takes them in.  metadataTemplateId and metadataFilters are not concerned: a hidden template or field named there is searched  either way.
 
 launch(Dispatchers.IO) {
-    val result : ThirdPartyFolderContentWrapper = webService.getFolderByFolderId(folderId, userIdOrGroupId, sharedBy, filterType, roomId, folderType, excludeSubject, applyFilterOption, withSubFolders, extension, searchArea, formsItemKey, formsItemType, count, startIndex, sortBy, sortOrder, filterValue, location)
+    val result : ThirdPartyFolderContentWrapper = webService.getFolderByFolderId(folderId, userIdOrGroupId, sharedBy, filterType, roomId, folderType, excludeSubject, applyFilterOption, withSubFolders, extension, searchArea, formsItemKey, formsItemType, count, startIndex, sortBy, sortOrder, filterValue, location, metadataTemplateId, metadataFilters, includeHiddenMetadata)
 }
 ```
 
@@ -1449,9 +1469,9 @@ launch(Dispatchers.IO) {
 
 <a id="getFormsFolder"></a>
 # **getFormsFolder**
-> FolderContentWrapper getFormsFolder (java.util.UUID userIdOrGroupId, FilterType filterType, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterValue)
+> FolderContentWrapper getFormsFolder (java.util.UUID userIdOrGroupId, FilterType filterType, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterValue, kotlin.Int metadataTemplateId, kotlin.String metadataFilters, kotlin.Boolean includeHiddenMetadata)
 
-Returns the Forms section: the flat list of form-filling rooms the caller may read. Such rooms are stored  under the Rooms tree but are surfaced only here, so `GET api/2.0/files/rooms` leaves them out of the active  area and lists them when `searchArea` names the forms area instead. The section is not expanded into room  content, so `folders` carries the rooms while `files` comes back empty; to read what is inside one of them,  call `GET api/2.0/files/{folderId}` with the room identifier. Nothing is modified, though passing `sortBy`  saves the requested order as the default order for this account. `filterType`, `filterValue`,  `userIdOrGroupId` and the sorting parameters narrow and order the room list, `count` and `startIndex` page  through it, `total` reports how many rooms match the request in full, and `current` describes the section  folder itself.
+Returns the Forms section: the flat list of form-filling rooms the caller may read. Such rooms are stored  under the Rooms tree but are surfaced only here, so `GET api/2.0/files/rooms` leaves them out of the active  area and lists them when `searchArea` names the forms area instead. The section is not expanded into room  content, so `folders` carries the rooms while `files` comes back empty; to read what is inside one of them,  call `GET api/2.0/files/{folderId}` with the room identifier. Nothing is modified, though passing `sortBy`  saves the requested order as the default order for this account. `filterType`, `filterValue`,  `userIdOrGroupId` and the sorting parameters narrow and order the room list, `metadataTemplateId` and  `metadataFilters` keep only the rooms carrying the template and matching the conditions (an unknown template  or field, or a malformed condition, is refused with 400), `count` and `startIndex` page through it, `total`  reports how many rooms match the request in full, and `current` describes the section folder itself.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-forms-folder/).
 
@@ -1465,6 +1485,9 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **sortBy** | **kotlin.String**| The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place. | [optional] |
 | **sortOrder** | [**SortOrder**](.md)| The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account. | [optional] [enum: 0, 1] |
 | **filterValue** | **kotlin.String**| The search string the section is filtered by: it is matched as a substring of entry titles and, for files,  against the indexed document content as well. Omit it to list the section unfiltered. | [optional] |
+| **metadataTemplateId** | **kotlin.Int**| The ID of the metadata template the entries must be assigned to. On its own it narrows the listing to the entries  carrying the template; together with the metadata filters it also pins the template the filtered fields belong to.  The third-party entries never carry metadata and are left out when the filter is set. | [optional] |
+| **metadataFilters** | **kotlin.String**| The URL-encoded JSON array of the metadata filter conditions,  e.g. [{fieldId:1,op:contains,value:ACME},{fieldId:2,op:range,from:2026-01-01,to:2026-06-30},{fieldId:3,op:in,optionIds:[...]}].  A string field takes eq or contains; a number or a date field takes range with inclusive bounds, or gt, gte, lt, lte with the bound in value;  a date-only bound covers the whole day. A custom field is addressed by its name instead of the fieldId: {name:Client,op:eq,value:ACME}. | [optional] |
+| **includeHiddenMetadata** | **kotlin.Boolean**| Whether the text search, and the metadataMatches it reports, also look at the values of the hidden metadata  templates (created with visible false for the metadata a service keeps for itself, which the web client never  shows). False, the default, leaves them out, so an entry is not found by such a value; true takes them in.  metadataTemplateId and metadataFilters are not concerned: a hidden template or field named there is searched  either way. | [optional] |
 
 ### Return type
 
@@ -1496,9 +1519,12 @@ val startIndex : kotlin.Int = 0 // kotlin.Int | The number of matching entries t
 val sortBy : kotlin.String = DateAndTime // kotlin.String | The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place.
 val sortOrder : SortOrder = 1 // SortOrder | The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account.
 val filterValue : kotlin.String = My Document // kotlin.String | The search string the section is filtered by: it is matched as a substring of entry titles and, for files,  against the indexed document content as well. Omit it to list the section unfiltered.
+val metadataTemplateId : kotlin.Int = 1 // kotlin.Int | The ID of the metadata template the entries must be assigned to. On its own it narrows the listing to the entries  carrying the template; together with the metadata filters it also pins the template the filtered fields belong to.  The third-party entries never carry metadata and are left out when the filter is set.
+val metadataFilters : kotlin.String = [{"fieldId":1,"op":"eq","value":"ACME"}] // kotlin.String | The URL-encoded JSON array of the metadata filter conditions,  e.g. [{fieldId:1,op:contains,value:ACME},{fieldId:2,op:range,from:2026-01-01,to:2026-06-30},{fieldId:3,op:in,optionIds:[...]}].  A string field takes eq or contains; a number or a date field takes range with inclusive bounds, or gt, gte, lt, lte with the bound in value;  a date-only bound covers the whole day. A custom field is addressed by its name instead of the fieldId: {name:Client,op:eq,value:ACME}.
+val includeHiddenMetadata : kotlin.Boolean = false // kotlin.Boolean | Whether the text search, and the metadataMatches it reports, also look at the values of the hidden metadata  templates (created with visible false for the metadata a service keeps for itself, which the web client never  shows). False, the default, leaves them out, so an entry is not found by such a value; true takes them in.  metadataTemplateId and metadataFilters are not concerned: a hidden template or field named there is searched  either way.
 
 launch(Dispatchers.IO) {
-    val result : FolderContentWrapper = webService.getFormsFolder(userIdOrGroupId, filterType, count, startIndex, sortBy, sortOrder, filterValue)
+    val result : FolderContentWrapper = webService.getFormsFolder(userIdOrGroupId, filterType, count, startIndex, sortBy, sortOrder, filterValue, metadataTemplateId, metadataFilters, includeHiddenMetadata)
 }
 ```
 
@@ -1510,9 +1536,9 @@ launch(Dispatchers.IO) {
 
 <a id="getMyFolder"></a>
 # **getMyFolder**
-> FolderContentWrapper getMyFolder (java.util.UUID userIdOrGroupId, FilterType filterType, ApplyFilterOption applyFilterOption, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterValue)
+> FolderContentWrapper getMyFolder (java.util.UUID userIdOrGroupId, FilterType filterType, ApplyFilterOption applyFilterOption, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterValue, kotlin.Int metadataTemplateId, kotlin.String metadataFilters, kotlin.Boolean includeHiddenMetadata)
 
-Returns the contents of the caller's My documents section, the personal storage that belongs to this account  alone and stays invisible to other members until something in it is shared explicitly. Any authenticated  member that has a personal section can read it; guest accounts are not given one, and the call then answers  404. Nothing in the section is modified, though passing `sortBy` saves the requested order as the default  order for this account. Without a filter only the top level of the section is listed; as soon as `filterType`,  `userIdOrGroupId` or `filterValue` narrows the request, the search descends through the whole subtree.  `filterValue` is matched against titles and against indexed document content, and the index is written  asynchronously, so a file uploaded a moment ago can be missing from a search for a short while. `folders` and  `files` hold one page of the result, `total` counts everything that matches before `count` and `startIndex`  are applied, and `current` describes the section folder. To open a folder inside the section, call  `GET api/2.0/files/{folderId}` with its identifier.
+Returns the contents of the caller's My documents section, the personal storage that belongs to this account  alone and stays invisible to other members until something in it is shared explicitly. Any authenticated  member that has a personal section can read it; guest accounts are not given one, and the call then answers  404. Nothing in the section is modified, though passing `sortBy` saves the requested order as the default  order for this account. Without a filter only the top level of the section is listed; as soon as `filterType`,  `userIdOrGroupId`, `filterValue` or a metadata filter narrows the request, the search descends through the whole  subtree. `filterValue` is matched against titles and against indexed document content, and the index is written  asynchronously, so a file uploaded a moment ago can be missing from a search for a short while.  `metadataTemplateId` and `metadataFilters` keep only the entries carrying the template and matching the  conditions, the same way `GET api/2.0/files/{folderId}` does; an unknown template or field, or a malformed  condition, is refused with 400. `folders` and `files` hold one page of the result, `total` counts everything  that matches before `count` and `startIndex` are applied, and `current` describes the section folder. To open  a folder inside the section, call `GET api/2.0/files/{folderId}` with its identifier.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-my-folder/).
 
@@ -1527,6 +1553,9 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **sortBy** | **kotlin.String**| The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place. | [optional] |
 | **sortOrder** | [**SortOrder**](.md)| The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account. | [optional] [enum: 0, 1] |
 | **filterValue** | **kotlin.String**| The search string the section is filtered by, matched as a substring of entry titles. Omit it to list the  section unfiltered. | [optional] |
+| **metadataTemplateId** | **kotlin.Int**| The ID of the metadata template the entries must be assigned to. On its own it narrows the listing to the entries  carrying the template; together with the metadata filters it also pins the template the filtered fields belong to.  The third-party entries never carry metadata and are left out when the filter is set. | [optional] |
+| **metadataFilters** | **kotlin.String**| The URL-encoded JSON array of the metadata filter conditions,  e.g. [{fieldId:1,op:contains,value:ACME},{fieldId:2,op:range,from:2026-01-01,to:2026-06-30},{fieldId:3,op:in,optionIds:[...]}].  A string field takes eq or contains; a number or a date field takes range with inclusive bounds, or gt, gte, lt, lte with the bound in value;  a date-only bound covers the whole day. A custom field is addressed by its name instead of the fieldId: {name:Client,op:eq,value:ACME}. | [optional] |
+| **includeHiddenMetadata** | **kotlin.Boolean**| Whether the text search, and the metadataMatches it reports, also look at the values of the hidden metadata  templates (created with visible false for the metadata a service keeps for itself, which the web client never  shows). False, the default, leaves them out, so an entry is not found by such a value; true takes them in.  metadataTemplateId and metadataFilters are not concerned: a hidden template or field named there is searched  either way. | [optional] |
 
 ### Return type
 
@@ -1559,9 +1588,12 @@ val startIndex : kotlin.Int = 0 // kotlin.Int | The number of matching entries t
 val sortBy : kotlin.String = DateAndTime // kotlin.String | The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place.
 val sortOrder : SortOrder = 1 // SortOrder | The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account.
 val filterValue : kotlin.String = My Document // kotlin.String | The search string the section is filtered by, matched as a substring of entry titles. Omit it to list the  section unfiltered.
+val metadataTemplateId : kotlin.Int = 1 // kotlin.Int | The ID of the metadata template the entries must be assigned to. On its own it narrows the listing to the entries  carrying the template; together with the metadata filters it also pins the template the filtered fields belong to.  The third-party entries never carry metadata and are left out when the filter is set.
+val metadataFilters : kotlin.String = [{"fieldId":1,"op":"eq","value":"ACME"}] // kotlin.String | The URL-encoded JSON array of the metadata filter conditions,  e.g. [{fieldId:1,op:contains,value:ACME},{fieldId:2,op:range,from:2026-01-01,to:2026-06-30},{fieldId:3,op:in,optionIds:[...]}].  A string field takes eq or contains; a number or a date field takes range with inclusive bounds, or gt, gte, lt, lte with the bound in value;  a date-only bound covers the whole day. A custom field is addressed by its name instead of the fieldId: {name:Client,op:eq,value:ACME}.
+val includeHiddenMetadata : kotlin.Boolean = false // kotlin.Boolean | Whether the text search, and the metadataMatches it reports, also look at the values of the hidden metadata  templates (created with visible false for the metadata a service keeps for itself, which the web client never  shows). False, the default, leaves them out, so an entry is not found by such a value; true takes them in.  metadataTemplateId and metadataFilters are not concerned: a hidden template or field named there is searched  either way.
 
 launch(Dispatchers.IO) {
-    val result : FolderContentWrapper = webService.getMyFolder(userIdOrGroupId, filterType, applyFilterOption, count, startIndex, sortBy, sortOrder, filterValue)
+    val result : FolderContentWrapper = webService.getMyFolder(userIdOrGroupId, filterType, applyFilterOption, count, startIndex, sortBy, sortOrder, filterValue, metadataTemplateId, metadataFilters, includeHiddenMetadata)
 }
 ```
 
@@ -1671,7 +1703,7 @@ launch(Dispatchers.IO) {
 
 <a id="getRecentFolder"></a>
 # **getRecentFolder**
-> FolderContentWrapper getRecentFolder (java.util.UUID userIdOrGroupId, FilterType filterType, kotlin.Boolean excludeSubject, ApplyFilterOption applyFilterOption, SearchArea searchArea, kotlin.collections.List<kotlin.String> extension, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterValue)
+> FolderContentWrapper getRecentFolder (java.util.UUID userIdOrGroupId, FilterType filterType, kotlin.Boolean excludeSubject, ApplyFilterOption applyFilterOption, SearchArea searchArea, kotlin.collections.List<kotlin.String> extension, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterValue, kotlin.Int metadataTemplateId, kotlin.String metadataFilters, kotlin.Boolean includeHiddenMetadata)
 
 Returns the Recent section: the files the calling account has opened lately. The section holds files only,  so `folders` comes back empty, and it is personal, so another member's history is not visible here. A file is  added when it is opened and can also be added explicitly with `POST api/2.0/files/file/{fileId}/recent`;  `DELETE api/2.0/files/recent` clears the whole history, and `PUT api/2.0/files/displayrecent` switches the  section on and off for the account, which also decides whether `GET api/2.0/files/@root` includes it. Nothing  in the section is modified, though passing `sortBy` saves the requested order as the default order for this  account. The listing is ordered by the moment the caller last opened each file, newest first, and `sortBy` and  `sortOrder` do not change that order. `files` holds one page, `total` counts the files matching the request  before `count` and `startIndex` are applied, and `current` describes the section folder itself.
 
@@ -1691,6 +1723,9 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **sortBy** | **kotlin.String**| The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place. The Recent section keeps its own newest-first order, so the value does not  reorder this listing. | [optional] |
 | **sortOrder** | [**SortOrder**](.md)| The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account. The Recent section keeps its own newest-first order, so the value does not reorder this  listing. | [optional] [enum: 0, 1] |
 | **filterValue** | **kotlin.String**| The search string the history is filtered by: it is matched as a substring of file titles and against the  indexed document content as well. Omit it to list the whole history. | [optional] |
+| **metadataTemplateId** | **kotlin.Int**| The ID of the metadata template the recent files must be assigned to. On its own it narrows the listing to the files  carrying the template; together with the metadata filters it also pins the template the filtered fields belong to.  The third-party files never carry metadata and are left out when the filter is set. | [optional] |
+| **metadataFilters** | **kotlin.String**| The URL-encoded JSON array of the metadata filter conditions,  e.g. [{fieldId:1,op:contains,value:ACME},{fieldId:2,op:range,from:2026-01-01,to:2026-06-30},{fieldId:3,op:in,optionIds:[...]}].  A string field takes eq or contains; a number or a date field takes range with inclusive bounds, or gt, gte, lt, lte with the bound in value;  a date-only bound covers the whole day. A custom field is addressed by its name instead of the fieldId: {name:Client,op:eq,value:ACME}. | [optional] |
+| **includeHiddenMetadata** | **kotlin.Boolean**| Whether the text search, and the metadataMatches it reports, also look at the values of the hidden metadata  templates (created with visible false for the metadata a service keeps for itself, which the web client never  shows). False, the default, leaves them out, so an entry is not found by such a value; true takes them in.  metadataTemplateId and metadataFilters are not concerned: a hidden template or field named there is searched  either way. | [optional] |
 
 ### Return type
 
@@ -1726,9 +1761,12 @@ val startIndex : kotlin.Int = 0 // kotlin.Int | The number of matching entries t
 val sortBy : kotlin.String = DateAndTime // kotlin.String | The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place. The Recent section keeps its own newest-first order, so the value does not  reorder this listing.
 val sortOrder : SortOrder = 1 // SortOrder | The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account. The Recent section keeps its own newest-first order, so the value does not reorder this  listing.
 val filterValue : kotlin.String = My Document // kotlin.String | The search string the history is filtered by: it is matched as a substring of file titles and against the  indexed document content as well. Omit it to list the whole history.
+val metadataTemplateId : kotlin.Int = 1 // kotlin.Int | The ID of the metadata template the recent files must be assigned to. On its own it narrows the listing to the files  carrying the template; together with the metadata filters it also pins the template the filtered fields belong to.  The third-party files never carry metadata and are left out when the filter is set.
+val metadataFilters : kotlin.String = [{"fieldId":1,"op":"eq","value":"ACME"}] // kotlin.String | The URL-encoded JSON array of the metadata filter conditions,  e.g. [{fieldId:1,op:contains,value:ACME},{fieldId:2,op:range,from:2026-01-01,to:2026-06-30},{fieldId:3,op:in,optionIds:[...]}].  A string field takes eq or contains; a number or a date field takes range with inclusive bounds, or gt, gte, lt, lte with the bound in value;  a date-only bound covers the whole day. A custom field is addressed by its name instead of the fieldId: {name:Client,op:eq,value:ACME}.
+val includeHiddenMetadata : kotlin.Boolean = false // kotlin.Boolean | Whether the text search, and the metadataMatches it reports, also look at the values of the hidden metadata  templates (created with visible false for the metadata a service keeps for itself, which the web client never  shows). False, the default, leaves them out, so an entry is not found by such a value; true takes them in.  metadataTemplateId and metadataFilters are not concerned: a hidden template or field named there is searched  either way.
 
 launch(Dispatchers.IO) {
-    val result : FolderContentWrapper = webService.getRecentFolder(userIdOrGroupId, filterType, excludeSubject, applyFilterOption, searchArea, extension, count, startIndex, sortBy, sortOrder, filterValue)
+    val result : FolderContentWrapper = webService.getRecentFolder(userIdOrGroupId, filterType, excludeSubject, applyFilterOption, searchArea, extension, count, startIndex, sortBy, sortOrder, filterValue, metadataTemplateId, metadataFilters, includeHiddenMetadata)
 }
 ```
 
@@ -1742,7 +1780,7 @@ launch(Dispatchers.IO) {
 # **getReportFolderHistory**
 > DocumentBuilderTaskWrapper getReportFolderHistory (kotlin.Int folderId)
 
-Reports how far the history report of a folder has got, and is the operation to poll after  `POST api/2.0/files/folder/{folderId}/log/report` has queued one. `percentage` climbs to 100, `isCompleted`  turns true when the job is over however it ended, `error` carries the reason when it failed, and  `resultFileId`, `resultFileName` and `resultFileUrl` name the file that was saved in the caller's My  documents - a CSV report leaving the identifier empty. An empty answer means there is no report for this  folder and caller, either because none was started or because a finished one has already been picked up by an  earlier poll. The caller needs read access to the folder and may not be a guest, and the portal plan has to  include the audit feature; a caller who fails the access rule is answered with 403 and a folder that does not  exist with 404. The call is read-only, and each caller sees only their own report.
+Reports how far the history report of a folder has got, and is the operation to poll after  `POST api/2.0/files/folder/{folderId}/log/report` has queued one. `percentage` climbs to 100, `isCompleted`  turns true when the job is over however it ended, `error` carries the reason when it failed, and `resultFileId`,  `resultFileName` and `resultFileUrl` name the file that was saved in the caller's My documents. An empty  answer means there is no report for this folder and caller, either because none was started or because a  finished one has already been picked up by an earlier poll. The caller needs read access to the folder and may  not be a guest; a caller who fails the access rule is answered with 403, a folder that does not exist with 404,  and a portal with the login history and audit trail section turned off with 402. The call is read-only, and each caller sees only  their own report.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-report-folder-history/).
 
@@ -1852,9 +1890,9 @@ launch(Dispatchers.IO) {
 
 <a id="getTrashFolder"></a>
 # **getTrashFolder**
-> FolderContentWrapper getTrashFolder (java.util.UUID userIdOrGroupId, FilterType filterType, ApplyFilterOption applyFilterOption, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterValue)
+> FolderContentWrapper getTrashFolder (java.util.UUID userIdOrGroupId, FilterType filterType, ApplyFilterOption applyFilterOption, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterValue, kotlin.Int metadataTemplateId, kotlin.String metadataFilters, kotlin.Boolean includeHiddenMetadata)
 
-Returns the caller's Trash section: the files and folders this account has deleted, kept there until they  are restored or discarded. Each member has a Trash of their own and sees only what they deleted themselves.  Restore an entry by moving it back with `PUT api/2.0/files/fileops/move`, or discard the whole section with  `PUT api/2.0/files/fileops/emptytrash`; both start a background operation that is polled through  `GET api/2.0/files/fileops`. This call itself modifies nothing, though passing `sortBy` saves the requested  order as the default order for this account. Only the top level of the section is listed, so the contents of a  deleted folder are not expanded into it, and `filterValue` is matched against titles alone here rather than  against document content. `folders` and `files` hold one page of the result, `total` counts everything that  matches before `count` and `startIndex` are applied, and `current` describes the section folder. An account  that is given no Trash of its own, an outsider for instance, receives 404.
+Returns the caller's Trash section: the files and folders this account has deleted, kept there until they  are restored or discarded. Each member has a Trash of their own and sees only what they deleted themselves.  Restore an entry by moving it back with `PUT api/2.0/files/fileops/move`, or discard the whole section with  `PUT api/2.0/files/fileops/emptytrash`; both start a background operation that is polled through  `GET api/2.0/files/fileops`. This call itself modifies nothing, though passing `sortBy` saves the requested  order as the default order for this account. Only the top level of the section is listed, so the contents of a  deleted folder are not expanded into it, and `filterValue` is matched against titles alone here rather than  against document content. `metadataTemplateId` and `metadataFilters` keep only the deleted entries carrying the  template and matching the conditions, the same way `GET api/2.0/files/{folderId}` does; an unknown template or  field, or a malformed condition, is refused with 400. `folders` and `files` hold one page of the result,  `total` counts everything that matches before `count` and `startIndex` are applied, and `current` describes  the section folder. An account that is given no Trash of its own, an outsider for instance, receives 404.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-trash-folder/).
 
@@ -1869,6 +1907,9 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **sortBy** | **kotlin.String**| The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place. | [optional] |
 | **sortOrder** | [**SortOrder**](.md)| The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account. | [optional] [enum: 0, 1] |
 | **filterValue** | **kotlin.String**| The search string the section is filtered by, matched as a substring of entry titles. Omit it to list the  section unfiltered. | [optional] |
+| **metadataTemplateId** | **kotlin.Int**| The ID of the metadata template the entries must be assigned to. On its own it narrows the listing to the entries  carrying the template; together with the metadata filters it also pins the template the filtered fields belong to.  The third-party entries never carry metadata and are left out when the filter is set. | [optional] |
+| **metadataFilters** | **kotlin.String**| The URL-encoded JSON array of the metadata filter conditions,  e.g. [{fieldId:1,op:contains,value:ACME},{fieldId:2,op:range,from:2026-01-01,to:2026-06-30},{fieldId:3,op:in,optionIds:[...]}].  A string field takes eq or contains; a number or a date field takes range with inclusive bounds, or gt, gte, lt, lte with the bound in value;  a date-only bound covers the whole day. A custom field is addressed by its name instead of the fieldId: {name:Client,op:eq,value:ACME}. | [optional] |
+| **includeHiddenMetadata** | **kotlin.Boolean**| Whether the text search, and the metadataMatches it reports, also look at the values of the hidden metadata  templates (created with visible false for the metadata a service keeps for itself, which the web client never  shows). False, the default, leaves them out, so an entry is not found by such a value; true takes them in.  metadataTemplateId and metadataFilters are not concerned: a hidden template or field named there is searched  either way. | [optional] |
 
 ### Return type
 
@@ -1901,9 +1942,12 @@ val startIndex : kotlin.Int = 0 // kotlin.Int | The number of matching entries t
 val sortBy : kotlin.String = DateAndTime // kotlin.String | The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place.
 val sortOrder : SortOrder = 1 // SortOrder | The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account.
 val filterValue : kotlin.String = My Document // kotlin.String | The search string the section is filtered by, matched as a substring of entry titles. Omit it to list the  section unfiltered.
+val metadataTemplateId : kotlin.Int = 1 // kotlin.Int | The ID of the metadata template the entries must be assigned to. On its own it narrows the listing to the entries  carrying the template; together with the metadata filters it also pins the template the filtered fields belong to.  The third-party entries never carry metadata and are left out when the filter is set.
+val metadataFilters : kotlin.String = [{"fieldId":1,"op":"eq","value":"ACME"}] // kotlin.String | The URL-encoded JSON array of the metadata filter conditions,  e.g. [{fieldId:1,op:contains,value:ACME},{fieldId:2,op:range,from:2026-01-01,to:2026-06-30},{fieldId:3,op:in,optionIds:[...]}].  A string field takes eq or contains; a number or a date field takes range with inclusive bounds, or gt, gte, lt, lte with the bound in value;  a date-only bound covers the whole day. A custom field is addressed by its name instead of the fieldId: {name:Client,op:eq,value:ACME}.
+val includeHiddenMetadata : kotlin.Boolean = false // kotlin.Boolean | Whether the text search, and the metadataMatches it reports, also look at the values of the hidden metadata  templates (created with visible false for the metadata a service keeps for itself, which the web client never  shows). False, the default, leaves them out, so an entry is not found by such a value; true takes them in.  metadataTemplateId and metadataFilters are not concerned: a hidden template or field named there is searched  either way.
 
 launch(Dispatchers.IO) {
-    val result : FolderContentWrapper = webService.getTrashFolder(userIdOrGroupId, filterType, applyFilterOption, count, startIndex, sortBy, sortOrder, filterValue)
+    val result : FolderContentWrapper = webService.getTrashFolder(userIdOrGroupId, filterType, applyFilterOption, count, startIndex, sortBy, sortOrder, filterValue, metadataTemplateId, metadataFilters, includeHiddenMetadata)
 }
 ```
 
@@ -2132,7 +2176,7 @@ launch(Dispatchers.IO) {
 
 <a id="renameFolder"></a>
 # **renameFolder**
-> FolderWrapper renameFolder (kotlin.Int folderId, CreateFolder createFolder)
+> FolderWrapper renameFolder (kotlin.Int folderId, CreateFolderRequest createFolderRequest)
 
 Gives a folder a new title and answers with the folder as it now stands. The title is trimmed, may not be  blank and is refused when it is longer than the limit the schema prints; a title that matches the current one  leaves the folder untouched, and titles need not be unique among the neighbours. The caller needs the right to  rename the folder, which the room manager, a content creator acting on a folder of their own and the owner of  a personal section have, while a guest is refused with 403 whatever their access; a folder in the Trash  section or in an archived room cannot be renamed either, and a folder that does not exist is answered as  not found. A room may be renamed here as well, in which case the caller needs the right to edit the  room, and `PUT api/2.0/files/rooms/{id}` is the operation that changes its other settings. The call is  mutating and idempotent; on a folder stored in a connected third-party account the identifier of the folder  may change with the title.
 
@@ -2142,7 +2186,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **folderId** | **kotlin.Int**| The folder the request is addressed to: when a folder is created it is the parent that receives the new  folder, and when a folder is renamed it is the folder that gets the new title. | |
-| **createFolder** | [**CreateFolder**](CreateFolder.md)| The title carried by the request body. | |
+| **createFolderRequest** | [**CreateFolderRequest**](CreateFolderRequest.md)| The title carried by the request body. | |
 
 ### Return type
 
@@ -2168,10 +2212,10 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
 val folderId : kotlin.Int = 1 // kotlin.Int | The folder the request is addressed to: when a folder is created it is the parent that receives the new  folder, and when a folder is renamed it is the folder that gets the new title.
-val createFolder : CreateFolder =  // CreateFolder | The title carried by the request body.
+val createFolderRequest : CreateFolderRequest =  // CreateFolderRequest | The title carried by the request body.
 
 launch(Dispatchers.IO) {
-    val result : FolderWrapper = webService.renameFolder(folderId, createFolder)
+    val result : FolderWrapper = webService.renameFolder(folderId, createFolderRequest)
 }
 ```
 
@@ -2183,7 +2227,7 @@ launch(Dispatchers.IO) {
 
 <a id="renameFolder-thirdparty"></a>
 # **renameFolder** (third-party storage)
-> ThirdPartyFolderWrapper renameFolder (kotlin.String folderId, CreateFolder createFolder)
+> ThirdPartyFolderWrapper renameFolder (kotlin.String folderId, CreateFolderRequest createFolderRequest)
 
 Gives a folder a new title and answers with the folder as it now stands. The title is trimmed, may not be  blank and is refused when it is longer than the limit the schema prints; a title that matches the current one  leaves the folder untouched, and titles need not be unique among the neighbours. The caller needs the right to  rename the folder, which the room manager, a content creator acting on a folder of their own and the owner of  a personal section have, while a guest is refused with 403 whatever their access; a folder in the Trash  section or in an archived room cannot be renamed either, and a folder that does not exist is answered as  not found. A room may be renamed here as well, in which case the caller needs the right to edit the  room, and `PUT api/2.0/files/rooms/{id}` is the operation that changes its other settings. The call is  mutating and idempotent; on a folder stored in a connected third-party account the identifier of the folder  may change with the title.
 
@@ -2193,7 +2237,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **folderId** | **kotlin.String**| The folder the request is addressed to: when a folder is created it is the parent that receives the new  folder, and when a folder is renamed it is the folder that gets the new title. | |
-| **createFolder** | [**CreateFolder**](CreateFolder.md)| The title carried by the request body. | |
+| **createFolderRequest** | [**CreateFolderRequest**](CreateFolderRequest.md)| The title carried by the request body. | |
 
 ### Return type
 
@@ -2219,10 +2263,112 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FoldersApi::class.java)
 val folderId : kotlin.String = sbox-42 // kotlin.String | The folder the request is addressed to: when a folder is created it is the parent that receives the new  folder, and when a folder is renamed it is the folder that gets the new title.
-val createFolder : CreateFolder =  // CreateFolder | The title carried by the request body.
+val createFolderRequest : CreateFolderRequest =  // CreateFolderRequest | The title carried by the request body.
 
 launch(Dispatchers.IO) {
-    val result : ThirdPartyFolderWrapper = webService.renameFolder(folderId, createFolder)
+    val result : ThirdPartyFolderWrapper = webService.renameFolder(folderId, createFolderRequest)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+<a id="searchFolder"></a>
+# **searchFolder**
+> FolderContentWrapper searchFolder (kotlin.Int folderId, FolderMetadataSearch folderMetadataSearch)
+
+Searches the folder by metadata. The same filter the folder listing takes in the metadataTemplateId and metadataFilters  query parameters, here as a typed request body for the clients that build the conditions as objects rather than as a JSON string.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/search-folder/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **folderId** | **kotlin.Int**| The folder ID. | |
+| **folderMetadataSearch** | [**FolderMetadataSearch**](FolderMetadataSearch.md)| The search parameters. | |
+
+### Return type
+
+[**FolderContentWrapper**](FolderContentWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(FoldersApi::class.java)
+val folderId : kotlin.Int = 1 // kotlin.Int | The folder ID.
+val folderMetadataSearch : FolderMetadataSearch =  // FolderMetadataSearch | The search parameters.
+
+launch(Dispatchers.IO) {
+    val result : FolderContentWrapper = webService.searchFolder(folderId, folderMetadataSearch)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+<a id="searchFolder-thirdparty"></a>
+# **searchFolder** (third-party storage)
+> ThirdPartyFolderContentWrapper searchFolder (kotlin.String folderId, FolderMetadataSearch folderMetadataSearch)
+
+Searches the folder by metadata. The same filter the folder listing takes in the metadataTemplateId and metadataFilters  query parameters, here as a typed request body for the clients that build the conditions as objects rather than as a JSON string.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/search-folder/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **folderId** | **kotlin.String**| The folder ID. | |
+| **folderMetadataSearch** | [**FolderMetadataSearch**](FolderMetadataSearch.md)| The search parameters. | |
+
+### Return type
+
+[**ThirdPartyFolderContentWrapper**](ThirdPartyFolderContentWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(FoldersApi::class.java)
+val folderId : kotlin.String = sbox-42 // kotlin.String | The folder ID.
+val folderMetadataSearch : FolderMetadataSearch =  // FolderMetadataSearch | The search parameters.
+
+launch(Dispatchers.IO) {
+    val result : ThirdPartyFolderContentWrapper = webService.searchFolder(folderId, folderMetadataSearch)
 }
 ```
 
@@ -2440,7 +2586,7 @@ launch(Dispatchers.IO) {
 # **terminateReportFolderHistory**
 > void terminateReportFolderHistory (kotlin.Int folderId)
 
-Gives up the history report the caller has started for a folder with  `POST api/2.0/files/folder/{folderId}/log/report`. The request only asks the background worker to stop, and  the answer carries no body, so a following `GET api/2.0/files/folder/{folderId}/log/report` is what shows the  task ending as cancelled. Asking to terminate when nothing is running is accepted and changes nothing, which  makes the call safe to repeat. A report that has already finished is not undone by this call and its file  stays in My documents. The caller needs read access to the folder and may not be a guest, and the portal  plan has to include the audit feature; a caller who fails the access rule is answered with 403 and a folder  that does not exist with 404. Each caller can only terminate their own report.
+Gives up the history report the caller has started for a folder with  `POST api/2.0/files/folder/{folderId}/log/report`. The request only asks the background worker to stop, and  the answer carries no body, so a following `GET api/2.0/files/folder/{folderId}/log/report` is what shows the  task ending as cancelled. Asking to terminate when nothing is running is accepted and changes nothing, which  makes the call safe to repeat. A report that has already finished is not undone by this call and its file  stays in My documents. The caller needs read access to the folder and may not be a guest; a caller who fails  the access rule is answered with 403, a folder that does not exist with 404, and a portal with the login history  and audit trail section turned off with 402. Each caller can only terminate their own report.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/terminate-report-folder-history/).
 

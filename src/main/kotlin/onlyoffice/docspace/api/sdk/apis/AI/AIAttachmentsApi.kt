@@ -38,7 +38,7 @@ interface AIAttachmentsApi {
      * Responses:
      *  - 200: Confirms the request was accepted, whether or not anything was deleted.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
-     *  - 403: AI is disabled for this portal, or the caller is a guest. Relayed from the DocSpace AI service.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
      *  - 413: The request body is larger than 100 KB, the JSON parser's limit on this route.
      *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
      *
@@ -46,11 +46,11 @@ interface AIAttachmentsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-attachments-delete/
      *
      *
-     * @param body The ID of the attachment to delete, as a bare JSON string.
+     * @param aiAttachmentsDeleteRequest The ID of the attachment to delete, as a bare JSON string.
      * @return [AiSuccessResponse]
      */
     @HTTP(method = "DELETE", path = "api/2.0/ai/attachments/delete", hasBody = true)
-    suspend fun aiAttachmentsDelete(@Body body: kotlin.String): Response<AiSuccessResponse>
+    suspend fun aiAttachmentsDelete(@Body aiAttachmentsDeleteRequest: kotlin.String): Response<AiSuccessResponse>
 
     /**
      * DELETE api/2.0/ai/attachments/delete-many
@@ -59,7 +59,7 @@ interface AIAttachmentsApi {
      * Responses:
      *  - 200: Confirms the request was accepted, whether or not anything was deleted.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
-     *  - 403: AI is disabled for this portal, or the caller is a guest. Relayed from the DocSpace AI service.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
      *  - 413: The request body is larger than 100 KB, the JSON parser's limit on this route.
      *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
      *
@@ -67,11 +67,11 @@ interface AIAttachmentsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-attachments-delete-many/
      *
      *
-     * @param requestBody The IDs of the attachments to delete, as a bare JSON array of strings.
+     * @param aiAttachmentsDeleteManyRequest The IDs of the attachments to delete, as a bare JSON array of strings.
      * @return [AiSuccessResponse]
      */
     @HTTP(method = "DELETE", path = "api/2.0/ai/attachments/delete-many", hasBody = true)
-    suspend fun aiAttachmentsDeleteMany(@Body requestBody: kotlin.collections.List<kotlin.String>): Response<AiSuccessResponse>
+    suspend fun aiAttachmentsDeleteMany(@Body aiAttachmentsDeleteManyRequest: kotlin.collections.List<kotlin.String>): Response<AiSuccessResponse>
 
     /**
      * POST api/2.0/ai/attachments/get
@@ -81,7 +81,7 @@ interface AIAttachmentsApi {
      *  - 200: The attachment, or a null body when no attachment has that ID.
      *  - 400: The attachment ID is missing.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
-     *  - 403: AI is disabled for this portal, or the caller is a guest. Relayed from the DocSpace AI service.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
      *  - 413: The request body is larger than 100 KB, the JSON parser's limit on this route.
      *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
      *
@@ -89,11 +89,11 @@ interface AIAttachmentsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-attachments-get/
      *
      *
-     * @param body The ID of the attachment to read, as a bare JSON string.
+     * @param aiAttachmentsGetRequest The ID of the attachment to read, as a bare JSON string.
      * @return [AiAttachment]
      */
     @POST("api/2.0/ai/attachments/get")
-    suspend fun aiAttachmentsGet(@Body body: kotlin.String): Response<AiAttachment>
+    suspend fun aiAttachmentsGet(@Body aiAttachmentsGetRequest: kotlin.String): Response<AiAttachment>
 
     /**
      * POST api/2.0/ai/attachments/get-many
@@ -103,7 +103,7 @@ interface AIAttachmentsApi {
      *  - 200: The attachments, aligned by position with the IDs that were sent. A missing one leaves its slot empty.
      *  - 400: The list of attachment IDs is malformed.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
-     *  - 403: AI is disabled for this portal, or the caller is a guest. Relayed from the DocSpace AI service.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
      *  - 413: The request body is larger than 100 KB, the JSON parser's limit on this route.
      *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
      *
@@ -111,11 +111,11 @@ interface AIAttachmentsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-attachments-get-many/
      *
      *
-     * @param requestBody The IDs of the attachments to read, as a bare JSON array of strings. The answer is aligned with this array by position.
+     * @param aiAttachmentsGetManyRequest The IDs of the attachments to read, as a bare JSON array of strings. The answer is aligned with this array by position.
      * @return [kotlin.collections.List<AiAttachment?>]
      */
     @POST("api/2.0/ai/attachments/get-many")
-    suspend fun aiAttachmentsGetMany(@Body requestBody: kotlin.collections.List<kotlin.String>): Response<kotlin.collections.List<AiAttachment?>>
+    suspend fun aiAttachmentsGetMany(@Body aiAttachmentsGetManyRequest: kotlin.collections.List<kotlin.String>): Response<kotlin.collections.List<AiAttachment?>>
 
     /**
      * POST api/2.0/ai/attachments/suggested-questions
@@ -124,7 +124,7 @@ interface AIAttachmentsApi {
      * Responses:
      *  - 200: Success.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
-     *  - 403: AI is disabled for this portal, or the caller is a guest. Relayed from the DocSpace AI service.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
      *  - 413: The request body is larger than 100 KB, the JSON parser's limit on this route.
      *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
      *
@@ -132,11 +132,11 @@ interface AIAttachmentsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-attachments-get-suggested-questions/
      *
      *
-     * @param requestBody 
+     * @param aiAttachmentsGetSuggestedQuestionsRequest 
      * @return [AiSuccessResponse]
      */
     @POST("api/2.0/ai/attachments/suggested-questions")
-    suspend fun aiAttachmentsGetSuggestedQuestions(@Body requestBody: kotlin.collections.Map<kotlin.String, kotlin.Any?>): Response<AiSuccessResponse>
+    suspend fun aiAttachmentsGetSuggestedQuestions(@Body aiAttachmentsGetSuggestedQuestionsRequest: kotlin.collections.Map<kotlin.String, kotlin.Any?>): Response<AiSuccessResponse>
 
     /**
      * POST api/2.0/ai/attachments/link-to-message
@@ -146,7 +146,7 @@ interface AIAttachmentsApi {
      *  - 200: Confirms the attachments are now bound to the message.
      *  - 400: The attachment or message reference is malformed.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
-     *  - 403: AI is disabled for this portal, or the caller is a guest. Relayed from the DocSpace AI service.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
      *  - 404: The message or the attachment does not exist.
      *  - 413: The request body is larger than 100 KB, the JSON parser's limit on this route.
      *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
@@ -167,9 +167,9 @@ interface AIAttachmentsApi {
      * Stores one file attachment as a draft and returns it, so its ID can be attached to a message later. `input` carries the host `path` - the DocSpace entry ID the AI backend resolves server-side - the text `content` already extracted from that file, the ONLYOFFICE numeric file `type`, and optionally a `title`; the text is what the model reads, so this operation does not open the file itself. Archives are refused outright, whatever their declared name says. Drafts are not bound to a conversation until `POST api/2.0/ai/attachments/link-to-message` is called, so an unlinked draft outlives the round that created it.
      * Responses:
      *  - 200: The stored draft, whose ID links it to a message later.
-     *  - 400: The attachment payload is malformed.
+     *  - 400: The attachment payload is malformed, or `input.path` is missing or empty.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
-     *  - 403: AI is disabled for this portal, or the caller is a guest. Relayed from the DocSpace AI service.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
      *  - 413: The request body is larger than 100 KB, the JSON parser's limit on this route.
      *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
      *
@@ -191,7 +191,7 @@ interface AIAttachmentsApi {
      *  - 200: The stored drafts, in the order they were sent.
      *  - 400: `inputs` is not an array, or one of its entries is malformed.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
-     *  - 403: AI is disabled for this portal, or the caller is a guest. Relayed from the DocSpace AI service.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
      *  - 413: The request body is larger than 100 KB, the JSON parser's limit on this route.
      *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
      *

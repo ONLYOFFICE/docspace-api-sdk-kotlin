@@ -26,7 +26,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 
 <a id="getAccountsEntriesWithFilesShared"></a>
 # **getAccountsEntriesWithFilesShared**
-> IAccountEntryArrayWrapper getAccountsEntriesWithFilesShared (kotlin.Int id, EmployeeStatus employeeStatus, EmployeeActivationStatus activationStatus, kotlin.Boolean excludeShared, kotlin.Boolean includeShared, kotlin.Boolean invitedByMe, java.util.UUID inviterId, Area area, kotlin.collections.List<EmployeeType> employeeTypes, kotlin.Int count, kotlin.Int startIndex, kotlin.String filterSeparator, kotlin.String filterValue)
+> AccountEntryArrayWrapper getAccountsEntriesWithFilesShared (kotlin.Int id, EmployeeStatus employeeStatus, EmployeeActivationStatus activationStatus, kotlin.Boolean excludeShared, kotlin.Boolean includeShared, kotlin.Boolean invitedByMe, java.util.UUID inviterId, AccountSearchArea area, kotlin.collections.List<EmployeeType> employeeTypes, kotlin.Int count, kotlin.Int startIndex, kotlin.String filterSeparator, kotlin.String filterValue)
 
 Searches the portal users and groups that can be given access to the file with the ID given in the route, and  reports for each of them whether it already has access to that file.  The caller has to be allowed to manage the access of that file, and the ID has to belong to an existing file,  so the operation answers 403 for a file the caller cannot share and 404 for an ID that matches nothing.  The search is read-only and needs `filterValue`: while it is empty the operation returns an empty list and a  total of 0 instead of every account, so it cannot be used to enumerate the portal.  `filterValue` is matched case-insensitively against the first name, the last name and the email; without  `filterSeparator` it is split on spaces and every term has to match, and with a separator it is split on that  separator and any term may match.  Matching groups are streamed first and users after them, both paged together by `count` and `startIndex`,  while the number of matches is reported in the total count of the response.  Pass `excludeShared` to keep only the accounts that have no access yet, `includeShared` to keep only those  that already have it, and neither to get both kinds with the `shared` field telling them apart.
 
@@ -42,7 +42,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **includeShared** | **kotlin.Boolean**| Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when  `excludeShared` is also set. | [optional] |
 | **invitedByMe** | **kotlin.Boolean**| Keeps only the users invited by the caller when true, and only the users invited by somebody else when false.  Omit it to search regardless of who sent the invitation. | [optional] |
 | **inviterId** | **java.util.UUID**| Keeps only the users invited by the account with this ID. Omit it to search regardless of who sent the  invitation. | [optional] |
-| **area** | [**Area**](.md)| The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] [enum: 0, 1, 2] |
+| **area** | [**AccountSearchArea**](.md)| The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] [enum: 0, 1, 2] |
 | **employeeTypes** | [**kotlin.collections.List&lt;EmployeeType&gt;**](EmployeeType.md)| Keeps only the users of the listed types, combined as alternatives. An empty list, which is the default,  searches every type. | [optional] |
 | **count** | **kotlin.Int**| The size of the page, counting groups and users together. It defaults to 100, which is also the largest value  the operation accepts. | [optional] |
 | **startIndex** | **kotlin.Int**| The number of matches to skip before the page starts, counted over the groups and users together. It defaults  to 0, and the total number of matches is reported in the total count of the response. | [optional] |
@@ -51,7 +51,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Return type
 
-[**IAccountEntryArrayWrapper**](IAccountEntryArrayWrapper.md)
+[**AccountEntryArrayWrapper**](AccountEntryArrayWrapper.md)
 
 ### Authorization
 
@@ -79,7 +79,7 @@ val excludeShared : kotlin.Boolean = false // kotlin.Boolean | Keeps only the ac
 val includeShared : kotlin.Boolean = false // kotlin.Boolean | Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when  `excludeShared` is also set.
 val invitedByMe : kotlin.Boolean = false // kotlin.Boolean | Keeps only the users invited by the caller when true, and only the users invited by somebody else when false.  Omit it to search regardless of who sent the invitation.
 val inviterId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | Keeps only the users invited by the account with this ID. Omit it to search regardless of who sent the  invitation.
-val area : Area = All // Area | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to.
+val area : AccountSearchArea = All // AccountSearchArea | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to.
 val employeeTypes : kotlin.collections.List<EmployeeType> = [RoomAdmin, Guest] // kotlin.collections.List<EmployeeType> | Keeps only the users of the listed types, combined as alternatives. An empty list, which is the default,  searches every type.
 val count : kotlin.Int = 25 // kotlin.Int | The size of the page, counting groups and users together. It defaults to 100, which is also the largest value  the operation accepts.
 val startIndex : kotlin.Int = 0 // kotlin.Int | The number of matches to skip before the page starts, counted over the groups and users together. It defaults  to 0, and the total number of matches is reported in the total count of the response.
@@ -87,7 +87,7 @@ val filterSeparator : kotlin.String = , // kotlin.String | The character that sp
 val filterValue : kotlin.String = John // kotlin.String | The text to search for, matched case-insensitively against the first name, the last name and the email. It is  required in practice: while it is empty the search returns nothing at all rather than every account.
 
 launch(Dispatchers.IO) {
-    val result : IAccountEntryArrayWrapper = webService.getAccountsEntriesWithFilesShared(id, employeeStatus, activationStatus, excludeShared, includeShared, invitedByMe, inviterId, area, employeeTypes, count, startIndex, filterSeparator, filterValue)
+    val result : AccountEntryArrayWrapper = webService.getAccountsEntriesWithFilesShared(id, employeeStatus, activationStatus, excludeShared, includeShared, invitedByMe, inviterId, area, employeeTypes, count, startIndex, filterSeparator, filterValue)
 }
 ```
 
@@ -99,7 +99,7 @@ launch(Dispatchers.IO) {
 
 <a id="getAccountsEntriesWithFilesShared-thirdparty"></a>
 # **getAccountsEntriesWithFilesShared** (third-party storage)
-> IAccountEntryArrayWrapper getAccountsEntriesWithFilesShared (kotlin.String id, EmployeeStatus employeeStatus, EmployeeActivationStatus activationStatus, kotlin.Boolean excludeShared, kotlin.Boolean includeShared, kotlin.Boolean invitedByMe, java.util.UUID inviterId, Area area, kotlin.collections.List<EmployeeType> employeeTypes, kotlin.Int count, kotlin.Int startIndex, kotlin.String filterSeparator, kotlin.String filterValue)
+> AccountEntryArrayWrapper getAccountsEntriesWithFilesShared (kotlin.String id, EmployeeStatus employeeStatus, EmployeeActivationStatus activationStatus, kotlin.Boolean excludeShared, kotlin.Boolean includeShared, kotlin.Boolean invitedByMe, java.util.UUID inviterId, AccountSearchArea area, kotlin.collections.List<EmployeeType> employeeTypes, kotlin.Int count, kotlin.Int startIndex, kotlin.String filterSeparator, kotlin.String filterValue)
 
 Searches the portal users and groups that can be given access to the file with the ID given in the route, and  reports for each of them whether it already has access to that file.  The caller has to be allowed to manage the access of that file, and the ID has to belong to an existing file,  so the operation answers 403 for a file the caller cannot share and 404 for an ID that matches nothing.  The search is read-only and needs `filterValue`: while it is empty the operation returns an empty list and a  total of 0 instead of every account, so it cannot be used to enumerate the portal.  `filterValue` is matched case-insensitively against the first name, the last name and the email; without  `filterSeparator` it is split on spaces and every term has to match, and with a separator it is split on that  separator and any term may match.  Matching groups are streamed first and users after them, both paged together by `count` and `startIndex`,  while the number of matches is reported in the total count of the response.  Pass `excludeShared` to keep only the accounts that have no access yet, `includeShared` to keep only those  that already have it, and neither to get both kinds with the `shared` field telling them apart.
 
@@ -115,7 +115,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **includeShared** | **kotlin.Boolean**| Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when  `excludeShared` is also set. | [optional] |
 | **invitedByMe** | **kotlin.Boolean**| Keeps only the users invited by the caller when true, and only the users invited by somebody else when false.  Omit it to search regardless of who sent the invitation. | [optional] |
 | **inviterId** | **java.util.UUID**| Keeps only the users invited by the account with this ID. Omit it to search regardless of who sent the  invitation. | [optional] |
-| **area** | [**Area**](.md)| The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] [enum: 0, 1, 2] |
+| **area** | [**AccountSearchArea**](.md)| The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] [enum: 0, 1, 2] |
 | **employeeTypes** | [**kotlin.collections.List&lt;EmployeeType&gt;**](EmployeeType.md)| Keeps only the users of the listed types, combined as alternatives. An empty list, which is the default,  searches every type. | [optional] |
 | **count** | **kotlin.Int**| The size of the page, counting groups and users together. It defaults to 100, which is also the largest value  the operation accepts. | [optional] |
 | **startIndex** | **kotlin.Int**| The number of matches to skip before the page starts, counted over the groups and users together. It defaults  to 0, and the total number of matches is reported in the total count of the response. | [optional] |
@@ -124,7 +124,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Return type
 
-[**IAccountEntryArrayWrapper**](IAccountEntryArrayWrapper.md)
+[**AccountEntryArrayWrapper**](AccountEntryArrayWrapper.md)
 
 ### Authorization
 
@@ -152,7 +152,7 @@ val excludeShared : kotlin.Boolean = false // kotlin.Boolean | Keeps only the ac
 val includeShared : kotlin.Boolean = false // kotlin.Boolean | Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when  `excludeShared` is also set.
 val invitedByMe : kotlin.Boolean = false // kotlin.Boolean | Keeps only the users invited by the caller when true, and only the users invited by somebody else when false.  Omit it to search regardless of who sent the invitation.
 val inviterId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | Keeps only the users invited by the account with this ID. Omit it to search regardless of who sent the  invitation.
-val area : Area = All // Area | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to.
+val area : AccountSearchArea = All // AccountSearchArea | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to.
 val employeeTypes : kotlin.collections.List<EmployeeType> = [RoomAdmin, Guest] // kotlin.collections.List<EmployeeType> | Keeps only the users of the listed types, combined as alternatives. An empty list, which is the default,  searches every type.
 val count : kotlin.Int = 25 // kotlin.Int | The size of the page, counting groups and users together. It defaults to 100, which is also the largest value  the operation accepts.
 val startIndex : kotlin.Int = 0 // kotlin.Int | The number of matches to skip before the page starts, counted over the groups and users together. It defaults  to 0, and the total number of matches is reported in the total count of the response.
@@ -160,7 +160,7 @@ val filterSeparator : kotlin.String = , // kotlin.String | The character that sp
 val filterValue : kotlin.String = John // kotlin.String | The text to search for, matched case-insensitively against the first name, the last name and the email. It is  required in practice: while it is empty the search returns nothing at all rather than every account.
 
 launch(Dispatchers.IO) {
-    val result : IAccountEntryArrayWrapper = webService.getAccountsEntriesWithFilesShared(id, employeeStatus, activationStatus, excludeShared, includeShared, invitedByMe, inviterId, area, employeeTypes, count, startIndex, filterSeparator, filterValue)
+    val result : AccountEntryArrayWrapper = webService.getAccountsEntriesWithFilesShared(id, employeeStatus, activationStatus, excludeShared, includeShared, invitedByMe, inviterId, area, employeeTypes, count, startIndex, filterSeparator, filterValue)
 }
 ```
 
@@ -172,7 +172,7 @@ launch(Dispatchers.IO) {
 
 <a id="getAccountsEntriesWithFoldersShared"></a>
 # **getAccountsEntriesWithFoldersShared**
-> IAccountEntryArrayWrapper getAccountsEntriesWithFoldersShared (kotlin.Int id, EmployeeStatus employeeStatus, EmployeeActivationStatus activationStatus, kotlin.Boolean excludeShared, kotlin.Boolean includeShared, kotlin.Boolean invitedByMe, java.util.UUID inviterId, Area area, kotlin.collections.List<EmployeeType> employeeTypes, kotlin.Int count, kotlin.Int startIndex, kotlin.String filterSeparator, kotlin.String filterValue)
+> AccountEntryArrayWrapper getAccountsEntriesWithFoldersShared (kotlin.Int id, EmployeeStatus employeeStatus, EmployeeActivationStatus activationStatus, kotlin.Boolean excludeShared, kotlin.Boolean includeShared, kotlin.Boolean invitedByMe, java.util.UUID inviterId, AccountSearchArea area, kotlin.collections.List<EmployeeType> employeeTypes, kotlin.Int count, kotlin.Int startIndex, kotlin.String filterSeparator, kotlin.String filterValue)
 
 Searches the portal users and groups that can be given access to the folder with the ID given in the route,  and reports for each of them whether it already has access to that folder.  The caller has to be allowed to manage the access of that folder, and the ID has to belong to an existing  folder, so the operation answers 403 for a folder the caller cannot share and 404 for an ID that matches  nothing.  The search is read-only and needs `filterValue`: while it is empty the operation returns an empty list and a  total of 0 instead of every account, so it cannot be used to enumerate the portal.  `filterValue` is matched case-insensitively against the first name, the last name and the email; without  `filterSeparator` it is split on spaces and every term has to match, and with a separator it is split on that  separator and any term may match.  Matching groups are streamed first and users after them, both paged together by `count` and `startIndex`,  while the number of matches is reported in the total count of the response.  Pass `excludeShared` to keep only the accounts that have no access yet, `includeShared` to keep only those  that already have it, and neither to get both kinds with the `shared` field telling them apart.
 
@@ -188,7 +188,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **includeShared** | **kotlin.Boolean**| Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when  `excludeShared` is also set. | [optional] |
 | **invitedByMe** | **kotlin.Boolean**| Keeps only the users invited by the caller when true, and only the users invited by somebody else when false.  Omit it to search regardless of who sent the invitation. | [optional] |
 | **inviterId** | **java.util.UUID**| Keeps only the users invited by the account with this ID. Omit it to search regardless of who sent the  invitation. | [optional] |
-| **area** | [**Area**](.md)| The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] [enum: 0, 1, 2] |
+| **area** | [**AccountSearchArea**](.md)| The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] [enum: 0, 1, 2] |
 | **employeeTypes** | [**kotlin.collections.List&lt;EmployeeType&gt;**](EmployeeType.md)| Keeps only the users of the listed types, combined as alternatives. An empty list, which is the default,  searches every type. | [optional] |
 | **count** | **kotlin.Int**| The size of the page, counting groups and users together. It defaults to 100, which is also the largest value  the operation accepts. | [optional] |
 | **startIndex** | **kotlin.Int**| The number of matches to skip before the page starts, counted over the groups and users together. It defaults  to 0, and the total number of matches is reported in the total count of the response. | [optional] |
@@ -197,7 +197,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Return type
 
-[**IAccountEntryArrayWrapper**](IAccountEntryArrayWrapper.md)
+[**AccountEntryArrayWrapper**](AccountEntryArrayWrapper.md)
 
 ### Authorization
 
@@ -225,7 +225,7 @@ val excludeShared : kotlin.Boolean = false // kotlin.Boolean | Keeps only the ac
 val includeShared : kotlin.Boolean = false // kotlin.Boolean | Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when  `excludeShared` is also set.
 val invitedByMe : kotlin.Boolean = false // kotlin.Boolean | Keeps only the users invited by the caller when true, and only the users invited by somebody else when false.  Omit it to search regardless of who sent the invitation.
 val inviterId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | Keeps only the users invited by the account with this ID. Omit it to search regardless of who sent the  invitation.
-val area : Area = All // Area | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to.
+val area : AccountSearchArea = All // AccountSearchArea | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to.
 val employeeTypes : kotlin.collections.List<EmployeeType> = [RoomAdmin, Guest] // kotlin.collections.List<EmployeeType> | Keeps only the users of the listed types, combined as alternatives. An empty list, which is the default,  searches every type.
 val count : kotlin.Int = 25 // kotlin.Int | The size of the page, counting groups and users together. It defaults to 100, which is also the largest value  the operation accepts.
 val startIndex : kotlin.Int = 0 // kotlin.Int | The number of matches to skip before the page starts, counted over the groups and users together. It defaults  to 0, and the total number of matches is reported in the total count of the response.
@@ -233,7 +233,7 @@ val filterSeparator : kotlin.String = , // kotlin.String | The character that sp
 val filterValue : kotlin.String = John // kotlin.String | The text to search for, matched case-insensitively against the first name, the last name and the email. It is  required in practice: while it is empty the search returns nothing at all rather than every account.
 
 launch(Dispatchers.IO) {
-    val result : IAccountEntryArrayWrapper = webService.getAccountsEntriesWithFoldersShared(id, employeeStatus, activationStatus, excludeShared, includeShared, invitedByMe, inviterId, area, employeeTypes, count, startIndex, filterSeparator, filterValue)
+    val result : AccountEntryArrayWrapper = webService.getAccountsEntriesWithFoldersShared(id, employeeStatus, activationStatus, excludeShared, includeShared, invitedByMe, inviterId, area, employeeTypes, count, startIndex, filterSeparator, filterValue)
 }
 ```
 
@@ -245,7 +245,7 @@ launch(Dispatchers.IO) {
 
 <a id="getAccountsEntriesWithFoldersShared-thirdparty"></a>
 # **getAccountsEntriesWithFoldersShared** (third-party storage)
-> IAccountEntryArrayWrapper getAccountsEntriesWithFoldersShared (kotlin.String id, EmployeeStatus employeeStatus, EmployeeActivationStatus activationStatus, kotlin.Boolean excludeShared, kotlin.Boolean includeShared, kotlin.Boolean invitedByMe, java.util.UUID inviterId, Area area, kotlin.collections.List<EmployeeType> employeeTypes, kotlin.Int count, kotlin.Int startIndex, kotlin.String filterSeparator, kotlin.String filterValue)
+> AccountEntryArrayWrapper getAccountsEntriesWithFoldersShared (kotlin.String id, EmployeeStatus employeeStatus, EmployeeActivationStatus activationStatus, kotlin.Boolean excludeShared, kotlin.Boolean includeShared, kotlin.Boolean invitedByMe, java.util.UUID inviterId, AccountSearchArea area, kotlin.collections.List<EmployeeType> employeeTypes, kotlin.Int count, kotlin.Int startIndex, kotlin.String filterSeparator, kotlin.String filterValue)
 
 Searches the portal users and groups that can be given access to the folder with the ID given in the route,  and reports for each of them whether it already has access to that folder.  The caller has to be allowed to manage the access of that folder, and the ID has to belong to an existing  folder, so the operation answers 403 for a folder the caller cannot share and 404 for an ID that matches  nothing.  The search is read-only and needs `filterValue`: while it is empty the operation returns an empty list and a  total of 0 instead of every account, so it cannot be used to enumerate the portal.  `filterValue` is matched case-insensitively against the first name, the last name and the email; without  `filterSeparator` it is split on spaces and every term has to match, and with a separator it is split on that  separator and any term may match.  Matching groups are streamed first and users after them, both paged together by `count` and `startIndex`,  while the number of matches is reported in the total count of the response.  Pass `excludeShared` to keep only the accounts that have no access yet, `includeShared` to keep only those  that already have it, and neither to get both kinds with the `shared` field telling them apart.
 
@@ -261,7 +261,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **includeShared** | **kotlin.Boolean**| Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when  `excludeShared` is also set. | [optional] |
 | **invitedByMe** | **kotlin.Boolean**| Keeps only the users invited by the caller when true, and only the users invited by somebody else when false.  Omit it to search regardless of who sent the invitation. | [optional] |
 | **inviterId** | **java.util.UUID**| Keeps only the users invited by the account with this ID. Omit it to search regardless of who sent the  invitation. | [optional] |
-| **area** | [**Area**](.md)| The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] [enum: 0, 1, 2] |
+| **area** | [**AccountSearchArea**](.md)| The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] [enum: 0, 1, 2] |
 | **employeeTypes** | [**kotlin.collections.List&lt;EmployeeType&gt;**](EmployeeType.md)| Keeps only the users of the listed types, combined as alternatives. An empty list, which is the default,  searches every type. | [optional] |
 | **count** | **kotlin.Int**| The size of the page, counting groups and users together. It defaults to 100, which is also the largest value  the operation accepts. | [optional] |
 | **startIndex** | **kotlin.Int**| The number of matches to skip before the page starts, counted over the groups and users together. It defaults  to 0, and the total number of matches is reported in the total count of the response. | [optional] |
@@ -270,7 +270,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Return type
 
-[**IAccountEntryArrayWrapper**](IAccountEntryArrayWrapper.md)
+[**AccountEntryArrayWrapper**](AccountEntryArrayWrapper.md)
 
 ### Authorization
 
@@ -298,7 +298,7 @@ val excludeShared : kotlin.Boolean = false // kotlin.Boolean | Keeps only the ac
 val includeShared : kotlin.Boolean = false // kotlin.Boolean | Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when  `excludeShared` is also set.
 val invitedByMe : kotlin.Boolean = false // kotlin.Boolean | Keeps only the users invited by the caller when true, and only the users invited by somebody else when false.  Omit it to search regardless of who sent the invitation.
 val inviterId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | Keeps only the users invited by the account with this ID. Omit it to search regardless of who sent the  invitation.
-val area : Area = All // Area | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to.
+val area : AccountSearchArea = All // AccountSearchArea | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to.
 val employeeTypes : kotlin.collections.List<EmployeeType> = [RoomAdmin, Guest] // kotlin.collections.List<EmployeeType> | Keeps only the users of the listed types, combined as alternatives. An empty list, which is the default,  searches every type.
 val count : kotlin.Int = 25 // kotlin.Int | The size of the page, counting groups and users together. It defaults to 100, which is also the largest value  the operation accepts.
 val startIndex : kotlin.Int = 0 // kotlin.Int | The number of matches to skip before the page starts, counted over the groups and users together. It defaults  to 0, and the total number of matches is reported in the total count of the response.
@@ -306,7 +306,7 @@ val filterSeparator : kotlin.String = , // kotlin.String | The character that sp
 val filterValue : kotlin.String = John // kotlin.String | The text to search for, matched case-insensitively against the first name, the last name and the email. It is  required in practice: while it is empty the search returns nothing at all rather than every account.
 
 launch(Dispatchers.IO) {
-    val result : IAccountEntryArrayWrapper = webService.getAccountsEntriesWithFoldersShared(id, employeeStatus, activationStatus, excludeShared, includeShared, invitedByMe, inviterId, area, employeeTypes, count, startIndex, filterSeparator, filterValue)
+    val result : AccountEntryArrayWrapper = webService.getAccountsEntriesWithFoldersShared(id, employeeStatus, activationStatus, excludeShared, includeShared, invitedByMe, inviterId, area, employeeTypes, count, startIndex, filterSeparator, filterValue)
 }
 ```
 
@@ -318,7 +318,7 @@ launch(Dispatchers.IO) {
 
 <a id="getAccountsEntriesWithRoomsShared"></a>
 # **getAccountsEntriesWithRoomsShared**
-> IAccountEntryArrayWrapper getAccountsEntriesWithRoomsShared (kotlin.Int id, EmployeeStatus employeeStatus, EmployeeActivationStatus activationStatus, kotlin.Boolean excludeShared, kotlin.Boolean includeShared, kotlin.Boolean invitedByMe, java.util.UUID inviterId, Area area, kotlin.collections.List<EmployeeType> employeeTypes, kotlin.Int count, kotlin.Int startIndex, kotlin.String filterSeparator, kotlin.String filterValue)
+> AccountEntryArrayWrapper getAccountsEntriesWithRoomsShared (kotlin.Int id, EmployeeStatus employeeStatus, EmployeeActivationStatus activationStatus, kotlin.Boolean excludeShared, kotlin.Boolean includeShared, kotlin.Boolean invitedByMe, java.util.UUID inviterId, AccountSearchArea area, kotlin.collections.List<EmployeeType> employeeTypes, kotlin.Int count, kotlin.Int startIndex, kotlin.String filterSeparator, kotlin.String filterValue)
 
 Searches the portal users and groups that can be given access to the room with the ID given in the route, and  reports for each of them whether it already has access to that room.  The caller has to be allowed to manage the access of that room, and the ID has to belong to an existing room,  so the operation answers 403 for a room the caller cannot share and 404 for an ID that matches nothing.  The search is read-only and needs `filterValue`: while it is empty the operation returns an empty list and a  total of 0 instead of every account, so it cannot be used to enumerate the portal.  `filterValue` is matched case-insensitively against the first name, the last name and the email; without  `filterSeparator` it is split on spaces and every term has to match, and with a separator it is split on that  separator and any term may match.  Matching groups are streamed first and users after them, both paged together by `count` and `startIndex`,  while the number of matches is reported in the total count of the response.  Pass `excludeShared` to keep only the accounts that have no access yet, `includeShared` to keep only those  that already have it, and neither to get both kinds with the `shared` field telling them apart.
 
@@ -334,7 +334,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **includeShared** | **kotlin.Boolean**| Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when  `excludeShared` is also set. | [optional] |
 | **invitedByMe** | **kotlin.Boolean**| Keeps only the users invited by the caller when true, and only the users invited by somebody else when false.  Omit it to search regardless of who sent the invitation. | [optional] |
 | **inviterId** | **java.util.UUID**| Keeps only the users invited by the account with this ID. Omit it to search regardless of who sent the  invitation. | [optional] |
-| **area** | [**Area**](.md)| The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] [enum: 0, 1, 2] |
+| **area** | [**AccountSearchArea**](.md)| The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] [enum: 0, 1, 2] |
 | **employeeTypes** | [**kotlin.collections.List&lt;EmployeeType&gt;**](EmployeeType.md)| Keeps only the users of the listed types, combined as alternatives. An empty list, which is the default,  searches every type. | [optional] |
 | **count** | **kotlin.Int**| The size of the page, counting groups and users together. It defaults to 100, which is also the largest value  the operation accepts. | [optional] |
 | **startIndex** | **kotlin.Int**| The number of matches to skip before the page starts, counted over the groups and users together. It defaults  to 0, and the total number of matches is reported in the total count of the response. | [optional] |
@@ -343,7 +343,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Return type
 
-[**IAccountEntryArrayWrapper**](IAccountEntryArrayWrapper.md)
+[**AccountEntryArrayWrapper**](AccountEntryArrayWrapper.md)
 
 ### Authorization
 
@@ -371,7 +371,7 @@ val excludeShared : kotlin.Boolean = false // kotlin.Boolean | Keeps only the ac
 val includeShared : kotlin.Boolean = false // kotlin.Boolean | Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when  `excludeShared` is also set.
 val invitedByMe : kotlin.Boolean = false // kotlin.Boolean | Keeps only the users invited by the caller when true, and only the users invited by somebody else when false.  Omit it to search regardless of who sent the invitation.
 val inviterId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | Keeps only the users invited by the account with this ID. Omit it to search regardless of who sent the  invitation.
-val area : Area = All // Area | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to.
+val area : AccountSearchArea = All // AccountSearchArea | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to.
 val employeeTypes : kotlin.collections.List<EmployeeType> = ["RoomAdmin","Guest"] // kotlin.collections.List<EmployeeType> | Keeps only the users of the listed types, combined as alternatives. An empty list, which is the default,  searches every type.
 val count : kotlin.Int = 25 // kotlin.Int | The size of the page, counting groups and users together. It defaults to 100, which is also the largest value  the operation accepts.
 val startIndex : kotlin.Int = 0 // kotlin.Int | The number of matches to skip before the page starts, counted over the groups and users together. It defaults  to 0, and the total number of matches is reported in the total count of the response.
@@ -379,7 +379,7 @@ val filterSeparator : kotlin.String = , // kotlin.String | The character that sp
 val filterValue : kotlin.String = John // kotlin.String | The text to search for, matched case-insensitively against the first name, the last name and the email. It is  required in practice: while it is empty the search returns nothing at all rather than every account.
 
 launch(Dispatchers.IO) {
-    val result : IAccountEntryArrayWrapper = webService.getAccountsEntriesWithRoomsShared(id, employeeStatus, activationStatus, excludeShared, includeShared, invitedByMe, inviterId, area, employeeTypes, count, startIndex, filterSeparator, filterValue)
+    val result : AccountEntryArrayWrapper = webService.getAccountsEntriesWithRoomsShared(id, employeeStatus, activationStatus, excludeShared, includeShared, invitedByMe, inviterId, area, employeeTypes, count, startIndex, filterSeparator, filterValue)
 }
 ```
 
@@ -391,7 +391,7 @@ launch(Dispatchers.IO) {
 
 <a id="getAccountsEntriesWithRoomsShared-thirdparty"></a>
 # **getAccountsEntriesWithRoomsShared** (third-party storage)
-> IAccountEntryArrayWrapper getAccountsEntriesWithRoomsShared (kotlin.String id, EmployeeStatus employeeStatus, EmployeeActivationStatus activationStatus, kotlin.Boolean excludeShared, kotlin.Boolean includeShared, kotlin.Boolean invitedByMe, java.util.UUID inviterId, Area area, kotlin.collections.List<EmployeeType> employeeTypes, kotlin.Int count, kotlin.Int startIndex, kotlin.String filterSeparator, kotlin.String filterValue)
+> AccountEntryArrayWrapper getAccountsEntriesWithRoomsShared (kotlin.String id, EmployeeStatus employeeStatus, EmployeeActivationStatus activationStatus, kotlin.Boolean excludeShared, kotlin.Boolean includeShared, kotlin.Boolean invitedByMe, java.util.UUID inviterId, AccountSearchArea area, kotlin.collections.List<EmployeeType> employeeTypes, kotlin.Int count, kotlin.Int startIndex, kotlin.String filterSeparator, kotlin.String filterValue)
 
 Searches the portal users and groups that can be given access to the room with the ID given in the route, and  reports for each of them whether it already has access to that room.  The caller has to be allowed to manage the access of that room, and the ID has to belong to an existing room,  so the operation answers 403 for a room the caller cannot share and 404 for an ID that matches nothing.  The search is read-only and needs `filterValue`: while it is empty the operation returns an empty list and a  total of 0 instead of every account, so it cannot be used to enumerate the portal.  `filterValue` is matched case-insensitively against the first name, the last name and the email; without  `filterSeparator` it is split on spaces and every term has to match, and with a separator it is split on that  separator and any term may match.  Matching groups are streamed first and users after them, both paged together by `count` and `startIndex`,  while the number of matches is reported in the total count of the response.  Pass `excludeShared` to keep only the accounts that have no access yet, `includeShared` to keep only those  that already have it, and neither to get both kinds with the `shared` field telling them apart.
 
@@ -407,7 +407,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **includeShared** | **kotlin.Boolean**| Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when  `excludeShared` is also set. | [optional] |
 | **invitedByMe** | **kotlin.Boolean**| Keeps only the users invited by the caller when true, and only the users invited by somebody else when false.  Omit it to search regardless of who sent the invitation. | [optional] |
 | **inviterId** | **java.util.UUID**| Keeps only the users invited by the account with this ID. Omit it to search regardless of who sent the  invitation. | [optional] |
-| **area** | [**Area**](.md)| The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] [enum: 0, 1, 2] |
+| **area** | [**AccountSearchArea**](.md)| The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] [enum: 0, 1, 2] |
 | **employeeTypes** | [**kotlin.collections.List&lt;EmployeeType&gt;**](EmployeeType.md)| Keeps only the users of the listed types, combined as alternatives. An empty list, which is the default,  searches every type. | [optional] |
 | **count** | **kotlin.Int**| The size of the page, counting groups and users together. It defaults to 100, which is also the largest value  the operation accepts. | [optional] |
 | **startIndex** | **kotlin.Int**| The number of matches to skip before the page starts, counted over the groups and users together. It defaults  to 0, and the total number of matches is reported in the total count of the response. | [optional] |
@@ -416,7 +416,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Return type
 
-[**IAccountEntryArrayWrapper**](IAccountEntryArrayWrapper.md)
+[**AccountEntryArrayWrapper**](AccountEntryArrayWrapper.md)
 
 ### Authorization
 
@@ -444,7 +444,7 @@ val excludeShared : kotlin.Boolean = false // kotlin.Boolean | Keeps only the ac
 val includeShared : kotlin.Boolean = false // kotlin.Boolean | Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when  `excludeShared` is also set.
 val invitedByMe : kotlin.Boolean = false // kotlin.Boolean | Keeps only the users invited by the caller when true, and only the users invited by somebody else when false.  Omit it to search regardless of who sent the invitation.
 val inviterId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | Keeps only the users invited by the account with this ID. Omit it to search regardless of who sent the  invitation.
-val area : Area = All // Area | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to.
+val area : AccountSearchArea = All // AccountSearchArea | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to.
 val employeeTypes : kotlin.collections.List<EmployeeType> = ["RoomAdmin","Guest"] // kotlin.collections.List<EmployeeType> | Keeps only the users of the listed types, combined as alternatives. An empty list, which is the default,  searches every type.
 val count : kotlin.Int = 25 // kotlin.Int | The size of the page, counting groups and users together. It defaults to 100, which is also the largest value  the operation accepts.
 val startIndex : kotlin.Int = 0 // kotlin.Int | The number of matches to skip before the page starts, counted over the groups and users together. It defaults  to 0, and the total number of matches is reported in the total count of the response.
@@ -452,7 +452,7 @@ val filterSeparator : kotlin.String = , // kotlin.String | The character that sp
 val filterValue : kotlin.String = John // kotlin.String | The text to search for, matched case-insensitively against the first name, the last name and the email. It is  required in practice: while it is empty the search returns nothing at all rather than every account.
 
 launch(Dispatchers.IO) {
-    val result : IAccountEntryArrayWrapper = webService.getAccountsEntriesWithRoomsShared(id, employeeStatus, activationStatus, excludeShared, includeShared, invitedByMe, inviterId, area, employeeTypes, count, startIndex, filterSeparator, filterValue)
+    val result : AccountEntryArrayWrapper = webService.getAccountsEntriesWithRoomsShared(id, employeeStatus, activationStatus, excludeShared, includeShared, invitedByMe, inviterId, area, employeeTypes, count, startIndex, filterSeparator, filterValue)
 }
 ```
 
@@ -517,7 +517,7 @@ launch(Dispatchers.IO) {
 
 <a id="getSimpleByFilter"></a>
 # **getSimpleByFilter**
-> EmployeeArrayWrapper getSimpleByFilter (EmployeeStatus employeeStatus, java.util.UUID groupId, EmployeeActivationStatus activationStatus, EmployeeType employeeType, kotlin.collections.List<kotlin.Int> employeeTypes, kotlin.Boolean isAdministrator, Payments payments, AccountLoginType accountLoginType, QuotaFilter quotaFilter, kotlin.Boolean withoutGroup, kotlin.Boolean excludeGroup, kotlin.Boolean invitedByMe, java.util.UUID inviterId, Area area, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterSeparator, kotlin.String filterValue)
+> EmployeeArrayWrapper getSimpleByFilter (EmployeeStatus employeeStatus, java.util.UUID groupId, EmployeeActivationStatus activationStatus, EmployeeType employeeType, kotlin.collections.List<kotlin.Int> employeeTypes, kotlin.Boolean isAdministrator, Payments payments, AccountLoginType accountLoginType, QuotaFilter quotaFilter, kotlin.Boolean withoutGroup, kotlin.Boolean excludeGroup, kotlin.Boolean invitedByMe, java.util.UUID inviterId, AccountSearchArea area, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterSeparator, kotlin.String filterValue)
 
 Returns a page of portal accounts selected by the full set of account filters, with the short profile of each  of them - the identifying fields, the avatar and the display name, without the contacts, the groups or the  quota.  The caller has to be a room admin, a DocSpace admin or a People module admin; a member or a guest gets 403.  The call is read-only, paged by `count` and `startIndex`, ordered by `sortBy` and `sortOrder`, and reports  the number of matches in the total count of the response.  It accepts exactly the same filters as `GET api/2.0/people/filter` and differs only in how much of each  profile comes back, so prefer this one for pickers, mentions and any list that shows names, and switch to the  other only when the full profile is needed.  Filters combine as conditions that all have to hold, and the same interactions apply: `withoutGroup` makes  `groupId` irrelevant, `employeeType` wins over `employeeTypes`, and `area` cancels the type filters that  contradict it.
 
@@ -539,7 +539,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **excludeGroup** | **kotlin.Boolean**| Inverts `groupId`: with true the members of that group are left out instead of being the only ones kept. It  has no effect without `groupId`. | [optional] |
 | **invitedByMe** | **kotlin.Boolean**| Keeps only the accounts invited by the caller when true, and only those invited by somebody else when  false. Omit it to search regardless of who sent the invitation. | [optional] |
 | **inviterId** | **java.util.UUID**| Keeps only the accounts invited by the account with this ID. Omit it to search regardless of who sent the  invitation. | [optional] |
-| **area** | [**Area**](.md)| The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only. It also cancels the type filters that contradict  it. | [optional] [enum: 0, 1, 2] |
+| **area** | [**AccountSearchArea**](.md)| The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only. It also cancels the type filters that contradict  it. | [optional] [enum: 0, 1, 2] |
 | **count** | **kotlin.Int**| The size of the page. It defaults to 100, which is also the largest value the operation accepts. | [optional] |
 | **startIndex** | **kotlin.Int**| The number of matches to skip before the page starts. It defaults to 0, and the total number of matches is  reported in the total count of the response. | [optional] |
 | **sortBy** | **kotlin.String**| What to order the accounts by, compared without regard to case: `FirstName`, `LastName`, `DisplayName`,  `Type`, `Email`, `Department`, `UsedSpace`, `CreatedBy` or `RegistrationDate`. | [optional] |
@@ -583,7 +583,7 @@ val withoutGroup : kotlin.Boolean = false // kotlin.Boolean | Set it to true to 
 val excludeGroup : kotlin.Boolean = false // kotlin.Boolean | Inverts `groupId`: with true the members of that group are left out instead of being the only ones kept. It  has no effect without `groupId`.
 val invitedByMe : kotlin.Boolean = false // kotlin.Boolean | Keeps only the accounts invited by the caller when true, and only those invited by somebody else when  false. Omit it to search regardless of who sent the invitation.
 val inviterId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | Keeps only the accounts invited by the account with this ID. Omit it to search regardless of who sent the  invitation.
-val area : Area = All // Area | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only. It also cancels the type filters that contradict  it.
+val area : AccountSearchArea = All // AccountSearchArea | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only. It also cancels the type filters that contradict  it.
 val count : kotlin.Int = 25 // kotlin.Int | The size of the page. It defaults to 100, which is also the largest value the operation accepts.
 val startIndex : kotlin.Int = 0 // kotlin.Int | The number of matches to skip before the page starts. It defaults to 0, and the total number of matches is  reported in the total count of the response.
 val sortBy : kotlin.String = DisplayName // kotlin.String | What to order the accounts by, compared without regard to case: `FirstName`, `LastName`, `DisplayName`,  `Type`, `Email`, `Department`, `UsedSpace`, `CreatedBy` or `RegistrationDate`.
@@ -604,7 +604,7 @@ launch(Dispatchers.IO) {
 
 <a id="getUsersWithFilesShared"></a>
 # **getUsersWithFilesShared**
-> EmployeeFullArrayWrapper getUsersWithFilesShared (kotlin.Int id, EmployeeStatus employeeStatus, EmployeeActivationStatus activationStatus, kotlin.Boolean excludeShared, kotlin.Boolean includeShared, kotlin.Boolean invitedByMe, java.util.UUID inviterId, Area area, kotlin.collections.List<EmployeeType> employeeTypes, kotlin.Int count, kotlin.Int startIndex, kotlin.String filterSeparator, kotlin.String filterValue)
+> EmployeeFullArrayWrapper getUsersWithFilesShared (kotlin.Int id, EmployeeStatus employeeStatus, EmployeeActivationStatus activationStatus, kotlin.Boolean excludeShared, kotlin.Boolean includeShared, kotlin.Boolean invitedByMe, java.util.UUID inviterId, AccountSearchArea area, kotlin.collections.List<EmployeeType> employeeTypes, kotlin.Int count, kotlin.Int startIndex, kotlin.String filterSeparator, kotlin.String filterValue)
 
 Returns the accounts that are relevant to the file with the ID given in the route, and reports for each of  them whether it already has access to that file.  The caller only needs read access to the file, not the right to manage its access, but a guest may not call  it at all; an ID that matches no file answers 404.  The call is read-only, works without a filter - leaving `filterValue` empty returns every matching account  rather than nothing - and is paged by `count` and `startIndex`, with the number of matches in the total count  of the response.  Pass `excludeShared` to keep only the accounts that have no access yet, `includeShared` to keep only those  that already have it, and neither to get both kinds with the `shared` field telling them apart.  A DocSpace administrator additionally sees the guests that are not related to the caller.  To search users and groups together, or to build an access dialog that needs the right to manage sharing, use  `GET api/2.0/accounts/file/{id}/search` instead.
 
@@ -620,7 +620,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **includeShared** | **kotlin.Boolean**| Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when `excludeShared`  is also set. | [optional] |
 | **invitedByMe** | **kotlin.Boolean**| Keeps only the accounts invited by the caller when true, and only those invited by somebody else when  false. Omit it to search regardless of who sent the invitation. | [optional] |
 | **inviterId** | **java.util.UUID**| Keeps only the accounts invited by the account with this ID. Omit it to search regardless of who sent the  invitation. | [optional] |
-| **area** | [**Area**](.md)| The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] [enum: 0, 1, 2] |
+| **area** | [**AccountSearchArea**](.md)| The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] [enum: 0, 1, 2] |
 | **employeeTypes** | [**kotlin.collections.List&lt;EmployeeType&gt;**](EmployeeType.md)| Keeps only the accounts of the listed types, combined as alternatives. An empty list, which is the default,  searches every type. | [optional] |
 | **count** | **kotlin.Int**| The size of the page. It defaults to 100, which is also the largest value the operation accepts. | [optional] |
 | **startIndex** | **kotlin.Int**| The number of matches to skip before the page starts. It defaults to 0, and the total number of matches is  reported in the total count of the response. | [optional] |
@@ -657,7 +657,7 @@ val excludeShared : kotlin.Boolean = false // kotlin.Boolean | Keeps only the ac
 val includeShared : kotlin.Boolean = false // kotlin.Boolean | Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when `excludeShared`  is also set.
 val invitedByMe : kotlin.Boolean = false // kotlin.Boolean | Keeps only the accounts invited by the caller when true, and only those invited by somebody else when  false. Omit it to search regardless of who sent the invitation.
 val inviterId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | Keeps only the accounts invited by the account with this ID. Omit it to search regardless of who sent the  invitation.
-val area : Area = All // Area | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to.
+val area : AccountSearchArea = All // AccountSearchArea | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to.
 val employeeTypes : kotlin.collections.List<EmployeeType> = [RoomAdmin, Guest] // kotlin.collections.List<EmployeeType> | Keeps only the accounts of the listed types, combined as alternatives. An empty list, which is the default,  searches every type.
 val count : kotlin.Int = 25 // kotlin.Int | The size of the page. It defaults to 100, which is also the largest value the operation accepts.
 val startIndex : kotlin.Int = 0 // kotlin.Int | The number of matches to skip before the page starts. It defaults to 0, and the total number of matches is  reported in the total count of the response.
@@ -677,7 +677,7 @@ launch(Dispatchers.IO) {
 
 <a id="getUsersWithFilesShared-thirdparty"></a>
 # **getUsersWithFilesShared** (third-party storage)
-> EmployeeFullArrayWrapper getUsersWithFilesShared (kotlin.String id, EmployeeStatus employeeStatus, EmployeeActivationStatus activationStatus, kotlin.Boolean excludeShared, kotlin.Boolean includeShared, kotlin.Boolean invitedByMe, java.util.UUID inviterId, Area area, kotlin.collections.List<EmployeeType> employeeTypes, kotlin.Int count, kotlin.Int startIndex, kotlin.String filterSeparator, kotlin.String filterValue)
+> EmployeeFullArrayWrapper getUsersWithFilesShared (kotlin.String id, EmployeeStatus employeeStatus, EmployeeActivationStatus activationStatus, kotlin.Boolean excludeShared, kotlin.Boolean includeShared, kotlin.Boolean invitedByMe, java.util.UUID inviterId, AccountSearchArea area, kotlin.collections.List<EmployeeType> employeeTypes, kotlin.Int count, kotlin.Int startIndex, kotlin.String filterSeparator, kotlin.String filterValue)
 
 Returns the accounts that are relevant to the file with the ID given in the route, and reports for each of  them whether it already has access to that file.  The caller only needs read access to the file, not the right to manage its access, but a guest may not call  it at all; an ID that matches no file answers 404.  The call is read-only, works without a filter - leaving `filterValue` empty returns every matching account  rather than nothing - and is paged by `count` and `startIndex`, with the number of matches in the total count  of the response.  Pass `excludeShared` to keep only the accounts that have no access yet, `includeShared` to keep only those  that already have it, and neither to get both kinds with the `shared` field telling them apart.  A DocSpace administrator additionally sees the guests that are not related to the caller.  To search users and groups together, or to build an access dialog that needs the right to manage sharing, use  `GET api/2.0/accounts/file/{id}/search` instead.
 
@@ -693,7 +693,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **includeShared** | **kotlin.Boolean**| Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when `excludeShared`  is also set. | [optional] |
 | **invitedByMe** | **kotlin.Boolean**| Keeps only the accounts invited by the caller when true, and only those invited by somebody else when  false. Omit it to search regardless of who sent the invitation. | [optional] |
 | **inviterId** | **java.util.UUID**| Keeps only the accounts invited by the account with this ID. Omit it to search regardless of who sent the  invitation. | [optional] |
-| **area** | [**Area**](.md)| The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] [enum: 0, 1, 2] |
+| **area** | [**AccountSearchArea**](.md)| The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] [enum: 0, 1, 2] |
 | **employeeTypes** | [**kotlin.collections.List&lt;EmployeeType&gt;**](EmployeeType.md)| Keeps only the accounts of the listed types, combined as alternatives. An empty list, which is the default,  searches every type. | [optional] |
 | **count** | **kotlin.Int**| The size of the page. It defaults to 100, which is also the largest value the operation accepts. | [optional] |
 | **startIndex** | **kotlin.Int**| The number of matches to skip before the page starts. It defaults to 0, and the total number of matches is  reported in the total count of the response. | [optional] |
@@ -730,7 +730,7 @@ val excludeShared : kotlin.Boolean = false // kotlin.Boolean | Keeps only the ac
 val includeShared : kotlin.Boolean = false // kotlin.Boolean | Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when `excludeShared`  is also set.
 val invitedByMe : kotlin.Boolean = false // kotlin.Boolean | Keeps only the accounts invited by the caller when true, and only those invited by somebody else when  false. Omit it to search regardless of who sent the invitation.
 val inviterId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | Keeps only the accounts invited by the account with this ID. Omit it to search regardless of who sent the  invitation.
-val area : Area = All // Area | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to.
+val area : AccountSearchArea = All // AccountSearchArea | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to.
 val employeeTypes : kotlin.collections.List<EmployeeType> = [RoomAdmin, Guest] // kotlin.collections.List<EmployeeType> | Keeps only the accounts of the listed types, combined as alternatives. An empty list, which is the default,  searches every type.
 val count : kotlin.Int = 25 // kotlin.Int | The size of the page. It defaults to 100, which is also the largest value the operation accepts.
 val startIndex : kotlin.Int = 0 // kotlin.Int | The number of matches to skip before the page starts. It defaults to 0, and the total number of matches is  reported in the total count of the response.
@@ -750,7 +750,7 @@ launch(Dispatchers.IO) {
 
 <a id="getUsersWithFoldersShared"></a>
 # **getUsersWithFoldersShared**
-> EmployeeFullArrayWrapper getUsersWithFoldersShared (kotlin.Int id, EmployeeStatus employeeStatus, EmployeeActivationStatus activationStatus, kotlin.Boolean excludeShared, kotlin.Boolean includeShared, kotlin.Boolean invitedByMe, java.util.UUID inviterId, Area area, kotlin.collections.List<EmployeeType> employeeTypes, kotlin.Int count, kotlin.Int startIndex, kotlin.String filterSeparator, kotlin.String filterValue)
+> EmployeeFullArrayWrapper getUsersWithFoldersShared (kotlin.Int id, EmployeeStatus employeeStatus, EmployeeActivationStatus activationStatus, kotlin.Boolean excludeShared, kotlin.Boolean includeShared, kotlin.Boolean invitedByMe, java.util.UUID inviterId, AccountSearchArea area, kotlin.collections.List<EmployeeType> employeeTypes, kotlin.Int count, kotlin.Int startIndex, kotlin.String filterSeparator, kotlin.String filterValue)
 
 Returns the accounts that are relevant to the folder with the ID given in the route, and reports for each of  them whether it already has access to that folder.  The caller only needs read access to the folder, not the right to manage its access, but a guest may not call  it at all; an ID that matches no folder answers 404.  The call is read-only, works without a filter - leaving `filterValue` empty returns every matching account  rather than nothing - and is paged by `count` and `startIndex`, with the number of matches in the total count  of the response.  Pass `excludeShared` to keep only the accounts that have no access yet, `includeShared` to keep only those  that already have it, and neither to get both kinds with the `shared` field telling them apart.  A DocSpace administrator additionally sees the guests that are not related to the caller.  To search users and groups together, or to build an access dialog that needs the right to manage sharing, use  `GET api/2.0/accounts/folder/{id}/search` instead.
 
@@ -766,7 +766,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **includeShared** | **kotlin.Boolean**| Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when `excludeShared`  is also set. | [optional] |
 | **invitedByMe** | **kotlin.Boolean**| Keeps only the accounts invited by the caller when true, and only those invited by somebody else when  false. Omit it to search regardless of who sent the invitation. | [optional] |
 | **inviterId** | **java.util.UUID**| Keeps only the accounts invited by the account with this ID. Omit it to search regardless of who sent the  invitation. | [optional] |
-| **area** | [**Area**](.md)| The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] [enum: 0, 1, 2] |
+| **area** | [**AccountSearchArea**](.md)| The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] [enum: 0, 1, 2] |
 | **employeeTypes** | [**kotlin.collections.List&lt;EmployeeType&gt;**](EmployeeType.md)| Keeps only the accounts of the listed types, combined as alternatives. An empty list, which is the default,  searches every type. | [optional] |
 | **count** | **kotlin.Int**| The size of the page. It defaults to 100, which is also the largest value the operation accepts. | [optional] |
 | **startIndex** | **kotlin.Int**| The number of matches to skip before the page starts. It defaults to 0, and the total number of matches is  reported in the total count of the response. | [optional] |
@@ -803,7 +803,7 @@ val excludeShared : kotlin.Boolean = false // kotlin.Boolean | Keeps only the ac
 val includeShared : kotlin.Boolean = false // kotlin.Boolean | Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when `excludeShared`  is also set.
 val invitedByMe : kotlin.Boolean = false // kotlin.Boolean | Keeps only the accounts invited by the caller when true, and only those invited by somebody else when  false. Omit it to search regardless of who sent the invitation.
 val inviterId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | Keeps only the accounts invited by the account with this ID. Omit it to search regardless of who sent the  invitation.
-val area : Area = All // Area | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to.
+val area : AccountSearchArea = All // AccountSearchArea | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to.
 val employeeTypes : kotlin.collections.List<EmployeeType> = [RoomAdmin, Guest] // kotlin.collections.List<EmployeeType> | Keeps only the accounts of the listed types, combined as alternatives. An empty list, which is the default,  searches every type.
 val count : kotlin.Int = 25 // kotlin.Int | The size of the page. It defaults to 100, which is also the largest value the operation accepts.
 val startIndex : kotlin.Int = 0 // kotlin.Int | The number of matches to skip before the page starts. It defaults to 0, and the total number of matches is  reported in the total count of the response.
@@ -823,7 +823,7 @@ launch(Dispatchers.IO) {
 
 <a id="getUsersWithFoldersShared-thirdparty"></a>
 # **getUsersWithFoldersShared** (third-party storage)
-> EmployeeFullArrayWrapper getUsersWithFoldersShared (kotlin.String id, EmployeeStatus employeeStatus, EmployeeActivationStatus activationStatus, kotlin.Boolean excludeShared, kotlin.Boolean includeShared, kotlin.Boolean invitedByMe, java.util.UUID inviterId, Area area, kotlin.collections.List<EmployeeType> employeeTypes, kotlin.Int count, kotlin.Int startIndex, kotlin.String filterSeparator, kotlin.String filterValue)
+> EmployeeFullArrayWrapper getUsersWithFoldersShared (kotlin.String id, EmployeeStatus employeeStatus, EmployeeActivationStatus activationStatus, kotlin.Boolean excludeShared, kotlin.Boolean includeShared, kotlin.Boolean invitedByMe, java.util.UUID inviterId, AccountSearchArea area, kotlin.collections.List<EmployeeType> employeeTypes, kotlin.Int count, kotlin.Int startIndex, kotlin.String filterSeparator, kotlin.String filterValue)
 
 Returns the accounts that are relevant to the folder with the ID given in the route, and reports for each of  them whether it already has access to that folder.  The caller only needs read access to the folder, not the right to manage its access, but a guest may not call  it at all; an ID that matches no folder answers 404.  The call is read-only, works without a filter - leaving `filterValue` empty returns every matching account  rather than nothing - and is paged by `count` and `startIndex`, with the number of matches in the total count  of the response.  Pass `excludeShared` to keep only the accounts that have no access yet, `includeShared` to keep only those  that already have it, and neither to get both kinds with the `shared` field telling them apart.  A DocSpace administrator additionally sees the guests that are not related to the caller.  To search users and groups together, or to build an access dialog that needs the right to manage sharing, use  `GET api/2.0/accounts/folder/{id}/search` instead.
 
@@ -839,7 +839,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **includeShared** | **kotlin.Boolean**| Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when `excludeShared`  is also set. | [optional] |
 | **invitedByMe** | **kotlin.Boolean**| Keeps only the accounts invited by the caller when true, and only those invited by somebody else when  false. Omit it to search regardless of who sent the invitation. | [optional] |
 | **inviterId** | **java.util.UUID**| Keeps only the accounts invited by the account with this ID. Omit it to search regardless of who sent the  invitation. | [optional] |
-| **area** | [**Area**](.md)| The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] [enum: 0, 1, 2] |
+| **area** | [**AccountSearchArea**](.md)| The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] [enum: 0, 1, 2] |
 | **employeeTypes** | [**kotlin.collections.List&lt;EmployeeType&gt;**](EmployeeType.md)| Keeps only the accounts of the listed types, combined as alternatives. An empty list, which is the default,  searches every type. | [optional] |
 | **count** | **kotlin.Int**| The size of the page. It defaults to 100, which is also the largest value the operation accepts. | [optional] |
 | **startIndex** | **kotlin.Int**| The number of matches to skip before the page starts. It defaults to 0, and the total number of matches is  reported in the total count of the response. | [optional] |
@@ -876,7 +876,7 @@ val excludeShared : kotlin.Boolean = false // kotlin.Boolean | Keeps only the ac
 val includeShared : kotlin.Boolean = false // kotlin.Boolean | Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when `excludeShared`  is also set.
 val invitedByMe : kotlin.Boolean = false // kotlin.Boolean | Keeps only the accounts invited by the caller when true, and only those invited by somebody else when  false. Omit it to search regardless of who sent the invitation.
 val inviterId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | Keeps only the accounts invited by the account with this ID. Omit it to search regardless of who sent the  invitation.
-val area : Area = All // Area | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to.
+val area : AccountSearchArea = All // AccountSearchArea | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to.
 val employeeTypes : kotlin.collections.List<EmployeeType> = [RoomAdmin, Guest] // kotlin.collections.List<EmployeeType> | Keeps only the accounts of the listed types, combined as alternatives. An empty list, which is the default,  searches every type.
 val count : kotlin.Int = 25 // kotlin.Int | The size of the page. It defaults to 100, which is also the largest value the operation accepts.
 val startIndex : kotlin.Int = 0 // kotlin.Int | The number of matches to skip before the page starts. It defaults to 0, and the total number of matches is  reported in the total count of the response.
@@ -896,7 +896,7 @@ launch(Dispatchers.IO) {
 
 <a id="getUsersWithRoomShared"></a>
 # **getUsersWithRoomShared**
-> EmployeeFullArrayWrapper getUsersWithRoomShared (kotlin.Int id, EmployeeStatus employeeStatus, EmployeeActivationStatus activationStatus, kotlin.Boolean excludeShared, kotlin.Boolean includeShared, kotlin.Boolean invitedByMe, java.util.UUID inviterId, Area area, kotlin.collections.List<EmployeeType> employeeTypes, kotlin.Int count, kotlin.Int startIndex, kotlin.String filterSeparator, kotlin.String filterValue)
+> EmployeeFullArrayWrapper getUsersWithRoomShared (kotlin.Int id, EmployeeStatus employeeStatus, EmployeeActivationStatus activationStatus, kotlin.Boolean excludeShared, kotlin.Boolean includeShared, kotlin.Boolean invitedByMe, java.util.UUID inviterId, AccountSearchArea area, kotlin.collections.List<EmployeeType> employeeTypes, kotlin.Int count, kotlin.Int startIndex, kotlin.String filterSeparator, kotlin.String filterValue)
 
 Returns the accounts that are relevant to the room with the ID given in the route, and reports for each of  them whether it already has access to that room.  The caller only needs read access to the room, not the right to manage its access, but a guest may not call  it at all; an ID that matches no room answers 404.  The call is read-only, works without a filter - leaving `filterValue` empty returns every matching account  rather than nothing - and is paged by `count` and `startIndex`, with the number of matches in the total count  of the response.  Pass `excludeShared` to keep only the accounts that have no access yet, `includeShared` to keep only those  that already have it, and neither to get both kinds with the `shared` field telling them apart.  A DocSpace administrator additionally sees the guests that are not related to the caller.  To search users and groups together, or to build an access dialog that needs the right to manage sharing, use  `GET api/2.0/accounts/room/{id}/search` instead.
 
@@ -912,7 +912,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **includeShared** | **kotlin.Boolean**| Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when `excludeShared`  is also set. | [optional] |
 | **invitedByMe** | **kotlin.Boolean**| Keeps only the accounts invited by the caller when true, and only those invited by somebody else when  false. Omit it to search regardless of who sent the invitation. | [optional] |
 | **inviterId** | **java.util.UUID**| Keeps only the accounts invited by the account with this ID. Omit it to search regardless of who sent the  invitation. | [optional] |
-| **area** | [**Area**](.md)| The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] [enum: 0, 1, 2] |
+| **area** | [**AccountSearchArea**](.md)| The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] [enum: 0, 1, 2] |
 | **employeeTypes** | [**kotlin.collections.List&lt;EmployeeType&gt;**](EmployeeType.md)| Keeps only the accounts of the listed types, combined as alternatives. An empty list, which is the default,  searches every type. | [optional] |
 | **count** | **kotlin.Int**| The size of the page. It defaults to 100, which is also the largest value the operation accepts. | [optional] |
 | **startIndex** | **kotlin.Int**| The number of matches to skip before the page starts. It defaults to 0, and the total number of matches is  reported in the total count of the response. | [optional] |
@@ -949,7 +949,7 @@ val excludeShared : kotlin.Boolean = false // kotlin.Boolean | Keeps only the ac
 val includeShared : kotlin.Boolean = false // kotlin.Boolean | Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when `excludeShared`  is also set.
 val invitedByMe : kotlin.Boolean = false // kotlin.Boolean | Keeps only the accounts invited by the caller when true, and only those invited by somebody else when  false. Omit it to search regardless of who sent the invitation.
 val inviterId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | Keeps only the accounts invited by the account with this ID. Omit it to search regardless of who sent the  invitation.
-val area : Area = All // Area | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to.
+val area : AccountSearchArea = All // AccountSearchArea | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to.
 val employeeTypes : kotlin.collections.List<EmployeeType> = [RoomAdmin, Guest] // kotlin.collections.List<EmployeeType> | Keeps only the accounts of the listed types, combined as alternatives. An empty list, which is the default,  searches every type.
 val count : kotlin.Int = 25 // kotlin.Int | The size of the page. It defaults to 100, which is also the largest value the operation accepts.
 val startIndex : kotlin.Int = 0 // kotlin.Int | The number of matches to skip before the page starts. It defaults to 0, and the total number of matches is  reported in the total count of the response.
@@ -969,7 +969,7 @@ launch(Dispatchers.IO) {
 
 <a id="getUsersWithRoomShared-thirdparty"></a>
 # **getUsersWithRoomShared** (third-party storage)
-> EmployeeFullArrayWrapper getUsersWithRoomShared (kotlin.String id, EmployeeStatus employeeStatus, EmployeeActivationStatus activationStatus, kotlin.Boolean excludeShared, kotlin.Boolean includeShared, kotlin.Boolean invitedByMe, java.util.UUID inviterId, Area area, kotlin.collections.List<EmployeeType> employeeTypes, kotlin.Int count, kotlin.Int startIndex, kotlin.String filterSeparator, kotlin.String filterValue)
+> EmployeeFullArrayWrapper getUsersWithRoomShared (kotlin.String id, EmployeeStatus employeeStatus, EmployeeActivationStatus activationStatus, kotlin.Boolean excludeShared, kotlin.Boolean includeShared, kotlin.Boolean invitedByMe, java.util.UUID inviterId, AccountSearchArea area, kotlin.collections.List<EmployeeType> employeeTypes, kotlin.Int count, kotlin.Int startIndex, kotlin.String filterSeparator, kotlin.String filterValue)
 
 Returns the accounts that are relevant to the room with the ID given in the route, and reports for each of  them whether it already has access to that room.  The caller only needs read access to the room, not the right to manage its access, but a guest may not call  it at all; an ID that matches no room answers 404.  The call is read-only, works without a filter - leaving `filterValue` empty returns every matching account  rather than nothing - and is paged by `count` and `startIndex`, with the number of matches in the total count  of the response.  Pass `excludeShared` to keep only the accounts that have no access yet, `includeShared` to keep only those  that already have it, and neither to get both kinds with the `shared` field telling them apart.  A DocSpace administrator additionally sees the guests that are not related to the caller.  To search users and groups together, or to build an access dialog that needs the right to manage sharing, use  `GET api/2.0/accounts/room/{id}/search` instead.
 
@@ -985,7 +985,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **includeShared** | **kotlin.Boolean**| Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when `excludeShared`  is also set. | [optional] |
 | **invitedByMe** | **kotlin.Boolean**| Keeps only the accounts invited by the caller when true, and only those invited by somebody else when  false. Omit it to search regardless of who sent the invitation. | [optional] |
 | **inviterId** | **java.util.UUID**| Keeps only the accounts invited by the account with this ID. Omit it to search regardless of who sent the  invitation. | [optional] |
-| **area** | [**Area**](.md)| The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] [enum: 0, 1, 2] |
+| **area** | [**AccountSearchArea**](.md)| The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] [enum: 0, 1, 2] |
 | **employeeTypes** | [**kotlin.collections.List&lt;EmployeeType&gt;**](EmployeeType.md)| Keeps only the accounts of the listed types, combined as alternatives. An empty list, which is the default,  searches every type. | [optional] |
 | **count** | **kotlin.Int**| The size of the page. It defaults to 100, which is also the largest value the operation accepts. | [optional] |
 | **startIndex** | **kotlin.Int**| The number of matches to skip before the page starts. It defaults to 0, and the total number of matches is  reported in the total count of the response. | [optional] |
@@ -1022,7 +1022,7 @@ val excludeShared : kotlin.Boolean = false // kotlin.Boolean | Keeps only the ac
 val includeShared : kotlin.Boolean = false // kotlin.Boolean | Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when `excludeShared`  is also set.
 val invitedByMe : kotlin.Boolean = false // kotlin.Boolean | Keeps only the accounts invited by the caller when true, and only those invited by somebody else when  false. Omit it to search regardless of who sent the invitation.
 val inviterId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | Keeps only the accounts invited by the account with this ID. Omit it to search regardless of who sent the  invitation.
-val area : Area = All // Area | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to.
+val area : AccountSearchArea = All // AccountSearchArea | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to.
 val employeeTypes : kotlin.collections.List<EmployeeType> = [RoomAdmin, Guest] // kotlin.collections.List<EmployeeType> | Keeps only the accounts of the listed types, combined as alternatives. An empty list, which is the default,  searches every type.
 val count : kotlin.Int = 25 // kotlin.Int | The size of the page. It defaults to 100, which is also the largest value the operation accepts.
 val startIndex : kotlin.Int = 0 // kotlin.Int | The number of matches to skip before the page starts. It defaults to 0, and the total number of matches is  reported in the total count of the response.
@@ -1042,7 +1042,7 @@ launch(Dispatchers.IO) {
 
 <a id="searchUsersByExtendedFilter"></a>
 # **searchUsersByExtendedFilter**
-> EmployeeFullArrayWrapper searchUsersByExtendedFilter (EmployeeStatus employeeStatus, java.util.UUID groupId, EmployeeActivationStatus activationStatus, EmployeeType employeeType, kotlin.collections.List<kotlin.Int> employeeTypes, kotlin.Boolean isAdministrator, Payments payments, AccountLoginType accountLoginType, QuotaFilter quotaFilter, kotlin.Boolean withoutGroup, kotlin.Boolean excludeGroup, kotlin.Boolean invitedByMe, java.util.UUID inviterId, Area area, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterSeparator, kotlin.String filterValue)
+> EmployeeFullArrayWrapper searchUsersByExtendedFilter (EmployeeStatus employeeStatus, java.util.UUID groupId, EmployeeActivationStatus activationStatus, EmployeeType employeeType, kotlin.collections.List<kotlin.Int> employeeTypes, kotlin.Boolean isAdministrator, Payments payments, AccountLoginType accountLoginType, QuotaFilter quotaFilter, kotlin.Boolean withoutGroup, kotlin.Boolean excludeGroup, kotlin.Boolean invitedByMe, java.util.UUID inviterId, AccountSearchArea area, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterSeparator, kotlin.String filterValue)
 
 Returns a page of portal accounts selected by the full set of account filters, with the complete profile of  each of them.  The caller has to be a room admin, a DocSpace admin or a People module admin; a member or a guest gets 403,  and a DocSpace admin additionally sees the accounts an ordinary admin does not.  The call is read-only, paged by `count` and `startIndex`, ordered by `sortBy` and `sortOrder`, and reports  the number of matches in the total count of the response.  Filters combine as conditions that all have to hold, with three interactions worth knowing: `withoutGroup`  makes `groupId` irrelevant, `employeeType` wins over `employeeTypes` when both are sent, and `area` set to  `Guests` or `People` cancels the type filters that contradict it.  `GET api/2.0/people/simple/filter` accepts exactly the same filters and returns the short profile instead, so  use that one for pickers and lists and this one when the full profile is really needed.  It is available on an unpaid portal.
 
@@ -1064,7 +1064,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | **excludeGroup** | **kotlin.Boolean**| Inverts `groupId`: with true the members of that group are left out instead of being the only ones kept. It  has no effect without `groupId`. | [optional] |
 | **invitedByMe** | **kotlin.Boolean**| Keeps only the accounts invited by the caller when true, and only those invited by somebody else when  false. Omit it to search regardless of who sent the invitation. | [optional] |
 | **inviterId** | **java.util.UUID**| Keeps only the accounts invited by the account with this ID. Omit it to search regardless of who sent the  invitation. | [optional] |
-| **area** | [**Area**](.md)| The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only. It also cancels the type filters that contradict  it. | [optional] [enum: 0, 1, 2] |
+| **area** | [**AccountSearchArea**](.md)| The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only. It also cancels the type filters that contradict  it. | [optional] [enum: 0, 1, 2] |
 | **count** | **kotlin.Int**| The size of the page. It defaults to 100, which is also the largest value the operation accepts. | [optional] |
 | **startIndex** | **kotlin.Int**| The number of matches to skip before the page starts. It defaults to 0, and the total number of matches is  reported in the total count of the response. | [optional] |
 | **sortBy** | **kotlin.String**| What to order the accounts by, compared without regard to case: `FirstName`, `LastName`, `DisplayName`,  `Type`, `Email`, `Department`, `UsedSpace`, `CreatedBy` or `RegistrationDate`. | [optional] |
@@ -1108,7 +1108,7 @@ val withoutGroup : kotlin.Boolean = false // kotlin.Boolean | Set it to true to 
 val excludeGroup : kotlin.Boolean = false // kotlin.Boolean | Inverts `groupId`: with true the members of that group are left out instead of being the only ones kept. It  has no effect without `groupId`.
 val invitedByMe : kotlin.Boolean = false // kotlin.Boolean | Keeps only the accounts invited by the caller when true, and only those invited by somebody else when  false. Omit it to search regardless of who sent the invitation.
 val inviterId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | Keeps only the accounts invited by the account with this ID. Omit it to search regardless of who sent the  invitation.
-val area : Area = All // Area | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only. It also cancels the type filters that contradict  it.
+val area : AccountSearchArea = All // AccountSearchArea | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only. It also cancels the type filters that contradict  it.
 val count : kotlin.Int = 25 // kotlin.Int | The size of the page. It defaults to 100, which is also the largest value the operation accepts.
 val startIndex : kotlin.Int = 0 // kotlin.Int | The number of matches to skip before the page starts. It defaults to 0, and the total number of matches is  reported in the total count of the response.
 val sortBy : kotlin.String = DisplayName // kotlin.String | What to order the accounts by, compared without regard to case: `FirstName`, `LastName`, `DisplayName`,  `Type`, `Email`, `Department`, `UsedSpace`, `CreatedBy` or `RegistrationDate`.

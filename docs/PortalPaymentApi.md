@@ -293,7 +293,7 @@ launch(Dispatchers.IO) {
 
 <a id="getAccountingServicePrices"></a>
 # **getAccountingServicePrices**
-> ServicePriceInfoArrayWrapper getAccountingServicePrices (kotlin.String serviceName, kotlin.Boolean active)
+> ServicePriceArrayWrapper getAccountingServicePrices (kotlin.String serviceName, kotlin.Boolean active)
 
 Returns the portal's automatic wallet top-up settings: whether it is switched on, the balance that triggers  it, the balance it tops the wallet up to and the currency it charges in. Only a DocSpace administrator may  read it, no billing customer is needed, and the call is read-only. A portal that has never configured it gets  the defaults rather than an empty result, so `enabled` is the field that says whether anything happens at all.  Two of the values are kept by the portal itself and cannot be set through this API: `lowBalanceThreshold` is  the balance below which the portal warns its administrators by mail, and `lowBalanceNotified` says whether  that warning has already gone out for the current dip. Change the rest with  `POST api/2.0/portal/payment/topupsettings`.
 
@@ -307,7 +307,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Return type
 
-[**ServicePriceInfoArrayWrapper**](ServicePriceInfoArrayWrapper.md)
+[**ServicePriceArrayWrapper**](ServicePriceArrayWrapper.md)
 
 ### Authorization
 
@@ -332,7 +332,7 @@ val serviceName : kotlin.String = ai-tools // kotlin.String | The service whose 
 val active : kotlin.Boolean = false // kotlin.Boolean | Whether the answer is narrowed to the prices in force at the moment of the call. Leaving it false also  returns the retired and the not yet started ones, which is what pricing a movement recorded in the past  needs.
 
 launch(Dispatchers.IO) {
-    val result : ServicePriceInfoArrayWrapper = webService.getAccountingServicePrices(serviceName, active)
+    val result : ServicePriceArrayWrapper = webService.getAccountingServicePrices(serviceName, active)
 }
 ```
 
@@ -1202,7 +1202,7 @@ launch(Dispatchers.IO) {
 
 <a id="getRestrictedAiModels"></a>
 # **getRestrictedAiModels**
-> RestrictedModelsResponseWrapper getRestrictedAiModels ()
+> RestrictedAiModelsWrapper getRestrictedAiModels ()
 
 Returns the AI chat models that are barred on this portal - the ones no user of it may pick for a  conversation, whatever the price list offers. Only a DocSpace administrator may read it, and the call is  read-only. When the installation has no billing service or AI is not enabled for the portal, the answer is an  empty set instead of an error, which is indistinguishable from a portal that restricts nothing. An empty  `models` therefore means every model in `GET api/2.0/portal/payment/ai-prices` may be used. The set names the  barred models and not the allowed ones; replace it with `PUT api/2.0/portal/payment/ai-model/restrictions`.
 
@@ -1213,7 +1213,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**RestrictedModelsResponseWrapper**](RestrictedModelsResponseWrapper.md)
+[**RestrictedAiModelsWrapper**](RestrictedAiModelsWrapper.md)
 
 ### Authorization
 
@@ -1236,7 +1236,7 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PaymentApi::class.java)
 
 launch(Dispatchers.IO) {
-    val result : RestrictedModelsResponseWrapper = webService.getRestrictedAiModels()
+    val result : RestrictedAiModelsWrapper = webService.getRestrictedAiModels()
 }
 ```
 
@@ -1248,7 +1248,7 @@ launch(Dispatchers.IO) {
 
 <a id="getSubscriptionBalanceInfo"></a>
 # **getSubscriptionBalanceInfo**
-> SubscriptionBalanceInfoWrapper getSubscriptionBalanceInfo ()
+> SubscriptionBalanceWrapper getSubscriptionBalanceInfo ()
 
 Reports in money how much of the portal's paid subscription period is still unused - the credit that  `POST api/2.0/portal/payment/subscription/movetowallet` would carry over to the wallet if the subscription  were ended now. The portal must have a billing customer and a plan in the paid state; a plan that is not paid  answers 402, and a paid plan without a subscription row gives 404. Only the payer - the portal user whose  e-mail is the billing customer's e-mail - may read it, and the call is read-only. The answer states the total  cost of the current period with its currency, the start and the end of that period in UTC, the moment the  unused part is measured up to, the days already elapsed, and the remaining balance both in the subscription  currency and converted to the wallet currency. Every figure is computed for the instant of the request, so it  changes between calls.
 
@@ -1259,7 +1259,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**SubscriptionBalanceInfoWrapper**](SubscriptionBalanceInfoWrapper.md)
+[**SubscriptionBalanceWrapper**](SubscriptionBalanceWrapper.md)
 
 ### Authorization
 
@@ -1282,7 +1282,7 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PaymentApi::class.java)
 
 launch(Dispatchers.IO) {
-    val result : SubscriptionBalanceInfoWrapper = webService.getSubscriptionBalanceInfo()
+    val result : SubscriptionBalanceWrapper = webService.getSubscriptionBalanceInfo()
 }
 ```
 
@@ -1340,9 +1340,9 @@ launch(Dispatchers.IO) {
 
 <a id="getTenantWalletSettings"></a>
 # **getTenantWalletSettings**
-> TenantWalletSettingsResponseWrapper getTenantWalletSettings ()
+> TenantWalletSettingsWrapper getTenantWalletSettings ()
 
-Returns the portal's automatic wallet top-up settings - whether it is on, the balance that triggers a  charge, the balance it is topped up to, and the currency both are expressed in. Any DocSpace  administrator may read them, and unlike the operation that changes them this one needs neither a  billing customer nor a configured billing service, so it answers on a portal that has never paid for  anything. It is read-only and changes nothing.  A portal that has never configured top-up gets the defaults rather than an empty result: `enabled` is  false, `currency` is null, and `minBalance` and `upToBalance` are 0. Those two zeros are outside the  ranges `POST api/2.0/portal/payment/topupsettings` accepts - 5 to 1000 and 6 to 5000 - so the answer  cannot be sent straight back to it; supply real values instead. `lastModified` is  `0001-01-01T00:00:00` until the settings are stored for the first time.  `lowBalanceThreshold` and `lowBalanceNotified` are maintained by the portal itself: they are reported  here, but ignored when the settings are written.
+Returns the portal's automatic wallet top-up settings - whether it is on, the balance that triggers a  charge, the balance it is topped up to, and the currency both are expressed in. Any DocSpace  administrator may read them, and unlike the operation that changes them this one needs neither a  billing customer nor a configured billing service, so it answers on a portal that has never paid for  anything. It is read-only and changes nothing.  A portal that has never configured top-up gets the defaults rather than an empty result: `enabled` is  false, `currency` is null, and `minBalance` and `upToBalance` are 0. Those two zeros are outside the  ranges `POST api/2.0/portal/payment/topupsettings` accepts - 5 to 1000 and 6 to 5000 - so the answer  cannot be sent straight back to it; supply real values instead. `lastModified` is  `0001-01-01T00:00:00` until the settings are stored for the first time.  `lowBalanceThreshold` and `lowBalanceNotified` are maintained by the portal itself: they are reported  here, but cannot be written.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tenant-wallet-settings/).
 
@@ -1351,7 +1351,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**TenantWalletSettingsResponseWrapper**](TenantWalletSettingsResponseWrapper.md)
+[**TenantWalletSettingsWrapper**](TenantWalletSettingsWrapper.md)
 
 ### Authorization
 
@@ -1374,7 +1374,7 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PaymentApi::class.java)
 
 launch(Dispatchers.IO) {
-    val result : TenantWalletSettingsResponseWrapper = webService.getTenantWalletSettings()
+    val result : TenantWalletSettingsWrapper = webService.getTenantWalletSettings()
 }
 ```
 
@@ -1530,7 +1530,7 @@ launch(Dispatchers.IO) {
 
 <a id="sendPaymentRequest"></a>
 # **sendPaymentRequest**
-> void sendPaymentRequest (SalesRequestsDto salesRequestsDto)
+> void sendPaymentRequest (SalesRequestDto salesRequestDto)
 
 Sends the portal's message to the ONLYOFFICE sales team - the contact-sales form behind a request for a quote,  an invoice or a plan that cannot be bought online. `email` has to be a well-formed address and is where the  answer will go, while `userName` and `message` say who is asking and what for; all three are required and none  may be empty. Only a DocSpace administrator may call it. Nothing on the portal changes: no plan, no quota and  no payment is touched, a message is mailed out and the request is written to the portal audit trail. There is  no response body - status 200 means the message was handed to the mail service - and the call is not  idempotent, so a repeat sends a second message. It is limited to ten requests a minute per user by default and  answers 429 above that.
 
@@ -1539,7 +1539,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **salesRequestsDto** | [**SalesRequestsDto**](SalesRequestsDto.md)|  | [optional] |
+| **salesRequestDto** | [**SalesRequestDto**](SalesRequestDto.md)|  | [optional] |
 
 ### Return type
 
@@ -1564,10 +1564,10 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PaymentApi::class.java)
-val salesRequestsDto : SalesRequestsDto =  // SalesRequestsDto | 
+val salesRequestDto : SalesRequestDto =  // SalesRequestDto | 
 
 launch(Dispatchers.IO) {
-    webService.sendPaymentRequest(salesRequestsDto)
+    webService.sendPaymentRequest(salesRequestDto)
 }
 ```
 
@@ -1579,9 +1579,9 @@ launch(Dispatchers.IO) {
 
 <a id="setRestrictedAiModels"></a>
 # **setRestrictedAiModels**
-> RestrictedModelsResponseWrapper setRestrictedAiModels (SetRestrictedAiModelsRequestDto setRestrictedAiModelsRequestDto)
+> RestrictedAiModelsWrapper setRestrictedAiModels (SetRestrictedAiModelsRequestDto setRestrictedAiModelsRequestDto)
 
-Replaces the whole set of AI chat models barred on this portal: the body is the complete set that is to hold,  so adding one restriction means sending the new model together with the ones already restricted, lifting one  means leaving it out, and an empty set lifts them all. Read the current set from  `GET api/2.0/portal/payment/ai-model/restrictions` and the model identifiers from  `GET api/2.0/portal/payment/ai-prices` before calling. The installation needs a billing service and the AI  gateway configured, the portal needs a billing customer, and the caller needs the permission to edit the  portal settings as well as DocSpace administrator rights. The call is mutating and idempotent - sending the  same set twice leaves the same state - and it is written to the portal audit trail. It takes effect on the  next AI request, so a conversation already open on a model that has just been barred cannot go on with it. The  stored set comes back in the answer.
+Replaces the whole set of AI chat models barred on this portal: the body is the complete set that is to hold,  so adding one restriction means sending the new model together with the ones already restricted, lifting one  means leaving it out, and an empty set lifts them all. Read the current set from  `GET api/2.0/portal/payment/ai-model/restrictions` and the model identifiers from  `GET api/2.0/portal/payment/ai-prices` before calling. The installation needs a billing service and the AI  gateway configured, the portal needs a billing customer and the AI tools wallet service switched on with  `POST api/2.0/portal/payment/servicestate`, and the caller needs the permission to edit the portal settings as  well as DocSpace administrator rights. The call is mutating and idempotent - sending the same set twice leaves  the same state - and it is written to the portal audit trail. It takes effect on the next AI request, so a  conversation already open on a model that has just been barred cannot go on with it. The stored set comes  back in the answer. While AI tools is off the call is refused with 403 instead of being stored, because the  read reports an empty set then and nothing written could be read back.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/set-restricted-ai-models/).
 
@@ -1592,7 +1592,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Return type
 
-[**RestrictedModelsResponseWrapper**](RestrictedModelsResponseWrapper.md)
+[**RestrictedAiModelsWrapper**](RestrictedAiModelsWrapper.md)
 
 ### Authorization
 
@@ -1616,7 +1616,7 @@ val webService = apiClient.createWebservice(PaymentApi::class.java)
 val setRestrictedAiModelsRequestDto : SetRestrictedAiModelsRequestDto =  // SetRestrictedAiModelsRequestDto | 
 
 launch(Dispatchers.IO) {
-    val result : RestrictedModelsResponseWrapper = webService.setRestrictedAiModels(setRestrictedAiModelsRequestDto)
+    val result : RestrictedAiModelsWrapper = webService.setRestrictedAiModels(setRestrictedAiModelsRequestDto)
 }
 ```
 
@@ -1628,20 +1628,20 @@ launch(Dispatchers.IO) {
 
 <a id="setTenantWalletSettings"></a>
 # **setTenantWalletSettings**
-> TenantWalletSettingsResponseWrapper setTenantWalletSettings (TenantWalletSettingsWrapper tenantWalletSettingsWrapper)
+> TenantWalletSettingsWrapper setTenantWalletSettings (TenantWalletSettingsRequestDto tenantWalletSettingsRequestDto)
 
-Switches the portal's automatic wallet top-up on or off and sets its thresholds: while it is on, the payment  method on file is charged whenever the wallet balance falls below `minBalance`, enough to bring it up to  `upToBalance`, in `currency`. The portal needs a billing customer whose wallet balance exists - a portal that  has never had one answers 404, so top the wallet up once with `POST api/2.0/portal/payment/deposit` first -  and only the payer may change the settings. The body replaces the stored settings as a whole and an omitted  body resets them to the defaults; `minBalance` is accepted between 5 and 1000 and `upToBalance` between 6 and  5000, while `lowBalanceThreshold` and `lowBalanceNotified` are ignored on the way in and kept as the portal  had them. The call is mutating and idempotent, it charges nothing by itself, it is written to the portal audit  trail, and switching the top-up on also re-arms the low-balance warning. The settings as they were stored come  back in the answer.
+Switches the portal's automatic wallet top-up on or off and sets its thresholds: while it is on, the payment  method on file is charged whenever the wallet balance falls below `minBalance`, enough to bring it up to  `upToBalance`, in `currency`. The portal needs a billing customer whose wallet balance exists - a portal that  has never had one answers 404, so top the wallet up once with `POST api/2.0/portal/payment/deposit` first -  and only the payer may change the settings. The body replaces the stored settings as a whole and an omitted  body resets them to the defaults; `minBalance` is accepted between 5 and 1000 and `upToBalance` between 6 and  5000, and `upToBalance` has to be greater than `minBalance`, so that a top-up lifts the wallet above the balance  that triggers it. The low-balance warning state (`lowBalanceThreshold`, `lowBalanceNotified`) and `lastModified` may be  sent for compatibility but are ignored: the portal keeps the values it had. The call is mutating and  idempotent, it charges nothing by itself, it is written to the portal audit trail, and switching the top-up on also re-arms the low-balance warning. The settings as they were stored come  back in the answer.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/set-tenant-wallet-settings/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **tenantWalletSettingsWrapper** | [**TenantWalletSettingsWrapper**](TenantWalletSettingsWrapper.md)|  | [optional] |
+| **tenantWalletSettingsRequestDto** | [**TenantWalletSettingsRequestDto**](TenantWalletSettingsRequestDto.md)|  | [optional] |
 
 ### Return type
 
-[**TenantWalletSettingsResponseWrapper**](TenantWalletSettingsResponseWrapper.md)
+[**TenantWalletSettingsWrapper**](TenantWalletSettingsWrapper.md)
 
 ### Authorization
 
@@ -1662,10 +1662,10 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PaymentApi::class.java)
-val tenantWalletSettingsWrapper : TenantWalletSettingsWrapper =  // TenantWalletSettingsWrapper | 
+val tenantWalletSettingsRequestDto : TenantWalletSettingsRequestDto =  // TenantWalletSettingsRequestDto | 
 
 launch(Dispatchers.IO) {
-    val result : TenantWalletSettingsResponseWrapper = webService.setTenantWalletSettings(tenantWalletSettingsWrapper)
+    val result : TenantWalletSettingsWrapper = webService.setTenantWalletSettings(tenantWalletSettingsRequestDto)
 }
 ```
 

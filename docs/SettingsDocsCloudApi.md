@@ -548,7 +548,7 @@ launch(Dispatchers.IO) {
 
 <a id="updateTenantConfig"></a>
 # **updateTenantConfig**
-> DocsCloudConfigWrapper updateTenantConfig (DocsCloudConfig docsCloudConfig)
+> DocsCloudConfigWrapper updateTenantConfig (DocsCloudConfigRequestDto docsCloudConfigRequestDto)
 
 Replaces the configuration of the Docs Connect tenant of the current portal: its name, the security secret and  header name, the file size limit and anonymous access switch of the server, the WOPI switch and the IP filter  rules; it returns the configuration as Docs Connect stored it. The portal must have an activated Docs Connect tenant,  granted by `POST api/2.0/settings/docscloud/trial` or by a Docs Connect purchase: an empty result from  `GET api/2.0/settings/docscloud/tenant` means there is none and this call fails with 400. Read the current  values with `GET api/2.0/settings/docscloud/tenant/config` first and send back whole sections: the sections  left out of the request are not sent to Docs Connect at all, while a section that is present is sent with all of  its fields, so a field left unset inside it goes out as `0`, `false` or empty. The caller must be a portal  administrator allowed to edit the portal settings, on an installation where the Docs Connect service is  configured. The call is mutating,  synchronous and idempotent, it is recorded in the portal audit trail, and it drops the cached configuration  itself, so the next read returns the new values without `refresh=true`. The `tenantName`, `security.secret`,  `security.header` and every `ipFilter.rules` address are capped at 255 characters and `server.fileSizeLimit`  at 209715200 bytes (200 MB); a value outside those bounds is rejected with 400 before anything reaches  Docs Connect. It changes these settings only, never the subscription, the user quota or the license.
 
@@ -557,7 +557,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **docsCloudConfig** | [**DocsCloudConfig**](DocsCloudConfig.md)|  | [optional] |
+| **docsCloudConfigRequestDto** | [**DocsCloudConfigRequestDto**](DocsCloudConfigRequestDto.md)|  | [optional] |
 
 ### Return type
 
@@ -582,10 +582,10 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(DocsCloudApi::class.java)
-val docsCloudConfig : DocsCloudConfig =  // DocsCloudConfig | 
+val docsCloudConfigRequestDto : DocsCloudConfigRequestDto =  // DocsCloudConfigRequestDto | 
 
 launch(Dispatchers.IO) {
-    val result : DocsCloudConfigWrapper = webService.updateTenantConfig(docsCloudConfig)
+    val result : DocsCloudConfigWrapper = webService.updateTenantConfig(docsCloudConfigRequestDto)
 }
 ```
 

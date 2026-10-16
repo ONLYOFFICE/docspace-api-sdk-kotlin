@@ -16,10 +16,10 @@
 
 package onlyoffice.docspace.api.sdk.models
 
+import onlyoffice.docspace.api.sdk.models.EntityQuotaDto
 import onlyoffice.docspace.api.sdk.models.PriceDto
-import onlyoffice.docspace.api.sdk.models.TenantEntityQuotaSettings
 import onlyoffice.docspace.api.sdk.models.TenantQuotaFeatureDto
-import onlyoffice.docspace.api.sdk.models.TenantQuotaSettings
+import onlyoffice.docspace.api.sdk.models.TenantQuotaSettingsDto
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -68,16 +68,16 @@ data class WalletServiceDto (
     val title: kotlin.String? = null,
 
     @Json(name = "usersQuota")
-    val usersQuota: TenantEntityQuotaSettings? = null,
+    val usersQuota: EntityQuotaDto? = null,
 
     @Json(name = "roomsQuota")
-    val roomsQuota: TenantEntityQuotaSettings? = null,
+    val roomsQuota: EntityQuotaDto? = null,
 
     @Json(name = "aiAgentsQuota")
-    val aiAgentsQuota: TenantEntityQuotaSettings? = null,
+    val aiAgentsQuota: EntityQuotaDto? = null,
 
     @Json(name = "tenantCustomQuota")
-    val tenantCustomQuota: TenantQuotaSettings? = null,
+    val tenantCustomQuota: TenantQuotaSettingsDto? = null,
 
     @Json(name = "dueDate")
     val dueDate: java.time.OffsetDateTime? = null,

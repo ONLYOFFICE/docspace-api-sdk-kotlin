@@ -17,7 +17,7 @@
 package onlyoffice.docspace.api.sdk.models
 
 import onlyoffice.docspace.api.sdk.models.ApiDateTime
-import onlyoffice.docspace.api.sdk.models.OperationTokenUsage
+import onlyoffice.docspace.api.sdk.models.OperationTokenUsageDto
 import onlyoffice.docspace.api.sdk.models.OperationType
 
 import com.squareup.moshi.Json
@@ -35,6 +35,7 @@ import com.squareup.moshi.JsonClass
  * @param currency The currency `credit` and `debit` are expressed in, as a three-letter ISO 4217 code. It is the accounting  currency of the wallet, which need not be the currency the subscription is priced in.
  * @param credit The amount that went into the wallet. It is `0` on a movement that only took money out, so the pair of  `credit` and `debit` is what shows which way the money went; the `credit` and `debit` filters of the  operation select the two directions by exactly this.
  * @param debit The amount that was taken out of the wallet, `0` on a movement that put money in.
+ * @param cost What the AI provider charged for the whole `quantity` of an AI tools or AI search charge, as the billing  service recorded it - the provider's side of the same operation `debit` bills the portal for. It is `null`  on any other movement, and on an AI charge recorded without a provider cost.
  * @param participantName Who caused the movement, as the billing service records them - an internal name, which is what the  `participantName` filter matches on. Show `participantDisplayName` instead.
  * @param participantDisplayName The same person as their portal display name. It falls back to `participantName` when the name belongs to  no portal account, so it is never empty while `participantName` is filled.
  * @param sourceType What kind of thing an AI operation was run on - an agent, a file, a folder, a room or a form. It is empty  on any movement that is not an AI charge.
@@ -74,6 +75,9 @@ data class OperationDto (
     @Json(name = "debit")
     val debit: kotlin.Double? = null,
 
+    @Json(name = "cost")
+    val cost: kotlin.Double? = null,
+
     @Json(name = "participantName")
     val participantName: kotlin.String? = null,
 
@@ -90,7 +94,7 @@ data class OperationDto (
     val sourceId: kotlin.String? = null,
 
     @Json(name = "tokenUsage")
-    val tokenUsage: OperationTokenUsage? = null,
+    val tokenUsage: OperationTokenUsageDto? = null,
 
     @Json(name = "type")
     val type: OperationType? = null

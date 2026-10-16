@@ -17,7 +17,7 @@
 package onlyoffice.docspace.api.sdk.models
 
 import onlyoffice.docspace.api.sdk.models.BackupStorageType
-import onlyoffice.docspace.api.sdk.models.CronParams
+import onlyoffice.docspace.api.sdk.models.CronParamsDto
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -43,7 +43,7 @@ data class ScheduleDto (
     val storageParams: kotlin.collections.Map<kotlin.String, kotlin.String?>,
 
     @Json(name = "cronParams")
-    val cronParams: CronParams,
+    val cronParams: CronParamsDto,
 
     @Json(name = "lastBackupTime")
     val lastBackupTime: java.time.OffsetDateTime,

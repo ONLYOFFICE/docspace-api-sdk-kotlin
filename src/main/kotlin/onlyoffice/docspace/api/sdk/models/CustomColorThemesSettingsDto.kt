@@ -16,7 +16,7 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.CustomColorThemesSettingsItem
+import onlyoffice.docspace.api.sdk.models.CustomColorThemeDto
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -33,7 +33,7 @@ import com.squareup.moshi.JsonClass
 data class CustomColorThemesSettingsDto (
 
     @Json(name = "themes")
-    val themes: kotlin.collections.List<CustomColorThemesSettingsItem>? = null,
+    val themes: kotlin.collections.List<CustomColorThemeDto>? = null,
 
     @Json(name = "selected")
     val selected: kotlin.Int? = null,

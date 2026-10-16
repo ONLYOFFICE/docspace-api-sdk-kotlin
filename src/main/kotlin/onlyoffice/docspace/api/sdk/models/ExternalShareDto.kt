@@ -16,8 +16,8 @@
 
 package onlyoffice.docspace.api.sdk.models
 
+import onlyoffice.docspace.api.sdk.models.ExternalShareStatus
 import onlyoffice.docspace.api.sdk.models.FileEntryType
-import onlyoffice.docspace.api.sdk.models.Status
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -44,7 +44,7 @@ import com.squareup.moshi.JsonClass
 data class ExternalShareDto (
 
     @Json(name = "status")
-    val status: Status,
+    val status: ExternalShareStatus,
 
     @Json(name = "tenantId")
     val tenantId: kotlin.Int,

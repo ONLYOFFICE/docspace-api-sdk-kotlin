@@ -16,10 +16,10 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.FileReferenceData
+import onlyoffice.docspace.api.sdk.models.DocumentOptionsDto
+import onlyoffice.docspace.api.sdk.models.FileReferenceDataDto
 import onlyoffice.docspace.api.sdk.models.InfoConfigDto
-import onlyoffice.docspace.api.sdk.models.Options
-import onlyoffice.docspace.api.sdk.models.PermissionsConfig
+import onlyoffice.docspace.api.sdk.models.PermissionsConfigDto
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -57,7 +57,7 @@ data class DocumentConfigDto (
     val key: kotlin.String? = null,
 
     @Json(name = "permissions")
-    val permissions: PermissionsConfig? = null,
+    val permissions: PermissionsConfigDto? = null,
 
     @Json(name = "sharedLinkParam")
     val sharedLinkParam: kotlin.String? = null,
@@ -66,7 +66,7 @@ data class DocumentConfigDto (
     val sharedLinkKey: kotlin.String? = null,
 
     @Json(name = "referenceData")
-    val referenceData: FileReferenceData? = null,
+    val referenceData: FileReferenceDataDto? = null,
 
     @Json(name = "title")
     val title: kotlin.String? = null,
@@ -78,7 +78,7 @@ data class DocumentConfigDto (
     val isForm: kotlin.Boolean? = null,
 
     @Json(name = "options")
-    val options: Options? = null
+    val options: DocumentOptionsDto? = null
 
 ) {
 

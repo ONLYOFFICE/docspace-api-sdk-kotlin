@@ -16,7 +16,7 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.AiTErrorData
+import onlyoffice.docspace.api.sdk.models.AiErrorData
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -35,7 +35,7 @@ data class AiToolsMutationResult (
     val success: kotlin.Boolean,
 
     @Json(name = "error")
-    val error: AiTErrorData? = null
+    val error: AiErrorData? = null
 
 ) {
 

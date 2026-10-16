@@ -1,0 +1,54 @@
+ /*
+ * (c) Copyright Ascensio System SIA 2026
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package onlyoffice.docspace.api.sdk.models
+
+import onlyoffice.docspace.api.sdk.models.AiActionArgsPrompt
+import onlyoffice.docspace.api.sdk.models.AiMCPItem
+import onlyoffice.docspace.api.sdk.models.AiReasoningLevel
+
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
+
+/**
+ * 
+ *
+ * @param tools Extra tools offered to the model for this request.
+ * @param isReasoning Legacy extended-thinking switch; stands for `medium`. `reasoningLevel` wins when both are set.
+ * @param reasoningLevel Depth of extended thinking for the round; providers clamp it to what the model accepts.
+ * @param prompt 
+ */
+
+
+data class AiActionArgs (
+
+    @Json(name = "tools")
+    val tools: kotlin.collections.List<AiMCPItem>? = null,
+
+    @Json(name = "isReasoning")
+    val isReasoning: kotlin.Boolean? = null,
+
+    @Json(name = "reasoningLevel")
+    val reasoningLevel: AiReasoningLevel? = null,
+
+    @Json(name = "prompt")
+    val prompt: AiActionArgsPrompt? = null
+
+) {
+
+
+}
+

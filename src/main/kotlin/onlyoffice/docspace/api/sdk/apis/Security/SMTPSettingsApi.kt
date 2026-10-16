@@ -24,7 +24,7 @@ import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
 import onlyoffice.docspace.api.sdk.models.ErrorApiResponse
-import onlyoffice.docspace.api.sdk.models.SmtpOperationStatusRequestsWrapper
+import onlyoffice.docspace.api.sdk.models.SmtpOperationStatusWrapper
 import onlyoffice.docspace.api.sdk.models.SmtpSettingsDto
 import onlyoffice.docspace.api.sdk.models.SmtpSettingsWrapper
 
@@ -36,6 +36,7 @@ interface SMTPSettingsApi {
      * Responses:
      *  - 200: The state of the test message of the portal, or an empty answer when no test is on record
      *  - 402: The SMTP settings section is not enabled for this portal
+     *  - 403: The caller has no portal-settings right
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
@@ -46,10 +47,10 @@ interface SMTPSettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-smtp-operation-status/
      *
      *
-     * @return [SmtpOperationStatusRequestsWrapper]
+     * @return [SmtpOperationStatusWrapper]
      */
     @GET("api/2.0/smtpsettings/smtp/test/status")
-    suspend fun getSmtpOperationStatus(): Response<SmtpOperationStatusRequestsWrapper>
+    suspend fun getSmtpOperationStatus(): Response<SmtpOperationStatusWrapper>
 
     /**
      * GET api/2.0/smtpsettings/smtp
@@ -58,6 +59,7 @@ interface SMTPSettingsApi {
      * Responses:
      *  - 200: The SMTP settings stored for the portal, with an empty password and `isDefaultSettings` telling whether the configuration of the installation is in use
      *  - 402: The SMTP settings section is not enabled for this portal
+     *  - 403: The caller has no portal-settings right
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
@@ -80,6 +82,7 @@ interface SMTPSettingsApi {
      * Responses:
      *  - 200: The settings in force after the reset - the configuration of the installation, or an empty settings object in a cloud portal
      *  - 402: The SMTP settings section is not enabled for this portal
+     *  - 403: The caller has no portal-settings right
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
@@ -101,11 +104,12 @@ interface SMTPSettingsApi {
      * Stores the SMTP relay that this portal will hand all of its own mail to, replacing whatever was saved before  and taking the portal off the mail configuration of the installation. Nothing has to be called first; the  caller needs the portal-settings right of a DocSpace administrator, and the SMTP settings section has to be  enabled for the portal, otherwise the call is answered with 402. The call is mutating and idempotent - the  same body saved twice leaves the same settings - and it applies to the next message the portal sends. The  settings are stored unverified, no connection to `host` is attempted, so queue  `GET api/2.0/smtpsettings/smtp/test` afterwards to find out whether they work. `host` and `senderAddress` must  not be empty, `senderDisplayName` has to be present, and `enableAuth` true also requires `credentialsUserName`  and `credentialsUserPassword`; a request that misses any of them is rejected and nothing is saved. `port`  falls back to `25` when it is omitted, and `useNtlm` is accepted but not stored, so the saved settings always  authenticate with a plain user name and password. The answer repeats the stored settings with the password  emptied. Use `DELETE api/2.0/smtpsettings/smtp` to return to the configuration of the installation.
      * Responses:
      *  - 200: The SMTP settings now stored for the portal, with an empty password
+     *  - 400: The request body cannot be read, `host` or `senderAddress` is empty, `senderDisplayName` is missing, `enableAuth` is true without `credentialsUserName` or `credentialsUserPassword`, a text field is longer than 255 characters, or `port` is outside 1-65535
      *  - 402: The SMTP settings section is not enabled for this portal
+     *  - 403: The caller has no portal-settings right
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -126,6 +130,7 @@ interface SMTPSettingsApi {
      * Responses:
      *  - 200: The state of the queued test message, to be polled until `completed` is true
      *  - 402: The SMTP settings section is not enabled for this portal
+     *  - 403: The caller has no portal-settings right
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
@@ -136,9 +141,9 @@ interface SMTPSettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/test-smtp-settings/
      *
      *
-     * @return [SmtpOperationStatusRequestsWrapper]
+     * @return [SmtpOperationStatusWrapper]
      */
     @GET("api/2.0/smtpsettings/smtp/test")
-    suspend fun testSmtpSettings(): Response<SmtpOperationStatusRequestsWrapper>
+    suspend fun testSmtpSettings(): Response<SmtpOperationStatusWrapper>
 
 }

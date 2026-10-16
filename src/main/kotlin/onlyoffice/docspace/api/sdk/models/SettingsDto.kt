@@ -16,15 +16,15 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.CultureSpecificExternalResources
 import onlyoffice.docspace.api.sdk.models.DeepLinkDto
+import onlyoffice.docspace.api.sdk.models.DomainNameRulesDto
+import onlyoffice.docspace.api.sdk.models.ExternalResourcesDto
 import onlyoffice.docspace.api.sdk.models.FirebaseDto
 import onlyoffice.docspace.api.sdk.models.FolderType
 import onlyoffice.docspace.api.sdk.models.FormGalleryDto
-import onlyoffice.docspace.api.sdk.models.PasswordHasher
+import onlyoffice.docspace.api.sdk.models.PasswordHashSettingsDto
 import onlyoffice.docspace.api.sdk.models.PluginsDto
 import onlyoffice.docspace.api.sdk.models.RecaptchaType
-import onlyoffice.docspace.api.sdk.models.TenantDomainValidator
 import onlyoffice.docspace.api.sdk.models.TenantStatus
 import onlyoffice.docspace.api.sdk.models.TenantTrustedDomainsType
 
@@ -60,7 +60,7 @@ import com.squareup.moshi.JsonClass
  * @param recaptchaPublicKey The site key for the CAPTCHA named by `recaptchaType`, safe to embed in a page. It is empty when the  installation configures no CAPTCHA, in which case the login form asks for none.
  * @param debugInfo Whether the client may collect and send diagnostic information. Filled in for a signed-in caller only, and  `false` unless the installation switched it on.
  * @param socketUrl The address of the socket service that pushes live updates to a client. It is filled in for a signed-in  caller and for an anonymous one who arrives with an external sharing link, and is empty when the  installation runs no socket service - a client then has to poll.
- * @param tenantStatus The lifecycle state of the portal. Anything other than active means most operations are refused for the  moment, because the portal is being transferred, restored, encrypted or removed.
+ * @param tenantStatus The lifecycle state of the portal. Anything other than active means most operations are refused: the  portal is being transferred, restored, encrypted or removed, its owner has deactivated it, or the  retention policy has blocked it after a long period without use.
  * @param tenantAlias The portal's own name within the installation, which together with `baseDomain` forms the address it is  reached at. `PUT api/2.0/portal/portalrename` changes it.
  * @param displayAbout Whether the interface may show the About page. A cloud portal always may; a server installation may unless  its plan includes branding and the vendor details hide the page.
  * @param domainValidator The rules a portal name is checked against - its length limits and the pattern it has to match - so a  client can validate a rename before sending it. Filled in for a signed-in caller only.
@@ -143,7 +143,7 @@ data class SettingsDto (
     val wizardToken: kotlin.String? = null,
 
     @Json(name = "passwordHash")
-    val passwordHash: PasswordHasher? = null,
+    val passwordHash: PasswordHashSettingsDto? = null,
 
     @Json(name = "firebase")
     val firebase: FirebaseDto? = null,
@@ -173,7 +173,7 @@ data class SettingsDto (
     val displayAbout: kotlin.Boolean? = null,
 
     @Json(name = "domainValidator")
-    val domainValidator: TenantDomainValidator? = null,
+    val domainValidator: DomainNameRulesDto? = null,
 
     @Json(name = "zendeskKey")
     val zendeskKey: kotlin.String? = null,
@@ -215,7 +215,7 @@ data class SettingsDto (
     val logoText: kotlin.String? = null,
 
     @Json(name = "externalResources")
-    val externalResources: CultureSpecificExternalResources? = null,
+    val externalResources: ExternalResourcesDto? = null,
 
     @Json(name = "defaultFolderType")
     val defaultFolderType: FolderType? = null,

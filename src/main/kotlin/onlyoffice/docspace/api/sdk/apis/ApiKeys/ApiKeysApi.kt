@@ -28,7 +28,7 @@ import onlyoffice.docspace.api.sdk.models.ApiKeyResponseWrapper
 import onlyoffice.docspace.api.sdk.models.BooleanWrapper
 import onlyoffice.docspace.api.sdk.models.CreateApiKeyRequestDto
 import onlyoffice.docspace.api.sdk.models.ErrorApiResponse
-import onlyoffice.docspace.api.sdk.models.STRINGArrayWrapper
+import onlyoffice.docspace.api.sdk.models.StringArrayWrapper
 import onlyoffice.docspace.api.sdk.models.UpdateApiKeyRequest
 
 interface ApiKeysApi {
@@ -38,7 +38,7 @@ interface ApiKeysApi {
      * Creates an API key that authenticates requests as the calling account, and is the only operation that ever  returns the secret.  Any portal member except a guest may create one; when the portal limits developer tools to administrators,  only a DocSpace administrator may call it.  The call is not idempotent - every call issues a new key - and it is throttled, so a client that retries on a  timeout can end up with several keys.  The answer carries the full secret in `key`: it is shown here and never again, later reads expose only the  last four characters in `keyPostfix`, so store it now.  Pass the scopes the key may use in `permissions`, taking the values from  `GET api/2.0/keys/permissions`; pass `*` or omit the field to record a key without scope restrictions, and set  `expiresInDays` to make it expire, otherwise it stays valid until it is deleted.  An empty `permissions` array and an unknown scope are both rejected with 400.  Send the key in the `Authorization` header as `Bearer sk-...` to use it.
      * Responses:
      *  - 200: The new API key, with the full secret in the key field
-     *  - 400: The permissions array is empty or contains a scope the portal does not know
+     *  - 400: The request body cannot be read or has no `name`, the name is empty or longer than 30 characters, `expiresInDays` is outside 1-365, or the permissions array is empty or contains a scope the portal does not know
      *  - 403: The caller is a guest, or the portal limits developer tools to administrators
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
@@ -59,10 +59,11 @@ interface ApiKeysApi {
     /**
      * DELETE api/2.0/keys/{keyId}
      * Delete an API key
-     * Deletes the API key with the ID given in the route, so that it stops authenticating requests immediately.  The caller may delete a key they created themselves, and a DocSpace administrator may delete any key of the  portal.  The removal is permanent and cannot be undone: the secret was only ever readable at creation time, so a  deleted key cannot be restored and a new one has to be issued through `POST api/2.0/keys`.  To stop a key temporarily instead, set `isActive` to false through `PUT api/2.0/keys/{keyId}`.  The answer is a plain boolean reporting whether the key was removed.
+     * Deletes the API key with the ID given in the route, so that it stops authenticating requests immediately.  The caller may delete a key they created themselves, and a DocSpace administrator may delete any key of the  portal.  The removal is permanent and cannot be undone: the secret was only ever readable at creation time, so a  deleted key cannot be restored and a new one has to be issued through `POST api/2.0/keys`.  To stop a key temporarily instead, set `isActive` to false through `PUT api/2.0/keys/{keyId}`.  The answer is a plain boolean reporting whether the key was removed.  An ID that matches no key of the portal, including a key that has already been deleted, is rejected with 404.
      * Responses:
      *  - 200: True if the key was removed
      *  - 403: The key belongs to another member and the caller is not a DocSpace admin
+     *  - 404: The portal has no key with this ID
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
@@ -97,17 +98,18 @@ interface ApiKeysApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-all-permissions/
      *
      *
-     * @return [STRINGArrayWrapper]
+     * @return [StringArrayWrapper]
      */
     @GET("api/2.0/keys/permissions")
-    suspend fun getAllPermissions(): Response<STRINGArrayWrapper>
+    suspend fun getAllPermissions(): Response<StringArrayWrapper>
 
     /**
      * GET api/2.0/keys/@self
      * Get the current API key
-     * Returns the API key that authenticated this very request, letting the holder of a key find out what it is  allowed to do without knowing its ID.  The key is identified by the `Authorization` header of the call itself, so the request has to be sent as  `Bearer sk-...`; a session authenticated in any other way has no key to report and this operation is not  usable for it.  The call is read-only and returns one entry, with the same fields as `GET api/2.0/keys` and without the  secret - read `permissions` for the granted scopes, `expiresAt` for the expiry and `isActive` for the state.  To look at a key other than the one in use, call `GET api/2.0/keys` instead.
+     * Returns the API key that authenticated this very request, letting the holder of a key find out what it is  allowed to do without knowing its ID.  The key is identified by the `Authorization` header of the call itself, so the request has to be sent as  `Bearer sk-...`; a session authenticated in any other way, by a cookie or by a user token, has no key to  report and is rejected with 400.  The call is read-only and returns one entry, with the same fields as `GET api/2.0/keys` and without the  secret - read `permissions` for the granted scopes, `expiresAt` for the expiry and `isActive` for the state.  To look at a key other than the one in use, call `GET api/2.0/keys` instead.
      * Responses:
      *  - 200: The API key that authenticated this request
+     *  - 400: The request is not authenticated by an API key, as with a session authenticated by a cookie or by a user token
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
@@ -148,11 +150,12 @@ interface ApiKeysApi {
     /**
      * PUT api/2.0/keys/{keyId}
      * Update an API key
-     * Renames an API key, replaces the scopes it may use, or activates and deactivates it, without changing the  secret.  The caller may update a key they created themselves, and a DocSpace administrator may update any key of the  portal.  Take the values for `permissions` from `GET api/2.0/keys/permissions`; an unknown scope or an empty array is  rejected with 400, and the fields that are left out keep their current values.  The answer is a plain boolean: true when the key was changed, and false when it was not - which is also what  an already expired key returns, because such a key is left untouched instead of being reported as an error.  Deactivating a key through `isActive` stops it from authenticating while keeping it in the list, so use it  when the key may be needed again and `DELETE api/2.0/keys/{keyId}` when it may not.
+     * Renames an API key, replaces the scopes it may use, or activates and deactivates it, without changing the  secret.  The caller may update a key they created themselves, and a DocSpace administrator may update any key of the  portal.  Take the values for `permissions` from `GET api/2.0/keys/permissions`; an unknown scope or an empty array is  rejected with 400, as is a name that is empty or made of whitespace only, and the fields that are left out  keep their current values.  The answer is a plain boolean: true when the key was changed, and false when it was not - which is also what  an already expired key returns, because such a key is left untouched instead of being reported as an error.  Deactivating a key through `isActive` stops it from authenticating while keeping it in the list, so use it  when the key may be needed again and `DELETE api/2.0/keys/{keyId}` when it may not.  An ID that matches no key of the portal, including a key that has already been deleted, is rejected with 404.
      * Responses:
      *  - 200: True if the key was changed, false if it was left untouched because it has already expired
-     *  - 400: The permissions array is empty or contains a scope the portal does not know
+     *  - 400: The request body cannot be read, the name is empty, made of whitespace only or longer than 30 characters, or the permissions array is empty or contains a scope the portal does not know
      *  - 403: The key belongs to another member and the caller is not a DocSpace admin
+     *  - 404: The portal has no key with this ID
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.

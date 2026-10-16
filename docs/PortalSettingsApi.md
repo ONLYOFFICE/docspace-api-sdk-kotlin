@@ -11,6 +11,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 | [**sendDeleteInstructions**](PortalSettingsApi.md#sendDeleteInstructions) | **POST** api/2.0/portal/delete | Send removal instructions |
 | [**sendSuspendInstructions**](PortalSettingsApi.md#sendSuspendInstructions) | **POST** api/2.0/portal/suspend | Send suspension instructions |
 | [**suspendPortal**](PortalSettingsApi.md#suspendPortal) | **PUT** api/2.0/portal/suspend | Deactivate a portal |
+| [**unblockPortal**](PortalSettingsApi.md#unblockPortal) | **PUT** api/2.0/portal/unblock | Unblock a portal |
 
 
 
@@ -330,6 +331,52 @@ val webService = apiClient.createWebservice(SettingsApi::class.java)
 
 launch(Dispatchers.IO) {
     webService.suspendPortal()
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+<a id="unblockPortal"></a>
+# **unblockPortal**
+> void unblockPortal ()
+
+Unblocks this portal, blocked by the retention policy after a long period without use, so its users can sign in  again. The portal must be blocked. The call is authorized only by the unblocking link the retention letters send  to the owner; it works for the current block only. The call is mutating: it makes the portal active, records the  unblocking in the audit trail, refreshes its Content Security Policy and restarts the retention count. Nothing  is returned in the body; to check the status, read `tenantStatus` from `GET api/2.0/settings`, which a blocked  portal still answers. A lapsed paid tariff stays unpaid after the unblocking, so renewing it is the next step.  The letters of a free portal carry no such link: support unblocks it. The call does not bring back a portal  deleted at the end of its retention period, or one its owner deactivated, which `PUT api/2.0/portal/continue`  brings back. An invalid link, a link of an earlier block, or a portal that is no longer blocked, a repeated call  included, is refused with 401; an ordinary sign-in token instead of the link is refused with 403.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/unblock-portal/).
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(SettingsApi::class.java)
+
+launch(Dispatchers.IO) {
+    webService.unblockPortal()
 }
 ```
 

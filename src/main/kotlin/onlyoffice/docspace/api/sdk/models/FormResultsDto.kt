@@ -16,7 +16,7 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.FormsItemData
+import onlyoffice.docspace.api.sdk.models.FormsItemDataDto
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -35,7 +35,7 @@ data class FormResultsDto (
     val createOn: java.time.OffsetDateTime? = null,
 
     @Json(name = "formsData")
-    val formsData: kotlin.collections.List<FormsItemData>? = null
+    val formsData: kotlin.collections.List<FormsItemDataDto>? = null
 
 ) {
 

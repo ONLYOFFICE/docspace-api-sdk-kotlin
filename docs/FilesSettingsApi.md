@@ -137,7 +137,7 @@ launch(Dispatchers.IO) {
 
 <a id="changeDefaultAccessRights"></a>
 # **changeDefaultAccessRights**
-> FileShareResponseArrayWrapper changeDefaultAccessRights (kotlin.collections.List<kotlin.Int> requestBody)
+> FileShareResponseArrayWrapper changeDefaultAccessRights (kotlin.collections.List<kotlin.Int> defaultAccessRightsRequestDto)
 
 Stores the access rights the sharing dialog offers the calling account by default, and returns the set that  was actually stored. The body is a bare array of access-right values, not an object. The portal normalises the  array instead of keeping it as sent: it keeps the fill-forms, custom-filter and review entries, then adds  read-and-write or comment - whichever is present, in that order - and stops there, and it falls back to read  alone when nothing else applies, so the response can be shorter than the request and its order can differ. An  empty array clears the setting, after which read alone is reported. A value outside the published list is  rejected as an invalid request. The set belongs to the calling account alone: every authenticated role down to  a guest may store its own, and an unauthenticated caller is refused. Nothing already shared is changed. The  stored set is published as `defaultSharingAccessRights` by `GET api/2.0/files/settings`.
 
@@ -146,7 +146,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **requestBody** | [**kotlin.collections.List&lt;kotlin.Int&gt;**](kotlin.Int.md)| The access rights the sharing dialog should offer by default. The array is the whole request body rather than  a field of an object, and the portal stores a normalised subset of it instead of the array as sent, so read  the answer to learn what was kept. An empty array clears the setting, after which the portal reports read  access alone. A value outside the published list is rejected as an invalid request. | [optional] |
+| **defaultAccessRightsRequestDto** | [**kotlin.collections.List&lt;kotlin.Int&gt;**](kotlin.Int.md)| The access rights the sharing dialog should offer by default. The array is the whole request body rather than  a field of an object, and the portal stores a normalised subset of it instead of the array as sent, so read  the answer to learn what was kept. An empty array clears the setting, after which the portal reports read  access alone. A value outside the published list is rejected as an invalid request. | [optional] |
 
 ### Return type
 
@@ -171,10 +171,10 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SettingsApi::class.java)
-val requestBody : kotlin.collections.List<kotlin.Int> =  // kotlin.collections.List<kotlin.Int> | The access rights the sharing dialog should offer by default. The array is the whole request body rather than  a field of an object, and the portal stores a normalised subset of it instead of the array as sent, so read  the answer to learn what was kept. An empty array clears the setting, after which the portal reports read  access alone. A value outside the published list is rejected as an invalid request.
+val defaultAccessRightsRequestDto : kotlin.collections.List<kotlin.Int> =  // kotlin.collections.List<kotlin.Int> | The access rights the sharing dialog should offer by default. The array is the whole request body rather than  a field of an object, and the portal stores a normalised subset of it instead of the array as sent, so read  the answer to learn what was kept. An empty array clears the setting, after which the portal reports read  access alone. A value outside the published list is rejected as an invalid request.
 
 launch(Dispatchers.IO) {
-    val result : FileShareResponseArrayWrapper = webService.changeDefaultAccessRights(requestBody)
+    val result : FileShareResponseArrayWrapper = webService.changeDefaultAccessRights(defaultAccessRightsRequestDto)
 }
 ```
 

@@ -17,15 +17,15 @@
 package onlyoffice.docspace.api.sdk.models
 
 import onlyoffice.docspace.api.sdk.models.GetPortalPrices200ResponseLinksInner
-import onlyoffice.docspace.api.sdk.models.TenantBannerSettings
+import onlyoffice.docspace.api.sdk.models.TenantBannerSettingsDto
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The successful API response containing the TenantBannerSettings object.
+ * The successful API response containing the TenantBannerSettingsDto object.
  *
- * @param response The TenantBannerSettings object returned by the operation.
+ * @param response The TenantBannerSettingsDto object returned by the operation.
  * @param count The total number of items in the response
  * @param links List of links related to the response
  * @param status HTTP status code of the response
@@ -36,7 +36,7 @@ import com.squareup.moshi.JsonClass
 data class TenantBannerSettingsWrapper (
 
     @Json(name = "response")
-    val response: TenantBannerSettings? = null,
+    val response: TenantBannerSettingsDto? = null,
 
     @Json(name = "count")
     val count: kotlin.Int? = null,

@@ -23,26 +23,26 @@ import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
-import onlyoffice.docspace.api.sdk.models.AdditionalWhiteLabelSettingsDtoWrapper
-import onlyoffice.docspace.api.sdk.models.AdditionalWhiteLabelSettingsResponseWrapper
+import onlyoffice.docspace.api.sdk.models.AdditionalResourcesWrapper
+import onlyoffice.docspace.api.sdk.models.AdditionalWhiteLabelSettingsRequestDto
 import onlyoffice.docspace.api.sdk.models.AdditionalWhiteLabelSettingsWrapper
 import onlyoffice.docspace.api.sdk.models.BooleanWrapper
-import onlyoffice.docspace.api.sdk.models.CompanyWhiteLabelSettingsArrayWrapper
-import onlyoffice.docspace.api.sdk.models.CompanyWhiteLabelSettingsDtoWrapper
-import onlyoffice.docspace.api.sdk.models.CompanyWhiteLabelSettingsResponseWrapper
+import onlyoffice.docspace.api.sdk.models.CompanyWhiteLabelSettingsRequestDto
 import onlyoffice.docspace.api.sdk.models.CompanyWhiteLabelSettingsWrapper
 import onlyoffice.docspace.api.sdk.models.ErrorApiResponse
 import onlyoffice.docspace.api.sdk.models.IsDefaultWhiteLabelLogosArrayWrapper
 import onlyoffice.docspace.api.sdk.models.IsDefaultWhiteLabelLogosWrapper
+import onlyoffice.docspace.api.sdk.models.LicensorDetailsArrayWrapper
+import onlyoffice.docspace.api.sdk.models.LicensorDetailsWrapper
 import onlyoffice.docspace.api.sdk.models.StringWrapper
 import onlyoffice.docspace.api.sdk.models.WhiteLabelItemArrayWrapper
-import onlyoffice.docspace.api.sdk.models.WhiteLabelRequestsDto
+import onlyoffice.docspace.api.sdk.models.WhiteLabelRequestDto
 
 interface RebrandingApi {
     /**
      * DELETE api/2.0/settings/rebranding/additional
      * Delete the additional white label settings
-     * Discards the resource flags stored for the installation and brings back the built-in set, so the sample  documents, the Help Center link, the Feedback and Support link, the user forum, the video guides and the  license agreements are offered as they are out of the box. Requires a DocSpace administrator and a server  installation with unrestricted space access; on a SaaS portal the call is refused. Unlike  `POST api/2.0/settings/rebranding/additional` it does not need a plan that includes branding, so an  installation whose subscription no longer covers it can still be reset. The call is destructive for the stored  flags, which have to be set again to come back, and it is idempotent. Instead of a flag it answers the set  that is now in effect, so no follow-up read is needed. The reset is installation-wide and reaches every  portal, and it leaves the visibility of the About page alone. The company details are reset separately by  `DELETE api/2.0/settings/rebranding/company`.
+     * Discards the resource flags stored for the installation and brings back the built-in set, so the sample  documents, the Help Center link, the Feedback and Support link, the user forum, the video guides and the  license agreements are offered as they are out of the box. Requires a DocSpace administrator and a server  installation with unrestricted space access; on a SaaS portal the call is refused. Unlike  `POST api/2.0/settings/rebranding/additional` it does not need a plan that includes customization, so an  installation whose subscription no longer covers it can still be reset. The call is destructive for the stored  flags, which have to be set again to come back, and it is idempotent. Instead of a flag it answers the set  that is now in effect, so no follow-up read is needed. The reset is installation-wide and reaches every  portal, and it leaves the visibility of the About page alone. The company details are reset separately by  `DELETE api/2.0/settings/rebranding/company`.
      * Responses:
      *  - 200: The built-in resource flags that are now in effect
      *  - 403: The caller is not a DocSpace administrator, or the installation does not allow branding to be edited
@@ -56,15 +56,15 @@ interface RebrandingApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-additional-white-label-settings/
      *
      *
-     * @return [AdditionalWhiteLabelSettingsResponseWrapper]
+     * @return [AdditionalResourcesWrapper]
      */
     @DELETE("api/2.0/settings/rebranding/additional")
-    suspend fun deleteAdditionalWhiteLabelSettings(): Response<AdditionalWhiteLabelSettingsResponseWrapper>
+    suspend fun deleteAdditionalWhiteLabelSettings(): Response<AdditionalResourcesWrapper>
 
     /**
      * DELETE api/2.0/settings/rebranding/company
      * Delete the company white label settings
-     * Discards the company details stored for the installation and brings back the built-in ONLYOFFICE name, site,  email, address and phone, so the About page and the notification letters print the original vendor again.  Requires a DocSpace administrator and a server installation with unrestricted space access; on a SaaS portal  the call is refused. Unlike `POST api/2.0/settings/rebranding/company` it does not need a plan that includes  branding, so an installation whose subscription no longer covers it can still be reset. The call is  destructive: the previous details are not kept anywhere and have to be entered again to come back. It is  idempotent, and instead of a flag it answers the details that are now in effect, so no follow-up read is  needed. The reset is installation-wide and reaches every portal. The help and support links are reset  separately by `DELETE api/2.0/settings/rebranding/additional`, and the logos and the wordmark of a single  portal by the restore operations under `api/2.0/settings/whitelabel`.
+     * Discards the company details stored for the installation and brings back the built-in ONLYOFFICE name, site,  email, address and phone, so the About page and the notification letters print the original vendor again.  Requires a DocSpace administrator and a server installation with unrestricted space access; on a SaaS portal  the call is refused. Unlike `POST api/2.0/settings/rebranding/company` it does not need a plan that includes  customization, so an installation whose subscription no longer covers it can still be reset. The call is  destructive: the previous details are not kept anywhere and have to be entered again to come back. It is  idempotent, and instead of a flag it answers the details that are now in effect, so no follow-up read is  needed. The reset is installation-wide and reaches every portal. The help and support links are reset  separately by `DELETE api/2.0/settings/rebranding/additional`, and the logos and the wordmark of a single  portal by the restore operations under `api/2.0/settings/whitelabel`.
      * Responses:
      *  - 200: The built-in company details that are now in effect
      *  - 403: The caller is not a DocSpace administrator, or the installation does not allow branding to be edited
@@ -78,10 +78,10 @@ interface RebrandingApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-company-white-label-settings/
      *
      *
-     * @return [CompanyWhiteLabelSettingsResponseWrapper]
+     * @return [LicensorDetailsWrapper]
      */
     @DELETE("api/2.0/settings/rebranding/company")
-    suspend fun deleteCompanyWhiteLabelSettings(): Response<CompanyWhiteLabelSettingsResponseWrapper>
+    suspend fun deleteCompanyWhiteLabelSettings(): Response<LicensorDetailsWrapper>
 
     /**
      * GET api/2.0/settings/rebranding/additional
@@ -99,10 +99,10 @@ interface RebrandingApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-additional-white-label-settings/
      *
      *
-     * @return [AdditionalWhiteLabelSettingsDtoWrapper]
+     * @return [AdditionalWhiteLabelSettingsWrapper]
      */
     @GET("api/2.0/settings/rebranding/additional")
-    suspend fun getAdditionalWhiteLabelSettings(): Response<AdditionalWhiteLabelSettingsDtoWrapper>
+    suspend fun getAdditionalWhiteLabelSettings(): Response<AdditionalWhiteLabelSettingsWrapper>
 
     /**
      * GET api/2.0/settings/rebranding/company
@@ -110,6 +110,7 @@ interface RebrandingApi {
      * Returns the company details that the About page and the notification letters print as the vendor, in the form  the settings interface edits them. Any authenticated user may call it; no administrator permission is  required, and a portal whose payment has lapsed is served as well. The call is read-only and idempotent.  Alongside the stored fields the answer carries `isLicensor`, which tells whether these details belong to the  vendor of the product itself, and `isDefault`, which tells whether they are still the built-in ONLYOFFICE  ones. The values are installation-wide, so every portal of a server installation reports the same ones. The  response is revalidatable: it carries `Last-Modified`, and sending that value back in `If-Modified-Since`  yields an empty body while the details have not changed, which makes polling cheap. For the About page, where  the built-in vendor has to be shown next to a reseller, use `GET api/2.0/settings/companywhitelabel` instead.  Change the details with `POST api/2.0/settings/rebranding/company`.
      * Responses:
      *  - 200: The company details in effect, with the licensor and default flags
+     *  - 304: The company details have not changed since the `Last-Modified` value sent back in `If-Modified-Since`; the body is empty
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
@@ -120,17 +121,18 @@ interface RebrandingApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-company-white-label-settings/
      *
      *
-     * @return [CompanyWhiteLabelSettingsDtoWrapper]
+     * @return [CompanyWhiteLabelSettingsWrapper]
      */
     @GET("api/2.0/settings/rebranding/company")
-    suspend fun getCompanyWhiteLabelSettings(): Response<CompanyWhiteLabelSettingsDtoWrapper>
+    suspend fun getCompanyWhiteLabelSettings(): Response<CompanyWhiteLabelSettingsWrapper>
 
     /**
      * GET api/2.0/settings/enablewhitelabel
      * Check the white label availability
-     * Reports whether branding may be configured for the current portal at all, which is the check to make before  offering the rebranding interface or calling any of the save operations under `api/2.0/settings/whitelabel`.  Requires a DocSpace administrator. The call is read-only and idempotent. The answer is `true` only when both  conditions hold: the branding section is not switched off in the installation configuration, and the portal's  current plan includes customization. It comes back as `false` on a plan without branding, which is exactly the  case in which `POST api/2.0/settings/whitelabel/logos/save`,  `POST api/2.0/settings/whitelabel/logos/savefromfiles` and `POST api/2.0/settings/whitelabel/logotext/save`  are refused as payment required. The restore operations do not depend on this flag and stay available, so a  portal that loses branding can still be reset to the built-in logos and wordmark. The flag says nothing about  the installation-wide default branding, which additionally needs a server installation with unrestricted space  access, and nothing about the company details and help links under `api/2.0/settings/rebranding`.
+     * Reports whether branding may be configured for the current portal at all, which is the check to make before  offering the rebranding interface or calling any of the save operations under `api/2.0/settings/whitelabel`.  Requires a DocSpace administrator. The call is read-only and idempotent. The answer is `true` only when both  conditions hold: the branding section is not switched off in the installation configuration, and the portal's  current plan includes customization. It comes back as `false` on a plan without customization, which is  exactly the case in which `POST api/2.0/settings/whitelabel/logos/save`,  `POST api/2.0/settings/whitelabel/logos/savefromfiles` and `POST api/2.0/settings/whitelabel/logotext/save`  are refused as payment required. The restore operations do not depend on this flag and stay available, so a  portal that loses branding can still be reset to the built-in logos and wordmark. The flag says nothing about  the installation-wide default branding, which additionally needs a server installation with unrestricted space  access, and nothing about the company details and help links under `api/2.0/settings/rebranding`.
      * Responses:
      *  - 200: `true` when branding is enabled in this installation and included in the portal's plan
+     *  - 403: The caller has no portal-settings right
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
@@ -152,6 +154,7 @@ interface RebrandingApi {
      * Reports whether the current portal still uses the built-in wordmark or one that was stored for it, which is  what an interface needs to decide whether a Restore action applies to the text. Requires a DocSpace  administrator. The call is read-only and idempotent. The answer has the same shape as one entry of  `GET api/2.0/settings/whitelabel/logos/isdefault`, with `name` fixed to `logotext` and `default` set to `true`  while no text has been stored and to `false` once one has. Because `GET api/2.0/settings/whitelabel/logotext`  falls back to `ONLYOFFICE` when nothing is stored, this operation is the only way to tell a portal that  deliberately kept the built-in wordmark from one that saved the very same text. Pass `isDefault=true` to  inspect the installation-wide default branding instead of this portal's. The flag turns back to `true` after  `PUT api/2.0/settings/whitelabel/logotext/restore`, and to `false` after  `POST api/2.0/settings/whitelabel/logotext/save`. Saving the built-in wordmark itself counts as clearing the  setting, so the flag stays `true` in that case as well.
      * Responses:
      *  - 200: A single `logotext` entry telling whether the portal still uses the built-in wordmark
+     *  - 403: The caller has no portal-settings right
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
@@ -168,7 +171,7 @@ interface RebrandingApi {
      * @return [IsDefaultWhiteLabelLogosWrapper]
      */
     @GET("api/2.0/settings/whitelabel/logotext/isdefault")
-    suspend fun getIsDefaultWhiteLabelLogoText(@Query("IsDark") isDark: kotlin.Boolean? = null, @Query("IsDefault") isDefault: kotlin.Boolean? = null): Response<IsDefaultWhiteLabelLogosWrapper>
+    suspend fun getIsDefaultWhiteLabelLogoText(@Query("isDark") isDark: kotlin.Boolean? = null, @Query("isDefault") isDefault: kotlin.Boolean? = null): Response<IsDefaultWhiteLabelLogosWrapper>
 
     /**
      * GET api/2.0/settings/whitelabel/logos/isdefault
@@ -176,6 +179,7 @@ interface RebrandingApi {
      * Reports, slot by slot, whether the current portal still shows the built-in image or a logo that was uploaded  for it, which is what an interface needs to decide where a Restore action makes sense. Requires a DocSpace  administrator; the URLs themselves are public and come from `GET api/2.0/settings/whitelabel/logos`, which  needs no authentication. The call is read-only and idempotent. Every logo slot is returned, including the  notification logo that the public list leaves out, so the result has one entry more than that list. An entry  gives the stable slot name in `name` and `default` set to `true` while the slot has never been written, and to  `false` once an image has been stored for it, whether for the light or for the dark theme. A slot goes back to  `true` after `PUT api/2.0/settings/whitelabel/logos/restore`. Pass `isDefault=true` to inspect the  installation-wide default branding instead of this portal's. The logo text is reported separately by  `GET api/2.0/settings/whitelabel/logotext/isdefault`.
      * Responses:
      *  - 200: One entry per logo slot, telling whether the slot still holds the built-in image
+     *  - 403: The caller has no portal-settings right
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
@@ -192,7 +196,7 @@ interface RebrandingApi {
      * @return [IsDefaultWhiteLabelLogosArrayWrapper]
      */
     @GET("api/2.0/settings/whitelabel/logos/isdefault")
-    suspend fun getIsDefaultWhiteLabelLogos(@Query("IsDark") isDark: kotlin.Boolean? = null, @Query("IsDefault") isDefault: kotlin.Boolean? = null): Response<IsDefaultWhiteLabelLogosArrayWrapper>
+    suspend fun getIsDefaultWhiteLabelLogos(@Query("isDark") isDark: kotlin.Boolean? = null, @Query("isDefault") isDefault: kotlin.Boolean? = null): Response<IsDefaultWhiteLabelLogosArrayWrapper>
 
     /**
      * GET api/2.0/settings/companywhitelabel
@@ -210,10 +214,10 @@ interface RebrandingApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-licensor-data/
      *
      *
-     * @return [CompanyWhiteLabelSettingsArrayWrapper]
+     * @return [LicensorDetailsArrayWrapper]
      */
     @GET("api/2.0/settings/companywhitelabel")
-    suspend fun getLicensorData(): Response<CompanyWhiteLabelSettingsArrayWrapper>
+    suspend fun getLicensorData(): Response<LicensorDetailsArrayWrapper>
 
     /**
      * GET api/2.0/settings/whitelabel/logotext
@@ -221,6 +225,7 @@ interface RebrandingApi {
      * Returns the wordmark the current portal prints next to or instead of a logo image, as a bare string rather  than an object. Requires a DocSpace administrator, because this is the settings view of the value; the  branding a login page needs is served by `GET api/2.0/settings/whitelabel/logos`, which needs no  authentication. The call is read-only and idempotent. When nothing has been stored for the portal, the  built-in `ONLYOFFICE` is returned, so the answer is never empty and cannot be used to tell a custom text from  the default one - `GET api/2.0/settings/whitelabel/logotext/isdefault` answers that question. Pass  `isDefault=true` to read the installation-wide default wordmark instead of this portal's; without it the  portal's own value is returned even when the installation carries a different default. Change the text with  `POST api/2.0/settings/whitelabel/logotext/save` and clear it with  `PUT api/2.0/settings/whitelabel/logotext/restore`. The value is stored as it was typed, at most 40 characters  long, and is not translated for the caller's language, so the same wordmark is returned for every user of the  portal.
      * Responses:
      *  - 200: The wordmark stored for the portal, or the built-in `ONLYOFFICE` when none is set
+     *  - 403: The caller has no portal-settings right
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
@@ -237,7 +242,7 @@ interface RebrandingApi {
      * @return [StringWrapper]
      */
     @GET("api/2.0/settings/whitelabel/logotext")
-    suspend fun getWhiteLabelLogoText(@Query("IsDark") isDark: kotlin.Boolean? = null, @Query("IsDefault") isDefault: kotlin.Boolean? = null): Response<StringWrapper>
+    suspend fun getWhiteLabelLogoText(@Query("isDark") isDark: kotlin.Boolean? = null, @Query("isDefault") isDefault: kotlin.Boolean? = null): Response<StringWrapper>
 
     /**
      * GET api/2.0/settings/whitelabel/logos
@@ -260,12 +265,12 @@ interface RebrandingApi {
      * @return [WhiteLabelItemArrayWrapper]
      */
     @GET("api/2.0/settings/whitelabel/logos")
-    suspend fun getWhiteLabelLogos(@Query("IsDark") isDark: kotlin.Boolean? = null, @Query("IsDefault") isDefault: kotlin.Boolean? = null): Response<WhiteLabelItemArrayWrapper>
+    suspend fun getWhiteLabelLogos(@Query("isDark") isDark: kotlin.Boolean? = null, @Query("isDefault") isDefault: kotlin.Boolean? = null): Response<WhiteLabelItemArrayWrapper>
 
     /**
      * PUT api/2.0/settings/whitelabel/logotext/restore
      * Restore the white label logo text
-     * Clears the wordmark stored for the current portal, so the built-in `ONLYOFFICE` is printed again next to or  instead of the logo images. Requires a DocSpace administrator. Unlike  `POST api/2.0/settings/whitelabel/logotext/save` it does not need a plan that includes branding, so a portal  whose subscription no longer covers branding can still be reset. The call is destructive for the stored text,  which is not kept anywhere and has to be typed again to come back, and it is idempotent: `true` comes back  both when a text was cleared and when there was none. Logo images are left untouched and have their own  `PUT api/2.0/settings/whitelabel/logos/restore`. Pass `isDefault=true` to reset the installation-wide default  wordmark instead of this portal's, which only a server installation allows. After the call  `GET api/2.0/settings/whitelabel/logotext` reports `ONLYOFFICE` and  `GET api/2.0/settings/whitelabel/logotext/isdefault` reports `default` as `true`. The wordmark is the only  setting this operation touches, so the company details and the help links of the installation are left as they  are.
+     * Clears the wordmark stored for the current portal, so the built-in `ONLYOFFICE` is printed again next to or  instead of the logo images. Requires a DocSpace administrator. Unlike  `POST api/2.0/settings/whitelabel/logotext/save` it does not need a plan that includes customization, so a  portal whose subscription no longer covers customization can still be reset. The call is destructive for the  stored text, which is not kept anywhere and has to be typed again to come back, and it is idempotent: `true`  comes back both when a text was cleared and when there was none. Logo images are left untouched and have their  own `PUT api/2.0/settings/whitelabel/logos/restore`. Pass `isDefault=true` to reset the installation-wide  default wordmark instead of this portal's, which only a server installation allows. After the call  `GET api/2.0/settings/whitelabel/logotext` reports `ONLYOFFICE` and  `GET api/2.0/settings/whitelabel/logotext/isdefault` reports `default` as `true`. The wordmark is the only  setting this operation touches, so the company details and the help links of the installation are left as they  are.
      * Responses:
      *  - 200: Always `true` once the portal prints the built-in wordmark again
      *  - 403: The caller is not a DocSpace administrator, or the installation does not allow default branding to be edited
@@ -285,12 +290,12 @@ interface RebrandingApi {
      * @return [BooleanWrapper]
      */
     @PUT("api/2.0/settings/whitelabel/logotext/restore")
-    suspend fun restoreWhiteLabelLogoText(@Query("IsDark") isDark: kotlin.Boolean? = null, @Query("IsDefault") isDefault: kotlin.Boolean? = null): Response<BooleanWrapper>
+    suspend fun restoreWhiteLabelLogoText(@Query("isDark") isDark: kotlin.Boolean? = null, @Query("isDefault") isDefault: kotlin.Boolean? = null): Response<BooleanWrapper>
 
     /**
      * PUT api/2.0/settings/whitelabel/logos/restore
      * Restore the white label logos
-     * Drops every logo uploaded for the current portal and brings back the built-in images, so the portal looks  unbranded again on the login page, in the left menu, in the editors and in letters. Requires a DocSpace  administrator. Unlike the two save operations it does not need a plan that includes branding, so a portal  whose subscription no longer covers it can still be reset. The call is destructive: the stored image files are  deleted and cannot be recovered from the portal, only re-uploaded with  `POST api/2.0/settings/whitelabel/logos/save`. It is idempotent and answers `true` both when logos were  removed and when there was nothing to remove. All slots are reset together; there is no way to restore a  single one. For this portal the picture kept for the older mail templates is reset along with the logos, while  the logo text is left as it is and has its own `PUT api/2.0/settings/whitelabel/logotext/restore`. Pass  `isDefault=true` to reset the installation-wide default branding instead, which only a server installation  allows. Confirm the result with `GET api/2.0/settings/whitelabel/logos/isdefault`.
+     * Drops every logo uploaded for the current portal and brings back the built-in images, so the portal looks  unbranded again on the login page, in the left menu, in the editors and in letters. Requires a DocSpace  administrator. Unlike the two save operations it does not need a plan that includes customization, so a portal  whose subscription no longer covers it can still be reset. The call is destructive: the stored image files are  deleted and cannot be recovered from the portal, only re-uploaded with  `POST api/2.0/settings/whitelabel/logos/save`. It is idempotent and answers `true` both when logos were  removed and when there was nothing to remove. All slots are reset together; there is no way to restore a  single one. For this portal the picture kept for the older mail templates is reset along with the logos, while  the logo text is left as it is and has its own `PUT api/2.0/settings/whitelabel/logotext/restore`. Pass  `isDefault=true` to reset the installation-wide default branding instead, which only a server installation  allows. Confirm the result with `GET api/2.0/settings/whitelabel/logos/isdefault`.
      * Responses:
      *  - 200: Always `true` once the portal shows the built-in logos again
      *  - 403: The caller is not a DocSpace administrator, or the installation does not allow default branding to be edited
@@ -310,15 +315,16 @@ interface RebrandingApi {
      * @return [BooleanWrapper]
      */
     @PUT("api/2.0/settings/whitelabel/logos/restore")
-    suspend fun restoreWhiteLabelLogos(@Query("IsDark") isDark: kotlin.Boolean? = null, @Query("IsDefault") isDefault: kotlin.Boolean? = null): Response<BooleanWrapper>
+    suspend fun restoreWhiteLabelLogos(@Query("isDark") isDark: kotlin.Boolean? = null, @Query("isDefault") isDefault: kotlin.Boolean? = null): Response<BooleanWrapper>
 
     /**
      * POST api/2.0/settings/rebranding/additional
      * Save the additional white label settings
-     * Stores which of the ONLYOFFICE help and community resources the interface offers: the sample documents, the  Help Center link, the Feedback and Support link, the user forum, the video guides and the license agreements.  The whole set is replaced by the `settings` object of the request, so send every flag, not only the changed  ones - a flag left out is stored as off. A request without that object is rejected as an invalid request.  Requires a DocSpace administrator, a server installation with unrestricted space access and a plan that  includes branding, which `GET api/2.0/settings/enablewhitelabel` reports; on a SaaS portal the call is  refused. The flags are installation-wide, so the change reaches every portal of that installation. The call is  mutating and idempotent, and answers `true`. Only the visibility of these entries is controlled here, not the  addresses behind them. Read the result back with `GET api/2.0/settings/rebranding/additional` and undo it with  `DELETE api/2.0/settings/rebranding/additional`.
+     * Stores which of the ONLYOFFICE help and community resources the interface offers: the sample documents, the  Help Center link, the Feedback and Support link, the user forum, the video guides and the license agreements.  The whole set is replaced by the `settings` object of the request, so send every flag, not only the changed  ones - a flag left out is stored as off. A request without that object is rejected as an invalid request.  Requires a DocSpace administrator, a server installation with unrestricted space access and a plan that  includes customization, which `GET api/2.0/settings/enablewhitelabel` reports; on a SaaS portal the call is  refused. The flags are installation-wide, so the change reaches every portal of that installation. The call is  mutating and idempotent, and answers `true`. Only the visibility of these entries is controlled here, not the  addresses behind them. Read the result back with `GET api/2.0/settings/rebranding/additional` and undo it with  `DELETE api/2.0/settings/rebranding/additional`.
      * Responses:
      *  - 200: Always `true` once the resource flags have been stored for the installation
      *  - 400: The request carries no settings object
+     *  - 402: The portal's pricing plan has no customization option, or the branding section is switched off in the installation
      *  - 403: The caller is not a DocSpace administrator, or the installation does not allow branding to be edited
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
@@ -330,19 +336,20 @@ interface RebrandingApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/save-additional-white-label-settings/
      *
      *
-     * @param additionalWhiteLabelSettingsWrapper  (optional)
+     * @param additionalWhiteLabelSettingsRequestDto  (optional)
      * @return [BooleanWrapper]
      */
     @POST("api/2.0/settings/rebranding/additional")
-    suspend fun saveAdditionalWhiteLabelSettings(@Body additionalWhiteLabelSettingsWrapper: AdditionalWhiteLabelSettingsWrapper? = null): Response<BooleanWrapper>
+    suspend fun saveAdditionalWhiteLabelSettings(@Body additionalWhiteLabelSettingsRequestDto: AdditionalWhiteLabelSettingsRequestDto? = null): Response<BooleanWrapper>
 
     /**
      * POST api/2.0/settings/rebranding/company
      * Save the company white label settings
-     * Stores the company details - name, site, support email, postal address and phone - that the About page and the  notification letters print as the vendor. The whole set is replaced by the `settings` object of the request,  so send every field, not only the changed ones; a request without that object, or with an email or a site that  is not a valid value, is rejected as an invalid request. Requires a DocSpace administrator, a server  installation with unrestricted space access and a plan that includes branding, which  `GET api/2.0/settings/enablewhitelabel` reports; on a SaaS portal the call is refused. The values are  installation-wide, so the change reaches every portal of that installation. Two fields are not taken from the  request: the licensor flag is always stored as `false`, and hiding the About page is silently kept off unless  the plan allows it. The call is mutating and idempotent, and answers `true`. Read the result back with  `GET api/2.0/settings/rebranding/company` and undo it with `DELETE api/2.0/settings/rebranding/company`.
+     * Stores the company details - name, site, support email, postal address and phone - that the About page and the  notification letters print as the vendor. The whole set is replaced by the `settings` object of the request,  so send every field, not only the changed ones; a request without that object, or with an email or a site that  is not a valid value, is rejected as an invalid request. Requires a DocSpace administrator, a server  installation with unrestricted space access and a plan that includes customization, which  `GET api/2.0/settings/enablewhitelabel` reports; on a SaaS portal the call is refused. The values are  installation-wide, so the change reaches every portal of that installation. Two fields are not taken from the  request: the licensor flag is always stored as `false`, and hiding the About page is silently kept off unless  the plan allows it. The call is mutating and idempotent, and answers `true`. Read the result back with  `GET api/2.0/settings/rebranding/company` and undo it with `DELETE api/2.0/settings/rebranding/company`.
      * Responses:
      *  - 200: Always `true` once the company details have been stored for the installation
      *  - 400: The request carries no settings object, or the email or the site is not a valid value
+     *  - 402: The portal's pricing plan has no customization option, or the branding section is switched off in the installation
      *  - 403: The caller is not a DocSpace administrator, or the installation does not allow branding to be edited
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
@@ -354,23 +361,24 @@ interface RebrandingApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/save-company-white-label-settings/
      *
      *
-     * @param companyWhiteLabelSettingsWrapper  (optional)
+     * @param companyWhiteLabelSettingsRequestDto  (optional)
      * @return [BooleanWrapper]
      */
     @POST("api/2.0/settings/rebranding/company")
-    suspend fun saveCompanyWhiteLabelSettings(@Body companyWhiteLabelSettingsWrapper: CompanyWhiteLabelSettingsWrapper? = null): Response<BooleanWrapper>
+    suspend fun saveCompanyWhiteLabelSettings(@Body companyWhiteLabelSettingsRequestDto: CompanyWhiteLabelSettingsRequestDto? = null): Response<BooleanWrapper>
 
     /**
      * POST api/2.0/settings/whitelabel/logotext/save
      * Save the white label logo text
-     * Sets the wordmark that the portal prints next to or instead of a logo image, on the login page, in the editors  and in notification letters. Only `logoText` from the request body is used here, and it is limited to 40  characters; a longer value is rejected as an invalid request. Sending an empty or blank text, or exactly the  built-in `ONLYOFFICE`, clears the setting instead of storing it, which has the same effect as  `PUT api/2.0/settings/whitelabel/logotext/restore`. Requires a DocSpace administrator and a plan that includes  branding, which `GET api/2.0/settings/enablewhitelabel` reports; otherwise the call is refused as payment  required. The call is mutating and idempotent: the previous text is overwritten and `true` comes back. Logo  images are not touched - they are saved by `POST api/2.0/settings/whitelabel/logos/save` - and the text is not  rendered into them. Pass `isDefault=true` to write the installation-wide default wordmark instead of this  portal's, which only a server installation allows. Read the stored value back with  `GET api/2.0/settings/whitelabel/logotext`.
+     * Sets the wordmark that the portal prints next to or instead of a logo image, on the login page, in the editors  and in notification letters. Only `logoText` from the request body is used here, and it is limited to 40  characters; a longer value is rejected as an invalid request. Sending an empty or blank text, or exactly the  built-in `ONLYOFFICE`, clears the setting instead of storing it, which has the same effect as  `PUT api/2.0/settings/whitelabel/logotext/restore`. Requires a DocSpace administrator and a plan that includes  customization, which `GET api/2.0/settings/enablewhitelabel` reports; otherwise the call is refused as payment  required. The call is mutating and idempotent: the previous text is overwritten and `true` comes back. Logo  images are not touched - they are saved by `POST api/2.0/settings/whitelabel/logos/save` - and the text is not  rendered into them. Pass `isDefault=true` to write the installation-wide default wordmark instead of this  portal's, which only a server installation allows. Read the stored value back with  `GET api/2.0/settings/whitelabel/logotext`.
      * Responses:
      *  - 200: Always `true` once the logo text has been stored for the portal
+     *  - 400: The `logoText` is longer than 40 characters
+     *  - 402: The portal's pricing plan has no customization option, or the branding section is switched off in the installation
      *  - 403: The caller is not a DocSpace administrator, or the installation does not allow default branding to be edited
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -380,23 +388,24 @@ interface RebrandingApi {
      *
      * @param isDark Which theme the answer is filled in for: `true` fills the dark image only, `false` the light one only.  Omitting it fills both, leaving the dark one empty for the slots that have no separate dark image. (optional)
      * @param isDefault Whether the installation-wide default branding is addressed instead of this portal own. Writing the default  branding is only allowed on a self-hosted installation; elsewhere it is refused with 403. (optional)
-     * @param whiteLabelRequestsDto  (optional)
+     * @param whiteLabelRequestDto  (optional)
      * @return [BooleanWrapper]
      */
     @POST("api/2.0/settings/whitelabel/logotext/save")
-    suspend fun saveWhiteLabelLogoText(@Query("IsDark") isDark: kotlin.Boolean? = null, @Query("IsDefault") isDefault: kotlin.Boolean? = null, @Body whiteLabelRequestsDto: WhiteLabelRequestsDto? = null): Response<BooleanWrapper>
+    suspend fun saveWhiteLabelLogoText(@Query("isDark") isDark: kotlin.Boolean? = null, @Query("isDefault") isDefault: kotlin.Boolean? = null, @Body whiteLabelRequestDto: WhiteLabelRequestDto? = null): Response<BooleanWrapper>
 
     /**
      * POST api/2.0/settings/whitelabel/logos/save
      * Save the white label logos
-     * Replaces the branding images of the current portal with the ones sent in the request, so that the logos on the  login page, in the left menu, in the editors and in letters come from this portal. Every entry of `logo` names  a logo slot in its `key` - the numeric type published by `GET api/2.0/settings/whitelabel/logos` - and carries  the light-theme and the dark-theme image in `light` and `dark`. An image is either a  `data:image/png;base64,...` payload (`png`, `jpg` and `svg` are accepted) or the name of a file already  uploaded to the temporary store; a slot left out of the request keeps its image. The dark image is stored only  for the slots that have a dark variant, that is `1`, `2`, `6`, `7` and `8`, and is ignored for the favicon and  the editor logos; saving slot `2` also rebuilds the notification logo `8` from it. Requires a DocSpace  administrator and a plan that includes branding, which `GET api/2.0/settings/enablewhitelabel` reports;  otherwise the call is refused as payment required. It answers `true` and is undone by  `PUT api/2.0/settings/whitelabel/logos/restore`. With `isDefault=true` it writes the installation-wide default  branding instead, which only a server installation allows. Uploaded files go to  `POST api/2.0/settings/whitelabel/logos/savefromfiles`.
+     * Replaces the branding images of the current portal with the ones sent in the request, so that the logos on the  login page, in the left menu, in the editors and in letters come from this portal. Every entry of `logo` names  a logo slot in its `key` - the numeric type published by `GET api/2.0/settings/whitelabel/logos` - and carries  the light-theme and the dark-theme image in `light` and `dark`. An image is either a  `data:image/png;base64,...` payload (`png`, `jpg` and `svg` are accepted) or the name of a file already  uploaded to the temporary store; a slot left out of the request keeps its image. The dark image is stored only  for the slots that have a dark variant, that is `1`, `2`, `6`, `7` and `8`, and is ignored for the favicon and  the editor logos; saving slot `2` also rebuilds the notification logo `8` from it. Requires a DocSpace  administrator and a plan that includes customization, which `GET api/2.0/settings/enablewhitelabel` reports;  otherwise the call is refused as payment required. It answers `true` and is undone by  `PUT api/2.0/settings/whitelabel/logos/restore`. With `isDefault=true` it writes the installation-wide default  branding instead, which only a server installation allows. Uploaded files go to  `POST api/2.0/settings/whitelabel/logos/savefromfiles`.
      * Responses:
      *  - 200: Always `true` once the submitted logos have been stored for the portal
+     *  - 400: The `logoText` is longer than 40 characters, although this method does not store it
+     *  - 402: The portal's pricing plan has no customization option, or the branding section is switched off in the installation
      *  - 403: The caller is not a DocSpace administrator, or the installation does not allow default branding to be edited
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -406,20 +415,20 @@ interface RebrandingApi {
      *
      * @param isDark Which theme the answer is filled in for: `true` fills the dark image only, `false` the light one only.  Omitting it fills both, leaving the dark one empty for the slots that have no separate dark image. (optional)
      * @param isDefault Whether the installation-wide default branding is addressed instead of this portal own. Writing the default  branding is only allowed on a self-hosted installation; elsewhere it is refused with 403. (optional)
-     * @param whiteLabelRequestsDto  (optional)
+     * @param whiteLabelRequestDto  (optional)
      * @return [BooleanWrapper]
      */
     @POST("api/2.0/settings/whitelabel/logos/save")
-    suspend fun saveWhiteLabelSettings(@Query("IsDark") isDark: kotlin.Boolean? = null, @Query("IsDefault") isDefault: kotlin.Boolean? = null, @Body whiteLabelRequestsDto: WhiteLabelRequestsDto? = null): Response<BooleanWrapper>
+    suspend fun saveWhiteLabelSettings(@Query("isDark") isDark: kotlin.Boolean? = null, @Query("isDefault") isDefault: kotlin.Boolean? = null, @Body whiteLabelRequestDto: WhiteLabelRequestDto? = null): Response<BooleanWrapper>
 
     /**
      * POST api/2.0/settings/whitelabel/logos/savefromfiles
      * Save the logos from files
-     * Replaces the branding images of the current portal with the files sent as `multipart/form-data`, which is the  way to upload image files directly instead of embedding them as base64 in  `POST api/2.0/settings/whitelabel/logos/save`. The form field names are not used: each file is routed by its  own name, which has to start with the numeric logo slot published by `GET api/2.0/settings/whitelabel/logos`  and end with the image extension, as in `2.png`; a name that also contains `dark`, as in `2.dark.png`, is  stored as the dark-theme image of that slot. Slots that get no file keep the image they have, and a dark file  is ignored for the favicon and the editor logos, which have no dark variant. A request that carries no file at  all is rejected. Requires a DocSpace administrator and a plan that includes branding, which  `GET api/2.0/settings/enablewhitelabel` reports; otherwise the call is refused as payment required. It answers  `true`, overwrites in place and is undone by `PUT api/2.0/settings/whitelabel/logos/restore`. With  `isDefault=true` it writes the installation-wide default branding, which only a server installation allows.
+     * Replaces the branding images of the current portal with the files sent as `multipart/form-data`, which is the  way to upload image files directly instead of embedding them as base64 in  `POST api/2.0/settings/whitelabel/logos/save`. The form field names are not used: each file is routed by its  own name, which has to start with the numeric logo slot published by `GET api/2.0/settings/whitelabel/logos`  and end with the image extension, as in `2.png`; a name that also contains `dark`, as in `2.dark.png`, is  stored as the dark-theme image of that slot. Slots that get no file keep the image they have, and a dark file  is ignored for the favicon and the editor logos, which have no dark variant. A request that carries no file at  all is rejected. Requires a DocSpace administrator and a plan that includes customization, which  `GET api/2.0/settings/enablewhitelabel` reports; otherwise the call is refused as payment required. It answers  `true`, overwrites in place and is undone by `PUT api/2.0/settings/whitelabel/logos/restore`. With  `isDefault=true` it writes the installation-wide default branding, which only a server installation allows.
      * Responses:
      *  - 200: Always `true` once the uploaded files have been stored as the portal logos
-     *  - 403: The caller is not a DocSpace administrator, or the installation does not allow default branding to be edited
-     *  - 409: The request carried no file to store as a logo
+     *  - 402: The portal's pricing plan has no customization option, or the branding section is switched off in the installation
+     *  - 403: The caller is not a DocSpace administrator, the request is not a form or carries no file, or the installation does not allow default branding to be edited
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
@@ -436,6 +445,6 @@ interface RebrandingApi {
      * @return [BooleanWrapper]
      */
     @POST("api/2.0/settings/whitelabel/logos/savefromfiles")
-    suspend fun saveWhiteLabelSettingsFromFiles(@Query("IsDark") isDark: kotlin.Boolean? = null, @Query("IsDefault") isDefault: kotlin.Boolean? = null): Response<BooleanWrapper>
+    suspend fun saveWhiteLabelSettingsFromFiles(@Query("isDark") isDark: kotlin.Boolean? = null, @Query("isDefault") isDefault: kotlin.Boolean? = null): Response<BooleanWrapper>
 
 }

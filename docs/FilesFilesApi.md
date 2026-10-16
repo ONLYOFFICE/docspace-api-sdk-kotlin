@@ -244,7 +244,7 @@ launch(Dispatchers.IO) {
 
 <a id="changeVersionHistory"></a>
 # **changeVersionHistory**
-> FileArrayWrapper changeVersionHistory (kotlin.Int fileId, ChangeHistory changeHistory)
+> FileArrayWrapper changeVersionHistory (kotlin.Int fileId, ChangeHistoryRequest changeHistoryRequest)
 
 Closes or reopens a revision group in the version history of a file and answers with every stored version of  that file, newest first. With `continueVersion=false` the named version is completed: its content is stored  again as a fresh version that opens a new revision group, so the editing that follows no longer extends the  previous one. With `continueVersion=true` the last revision group is folded back into the group before it, so  the next save continues that revision instead of becoming a version of its own; a file that has only one group  is left as it is. A `version` of 0 means the current version. The caller needs the right to edit the history  of the file, which the room admin, a DocSpace admin acting as room manager and a member with content-creator  rights have; plain editing access is refused with 403, as are a guest and a member without access to the room.  The call is mutating and not idempotent. A file that is locked, lies in Trash, is open in an editing session  or is kept in a connected third-party storage is refused.
 
@@ -254,7 +254,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **fileId** | **kotlin.Int**| The file whose version history is changed. | |
-| **changeHistory** | [**ChangeHistory**](ChangeHistory.md)| The change to make to the revision group. | |
+| **changeHistoryRequest** | [**ChangeHistoryRequest**](ChangeHistoryRequest.md)| The change to make to the revision group. | |
 
 ### Return type
 
@@ -280,10 +280,10 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.Int = 1 // kotlin.Int | The file whose version history is changed.
-val changeHistory : ChangeHistory =  // ChangeHistory | The change to make to the revision group.
+val changeHistoryRequest : ChangeHistoryRequest =  // ChangeHistoryRequest | The change to make to the revision group.
 
 launch(Dispatchers.IO) {
-    val result : FileArrayWrapper = webService.changeVersionHistory(fileId, changeHistory)
+    val result : FileArrayWrapper = webService.changeVersionHistory(fileId, changeHistoryRequest)
 }
 ```
 
@@ -295,7 +295,7 @@ launch(Dispatchers.IO) {
 
 <a id="changeVersionHistory-thirdparty"></a>
 # **changeVersionHistory** (third-party storage)
-> ThirdPartyFileArrayWrapper changeVersionHistory (kotlin.String fileId, ChangeHistory changeHistory)
+> ThirdPartyFileArrayWrapper changeVersionHistory (kotlin.String fileId, ChangeHistoryRequest changeHistoryRequest)
 
 Closes or reopens a revision group in the version history of a file and answers with every stored version of  that file, newest first. With `continueVersion=false` the named version is completed: its content is stored  again as a fresh version that opens a new revision group, so the editing that follows no longer extends the  previous one. With `continueVersion=true` the last revision group is folded back into the group before it, so  the next save continues that revision instead of becoming a version of its own; a file that has only one group  is left as it is. A `version` of 0 means the current version. The caller needs the right to edit the history  of the file, which the room admin, a DocSpace admin acting as room manager and a member with content-creator  rights have; plain editing access is refused with 403, as are a guest and a member without access to the room.  The call is mutating and not idempotent. A file that is locked, lies in Trash, is open in an editing session  or is kept in a connected third-party storage is refused.
 
@@ -305,7 +305,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **fileId** | **kotlin.String**| The file whose version history is changed. | |
-| **changeHistory** | [**ChangeHistory**](ChangeHistory.md)| The change to make to the revision group. | |
+| **changeHistoryRequest** | [**ChangeHistoryRequest**](ChangeHistoryRequest.md)| The change to make to the revision group. | |
 
 ### Return type
 
@@ -331,10 +331,10 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.String = sbox-42-L1JlcG9ydC5kb2N4 // kotlin.String | The file whose version history is changed.
-val changeHistory : ChangeHistory =  // ChangeHistory | The change to make to the revision group.
+val changeHistoryRequest : ChangeHistoryRequest =  // ChangeHistoryRequest | The change to make to the revision group.
 
 launch(Dispatchers.IO) {
-    val result : ThirdPartyFileArrayWrapper = webService.changeVersionHistory(fileId, changeHistory)
+    val result : ThirdPartyFileArrayWrapper = webService.changeVersionHistory(fileId, changeHistoryRequest)
 }
 ```
 
@@ -346,7 +346,7 @@ launch(Dispatchers.IO) {
 
 <a id="checkFillFormDraft"></a>
 # **checkFillFormDraft**
-> StringWrapper checkFillFormDraft (kotlin.Int fileId, CheckFillFormDraft checkFillFormDraft)
+> StringWrapper checkFillFormDraft (kotlin.Int fileId, CheckFillFormDraftRequest checkFillFormDraftRequest)
 
 Resolves the editor address the caller must open to fill out the given PDF form, and provisions the personal  draft that filling needs. The form has to live in a form-filling room and filling has to be started for it  with `PUT api/2.0/files/file/{fileId}/manageformfilling`; a caller who may edit the form, a form whose filling  has not started, and a request naming `view` or `embedded` as the action are all sent straight to the form  itself. Read access to the form is enough to get an address, fill-forms access is what puts the caller into  the filling flow, and a holder of an external link may call it without signing in, while a caller with neither  a session nor a link key is rejected. In the filling case the call is not read-only: it copies the form into  the room's in-progress folder under the caller's name, clears the new-item badge, closes the editing session  of the original, and answers with the address of that copy. A repeated call reuses that copy, and a call  naming an existing draft adds a discard notice when that draft is no longer valid. The answer is one URL  string that may carry a `#message/...` fragment the editor renders as a notice. For the full editor  configuration use `GET api/2.0/files/file/{fileId}/openedit`. A form the caller cannot open is refused with  403, and one that does not exist is answered as missing.
 
@@ -356,7 +356,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **fileId** | **kotlin.Int**| The identifier of the PDF form to open, as it is returned by a room listing such as  `GET api/2.0/files/{folderId}`. The identifier of an already created draft is accepted here as well. | |
-| **checkFillFormDraft** | [**CheckFillFormDraft**](CheckFillFormDraft.md)| The revision of the form to open and what the caller intends to do with it. | |
+| **checkFillFormDraftRequest** | [**CheckFillFormDraftRequest**](CheckFillFormDraftRequest.md)| The revision of the form to open and what the caller intends to do with it. | |
 
 ### Return type
 
@@ -382,10 +382,10 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.Int = 1 // kotlin.Int | The identifier of the PDF form to open, as it is returned by a room listing such as  `GET api/2.0/files/{folderId}`. The identifier of an already created draft is accepted here as well.
-val checkFillFormDraft : CheckFillFormDraft =  // CheckFillFormDraft | The revision of the form to open and what the caller intends to do with it.
+val checkFillFormDraftRequest : CheckFillFormDraftRequest =  // CheckFillFormDraftRequest | The revision of the form to open and what the caller intends to do with it.
 
 launch(Dispatchers.IO) {
-    val result : StringWrapper = webService.checkFillFormDraft(fileId, checkFillFormDraft)
+    val result : StringWrapper = webService.checkFillFormDraft(fileId, checkFillFormDraftRequest)
 }
 ```
 
@@ -397,7 +397,7 @@ launch(Dispatchers.IO) {
 
 <a id="checkFillFormDraft-thirdparty"></a>
 # **checkFillFormDraft** (third-party storage)
-> StringWrapper checkFillFormDraft (kotlin.String fileId, CheckFillFormDraft checkFillFormDraft)
+> StringWrapper checkFillFormDraft (kotlin.String fileId, CheckFillFormDraftRequest checkFillFormDraftRequest)
 
 Resolves the editor address the caller must open to fill out the given PDF form, and provisions the personal  draft that filling needs. The form has to live in a form-filling room and filling has to be started for it  with `PUT api/2.0/files/file/{fileId}/manageformfilling`; a caller who may edit the form, a form whose filling  has not started, and a request naming `view` or `embedded` as the action are all sent straight to the form  itself. Read access to the form is enough to get an address, fill-forms access is what puts the caller into  the filling flow, and a holder of an external link may call it without signing in, while a caller with neither  a session nor a link key is rejected. In the filling case the call is not read-only: it copies the form into  the room's in-progress folder under the caller's name, clears the new-item badge, closes the editing session  of the original, and answers with the address of that copy. A repeated call reuses that copy, and a call  naming an existing draft adds a discard notice when that draft is no longer valid. The answer is one URL  string that may carry a `#message/...` fragment the editor renders as a notice. For the full editor  configuration use `GET api/2.0/files/file/{fileId}/openedit`. A form the caller cannot open is refused with  403, and one that does not exist is answered as missing.
 
@@ -407,7 +407,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **fileId** | **kotlin.String**| The identifier of the PDF form to open, as it is returned by a room listing such as  `GET api/2.0/files/{folderId}`. The identifier of an already created draft is accepted here as well. | |
-| **checkFillFormDraft** | [**CheckFillFormDraft**](CheckFillFormDraft.md)| The revision of the form to open and what the caller intends to do with it. | |
+| **checkFillFormDraftRequest** | [**CheckFillFormDraftRequest**](CheckFillFormDraftRequest.md)| The revision of the form to open and what the caller intends to do with it. | |
 
 ### Return type
 
@@ -433,10 +433,10 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.String = sbox-42-L1JlcG9ydC5kb2N4 // kotlin.String | The identifier of the PDF form to open, as it is returned by a room listing such as  `GET api/2.0/files/{folderId}`. The identifier of an already created draft is accepted here as well.
-val checkFillFormDraft : CheckFillFormDraft =  // CheckFillFormDraft | The revision of the form to open and what the caller intends to do with it.
+val checkFillFormDraftRequest : CheckFillFormDraftRequest =  // CheckFillFormDraftRequest | The revision of the form to open and what the caller intends to do with it.
 
 launch(Dispatchers.IO) {
-    val result : StringWrapper = webService.checkFillFormDraft(fileId, checkFillFormDraft)
+    val result : StringWrapper = webService.checkFillFormDraft(fileId, checkFillFormDraftRequest)
 }
 ```
 
@@ -448,7 +448,7 @@ launch(Dispatchers.IO) {
 
 <a id="copyFileAs"></a>
 # **copyFileAs**
-> FileEntryBaseWrapper copyFileAs (kotlin.Int fileId, CopyAsJsonElement copyAsJsonElement)
+> FileEntryBaseWrapper copyFileAs (kotlin.Int fileId, CopyAsRequest copyAsRequest)
 
 Copies one file into another folder under a new title, converting its content when the new title names a  different format, and answers with the copy that was created. The extension of `destTitle` decides what  happens: the same extension as the source copies the bytes as they are, a different one has the document  service convert them first, and `toForm=true` converts a document into a PDF form. `password` unlocks a source  file that is protected by one. `destFolderId` is read as a number for a folder inside the portal and as a  string for a folder in a connected third-party storage; anything else is answered with an empty body and  nothing is copied. The caller needs read access to the source file and the right to create files in the  destination folder, and is otherwise refused with 403; a missing file or folder is answered with 404, and a  format that cannot be converted with 400. The call is mutating and not idempotent - each call adds another  copy. To copy many items at once, and without converting, use `PUT api/2.0/files/fileops/copy`.
 
@@ -458,7 +458,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **fileId** | **kotlin.Int**| The file to copy. | |
-| **copyAsJsonElement** | [**CopyAsJsonElement**](CopyAsJsonElement.md)| The title, the destination and the conversion options of the copy. | |
+| **copyAsRequest** | [**CopyAsRequest**](CopyAsRequest.md)| The title, the destination and the conversion options of the copy. | |
 
 ### Return type
 
@@ -484,10 +484,10 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.Int = 1 // kotlin.Int | The file to copy.
-val copyAsJsonElement : CopyAsJsonElement =  // CopyAsJsonElement | The title, the destination and the conversion options of the copy.
+val copyAsRequest : CopyAsRequest =  // CopyAsRequest | The title, the destination and the conversion options of the copy.
 
 launch(Dispatchers.IO) {
-    val result : FileEntryBaseWrapper = webService.copyFileAs(fileId, copyAsJsonElement)
+    val result : FileEntryBaseWrapper = webService.copyFileAs(fileId, copyAsRequest)
 }
 ```
 
@@ -499,7 +499,7 @@ launch(Dispatchers.IO) {
 
 <a id="copyFileAs-thirdparty"></a>
 # **copyFileAs** (third-party storage)
-> FileEntryBaseWrapper copyFileAs (kotlin.String fileId, CopyAsJsonElement copyAsJsonElement)
+> FileEntryBaseWrapper copyFileAs (kotlin.String fileId, CopyAsRequest copyAsRequest)
 
 Copies one file into another folder under a new title, converting its content when the new title names a  different format, and answers with the copy that was created. The extension of `destTitle` decides what  happens: the same extension as the source copies the bytes as they are, a different one has the document  service convert them first, and `toForm=true` converts a document into a PDF form. `password` unlocks a source  file that is protected by one. `destFolderId` is read as a number for a folder inside the portal and as a  string for a folder in a connected third-party storage; anything else is answered with an empty body and  nothing is copied. The caller needs read access to the source file and the right to create files in the  destination folder, and is otherwise refused with 403; a missing file or folder is answered with 404, and a  format that cannot be converted with 400. The call is mutating and not idempotent - each call adds another  copy. To copy many items at once, and without converting, use `PUT api/2.0/files/fileops/copy`.
 
@@ -509,7 +509,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **fileId** | **kotlin.String**| The file to copy. | |
-| **copyAsJsonElement** | [**CopyAsJsonElement**](CopyAsJsonElement.md)| The title, the destination and the conversion options of the copy. | |
+| **copyAsRequest** | [**CopyAsRequest**](CopyAsRequest.md)| The title, the destination and the conversion options of the copy. | |
 
 ### Return type
 
@@ -535,10 +535,10 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.String = sbox-42-L1JlcG9ydC5kb2N4 // kotlin.String | The file to copy.
-val copyAsJsonElement : CopyAsJsonElement =  // CopyAsJsonElement | The title, the destination and the conversion options of the copy.
+val copyAsRequest : CopyAsRequest =  // CopyAsRequest | The title, the destination and the conversion options of the copy.
 
 launch(Dispatchers.IO) {
-    val result : FileEntryBaseWrapper = webService.copyFileAs(fileId, copyAsJsonElement)
+    val result : FileEntryBaseWrapper = webService.copyFileAs(fileId, copyAsRequest)
 }
 ```
 
@@ -550,7 +550,7 @@ launch(Dispatchers.IO) {
 
 <a id="createEditSession"></a>
 # **createEditSession**
-> ChunkedUploadSessionResponseWrapperWrapper createEditSession (kotlin.Int fileId, kotlin.Long fileSize)
+> ChunkedUploadSessionResultWrapper createEditSession (kotlin.Int fileId, kotlin.Long fileSize)
 
 Opens a chunked session that replaces the content of an existing file, which is how WebDAV clients save over a  document. The answer carries the session id the later calls quote, the address of the standalone chunk  handler, the expiry and the reserved size, and nothing is written until the parts reach  `POST api/2.0/files/{folderId}/session/{sessionId}/upload` and the session is closed with  `PUT api/2.0/files/{folderId}/session/{sessionId}/finalize`, where `folderId` is the folder the file lives in.  Unlike an upload into a folder, the finished content does not become a new version: it overwrites the current  one, and the file loses its encrypted flag and its stored conversion result in the process. The caller must be  allowed to edit the file, as the owner, a room manager and a member invited with editing rights are; a reader  and a guest get 403. A file that does not exist is answered as missing, and a payload above the portal limit  for chunked uploads is refused before the session is created.
 
@@ -564,7 +564,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Return type
 
-[**ChunkedUploadSessionResponseWrapperWrapper**](ChunkedUploadSessionResponseWrapperWrapper.md)
+[**ChunkedUploadSessionResultWrapper**](ChunkedUploadSessionResultWrapper.md)
 
 ### Authorization
 
@@ -589,7 +589,7 @@ val fileId : kotlin.Int = 1 // kotlin.Int | The file whose content the session w
 val fileSize : kotlin.Long = 1024 // kotlin.Long | The number of bytes the new content will take. It is checked against the portal limit for chunked uploads  before the session opens, and a session left at 0 takes the whole content in a single part.
 
 launch(Dispatchers.IO) {
-    val result : ChunkedUploadSessionResponseWrapperWrapper = webService.createEditSession(fileId, fileSize)
+    val result : ChunkedUploadSessionResultWrapper = webService.createEditSession(fileId, fileSize)
 }
 ```
 
@@ -601,7 +601,7 @@ launch(Dispatchers.IO) {
 
 <a id="createEditSession-thirdparty"></a>
 # **createEditSession** (third-party storage)
-> ThirdPartyChunkedUploadSessionResponseWrapperWrapper createEditSession (kotlin.String fileId, kotlin.Long fileSize)
+> ThirdPartyChunkedUploadSessionResultWrapper createEditSession (kotlin.String fileId, kotlin.Long fileSize)
 
 Opens a chunked session that replaces the content of an existing file, which is how WebDAV clients save over a  document. The answer carries the session id the later calls quote, the address of the standalone chunk  handler, the expiry and the reserved size, and nothing is written until the parts reach  `POST api/2.0/files/{folderId}/session/{sessionId}/upload` and the session is closed with  `PUT api/2.0/files/{folderId}/session/{sessionId}/finalize`, where `folderId` is the folder the file lives in.  Unlike an upload into a folder, the finished content does not become a new version: it overwrites the current  one, and the file loses its encrypted flag and its stored conversion result in the process. The caller must be  allowed to edit the file, as the owner, a room manager and a member invited with editing rights are; a reader  and a guest get 403. A file that does not exist is answered as missing, and a payload above the portal limit  for chunked uploads is refused before the session is created.
 
@@ -615,7 +615,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Return type
 
-[**ThirdPartyChunkedUploadSessionResponseWrapperWrapper**](ThirdPartyChunkedUploadSessionResponseWrapperWrapper.md)
+[**ThirdPartyChunkedUploadSessionResultWrapper**](ThirdPartyChunkedUploadSessionResultWrapper.md)
 
 ### Authorization
 
@@ -640,7 +640,7 @@ val fileId : kotlin.String = sbox-42-L1JlcG9ydC5kb2N4 // kotlin.String | The fil
 val fileSize : kotlin.Long = 1024 // kotlin.Long | The number of bytes the new content will take. It is checked against the portal limit for chunked uploads  before the session opens, and a session left at 0 takes the whole content in a single part.
 
 launch(Dispatchers.IO) {
-    val result : ThirdPartyChunkedUploadSessionResponseWrapperWrapper = webService.createEditSession(fileId, fileSize)
+    val result : ThirdPartyChunkedUploadSessionResultWrapper = webService.createEditSession(fileId, fileSize)
 }
 ```
 
@@ -652,7 +652,7 @@ launch(Dispatchers.IO) {
 
 <a id="createFile"></a>
 # **createFile**
-> FileWrapper createFile (kotlin.Int folderId, CreateFileJsonElement createFileJsonElement)
+> FileWrapper createFile (kotlin.Int folderId, CreateFileRequest createFileRequest)
 
 Creates a file in the folder named in the route and answers with the stored file. The extension in the title  decides the format: an extension of a known text, spreadsheet or presentation format is rewritten to the  portal's own DOCX, XLSX or PPTX, a title with no extension at all gets DOCX added, while an unknown extension  and the few formats the portal keeps as they are stay untouched; `enableExternalExt=true` stores the title  verbatim and skips that rewriting. The content comes from one of three sources, tried in this order: `formId`  copies a ready form out of the form gallery, `templateId` copies an existing file the caller can read - a  number for a file in the portal, a string for one in a connected third-party storage - and with neither of  them the portal's blank template for that format and the caller's language is used. The caller needs the right  to create files in the folder, and the room roots, Archive and the template sections are refused even to an  admin. The call is mutating and not idempotent. To create the file in the caller's own section use  `POST api/2.0/files/@my/file`.
 
@@ -662,7 +662,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **folderId** | **kotlin.Int**| The folder the file is created in. | |
-| **createFileJsonElement** | [**CreateFileJsonElement**](CreateFileJsonElement.md)| The title of the new file and the source of its content. | |
+| **createFileRequest** | [**CreateFileRequest**](CreateFileRequest.md)| The title of the new file and the source of its content. | |
 
 ### Return type
 
@@ -688,10 +688,10 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val folderId : kotlin.Int = 1 // kotlin.Int | The folder the file is created in.
-val createFileJsonElement : CreateFileJsonElement =  // CreateFileJsonElement | The title of the new file and the source of its content.
+val createFileRequest : CreateFileRequest =  // CreateFileRequest | The title of the new file and the source of its content.
 
 launch(Dispatchers.IO) {
-    val result : FileWrapper = webService.createFile(folderId, createFileJsonElement)
+    val result : FileWrapper = webService.createFile(folderId, createFileRequest)
 }
 ```
 
@@ -703,7 +703,7 @@ launch(Dispatchers.IO) {
 
 <a id="createFile-thirdparty"></a>
 # **createFile** (third-party storage)
-> ThirdPartyFileWrapper createFile (kotlin.String folderId, CreateFileJsonElement createFileJsonElement)
+> ThirdPartyFileWrapper createFile (kotlin.String folderId, CreateFileRequest createFileRequest)
 
 Creates a file in the folder named in the route and answers with the stored file. The extension in the title  decides the format: an extension of a known text, spreadsheet or presentation format is rewritten to the  portal's own DOCX, XLSX or PPTX, a title with no extension at all gets DOCX added, while an unknown extension  and the few formats the portal keeps as they are stay untouched; `enableExternalExt=true` stores the title  verbatim and skips that rewriting. The content comes from one of three sources, tried in this order: `formId`  copies a ready form out of the form gallery, `templateId` copies an existing file the caller can read - a  number for a file in the portal, a string for one in a connected third-party storage - and with neither of  them the portal's blank template for that format and the caller's language is used. The caller needs the right  to create files in the folder, and the room roots, Archive and the template sections are refused even to an  admin. The call is mutating and not idempotent. To create the file in the caller's own section use  `POST api/2.0/files/@my/file`.
 
@@ -713,7 +713,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **folderId** | **kotlin.String**| The folder the file is created in. | |
-| **createFileJsonElement** | [**CreateFileJsonElement**](CreateFileJsonElement.md)| The title of the new file and the source of its content. | |
+| **createFileRequest** | [**CreateFileRequest**](CreateFileRequest.md)| The title of the new file and the source of its content. | |
 
 ### Return type
 
@@ -739,10 +739,10 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val folderId : kotlin.String = sbox-42 // kotlin.String | The folder the file is created in.
-val createFileJsonElement : CreateFileJsonElement =  // CreateFileJsonElement | The title of the new file and the source of its content.
+val createFileRequest : CreateFileRequest =  // CreateFileRequest | The title of the new file and the source of its content.
 
 launch(Dispatchers.IO) {
-    val result : ThirdPartyFileWrapper = webService.createFile(folderId, createFileJsonElement)
+    val result : ThirdPartyFileWrapper = webService.createFile(folderId, createFileRequest)
 }
 ```
 
@@ -754,7 +754,7 @@ launch(Dispatchers.IO) {
 
 <a id="createFileInMyDocuments"></a>
 # **createFileInMyDocuments**
-> FileWrapper createFileInMyDocuments (CreateFileJsonElement createFileJsonElement)
+> FileWrapper createFileInMyDocuments (CreateFileRequest createFileRequest)
 
 Creates a file in the caller's own My documents section and answers with the stored file. The extension in  the title decides the format: an extension of a known text, spreadsheet or presentation format is rewritten to  the portal's own DOCX, XLSX or PPTX, a title with no extension at all gets DOCX added, while an unknown  extension and the few formats the portal keeps as they are stay untouched; `enableExternalExt=true` stores the  title verbatim and skips that rewriting. The content comes from one of three sources, tried in this order:  `formId` copies a ready form out of the form gallery, `templateId` copies an existing file the caller can read  - a number for a file in the portal, a string for one in a connected third-party storage - and with neither of  them the portal's blank template for that format and the caller's language is used. The call is mutating and  not idempotent: each call adds another file. A guest has no My documents section of their own, so a guest  cannot use this operation at all, and a template the caller cannot read is refused. To create a file in a  room or any other folder use  `POST api/2.0/files/{folderId}/file`.
 
@@ -763,7 +763,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **createFileJsonElement** | [**CreateFileJsonElement**](CreateFileJsonElement.md)|  | [optional] |
+| **createFileRequest** | [**CreateFileRequest**](CreateFileRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -788,10 +788,10 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
-val createFileJsonElement : CreateFileJsonElement =  // CreateFileJsonElement | 
+val createFileRequest : CreateFileRequest =  // CreateFileRequest | 
 
 launch(Dispatchers.IO) {
-    val result : FileWrapper = webService.createFileInMyDocuments(createFileJsonElement)
+    val result : FileWrapper = webService.createFileInMyDocuments(createFileRequest)
 }
 ```
 
@@ -905,7 +905,7 @@ launch(Dispatchers.IO) {
 
 <a id="createHtmlFile"></a>
 # **createHtmlFile**
-> FileWrapper createHtmlFile (kotlin.Int folderId, CreateTextOrHtmlFile createTextOrHtmlFile)
+> FileWrapper createHtmlFile (kotlin.Int folderId, CreateTextOrHtmlFileRequest createTextOrHtmlFileRequest)
 
 Creates an HTML file in the folder named in the route out of the markup passed as the content, and answers  with the stored file. The `.html` extension is added to the title unless the title already ends with it, and a  request carrying no content is rejected as an invalid request. `createNewIfExist` acts the other way round  than its name reads: with `true` the file that already carries this title is updated, the markup replacing its  content and a version appearing in its history, while with `false`, which is also the default, another file is  created and its title made unique, as in Notes (1).html. Updating needs the existing file to be editable by  the caller, so one that is locked, open in an editing session, encrypted or in Trash is left alone and a new  file appears beside it instead. The caller needs the right to create files in the folder and is otherwise  refused with 403. The call is mutating. To create the file in the caller's own section use  `POST api/2.0/files/@my/html`.
 
@@ -915,7 +915,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **folderId** | **kotlin.Int**| The folder the file is created in. | |
-| **createTextOrHtmlFile** | [**CreateTextOrHtmlFile**](CreateTextOrHtmlFile.md)| The title, the content and the collision behaviour of the new file. | |
+| **createTextOrHtmlFileRequest** | [**CreateTextOrHtmlFileRequest**](CreateTextOrHtmlFileRequest.md)| The title, the content and the collision behaviour of the new file. | |
 
 ### Return type
 
@@ -941,10 +941,10 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val folderId : kotlin.Int = 1 // kotlin.Int | The folder the file is created in.
-val createTextOrHtmlFile : CreateTextOrHtmlFile =  // CreateTextOrHtmlFile | The title, the content and the collision behaviour of the new file.
+val createTextOrHtmlFileRequest : CreateTextOrHtmlFileRequest =  // CreateTextOrHtmlFileRequest | The title, the content and the collision behaviour of the new file.
 
 launch(Dispatchers.IO) {
-    val result : FileWrapper = webService.createHtmlFile(folderId, createTextOrHtmlFile)
+    val result : FileWrapper = webService.createHtmlFile(folderId, createTextOrHtmlFileRequest)
 }
 ```
 
@@ -956,7 +956,7 @@ launch(Dispatchers.IO) {
 
 <a id="createHtmlFile-thirdparty"></a>
 # **createHtmlFile** (third-party storage)
-> ThirdPartyFileWrapper createHtmlFile (kotlin.String folderId, CreateTextOrHtmlFile createTextOrHtmlFile)
+> ThirdPartyFileWrapper createHtmlFile (kotlin.String folderId, CreateTextOrHtmlFileRequest createTextOrHtmlFileRequest)
 
 Creates an HTML file in the folder named in the route out of the markup passed as the content, and answers  with the stored file. The `.html` extension is added to the title unless the title already ends with it, and a  request carrying no content is rejected as an invalid request. `createNewIfExist` acts the other way round  than its name reads: with `true` the file that already carries this title is updated, the markup replacing its  content and a version appearing in its history, while with `false`, which is also the default, another file is  created and its title made unique, as in Notes (1).html. Updating needs the existing file to be editable by  the caller, so one that is locked, open in an editing session, encrypted or in Trash is left alone and a new  file appears beside it instead. The caller needs the right to create files in the folder and is otherwise  refused with 403. The call is mutating. To create the file in the caller's own section use  `POST api/2.0/files/@my/html`.
 
@@ -966,7 +966,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **folderId** | **kotlin.String**| The folder the file is created in. | |
-| **createTextOrHtmlFile** | [**CreateTextOrHtmlFile**](CreateTextOrHtmlFile.md)| The title, the content and the collision behaviour of the new file. | |
+| **createTextOrHtmlFileRequest** | [**CreateTextOrHtmlFileRequest**](CreateTextOrHtmlFileRequest.md)| The title, the content and the collision behaviour of the new file. | |
 
 ### Return type
 
@@ -992,10 +992,10 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val folderId : kotlin.String = sbox-42 // kotlin.String | The folder the file is created in.
-val createTextOrHtmlFile : CreateTextOrHtmlFile =  // CreateTextOrHtmlFile | The title, the content and the collision behaviour of the new file.
+val createTextOrHtmlFileRequest : CreateTextOrHtmlFileRequest =  // CreateTextOrHtmlFileRequest | The title, the content and the collision behaviour of the new file.
 
 launch(Dispatchers.IO) {
-    val result : ThirdPartyFileWrapper = webService.createHtmlFile(folderId, createTextOrHtmlFile)
+    val result : ThirdPartyFileWrapper = webService.createHtmlFile(folderId, createTextOrHtmlFileRequest)
 }
 ```
 
@@ -1007,7 +1007,7 @@ launch(Dispatchers.IO) {
 
 <a id="createHtmlFileInMyDocuments"></a>
 # **createHtmlFileInMyDocuments**
-> FileWrapper createHtmlFileInMyDocuments (CreateTextOrHtmlFile createTextOrHtmlFile)
+> FileWrapper createHtmlFileInMyDocuments (CreateTextOrHtmlFileRequest createTextOrHtmlFileRequest)
 
 Creates an HTML file in the caller's own My documents section out of the markup passed as the content, and  answers with the stored file. The `.html` extension is added to the title unless the title already ends with  it, and a request carrying no content is rejected as invalid. `createNewIfExist` acts the other way round than  its name reads: with `true` the file that already carries this title is updated, the markup replacing its  content and a version appearing in its history, while with `false`, which is also the default, another file is  created and its title made unique, as in Notes (1).html. Updating needs the existing file to be editable by  the caller, so one that is locked, open in an editing session, encrypted or in Trash is left alone and a new  file appears beside it instead. The call is mutating: repeating it with `true` keeps a single file and grows  its history, repeating it with `false` fills the section with numbered copies. A guest has no My documents  section and is refused. To create the file in a room or another folder use  `POST api/2.0/files/{folderId}/html`.
 
@@ -1016,7 +1016,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **createTextOrHtmlFile** | [**CreateTextOrHtmlFile**](CreateTextOrHtmlFile.md)|  | [optional] |
+| **createTextOrHtmlFileRequest** | [**CreateTextOrHtmlFileRequest**](CreateTextOrHtmlFileRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -1041,10 +1041,10 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
-val createTextOrHtmlFile : CreateTextOrHtmlFile =  // CreateTextOrHtmlFile | 
+val createTextOrHtmlFileRequest : CreateTextOrHtmlFileRequest =  // CreateTextOrHtmlFileRequest | 
 
 launch(Dispatchers.IO) {
-    val result : FileWrapper = webService.createHtmlFileInMyDocuments(createTextOrHtmlFile)
+    val result : FileWrapper = webService.createHtmlFileInMyDocuments(createTextOrHtmlFileRequest)
 }
 ```
 
@@ -1056,7 +1056,7 @@ launch(Dispatchers.IO) {
 
 <a id="createTextFile"></a>
 # **createTextFile**
-> FileWrapper createTextFile (kotlin.Int folderId, CreateTextOrHtmlFile createTextOrHtmlFile)
+> FileWrapper createTextFile (kotlin.Int folderId, CreateTextOrHtmlFileRequest createTextOrHtmlFileRequest)
 
 Creates a text file in the folder named in the route out of the text passed as the content, and answers with  the stored file. The extension follows the content rather than the request: `.txt` normally, but `.html` as  soon as the text contains something shaped like an HTML tag, so a snippet of markup sent here ends up as an  HTML file; the extension is added to the title unless the title already ends with it. A request carrying no  content is rejected as an invalid request. `createNewIfExist` acts the other way round than its name reads:  with `true` the file that already carries this title is updated and a version appears in its history, while  with `false`, which is also the default, another file is created and its title made unique, as in Notes  (1).txt. A file that is locked, open in an editing session, encrypted or in Trash is not updated - a new file  appears beside it instead. The caller needs the right to create files in the folder. The call is mutating. To  create the file in the caller's own section use `POST api/2.0/files/@my/text`.
 
@@ -1066,7 +1066,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **folderId** | **kotlin.Int**| The folder the file is created in. | |
-| **createTextOrHtmlFile** | [**CreateTextOrHtmlFile**](CreateTextOrHtmlFile.md)| The title, the content and the collision behaviour of the new file. | |
+| **createTextOrHtmlFileRequest** | [**CreateTextOrHtmlFileRequest**](CreateTextOrHtmlFileRequest.md)| The title, the content and the collision behaviour of the new file. | |
 
 ### Return type
 
@@ -1092,10 +1092,10 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val folderId : kotlin.Int = 1 // kotlin.Int | The folder the file is created in.
-val createTextOrHtmlFile : CreateTextOrHtmlFile =  // CreateTextOrHtmlFile | The title, the content and the collision behaviour of the new file.
+val createTextOrHtmlFileRequest : CreateTextOrHtmlFileRequest =  // CreateTextOrHtmlFileRequest | The title, the content and the collision behaviour of the new file.
 
 launch(Dispatchers.IO) {
-    val result : FileWrapper = webService.createTextFile(folderId, createTextOrHtmlFile)
+    val result : FileWrapper = webService.createTextFile(folderId, createTextOrHtmlFileRequest)
 }
 ```
 
@@ -1107,7 +1107,7 @@ launch(Dispatchers.IO) {
 
 <a id="createTextFile-thirdparty"></a>
 # **createTextFile** (third-party storage)
-> ThirdPartyFileWrapper createTextFile (kotlin.String folderId, CreateTextOrHtmlFile createTextOrHtmlFile)
+> ThirdPartyFileWrapper createTextFile (kotlin.String folderId, CreateTextOrHtmlFileRequest createTextOrHtmlFileRequest)
 
 Creates a text file in the folder named in the route out of the text passed as the content, and answers with  the stored file. The extension follows the content rather than the request: `.txt` normally, but `.html` as  soon as the text contains something shaped like an HTML tag, so a snippet of markup sent here ends up as an  HTML file; the extension is added to the title unless the title already ends with it. A request carrying no  content is rejected as an invalid request. `createNewIfExist` acts the other way round than its name reads:  with `true` the file that already carries this title is updated and a version appears in its history, while  with `false`, which is also the default, another file is created and its title made unique, as in Notes  (1).txt. A file that is locked, open in an editing session, encrypted or in Trash is not updated - a new file  appears beside it instead. The caller needs the right to create files in the folder. The call is mutating. To  create the file in the caller's own section use `POST api/2.0/files/@my/text`.
 
@@ -1117,7 +1117,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **folderId** | **kotlin.String**| The folder the file is created in. | |
-| **createTextOrHtmlFile** | [**CreateTextOrHtmlFile**](CreateTextOrHtmlFile.md)| The title, the content and the collision behaviour of the new file. | |
+| **createTextOrHtmlFileRequest** | [**CreateTextOrHtmlFileRequest**](CreateTextOrHtmlFileRequest.md)| The title, the content and the collision behaviour of the new file. | |
 
 ### Return type
 
@@ -1143,10 +1143,10 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val folderId : kotlin.String = sbox-42 // kotlin.String | The folder the file is created in.
-val createTextOrHtmlFile : CreateTextOrHtmlFile =  // CreateTextOrHtmlFile | The title, the content and the collision behaviour of the new file.
+val createTextOrHtmlFileRequest : CreateTextOrHtmlFileRequest =  // CreateTextOrHtmlFileRequest | The title, the content and the collision behaviour of the new file.
 
 launch(Dispatchers.IO) {
-    val result : ThirdPartyFileWrapper = webService.createTextFile(folderId, createTextOrHtmlFile)
+    val result : ThirdPartyFileWrapper = webService.createTextFile(folderId, createTextOrHtmlFileRequest)
 }
 ```
 
@@ -1158,7 +1158,7 @@ launch(Dispatchers.IO) {
 
 <a id="createTextFileInMyDocuments"></a>
 # **createTextFileInMyDocuments**
-> FileWrapper createTextFileInMyDocuments (CreateTextOrHtmlFile createTextOrHtmlFile)
+> FileWrapper createTextFileInMyDocuments (CreateTextOrHtmlFileRequest createTextOrHtmlFileRequest)
 
 Creates a text file in the caller's own My documents section out of the text passed as the content, and  answers with the stored file. The extension follows the content rather than the request: `.txt` normally, but  `.html` as soon as the text contains something shaped like an HTML tag, so a snippet of markup sent here ends  up as an HTML file; the extension is added to the title unless the title already ends with it. A request  carrying no content is rejected as invalid. `createNewIfExist` acts the other way round than its name reads:  with `true` the file that already carries this title is updated and a version appears in its history, while  with `false`, which is also the default, another file is created and its title made unique, as in  Notes (1).txt. A file that is locked, open in an editing session, encrypted or in Trash is not updated - a  new file appears beside it instead. The call is mutating. A guest has no My documents section and is  refused. To create the file in a room or another folder use `POST api/2.0/files/{folderId}/text`.
 
@@ -1167,7 +1167,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **createTextOrHtmlFile** | [**CreateTextOrHtmlFile**](CreateTextOrHtmlFile.md)|  | [optional] |
+| **createTextOrHtmlFileRequest** | [**CreateTextOrHtmlFileRequest**](CreateTextOrHtmlFileRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -1192,10 +1192,10 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
-val createTextOrHtmlFile : CreateTextOrHtmlFile =  // CreateTextOrHtmlFile | 
+val createTextOrHtmlFileRequest : CreateTextOrHtmlFileRequest =  // CreateTextOrHtmlFileRequest | 
 
 launch(Dispatchers.IO) {
-    val result : FileWrapper = webService.createTextFileInMyDocuments(createTextOrHtmlFile)
+    val result : FileWrapper = webService.createTextFileInMyDocuments(createTextOrHtmlFileRequest)
 }
 ```
 
@@ -1256,7 +1256,7 @@ launch(Dispatchers.IO) {
 
 <a id="deleteFile"></a>
 # **deleteFile**
-> FileOperationArrayWrapper deleteFile (kotlin.Int fileId, Delete delete, kotlin.Boolean returnSingleOperation)
+> FileOperationArrayWrapper deleteFile (kotlin.Int fileId, DeleteFileRequest deleteFileRequest, kotlin.Boolean returnSingleOperation)
 
 Queues the deletion of one file and answers with the caller's file operations, the one just created among  them. The file is not gone when the response arrives: poll `GET api/2.0/files/fileops` until the operation  reports `finished`, and read its `error` to learn whether the deletion succeeded. By default the file is moved  to Trash, from where it can be restored; `immediately=true` deletes it for good instead, and inside a room,  where there is no Trash, deletion is always final. `deleteAfter=true` postpones the deletion until the editing  session on the file has ended, so a file somebody is working on is not pulled away.  `returnSingleOperation=true` narrows the answer to this deletion instead of listing every active operation of  the caller. The caller needs the right to delete the file, which the room admin, a DocSpace admin acting as  room manager and a content creator acting on their own file have; editing access alone, read access, a guest  and a member without access to the room are all refused. The call is destructive. To delete several items at  once use `PUT api/2.0/files/fileops/delete`.
 
@@ -1266,7 +1266,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **fileId** | **kotlin.Int**| The file to delete. | |
-| **delete** | [**Delete**](Delete.md)| When and how the file is deleted. | |
+| **deleteFileRequest** | [**DeleteFileRequest**](DeleteFileRequest.md)| When and how the file is deleted. | |
 | **returnSingleOperation** | **kotlin.Boolean**| Which operations the answer carries: `true` returns the operation this call started and nothing else, `false`  returns every operation of the same kind that the caller has running or unread. When nothing was queued, which  happens for an empty selection, `true` falls back to the full list. | [optional] |
 
 ### Return type
@@ -1293,11 +1293,11 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.Int = 1 // kotlin.Int | The file to delete.
-val delete : Delete =  // Delete | When and how the file is deleted.
+val deleteFileRequest : DeleteFileRequest =  // DeleteFileRequest | When and how the file is deleted.
 val returnSingleOperation : kotlin.Boolean = false // kotlin.Boolean | Which operations the answer carries: `true` returns the operation this call started and nothing else, `false`  returns every operation of the same kind that the caller has running or unread. When nothing was queued, which  happens for an empty selection, `true` falls back to the full list.
 
 launch(Dispatchers.IO) {
-    val result : FileOperationArrayWrapper = webService.deleteFile(fileId, delete, returnSingleOperation)
+    val result : FileOperationArrayWrapper = webService.deleteFile(fileId, deleteFileRequest, returnSingleOperation)
 }
 ```
 
@@ -1309,7 +1309,7 @@ launch(Dispatchers.IO) {
 
 <a id="deleteFile-thirdparty"></a>
 # **deleteFile** (third-party storage)
-> FileOperationArrayWrapper deleteFile (kotlin.String fileId, Delete delete, kotlin.Boolean returnSingleOperation)
+> FileOperationArrayWrapper deleteFile (kotlin.String fileId, DeleteFileRequest deleteFileRequest, kotlin.Boolean returnSingleOperation)
 
 Queues the deletion of one file and answers with the caller's file operations, the one just created among  them. The file is not gone when the response arrives: poll `GET api/2.0/files/fileops` until the operation  reports `finished`, and read its `error` to learn whether the deletion succeeded. By default the file is moved  to Trash, from where it can be restored; `immediately=true` deletes it for good instead, and inside a room,  where there is no Trash, deletion is always final. `deleteAfter=true` postpones the deletion until the editing  session on the file has ended, so a file somebody is working on is not pulled away.  `returnSingleOperation=true` narrows the answer to this deletion instead of listing every active operation of  the caller. The caller needs the right to delete the file, which the room admin, a DocSpace admin acting as  room manager and a content creator acting on their own file have; editing access alone, read access, a guest  and a member without access to the room are all refused. The call is destructive. To delete several items at  once use `PUT api/2.0/files/fileops/delete`.
 
@@ -1319,7 +1319,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **fileId** | **kotlin.String**| The file to delete. | |
-| **delete** | [**Delete**](Delete.md)| When and how the file is deleted. | |
+| **deleteFileRequest** | [**DeleteFileRequest**](DeleteFileRequest.md)| When and how the file is deleted. | |
 | **returnSingleOperation** | **kotlin.Boolean**| Which operations the answer carries: `true` returns the operation this call started and nothing else, `false`  returns every operation of the same kind that the caller has running or unread. When nothing was queued, which  happens for an empty selection, `true` falls back to the full list. | [optional] |
 
 ### Return type
@@ -1346,11 +1346,11 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.String = sbox-42-L1JlcG9ydC5kb2N4 // kotlin.String | The file to delete.
-val delete : Delete =  // Delete | When and how the file is deleted.
+val deleteFileRequest : DeleteFileRequest =  // DeleteFileRequest | When and how the file is deleted.
 val returnSingleOperation : kotlin.Boolean = false // kotlin.Boolean | Which operations the answer carries: `true` returns the operation this call started and nothing else, `false`  returns every operation of the same kind that the caller has running or unread. When nothing was queued, which  happens for an empty selection, `true` falls back to the full list.
 
 launch(Dispatchers.IO) {
-    val result : FileOperationArrayWrapper = webService.deleteFile(fileId, delete, returnSingleOperation)
+    val result : FileOperationArrayWrapper = webService.deleteFile(fileId, deleteFileRequest, returnSingleOperation)
 }
 ```
 
@@ -1364,7 +1364,7 @@ launch(Dispatchers.IO) {
 # **deleteRecent**
 > void deleteRecent (BaseBatchRequestDto baseBatchRequestDto)
 
-Removes the listed entries from the Recent section of the calling account, the history of opened files that  `GET api/2.0/files/recent` returns. Nothing is deleted from storage and no other member's history is touched;  access to the entries is not checked at all, so a file the caller can no longer read can still be cleared from  their own history. Only numeric file ids are honoured, so a file on a connected third-party account cannot be  cleared this way, and folder ids are accepted but change nothing because the section lists files only. The  answer carries no body and reports nothing about how many entries were found: an empty request and an id that  was never in the section are accepted alike. Repeating the call is safe, but an entry returns the next time  the file is opened or `POST api/2.0/files/file/{fileId}/recent` is called for it. To hide the whole section  instead, call `PUT api/2.0/files/displayrecent`.
+Removes the listed entries from the Recent section of the calling account, the history of opened files that  `GET api/2.0/files/recent` returns. Nothing is deleted from storage and no other member's history is touched;  access to the entries is not checked at all, so a file the caller can no longer read can still be cleared from  their own history. A file on a connected third-party account is cleared by its string id too, but only while  the storage can still find it: the entry of a file removed from the storage stays in the history. Folder ids  are accepted but change nothing because the section lists files only. The answer carries no body and reports  nothing about how many entries were found: an empty request and an id that was never in the section are  accepted alike. Repeating the call is safe, but an entry returns the next time the file is opened or  `POST api/2.0/files/file/{fileId}/recent` is called for it. To hide the whole section instead, call  `PUT api/2.0/files/displayrecent`.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-recent/).
 
@@ -1411,7 +1411,7 @@ launch(Dispatchers.IO) {
 
 <a id="deleteTemplates"></a>
 # **deleteTemplates**
-> BooleanWrapper deleteTemplates (kotlin.collections.List<kotlin.Int> requestBody)
+> BooleanWrapper deleteTemplates (kotlin.collections.List<kotlin.Int> deleteTemplateFilesRequestDto)
 
 Takes the listed files off the personal template list of the calling account, leaving the files themselves  untouched: only the template mark is dropped. The body of this request is a bare JSON array of numeric file  ids rather than an object with a field, and a request that carries no array at all is rejected as an invalid  request. Every authenticated member type may manage their own list, a guest is refused, and read access to a  file is required for its mark to be dropped. The answer is `true` whenever the array was understood, which an  empty array, an id that does not exist and a file that was never a template all achieve, so it confirms  nothing about what was removed. Repeating the call is safe. Use `POST api/2.0/files/templates` to put a file  back on the list; that operation expects an object with a `fileIds` field, so the two bodies are not  interchangeable.
 
@@ -1420,7 +1420,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **requestBody** | [**kotlin.collections.List&lt;kotlin.Int&gt;**](kotlin.Int.md)| The files to take off the template list, by id; this array is the whole request body. Only a file stored in  the portal itself can be a template, which is why an id here is always numeric. | [optional] |
+| **deleteTemplateFilesRequestDto** | [**kotlin.collections.List&lt;kotlin.Int&gt;**](kotlin.Int.md)| The files to take off the template list, by id; this array is the whole request body. Only a file stored in  the portal itself can be a template, which is why an id here is always numeric. | [optional] |
 
 ### Return type
 
@@ -1445,10 +1445,10 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
-val requestBody : kotlin.collections.List<kotlin.Int> =  // kotlin.collections.List<kotlin.Int> | The files to take off the template list, by id; this array is the whole request body. Only a file stored in  the portal itself can be a template, which is why an id here is always numeric.
+val deleteTemplateFilesRequestDto : kotlin.collections.List<kotlin.Int> =  // kotlin.collections.List<kotlin.Int> | The files to take off the template list, by id; this array is the whole request body. Only a file stored in  the portal itself can be a template, which is why an id here is always numeric.
 
 launch(Dispatchers.IO) {
-    val result : BooleanWrapper = webService.deleteTemplates(requestBody)
+    val result : BooleanWrapper = webService.deleteTemplates(deleteTemplateFilesRequestDto)
 }
 ```
 
@@ -2668,7 +2668,7 @@ launch(Dispatchers.IO) {
 
 <a id="getProtectedFileUsers"></a>
 # **getProtectedFileUsers**
-> MentionWrapperArrayWrapper getProtectedFileUsers (kotlin.Int fileId)
+> MentionArrayWrapper getProtectedFileUsers (kotlin.Int fileId)
 
 Lists the users the file is shared with, which is what a client offers when the author protects a document and  picks who may still edit it. The list is built from the whole access list of the file: every entry that is not  an explicit denial, with groups expanded into their members, the caller themselves and deleted accounts left  out, ordered by display name. Access inherited from the room counts, so a member who never received a share on  the file itself is listed too. A file kept in the legacy project storage always answers with an empty list  rather than with its team. The call only reads. A guest is refused, an anonymous caller is answered with  nothing, and a file id that resolves to nothing is refused as well instead of being reported as missing. For  the readers to offer as mentions inside the editor use `GET api/2.0/files/file/{fileId}/sharedusers`.
 
@@ -2681,7 +2681,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Return type
 
-[**MentionWrapperArrayWrapper**](MentionWrapperArrayWrapper.md)
+[**MentionArrayWrapper**](MentionArrayWrapper.md)
 
 ### Authorization
 
@@ -2705,7 +2705,7 @@ val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.Int = 10 // kotlin.Int | The file the operation addresses. Take the identifier from a listing such as `GET api/2.0/files/{folderId}`: a  file stored on the portal is numbered, while a file in a connected third-party account is named by an opaque  string.
 
 launch(Dispatchers.IO) {
-    val result : MentionWrapperArrayWrapper = webService.getProtectedFileUsers(fileId)
+    val result : MentionArrayWrapper = webService.getProtectedFileUsers(fileId)
 }
 ```
 
@@ -2717,7 +2717,7 @@ launch(Dispatchers.IO) {
 
 <a id="getProtectedFileUsers-thirdparty"></a>
 # **getProtectedFileUsers** (third-party storage)
-> MentionWrapperArrayWrapper getProtectedFileUsers (kotlin.String fileId)
+> MentionArrayWrapper getProtectedFileUsers (kotlin.String fileId)
 
 Lists the users the file is shared with, which is what a client offers when the author protects a document and  picks who may still edit it. The list is built from the whole access list of the file: every entry that is not  an explicit denial, with groups expanded into their members, the caller themselves and deleted accounts left  out, ordered by display name. Access inherited from the room counts, so a member who never received a share on  the file itself is listed too. A file kept in the legacy project storage always answers with an empty list  rather than with its team. The call only reads. A guest is refused, an anonymous caller is answered with  nothing, and a file id that resolves to nothing is refused as well instead of being reported as missing. For  the readers to offer as mentions inside the editor use `GET api/2.0/files/file/{fileId}/sharedusers`.
 
@@ -2730,7 +2730,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Return type
 
-[**MentionWrapperArrayWrapper**](MentionWrapperArrayWrapper.md)
+[**MentionArrayWrapper**](MentionArrayWrapper.md)
 
 ### Authorization
 
@@ -2754,7 +2754,7 @@ val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.String = sbox-42-L1JlcG9ydC5kb2N4 // kotlin.String | The file the operation addresses. Take the identifier from a listing such as `GET api/2.0/files/{folderId}`: a  file stored on the portal is numbered, while a file in a connected third-party account is named by an opaque  string.
 
 launch(Dispatchers.IO) {
-    val result : MentionWrapperArrayWrapper = webService.getProtectedFileUsers(fileId)
+    val result : MentionArrayWrapper = webService.getProtectedFileUsers(fileId)
 }
 ```
 
@@ -2962,7 +2962,7 @@ launch(Dispatchers.IO) {
 
 <a id="lockFile"></a>
 # **lockFile**
-> FileWrapper lockFile (kotlin.Int fileId, LockFileParameters lockFileParameters)
+> FileWrapper lockFile (kotlin.Int fileId, LockFileRequest lockFileRequest)
 
 Locks a file so that nobody else can change it, or releases that lock, and answers with the file as it now  stands. With `lockFile=true` the lock is put on the file and everybody else who is editing it at that moment  is dropped out of the session, the caller excepted; the lock then blocks editing, renaming and deleting for  everybody but the account that set it and the room admins. With `lockFile=false` the lock is removed and a  note about the unlocking is appended to the current version comment, unless the file lives in a connected  third-party storage. Locking a file that is already locked, or unlocking one that is not, changes nothing and  still answers with the file, so the call is idempotent in effect while remaining a mutating one. The caller  needs the right to lock the file, which the room admin, a DocSpace admin acting as room manager and a member  with content-creator rights have; a member without access to the room and a guest are refused, and so is a  file in Trash. A lock set by somebody else can only be released by a room manager.
 
@@ -2972,7 +2972,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **fileId** | **kotlin.Int**| The file to lock or unlock. | |
-| **lockFileParameters** | [**LockFileParameters**](LockFileParameters.md)| The lock state to reach. | |
+| **lockFileRequest** | [**LockFileRequest**](LockFileRequest.md)| The lock state to reach. | |
 
 ### Return type
 
@@ -2998,10 +2998,10 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.Int = 1 // kotlin.Int | The file to lock or unlock.
-val lockFileParameters : LockFileParameters =  // LockFileParameters | The lock state to reach.
+val lockFileRequest : LockFileRequest =  // LockFileRequest | The lock state to reach.
 
 launch(Dispatchers.IO) {
-    val result : FileWrapper = webService.lockFile(fileId, lockFileParameters)
+    val result : FileWrapper = webService.lockFile(fileId, lockFileRequest)
 }
 ```
 
@@ -3013,7 +3013,7 @@ launch(Dispatchers.IO) {
 
 <a id="lockFile-thirdparty"></a>
 # **lockFile** (third-party storage)
-> ThirdPartyFileWrapper lockFile (kotlin.String fileId, LockFileParameters lockFileParameters)
+> ThirdPartyFileWrapper lockFile (kotlin.String fileId, LockFileRequest lockFileRequest)
 
 Locks a file so that nobody else can change it, or releases that lock, and answers with the file as it now  stands. With `lockFile=true` the lock is put on the file and everybody else who is editing it at that moment  is dropped out of the session, the caller excepted; the lock then blocks editing, renaming and deleting for  everybody but the account that set it and the room admins. With `lockFile=false` the lock is removed and a  note about the unlocking is appended to the current version comment, unless the file lives in a connected  third-party storage. Locking a file that is already locked, or unlocking one that is not, changes nothing and  still answers with the file, so the call is idempotent in effect while remaining a mutating one. The caller  needs the right to lock the file, which the room admin, a DocSpace admin acting as room manager and a member  with content-creator rights have; a member without access to the room and a guest are refused, and so is a  file in Trash. A lock set by somebody else can only be released by a room manager.
 
@@ -3023,7 +3023,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **fileId** | **kotlin.String**| The file to lock or unlock. | |
-| **lockFileParameters** | [**LockFileParameters**](LockFileParameters.md)| The lock state to reach. | |
+| **lockFileRequest** | [**LockFileRequest**](LockFileRequest.md)| The lock state to reach. | |
 
 ### Return type
 
@@ -3049,10 +3049,10 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.String = sbox-42-L1JlcG9ydC5kb2N4 // kotlin.String | The file to lock or unlock.
-val lockFileParameters : LockFileParameters =  // LockFileParameters | The lock state to reach.
+val lockFileRequest : LockFileRequest =  // LockFileRequest | The lock state to reach.
 
 launch(Dispatchers.IO) {
-    val result : ThirdPartyFileWrapper = webService.lockFile(fileId, lockFileParameters)
+    val result : ThirdPartyFileWrapper = webService.lockFile(fileId, lockFileRequest)
 }
 ```
 
@@ -3453,7 +3453,7 @@ launch(Dispatchers.IO) {
 
 <a id="saveFileAsPdf"></a>
 # **saveFileAsPdf**
-> FileWrapper saveFileAsPdf (kotlin.Int id, SaveAsPdf saveAsPdf)
+> FileWrapper saveFileAsPdf (kotlin.Int id, SaveAsPdfRequest saveAsPdfRequest)
 
 Converts a file into a PDF, stores that PDF as a new file in the folder named in the body, and answers with  the file that was created. The source is left untouched, so the two files then live side by side. `title`  names the result without an extension - the `.pdf` extension is added to it - and an empty title reuses the  name of the source with its extension replaced. The conversion is done by the document service while the  request waits, so the call takes as long as the document needs and answers with the finished file rather than  with a queue entry. The caller needs read access to the source file and the right to create files in the  destination folder, and is otherwise refused; a source file or a destination folder that does not exist is  answered with 404. The call is mutating and not idempotent: each call adds another PDF, its title made unique  when one of that name is already there. The result is marked as new for the room, and for a form the portal  recognises it is stored as a PDF form. To convert in place instead use  `PUT api/2.0/files/file/{fileId}/checkconversion`.
 
@@ -3463,7 +3463,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **kotlin.Int**| The file to convert; it is left untouched. | |
-| **saveAsPdf** | [**SaveAsPdf**](SaveAsPdf.md)| The destination folder and the name of the PDF. | |
+| **saveAsPdfRequest** | [**SaveAsPdfRequest**](SaveAsPdfRequest.md)| The destination folder and the name of the PDF. | |
 
 ### Return type
 
@@ -3489,10 +3489,10 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val id : kotlin.Int = 1 // kotlin.Int | The file to convert; it is left untouched.
-val saveAsPdf : SaveAsPdf =  // SaveAsPdf | The destination folder and the name of the PDF.
+val saveAsPdfRequest : SaveAsPdfRequest =  // SaveAsPdfRequest | The destination folder and the name of the PDF.
 
 launch(Dispatchers.IO) {
-    val result : FileWrapper = webService.saveFileAsPdf(id, saveAsPdf)
+    val result : FileWrapper = webService.saveFileAsPdf(id, saveAsPdfRequest)
 }
 ```
 
@@ -3504,7 +3504,7 @@ launch(Dispatchers.IO) {
 
 <a id="saveFileAsPdf-thirdparty"></a>
 # **saveFileAsPdf** (third-party storage)
-> ThirdPartyFileWrapper saveFileAsPdf (kotlin.String id, ThirdPartySaveAsPdf thirdPartySaveAsPdf)
+> ThirdPartyFileWrapper saveFileAsPdf (kotlin.String id, ThirdPartySaveAsPdfRequest thirdPartySaveAsPdfRequest)
 
 Converts a file into a PDF, stores that PDF as a new file in the folder named in the body, and answers with  the file that was created. The source is left untouched, so the two files then live side by side. `title`  names the result without an extension - the `.pdf` extension is added to it - and an empty title reuses the  name of the source with its extension replaced. The conversion is done by the document service while the  request waits, so the call takes as long as the document needs and answers with the finished file rather than  with a queue entry. The caller needs read access to the source file and the right to create files in the  destination folder, and is otherwise refused; a source file or a destination folder that does not exist is  answered with 404. The call is mutating and not idempotent: each call adds another PDF, its title made unique  when one of that name is already there. The result is marked as new for the room, and for a form the portal  recognises it is stored as a PDF form. To convert in place instead use  `PUT api/2.0/files/file/{fileId}/checkconversion`.
 
@@ -3514,7 +3514,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **kotlin.String**| The file to convert; it is left untouched. | |
-| **thirdPartySaveAsPdf** | [**ThirdPartySaveAsPdf**](ThirdPartySaveAsPdf.md)| The destination folder and the name of the PDF. | |
+| **thirdPartySaveAsPdfRequest** | [**ThirdPartySaveAsPdfRequest**](ThirdPartySaveAsPdfRequest.md)| The destination folder and the name of the PDF. | |
 
 ### Return type
 
@@ -3540,10 +3540,10 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val id : kotlin.String = sbox-42-L1JlcG9ydC5kb2N4 // kotlin.String | The file to convert; it is left untouched.
-val thirdPartySaveAsPdf : ThirdPartySaveAsPdf =  // ThirdPartySaveAsPdf | The destination folder and the name of the PDF.
+val thirdPartySaveAsPdfRequest : ThirdPartySaveAsPdfRequest =  // ThirdPartySaveAsPdfRequest | The destination folder and the name of the PDF.
 
 launch(Dispatchers.IO) {
-    val result : ThirdPartyFileWrapper = webService.saveFileAsPdf(id, thirdPartySaveAsPdf)
+    val result : ThirdPartyFileWrapper = webService.saveFileAsPdf(id, thirdPartySaveAsPdfRequest)
 }
 ```
 
@@ -3606,7 +3606,7 @@ launch(Dispatchers.IO) {
 
 <a id="setCustomFilterTag"></a>
 # **setCustomFilterTag**
-> FileWrapper setCustomFilterTag (kotlin.Int fileId, CustomFilterParameters customFilterParameters)
+> FileWrapper setCustomFilterTag (kotlin.Int fileId, CustomFilterRequest customFilterRequest)
 
 Turns the Custom Filter editing mode of a spreadsheet on or off and answers with the file as it now stands. In  that mode the sorting and filtering one person applies to the sheet is visible to that person alone, so that  several people can work on the same data without moving the rows under each other; with the mode off,  filtering is shared again, as everywhere else. Turning it on also drops everybody else out of the running  editing session, the caller excepted, because the mode has to be established before the sheet is opened. Only  formats that support the mode are accepted; anything else is rejected as an invalid request. The caller needs  the right to use the mode in the room, which the room admin and a DocSpace admin acting as room manager have;  read-only access, a member without access to the room and an anonymous caller are refused. Once the mode has  been switched on by one person, only that person, a room manager or a DocSpace admin can switch it off again.  The call is mutating and, called twice with the same value, changes nothing the second time.
 
@@ -3616,7 +3616,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **fileId** | **kotlin.Int**| The spreadsheet whose Custom Filter mode is switched. | |
-| **customFilterParameters** | [**CustomFilterParameters**](CustomFilterParameters.md)| The Custom Filter state to reach. | |
+| **customFilterRequest** | [**CustomFilterRequest**](CustomFilterRequest.md)| The Custom Filter state to reach. | |
 
 ### Return type
 
@@ -3642,10 +3642,10 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.Int = 1 // kotlin.Int | The spreadsheet whose Custom Filter mode is switched.
-val customFilterParameters : CustomFilterParameters =  // CustomFilterParameters | The Custom Filter state to reach.
+val customFilterRequest : CustomFilterRequest =  // CustomFilterRequest | The Custom Filter state to reach.
 
 launch(Dispatchers.IO) {
-    val result : FileWrapper = webService.setCustomFilterTag(fileId, customFilterParameters)
+    val result : FileWrapper = webService.setCustomFilterTag(fileId, customFilterRequest)
 }
 ```
 
@@ -3657,7 +3657,7 @@ launch(Dispatchers.IO) {
 
 <a id="setCustomFilterTag-thirdparty"></a>
 # **setCustomFilterTag** (third-party storage)
-> ThirdPartyFileWrapper setCustomFilterTag (kotlin.String fileId, CustomFilterParameters customFilterParameters)
+> ThirdPartyFileWrapper setCustomFilterTag (kotlin.String fileId, CustomFilterRequest customFilterRequest)
 
 Turns the Custom Filter editing mode of a spreadsheet on or off and answers with the file as it now stands. In  that mode the sorting and filtering one person applies to the sheet is visible to that person alone, so that  several people can work on the same data without moving the rows under each other; with the mode off,  filtering is shared again, as everywhere else. Turning it on also drops everybody else out of the running  editing session, the caller excepted, because the mode has to be established before the sheet is opened. Only  formats that support the mode are accepted; anything else is rejected as an invalid request. The caller needs  the right to use the mode in the room, which the room admin and a DocSpace admin acting as room manager have;  read-only access, a member without access to the room and an anonymous caller are refused. Once the mode has  been switched on by one person, only that person, a room manager or a DocSpace admin can switch it off again.  The call is mutating and, called twice with the same value, changes nothing the second time.
 
@@ -3667,7 +3667,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **fileId** | **kotlin.String**| The spreadsheet whose Custom Filter mode is switched. | |
-| **customFilterParameters** | [**CustomFilterParameters**](CustomFilterParameters.md)| The Custom Filter state to reach. | |
+| **customFilterRequest** | [**CustomFilterRequest**](CustomFilterRequest.md)| The Custom Filter state to reach. | |
 
 ### Return type
 
@@ -3693,10 +3693,10 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.String = sbox-42-L1JlcG9ydC5kb2N4 // kotlin.String | The spreadsheet whose Custom Filter mode is switched.
-val customFilterParameters : CustomFilterParameters =  // CustomFilterParameters | The Custom Filter state to reach.
+val customFilterRequest : CustomFilterRequest =  // CustomFilterRequest | The Custom Filter state to reach.
 
 launch(Dispatchers.IO) {
-    val result : ThirdPartyFileWrapper = webService.setCustomFilterTag(fileId, customFilterParameters)
+    val result : ThirdPartyFileWrapper = webService.setCustomFilterTag(fileId, customFilterRequest)
 }
 ```
 
@@ -4063,7 +4063,7 @@ launch(Dispatchers.IO) {
 
 <a id="startEditFile"></a>
 # **startEditFile**
-> StringWrapper startEditFile (kotlin.Int fileId, StartEdit startEdit)
+> StringWrapper startEditFile (kotlin.Int fileId, StartEditRequest startEditRequest)
 
 Opens an editing session on the file and answers with the document key that identifies it, the value an editor  client passes to the document service in order to join the co-editing session for that exact revision. The  file is marked as being edited for as long as the session lasts, which keeps it from being deleted or moved.  With `editingAlone=false` the portal builds the editor configuration, requires write mode plus at least one of  the edit, review, comment, form-filling or filter permissions, and asks the document service to start tracking  the document. With `editingAlone=true` the caller claims the file for itself, and the call is refused with 403  when anybody is already editing it. The caller needs edit access: a member with read access, a guest and an  anonymous caller whose external link does not grant editing are all refused. The call is mutating and not  idempotent. Keep the session alive with `GET api/2.0/files/file/{fileId}/trackeditfile`, and end it by calling  that operation with `isFinish=true`.
 
@@ -4073,7 +4073,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **fileId** | **kotlin.Int**| The file to open the editing session on. The caller needs edit access to it. | |
-| **startEdit** | [**StartEdit**](StartEdit.md)| The session options. The body is required even when it only carries the default, so send an empty object to  open an ordinary co-editing session. | |
+| **startEditRequest** | [**StartEditRequest**](StartEditRequest.md)| The session options. The body is required even when it only carries the default, so send an empty object to  open an ordinary co-editing session. | |
 
 ### Return type
 
@@ -4099,10 +4099,10 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.Int = 1 // kotlin.Int | The file to open the editing session on. The caller needs edit access to it.
-val startEdit : StartEdit =  // StartEdit | The session options. The body is required even when it only carries the default, so send an empty object to  open an ordinary co-editing session.
+val startEditRequest : StartEditRequest =  // StartEditRequest | The session options. The body is required even when it only carries the default, so send an empty object to  open an ordinary co-editing session.
 
 launch(Dispatchers.IO) {
-    val result : StringWrapper = webService.startEditFile(fileId, startEdit)
+    val result : StringWrapper = webService.startEditFile(fileId, startEditRequest)
 }
 ```
 
@@ -4114,7 +4114,7 @@ launch(Dispatchers.IO) {
 
 <a id="startEditFile-thirdparty"></a>
 # **startEditFile** (third-party storage)
-> StringWrapper startEditFile (kotlin.String fileId, StartEdit startEdit)
+> StringWrapper startEditFile (kotlin.String fileId, StartEditRequest startEditRequest)
 
 Opens an editing session on the file and answers with the document key that identifies it, the value an editor  client passes to the document service in order to join the co-editing session for that exact revision. The  file is marked as being edited for as long as the session lasts, which keeps it from being deleted or moved.  With `editingAlone=false` the portal builds the editor configuration, requires write mode plus at least one of  the edit, review, comment, form-filling or filter permissions, and asks the document service to start tracking  the document. With `editingAlone=true` the caller claims the file for itself, and the call is refused with 403  when anybody is already editing it. The caller needs edit access: a member with read access, a guest and an  anonymous caller whose external link does not grant editing are all refused. The call is mutating and not  idempotent. Keep the session alive with `GET api/2.0/files/file/{fileId}/trackeditfile`, and end it by calling  that operation with `isFinish=true`.
 
@@ -4124,7 +4124,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **fileId** | **kotlin.String**| The file to open the editing session on. The caller needs edit access to it. | |
-| **startEdit** | [**StartEdit**](StartEdit.md)| The session options. The body is required even when it only carries the default, so send an empty object to  open an ordinary co-editing session. | |
+| **startEditRequest** | [**StartEditRequest**](StartEditRequest.md)| The session options. The body is required even when it only carries the default, so send an empty object to  open an ordinary co-editing session. | |
 
 ### Return type
 
@@ -4150,10 +4150,10 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.String = sbox-42-L1JlcG9ydC5kb2N4 // kotlin.String | The file to open the editing session on. The caller needs edit access to it.
-val startEdit : StartEdit =  // StartEdit | The session options. The body is required even when it only carries the default, so send an empty object to  open an ordinary co-editing session.
+val startEditRequest : StartEditRequest =  // StartEditRequest | The session options. The body is required even when it only carries the default, so send an empty object to  open an ordinary co-editing session.
 
 launch(Dispatchers.IO) {
-    val result : StringWrapper = webService.startEditFile(fileId, startEdit)
+    val result : StringWrapper = webService.startEditFile(fileId, startEditRequest)
 }
 ```
 
@@ -4475,7 +4475,7 @@ launch(Dispatchers.IO) {
 
 <a id="updateFile"></a>
 # **updateFile**
-> FileWrapper updateFile (kotlin.Int fileId, UpdateFile updateFile)
+> FileWrapper updateFile (kotlin.Int fileId, UpdateFileRequest updateFileRequest)
 
 Renames a file, restores one of its versions, or both at once, and answers with the file as it now stands. A  non-empty `title` renames the file, keeping the stored extension whatever the new title says, so a rename  cannot change the format; an empty or missing title leaves the name alone. A `lastVersion` above 0 restores  that version the way `POST api/2.0/files/file/{fileId}/restoreversion` does, storing its content again on top  of the history, while 0 or less leaves the versions untouched and answers with the file as it is - which makes  this operation a read of the file when both fields are left out. The caller needs edit access, and renaming  somebody else's file additionally needs room-manager rights: a member or room admin with plain editing access,  read-only access, a guest and a DocSpace admin who is not a member of the room are all refused with 403, while  a content creator may rename a file of their own. The call is mutating. Renaming marks the file as new for  everybody else who can read it.
 
@@ -4485,7 +4485,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **fileId** | **kotlin.Int**| The file to update. | |
-| **updateFile** | [**UpdateFile**](UpdateFile.md)| The new title and the version to restore. | |
+| **updateFileRequest** | [**UpdateFileRequest**](UpdateFileRequest.md)| The new title and the version to restore. | |
 
 ### Return type
 
@@ -4511,10 +4511,10 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.Int = 1 // kotlin.Int | The file to update.
-val updateFile : UpdateFile =  // UpdateFile | The new title and the version to restore.
+val updateFileRequest : UpdateFileRequest =  // UpdateFileRequest | The new title and the version to restore.
 
 launch(Dispatchers.IO) {
-    val result : FileWrapper = webService.updateFile(fileId, updateFile)
+    val result : FileWrapper = webService.updateFile(fileId, updateFileRequest)
 }
 ```
 
@@ -4526,7 +4526,7 @@ launch(Dispatchers.IO) {
 
 <a id="updateFile-thirdparty"></a>
 # **updateFile** (third-party storage)
-> ThirdPartyFileWrapper updateFile (kotlin.String fileId, UpdateFile updateFile)
+> ThirdPartyFileWrapper updateFile (kotlin.String fileId, UpdateFileRequest updateFileRequest)
 
 Renames a file, restores one of its versions, or both at once, and answers with the file as it now stands. A  non-empty `title` renames the file, keeping the stored extension whatever the new title says, so a rename  cannot change the format; an empty or missing title leaves the name alone. A `lastVersion` above 0 restores  that version the way `POST api/2.0/files/file/{fileId}/restoreversion` does, storing its content again on top  of the history, while 0 or less leaves the versions untouched and answers with the file as it is - which makes  this operation a read of the file when both fields are left out. The caller needs edit access, and renaming  somebody else's file additionally needs room-manager rights: a member or room admin with plain editing access,  read-only access, a guest and a DocSpace admin who is not a member of the room are all refused with 403, while  a content creator may rename a file of their own. The call is mutating. Renaming marks the file as new for  everybody else who can read it.
 
@@ -4536,7 +4536,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **fileId** | **kotlin.String**| The file to update. | |
-| **updateFile** | [**UpdateFile**](UpdateFile.md)| The new title and the version to restore. | |
+| **updateFileRequest** | [**UpdateFileRequest**](UpdateFileRequest.md)| The new title and the version to restore. | |
 
 ### Return type
 
@@ -4562,10 +4562,10 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(FilesApi::class.java)
 val fileId : kotlin.String = sbox-42-L1JlcG9ydC5kb2N4 // kotlin.String | The file to update.
-val updateFile : UpdateFile =  // UpdateFile | The new title and the version to restore.
+val updateFileRequest : UpdateFileRequest =  // UpdateFileRequest | The new title and the version to restore.
 
 launch(Dispatchers.IO) {
-    val result : ThirdPartyFileWrapper = webService.updateFile(fileId, updateFile)
+    val result : ThirdPartyFileWrapper = webService.updateFile(fileId, updateFileRequest)
 }
 ```
 

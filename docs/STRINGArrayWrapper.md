@@ -1,5 +1,5 @@
 
-# STRINGArrayWrapper
+# StringArrayWrapper
 
 ## Properties
 | Name | Type | Description | Notes |

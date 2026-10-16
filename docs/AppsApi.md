@@ -158,9 +158,9 @@ launch(Dispatchers.IO) {
 
 <a id="setEnabled"></a>
 # **setEnabled**
-> AppWrapper setEnabled (kotlin.String id, SetAppEnabledBody setAppEnabledBody)
+> AppWrapper setEnabled (kotlin.String id, SetAppEnabledRequest setAppEnabledRequest)
 
-Turns one portal application on or off for the current portal, and notifies the clients connected to the portal  so that they can show or hide it without being reloaded. The identifier must be an application declared in the  installation configuration, as listed by `GET api/2.0/apps`. The caller must be a portal administrator allowed  to edit the portal settings. The call is mutating and idempotent: it stores the flag for this portal, overriding  the default that the configuration gives the application, and repeating it with the same value changes nothing.  Disabling an application does not delete its settings document, which stays saved and applies again as soon as  the application is enabled. The response is the application in its new state, including that settings document.  Only the enabled flag is affected here: to change the settings document use `PUT api/2.0/apps/{id}/settings`.
+Turns one portal application on or off for the current portal, and notifies the clients connected to the portal  so that they can show or hide it without being reloaded. The identifier must be an application declared in the  installation configuration, as listed by `GET api/2.0/apps`. The caller must be a portal administrator allowed  to edit the portal settings. The call is mutating and idempotent: it stores the flag for this portal, overriding  the default that the configuration gives the application, and repeating it with the same value changes nothing.  Disabling an application does not delete its settings document, which stays saved and applies again as soon as  the application is enabled. The response is the application in its new state, including that settings document.  Only the enabled flag is affected here: to change the settings document use `PUT api/2.0/apps/{id}/settings`.  The enabled field is mandatory, and a body without it is rejected with 400 rather than read as false.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/set-enabled/).
 
@@ -168,7 +168,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **kotlin.String**| The application to switch, by the identifier `GET api/2.0/apps` reports. It has to be an application declared  in the installation configuration; an unknown identifier answers 404 rather than creating anything. | |
-| **setAppEnabledBody** | [**SetAppEnabledBody**](SetAppEnabledBody.md)| The new state of the application. Only the enabled flag travels here; the settings document is changed  through `PUT api/2.0/apps/{id}/settings`. | |
+| **setAppEnabledRequest** | [**SetAppEnabledRequest**](SetAppEnabledRequest.md)| The new state of the application. Only the enabled flag travels here; the settings document is changed  through `PUT api/2.0/apps/{id}/settings`. | |
 
 ### Return type
 
@@ -194,10 +194,10 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AppsApi::class.java)
 val id : kotlin.String = ai-room // kotlin.String | The application to switch, by the identifier `GET api/2.0/apps` reports. It has to be an application declared  in the installation configuration; an unknown identifier answers 404 rather than creating anything.
-val setAppEnabledBody : SetAppEnabledBody =  // SetAppEnabledBody | The new state of the application. Only the enabled flag travels here; the settings document is changed  through `PUT api/2.0/apps/{id}/settings`.
+val setAppEnabledRequest : SetAppEnabledRequest =  // SetAppEnabledRequest | The new state of the application. Only the enabled flag travels here; the settings document is changed  through `PUT api/2.0/apps/{id}/settings`.
 
 launch(Dispatchers.IO) {
-    val result : AppWrapper = webService.setEnabled(id, setAppEnabledBody)
+    val result : AppWrapper = webService.setEnabled(id, setAppEnabledRequest)
 }
 ```
 
@@ -209,7 +209,7 @@ launch(Dispatchers.IO) {
 
 <a id="setSettings"></a>
 # **setSettings**
-> AppWrapper setSettings (kotlin.String id, SetAppSettingsBody setAppSettingsBody)
+> AppWrapper setSettings (kotlin.String id, SetAppSettingsRequest setAppSettingsRequest)
 
 Stores the application-specific settings document of one portal application for the current portal. The  identifier must be an application declared in the installation configuration, as listed by `GET api/2.0/apps`.  The caller must be a portal administrator allowed to edit the portal settings. The call is mutating and  idempotent, and it replaces the whole document instead of merging into it: read the current one with  `GET api/2.0/apps/{id}/settings`, change it and send it back complete, or send `null` to drop the saved document  and let the application fall back to its own defaults. Any valid JSON value is accepted, since the content is  stored as it is and is interpreted by the application rather than by the portal, while a body that is not valid  JSON fails with 400 and stores nothing. The response is the application in its new state, with the stored  document echoed back. Unlike `PUT api/2.0/apps/{id}/enabled`, this operation sends no notification to the  connected clients, which pick the new settings up on their next read.
 
@@ -219,7 +219,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **kotlin.String**| The application whose configuration is stored, by the identifier `GET api/2.0/apps` reports. An identifier  not declared in the installation configuration answers 404. | |
-| **setAppSettingsBody** | [**SetAppSettingsBody**](SetAppSettingsBody.md)| The configuration to store for this portal, replacing whatever was stored before. | |
+| **setAppSettingsRequest** | [**SetAppSettingsRequest**](SetAppSettingsRequest.md)| The configuration to store for this portal, replacing whatever was stored before. | |
 
 ### Return type
 
@@ -245,10 +245,10 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AppsApi::class.java)
 val id : kotlin.String = ai-room // kotlin.String | The application whose configuration is stored, by the identifier `GET api/2.0/apps` reports. An identifier  not declared in the installation configuration answers 404.
-val setAppSettingsBody : SetAppSettingsBody =  // SetAppSettingsBody | The configuration to store for this portal, replacing whatever was stored before.
+val setAppSettingsRequest : SetAppSettingsRequest =  // SetAppSettingsRequest | The configuration to store for this portal, replacing whatever was stored before.
 
 launch(Dispatchers.IO) {
-    val result : AppWrapper = webService.setSettings(id, setAppSettingsBody)
+    val result : AppWrapper = webService.setSettings(id, setAppSettingsRequest)
 }
 ```
 

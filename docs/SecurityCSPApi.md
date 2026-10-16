@@ -11,7 +11,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 
 <a id="configureCsp"></a>
 # **configureCsp**
-> CspWrapper configureCsp (CspRequestsDto cspRequestsDto)
+> CspWrapper configureCsp (CspRequestDto cspRequestDto)
 
 Replaces the list of external domains the portal's Content Security Policy trusts and returns the policy  header the portal serves to browsers from that moment on. The list in `domains` replaces the stored one, so an  omitted or empty list falls back to the portal's built-in policy, and every entry that is sent becomes an  allowed source for scripts, styles, images, fonts, frames, media and connections at once. An entry may be a  host, a host with a scheme, or a wildcard host such as `*.example.com`; it has to form a valid absolute  address and may contain ASCII characters only, and an entry that does not is refused with 400 before anything  is saved. The caller needs the portal-settings right of a DocSpace administrator, and the request is also  refused with 403 when the header built from the list grows past the size configured for the installation, 15  KB by default. The change applies to the whole portal at once and is idempotent. Read the current state with  `GET api/2.0/security/csp`.
 
@@ -20,7 +20,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **cspRequestsDto** | [**CspRequestsDto**](CspRequestsDto.md)|  | [optional] |
+| **cspRequestDto** | [**CspRequestDto**](CspRequestDto.md)|  | [optional] |
 
 ### Return type
 
@@ -45,10 +45,10 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(CSPApi::class.java)
-val cspRequestsDto : CspRequestsDto =  // CspRequestsDto | 
+val cspRequestDto : CspRequestDto =  // CspRequestDto | 
 
 launch(Dispatchers.IO) {
-    val result : CspWrapper = webService.configureCsp(cspRequestsDto)
+    val result : CspWrapper = webService.configureCsp(cspRequestDto)
 }
 ```
 

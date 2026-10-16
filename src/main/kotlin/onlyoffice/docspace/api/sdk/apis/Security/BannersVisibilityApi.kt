@@ -24,7 +24,7 @@ import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
 import onlyoffice.docspace.api.sdk.models.ErrorApiResponse
-import onlyoffice.docspace.api.sdk.models.TenantBannerSettingsDto
+import onlyoffice.docspace.api.sdk.models.TenantBannerSettingsRequestDto
 import onlyoffice.docspace.api.sdk.models.TenantBannerSettingsWrapper
 
 interface BannersVisibilityApi {
@@ -34,6 +34,8 @@ interface BannersVisibilityApi {
      * Sets whether the portal's promotional banners are hidden for every user. Available only on an Enterprise  license; every other plan is refused regardless of the caller's role. Requires Owner or DocSpaceAdmin (the  EditPortalSettings permission). The flag only takes effect on a Standalone (self-hosted) installation; on  SaaS, banners are always shown no matter what is saved here. This is a mutating, idempotent, portal-wide call:  it applies to every user on the tenant immediately. It returns the saved setting; read the current value at  any time from `GET api/2.0/settings/banner`.
      * Responses:
      *  - 200: Saved promotional banners visibility setting
+     *  - 402: The portal is not an Enterprise installation
+     *  - 403: The caller has no portal-settings right
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
@@ -45,10 +47,10 @@ interface BannersVisibilityApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-tenant-banner-settings/
      *
      *
-     * @param tenantBannerSettingsDto  (optional)
+     * @param tenantBannerSettingsRequestDto  (optional)
      * @return [TenantBannerSettingsWrapper]
      */
     @POST("api/2.0/settings/banner")
-    suspend fun setTenantBannerSettings(@Body tenantBannerSettingsDto: TenantBannerSettingsDto? = null): Response<TenantBannerSettingsWrapper>
+    suspend fun setTenantBannerSettings(@Body tenantBannerSettingsRequestDto: TenantBannerSettingsRequestDto? = null): Response<TenantBannerSettingsWrapper>
 
 }

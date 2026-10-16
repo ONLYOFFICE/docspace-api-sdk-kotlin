@@ -16,14 +16,14 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.CoEditingConfig
+import onlyoffice.docspace.api.sdk.models.CoEditingConfigDto
 import onlyoffice.docspace.api.sdk.models.CustomizationConfigDto
-import onlyoffice.docspace.api.sdk.models.EmbeddedConfig
+import onlyoffice.docspace.api.sdk.models.EmbeddedConfigDto
 import onlyoffice.docspace.api.sdk.models.EncryptionKeyDto
-import onlyoffice.docspace.api.sdk.models.PluginsConfig
-import onlyoffice.docspace.api.sdk.models.RecentConfig
-import onlyoffice.docspace.api.sdk.models.TemplatesConfig
-import onlyoffice.docspace.api.sdk.models.UserConfig
+import onlyoffice.docspace.api.sdk.models.PluginsConfigDto
+import onlyoffice.docspace.api.sdk.models.RecentConfigDto
+import onlyoffice.docspace.api.sdk.models.TemplatesConfigDto
+import onlyoffice.docspace.api.sdk.models.UserConfigDto
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -59,7 +59,7 @@ data class EditorConfigurationDto (
     val callbackUrl: java.net.URI? = null,
 
     @Json(name = "coEditing")
-    val coEditing: CoEditingConfig? = null,
+    val coEditing: CoEditingConfigDto? = null,
 
     @Json(name = "createUrl")
     val createUrl: kotlin.String? = null,
@@ -68,7 +68,7 @@ data class EditorConfigurationDto (
     val customization: CustomizationConfigDto? = null,
 
     @Json(name = "embedded")
-    val embedded: EmbeddedConfig? = null,
+    val embedded: EmbeddedConfigDto? = null,
 
     @Json(name = "encryptionKeys")
     val encryptionKeys: kotlin.collections.List<EncryptionKeyDto>? = null,
@@ -77,16 +77,16 @@ data class EditorConfigurationDto (
     val modeWrite: kotlin.Boolean? = null,
 
     @Json(name = "plugins")
-    val plugins: PluginsConfig? = null,
+    val plugins: PluginsConfigDto? = null,
 
     @Json(name = "recent")
-    val recent: kotlin.collections.List<RecentConfig>? = null,
+    val recent: kotlin.collections.List<RecentConfigDto>? = null,
 
     @Json(name = "templates")
-    val templates: kotlin.collections.List<TemplatesConfig>? = null,
+    val templates: kotlin.collections.List<TemplatesConfigDto>? = null,
 
     @Json(name = "user")
-    val user: UserConfig? = null
+    val user: UserConfigDto? = null
 
 ) {
 

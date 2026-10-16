@@ -16,7 +16,7 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.AiTErrorData
+import onlyoffice.docspace.api.sdk.models.AiErrorData
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -39,7 +39,7 @@ data class AiImportError (
     val ref: kotlin.String,
 
     @Json(name = "error")
-    val error: AiTErrorData
+    val error: AiErrorData
 
 ) {
 

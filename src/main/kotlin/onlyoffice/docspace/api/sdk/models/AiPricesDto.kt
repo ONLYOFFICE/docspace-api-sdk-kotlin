@@ -20,7 +20,7 @@ import onlyoffice.docspace.api.sdk.models.AiEntryPricingDtoAiChatPriceDto
 import onlyoffice.docspace.api.sdk.models.AiEntryPricingDtoAiEmbeddingPriceDto
 import onlyoffice.docspace.api.sdk.models.AiEntryPricingDtoAiImagePriceDto
 import onlyoffice.docspace.api.sdk.models.AiEntryPricingDtoDecimal
-import onlyoffice.docspace.api.sdk.models.CurrencyInfo
+import onlyoffice.docspace.api.sdk.models.AiPriceCurrencyDto
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -51,7 +51,7 @@ data class AiPricesDto (
     val webSearch: kotlin.collections.List<AiEntryPricingDtoDecimal>?,
 
     @Json(name = "currency")
-    val currency: CurrencyInfo
+    val currency: AiPriceCurrencyDto
 
 ) {
 

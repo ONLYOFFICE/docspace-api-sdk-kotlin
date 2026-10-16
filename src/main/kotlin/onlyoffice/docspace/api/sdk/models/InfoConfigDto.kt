@@ -16,7 +16,7 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.AceShortWrapper
+import onlyoffice.docspace.api.sdk.models.AceShortDto
 import onlyoffice.docspace.api.sdk.models.EditorType
 
 import com.squareup.moshi.Json
@@ -46,7 +46,7 @@ data class InfoConfigDto (
     val owner: kotlin.String? = null,
 
     @Json(name = "sharingSettings")
-    val sharingSettings: kotlin.collections.List<AceShortWrapper>? = null,
+    val sharingSettings: kotlin.collections.List<AceShortDto>? = null,
 
     @Json(name = "type")
     val type: EditorType? = null,

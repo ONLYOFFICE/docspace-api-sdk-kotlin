@@ -13,7 +13,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 
 <a id="getIpRestrictions"></a>
 # **getIpRestrictions**
-> IPRestrictionArrayWrapper getIpRestrictions ()
+> IpRestrictionArrayWrapper getIpRestrictions ()
 
 Returns the IP restriction list of the current portal - the addresses allowed to reach it, each with its `id`  and the `forAdmin` flag that narrows the entry to DocSpace administrators. The caller needs the  portal-settings right of a DocSpace administrator, otherwise the call is refused. The call is read-only and  honours `If-None-Match`: send back the `ETag` of an earlier answer and an unchanged list comes back as an  empty not-modified response rather than a body. The list has no defined order and is empty on a portal where  nobody has configured restrictions - and an empty list blocks nobody, whatever the enforcement flag says.  Whether the restrictions are enforced at all is not part of this answer: read that flag with  `GET api/2.0/settings/iprestrictions/settings`. The entries listed here apply to every user of the portal  except its owner. Replace the whole list with `PUT api/2.0/settings/iprestrictions`; single entries cannot be  added or deleted, and that update takes plain addresses rather than the IDs returned here.
 
@@ -24,7 +24,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**IPRestrictionArrayWrapper**](IPRestrictionArrayWrapper.md)
+[**IpRestrictionArrayWrapper**](IpRestrictionArrayWrapper.md)
 
 ### Authorization
 
@@ -47,7 +47,7 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(IPRestrictionsApi::class.java)
 
 launch(Dispatchers.IO) {
-    val result : IPRestrictionArrayWrapper = webService.getIpRestrictions()
+    val result : IpRestrictionArrayWrapper = webService.getIpRestrictions()
 }
 ```
 
@@ -59,7 +59,7 @@ launch(Dispatchers.IO) {
 
 <a id="readIpRestrictionsSettings"></a>
 # **readIpRestrictionsSettings**
-> IPRestrictionsSettingsWrapper readIpRestrictionsSettings ()
+> IpRestrictionsSettingsWrapper readIpRestrictionsSettings ()
 
 Reports whether the IP restrictions of the current portal are enforced, as the `enable` flag together with the  `lastModified` stamp of the setting. The caller needs the portal-settings right of a DocSpace administrator,  otherwise the call is refused. The call is read-only and honours `If-Modified-Since`: send back the  `Last-Modified` value of an earlier answer and an unchanged setting comes back as an empty not-modified  response rather than a body. The flag is `false` on a portal nobody has configured. A `true` flag on its own  blocks nothing: enforcement also needs at least one stored address, which this answer does not carry - read  the addresses with `GET api/2.0/settings/iprestrictions` - and it is skipped entirely on an installation whose  configuration hides the IP security section. Even when enforced, the portal owner and the installation's own  networks are let through. Change the flag with `PUT api/2.0/settings/iprestrictions/settings`, which replaces  the address list in the same call, so resend the addresses in force when all that changes is the flag.
 
@@ -70,7 +70,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**IPRestrictionsSettingsWrapper**](IPRestrictionsSettingsWrapper.md)
+[**IpRestrictionsSettingsWrapper**](IpRestrictionsSettingsWrapper.md)
 
 ### Authorization
 
@@ -93,7 +93,7 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(IPRestrictionsApi::class.java)
 
 launch(Dispatchers.IO) {
-    val result : IPRestrictionsSettingsWrapper = webService.readIpRestrictionsSettings()
+    val result : IpRestrictionsSettingsWrapper = webService.readIpRestrictionsSettings()
 }
 ```
 

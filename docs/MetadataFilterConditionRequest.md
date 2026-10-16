@@ -1,0 +1,16 @@
+
+# MetadataFilterConditionRequest
+
+## Properties
+| Name | Type | Description | Notes |
+| ------------ | ------------- | ------------- | ------------- |
+| **fieldId** | **kotlin.Int** | The ID of the template field the condition is on. A custom field is addressed by ASC.Files.Core.MetadataFilterConditionRequest.Name instead. |  [optional] |
+| **name** | **kotlin.String** | The name of a custom field, for the conditions on the custom fields, which have no identifier outside. Either the  field ID or the name is given; the name is matched without regard to case. |  [optional] |
+| **op** | **kotlin.String** | The operator, one of ASC.Files.Core.MetadataFilterOperators: eq or contains for a string field, eq, range,  gt, gte, lt or lte for a number field, range, gt, gte, lt or lte for a date field, in for a  choice field. Optional: an omitted operator is read as eq for a string, as range for a date, as in for a  choice, and for a number as eq when a value is given or as range when a bound is. A present one has to belong  to the field type and to the arguments: eq takes a value, range takes bounds. |  [optional] |
+| **&#x60;value&#x60;** | **kotlin.String** | The value of a single-valued condition: the whole or a part of a string field, the exact value of a number field,  or the bound of a gt, gte, lt or lte condition on a number or a date field. A JSON number is accepted as  well as a string. A date given without a time (2026-06-30) names the whole day (UTC). |  [optional] |
+| **from** | **kotlin.String** | The inclusive lower bound of a range. A date given without a time (2026-06-01) is the start of that day (UTC). |  [optional] |
+| **to** | **kotlin.String** | The inclusive upper bound of a range. A date given without a time (2026-06-30) covers the whole day (UTC);  a value with a time is an instant and is taken as is. |  [optional] |
+| **optionIds** | [**kotlin.collections.List&lt;java.util.UUID&gt;**](java.util.UUID.md) | The options any of which the choice field must hold. |  [optional] |
+
+
+

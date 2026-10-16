@@ -28,16 +28,16 @@ import onlyoffice.docspace.api.sdk.models.ErrorApiResponse
 import onlyoffice.docspace.api.sdk.models.StringWrapper
 import onlyoffice.docspace.api.sdk.models.TfaAppCodeArrayWrapper
 import onlyoffice.docspace.api.sdk.models.TfaConfirmDataWrapper
-import onlyoffice.docspace.api.sdk.models.TfaRequestsDto
+import onlyoffice.docspace.api.sdk.models.TfaRequestDto
 import onlyoffice.docspace.api.sdk.models.TfaSettingsArrayWrapper
 import onlyoffice.docspace.api.sdk.models.TfaSetupCodeWrapper
-import onlyoffice.docspace.api.sdk.models.TfaValidateRequestsDto
+import onlyoffice.docspace.api.sdk.models.TfaValidateRequestDto
 
 interface TFASettingsApi {
     /**
      * GET api/2.0/settings/tfaappcodes
      * Get the TFA backup codes
-     * Returns the one-time backup codes of the current user's authenticator-application credential, each with the  flag that says whether it has been spent. A backup code is accepted in place of a code from the application  when signing in, and every code works exactly once, so this list is what a member falls back on after losing  access to their authenticator. Any authenticated member may call it, always for their own account: there is no  way to read someone else's codes. The authenticator method has to be enabled on the portal and an application  has to be linked to the account already, otherwise the call answers 405; link one through  `GET api/2.0/settings/tfaapp/confirm` and `POST api/2.0/settings/tfaapp/validate`. Accounts flagged as  outsiders are refused. This is a read-only, idempotent call: the codes are generated once, when the  application is first linked, and the whole set is replaced by `PUT api/2.0/settings/tfaappnewcodes`. The  default configuration issues five codes of six characters, and a portal may be configured for a different  number and length.
+     * Returns the one-time backup codes of the current user's authenticator-application credential, each with the  flag that says whether it has been spent. A backup code is accepted in place of a code from the application  when signing in, and every code works exactly once, so this list is what a member falls back on after losing  access to their authenticator. Any authenticated member may call it, always for their own account: there is no  way to read someone else's codes. The authenticator method has to be enabled on the portal and an application  has to be linked to the account already, otherwise the call answers 405; link one through  `GET api/2.0/settings/tfaapp/confirm` and `POST api/2.0/settings/tfaapp/validate`. This is a read-only,  idempotent call: the codes are generated once, when the application is first linked, and the whole set is  replaced by `PUT api/2.0/settings/tfaappnewcodes`. The default configuration issues five codes of six  characters, and a portal may be configured for a different number and length.
      * Responses:
      *  - 200: The caller's backup codes, each with the flag showing whether it has already been used
      *  - 405: The authenticator method is not enabled on this portal, or the caller has no application linked
@@ -101,7 +101,7 @@ interface TFASettingsApi {
     /**
      * GET api/2.0/settings/tfaapp/setup
      * Generate the TFA setup code
-     * Issues the secret the current user has to enter in an authenticator application before the  authenticator-application method can be used, both as a scannable QR-code image and as a key for manual entry.  The call is reachable only with a confirmation token carrying the `TfaActivation` role, obtained from  `GET api/2.0/settings/tfaapp/confirm` or from the login flow; an ordinary bearer token is refused. The  authenticator method has to be enabled on the portal and be its current policy, and the account must have no  application linked yet: for an already-linked account the call answers 405, so reset the credential first with  `PUT api/2.0/settings/tfaappnewapp`. Accounts flagged as outsiders are refused. Repeating the call is safe and  hands back the same secret for the account, so the QR code and the manual key always describe one and the same  credential. `qrCodeSetupImageUrl` is a base64 `data:` URL of a PNG image, and `account` is the label the  application will show. Finish the setup by sending a code from the application to  `POST api/2.0/settings/tfaapp/validate`.
+     * Issues the secret the current user has to enter in an authenticator application before the  authenticator-application method can be used, both as a scannable QR-code image and as a key for manual entry.  The call is reachable only with a confirmation token carrying the `TfaActivation` role, obtained from  `GET api/2.0/settings/tfaapp/confirm` or from the login flow; an ordinary bearer token is refused. The  authenticator method has to be enabled on the portal and be its current policy, and the account must have no  application linked yet: for an already-linked account the call answers 405, so reset the credential first with  `PUT api/2.0/settings/tfaappnewapp`. Repeating the call is safe and hands back the same secret for the  account, so the QR code and the manual key always describe one and the same credential. `qrCodeSetupImageUrl`  is a base64 `data:` URL of a PNG image, and `account` is the label the application will show. Finish the setup  by sending a code from the application to `POST api/2.0/settings/tfaapp/validate`.
      * Responses:
      *  - 200: The account label, the manual entry key and the QR-code image for linking an authenticator application
      *  - 405: The authenticator method is not enabled on this portal, or the account already has an application linked
@@ -126,10 +126,11 @@ interface TFASettingsApi {
      * Verifies a two-factor authentication code for the account named in the confirmation link being used, and  completes that account's pending TFA step. The call is reachable only with a confirmation token carrying the  `TfaActivation` or `TfaAuth` role, issued by `GET api/2.0/settings/tfaapp/confirm` or by the login flow; an  ordinary bearer token is refused. Both a code from the authenticator application and one of the account's  unused backup codes are accepted, and a backup code is spent by the check. The call mutates state: it signs  the account in, clears the confirmation cookie so the link cannot be replayed, and on the very first  activation it generates the backup codes later returned by `GET api/2.0/settings/tfaappcodes`. Pass  `session=true` to keep that sign-in for the browser session only instead of a persistent one. It answers  `true` only for that first activation and `false` when an application was already linked. A wrong code is  rejected as an invalid request, and further attempts are refused once the portal's login attempt limit is  reached. The call also works while the portal's payment is overdue.
      * Responses:
      *  - 200: `true` when the code completed a first activation and backup codes were generated, `false` when an application was already linked
+     *  - 400: The request body cannot be read or has no `code`, or the code matches neither the authenticator application nor an unused backup code
+     *  - 403: The account the confirmation link was issued for has used up the portal's login attempt limit for TFA codes
+     *  - 500: The code is `null`, empty or consists of whitespace only
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
-     *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -137,24 +138,24 @@ interface TFASettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/tfa-validate-auth-code/
      *
      *
-     * @param tfaValidateRequestsDto  (optional)
+     * @param tfaValidateRequestDto  (optional)
      * @return [BooleanWrapper]
      */
     @POST("api/2.0/settings/tfaapp/validate")
-    suspend fun tfaValidateAuthCode(@Body tfaValidateRequestsDto: TfaValidateRequestsDto? = null): Response<BooleanWrapper>
+    suspend fun tfaValidateAuthCode(@Body tfaValidateRequestDto: TfaValidateRequestDto? = null): Response<BooleanWrapper>
 
     /**
      * PUT api/2.0/settings/tfaappnewapp
      * Unlink the TFA application
-     * Detaches the authenticator application from an account, so that the account has to link a new one before it  can sign in again. `id` has to name an existing account: an empty or unknown value is refused. Passing the  caller's own ID resets their own credential and returns the activation link they should follow next; passing  another member's ID is allowed for the portal owner only, and every other caller, a DocSpace administrator  included, is refused. The account has to have an application linked and the authenticator method has to be  enabled on the portal, otherwise the call answers 405. The call is destructive: the account's backup codes are  dropped together with the credential and all of its sessions are signed out. For another member the portal  also emails them that their TFA was reset, and the answer is then an empty string. The portal-wide policy is  not touched, so TFA stays required and the account sets up an application again through  `GET api/2.0/settings/tfaapp/confirm`; lift the requirement for everyone with `PUT api/2.0/settings/tfaapp`.
+     * Detaches the authenticator application from an account, so that the account has to link a new one before it  can sign in again. `id` has to name an existing account: an empty or unknown value is refused. Passing the  caller's own ID resets their own credential and returns the activation link they should follow next; passing  another member's ID is allowed for the portal owner only, and every other caller, a DocSpace administrator  included, is refused. The account has to have an application linked and the authenticator method has to be  enabled on the portal, otherwise the call answers 405, and a terminated account is refused. The call is  destructive: the account's backup codes are dropped together with the credential and all of its sessions are  signed out. For another member the portal also emails them that their TFA was reset, and the answer is then an  empty string. The portal-wide policy is not touched, so TFA stays required and the account sets up an  application again through `GET api/2.0/settings/tfaapp/confirm`; lift the requirement for everyone with  `PUT api/2.0/settings/tfaapp`.
      * Responses:
      *  - 200: The activation link when the caller reset their own application, or an empty string when another member's was reset
-     *  - 403: The caller is not the portal owner, or the account cannot be resolved from `id`
+     *  - 400: The request body cannot be read, `type` is `null`, an empty string or a string that is neither a number nor built from the names `None`, `Sms` and `App`, or a `trustedIps` entry is not a single address, an inclusive range or a CIDR block, although this call reads only `id`
+     *  - 403: The caller is not the portal owner, the account cannot be resolved from `id`, or the account is terminated
      *  - 405: The authenticator method is not enabled on this portal, or the account has no application linked
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -162,16 +163,16 @@ interface TFASettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/unlink-tfa-app/
      *
      *
-     * @param tfaRequestsDto  (optional)
+     * @param tfaRequestDto  (optional)
      * @return [StringWrapper]
      */
     @PUT("api/2.0/settings/tfaappnewapp")
-    suspend fun unlinkTfaApp(@Body tfaRequestsDto: TfaRequestsDto? = null): Response<StringWrapper>
+    suspend fun unlinkTfaApp(@Body tfaRequestDto: TfaRequestDto? = null): Response<StringWrapper>
 
     /**
      * PUT api/2.0/settings/tfaappnewcodes
      * Regenerate the TFA backup codes
-     * Replaces the current user's one-time backup codes with a freshly generated set and returns it. Use it once the  previous codes have been spent or may have leaked: the whole old set stops being accepted the moment this call  succeeds, so store the new codes before leaving the response. Any authenticated member may call it, always for  their own account. The authenticator method has to be enabled on the portal and an application has to be  linked to the account already, otherwise the call answers 405, and accounts flagged as outsiders are refused.  The call mutates state and is not idempotent: every invocation issues another set and discards the one before  it, so a retry after a timeout returns codes different from those the first attempt generated. The codes come  back unused, five of them of six characters with the default configuration, and a portal may be configured for  a different number and length. Read the current set without changing it through  `GET api/2.0/settings/tfaappcodes`. The authenticator secret itself is untouched, so the linked application  keeps working.
+     * Replaces the current user's one-time backup codes with a freshly generated set and returns it. Use it once the  previous codes have been spent or may have leaked: the whole old set stops being accepted the moment this call  succeeds, so store the new codes before leaving the response. Any authenticated member may call it, always for  their own account. The authenticator method has to be enabled on the portal and an application has to be  linked to the account already, otherwise the call answers 405. The call mutates state and is not idempotent:  every invocation issues another set and discards the one before it, so a retry after a timeout returns codes  different from those the first attempt generated. The codes come back unused, five of them of six characters  with the default configuration, and a portal may be configured for a different number and length. Read the  current set without changing it through `GET api/2.0/settings/tfaappcodes`. The authenticator secret itself is  untouched, so the linked application keeps working.
      * Responses:
      *  - 200: The newly generated backup codes, all unused, replacing the caller's previous set
      *  - 405: The authenticator method is not enabled on this portal, or the caller has no application linked
@@ -196,11 +197,12 @@ interface TFASettingsApi {
      * Sets the portal-wide two-factor authentication policy: `type` `1` switches on the SMS method, `2` switches on  the authenticator application, and `0` turns TFA off, as does any unknown value. The two methods are mutually  exclusive, so switching one on switches the other off. The caller has to be the portal owner or a DocSpace  administrator; other members are refused, and a request that names the owner's account in `id` or in  `mandatoryUsers` is refused unless `id` carries the caller's own account. `trustedIps` takes single addresses,  inclusive ranges and CIDR blocks, and an unparseable entry is rejected as an invalid request; accounts listed  in `mandatoryUsers` or `mandatoryGroups` still have to pass the challenge even from a trusted address.  Switching a method on is disruptive: it resets the portal's authentication cookies, so every session on the  portal, the caller's own included, has to sign in again. The answer is `true` when a method was switched on  and `false` when TFA was turned off. Use `PUT api/2.0/settings/tfaappwithlink` instead to receive the caller's  own confirmation link in the same step.
      * Responses:
      *  - 200: `true` when the SMS or the authenticator method was switched on, `false` when TFA was turned off
+     *  - 400: The request body cannot be read, `type` is `null`, an empty string or a string that is neither a number nor built from the names `None`, `Sms` and `App`, or a `trustedIps` entry is not a single address, an inclusive range or a CIDR block
+     *  - 403: The caller has no portal-settings right, or names the owner's account in `id` or `mandatoryUsers` while `id` is not the caller's own
      *  - 405: The requested method is not enabled on this portal, or the SMS method has no configured provider
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -208,11 +210,11 @@ interface TFASettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-tfa-settings/
      *
      *
-     * @param tfaRequestsDto  (optional)
+     * @param tfaRequestDto  (optional)
      * @return [BooleanWrapper]
      */
     @PUT("api/2.0/settings/tfaapp")
-    suspend fun updateTfaSettings(@Body tfaRequestsDto: TfaRequestsDto? = null): Response<BooleanWrapper>
+    suspend fun updateTfaSettings(@Body tfaRequestDto: TfaRequestDto? = null): Response<BooleanWrapper>
 
     /**
      * PUT api/2.0/settings/tfaappwithlink
@@ -220,12 +222,12 @@ interface TFASettingsApi {
      * Applies the same portal-wide two-factor authentication change as `PUT api/2.0/settings/tfaapp` and  additionally returns the confirmation link the caller needs to pass the new challenge, so an administrator who  has just switched TFA on can go straight to setting it up for themselves. The caller has to be the portal  owner or a DocSpace administrator, and a request that names the owner's account in `id` or in `mandatoryUsers`  is refused unless `id` carries the caller's own account. Every effect of the plain call applies here too: the  methods are mutually exclusive, `type` `0` turns TFA off, `trustedIps` and the two mandatory lists behave the  same way, and switching a method on resets the portal's authentication cookies, so all sessions have to sign  in again. The answer is an empty string whenever there is no link to hand out: when the request turned TFA  off, and when the caller is exempt from the challenge, most often because their own address is in the  `trustedIps` list of that very request. The cookie the link depends on is not returned here, read it with  `GET api/2.0/settings/tfaapp/confirm`.
      * Responses:
      *  - 200: The caller's own confirmation link, or an empty string when TFA was turned off or the caller is exempt
-     *  - 403: The caller is neither the portal owner nor a DocSpace administrator, or is placing the owner under the policy
+     *  - 400: The request body cannot be read, `type` is `null`, an empty string or a string that is neither a number nor built from the names `None`, `Sms` and `App`, or a `trustedIps` entry is not a single address, an inclusive range or a CIDR block
+     *  - 403: The caller has no portal-settings right, or names the owner's account in `id` or `mandatoryUsers` while `id` is not the caller's own
      *  - 405: The requested method is not enabled on this portal, or the SMS method has no configured provider
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -233,10 +235,10 @@ interface TFASettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-tfa-settings-link/
      *
      *
-     * @param tfaRequestsDto  (optional)
+     * @param tfaRequestDto  (optional)
      * @return [StringWrapper]
      */
     @PUT("api/2.0/settings/tfaappwithlink")
-    suspend fun updateTfaSettingsLink(@Body tfaRequestsDto: TfaRequestsDto? = null): Response<StringWrapper>
+    suspend fun updateTfaSettingsLink(@Body tfaRequestDto: TfaRequestDto? = null): Response<StringWrapper>
 
 }

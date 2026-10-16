@@ -16,22 +16,39 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.AdditionalWhiteLabelSettings
+import onlyoffice.docspace.api.sdk.models.AdditionalWhiteLabelSettingsDto
+import onlyoffice.docspace.api.sdk.models.GetPortalPrices200ResponseLinksInner
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The additional white label settings wrapper.
+ * The successful API response containing the AdditionalWhiteLabelSettingsDto object.
  *
- * @param settings The additional white label settings.
+ * @param response The AdditionalWhiteLabelSettingsDto object returned by the operation.
+ * @param count The total number of items in the response
+ * @param links List of links related to the response
+ * @param status HTTP status code of the response
+ * @param statusCode HTTP status code of the response (duplicate of status)
  */
 
 
 data class AdditionalWhiteLabelSettingsWrapper (
 
-    @Json(name = "settings")
-    val settings: AdditionalWhiteLabelSettings? = null
+    @Json(name = "response")
+    val response: AdditionalWhiteLabelSettingsDto? = null,
+
+    @Json(name = "count")
+    val count: kotlin.Int? = null,
+
+    @Json(name = "links")
+    val links: kotlin.collections.List<GetPortalPrices200ResponseLinksInner>? = null,
+
+    @Json(name = "status")
+    val status: kotlin.Int? = null,
+
+    @Json(name = "statusCode")
+    val statusCode: kotlin.Int? = null
 
 ) {
 

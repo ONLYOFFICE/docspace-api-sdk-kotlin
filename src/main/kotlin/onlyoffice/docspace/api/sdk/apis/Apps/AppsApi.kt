@@ -27,8 +27,8 @@ import onlyoffice.docspace.api.sdk.models.AppArrayWrapper
 import onlyoffice.docspace.api.sdk.models.AppWrapper
 import onlyoffice.docspace.api.sdk.models.ErrorApiResponse
 import onlyoffice.docspace.api.sdk.models.JsonValueWrapper
-import onlyoffice.docspace.api.sdk.models.SetAppEnabledBody
-import onlyoffice.docspace.api.sdk.models.SetAppSettingsBody
+import onlyoffice.docspace.api.sdk.models.SetAppEnabledRequest
+import onlyoffice.docspace.api.sdk.models.SetAppSettingsRequest
 
 interface AppsApi {
     /**
@@ -103,15 +103,15 @@ interface AppsApi {
     /**
      * PUT api/2.0/apps/{id}/enabled
      * Enable or disable an app
-     * Turns one portal application on or off for the current portal, and notifies the clients connected to the portal  so that they can show or hide it without being reloaded. The identifier must be an application declared in the  installation configuration, as listed by `GET api/2.0/apps`. The caller must be a portal administrator allowed  to edit the portal settings. The call is mutating and idempotent: it stores the flag for this portal, overriding  the default that the configuration gives the application, and repeating it with the same value changes nothing.  Disabling an application does not delete its settings document, which stays saved and applies again as soon as  the application is enabled. The response is the application in its new state, including that settings document.  Only the enabled flag is affected here: to change the settings document use `PUT api/2.0/apps/{id}/settings`.
+     * Turns one portal application on or off for the current portal, and notifies the clients connected to the portal  so that they can show or hide it without being reloaded. The identifier must be an application declared in the  installation configuration, as listed by `GET api/2.0/apps`. The caller must be a portal administrator allowed  to edit the portal settings. The call is mutating and idempotent: it stores the flag for this portal, overriding  the default that the configuration gives the application, and repeating it with the same value changes nothing.  Disabling an application does not delete its settings document, which stays saved and applies again as soon as  the application is enabled. The response is the application in its new state, including that settings document.  Only the enabled flag is affected here: to change the settings document use `PUT api/2.0/apps/{id}/settings`.  The enabled field is mandatory, and a body without it is rejected with 400 rather than read as false.
      * Responses:
      *  - 200: The application in its new state, with the saved settings document left untouched
-     *  - 403: The caller is not allowed to edit the portal settings
+     *  - 400: The request body is not a valid JSON document or has no enabled field, so the state is not changed
+     *  - 403: The caller has no portal-settings right
      *  - 404: No application with this identifier is configured on this installation
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -120,11 +120,11 @@ interface AppsApi {
      *
      *
      * @param id The application to switch, by the identifier `GET api/2.0/apps` reports. It has to be an application declared  in the installation configuration; an unknown identifier answers 404 rather than creating anything.
-     * @param setAppEnabledBody The new state of the application. Only the enabled flag travels here; the settings document is changed  through `PUT api/2.0/apps/{id}/settings`.
+     * @param setAppEnabledRequest The new state of the application. Only the enabled flag travels here; the settings document is changed  through `PUT api/2.0/apps/{id}/settings`.
      * @return [AppWrapper]
      */
     @PUT("api/2.0/apps/{id}/enabled")
-    suspend fun setEnabled(@Path("id") id: kotlin.String, @Body setAppEnabledBody: SetAppEnabledBody): Response<AppWrapper>
+    suspend fun setEnabled(@Path("id") id: kotlin.String, @Body setAppEnabledRequest: SetAppEnabledRequest): Response<AppWrapper>
 
     /**
      * PUT api/2.0/apps/{id}/settings
@@ -133,7 +133,7 @@ interface AppsApi {
      * Responses:
      *  - 200: The application in its new state, with the stored settings document
      *  - 400: The request body is not a valid JSON document, so no settings are stored
-     *  - 403: The caller is not allowed to edit the portal settings
+     *  - 403: The caller has no portal-settings right
      *  - 404: No application with this identifier is configured on this installation
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
@@ -146,10 +146,10 @@ interface AppsApi {
      *
      *
      * @param id The application whose configuration is stored, by the identifier `GET api/2.0/apps` reports. An identifier  not declared in the installation configuration answers 404.
-     * @param setAppSettingsBody The configuration to store for this portal, replacing whatever was stored before.
+     * @param setAppSettingsRequest The configuration to store for this portal, replacing whatever was stored before.
      * @return [AppWrapper]
      */
     @PUT("api/2.0/apps/{id}/settings")
-    suspend fun setSettings(@Path("id") id: kotlin.String, @Body setAppSettingsBody: SetAppSettingsBody): Response<AppWrapper>
+    suspend fun setSettings(@Path("id") id: kotlin.String, @Body setAppSettingsRequest: SetAppSettingsRequest): Response<AppWrapper>
 
 }

@@ -16,16 +16,16 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.FileReference
+import onlyoffice.docspace.api.sdk.models.FileReferenceDto
 import onlyoffice.docspace.api.sdk.models.GetPortalPrices200ResponseLinksInner
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The successful API response containing the FileReference object.
+ * The successful API response containing the FileReferenceDto object.
  *
- * @param response The FileReference object returned by the operation.
+ * @param response The FileReferenceDto object returned by the operation.
  * @param count The total number of items in the response
  * @param links List of links related to the response
  * @param status HTTP status code of the response
@@ -36,7 +36,7 @@ import com.squareup.moshi.JsonClass
 data class FileReferenceWrapper (
 
     @Json(name = "response")
-    val response: FileReference? = null,
+    val response: FileReferenceDto? = null,
 
     @Json(name = "count")
     val count: kotlin.Int? = null,

@@ -17,7 +17,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 
 <a id="aiAttachmentsDelete"></a>
 # **aiAttachmentsDelete**
-> AiSuccessResponse aiAttachmentsDelete (kotlin.String body)
+> AiSuccessResponse aiAttachmentsDelete (kotlin.String aiAttachmentsDeleteRequest)
 
 Permanently deletes one attachment, whether it is still a draft or already bound to a message. The ID is not validated here, so a malformed one surfaces as an error relayed from storage rather than as a 400, and an ID that does not exist answers success without deleting anything. Deleting a bound attachment leaves the message in place without it. The deletion cannot be undone.
 
@@ -26,7 +26,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **body** | **kotlin.String**| The ID of the attachment to delete, as a bare JSON string. | |
+| **aiAttachmentsDeleteRequest** | **kotlin.String**| The ID of the attachment to delete, as a bare JSON string. | |
 
 ### Return type
 
@@ -48,10 +48,10 @@ Configure bearerAuth:
 val apiClient = ApiClient()
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIAttachmentsApi::class.java)
-val body : kotlin.String = body_example // kotlin.String | The ID of the attachment to delete, as a bare JSON string.
+val aiAttachmentsDeleteRequest : kotlin.String = aiAttachmentsDeleteRequest_example // kotlin.String | The ID of the attachment to delete, as a bare JSON string.
 
 launch(Dispatchers.IO) {
-    val result : AiSuccessResponse = webService.aiAttachmentsDelete(body)
+    val result : AiSuccessResponse = webService.aiAttachmentsDelete(aiAttachmentsDeleteRequest)
 }
 ```
 
@@ -63,7 +63,7 @@ launch(Dispatchers.IO) {
 
 <a id="aiAttachmentsDeleteMany"></a>
 # **aiAttachmentsDeleteMany**
-> AiSuccessResponse aiAttachmentsDeleteMany (kotlin.collections.List<kotlin.String> requestBody)
+> AiSuccessResponse aiAttachmentsDeleteMany (kotlin.collections.List<kotlin.String> aiAttachmentsDeleteManyRequest)
 
 Permanently deletes several attachments in one round trip. `ids` is optional and an absent value is treated as an empty list, so a malformed request quietly deletes nothing instead of failing. IDs that do not exist are skipped without being reported, so the answer confirms only that the call was accepted. The deletions cannot be undone.
 
@@ -72,7 +72,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **requestBody** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)| The IDs of the attachments to delete, as a bare JSON array of strings. | |
+| **aiAttachmentsDeleteManyRequest** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)| The IDs of the attachments to delete, as a bare JSON array of strings. | |
 
 ### Return type
 
@@ -94,10 +94,10 @@ Configure bearerAuth:
 val apiClient = ApiClient()
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIAttachmentsApi::class.java)
-val requestBody : kotlin.collections.List<kotlin.String> =  // kotlin.collections.List<kotlin.String> | The IDs of the attachments to delete, as a bare JSON array of strings.
+val aiAttachmentsDeleteManyRequest : kotlin.collections.List<kotlin.String> =  // kotlin.collections.List<kotlin.String> | The IDs of the attachments to delete, as a bare JSON array of strings.
 
 launch(Dispatchers.IO) {
-    val result : AiSuccessResponse = webService.aiAttachmentsDeleteMany(requestBody)
+    val result : AiSuccessResponse = webService.aiAttachmentsDeleteMany(aiAttachmentsDeleteManyRequest)
 }
 ```
 
@@ -109,7 +109,7 @@ launch(Dispatchers.IO) {
 
 <a id="aiAttachmentsGet"></a>
 # **aiAttachmentsGet**
-> AiAttachment aiAttachmentsGet (kotlin.String body)
+> AiAttachment aiAttachmentsGet (kotlin.String aiAttachmentsGetRequest)
 
 Returns one attachment by its ID, whether it is still a draft or already bound to a message. The ID is required and has to be a non-empty string. An ID that no longer exists is not reported as 404: the answer is a null body with status 200, so treat a missing payload as no such attachment. Use `POST api/2.0/ai/attachments/get-many` to read several at once.
 
@@ -118,7 +118,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **body** | **kotlin.String**| The ID of the attachment to read, as a bare JSON string. | |
+| **aiAttachmentsGetRequest** | **kotlin.String**| The ID of the attachment to read, as a bare JSON string. | |
 
 ### Return type
 
@@ -140,10 +140,10 @@ Configure bearerAuth:
 val apiClient = ApiClient()
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIAttachmentsApi::class.java)
-val body : kotlin.String = body_example // kotlin.String | The ID of the attachment to read, as a bare JSON string.
+val aiAttachmentsGetRequest : kotlin.String = aiAttachmentsGetRequest_example // kotlin.String | The ID of the attachment to read, as a bare JSON string.
 
 launch(Dispatchers.IO) {
-    val result : AiAttachment = webService.aiAttachmentsGet(body)
+    val result : AiAttachment = webService.aiAttachmentsGet(aiAttachmentsGetRequest)
 }
 ```
 
@@ -155,7 +155,7 @@ launch(Dispatchers.IO) {
 
 <a id="aiAttachmentsGetMany"></a>
 # **aiAttachmentsGetMany**
-> kotlin.collections.List&lt;AiAttachment?&gt; aiAttachmentsGetMany (kotlin.collections.List<kotlin.String> requestBody)
+> kotlin.collections.List&lt;AiAttachment?&gt; aiAttachmentsGetMany (kotlin.collections.List<kotlin.String> aiAttachmentsGetManyRequest)
 
 Returns several attachments in one call, aligned by position with the `ids` that were sent, so the answer can be zipped straight onto the request. An ID that no longer exists leaves its slot empty rather than shortening the list, which is how a caller tells which of them are gone. `ids` has to be present and non-empty - an empty batch is rejected rather than answered with an empty list. Nothing is changed by the call.
 
@@ -164,7 +164,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **requestBody** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)| The IDs of the attachments to read, as a bare JSON array of strings. The answer is aligned with this array by position. | |
+| **aiAttachmentsGetManyRequest** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)| The IDs of the attachments to read, as a bare JSON array of strings. The answer is aligned with this array by position. | |
 
 ### Return type
 
@@ -186,10 +186,10 @@ Configure bearerAuth:
 val apiClient = ApiClient()
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIAttachmentsApi::class.java)
-val requestBody : kotlin.collections.List<kotlin.String> =  // kotlin.collections.List<kotlin.String> | The IDs of the attachments to read, as a bare JSON array of strings. The answer is aligned with this array by position.
+val aiAttachmentsGetManyRequest : kotlin.collections.List<kotlin.String> =  // kotlin.collections.List<kotlin.String> | The IDs of the attachments to read, as a bare JSON array of strings. The answer is aligned with this array by position.
 
 launch(Dispatchers.IO) {
-    val result : kotlin.collections.List<AiAttachment?> = webService.aiAttachmentsGetMany(requestBody)
+    val result : kotlin.collections.List<AiAttachment?> = webService.aiAttachmentsGetMany(aiAttachmentsGetManyRequest)
 }
 ```
 
@@ -201,7 +201,7 @@ launch(Dispatchers.IO) {
 
 <a id="aiAttachmentsGetSuggestedQuestions"></a>
 # **aiAttachmentsGetSuggestedQuestions**
-> AiSuccessResponse aiAttachmentsGetSuggestedQuestions (kotlin.collections.Map<kotlin.String, kotlin.Any?> requestBody)
+> AiSuccessResponse aiAttachmentsGetSuggestedQuestions (kotlin.collections.Map<kotlin.String, kotlin.Any?> aiAttachmentsGetSuggestedQuestionsRequest)
 
 
 
@@ -210,7 +210,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **requestBody** | [**kotlin.collections.Map&lt;kotlin.String, kotlin.Any?&gt;**](kotlin.Any.md)|  | |
+| **aiAttachmentsGetSuggestedQuestionsRequest** | [**kotlin.collections.Map&lt;kotlin.String, kotlin.Any?&gt;**](kotlin.Any.md)|  | |
 
 ### Return type
 
@@ -232,10 +232,10 @@ Configure bearerAuth:
 val apiClient = ApiClient()
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIAttachmentsApi::class.java)
-val requestBody : kotlin.collections.Map<kotlin.String, kotlin.Any?> = Object // kotlin.collections.Map<kotlin.String, kotlin.Any?> | 
+val aiAttachmentsGetSuggestedQuestionsRequest : kotlin.collections.Map<kotlin.String, kotlin.Any?> = Object // kotlin.collections.Map<kotlin.String, kotlin.Any?> | 
 
 launch(Dispatchers.IO) {
-    val result : AiSuccessResponse = webService.aiAttachmentsGetSuggestedQuestions(requestBody)
+    val result : AiSuccessResponse = webService.aiAttachmentsGetSuggestedQuestions(aiAttachmentsGetSuggestedQuestionsRequest)
 }
 ```
 

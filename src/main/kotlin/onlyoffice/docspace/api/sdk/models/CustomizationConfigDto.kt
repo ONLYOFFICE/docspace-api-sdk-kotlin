@@ -16,15 +16,15 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.AIConfig
+import onlyoffice.docspace.api.sdk.models.AiConfigDto
 import onlyoffice.docspace.api.sdk.models.AnonymousConfigDto
 import onlyoffice.docspace.api.sdk.models.CustomerConfigDto
-import onlyoffice.docspace.api.sdk.models.FeedbackConfig
-import onlyoffice.docspace.api.sdk.models.GobackConfig
+import onlyoffice.docspace.api.sdk.models.FeedbackConfigDto
+import onlyoffice.docspace.api.sdk.models.GobackConfigDto
 import onlyoffice.docspace.api.sdk.models.LogoConfigDto
-import onlyoffice.docspace.api.sdk.models.ReviewConfig
+import onlyoffice.docspace.api.sdk.models.ReviewConfigDto
 import onlyoffice.docspace.api.sdk.models.StartFillingForm
-import onlyoffice.docspace.api.sdk.models.SubmitForm
+import onlyoffice.docspace.api.sdk.models.SubmitFormDto
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -59,16 +59,16 @@ data class CustomizationConfigDto (
     val anonymous: AnonymousConfigDto? = null,
 
     @Json(name = "feedback")
-    val feedback: FeedbackConfig? = null,
+    val feedback: FeedbackConfigDto? = null,
 
     @Json(name = "forcesave")
     val forcesave: kotlin.Boolean? = null,
 
     @Json(name = "goback")
-    val goback: GobackConfig? = null,
+    val goback: GobackConfigDto? = null,
 
     @Json(name = "review")
-    val review: ReviewConfig? = null,
+    val review: ReviewConfigDto? = null,
 
     @Json(name = "logo")
     val logo: LogoConfigDto? = null,
@@ -77,13 +77,13 @@ data class CustomizationConfigDto (
     val mentionShare: kotlin.Boolean? = null,
 
     @Json(name = "submitForm")
-    val submitForm: SubmitForm? = null,
+    val submitForm: SubmitFormDto? = null,
 
     @Json(name = "startFillingForm")
     val startFillingForm: StartFillingForm? = null,
 
     @Json(name = "ai")
-    val ai: AIConfig? = null
+    val ai: AiConfigDto? = null
 
 ) {
 

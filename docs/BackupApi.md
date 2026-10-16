@@ -69,7 +69,7 @@ launch(Dispatchers.IO) {
 
 <a id="createBackupSchedule"></a>
 # **createBackupSchedule**
-> BooleanWrapper createBackupSchedule (BackupScheduleDto backupScheduleDto)
+> BooleanWrapper createBackupSchedule (CreateBackupScheduleRequestDto createBackupScheduleRequestDto)
 
 Sets the backup schedule of the current portal. A portal keeps at most one schedule, so this replaces  the existing one rather than adding a second, and `dump` writes the schedule of the whole server  instead, which requires the space access permission and works on a standalone installation only.  Scheduled backups have to be allowed by the pricing plan of a portal that is not a standalone  installation.  `cronParams` is a period plus a time rather than a cron string: `hour` is the hour of the day from 0  to 23, and `day` has to be given for `EveryWeek`, where it is the day of the week from 1 to 7 with  Sunday as 1, and for `EveryMonth`, where it is the day of the month from 1 to 31. It is left out for  `EveryDay`, and because an omitted `day` is stored as 0, which neither period accepts, a weekly or  monthly schedule sent without it fails instead of falling back to a default.  `backupsStored` is the number of scheduled copies to keep, from 1 to 30, and it defaults to 1. Older  copies are removed by a background cleaner, and only the ones this schedule created: archives made by  `POST api/2.0/backup/startbackup` are not counted and not removed. A portal whose subscription stops  covering backups has its schedule deleted by the scheduler, not suspended, and its administrators are  notified that the scheduled backup failed.  The keys expected in `storageParams` are the same as for `POST api/2.0/backup/startbackup`, except  that they are sent as an array of key and value pairs here and returned as an object by  `GET api/2.0/backup/getbackupschedule`.
 
@@ -78,7 +78,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **backupScheduleDto** | [**BackupScheduleDto**](BackupScheduleDto.md)|  | [optional] |
+| **createBackupScheduleRequestDto** | [**CreateBackupScheduleRequestDto**](CreateBackupScheduleRequestDto.md)|  | [optional] |
 
 ### Return type
 
@@ -103,10 +103,10 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(BackupApi::class.java)
-val backupScheduleDto : BackupScheduleDto =  // BackupScheduleDto | 
+val createBackupScheduleRequestDto : CreateBackupScheduleRequestDto =  // CreateBackupScheduleRequestDto | 
 
 launch(Dispatchers.IO) {
-    val result : BooleanWrapper = webService.createBackupSchedule(backupScheduleDto)
+    val result : BooleanWrapper = webService.createBackupSchedule(createBackupScheduleRequestDto)
 }
 ```
 
@@ -613,7 +613,7 @@ launch(Dispatchers.IO) {
 
 <a id="startBackup"></a>
 # **startBackup**
-> BackupProgressWrapper startBackup (BackupDto backupDto)
+> BackupProgressWrapper startBackup (StartBackupRequestDto startBackupRequestDto)
 
 Queues a backup of the current portal and returns straight away: the archive itself is written by the  separate backup worker service, which picks the job up from an integration event, so the response  reports a progress of 0 and the `Created` status, and its `taskId` is the handle to poll with  `GET api/2.0/backup/getbackupprogress`. The caller needs the portal settings permission, and  `dump` - a backup of the whole server instead of this one portal - additionally requires the space  access permission and is rejected outside a standalone installation.  The keys expected in `storageParams` depend on `storageType`: `Documents` takes an integer `folderId`,  `ThridpartyDocuments` takes a provider-specific non-integer `folderId`, `Local` takes `filePath` and  works on a standalone installation only, `ThirdPartyConsumer` takes `module` together with the settings  of that consumer, and `DataStore` takes no keys at all; the `subdir` key is added by the operation  itself and must not be sent.  A portal that has already used up the free backups of the current calendar month is charged through the  paid backup service instead, and the call is rejected with 402 when that service is not available to it.
 
@@ -622,7 +622,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **backupDto** | [**BackupDto**](BackupDto.md)|  | [optional] |
+| **startBackupRequestDto** | [**StartBackupRequestDto**](StartBackupRequestDto.md)|  | [optional] |
 
 ### Return type
 
@@ -647,10 +647,10 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(BackupApi::class.java)
-val backupDto : BackupDto =  // BackupDto | 
+val startBackupRequestDto : StartBackupRequestDto =  // StartBackupRequestDto | 
 
 launch(Dispatchers.IO) {
-    val result : BackupProgressWrapper = webService.startBackup(backupDto)
+    val result : BackupProgressWrapper = webService.startBackup(startBackupRequestDto)
 }
 ```
 
@@ -662,7 +662,7 @@ launch(Dispatchers.IO) {
 
 <a id="startBackupRestore"></a>
 # **startBackupRestore**
-> BackupProgressWrapper startBackupRestore (BackupRestoreDto backupRestoreDto)
+> BackupProgressWrapper startBackupRestore (StartBackupRestoreRequestDto startBackupRestoreRequestDto)
 
 Queues the restoring of the current portal from a backup and returns straight away: the work itself is  done by the separate backup worker service, which picks the job up from an integration event, so the  response reports a progress of 0 and the `Created` status, and the returned `taskId` is the handle to  poll with `GET api/2.0/backup/getrestoreprogress` - the one operation of this service that stays  reachable while the portal is being restored, because every other one answers 403 in that state.  The source is given either by `backupId`, which is the ID of a record from  `GET api/2.0/backup/getbackuphistory`, or, when `backupId` is not a GUID, by the `filePath` key of  `storageParams` together with the matching `storageType`; an all-zero GUID is parsed as a GUID and  therefore reaches neither branch.  The caller needs the portal settings permission, restoring has to be allowed by the pricing plan of a  portal that is not a standalone installation, and `dump` - restoring the whole server rather than this  one portal - additionally requires the space access permission.
 
@@ -671,7 +671,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **backupRestoreDto** | [**BackupRestoreDto**](BackupRestoreDto.md)|  | [optional] |
+| **startBackupRestoreRequestDto** | [**StartBackupRestoreRequestDto**](StartBackupRestoreRequestDto.md)|  | [optional] |
 
 ### Return type
 
@@ -696,10 +696,10 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(BackupApi::class.java)
-val backupRestoreDto : BackupRestoreDto =  // BackupRestoreDto | 
+val startBackupRestoreRequestDto : StartBackupRestoreRequestDto =  // StartBackupRestoreRequestDto | 
 
 launch(Dispatchers.IO) {
-    val result : BackupProgressWrapper = webService.startBackupRestore(backupRestoreDto)
+    val result : BackupProgressWrapper = webService.startBackupRestore(startBackupRestoreRequestDto)
 }
 ```
 

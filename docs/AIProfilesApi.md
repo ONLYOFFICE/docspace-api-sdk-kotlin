@@ -63,7 +63,7 @@ launch(Dispatchers.IO) {
 
 <a id="aiProfilesDelete"></a>
 # **aiProfilesDelete**
-> AiSuccessResponse aiProfilesDelete (kotlin.String body)
+> AiSuccessResponse aiProfilesDelete (kotlin.String aiProfilesDeleteRequest)
 
 Deletes an AI provider profile and cleans up every assignment pointing at it: the `Default` slot moves to the first remaining profile and the other slots are left unbound. The ID is required and may be sent in the body or as a query parameter. An unknown ID is not reported - the call answers success without deleting anything. Threads already bound to the profile keep the stored reference, so a round on such a thread falls back to whatever the scope resolves to.
 
@@ -72,7 +72,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **body** | **kotlin.String**| The ID of the profile to delete, as a bare JSON string. | |
+| **aiProfilesDeleteRequest** | **kotlin.String**| The ID of the profile to delete, as a bare JSON string. | |
 
 ### Return type
 
@@ -94,10 +94,10 @@ Configure bearerAuth:
 val apiClient = ApiClient()
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIProfilesApi::class.java)
-val body : kotlin.String = body_example // kotlin.String | The ID of the profile to delete, as a bare JSON string.
+val aiProfilesDeleteRequest : kotlin.String = aiProfilesDeleteRequest_example // kotlin.String | The ID of the profile to delete, as a bare JSON string.
 
 launch(Dispatchers.IO) {
-    val result : AiSuccessResponse = webService.aiProfilesDelete(body)
+    val result : AiSuccessResponse = webService.aiProfilesDelete(aiProfilesDeleteRequest)
 }
 ```
 
@@ -157,7 +157,7 @@ launch(Dispatchers.IO) {
 # **aiProfilesList**
 > kotlin.collections.List&lt;AiProfile&gt; aiProfilesList ()
 
-Lists the portal's AI provider profiles with their secrets stripped, the same way the single-profile read does. It takes no parameters and is not paginated, because a portal holds few profiles. On a portal running the AI gateway the answer is synthesised from the gateway's own catalogue rather than from stored records. The IDs in the answer are what the assignment operations and every round's `profileId` accept.
+Lists the portal's AI provider profiles. A portal administrator receives each profile in full, `key` and `headers` included, because the settings page edits them; every other caller gets them with those secrets stripped, as the single-profile read always does. It takes no parameters and is not paginated, because a portal holds few profiles. On a portal running the AI gateway the answer is synthesised from the gateway's own catalogue rather than from stored records. The IDs in the answer are what the assignment operations and every round's `profileId` accept.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-profiles-list/).
 
@@ -200,7 +200,7 @@ launch(Dispatchers.IO) {
 # **aiProfilesListModels**
 > kotlin.collections.List&lt;AiModel&gt; aiProfilesListModels (kotlin.String profileId)
 
-Lists the models a stored profile's provider currently offers, asking the provider itself rather than reading a cached list. `profileId` is required and is read from the query. A failure is reported with the provider's own verdict: an unusable key comes back as 400 and a provider that is unreachable or broken as 502, while a missing profile or a caller without access keeps the status the portal gave it. Use `POST api/2.0/ai/profiles/list-provider-models` to probe an endpoint that has no profile yet.
+Lists the models a stored profile's provider currently offers, asking the provider itself rather than reading a cached list. `profileId` is required and is read from the query. A failure is reported with the provider's own verdict: an unusable key comes back as 400 and a provider that is unreachable or broken as 502, while a profile the caller cannot see answers 404 before the provider is asked and a caller without access keeps the 403 the portal gave it. Use `POST api/2.0/ai/profiles/list-provider-models` to probe an endpoint that has no profile yet.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-profiles-list-models/).
 
@@ -246,7 +246,7 @@ launch(Dispatchers.IO) {
 # **aiProfilesListProviderModels**
 > kotlin.collections.List&lt;AiModel&gt; aiProfilesListProviderModels (AiProfilesListProviderModelsRequest aiProfilesListProviderModelsRequest)
 
-Lists the models an endpoint offers for credentials supplied in the request, before any profile exists - this is what a provider-setup form calls to fill its model picker. `providerType` and `baseUrl` are both required, and a 400 for either names the offending input in a `field` member so the form can highlight it; a `baseUrl` pointing at a private network address is refused as well. For `providerType: onlyoffice` the answer comes from the portal gateway's catalogue, which carries richer capability data than the provider's own listing and matches what `GET api/2.0/ai/profiles/list` reports; a portal without that gateway falls back to asking the provider. A provider that is unreachable or broken is reported as 502, and one that rejects the key as 400.
+Lists the models an endpoint offers for credentials supplied in the request, before any profile exists - this is what a provider-setup form calls to fill its model picker. `providerType` and `baseUrl` are both required, and a 400 for either names the offending input in a `field` member so the form can highlight it; a `baseUrl` pointing at a private network address is refused as well, and so is an `apiKey` with characters that cannot travel in an HTTP header (anything outside printable ASCII), since no provider could ever accept it. For `providerType: onlyoffice` the answer comes from the portal gateway's catalogue, which carries richer capability data than the provider's own listing and matches what `GET api/2.0/ai/profiles/list` reports; a portal without that gateway falls back to asking the provider. A provider that is unreachable or broken is reported as 502, and one that rejects the key as 400.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-profiles-list-provider-models/).
 
@@ -290,16 +290,16 @@ launch(Dispatchers.IO) {
 
 <a id="aiProfilesTestConnection"></a>
 # **aiProfilesTestConnection**
-> AiProfilesTestConnection200Response aiProfilesTestConnection (kotlin.String body)
+> AiProfilesTestConnection200Response aiProfilesTestConnection (kotlin.String aiProfilesTestConnectionRequest)
 
-Probes a stored profile's credentials against its provider and reports the outcome in the answer, writing nothing - this is what a Test button calls so that a failure does not commit anything. `profileId` is required and may be sent in the body or as a query parameter. The result is carried in the body rather than in the status, so a failed probe still answers 200 and the caller has to read the payload. To validate credentials that are not stored yet, use `POST api/2.0/ai/profiles/list-provider-models`.
+Probes a stored profile's credentials against its provider and reports the outcome in the answer, writing nothing - this is what a Test button calls so that a failure does not commit anything. `profileId` is required and may be sent in the body or as a query parameter, and a profile the caller cannot see answers 404 before anything is probed. The result of the probe itself is carried in the body rather than in the status, so a failed probe still answers 200 and the caller has to read the payload. To validate credentials that are not stored yet, use `POST api/2.0/ai/profiles/list-provider-models`.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-profiles-test-connection/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **body** | **kotlin.String**| The ID of the profile to probe, as a bare JSON string. | |
+| **aiProfilesTestConnectionRequest** | **kotlin.String**| The ID of the profile to probe, as a bare JSON string. | |
 
 ### Return type
 
@@ -321,10 +321,10 @@ Configure bearerAuth:
 val apiClient = ApiClient()
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIProfilesApi::class.java)
-val body : kotlin.String = body_example // kotlin.String | The ID of the profile to probe, as a bare JSON string.
+val aiProfilesTestConnectionRequest : kotlin.String = aiProfilesTestConnectionRequest_example // kotlin.String | The ID of the profile to probe, as a bare JSON string.
 
 launch(Dispatchers.IO) {
-    val result : AiProfilesTestConnection200Response = webService.aiProfilesTestConnection(body)
+    val result : AiProfilesTestConnection200Response = webService.aiProfilesTestConnection(aiProfilesTestConnectionRequest)
 }
 ```
 

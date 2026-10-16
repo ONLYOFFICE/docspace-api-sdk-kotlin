@@ -16,16 +16,16 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.AutoCleanUpData
+import onlyoffice.docspace.api.sdk.models.AutoCleanUpDataDto
 import onlyoffice.docspace.api.sdk.models.GetPortalPrices200ResponseLinksInner
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The successful API response containing the AutoCleanUpData object.
+ * The successful API response containing the AutoCleanUpDataDto object.
  *
- * @param response The AutoCleanUpData object returned by the operation.
+ * @param response The AutoCleanUpDataDto object returned by the operation.
  * @param count The total number of items in the response
  * @param links List of links related to the response
  * @param status HTTP status code of the response
@@ -36,7 +36,7 @@ import com.squareup.moshi.JsonClass
 data class AutoCleanUpDataWrapper (
 
     @Json(name = "response")
-    val response: AutoCleanUpData? = null,
+    val response: AutoCleanUpDataDto? = null,
 
     @Json(name = "count")
     val count: kotlin.Int? = null,

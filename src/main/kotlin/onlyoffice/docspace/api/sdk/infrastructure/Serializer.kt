@@ -9,12 +9,15 @@ import com.squareup.moshi.JsonReader
 import com.squareup.moshi.JsonWriter
 import com.squareup.moshi.Types
 import java.lang.reflect.Type
+import java.time.OffsetDateTime
+import java.time.ZoneOffset
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
 object Serializer {
     @JvmStatic
     val moshiBuilder: Moshi.Builder = Moshi.Builder()
         .add(ValueEnumJsonAdapterFactory())
+        .add(ApiDateTimeAdapterFactory())
         .add(OffsetDateTimeAdapter())
         .add(LocalDateTimeAdapter())
         .add(LocalDateAdapter())
@@ -102,5 +105,55 @@ class ValueEnumJsonAdapterFactory : JsonAdapter.Factory {
             if (asDouble % 1.0 == 0.0) value.toLong().toString() else value.toString()
         }
         else -> value.toString()
+    }
+}
+
+/**
+ * Moshi adapter factory for the `ApiDateTime` models.
+ *
+ * The specification describes these models as an object with `utcTime` and `timeZoneOffset`,
+ * while the server sends the date as a plain ISO-8601 string
+ * (e.g. `2026-03-06T11:22:42.0000000+03:00`). A string is converted into the object form
+ * (`utcTime` in UTC, `timeZoneOffset` taken from the string) and handed to the standard
+ * model adapter; an object is passed to that adapter unchanged.
+ */
+class ApiDateTimeAdapterFactory : JsonAdapter.Factory {
+    private val apiDateTimeTypes: Set<Class<*>> = setOf(
+        onlyoffice.docspace.api.sdk.models.AiApiDateTime::class.java,
+        onlyoffice.docspace.api.sdk.models.ApiDateTime::class.java,
+    )
+
+    override fun create(type: Type, annotations: Set<Annotation>, moshi: Moshi): JsonAdapter<*>? {
+        if (Types.getRawType(type) !in apiDateTimeTypes) {
+            return null
+        }
+        val delegate = moshi.nextAdapter<Any>(this, type, annotations)
+
+        return object : JsonAdapter<Any>() {
+            override fun fromJson(reader: JsonReader): Any? {
+                if (reader.peek() != JsonReader.Token.STRING) {
+                    return delegate.fromJson(reader)
+                }
+                val raw = reader.nextString()
+                if (raw.isEmpty()) {
+                    return null
+                }
+                val dateTime = try {
+                    OffsetDateTime.parse(raw)
+                } catch (e: java.time.format.DateTimeParseException) {
+                    throw JsonDataException("Invalid date-time '$raw' at ${reader.path}", e)
+                }
+                return delegate.fromJsonValue(
+                    mapOf(
+                        "utcTime" to dateTime.withOffsetSameInstant(ZoneOffset.UTC).toString(),
+                        "timeZoneOffset" to dateTime.offset.toString()
+                    )
+                )
+            }
+
+            override fun toJson(writer: JsonWriter, value: Any?) {
+                delegate.toJson(writer, value)
+            }
+        }
     }
 }

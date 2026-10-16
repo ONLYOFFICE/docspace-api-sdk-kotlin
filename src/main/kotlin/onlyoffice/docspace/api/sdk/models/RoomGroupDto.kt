@@ -17,7 +17,7 @@
 package onlyoffice.docspace.api.sdk.models
 
 import onlyoffice.docspace.api.sdk.models.FileEntryBaseDto
-import onlyoffice.docspace.api.sdk.models.MultiSizeLogoCover
+import onlyoffice.docspace.api.sdk.models.MultiSizeLogoCoverDto
 import onlyoffice.docspace.api.sdk.models.SearchArea
 
 import com.squareup.moshi.Json
@@ -45,7 +45,7 @@ data class RoomGroupDto (
     val name: kotlin.String? = null,
 
     @Json(name = "icon")
-    val icon: MultiSizeLogoCover? = null,
+    val icon: MultiSizeLogoCoverDto? = null,
 
     @Json(name = "userId")
     val userId: java.util.UUID? = null,

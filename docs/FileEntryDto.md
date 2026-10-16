@@ -40,6 +40,8 @@
 | **&#x60;external&#x60;** | **kotlin.Boolean** | Set when the link being used was made for this very entry, and false when the entry is reached through a link  to the room around it. It is null when no link is involved. |  [optional] |
 | **expirationDate** | [**ApiDateTime**](ApiDateTime.md) | When the link being used stops working, written with the offset of the portal's time zone. It is null for a  link that never expires and whenever no link is involved. |  [optional] |
 | **isLinkExpired** | **kotlin.Boolean** | Set when the link being used has already passed its expiration date, which is why the entry cannot be opened  even though it is described here. It is null when no link is involved. |  [optional] |
+| **assignedMetadataTemplates** | **kotlin.collections.List&lt;kotlin.Int&gt;** | The IDs of the metadata templates assigned to the file entry. |  [optional] |
+| **metadataMatches** | [**kotlin.collections.List&lt;MetadataMatchDto&gt;**](MetadataMatchDto.md) | Where the search text of the listing was met in the metadata of the entry: one item per string value holding  the text, in the order of the fields. Present only in a listing filtered by text, and only for the entries whose  metadata contain it; an entry found by its title alone carries nothing here. |  [optional] |
 
 
 

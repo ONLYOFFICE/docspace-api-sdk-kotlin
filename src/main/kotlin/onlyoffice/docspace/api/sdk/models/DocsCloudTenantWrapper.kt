@@ -16,16 +16,16 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.DocsCloudTenant
+import onlyoffice.docspace.api.sdk.models.DocsCloudTenantDto
 import onlyoffice.docspace.api.sdk.models.GetPortalPrices200ResponseLinksInner
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The successful API response containing the DocsCloudTenant object.
+ * The successful API response containing the DocsCloudTenantDto object.
  *
- * @param response The DocsCloudTenant object returned by the operation.
+ * @param response The DocsCloudTenantDto object returned by the operation.
  * @param count The total number of items in the response
  * @param links List of links related to the response
  * @param status HTTP status code of the response
@@ -36,7 +36,7 @@ import com.squareup.moshi.JsonClass
 data class DocsCloudTenantWrapper (
 
     @Json(name = "response")
-    val response: DocsCloudTenant? = null,
+    val response: DocsCloudTenantDto? = null,
 
     @Json(name = "count")
     val count: kotlin.Int? = null,

@@ -25,7 +25,7 @@ import com.squareup.moshi.Json
 
 import onlyoffice.docspace.api.sdk.models.ErrorApiResponse
 import onlyoffice.docspace.api.sdk.models.NotificationChannelStatusWrapper
-import onlyoffice.docspace.api.sdk.models.NotificationSettingsRequestsDto
+import onlyoffice.docspace.api.sdk.models.NotificationSettingsRequestDto
 import onlyoffice.docspace.api.sdk.models.NotificationSettingsWrapper
 import onlyoffice.docspace.api.sdk.models.NotificationType
 import onlyoffice.docspace.api.sdk.models.RoomsNotificationSettingsWrapper
@@ -59,10 +59,10 @@ interface NotificationsApi {
      * Reports whether one kind of notification is switched on for the calling user, taking the kind as the integer  `type` in the route: 0 the new-item badges the Files responses carry, 1 the room activity letters, 2 the daily  feed digest, 3 the periodic tips letters. The answer describes the caller's own account only - there is no way  to read another member's settings - and the call is read-only and safe to repeat. Every signed-in member reads  its own settings: the portal owner, a DocSpace administrator, a room administrator, a user and a guest are all  accepted, and no permission is demanded. Badges come back switched on for an account that has not changed  them, while the kinds 1, 2 and 3 come back switched off until they are switched on with  `POST api/2.0/settings/notification`. What comes back is the kind that was asked for together with  `isEnabled`. A `type` outside 0-3 is not recognised and the call fails instead of falling back to a default.  The rooms silenced one by one are listed by `GET api/2.0/settings/notification/rooms`, and the delivery  channels of the installation by `GET api/2.0/settings/notification/channels`.
      * Responses:
      *  - 200: The notification kind that was asked for together with the flag that says whether it is switched on for the calling user
+     *  - 400: The `type` is not one of the notification kinds 0-3
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -103,10 +103,10 @@ interface NotificationsApi {
      * Switches one kind of notification on or off for the calling user: send the kind as `type` - 0 the new-item  badges, 1 the room activity letters, 2 the daily feed digest, 3 the periodic tips letters - together with  `isEnabled`. The change touches the caller's own account only, and repeating the call with the same pair  leaves the account as it is. Every signed-in member configures its own settings: the portal owner, a DocSpace  administrator, a room administrator, a user and a guest are all accepted, and no permission is demanded. With  0 switched off the Files responses report `new` as 0 and mark files as muted; with 1 switched off both the  hourly room digest and the letters a room sends at once, such as an editor mention, stop; with 2 switched off  the daily digest stops; with 3 switched off the tips letters stop. What comes back is an echo of the request  rather than a re-read of the stored state, and a `type` outside 0-3 is echoed as well while nothing is stored,  so confirm the result with `GET api/2.0/settings/notification/{type}`. To silence a single room instead of a  whole kind use `POST api/2.0/settings/notification/rooms`.
      * Responses:
      *  - 200: The notification kind and state as they were sent in the request
+     *  - 400: The request body cannot be read or has no `type`
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -114,11 +114,11 @@ interface NotificationsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-notification-settings/
      *
      *
-     * @param notificationSettingsRequestsDto  (optional)
+     * @param notificationSettingsRequestDto  (optional)
      * @return [NotificationSettingsWrapper]
      */
     @POST("api/2.0/settings/notification")
-    suspend fun setNotificationSettings(@Body notificationSettingsRequestsDto: NotificationSettingsRequestsDto? = null): Response<NotificationSettingsWrapper>
+    suspend fun setNotificationSettings(@Body notificationSettingsRequestDto: NotificationSettingsRequestDto? = null): Response<NotificationSettingsWrapper>
 
     /**
      * POST api/2.0/settings/notification/rooms

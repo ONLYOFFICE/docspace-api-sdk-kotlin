@@ -151,7 +151,7 @@ launch(Dispatchers.IO) {
 
 <a id="saveGreetingSettings"></a>
 # **saveGreetingSettings**
-> StringWrapper saveGreetingSettings (GreetingSettingsRequestsDto greetingSettingsRequestsDto)
+> StringWrapper saveGreetingSettings (GreetingSettingsRequestDto greetingSettingsRequestDto)
 
 Replaces the greeting title of the current portal with the `title` from the request, storing it as the portal  name. The caller needs the portal-settings right of a DocSpace administrator, otherwise the call is refused.  The new caption takes effect at once for every user of the portal and the change is written to the audit  trail; repeating the call with the same title leaves the portal in the same state. A missing `title` or one  longer than 255 characters is rejected as an invalid request before the handler runs. On a cloud portal with a  free or trial plan the title is also matched against the character rule configured for the installation and a  title that breaks it is refused, while a paid cloud plan and a server installation apply no character check.  An empty `title` clears the greeting: the portal falls back to the built-in default caption and  `GET api/2.0/settings/greetingsettings/isdefault` starts answering `true`. What comes back is a localized  confirmation message, not the stored title - read the title with `GET api/2.0/settings/greetingsettings`.
 
@@ -160,7 +160,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **greetingSettingsRequestsDto** | [**GreetingSettingsRequestsDto**](GreetingSettingsRequestsDto.md)|  | [optional] |
+| **greetingSettingsRequestDto** | [**GreetingSettingsRequestDto**](GreetingSettingsRequestDto.md)|  | [optional] |
 
 ### Return type
 
@@ -185,10 +185,10 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(GreetingSettingsApi::class.java)
-val greetingSettingsRequestsDto : GreetingSettingsRequestsDto =  // GreetingSettingsRequestsDto | 
+val greetingSettingsRequestDto : GreetingSettingsRequestDto =  // GreetingSettingsRequestDto | 
 
 launch(Dispatchers.IO) {
-    val result : StringWrapper = webService.saveGreetingSettings(greetingSettingsRequestsDto)
+    val result : StringWrapper = webService.saveGreetingSettings(greetingSettingsRequestDto)
 }
 ```
 

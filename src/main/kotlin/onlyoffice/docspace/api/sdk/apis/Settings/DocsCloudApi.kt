@@ -24,7 +24,7 @@ import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
 import onlyoffice.docspace.api.sdk.models.BooleanWrapper
-import onlyoffice.docspace.api.sdk.models.DocsCloudConfig
+import onlyoffice.docspace.api.sdk.models.DocsCloudConfigRequestDto
 import onlyoffice.docspace.api.sdk.models.DocsCloudConfigWrapper
 import onlyoffice.docspace.api.sdk.models.DocsCloudDevPackRequestDto
 import onlyoffice.docspace.api.sdk.models.DocsCloudQuotaWrapper
@@ -42,7 +42,7 @@ interface DocsCloudApi {
      * Prices the upgrade of the paid Docs Connect subscription of the current portal to Docs Connect Dev Pack for  the requested number of users, without changing the subscription or charging anything. It applies the  same preconditions as the switch itself: the portal must hold an active Docs Connect subscription, must  not already hold a Docs Connect Dev Pack one, and its tariff must not be delayed or unpaid; the quotas and  the state of the current tariff are listed by `GET api/2.0/portal/tariff`. The caller must be a  DocSpace administrator of a portal registered with the billing service. The call is read-only and  idempotent, so it can be repeated for different quantities before any switch is made. It returns the  amount that switching would cost, the three-letter ISO 4217 currency of that amount, the quantity the  amount was calculated for, and the identifier of the billing operation; an empty result means the  billing service could not price the switch, which should then not be attempted. The switch itself is  performed by `POST api/2.0/settings/docscloud/switchtodevpack` with the same `quantity` and takes no  identifier from this response; to price a change in the number of users of a subscription the portal  already has, use `PUT api/2.0/portal/payment/calculatewallet` instead.
      * Responses:
      *  - 200: The cost of switching to Docs Connect Dev Pack for the requested quantity, or an empty result if the billing service could not price it
-     *  - 400: The quantity is below the allowed minimum, the portal has no active Docs Connect subscription, or it already has a Docs Connect Dev Pack subscription
+     *  - 400: The request body cannot be read, the quantity is below the allowed minimum, the portal has no active Docs Connect subscription, or it already has a Docs Connect Dev Pack subscription
      *  - 402: The portal tariff is delayed or not paid, so the switch cannot be priced
      *  - 403: The caller is not a DocSpace administrator, or the billing service is not configured
      *  - 404: The portal is not registered as a billing customer, or the Docs Connect and Docs Connect Dev Pack wallet products are not configured on this installation
@@ -68,7 +68,7 @@ interface DocsCloudApi {
      * Queues a background job that renders the current Docs Connect user quota of the portal into an xlsx file and  saves that file in the My documents folder of the calling user; the report lists the editor and the viewer  users with the type and the expiration date of each, and summarizes the internal, external and remaining users  against the license limits. The file is not ready when the response arrives: poll  `GET api/2.0/settings/docscloud/tenant/quota/report` until `isCompleted` is true, then take the file from  `resultFileId` or `resultFileUrl`, and use `DELETE api/2.0/settings/docscloud/tenant/quota/report` to cancel a  job that is still running. The caller must be a portal administrator allowed to edit the portal settings. The  portal should have an activated Docs Connect tenant: this call does not check that, and without a tenant the job  itself fails and reports the reason in the `error` of the status response. One report per caller runs at a  time: while a report of this user is still being built, the call describes that running job and no second  generation is started, so a repeated call is safe. What comes back is the initial state of the job, with  `percentage` 0 and a created `status`, not the report; the report is a point-in-time snapshot and carries the  generation date in its file name. To read the same data as JSON, without building a file, use  `GET api/2.0/settings/docscloud/tenant/quota`.
      * Responses:
      *  - 200: The initial state of the queued report generation job, with zero progress and an uncompleted status
-     *  - 403: The caller is not allowed to edit the portal settings
+     *  - 403: The caller has no portal-settings right
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
@@ -90,10 +90,10 @@ interface DocsCloudApi {
      * Returns the Docs Connect tenant of the current portal: the Docs Connect server assigned to the portal, with its  address, the date the tenant subscription ends and the payment the tenant was created for. A tenant exists  only after a Docs Connect subscription has been granted, by `POST api/2.0/settings/docscloud/trial` or by a  Docs Connect purchase, and only on an installation where the Docs Connect service is configured. The caller must  be a portal administrator allowed to edit the portal settings. The call is read-only and idempotent, and it  is served from a cache that keeps the tenant for an hour and the absence of a tenant for a minute, so pass  `refresh=true` right after a subscription change to read the current state from Docs Connect instead. In the  result, `address` is the absolute URL of the assigned server, `isActive` tells whether `endDate` is still in  the future, and the dates are in UTC. An empty result means the portal has no Docs Connect tenant yet, which is  the normal state before a subscription and not an error, so this is the operation to call to find out whether  Docs Connect is activated at all. The license and server details, the editing settings, the user quota and the  usage statistics are not part of it: they live in `GET api/2.0/settings/docscloud/tenant/info`,  `.../tenant/config`, `.../tenant/quota` and `.../tenant/usage`, each of which fails with 400 while the  portal has no activated tenant.
      * Responses:
      *  - 200: The Docs Connect tenant of the portal, or an empty result if no Docs Connect tenant is assigned to it
-     *  - 403: The caller is not allowed to edit the portal settings
+     *  - 403: The caller has no portal-settings right
+     *  - 500: The Docs Connect service is not configured on this installation, is unreachable, or answered with an error other than not found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
-     *  - 500: Internal Server Error.
      *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
@@ -115,10 +115,10 @@ interface DocsCloudApi {
      * Responses:
      *  - 200: The configuration of the Docs Connect tenant of the portal, with its security, server, WOPI and IP filter settings
      *  - 400: The portal has no activated Docs Connect tenant, so there is no configuration to return
-     *  - 403: The caller is not allowed to edit the portal settings
+     *  - 403: The caller has no portal-settings right
+     *  - 500: The Docs Connect service is not configured on this installation, is unreachable, or answered with an error other than not found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
-     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -139,10 +139,10 @@ interface DocsCloudApi {
      * Responses:
      *  - 200: The Docs Connect license and server information of the portal, with the user limits of the license and the usage statistics for the current period
      *  - 400: The portal has no activated Docs Connect tenant, so there is no license information to return
-     *  - 403: The caller is not allowed to edit the portal settings
+     *  - 403: The caller has no portal-settings right
+     *  - 500: The Docs Connect service is not configured on this installation, is unreachable, or answered with an error other than not found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
-     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -163,10 +163,10 @@ interface DocsCloudApi {
      * Responses:
      *  - 200: The editor and viewer users of the Docs Connect tenant of the portal, with the expiration date of each entry
      *  - 400: The portal has no activated Docs Connect tenant, so there is no user quota to return
-     *  - 403: The caller is not allowed to edit the portal settings
+     *  - 403: The caller has no portal-settings right
+     *  - 500: The Docs Connect service is not configured on this installation, is unreachable, or answered with an error other than not found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
-     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -186,7 +186,7 @@ interface DocsCloudApi {
      * Returns the state of the Docs Connect user quota report that the current user started with  `POST api/2.0/settings/docscloud/tenant/quota/report`, so that the caller can follow the generation and pick  up the resulting file. It reports the caller's own job only: a report started by another administrator is not  visible here, and an empty result means this user has no job, because none was started, because it was  terminated, or because a finished one has already been cleared (a job state is kept for a day, and starting a  new report drops the previous finished one); that is a normal state and not an error. The caller must be a  portal administrator allowed to edit the portal settings. The call is read-only and idempotent, and it is  meant to be polled while the job runs. In the result, `percentage` goes from 0 to 100 and `isCompleted`  becomes true both on success and on failure, so check `error`: it is empty when the report was built and  carries the failure message otherwise;  `resultFileId`, `resultFileName` and `resultFileUrl` are filled in only once the file exists, and that file  also stays in the My documents folder of the caller. Use the `POST` operation on this path to start a report  and the `DELETE` one to cancel it.
      * Responses:
      *  - 200: The state of the Docs Connect quota report job of the caller, or an empty result if there is no such job
-     *  - 403: The caller is not allowed to edit the portal settings
+     *  - 403: The caller has no portal-settings right
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
@@ -209,10 +209,10 @@ interface DocsCloudApi {
      * Responses:
      *  - 200: The number of active Docs Connect users of the portal and the date the count starts from
      *  - 400: The portal has no activated Docs Connect tenant, so there is no usage information to return
-     *  - 403: The caller is not allowed to edit the portal settings
+     *  - 403: The caller has no portal-settings right
+     *  - 500: The Docs Connect service is not configured on this installation, is unreachable, or answered with an error other than not found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
-     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -234,11 +234,11 @@ interface DocsCloudApi {
      *  - 200: Boolean value: true if the trial subscription is activated, false if the billing service declines it
      *  - 400: The portal already has a Docs Connect trial, Docs Connect or Docs Connect Dev Pack subscription
      *  - 402: The portal tariff is delayed or not paid, so the trial cannot be started
-     *  - 403: The caller is not allowed to edit the portal settings, or the billing service is not configured
+     *  - 403: The caller has no portal-settings right, the billing service is not configured, or the trial was granted but the address of the assigned Docs Connect server would push the Content Security Policy header over its size limit
      *  - 404: The Docs Connect trial quota is not available on this installation
+     *  - 500: The trial was granted, but reading the Docs Connect tenant afterwards failed: the Docs Connect service is not configured on this installation, has no tenant for the portal yet, is unreachable, or answered with an error
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
-     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -257,7 +257,7 @@ interface DocsCloudApi {
      * Upgrades the paid Docs Connect subscription of the current portal to Docs Connect Dev Pack for the requested  number of users, charging the price difference to the portal wallet and moving the Docs Connect license  to the new product. The portal must hold an active Docs Connect subscription, must not already hold a  Docs Connect Dev Pack one, and its tariff must not be delayed or unpaid: the quotas and the state of the  current tariff are listed by `GET api/2.0/portal/tariff`, and the amount that will be charged is  returned by `POST api/2.0/settings/docscloud/calculatedevpack` for the same `quantity`. The caller  must be a DocSpace administrator of a portal registered with the billing service. The switch is  synchronous, mutating and not idempotent: repeating it after a successful call fails with 400, and  concurrent calls for one portal are serialized so that the wallet is charged only once. It returns  `true` when the subscription has been switched, and `false` when the billing service declines or  fails to perform the switch, in which case nothing is charged and the portal stays on Docs Connect.  Only the Docs Connect to Docs Connect Dev Pack direction is supported: to change the number of users of a  subscription the portal already has, or to schedule a reversion from Docs Connect Dev Pack back to  Docs Connect at the next billing period, use `PUT api/2.0/portal/payment/updatewallet` instead.
      * Responses:
      *  - 200: Boolean value: true if the subscription is switched to Docs Connect Dev Pack, false if the billing service declines it
-     *  - 400: The quantity is below the allowed minimum, the portal has no active Docs Connect subscription, or it already has a Docs Connect Dev Pack subscription
+     *  - 400: The request body cannot be read, the quantity is below the allowed minimum, the portal has no active Docs Connect subscription, or it already has a Docs Connect Dev Pack subscription
      *  - 402: The portal tariff is delayed or not paid, so the subscription cannot be switched
      *  - 403: The caller is not a DocSpace administrator, or the billing service is not configured
      *  - 404: The portal is not registered as a billing customer, or the Docs Connect and Docs Connect Dev Pack wallet products are not configured on this installation
@@ -283,7 +283,7 @@ interface DocsCloudApi {
      * Cancels the Docs Connect user quota report that the current user started with  `POST api/2.0/settings/docscloud/tenant/quota/report` and removes its job, so that a new report can be started  right away. There is no precondition: the call is accepted even when this user has no report job at all, and  it affects the caller's own job only, never one started by another administrator. The caller must be a portal  administrator allowed to edit the portal settings. The cancellation is asynchronous and idempotent: 200 means  the request has been queued for the report worker, not that the job has already stopped, so poll  `GET api/2.0/settings/docscloud/tenant/quota/report` until it returns an empty result. Nothing is returned in  the body. A report file that has already been saved in the My documents folder of the caller is left there  and has to be deleted through the file operations if it is no longer wanted.
      * Responses:
      *  - 200: The termination request has been queued for the report worker; the response has no body
-     *  - 403: The caller is not allowed to edit the portal settings
+     *  - 403: The caller has no portal-settings right
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
@@ -305,11 +305,11 @@ interface DocsCloudApi {
      * Replaces the configuration of the Docs Connect tenant of the current portal: its name, the security secret and  header name, the file size limit and anonymous access switch of the server, the WOPI switch and the IP filter  rules; it returns the configuration as Docs Connect stored it. The portal must have an activated Docs Connect tenant,  granted by `POST api/2.0/settings/docscloud/trial` or by a Docs Connect purchase: an empty result from  `GET api/2.0/settings/docscloud/tenant` means there is none and this call fails with 400. Read the current  values with `GET api/2.0/settings/docscloud/tenant/config` first and send back whole sections: the sections  left out of the request are not sent to Docs Connect at all, while a section that is present is sent with all of  its fields, so a field left unset inside it goes out as `0`, `false` or empty. The caller must be a portal  administrator allowed to edit the portal settings, on an installation where the Docs Connect service is  configured. The call is mutating,  synchronous and idempotent, it is recorded in the portal audit trail, and it drops the cached configuration  itself, so the next read returns the new values without `refresh=true`. The `tenantName`, `security.secret`,  `security.header` and every `ipFilter.rules` address are capped at 255 characters and `server.fileSizeLimit`  at 209715200 bytes (200 MB); a value outside those bounds is rejected with 400 before anything reaches  Docs Connect. It changes these settings only, never the subscription, the user quota or the license.
      * Responses:
      *  - 200: The configuration of the Docs Connect tenant as Docs Connect stored it after the update
-     *  - 400: A text field is longer than 255 characters, the file size limit is outside 0-209715200 bytes, or the portal has no activated Docs Connect tenant
-     *  - 403: The caller is not allowed to edit the portal settings
+     *  - 400: The request body cannot be read, a text field is longer than 255 characters, the file size limit is outside 0-209715200 bytes, or the portal has no activated Docs Connect tenant
+     *  - 403: The caller has no portal-settings right
+     *  - 500: The Docs Connect service is not configured on this installation, is unreachable, or answered with an error other than not found, including a rejection of the new values
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
-     *  - 500: Internal Server Error.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -317,10 +317,10 @@ interface DocsCloudApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-tenant-config/
      *
      *
-     * @param docsCloudConfig  (optional)
+     * @param docsCloudConfigRequestDto  (optional)
      * @return [DocsCloudConfigWrapper]
      */
     @PUT("api/2.0/settings/docscloud/tenant/config")
-    suspend fun updateTenantConfig(@Body docsCloudConfig: DocsCloudConfig? = null): Response<DocsCloudConfigWrapper>
+    suspend fun updateTenantConfig(@Body docsCloudConfigRequestDto: DocsCloudConfigRequestDto? = null): Response<DocsCloudConfigWrapper>
 
 }

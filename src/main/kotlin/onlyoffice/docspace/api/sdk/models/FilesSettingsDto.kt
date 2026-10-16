@@ -16,9 +16,9 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.AutoCleanUpData
+import onlyoffice.docspace.api.sdk.models.AutoCleanUpDataDto
 import onlyoffice.docspace.api.sdk.models.FilesSettingsDtoInternalFormats
-import onlyoffice.docspace.api.sdk.models.OrderBy
+import onlyoffice.docspace.api.sdk.models.OrderByDto
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -232,7 +232,7 @@ data class FilesSettingsDto (
     val hideConfirmRoomLifetime: kotlin.Boolean? = null,
 
     @Json(name = "defaultOrder")
-    val defaultOrder: OrderBy? = null,
+    val defaultOrder: OrderByDto? = null,
 
     @Json(name = "forcesave")
     val forcesave: kotlin.Boolean? = null,
@@ -253,7 +253,7 @@ data class FilesSettingsDto (
     val downloadTarGz: kotlin.Boolean? = null,
 
     @Json(name = "automaticallyCleanUp")
-    val automaticallyCleanUp: AutoCleanUpData? = null,
+    val automaticallyCleanUp: AutoCleanUpDataDto? = null,
 
     @Json(name = "canSearchByContent")
     val canSearchByContent: kotlin.Boolean? = null,

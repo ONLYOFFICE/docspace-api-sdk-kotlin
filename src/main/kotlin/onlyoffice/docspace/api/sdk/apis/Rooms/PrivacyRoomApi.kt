@@ -35,6 +35,7 @@ interface PrivacyRoomApi {
      * Responses:
      *  - 204: The encryption key is deleted. Answered 200 with the remaining keys before DocSpace 4.0
      *  - 400: The key identifier is not a valid GUID
+     *  - 403: The caller is a guest, who cannot own encryption keys
      *  - 404: The encryption key is not found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
@@ -79,10 +80,12 @@ interface PrivacyRoomApi {
      * Returns the encryption keys that give access to a private room: one entry per key held by each of its members,  which is what a client needs in order to encrypt a file key for everyone allowed to open the room's content.  Only the caller's own entries carry `privateKeyEnc`; another member's entry carries the public half alone, and  an entry with no public half is not reported as access at all. The room has to be a private one, a room  created without private mode holds no access keys and the call is refused, and it has to still exist: an  unknown room, or one already moved to Trash, is reported as missing, while an archived private room still  answers. Access follows room membership and not portal role: any member from read access upwards receives the  full set, whereas a DocSpace administrator who is not a member is refused, and so is a caller holding no key  of their own, the room creator included once they delete their last key. The call is read-only. For the keys  of a single file use `GET api/2.0/files/file/{fileId}/publickeys`.
      * Responses:
      *  - 200: The encryption keys associated with the privacy room
+     *  - 400: The room is not a private room
+     *  - 403: The caller has no read access to the room or holds no encryption key of their own
+     *  - 404: The room is not found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -103,6 +106,7 @@ interface PrivacyRoomApi {
      * Responses:
      *  - 200: The encryption key is replaced
      *  - 400: The key material is missing, blank or too large to be stored
+     *  - 403: The caller is a guest, who cannot own encryption keys
      *  - 404: The encryption key to replace is not found
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
@@ -127,6 +131,7 @@ interface PrivacyRoomApi {
      * Responses:
      *  - 201: The encryption key is created. Answered 200 before DocSpace 4.0; the response body is unchanged
      *  - 400: The key material is missing, blank or too large to be stored
+     *  - 403: The caller is a guest, who cannot own encryption keys
      *  - 409: A key with the same identifier already exists
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.

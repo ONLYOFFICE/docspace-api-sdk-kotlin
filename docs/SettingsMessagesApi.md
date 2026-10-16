@@ -61,7 +61,7 @@ launch(Dispatchers.IO) {
 
 <a id="sendAdminMail"></a>
 # **sendAdminMail**
-> StringWrapper sendAdminMail (AdminMessageSettingsRequestsDto adminMessageSettingsRequestsDto)
+> StringWrapper sendAdminMail (AdminMessageSettingsRequestDto adminMessageSettingsRequestDto)
 
 Sends a message from someone who cannot get into the portal to its administrators - the contact form the  sign-in page offers unauthenticated visitors. No token is needed. The form has to be published first with  `POST api/2.0/settings/messagesettings` unless the portal's payment has lapsed, otherwise nothing is sent;  `enableAdmMess` in `GET api/2.0/settings` reports whether the call is worth making. `email` is the address the  administrators answer to and has to be a real address, and `message` is reduced to plain text first, so a body  carrying nothing but markup counts as empty - either fault is refused with 400. When the caller is not signed  in and this installation has a CAPTCHA configured, `recaptchaResponse` has to carry a solved challenge of the  `recaptchaType` that `GET api/2.0/settings` publishes together with the site key, and a missing or stale  answer refuses the call. `culture` picks the language of the letter. Delivery is queued and reaches the  administrators subscribed to administrator notifications, so a confirmed call means accepted rather than read,  and the answer is a localized confirmation. Attempts are rate limited per address and per operation, and  further ones are refused with 429.
 
@@ -70,7 +70,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **adminMessageSettingsRequestsDto** | [**AdminMessageSettingsRequestsDto**](AdminMessageSettingsRequestsDto.md)|  | [optional] |
+| **adminMessageSettingsRequestDto** | [**AdminMessageSettingsRequestDto**](AdminMessageSettingsRequestDto.md)|  | [optional] |
 
 ### Return type
 
@@ -95,10 +95,10 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(MessagesApi::class.java)
-val adminMessageSettingsRequestsDto : AdminMessageSettingsRequestsDto =  // AdminMessageSettingsRequestsDto | 
+val adminMessageSettingsRequestDto : AdminMessageSettingsRequestDto =  // AdminMessageSettingsRequestDto | 
 
 launch(Dispatchers.IO) {
-    val result : StringWrapper = webService.sendAdminMail(adminMessageSettingsRequestsDto)
+    val result : StringWrapper = webService.sendAdminMail(adminMessageSettingsRequestDto)
 }
 ```
 
@@ -110,7 +110,7 @@ launch(Dispatchers.IO) {
 
 <a id="sendJoinInviteMail"></a>
 # **sendJoinInviteMail**
-> StringWrapper sendJoinInviteMail (AdminMessageBaseSettingsRequestsDto adminMessageBaseSettingsRequestsDto)
+> StringWrapper sendJoinInviteMail (AdminMessageBaseSettingsRequestDto adminMessageBaseSettingsRequestDto)
 
 Sends an invitation email with a join link to the address in the request - the self-registration the sign-in  page's register link performs. No token is needed. The portal has to publish a trusted-domain policy first,  saved with `POST api/2.0/settings/maildomainsettings`: without one there is nothing to join and every caller  alike is answered with 405 - the same condition `GET api/2.0/settings` reports as `enabledJoin`. `email` has  to be a real address written in ASCII rather than an internationalized one, must not already belong to a  portal member, and, when the policy names domains rather than accepting all of them, has to end with one of  them - each of those faults is refused with 400. `culture` picks the language of the letter. The invitation is  not an account: the invitee becomes a member only after following the link, and the role it grants, user or  room administrator, follows the trusted-domain settings and drops to user once the portal's paid places are  taken. Where the installation caps invitations, an accepted call spends one of those counted by  `invitationLimit`, and only about a dozen calls from one address in two minutes are accepted. What comes back  is a localized confirmation.
 
@@ -119,7 +119,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **adminMessageBaseSettingsRequestsDto** | [**AdminMessageBaseSettingsRequestsDto**](AdminMessageBaseSettingsRequestsDto.md)|  | [optional] |
+| **adminMessageBaseSettingsRequestDto** | [**AdminMessageBaseSettingsRequestDto**](AdminMessageBaseSettingsRequestDto.md)|  | [optional] |
 
 ### Return type
 
@@ -144,10 +144,10 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(MessagesApi::class.java)
-val adminMessageBaseSettingsRequestsDto : AdminMessageBaseSettingsRequestsDto =  // AdminMessageBaseSettingsRequestsDto | 
+val adminMessageBaseSettingsRequestDto : AdminMessageBaseSettingsRequestDto =  // AdminMessageBaseSettingsRequestDto | 
 
 launch(Dispatchers.IO) {
-    val result : StringWrapper = webService.sendJoinInviteMail(adminMessageBaseSettingsRequestsDto)
+    val result : StringWrapper = webService.sendJoinInviteMail(adminMessageBaseSettingsRequestDto)
 }
 ```
 

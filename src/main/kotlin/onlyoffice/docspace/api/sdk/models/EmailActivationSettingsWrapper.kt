@@ -16,16 +16,16 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.EmailActivationSettings
+import onlyoffice.docspace.api.sdk.models.EmailActivationSettingsDto
 import onlyoffice.docspace.api.sdk.models.GetPortalPrices200ResponseLinksInner
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The successful API response containing the EmailActivationSettings object.
+ * The successful API response containing the EmailActivationSettingsDto object.
  *
- * @param response The EmailActivationSettings object returned by the operation.
+ * @param response The EmailActivationSettingsDto object returned by the operation.
  * @param count The total number of items in the response
  * @param links List of links related to the response
  * @param status HTTP status code of the response
@@ -36,7 +36,7 @@ import com.squareup.moshi.JsonClass
 data class EmailActivationSettingsWrapper (
 
     @Json(name = "response")
-    val response: EmailActivationSettings? = null,
+    val response: EmailActivationSettingsDto? = null,
 
     @Json(name = "count")
     val count: kotlin.Int? = null,

@@ -24,7 +24,7 @@ import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
 import onlyoffice.docspace.api.sdk.models.ErrorApiResponse
-import onlyoffice.docspace.api.sdk.models.TenantDevToolsAccessSettingsDto
+import onlyoffice.docspace.api.sdk.models.TenantDevToolsAccessSettingsRequestDto
 import onlyoffice.docspace.api.sdk.models.TenantDevToolsAccessSettingsWrapper
 
 interface AccessToDevToolsApi {
@@ -34,6 +34,7 @@ interface AccessToDevToolsApi {
      * Sets whether the portal restricts the `User` role from using the developer tools (API keys, OAuth apps,  webhooks); `RoomAdmin` and `DocSpaceAdmin` are never affected by this setting. Requires Owner or DocSpaceAdmin  (the EditPortalSettings permission). This is a mutating, idempotent, portal-wide call: it applies to every  `User` on the tenant immediately. It returns the saved setting; read the current value at any time from  `GET api/2.0/settings/devtoolsaccess`.
      * Responses:
      *  - 200: Saved developer tools access restriction for the `User` role
+     *  - 403: The caller has no portal-settings right
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
@@ -45,10 +46,10 @@ interface AccessToDevToolsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/set-tenant-dev-tools-access-settings/
      *
      *
-     * @param tenantDevToolsAccessSettingsDto  (optional)
+     * @param tenantDevToolsAccessSettingsRequestDto  (optional)
      * @return [TenantDevToolsAccessSettingsWrapper]
      */
     @POST("api/2.0/settings/devtoolsaccess")
-    suspend fun setTenantDevToolsAccessSettings(@Body tenantDevToolsAccessSettingsDto: TenantDevToolsAccessSettingsDto? = null): Response<TenantDevToolsAccessSettingsWrapper>
+    suspend fun setTenantDevToolsAccessSettings(@Body tenantDevToolsAccessSettingsRequestDto: TenantDevToolsAccessSettingsRequestDto? = null): Response<TenantDevToolsAccessSettingsWrapper>
 
 }

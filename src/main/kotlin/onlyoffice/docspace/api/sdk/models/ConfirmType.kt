@@ -21,9 +21,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * [EmpInvite - Emp invite, LinkInvite - Link invite, PortalSuspend - Portal suspend, PortalContinue - Portal continue, PortalRemove - Portal remove, DnsChange - Dns change, PortalOwnerChange - Portal owner change, Activation - Activation, EmailChange - Email change, EmailActivation - Email activation, PasswordChange - Password change, ProfileRemove - Profile remove, PhoneActivation - Phone activation, PhoneAuth - Phone auth, Auth - Auth, TfaActivation - Tfa activation, TfaAuth - Tfa auth, Wizard - Wizard, GuestShareLink - Guest share link]
+ * [EmpInvite - Emp invite, LinkInvite - Link invite, PortalSuspend - Portal suspend, PortalContinue - Portal continue, PortalRemove - Portal remove, DnsChange - Dns change, PortalOwnerChange - Portal owner change, Activation - Activation, EmailChange - Email change, EmailActivation - Email activation, PasswordChange - Password change, ProfileRemove - Profile remove, PhoneActivation - Phone activation, PhoneAuth - Phone auth, Auth - Auth, TfaActivation - Tfa activation, TfaAuth - Tfa auth, Wizard - Wizard, GuestShareLink - Guest share link, PortalUnblock - Portal unblock]
  *
- * Values: EmpInvite,LinkInvite,PortalSuspend,PortalContinue,PortalRemove,DnsChange,PortalOwnerChange,Activation,EmailChange,EmailActivation,PasswordChange,ProfileRemove,PhoneActivation,PhoneAuth,Auth,TfaActivation,TfaAuth,Wizard,GuestShareLink
+ * Values: EmpInvite,LinkInvite,PortalSuspend,PortalContinue,PortalRemove,DnsChange,PortalOwnerChange,Activation,EmailChange,EmailActivation,PasswordChange,ProfileRemove,PhoneActivation,PhoneAuth,Auth,TfaActivation,TfaAuth,Wizard,GuestShareLink,PortalUnblock
  */
 
 @JsonClass(generateAdapter = false)
@@ -84,7 +84,10 @@ enum class ConfirmType(val value: kotlin.String) {
     Wizard("Wizard"),
 
     @Json(name = "GuestShareLink")
-    GuestShareLink("GuestShareLink");
+    GuestShareLink("GuestShareLink"),
+
+    @Json(name = "PortalUnblock")
+    PortalUnblock("PortalUnblock");
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use

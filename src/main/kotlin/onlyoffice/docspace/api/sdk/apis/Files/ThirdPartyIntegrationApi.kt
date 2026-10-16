@@ -27,19 +27,21 @@ import onlyoffice.docspace.api.sdk.models.ArrayArrayWrapper
 import onlyoffice.docspace.api.sdk.models.ErrorApiResponse
 import onlyoffice.docspace.api.sdk.models.ProviderArrayWrapper
 import onlyoffice.docspace.api.sdk.models.StringWrapper
+import onlyoffice.docspace.api.sdk.models.ThirdPartyAccountArrayWrapper
 import onlyoffice.docspace.api.sdk.models.ThirdPartyBackupRequestDto
 import onlyoffice.docspace.api.sdk.models.ThirdPartyFolderArrayWrapper
 import onlyoffice.docspace.api.sdk.models.ThirdPartyFolderWrapper
-import onlyoffice.docspace.api.sdk.models.ThirdPartyParamsArrayWrapper
 import onlyoffice.docspace.api.sdk.models.ThirdPartyRequestDto
 
 interface ThirdPartyIntegrationApi {
     /**
      * DELETE api/2.0/files/thirdparty/{providerId}
      * Remove a third-party account
-     * Disconnects a third-party storage account from the portal and returns the ID of the folder that stood for it,  in the `provider-accountId` form the Files operations use for third-party entries. Take `providerId` from  `GET api/2.0/files/thirdparty`: it is the numeric account ID, not that composed folder ID. The member who  connected the account can remove it; another member's request is refused unless they hold delete rights on the  folder it stands for. Nothing is deleted at the storage service: the files stay with the provider, and what  goes away is the portal's link to them together with the stored credentials, the sharing records and the tags  kept for its entries. A room that was created on this account stops being available. When the account being  removed is the one connected for backups by `POST api/2.0/files/thirdparty/backup`, its backup schedule is  deleted as well. The removal cannot be repeated: once the account is gone the same ID is refused rather than  confirmed, so treat the first successful answer as the record of it.
+     * Disconnects a third-party storage account from the portal and returns the ID of the folder that stood for it,  in the `provider-accountId` form the Files operations use for third-party entries. Take `providerId` from  `GET api/2.0/files/thirdparty`: it is the numeric account ID, not that composed folder ID. The member who  connected the account can remove it; another member's request is refused unless they hold delete rights on the  folder it stands for. Nothing is deleted at the storage service: the files stay with the provider, and what  goes away is the portal's link to them together with the stored credentials, the sharing records and the tags  kept for its entries. An account a room was created on is refused with 403 while the room exists: delete the  room instead, which disconnects the account along with it. When the account being  removed is the one connected for backups by `POST api/2.0/files/thirdparty/backup`, its backup schedule is  deleted as well. The removal cannot be repeated: once the account is gone the same ID is refused rather than  confirmed, so treat the first successful answer as the record of it.
      * Responses:
      *  - 200: The ID of the folder that stood for the removed account
+     *  - 403: The caller neither connected the account nor has the right to delete the folder it stands for
+     *  - 404: No third-party account with this ID exists on the portal
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
@@ -159,10 +161,10 @@ interface ThirdPartyIntegrationApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-third-party-accounts/
      *
      *
-     * @return [ThirdPartyParamsArrayWrapper]
+     * @return [ThirdPartyAccountArrayWrapper]
      */
     @GET("api/2.0/files/thirdparty")
-    suspend fun getThirdPartyAccounts(): Response<ThirdPartyParamsArrayWrapper>
+    suspend fun getThirdPartyAccounts(): Response<ThirdPartyAccountArrayWrapper>
 
     /**
      * POST api/2.0/files/thirdparty
@@ -170,10 +172,12 @@ interface ThirdPartyIntegrationApi {
      * Connects an account at a third-party storage service to the portal, or re-authenticates one that is already  connected, and returns the folder that now stands for its root. Send `providerId` to update an existing  account and omit it to connect a new one; the accepted `providerKey` values come from  `GET api/2.0/files/thirdparty/providers`. The credentials to send depend on the service: the OAuth services  take `token`, which is the authorization code from their consent screen and not an access token, while the  WebDAV family and SharePoint take `login` with `password`, plus `url` where the server address is not fixed.  Credentials are verified against the service before anything is stored, so a wrong password is refused and  nothing is saved. The caller needs the rights to create rooms, and the portal-wide third-party switch has to  be on, otherwise the call is refused. A new account is attached to the Rooms section and becomes available as  room storage for `POST api/2.0/files/rooms/thirdparty/{id}`. Connecting twice with the same title creates two  separate accounts.
      * Responses:
      *  - 200: The root folder of the connected account
+     *  - 400: The request body cannot be read or has no `customerTitle` or `providerKey`, `providerId` is neither a number nor a numeric string, or, for a new account, `providerKey` names no known storage service or the `token` or `password` the service needs is missing
+     *  - 403: The caller cannot create rooms, the portal-wide third-party switch is off or no storage service is enabled, the title of a new account is empty once invalid characters are removed, the service rejects the credentials, or `providerId` names an account connected by another member
+     *  - 404: `providerId` names no third-party account on the portal
+     *  - 500: The storage service cannot be reached or fails while the credentials are checked
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
-     *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -193,10 +197,11 @@ interface ThirdPartyIntegrationApi {
      * Connects the third-party storage account the portal writes its backups to, and returns the folder that stands  for its root. Only a portal administrator may call it, and the portal-wide third-party switch has to be on;  other callers are refused. The account is portal-wide and single: a second call does not add another one but  re-authenticates and retitles the existing one, which makes the operation safe to repeat with the same body.  The credentials follow the same rules as in `POST api/2.0/files/thirdparty` - an authorization code in `token`  for the OAuth services, `login` with `password` and, where the server address is not fixed, `url` for the  WebDAV family and SharePoint - and are verified against the service before anything is stored, so a wrong  password leaves the previous account untouched. The account is deliberately absent from  `GET api/2.0/files/thirdparty`; read it back with `GET api/2.0/files/thirdparty/backup` and remove it with  `DELETE api/2.0/files/thirdparty/{providerId}`.
      * Responses:
      *  - 200: The root folder of the backup storage account
+     *  - 400: The request body cannot be read, `providerKey` names no known storage service, or, while no backup account is connected yet, the `token` or `password` the service needs is missing
+     *  - 403: The caller is not a DocSpace administrator, the portal-wide third-party switch is off or no storage service is enabled, the service rejects the credentials, or, while no backup account is connected yet, the title is empty once invalid characters are removed
+     *  - 500: The storage service cannot be reached or fails while the credentials are checked
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
-     *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *

@@ -23,10 +23,10 @@ import onlyoffice.docspace.api.sdk.apis.Files.FoldersApi
 import onlyoffice.docspace.api.sdk.apis.Rooms.RoomsApi
 import onlyoffice.docspace.api.sdk.apis.Backup.BackupApi
 
-import onlyoffice.docspace.api.sdk.models.AuthRequestsDto
-import onlyoffice.docspace.api.sdk.models.CreateFolder
-import onlyoffice.docspace.api.sdk.models.DeleteFolder
-import onlyoffice.docspace.api.sdk.models.BackupDto
+import onlyoffice.docspace.api.sdk.models.AuthRequestDto
+import onlyoffice.docspace.api.sdk.models.CreateFolderRequest
+import onlyoffice.docspace.api.sdk.models.DeleteFolderRequest
+import onlyoffice.docspace.api.sdk.models.StartBackupRequestDto
 import onlyoffice.docspace.api.sdk.models.SearchArea
 import onlyoffice.docspace.api.sdk.models.SortOrder
 import onlyoffice.docspace.api.sdk.models.BackupStorageType
@@ -48,7 +48,7 @@ fun main() = runBlocking {
     // --- AUTH ---
     val authApi = apiClient.createService(AuthenticationApi::class.java)
 
-    val authDto = AuthRequestsDto(
+    val authDto = AuthRequestDto(
         userName = "example@onlyoffice.com",
         password = "11111111"
     )
@@ -67,17 +67,17 @@ fun main() = runBlocking {
         ?: error("Unable to get the My folder id")
     println("My folder id: $myFolderId")
 
-    val created = foldersApi.createFolder(myFolderId, CreateFolder(title = "TestTitle"))
+    val created = foldersApi.createFolder(myFolderId, CreateFolderRequest(title = "TestTitle"))
     val newFolderId = created.body()?.response?.id
         ?: error("Unable to create the folder")
     println("Created folder: $newFolderId")
 
-    val renamed = foldersApi.renameFolder(newFolderId, CreateFolder(title = "Updated title"))
+    val renamed = foldersApi.renameFolder(newFolderId, CreateFolderRequest(title = "Updated title"))
     println("My folder title: ${renamed.body()?.response?.title}")
 
     val deleted = foldersApi.deleteFolder(
         newFolderId,
-        DeleteFolder(immediately = true, deleteAfter = false)
+        DeleteFolderRequest(immediately = true, deleteAfter = false)
     )
     println("Folder deleted status: ${deleted.code()}")
 
@@ -97,7 +97,7 @@ fun main() = runBlocking {
     val backupApi = apiClient.createService(BackupApi::class.java)
 
     val backupResponse = backupApi.startBackup(
-        BackupDto(dump = false, storageType = BackupStorageType.DataStore)
+        StartBackupRequestDto(dump = false, storageType = BackupStorageType.DataStore)
     )
 
     // Retrofit does not throw on HTTP errors, so the response must be checked explicitly.

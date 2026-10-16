@@ -57,7 +57,7 @@ launch(Dispatchers.IO) {
 
 <a id="updateCookieSettings"></a>
 # **updateCookieSettings**
-> StringWrapper updateCookieSettings (CookieSettingsRequestsDto cookieSettingsRequestsDto)
+> StringWrapper updateCookieSettings (CookieSettingsRequestDto cookieSettingsRequestDto)
 
 Stores how long an authentication session of this portal stays valid: `lifeTime` in minutes together with the  `enabled` flag that switches the limit on. The caller needs the portal-settings right of a DocSpace  administrator - the portal owner and a DocSpace administrator qualify, any other member is refused - and on an  installation whose configuration hides the cookie section nothing is stored and the call is answered with 402.  A `lifeTime` above 9999 minutes is not rejected but clamped to 9999, while 0 or less clears the number  instead, which with `enabled` true leaves sessions that never expire on their own. Any positive `lifeTime`  raises the session version of the portal: every session issued before the call stops being accepted, and with  `enabled` true the connections behind them are dropped as well. The caller is signed in again inside the same  call and gets a fresh session cookie in the response, so a client that keeps sending the token it held before  this call is the one locked out. The change is recorded in the audit trail. What comes back is a localized  confirmation message; read the stored pair with `GET api/2.0/settings/cookiesettings`.
 
@@ -66,7 +66,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **cookieSettingsRequestsDto** | [**CookieSettingsRequestsDto**](CookieSettingsRequestsDto.md)|  | [optional] |
+| **cookieSettingsRequestDto** | [**CookieSettingsRequestDto**](CookieSettingsRequestDto.md)|  | [optional] |
 
 ### Return type
 
@@ -91,10 +91,10 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(CookiesApi::class.java)
-val cookieSettingsRequestsDto : CookieSettingsRequestsDto =  // CookieSettingsRequestsDto | 
+val cookieSettingsRequestDto : CookieSettingsRequestDto =  // CookieSettingsRequestDto | 
 
 launch(Dispatchers.IO) {
-    val result : StringWrapper = webService.updateCookieSettings(cookieSettingsRequestsDto)
+    val result : StringWrapper = webService.updateCookieSettings(cookieSettingsRequestDto)
 }
 ```
 

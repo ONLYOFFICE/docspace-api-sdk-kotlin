@@ -41,11 +41,14 @@ interface AIPromptsApi {
     /**
      * POST api/2.0/ai/prompts/create
      * Save a prompt
-     * Saves a new prompt in the caller's own prompt library and returns it. The name has to be non-empty and unique inside its folder, and `folderId` has to name an existing folder - omit it to save the prompt at the root. Prompts are per-user: another user's library is never visible here, and no permission beyond having AI enabled is needed. The answer carries the stored prompt including the ID to use with the update, move and delete operations.
+     * Saves a new prompt in the caller's own prompt library and returns it. `name` and `text` have to be strings and `folderId`, when sent, a string or null, or the call answers 400 before the library is touched. The name has to be non-empty and unique inside its folder, and `folderId` has to name an existing folder - omit it to save the prompt at the root. A refusal keeps the `{ success: false, error }` body but answers 400 for an empty value, 404 for an unknown folder and 409 for a name already in use. Prompts are per-user: another user's library is never visible here, and no permission beyond having AI enabled is needed. The answer carries the stored prompt including the ID to use with the update, move and delete operations.
      * Responses:
      *  - 200: Whether the prompt was saved, with it in `prompt`.
+     *  - 400: `name` or `text` is missing, empty or not a string, or `folderId` is neither a string nor null.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
-     *  - 403: AI is disabled for this portal, or the caller is a guest. Relayed from the DocSpace AI service.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
+     *  - 404: `folderId` names no folder of the caller's.
+     *  - 409: A prompt of that name already sits in the folder.
      *  - 413: The request body is larger than 100 KB, the JSON parser's limit on this route.
      *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
      *
@@ -62,11 +65,13 @@ interface AIPromptsApi {
     /**
      * POST api/2.0/ai/prompts/create-folder
      * Create folder
-     * Creates a folder in the caller's prompt library and returns it. The name has to be non-empty and unique across that library. Folders do not nest: there is one flat level, so a folder cannot be created inside another. The answer carries the folder ID to use as `folderId` when saving or moving prompts.
+     * Creates a folder in the caller's prompt library and returns it. The name has to be a non-empty string and unique across that library - a non-string or empty one answers 400, a name in use 409, both with the `{ success: false, error }` body. Folders do not nest: there is one flat level, so a folder cannot be created inside another. The answer carries the folder ID to use as `folderId` when saving or moving prompts.
      * Responses:
      *  - 200: Whether the folder was created, with it in `folder`.
+     *  - 400: `name` is missing, empty or not a string.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
-     *  - 403: AI is disabled for this portal, or the caller is a guest. Relayed from the DocSpace AI service.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
+     *  - 409: A folder of that name already exists.
      *  - 413: The request body is larger than 100 KB, the JSON parser's limit on this route.
      *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
      *
@@ -74,11 +79,11 @@ interface AIPromptsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-create-folder/
      *
      *
-     * @param body The name of the folder to create, as a bare JSON string.
+     * @param aiPromptsCreateFolderRequest The name of the folder to create, as a bare JSON string.
      * @return [AiFolderMutationResult]
      */
     @POST("api/2.0/ai/prompts/create-folder")
-    suspend fun aiPromptsCreateFolder(@Body body: kotlin.String): Response<AiFolderMutationResult>
+    suspend fun aiPromptsCreateFolder(@Body aiPromptsCreateFolderRequest: kotlin.String): Response<AiFolderMutationResult>
 
     /**
      * DELETE api/2.0/ai/prompts/delete
@@ -88,7 +93,7 @@ interface AIPromptsApi {
      *  - 200: Confirms the request was accepted, whether or not a prompt was deleted.
      *  - 400: The prompt ID is missing.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
-     *  - 403: AI is disabled for this portal, or the caller is a guest. Relayed from the DocSpace AI service.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
      *  - 413: The request body is larger than 100 KB, the JSON parser's limit on this route.
      *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
      *
@@ -96,11 +101,11 @@ interface AIPromptsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-delete/
      *
      *
-     * @param body The ID of the prompt to delete, as a bare JSON string.
+     * @param aiPromptsDeleteRequest The ID of the prompt to delete, as a bare JSON string.
      * @return [AiSuccessResponse]
      */
     @HTTP(method = "DELETE", path = "api/2.0/ai/prompts/delete", hasBody = true)
-    suspend fun aiPromptsDelete(@Body body: kotlin.String): Response<AiSuccessResponse>
+    suspend fun aiPromptsDelete(@Body aiPromptsDeleteRequest: kotlin.String): Response<AiSuccessResponse>
 
     /**
      * DELETE api/2.0/ai/prompts/delete-folder
@@ -110,7 +115,7 @@ interface AIPromptsApi {
      *  - 200: Confirms the folder and the prompts inside it are gone.
      *  - 400: The folder ID is missing.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
-     *  - 403: AI is disabled for this portal, or the caller is a guest. Relayed from the DocSpace AI service.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
      *  - 404: No prompt folder has this ID.
      *  - 413: The request body is larger than 100 KB, the JSON parser's limit on this route.
      *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
@@ -119,11 +124,11 @@ interface AIPromptsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-delete-folder/
      *
      *
-     * @param body The ID of the folder to delete, as a bare JSON string.
+     * @param aiPromptsDeleteFolderRequest The ID of the folder to delete, as a bare JSON string.
      * @return [AiSuccessResponse]
      */
     @HTTP(method = "DELETE", path = "api/2.0/ai/prompts/delete-folder", hasBody = true)
-    suspend fun aiPromptsDeleteFolder(@Body body: kotlin.String): Response<AiSuccessResponse>
+    suspend fun aiPromptsDeleteFolder(@Body aiPromptsDeleteFolderRequest: kotlin.String): Response<AiSuccessResponse>
 
     /**
      * GET api/2.0/ai/prompts/export
@@ -132,7 +137,7 @@ interface AIPromptsApi {
      * Responses:
      *  - 200: The whole library as a versioned bundle, ready to import.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
-     *  - 403: AI is disabled for this portal, or the caller is a guest. Relayed from the DocSpace AI service.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
      *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
      *
      * REST API Reference for aiPromptsExport Operation
@@ -152,7 +157,7 @@ interface AIPromptsApi {
      *  - 200: The prompt, or an empty body when no prompt of the caller's has that ID.
      *  - 400: The prompt ID is missing.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
-     *  - 403: AI is disabled for this portal, or the caller is a guest. Relayed from the DocSpace AI service.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
      *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
      *
      * REST API Reference for aiPromptsGetById Operation
@@ -173,7 +178,7 @@ interface AIPromptsApi {
      *  - 200: The folder, or an empty body when no folder of the caller's has that ID.
      *  - 400: The folder ID is missing.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
-     *  - 403: AI is disabled for this portal, or the caller is a guest. Relayed from the DocSpace AI service.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
      *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
      *
      * REST API Reference for aiPromptsGetFolderById Operation
@@ -189,11 +194,13 @@ interface AIPromptsApi {
     /**
      * POST api/2.0/ai/prompts/import-bundle
      * Import bundle
-     * Writes a bundle produced by `GET api/2.0/ai/prompts/export` back into the caller's library. `mode` decides how: `replace` deletes the current prompts and folders before writing, and `merge` writes the bundle on top of what is already there. The folder references inside the bundle are validated before anything is written, so a corrupt bundle is rejected whole rather than applied halfway. `replace` is destructive and cannot be undone - export first if the current library matters.
+     * Writes a bundle produced by `GET api/2.0/ai/prompts/export` back into the caller's library. `mode` decides how: `replace` deletes the current prompts and folders before writing, and `merge` writes the bundle on top of what is already there. The bundle's shape - version 1, `folders` and `prompts` arrays of objects with string ids, names and texts - and the folder references inside it are validated before anything is written, so a corrupt bundle is rejected whole rather than applied halfway: 400 with the refusals in `errors`, or 409 when every refusal is a name that already exists in the library. `replace` is destructive and cannot be undone - export first if the current library matters.
      * Responses:
      *  - 200: Whether the bundle was written, how many prompts it imported, and what was refused.
+     *  - 400: The bundle is malformed, references a folder it does not carry, holds an empty entry or two entries of the same name, or `mode` is unknown.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
-     *  - 403: AI is disabled for this portal, or the caller is a guest. Relayed from the DocSpace AI service.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
+     *  - 409: Every refused entry is a name that already exists in the library (`merge` only).
      *  - 413: The request body is larger than 100 KB, the JSON parser's limit on this route.
      *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
      *
@@ -214,7 +221,7 @@ interface AIPromptsApi {
      * Responses:
      *  - 200: The prompts of the scope, newest first.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
-     *  - 403: AI is disabled for this portal, or the caller is a guest. Relayed from the DocSpace AI service.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
      *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
      *
      * REST API Reference for aiPromptsList Operation
@@ -234,7 +241,7 @@ interface AIPromptsApi {
      * Responses:
      *  - 200: Every folder of the caller's library, newest first.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
-     *  - 403: AI is disabled for this portal, or the caller is a guest. Relayed from the DocSpace AI service.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
      *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
      *
      * REST API Reference for aiPromptsListFolders Operation
@@ -249,11 +256,14 @@ interface AIPromptsApi {
     /**
      * PUT api/2.0/ai/prompts/move
      * Move a prompt to a folder
-     * Moves a saved prompt into another folder, or to the root when `folderId` is omitted or null. The name is re-validated in the target folder, so the move fails when a prompt of that name already sits there - rename it first with `PUT api/2.0/ai/prompts/update`. Nothing about the prompt other than its folder changes. The answer carries the moved prompt.
+     * Moves a saved prompt into another folder, or to the root when `folderId` is omitted or null. The name is re-validated in the target folder, so the move fails with 409 when a prompt of that name already sits there - rename it first with `PUT api/2.0/ai/prompts/update`; an unknown prompt or folder answers 404. Nothing about the prompt other than its folder changes. The answer carries the moved prompt.
      * Responses:
      *  - 200: Whether the prompt was moved, with the moved prompt in `prompt`.
+     *  - 400: `id` is missing or `folderId` is neither a string nor null.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
-     *  - 403: AI is disabled for this portal, or the caller is a guest. Relayed from the DocSpace AI service.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
+     *  - 404: No prompt has this ID, or `folderId` names no folder of the caller's.
+     *  - 409: A prompt of that name already sits in the target folder.
      *  - 413: The request body is larger than 100 KB, the JSON parser's limit on this route.
      *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
      *
@@ -270,11 +280,14 @@ interface AIPromptsApi {
     /**
      * PUT api/2.0/ai/prompts/rename-folder
      * Rename folder
-     * Renames a folder in the caller's prompt library, validating the new name against the folders already there. The prompts inside it are untouched and keep their IDs. The answer carries the renamed folder. A name that another folder already uses is rejected.
+     * Renames a folder in the caller's prompt library, validating the new name against the folders already there. The prompts inside it are untouched and keep their IDs. The answer carries the renamed folder. A name that another folder already uses is rejected with 409, an unknown folder with 404 and a non-string or empty name with 400, always with the `{ success: false, error }` body.
      * Responses:
      *  - 200: Whether the folder was renamed, with the stored folder in `folder`.
+     *  - 400: `id` or `name` is missing, or `name` is empty or not a string.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
-     *  - 403: AI is disabled for this portal, or the caller is a guest. Relayed from the DocSpace AI service.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
+     *  - 404: No folder has this ID.
+     *  - 409: A folder of that name already exists.
      *  - 413: The request body is larger than 100 KB, the JSON parser's limit on this route.
      *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
      *
@@ -291,11 +304,14 @@ interface AIPromptsApi {
     /**
      * PUT api/2.0/ai/prompts/update
      * Update a saved prompt
-     * Changes a saved prompt and returns the stored result. Only the fields present in `updates` are written, so a partial object leaves the rest of the prompt alone. The name and the folder reference are re-validated whenever either changes, which means an update can fail on a name another prompt in the same folder already uses. Use `PUT api/2.0/ai/prompts/move` to change only the folder.
+     * Changes a saved prompt and returns the stored result. Only the fields present in `updates` are written, so a partial object leaves the rest of the prompt alone. The name and the folder reference are re-validated whenever either changes, which means an update can fail on a name another prompt in the same folder already uses - that answers 409, an unknown prompt or folder 404, an empty or non-string value 400, always with the `{ success: false, error }` body. Use `PUT api/2.0/ai/prompts/move` to change only the folder.
      * Responses:
      *  - 200: Whether the prompt was updated, with the stored prompt in `prompt`.
+     *  - 400: `id` is missing, `updates` is not an object, or a field in it has the wrong type or is empty.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
-     *  - 403: AI is disabled for this portal, or the caller is a guest. Relayed from the DocSpace AI service.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
+     *  - 404: No prompt has this ID, or `folderId` names no folder of the caller's.
+     *  - 409: A prompt of that name already sits in the target folder.
      *  - 413: The request body is larger than 100 KB, the JSON parser's limit on this route.
      *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
      *

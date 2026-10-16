@@ -28,24 +28,27 @@ import onlyoffice.docspace.api.sdk.models.BatchRequestDto
 import onlyoffice.docspace.api.sdk.models.BooleanWrapper
 import onlyoffice.docspace.api.sdk.models.CheckConversionRequestDto
 import onlyoffice.docspace.api.sdk.models.CheckDestFolderWrapper
-import onlyoffice.docspace.api.sdk.models.ChunkedUploadSessionResponseResponseWrapper
-import onlyoffice.docspace.api.sdk.models.ChunkedUploadSessionResponseWrapperWrapper
+import onlyoffice.docspace.api.sdk.models.CheckMoveOrCopyBatchItemsDestFolderIdParameter
+import onlyoffice.docspace.api.sdk.models.CheckMoveOrCopyBatchItemsFolderIdsParameterInner
+import onlyoffice.docspace.api.sdk.models.ChunkedUploadSessionResultWrapper
+import onlyoffice.docspace.api.sdk.models.ChunkedUploadSessionWrapper
 import onlyoffice.docspace.api.sdk.models.ConversationResultArrayWrapper
 import onlyoffice.docspace.api.sdk.models.DeleteBatchRequestDto
 import onlyoffice.docspace.api.sdk.models.DeleteVersionBatchRequestDto
 import onlyoffice.docspace.api.sdk.models.DownloadRequestDto
 import onlyoffice.docspace.api.sdk.models.DuplicateRequestDto
 import onlyoffice.docspace.api.sdk.models.ErrorApiResponse
+import onlyoffice.docspace.api.sdk.models.FileConflictResolveType
 import onlyoffice.docspace.api.sdk.models.FileEntryBaseArrayWrapper
 import onlyoffice.docspace.api.sdk.models.FileOperationArrayWrapper
 import onlyoffice.docspace.api.sdk.models.FileOperationType
 import onlyoffice.docspace.api.sdk.models.SessionRequest
 import onlyoffice.docspace.api.sdk.models.StringWrapper
 import onlyoffice.docspace.api.sdk.models.ThirdPartyCheckConversionRequestDto
-import onlyoffice.docspace.api.sdk.models.ThirdPartyChunkedUploadSessionResponseResponseWrapper
-import onlyoffice.docspace.api.sdk.models.ThirdPartyChunkedUploadSessionResponseWrapperWrapper
+import onlyoffice.docspace.api.sdk.models.ThirdPartyChunkedUploadSessionResultWrapper
+import onlyoffice.docspace.api.sdk.models.ThirdPartyChunkedUploadSessionWrapper
 import onlyoffice.docspace.api.sdk.models.ThirdPartyUploadSessionResponseWrapper
-import onlyoffice.docspace.api.sdk.models.UpdateComment
+import onlyoffice.docspace.api.sdk.models.UpdateCommentRequest
 import onlyoffice.docspace.api.sdk.models.UploadSessionResponseWrapper
 
 import onlyoffice.docspace.api.sdk.models.*
@@ -59,6 +62,8 @@ interface OperationsApi {
      * Cancels a chunked upload opened with `POST api/2.0/files/{folderId}/session` and discards the parts already  received, so nothing of it reaches the folder. The session is found by the id in the path alone: the folder  segment is not matched against it, and neither is the account that opened it, which makes the id the only  secret protecting the transfer. The call is destructive and is not safe to repeat, because the record is gone  afterwards: a second attempt, a session already closed by  `PUT api/2.0/files/{folderId}/session/{sessionId}/finalize` and a session that expired after twelve hours of  silence all fail rather than answer as missing. Finalizing removes the session too, so there is nothing left  to abort once the file exists. The answer carries no body. An upload that is simply abandoned needs no call at  all, since the session and its buffered parts are dropped when it expires.
      * Responses:
      *  - 200: The session and the parts received so far have been discarded
+     *  - 403: The session was opened by another account
+     *  - 404: No open session with the specified ID: it never existed, was finalized or aborted, or has expired
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
@@ -83,6 +88,8 @@ interface OperationsApi {
      * Cancels a chunked upload opened with `POST api/2.0/files/{folderId}/session` and discards the parts already  received, so nothing of it reaches the folder. The session is found by the id in the path alone: the folder  segment is not matched against it, and neither is the account that opened it, which makes the id the only  secret protecting the transfer. The call is destructive and is not safe to repeat, because the record is gone  afterwards: a second attempt, a session already closed by  `PUT api/2.0/files/{folderId}/session/{sessionId}/finalize` and a session that expired after twelve hours of  silence all fail rather than answer as missing. Finalizing removes the session too, so there is nothing left  to abort once the file exists. The answer carries no body. An upload that is simply abandoned needs no call at  all, since the session and its buffered parts are dropped when it expires.
      * Responses:
      *  - 200: The session and the parts received so far have been discarded
+     *  - 403: The session was opened by another account
+     *  - 404: No open session with the specified ID: it never existed, was finalized or aborted, or has expired
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
@@ -107,11 +114,12 @@ interface OperationsApi {
      * Marks the listed files and folders as favorites for the calling account. The favorite list is personal:  nothing changes for other members, and the entries stay where they are stored. Read access to each item is  enough, so a room member with view-only rights and a guest may call it. Items the caller cannot read, ids that  do not exist and encrypted files of a private room are skipped without a word, and the answer is `true` even  when nothing was marked, so read the outcome back from `GET api/2.0/files/@favorites` instead of trusting it.  Numeric ids address entries stored in the portal itself, string ids entries on a connected third-party  account, and both kinds may be sent in one request. The call is mutating but safe to repeat: an item already  marked stays listed once. An entry moved to the Trash keeps its mark and is left out of the listing until it  is restored. `returnSingleOperation` arrives with the shared body and does nothing here. Use  `DELETE api/2.0/files/favorites` to undo, or `GET api/2.0/files/favorites/{fileId}` for a single file.
      * Responses:
      *  - 200: Always true: the request was understood, which does not mean that anything was marked
+     *  - 400: The request body cannot be read, or a third-party identifier refers to a storage account that is not connected
      *  - 403: Marking favorites is refused for the caller
+     *  - 404: A third-party identifier names a storage type the portal does not know
+     *  - 500: An id is a number that is not a 32-bit integer, or a third-party identifier carries a storage account number beyond the 32-bit range
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
-     *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -131,10 +139,12 @@ interface OperationsApi {
      * Queues a background job that packs the requested files and folders into a single archive, and answers with the  caller's download operations, including the one just started. The archive is not ready when the response  arrives: poll `GET api/2.0/files/fileops` until the operation reports `finished`, then take the address of the  archive from its `url`. Items listed in `fileConvertIds` are converted to the format named there before they  are packed, while the items of `fileIds` are packed as they are. Read access to every listed item is required:  an item the caller may not read fails the whole call with 403, and an id that resolves to nothing is answered  as missing, so filter the selection beforehand. Only one download at a time is allowed per caller, and a  second call made while the first is still running is refused with 403 as well. An empty selection queues  nothing and simply answers with the operations that are already there. An anonymous caller may use the call  for the items covered by the external link they hold.
      * Responses:
      *  - 200: The download operations of the caller, the one just queued included
-     *  - 403: An item in the selection cannot be read by the caller, or another download of theirs is still running
+     *  - 400: The request body cannot be read, or an item of `fileConvertIds` has no `key` or `value`
+     *  - 401: The caller is not signed in and holds no external link
+     *  - 403: None of the listed items that exist can be read by the caller, or another download of theirs is still running
+     *  - 404: None of the listed items exists, counted separately for the portal's own items and for those on third-party accounts
+     *  - 500: An id is a number that is not a 32-bit integer
      *  - 429: Too Many Requests.
-     *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -154,6 +164,8 @@ interface OperationsApi {
      * Reports how far the conversion of a file has got, as a list that holds one entry while the portal still knows  about that conversion and nothing once it is over. Read `progress`, which counts from 0 to 100, `error` for  the reason a conversion failed, and `file`, which carries the converted file as soon as it exists. Queue the  conversion with `PUT api/2.0/files/file/{fileId}/checkconversion` and poll this operation until the entry  reaches 100 or disappears: a finished entry is handed out once and then dropped, and an entry whose conversion  stopped is discarded a few minutes later, so an empty list means either already reported or never started  rather than an error. The same empty list is the answer for an identifier no file matches. Passing  `start=true` starts the conversion as well, with the format from the portal settings and no password, which  makes that one flag mutating; without it the operation is read-only. The caller needs read access to the file,  and anyone else is refused.
      * Responses:
      *  - 200: The conversion entry of the file, or an empty list when the portal has none
+     *  - 403: The caller cannot read the file, or, with `start=true`, may not convert it
+     *  - 404: The file id is neither a number nor the id of a file in a known third-party storage
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
@@ -178,6 +190,8 @@ interface OperationsApi {
      * Reports how far the conversion of a file has got, as a list that holds one entry while the portal still knows  about that conversion and nothing once it is over. Read `progress`, which counts from 0 to 100, `error` for  the reason a conversion failed, and `file`, which carries the converted file as soon as it exists. Queue the  conversion with `PUT api/2.0/files/file/{fileId}/checkconversion` and poll this operation until the entry  reaches 100 or disappears: a finished entry is handed out once and then dropped, and an entry whose conversion  stopped is discarded a few minutes later, so an empty list means either already reported or never started  rather than an error. The same empty list is the answer for an identifier no file matches. Passing  `start=true` starts the conversion as well, with the format from the portal settings and no password, which  makes that one flag mutating; without it the operation is read-only. The caller needs read access to the file,  and anyone else is refused.
      * Responses:
      *  - 200: The conversion entry of the file, or an empty list when the portal has none
+     *  - 403: The caller cannot read the file, or, with `start=true`, may not convert it
+     *  - 404: The file id is neither a number nor the id of a file in a known third-party storage
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
@@ -202,11 +216,12 @@ interface OperationsApi {
      * Reports which of the requested files and folders already have a same-named entry in `destFolderId`, so that  the clash can be settled before the move or the copy is started. Nothing is moved, copied or changed by the  call, although the address is shared with `PUT api/2.0/files/fileops/move`: the answer is the part of the  request that clashes, and an empty array means the batch would go through without one. The  `conflictResolveType` of the request is not taken into account — clashing items are reported whatever it says  — and encrypted files are left out of the report. A source id that resolves to nothing is not an error and is  passed over. The caller needs create access to the destination: an archived room and a room the caller cannot  write to are refused with 403, a destination that does not exist is answered as missing, and a request without  `destFolderId` is rejected as an invalid request. To learn whether the destination accepts the files at all  use `GET api/2.0/files/fileops/checkdestfolder`.
      * Responses:
      *  - 200: The listed items that already have a same-named entry in the destination folder
-     *  - 403: The caller cannot create items in the destination folder
+     *  - 400: `destFolderId` is not given
+     *  - 403: The caller cannot create items in the destination folder, or the destination is a listed folder or lies inside one
+     *  - 404: The destination folder does not exist
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -214,11 +229,18 @@ interface OperationsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/check-move-or-copy-batch-items/
      *
      *
-     * @param inDto The files and folders to move or copy, the folder they go to, and the way name clashes are settled. (optional)
+     * @param returnSingleOperation Which operations the answer carries: `true` returns the operation this call started and nothing else, `false`  returns every operation of the same kind that the caller has running or unread. When nothing was queued, which  happens for an empty selection, `true` falls back to the full list. (optional)
+     * @param folderIds The folders to move or copy, by id. A number addresses a folder stored in the portal itself, a string  addresses a folder on a connected third-party account, and both kinds may be sent in one list. (optional)
+     * @param fileIds The files to move or copy, by id. A number addresses a file stored in the portal itself, a string addresses a  file on a connected third-party account, and both kinds may be sent in one list. (optional)
+     * @param destFolderId The folder the items go to, by id — a number for a folder stored in the portal itself, a string for a folder  on a connected third-party account. Take it from a folder listing such as `GET api/2.0/files/@root`; the  caller has to be allowed to create items in it, and the id of a room addresses the root of that room. (optional)
+     * @param conflictResolveType What happens to an item whose name is already taken in the destination folder: `skip` leaves it where it is,  `overwrite` replaces the entry at the destination, and `duplicate` places it beside that entry under a name  with a numeric suffix. `GET api/2.0/files/fileops/move` reports which items would clash. (optional)
+     * @param deleteAfter Whether the finished operation is still reported: `false` keeps its final record readable through  `GET api/2.0/files/fileops` until it has been read once, `true` drops the record as soon as the work is done.  It deletes nothing: a move takes the sources away in any case, and a copy always leaves them. (optional)
+     * @param content What is taken from a listed folder: `false` moves or copies the folder itself, `true` takes only what it  contains, so its files and subfolders land in the destination and the folder is not recreated there. (optional)
+     * @param toFillOut Marks every copied PDF form as a draft prepared for filling, which is how such a copy reports its filling  status in a virtual data room. Files that are not forms are left unaffected. (optional)
      * @return [FileEntryBaseArrayWrapper]
      */
     @GET("api/2.0/files/fileops/move")
-    suspend fun checkMoveOrCopyBatchItems(@Query("inDto") inDto: BatchRequestDto? = null): Response<FileEntryBaseArrayWrapper>
+    suspend fun checkMoveOrCopyBatchItems(@Query("returnSingleOperation") returnSingleOperation: kotlin.Boolean? = null, @Query("folderIds") folderIds: @JvmSuppressWildcards kotlin.collections.List<CheckMoveOrCopyBatchItemsFolderIdsParameterInner>? = null, @Query("fileIds") fileIds: @JvmSuppressWildcards kotlin.collections.List<CheckMoveOrCopyBatchItemsFolderIdsParameterInner>? = null, @Query("destFolderId") destFolderId: CheckMoveOrCopyBatchItemsDestFolderIdParameter? = null, @Query("conflictResolveType") conflictResolveType: FileConflictResolveType? = null, @Query("deleteAfter") deleteAfter: kotlin.Boolean? = null, @Query("content") content: kotlin.Boolean? = null, @Query("toFillOut") toFillOut: kotlin.Boolean? = null): Response<FileEntryBaseArrayWrapper>
 
     /**
      * GET api/2.0/files/fileops/checkdestfolder
@@ -226,11 +248,12 @@ interface OperationsApi {
      * Reports whether the destination folder accepts the listed files, before a move or a copy is started. Only  `fileIds` and `destFolderId` are read from the request: `result` says whether all of the files are accepted,  only some of them or none, and `files` names the ones that are. The check is about what the destination allows  to be stored in it rather than about name clashes — everywhere except a form-filling room every file is  accepted, while a form-filling room accepts only PDF forms, so a text document offered to one comes back as  none accepted. The caller needs create access to the destination, so a room the caller cannot write to and an  archived room are refused with 403, a destination that does not exist is answered as missing, and a request  without `destFolderId` is rejected as an invalid request. Folder ids and the copying options of the request  play no part here. The call changes nothing; for same-named entries at the destination use  `GET api/2.0/files/fileops/move`.
      * Responses:
      *  - 200: Whether the destination accepts all of the listed files, some of them or none, and which ones it accepts
+     *  - 400: `destFolderId` is not given
      *  - 403: The caller cannot create items in the destination folder
+     *  - 404: The destination folder does not exist
+     *  - 500: A listed file is on a third-party account and the destination accepts it, or a listed file does not exist while the destination is a form-filling room
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
-     *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -238,11 +261,18 @@ interface OperationsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/check-move-or-copy-dest-folder/
      *
      *
-     * @param inDto The files and folders to move or copy, the folder they go to, and the way name clashes are settled. (optional)
+     * @param returnSingleOperation Which operations the answer carries: `true` returns the operation this call started and nothing else, `false`  returns every operation of the same kind that the caller has running or unread. When nothing was queued, which  happens for an empty selection, `true` falls back to the full list. (optional)
+     * @param folderIds The folders to move or copy, by id. A number addresses a folder stored in the portal itself, a string  addresses a folder on a connected third-party account, and both kinds may be sent in one list. (optional)
+     * @param fileIds The files to move or copy, by id. A number addresses a file stored in the portal itself, a string addresses a  file on a connected third-party account, and both kinds may be sent in one list. (optional)
+     * @param destFolderId The folder the items go to, by id — a number for a folder stored in the portal itself, a string for a folder  on a connected third-party account. Take it from a folder listing such as `GET api/2.0/files/@root`; the  caller has to be allowed to create items in it, and the id of a room addresses the root of that room. (optional)
+     * @param conflictResolveType What happens to an item whose name is already taken in the destination folder: `skip` leaves it where it is,  `overwrite` replaces the entry at the destination, and `duplicate` places it beside that entry under a name  with a numeric suffix. `GET api/2.0/files/fileops/move` reports which items would clash. (optional)
+     * @param deleteAfter Whether the finished operation is still reported: `false` keeps its final record readable through  `GET api/2.0/files/fileops` until it has been read once, `true` drops the record as soon as the work is done.  It deletes nothing: a move takes the sources away in any case, and a copy always leaves them. (optional)
+     * @param content What is taken from a listed folder: `false` moves or copies the folder itself, `true` takes only what it  contains, so its files and subfolders land in the destination and the folder is not recreated there. (optional)
+     * @param toFillOut Marks every copied PDF form as a draft prepared for filling, which is how such a copy reports its filling  status in a virtual data room. Files that are not forms are left unaffected. (optional)
      * @return [CheckDestFolderWrapper]
      */
     @GET("api/2.0/files/fileops/checkdestfolder")
-    suspend fun checkMoveOrCopyDestFolder(@Query("inDto") inDto: BatchRequestDto? = null): Response<CheckDestFolderWrapper>
+    suspend fun checkMoveOrCopyDestFolder(@Query("returnSingleOperation") returnSingleOperation: kotlin.Boolean? = null, @Query("folderIds") folderIds: @JvmSuppressWildcards kotlin.collections.List<CheckMoveOrCopyBatchItemsFolderIdsParameterInner>? = null, @Query("fileIds") fileIds: @JvmSuppressWildcards kotlin.collections.List<CheckMoveOrCopyBatchItemsFolderIdsParameterInner>? = null, @Query("destFolderId") destFolderId: CheckMoveOrCopyBatchItemsDestFolderIdParameter? = null, @Query("conflictResolveType") conflictResolveType: FileConflictResolveType? = null, @Query("deleteAfter") deleteAfter: kotlin.Boolean? = null, @Query("content") content: kotlin.Boolean? = null, @Query("toFillOut") toFillOut: kotlin.Boolean? = null): Response<CheckDestFolderWrapper>
 
     /**
      * PUT api/2.0/files/fileops/copy
@@ -250,10 +280,12 @@ interface OperationsApi {
      * Queues a background job that copies the requested files and folders into `destFolderId`, leaving the originals  where they are, and answers with the caller's move and copy operations, including the one just started. Poll  `GET api/2.0/files/fileops` until the operation reports `finished`; its `files` and `folders` then name what  was produced. Before starting, `GET api/2.0/files/fileops/move` reports which items already have a same-named  entry at the destination and `conflictResolveType` decides what happens to them, while  `GET api/2.0/files/fileops/checkdestfolder` reports whether the destination accepts the files at all. The  caller needs create access to the destination — room manager or content-creator rights inside a room — and  read access to every source item; anything less is refused with 403. With `content=true` each listed folder is  replaced by its own files and subfolders, so the folder itself is not recreated at the destination. An empty  selection queues nothing and answers with the operations that are already there. To remove the originals  instead use `PUT api/2.0/files/fileops/move`.
      * Responses:
      *  - 200: The move and copy operations of the caller, the one just queued included
-     *  - 403: The caller cannot create items in the destination folder, or cannot read one of the listed items
+     *  - 403: The caller cannot create items in the destination folder or cannot read one of the listed items, the destination is a listed folder or lies inside one, the room or user quota would be exceeded, a file that is not a PDF form goes to a form-filling room, or a file to overwrite is locked or cannot be edited by the caller
+     *  - 404: The destination folder, a listed file or a listed folder other than the first one does not exist
+     *  - 415: A listed file has a format the portal does not accept for upload, or one a knowledge folder cannot index
+     *  - 500: The first listed folder does not exist, or an id is a number that is not a 32-bit integer
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
-     *  - 500: Internal Server Error.
      *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
@@ -274,11 +306,14 @@ interface OperationsApi {
      * Deprecated in favour of `POST api/2.0/files/{folderId}/session`, which opens the same session and returns it  without the success envelope used here; new callers should go there. Reserves a chunked upload of a file in  the folder named by the path: the title comes from `fileName`, the declared payload size from `fileSize`, and  the answer carries the session id every later call quotes, the address of the standalone chunk handler, the  moment an idle session is dropped and the reserved byte count. No content is stored yet. Send the payload as  multipart parts to `POST api/2.0/files/{folderId}/session/{sessionId}/upload`, keeping each part within  `chunkUploadSize` from `GET api/2.0/files/settings`, then close the session with  `PUT api/2.0/files/{folderId}/session/{sessionId}/finalize`. The caller needs the right to add content to the  target folder, which room managers and content creators have and readers, editors and guests do not: they get  403, as does a section root such as Rooms or Archive, while an unknown folder is answered as missing. A  payload above the portal limit for chunked uploads is refused before the session exists.
      * Responses:
      *  - 200: The created session, wrapped in the success envelope
-     *  - 403: The caller cannot add content to the target folder
+     *  - 400: The request body cannot be read or has no `fileName`
+     *  - 402: The declared `fileSize` exceeds the portal limit for chunked uploads or the size allowed in a knowledge folder
+     *  - 403: The caller cannot add content to the target folder, the folder is a section root, or a knowledge folder does not accept this format
+     *  - 404: No folder with the specified ID
+     *  - 415: The installation restricts uploadable formats and the file extension is not among them
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -288,11 +323,11 @@ interface OperationsApi {
      *
      * @param folderId The folder that receives the file; take the id from a listing such as `GET api/2.0/files/@root`. A room or an  ordinary folder inside one is accepted, a section root is not.
      * @param sessionRequest The file the session is opened for, and how a clash with an existing name is settled.
-     * @return [ChunkedUploadSessionResponseWrapperWrapper]
+     * @return [ChunkedUploadSessionResultWrapper]
      */
     @Deprecated("This api was deprecated")
     @POST("api/2.0/files/{folderId}/upload/create_session")
-    suspend fun createUploadSession(@Path("folderId") folderId: kotlin.Int, @Body sessionRequest: SessionRequest): Response<ChunkedUploadSessionResponseWrapperWrapper>
+    suspend fun createUploadSession(@Path("folderId") folderId: kotlin.Int, @Body sessionRequest: SessionRequest): Response<ChunkedUploadSessionResultWrapper>
 
     /**
      * POST api/2.0/files/{folderId}/upload/create_session
@@ -300,11 +335,14 @@ interface OperationsApi {
      * Deprecated in favour of `POST api/2.0/files/{folderId}/session`, which opens the same session and returns it  without the success envelope used here; new callers should go there. Reserves a chunked upload of a file in  the folder named by the path: the title comes from `fileName`, the declared payload size from `fileSize`, and  the answer carries the session id every later call quotes, the address of the standalone chunk handler, the  moment an idle session is dropped and the reserved byte count. No content is stored yet. Send the payload as  multipart parts to `POST api/2.0/files/{folderId}/session/{sessionId}/upload`, keeping each part within  `chunkUploadSize` from `GET api/2.0/files/settings`, then close the session with  `PUT api/2.0/files/{folderId}/session/{sessionId}/finalize`. The caller needs the right to add content to the  target folder, which room managers and content creators have and readers, editors and guests do not: they get  403, as does a section root such as Rooms or Archive, while an unknown folder is answered as missing. A  payload above the portal limit for chunked uploads is refused before the session exists.
      * Responses:
      *  - 200: The created session, wrapped in the success envelope
-     *  - 403: The caller cannot add content to the target folder
+     *  - 400: The request body cannot be read or has no `fileName`
+     *  - 402: The declared `fileSize` exceeds the portal limit for chunked uploads or the size allowed in a knowledge folder
+     *  - 403: The caller cannot add content to the target folder, the folder is a section root, or a knowledge folder does not accept this format
+     *  - 404: No folder with the specified ID
+     *  - 415: The installation restricts uploadable formats and the file extension is not among them
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -314,11 +352,11 @@ interface OperationsApi {
      *
      * @param folderId The folder that receives the file; take the id from a listing such as `GET api/2.0/files/@root`. A room or an  ordinary folder inside one is accepted, a section root is not.
      * @param sessionRequest The file the session is opened for, and how a clash with an existing name is settled.
-     * @return [ThirdPartyChunkedUploadSessionResponseWrapperWrapper]
+     * @return [ThirdPartyChunkedUploadSessionResultWrapper]
      */
     @Deprecated("This api was deprecated")
     @POST("api/2.0/files/{folderId}/upload/create_session")
-    suspend fun createUploadSession(@Path("folderId") folderId: kotlin.String, @Body sessionRequest: SessionRequest): Response<ThirdPartyChunkedUploadSessionResponseWrapperWrapper>
+    suspend fun createUploadSession(@Path("folderId") folderId: kotlin.String, @Body sessionRequest: SessionRequest): Response<ThirdPartyChunkedUploadSessionResultWrapper>
 
     /**
      * POST api/2.0/files/{folderId}/session
@@ -326,10 +364,14 @@ interface OperationsApi {
      * Opens a chunked upload session for a file in the folder named by the path and returns the session itself,  which is the difference from the deprecated `POST api/2.0/files/{folderId}/upload/create_session` and its  success envelope. The answer gives `id`, quoted by every later call, `location` for the standalone chunk  handler used by clients that bypass this API, `expired`, and `bytes_total` echoing the reserved size. Whether  parts are really needed follows from `fileSize`: below `chunkUploadSize` from `GET api/2.0/files/settings` the  whole payload goes in one `POST api/2.0/files/{folderId}/session/{sessionId}`, which stores the file and  answers 201, and above it the parts go one by one to  `POST api/2.0/files/{folderId}/session/{sessionId}/upload` and the file appears only after  `PUT api/2.0/files/{folderId}/session/{sessionId}/finalize`. The caller must be allowed to add content to the  folder, so readers, editors and guests are refused, a section root is refused as well, and an unknown folder  is answered as missing. Nothing is written until the parts arrive, and an abandoned session disappears twelve  hours later.
      * Responses:
      *  - 200: The created upload session
+     *  - 400: The request body cannot be read or has no `fileName`
+     *  - 402: The declared `fileSize` exceeds the portal limit for chunked uploads or the size allowed in a knowledge folder
+     *  - 403: The caller cannot add content to the target folder, the folder is a section root, or a knowledge folder does not accept this format
+     *  - 404: No folder with the specified ID
+     *  - 415: The installation restricts uploadable formats and the file extension is not among them
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -339,10 +381,10 @@ interface OperationsApi {
      *
      * @param folderId The folder that receives the file; take the id from a listing such as `GET api/2.0/files/@root`. A room or an  ordinary folder inside one is accepted, a section root is not.
      * @param sessionRequest The file the session is opened for, and how a clash with an existing name is settled.
-     * @return [ChunkedUploadSessionResponseResponseWrapper]
+     * @return [ChunkedUploadSessionWrapper]
      */
     @POST("api/2.0/files/{folderId}/session")
-    suspend fun createUploadSessionInFolder(@Path("folderId") folderId: kotlin.Int, @Body sessionRequest: SessionRequest): Response<ChunkedUploadSessionResponseResponseWrapper>
+    suspend fun createUploadSessionInFolder(@Path("folderId") folderId: kotlin.Int, @Body sessionRequest: SessionRequest): Response<ChunkedUploadSessionWrapper>
 
     /**
      * POST api/2.0/files/{folderId}/session
@@ -350,10 +392,14 @@ interface OperationsApi {
      * Opens a chunked upload session for a file in the folder named by the path and returns the session itself,  which is the difference from the deprecated `POST api/2.0/files/{folderId}/upload/create_session` and its  success envelope. The answer gives `id`, quoted by every later call, `location` for the standalone chunk  handler used by clients that bypass this API, `expired`, and `bytes_total` echoing the reserved size. Whether  parts are really needed follows from `fileSize`: below `chunkUploadSize` from `GET api/2.0/files/settings` the  whole payload goes in one `POST api/2.0/files/{folderId}/session/{sessionId}`, which stores the file and  answers 201, and above it the parts go one by one to  `POST api/2.0/files/{folderId}/session/{sessionId}/upload` and the file appears only after  `PUT api/2.0/files/{folderId}/session/{sessionId}/finalize`. The caller must be allowed to add content to the  folder, so readers, editors and guests are refused, a section root is refused as well, and an unknown folder  is answered as missing. Nothing is written until the parts arrive, and an abandoned session disappears twelve  hours later.
      * Responses:
      *  - 200: The created upload session
+     *  - 400: The request body cannot be read or has no `fileName`
+     *  - 402: The declared `fileSize` exceeds the portal limit for chunked uploads or the size allowed in a knowledge folder
+     *  - 403: The caller cannot add content to the target folder, the folder is a section root, or a knowledge folder does not accept this format
+     *  - 404: No folder with the specified ID
+     *  - 415: The installation restricts uploadable formats and the file extension is not among them
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -363,10 +409,10 @@ interface OperationsApi {
      *
      * @param folderId The folder that receives the file; take the id from a listing such as `GET api/2.0/files/@root`. A room or an  ordinary folder inside one is accepted, a section root is not.
      * @param sessionRequest The file the session is opened for, and how a clash with an existing name is settled.
-     * @return [ThirdPartyChunkedUploadSessionResponseResponseWrapper]
+     * @return [ThirdPartyChunkedUploadSessionWrapper]
      */
     @POST("api/2.0/files/{folderId}/session")
-    suspend fun createUploadSessionInFolder(@Path("folderId") folderId: kotlin.String, @Body sessionRequest: SessionRequest): Response<ThirdPartyChunkedUploadSessionResponseResponseWrapper>
+    suspend fun createUploadSessionInFolder(@Path("folderId") folderId: kotlin.String, @Body sessionRequest: SessionRequest): Response<ThirdPartyChunkedUploadSessionWrapper>
 
     /**
      * PUT api/2.0/files/fileops/delete
@@ -374,10 +420,11 @@ interface OperationsApi {
      * Queues a background job that deletes the requested files and folders, and answers with the caller's delete  operations, including the one just started. Poll `GET api/2.0/files/fileops` until the operation reports  `finished`, and read its `error`: a failure on a single item is reported there rather than as a status code.  With `immediately=false` the items are moved to the caller's Trash and can be restored from it, while  `immediately=true` removes them at once and for good; deleting a folder takes everything inside it either way.  The call is destructive and it is not a no-op on repetition — a second call with the same ids deletes whatever  has been restored in the meantime. Access is checked before the job is queued: deleting from a room requires  room manager or content-creator rights, editing or read rights are refused with 403, and an id that resolves  to nothing is answered as missing. An empty selection queues nothing and answers with the operations that are  already there. To clear the Trash itself use `PUT api/2.0/files/fileops/emptytrash`.
      * Responses:
      *  - 200: The delete operations of the caller, the one just queued included
-     *  - 403: The caller does not have the rights to delete one of the listed items
+     *  - 403: The caller does not have the rights to delete one of the listed items, one of them is locked by another user or open for editing, or a room is sent to Trash without `immediately`
+     *  - 404: A listed file or folder does not exist
+     *  - 500: An id is a number that is not a 32-bit integer
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
-     *  - 500: Internal Server Error.
      *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
@@ -398,10 +445,11 @@ interface OperationsApi {
      * Removes the favorite mark from the listed files and folders for the calling account. Nothing is deleted from  storage: the entries keep their place, their content and their sharing, and only disappear from  `GET api/2.0/files/@favorites`; to delete the entries themselves call `PUT api/2.0/files/fileops/delete`  instead. Marks of other members are untouched, and read access to each item is enough to call it. The ids go  into the JSON body documented here; the same route also accepts them as repeated `fileIds` and `folderIds`  query parameters, but only in a request that carries no JSON body at all. Numeric ids address entries stored  in the portal itself, string ids entries on a connected third-party account. The answer is `true` whenever the  request was understood, which an empty request, an id that does not exist and an item that was never marked  all achieve, so it does not report how many marks were dropped. `returnSingleOperation` arrives with the  shared body and does nothing here. Repeating the call is safe. Use `POST api/2.0/files/favorites` to mark  entries again.
      * Responses:
      *  - 200: Always true: the marks named in the request are gone or were never there
+     *  - 400: The request body cannot be read, or a third-party identifier refers to a storage account that is not connected
+     *  - 404: A third-party identifier names a storage type the portal does not know
+     *  - 500: An id is a number that is not a 32-bit integer, or a third-party identifier carries a storage account number beyond the 32-bit range
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
-     *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -421,10 +469,12 @@ interface OperationsApi {
      * Queues a background job that removes the listed versions from the history of one file, and answers with the  caller's delete operations, including the one just started. Poll `GET api/2.0/files/fileops` until the  operation reports `finished`; a failure met while the job runs is reported in its `error` rather than as a  status code. Removal is permanent — deleted versions do not travel through Trash and cannot be restored, while  the file itself stays in place with the versions that are left. Send the numbers that  `GET api/2.0/files/file/{fileId}/history` reports, and send at least one: an empty list is not an empty  request, it deletes the whole file instead. The number of the current version is refused before anything is  queued, while numbers that no longer exist are passed over without a complaint. The caller needs the rights  that deleting the file itself would need, so a member with read-only rights is refused, as are a file in an  archived room and a file that is already in Trash, and a file that does not exist is answered as missing. To  delete the file itself use `PUT api/2.0/files/fileops/delete`.
      * Responses:
      *  - 200: The delete operations of the caller, the one just queued included
+     *  - 400: The request body cannot be read or has no `fileId` or `versions`
+     *  - 403: The caller cannot delete the file, the file is locked by another user, open for editing, in an archived room or in Trash, or `versions` includes the current version
+     *  - 404: The file does not exist
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -444,10 +494,12 @@ interface OperationsApi {
      * Queues a background job that copies each requested file and folder next to itself, into the folder where it  already is, and answers with the caller's duplicate operations, including the one just started. Poll  `GET api/2.0/files/fileops` until the operation reports `finished`. The copies keep the name of the original  with a numeric suffix, so nothing is overwritten and every repetition adds one more copy; duplicating a folder  duplicates its content as well. No destination is taken — to place a copy somewhere else use  `PUT api/2.0/files/fileops/copy`. The caller needs the rights that creating an item in that folder would need,  which inside a room means room manager or content-creator rights: read or editing rights, and an item the  caller has no access to at all, are refused with 403. An empty selection queues nothing and answers with the  operations that are already there.
      * Responses:
      *  - 200: The duplicate operations of the caller, the one just queued included
-     *  - 403: The caller cannot create items in the folder that holds one of the listed items
+     *  - 403: The caller cannot create items in the folder that holds one of the listed items, or cannot copy that item
+     *  - 404: A listed file or folder does not exist
+     *  - 415: A listed file has a format the portal does not accept for upload
+     *  - 500: An id is a number that is not a 32-bit integer
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
-     *  - 500: Internal Server Error.
      *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
@@ -496,7 +548,8 @@ interface OperationsApi {
         @Json(name = "33") ChatOutputs(33),
         @Json(name = "34") AiAgents(34),
         @Json(name = "35") DefaultTemplates(35),
-        @Json(name = "36") Forms(36)
+        @Json(name = "36") Forms(36),
+        @Json(name = "37") Ai(37)
     }
 
     /**
@@ -505,10 +558,10 @@ interface OperationsApi {
      * Queues a background job that permanently removes the content of the caller's own Trash, and answers with the  caller's delete operations, including the one just started. Poll `GET api/2.0/files/fileops` until the  operation reports `finished`. Every authenticated account may empty its own Trash and only its own: no  per-item access check takes place because nothing outside the caller's Trash is touched. With `folderType` the  sweep is narrowed to the items that were originally stored in sections and rooms of the named types, so  clearing what came from personal documents leaves what came from rooms untouched; without the parameter the  whole Trash is emptied. What is removed here cannot be restored afterwards, which is the difference from  `PUT api/2.0/files/fileops/delete`, where `immediately=false` puts items into Trash in the first place.  Calling it on an already empty Trash queues nothing and answers with the operations that are already there.
      * Responses:
      *  - 200: The delete operations of the caller, the one just queued included
+     *  - 400: `folderType` holds a value that is not a folder type
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -521,7 +574,7 @@ interface OperationsApi {
      * @return [FileOperationArrayWrapper]
      */
     @PUT("api/2.0/files/fileops/emptytrash")
-    suspend fun emptyTrash(@Query("Single") single: kotlin.Boolean? = null, @Query("folderType") folderType: @JvmSuppressWildcards kotlin.collections.List<kotlin.Int>? = null): Response<FileOperationArrayWrapper>
+    suspend fun emptyTrash(@Query("single") single: kotlin.Boolean? = null, @Query("folderType") folderType: @JvmSuppressWildcards kotlin.collections.List<kotlin.Int>? = null): Response<FileOperationArrayWrapper>
 
     /**
      * PUT api/2.0/files/{folderId}/session/{sessionId}/finalize
@@ -529,10 +582,12 @@ interface OperationsApi {
      * Assembles the parts received so far into the file the session was opened for and closes the session. What  comes out depends on how the session started: one opened against an existing file through  `POST api/2.0/files/file/{fileId}/edit_session` replaces that content in place and keeps the version number,  while one opened against a folder either creates the file or, when a file of the same name was taken over,  stores the content as its next version. A form loses its filling state on the way in. The answer arrives with  201 and carries the identifiers of the file together with the file itself. The call ends the session: the  record and the buffered parts are removed, so it cannot be repeated and there is nothing left to abort  afterwards. Running it before all the declared bytes have arrived assembles whatever is there, so read the  progress from the chunk calls first. An unknown, already closed or expired session id fails instead of  answering as missing.
      * Responses:
      *  - 200: The assembled file and the identifiers of the closed session
+     *  - 400: The parts received so far do not add up to the size the session was opened for
+     *  - 402: Storing the file would exceed a storage quota or size limit
+     *  - 404: No open session with the specified ID: it never existed, was finalized or aborted, or has expired
+     *  - 500: A file that is not a PDF is stored in a form-filling room
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
-     *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -553,10 +608,12 @@ interface OperationsApi {
      * Assembles the parts received so far into the file the session was opened for and closes the session. What  comes out depends on how the session started: one opened against an existing file through  `POST api/2.0/files/file/{fileId}/edit_session` replaces that content in place and keeps the version number,  while one opened against a folder either creates the file or, when a file of the same name was taken over,  stores the content as its next version. A form loses its filling state on the way in. The answer arrives with  201 and carries the identifiers of the file together with the file itself. The call ends the session: the  record and the buffered parts are removed, so it cannot be repeated and there is nothing left to abort  afterwards. Running it before all the declared bytes have arrived assembles whatever is there, so read the  progress from the chunk calls first. An unknown, already closed or expired session id fails instead of  answering as missing.
      * Responses:
      *  - 200: The assembled file and the identifiers of the closed session
+     *  - 400: The parts received so far do not add up to the size the session was opened for
+     *  - 402: Storing the file would exceed a storage quota or size limit
+     *  - 404: No open session with the specified ID: it never existed, was finalized or aborted, or has expired
+     *  - 500: A file that is not a PDF is stored in a form-filling room
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
-     *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -599,9 +656,9 @@ interface OperationsApi {
      * Returns the background file operations of the caller that are of one kind, named by the number in the route:  `1` for a copy, `2` for a deletion, `3` for a download, `4` for a mark-as-read and `7` for a duplication. The  answer carries the same records as `GET api/2.0/files/fileops`, with the same rule that a finished operation  is reported once and then dropped, and `id` narrows it further to a single operation. Moves, kind `0`, cannot  be read through this route: the address `api/2.0/files/fileops/move` belongs to another operation, so read  moves from `GET api/2.0/files/fileops` and pick the records whose `operation` is `0`. A kind that has no queue  of its own — `5` for an import, `6` for a conversion — is accepted and answers with an empty array, while a  number outside the operation type is rejected as an invalid request. The call changes nothing and never shows  another account's operations.
      * Responses:
      *  - 200: The operations of the caller that are of the requested kind
+     *  - 400: `operationType` is neither the number nor the name of an operation type
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -622,9 +679,9 @@ interface OperationsApi {
      * Queues a background job that clears the new-item badge from the requested files and folders for the calling  account, and answers with the caller's mark-as-read operations, including the one just started. Poll  `GET api/2.0/files/fileops` until the operation reports `finished`. Marking a folder clears the badges of  everything inside it as well. Items the caller cannot read are passed over in silence rather than refused, so  the call succeeds even when the whole selection is inaccessible, and an empty selection queues nothing and  answers with the operations that are already there. Repeating the call on items that are already read changes  nothing, and nothing is opened, moved or modified by it — only the caller's own badges are affected, while  other members keep theirs. To see what is currently marked as new use `GET api/2.0/files/{folderId}/news` for  one folder and `GET api/2.0/files/rooms/news` for the rooms of the caller.
      * Responses:
      *  - 200: The mark-as-read operations of the caller, the one just queued included
+     *  - 500: An id is a number that is not a 32-bit integer
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
-     *  - 500: Internal Server Error.
      *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
@@ -645,10 +702,12 @@ interface OperationsApi {
      * Queues a background job that moves the requested files and folders into `destFolderId`, removing them from  where they were, and answers with the caller's move and copy operations, including the one just started. Poll  `GET api/2.0/files/fileops` until the operation reports `finished`. Before starting,  `GET api/2.0/files/fileops/move` reports which items already have a same-named entry at the destination and  `conflictResolveType` decides what happens to them, while `GET api/2.0/files/fileops/checkdestfolder` reports  whether the destination accepts the files at all. The caller needs create access to the destination and the  right to take the items out of their source, which is why room members with editing or review rights are  refused with 403, and why content-creator rights inside a room allow copying an item out of it but not moving  it. A room cannot be moved this way — use `PUT api/2.0/files/rooms/{id}/archive` instead. To keep the  originals use `PUT api/2.0/files/fileops/copy`. An empty selection queues nothing.
      * Responses:
      *  - 200: The move and copy operations of the caller, the one just queued included
-     *  - 403: The caller cannot create items in the destination folder, or cannot take one of the items out of its source
+     *  - 403: The caller cannot create items in the destination folder or cannot take one of the items out of its source, the destination is a listed folder or lies inside one, a folder or several files are moved into a form-filling room from outside it, the room or user quota would be exceeded, a file that is not a PDF form goes to a form-filling room, or a file to overwrite is locked or cannot be edited by the caller
+     *  - 404: The destination folder, a listed file or a listed folder other than the first one does not exist
+     *  - 415: A listed file has a format the portal does not accept for upload, or one a knowledge folder cannot index
+     *  - 500: The first listed folder does not exist, or an id is a number that is not a 32-bit integer
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
-     *  - 500: Internal Server Error.
      *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
@@ -739,10 +798,12 @@ interface OperationsApi {
      * Replaces the comment stored on one version of a file - the note that explains what changed in it - and answers  with the comment as it was stored, which is the text cut to the length the portal keeps. `version` names the  version and has to be an existing one: a version that does not exist is rejected as an invalid request, while  a file that does not exist at all is answered as not found. Sending an empty comment clears the note. The  caller needs the right to edit the history of the file, which the room admin, a DocSpace admin acting as room  manager and a member with content-creator rights have; a member with editing access to somebody else's file,  read-only access, a guest and an anonymous caller are all refused. A file that is locked by somebody else or  lies in Trash is refused as well. The call is mutating and idempotent - repeating it with the same text leaves  the same comment. The comments of all versions come back with `GET api/2.0/files/file/{fileId}/edit/history`.
      * Responses:
      *  - 200: The comment as it was stored
+     *  - 400: The request body cannot be read or has no `version`, the version is below 1 or does not exist, or the comment is longer than 255 characters
+     *  - 403: The caller may not change the version history of the file, or the file is locked by somebody else
+     *  - 404: The file id resolves to nothing
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -751,11 +812,11 @@ interface OperationsApi {
      *
      *
      * @param fileId The file whose version comment is replaced.
-     * @param updateComment The version and the comment to store on it.
+     * @param updateCommentRequest The version and the comment to store on it.
      * @return [StringWrapper]
      */
     @PUT("api/2.0/files/file/{fileId}/comment")
-    suspend fun updateFileComment(@Path("fileId") fileId: kotlin.Int, @Body updateComment: UpdateComment): Response<StringWrapper>
+    suspend fun updateFileComment(@Path("fileId") fileId: kotlin.Int, @Body updateCommentRequest: UpdateCommentRequest): Response<StringWrapper>
 
     /**
      * PUT api/2.0/files/file/{fileId}/comment
@@ -763,10 +824,12 @@ interface OperationsApi {
      * Replaces the comment stored on one version of a file - the note that explains what changed in it - and answers  with the comment as it was stored, which is the text cut to the length the portal keeps. `version` names the  version and has to be an existing one: a version that does not exist is rejected as an invalid request, while  a file that does not exist at all is answered as not found. Sending an empty comment clears the note. The  caller needs the right to edit the history of the file, which the room admin, a DocSpace admin acting as room  manager and a member with content-creator rights have; a member with editing access to somebody else's file,  read-only access, a guest and an anonymous caller are all refused. A file that is locked by somebody else or  lies in Trash is refused as well. The call is mutating and idempotent - repeating it with the same text leaves  the same comment. The comments of all versions come back with `GET api/2.0/files/file/{fileId}/edit/history`.
      * Responses:
      *  - 200: The comment as it was stored
+     *  - 400: The request body cannot be read or has no `version`, the version is below 1 or does not exist, or the comment is longer than 255 characters
+     *  - 403: The caller may not change the version history of the file, or the file is locked by somebody else
+     *  - 404: The file id resolves to nothing
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -775,11 +838,11 @@ interface OperationsApi {
      *
      *
      * @param fileId The file whose version comment is replaced.
-     * @param updateComment The version and the comment to store on it.
+     * @param updateCommentRequest The version and the comment to store on it.
      * @return [StringWrapper]
      */
     @PUT("api/2.0/files/file/{fileId}/comment")
-    suspend fun updateFileComment(@Path("fileId") fileId: kotlin.String, @Body updateComment: UpdateComment): Response<StringWrapper>
+    suspend fun updateFileComment(@Path("fileId") fileId: kotlin.String, @Body updateCommentRequest: UpdateCommentRequest): Response<StringWrapper>
 
     /**
      * POST api/2.0/files/{folderId}/session/{sessionId}/upload
@@ -787,9 +850,11 @@ interface OperationsApi {
      * Stores one part of a file under the number given in `chunkNumber`, which is what the ordinary chunked flow  uses: parts are kept by their number rather than by arrival, so a part that failed can be resent under the  same number without restarting the session. Numbering starts at 1, and leaving the number out makes the server  count the parts itself. The answer is always the session, never the file, and this call never completes the  upload: the file appears only after `PUT api/2.0/files/{folderId}/session/{sessionId}/finalize`. Use  `POST api/2.0/files/{folderId}/session/{sessionId}` instead when the parts go strictly in order and the upload  should complete by itself. A part bigger than `chunkUploadSize` from `GET api/2.0/files/settings` is refused,  so that value is also the size to split the payload by. The first part of a PDF is inspected, and a PDF that  is not a fillable form is refused when the session targets a form-filling room. The session is found by its id  alone.
      * Responses:
      *  - 200: The session with its progress after the part was stored
+     *  - 402: The part is larger than `chunkUploadSize`, or a session below that size would exceed a storage quota or size limit when storing the file
+     *  - 404: No open session with the specified ID: it never existed, was finalized or aborted, or has expired
+     *  - 500: The request has no `File` part, or a session below `chunkUploadSize` stores a file that is not a PDF in a form-filling room
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
-     *  - 500: Internal Server Error.
      *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
@@ -802,11 +867,11 @@ interface OperationsApi {
      * @param sessionId The session this part belongs to, as returned in `id` when it was created; a 32-character hexadecimal string.
      * @param chunkNumber The position of this part in the file, counted from 1. Sending the same number again replaces that part  instead of adding one, which is how a failed part is retried; leaving the number out makes the server count  the parts itself. (optional)
      * @param file The part of the file to store, sent as the multipart field of the same name. It is kept under the number given  beside it, and a part larger than the portal chunk size is refused. (optional)
-     * @return [ChunkedUploadSessionResponseResponseWrapper]
+     * @return [ChunkedUploadSessionWrapper]
      */
     @Multipart
     @POST("api/2.0/files/{folderId}/session/{sessionId}/upload")
-    suspend fun uploadAsyncSession(@Path("folderId") folderId: kotlin.Int, @Path("sessionId") sessionId: kotlin.String, @Query("ChunkNumber") chunkNumber: kotlin.Int? = null, @Part file: MultipartBody.Part? = null): Response<ChunkedUploadSessionResponseResponseWrapper>
+    suspend fun uploadAsyncSession(@Path("folderId") folderId: kotlin.Int, @Path("sessionId") sessionId: kotlin.String, @Query("chunkNumber") chunkNumber: kotlin.Int? = null, @Part file: MultipartBody.Part? = null): Response<ChunkedUploadSessionWrapper>
 
     /**
      * POST api/2.0/files/{folderId}/session/{sessionId}/upload
@@ -814,9 +879,11 @@ interface OperationsApi {
      * Stores one part of a file under the number given in `chunkNumber`, which is what the ordinary chunked flow  uses: parts are kept by their number rather than by arrival, so a part that failed can be resent under the  same number without restarting the session. Numbering starts at 1, and leaving the number out makes the server  count the parts itself. The answer is always the session, never the file, and this call never completes the  upload: the file appears only after `PUT api/2.0/files/{folderId}/session/{sessionId}/finalize`. Use  `POST api/2.0/files/{folderId}/session/{sessionId}` instead when the parts go strictly in order and the upload  should complete by itself. A part bigger than `chunkUploadSize` from `GET api/2.0/files/settings` is refused,  so that value is also the size to split the payload by. The first part of a PDF is inspected, and a PDF that  is not a fillable form is refused when the session targets a form-filling room. The session is found by its id  alone.
      * Responses:
      *  - 200: The session with its progress after the part was stored
+     *  - 402: The part is larger than `chunkUploadSize`, or a session below that size would exceed a storage quota or size limit when storing the file
+     *  - 404: No open session with the specified ID: it never existed, was finalized or aborted, or has expired
+     *  - 500: The request has no `File` part, or a session below `chunkUploadSize` stores a file that is not a PDF in a form-filling room
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
-     *  - 500: Internal Server Error.
      *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
@@ -829,11 +896,11 @@ interface OperationsApi {
      * @param sessionId The session this part belongs to, as returned in `id` when it was created; a 32-character hexadecimal string.
      * @param chunkNumber The position of this part in the file, counted from 1. Sending the same number again replaces that part  instead of adding one, which is how a failed part is retried; leaving the number out makes the server count  the parts itself. (optional)
      * @param file The part of the file to store, sent as the multipart field of the same name. It is kept under the number given  beside it, and a part larger than the portal chunk size is refused. (optional)
-     * @return [ThirdPartyChunkedUploadSessionResponseResponseWrapper]
+     * @return [ThirdPartyChunkedUploadSessionWrapper]
      */
     @Multipart
     @POST("api/2.0/files/{folderId}/session/{sessionId}/upload")
-    suspend fun uploadAsyncSession(@Path("folderId") folderId: kotlin.String, @Path("sessionId") sessionId: kotlin.String, @Query("ChunkNumber") chunkNumber: kotlin.Int? = null, @Part file: MultipartBody.Part? = null): Response<ThirdPartyChunkedUploadSessionResponseResponseWrapper>
+    suspend fun uploadAsyncSession(@Path("folderId") folderId: kotlin.String, @Path("sessionId") sessionId: kotlin.String, @Query("chunkNumber") chunkNumber: kotlin.Int? = null, @Part file: MultipartBody.Part? = null): Response<ThirdPartyChunkedUploadSessionWrapper>
 
     /**
      * POST api/2.0/files/{folderId}/session/{sessionId}
@@ -841,9 +908,11 @@ interface OperationsApi {
      * Sends the next part of a file into the session opened for it, as the multipart `File` field, and lets the  server keep count: parts are appended in the order they arrive, so two of these calls must never run in  parallel on one session. While bytes are still missing the answer describes the session and `uploaded` is  false; when the last part completes the declared size the file is written, its upload links are cleared, it is  marked as new for the room, and the answer comes back with 201, `uploaded` true and the whole file in `file`.  A session created for a payload smaller than `chunkUploadSize` from `GET api/2.0/files/settings` finishes on  the first such call and needs no separate finalize step. A part larger than that limit is refused. The first  part of a PDF is inspected, and a PDF that is not a fillable form is refused when the session targets a  form-filling room. The session is addressed by its id, and the folder in the path is not matched against it.
      * Responses:
      *  - 200: The progress of the session, or the stored file once the last part has arrived
+     *  - 402: The part is larger than `chunkUploadSize`, or storing the file would exceed a storage quota or size limit
+     *  - 404: No open session with the specified ID: it never existed, was finalized or aborted, or has expired
+     *  - 500: The request has no `File` part, or a file that is not a PDF is stored in a form-filling room
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
-     *  - 500: Internal Server Error.
      *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
@@ -867,9 +936,11 @@ interface OperationsApi {
      * Sends the next part of a file into the session opened for it, as the multipart `File` field, and lets the  server keep count: parts are appended in the order they arrive, so two of these calls must never run in  parallel on one session. While bytes are still missing the answer describes the session and `uploaded` is  false; when the last part completes the declared size the file is written, its upload links are cleared, it is  marked as new for the room, and the answer comes back with 201, `uploaded` true and the whole file in `file`.  A session created for a payload smaller than `chunkUploadSize` from `GET api/2.0/files/settings` finishes on  the first such call and needs no separate finalize step. A part larger than that limit is refused. The first  part of a PDF is inspected, and a PDF that is not a fillable form is refused when the session targets a  form-filling room. The session is addressed by its id, and the folder in the path is not matched against it.
      * Responses:
      *  - 200: The progress of the session, or the stored file once the last part has arrived
+     *  - 402: The part is larger than `chunkUploadSize`, or storing the file would exceed a storage quota or size limit
+     *  - 404: No open session with the specified ID: it never existed, was finalized or aborted, or has expired
+     *  - 500: The request has no `File` part, or a file that is not a PDF is stored in a form-filling room
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
-     *  - 500: Internal Server Error.
      *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.

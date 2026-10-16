@@ -35,7 +35,7 @@ data class AiEditorToolsCallRequest (
     val name: kotlin.String,
 
     @Json(name = "arguments")
-    val arguments: kotlin.collections.Map<kotlin.String, kotlin.Any?>? = null,
+    val arguments: kotlin.collections.Map<kotlin.String, kotlin.Any>? = null,
 
     @Json(name = "entityId")
     val entityId: kotlin.String? = null

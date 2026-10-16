@@ -25,7 +25,8 @@ import onlyoffice.docspace.api.sdk.models.AiFileEntryDtoAllOfShareSettings
 import onlyoffice.docspace.api.sdk.models.AiFileEntryType
 import onlyoffice.docspace.api.sdk.models.AiFileShare
 import onlyoffice.docspace.api.sdk.models.AiFolderType
-import onlyoffice.docspace.api.sdk.models.AiLogo
+import onlyoffice.docspace.api.sdk.models.AiLogoDto
+import onlyoffice.docspace.api.sdk.models.AiMetadataMatchDto
 import onlyoffice.docspace.api.sdk.models.AiRoomDataLifetimeDto
 import onlyoffice.docspace.api.sdk.models.AiRoomType
 import onlyoffice.docspace.api.sdk.models.AiWatermarkDto
@@ -72,9 +73,11 @@ import com.squareup.moshi.JsonClass
  * @param `external` Set when the link being used was made for this very entry, and false when the entry is reached through a link  to the room around it. It is null when no link is involved.
  * @param expirationDate When the link being used stops working, written with the offset of the portal's time zone. It is null for a  link that never expires and whenever no link is involved.
  * @param isLinkExpired Set when the link being used has already passed its expiration date, which is why the entry cannot be opened  even though it is described here. It is null when no link is involved.
+ * @param assignedMetadataTemplates The IDs of the metadata templates assigned to the file entry.
+ * @param metadataMatches Where the search text of the listing was met in the metadata of the entry: one item per string value holding  the text, in the order of the fields. Present only in a listing filtered by text, and only for the entries whose  metadata contain it; an entry found by its title alone carries nothing here.
  * @param parentId The folder this one is listed in. For a room it is the root of the section the room lives in, and for an entry  opened through a sharing link whose real parent the caller may not read it is the root of the section with the  entries shared with them.
- * @param filesCount How many files lie directly in the folder, without counting the subfolders. The roots of the `Rooms`, room  templates and default templates sections always report 0, because the number is not collected for them.
- * @param foldersCount How many subfolders lie directly in the folder. For an AI room the two service subfolders it always holds are  subtracted, so the number matches what a listing of it shows, and the roots of the `Rooms` and templates  sections report 0.
+ * @param filesCount How many files lie directly in the folder, without counting the subfolders. The roots of the `Rooms`, room  templates, default templates and AI agents sections always report 0, because the number is not collected for  them.
+ * @param foldersCount How many subfolders lie directly in the folder. For an AI room the two service subfolders it always holds are  subtracted, so the number matches what a listing of it shows, and the roots of the `Rooms`, templates and AI  agents sections report 0.
  * @param isShareable Whether the caller may hand out access to the folder. It is filled in only for the folder a folder-contents  answer is about, and is null in every other answer, so null says nothing about the sharing rights.
  * @param new How many entries inside the folder the caller has not opened yet, the number drawn as the badge on it. An  account that turned the badges off in its own settings always reads 0 here, so 0 alone does not prove that  everything has been seen.
  * @param mute Whether the caller silenced the notifications of this room: true means no message about its activity reaches  them. The choice belongs to the reading account rather than to the room, so two members of one room read  different values.
@@ -89,7 +92,7 @@ import com.squareup.moshi.JsonClass
  * @param watermark The watermark stamped over the documents of the room while they are viewed and printed. Null when the room has  no watermark, and for every folder that is not a room.
  * @param type The part the folder plays inside its room: one of the service folders of the form-filling flow, or the  knowledge and result storages of an AI room. It stays null for an ordinary folder and for the room itself, so  it does not describe folders in general.
  * @param inRoom Whether the caller holds the room through an invitation of their own: true for the account that created it and  for a member invited personally, false when the access comes from a group they belong to, and null for a  folder that is not a room.
- * @param quotaLimit How much space the files of the room may take, in bytes. It is the limit set on this room, or the portal  default for rooms when none was set. Null when the tariff of the portal does not count room statistics, when  room quotas are switched off, when the room lies in the archive or the trash, or when the caller may only read  it.
+ * @param quotaLimit How much space the files of the room may take, in bytes. It is the limit set on this room, or the portal  default for rooms when none was set. Null when the tariff of the portal does not count room statistics, when  room quotas are switched off, when the room lies in the archive or the trash, or when the role of the caller  in the room carries no editing rights - a viewer, a commenter, a reviewer and a form filler do not see the  figure, a room manager, a content creator and an editor do.
  * @param isCustomQuota Whether `quotaLimit` is a limit set on this room (true) or the portal default for rooms (false). Null exactly  when `quotaLimit` is null.
  * @param usedSpace How much the files of the room take, in bytes, as of the last time the counter was recomputed. The counter is  refreshed when a file operation finishes, so a read right after an upload or a deletion can still report the  previous figure. Null for a folder that is not a room.
  * @param passwordProtected Whether the sharing link the folder was opened through asks for a password that has not been entered yet.  While it is true the contents stay unreadable; send the password to `POST api/2.0/files/share/{key}/password`  first. Null when the folder was not reached through a link.
@@ -212,6 +215,12 @@ data class AiFolderDto (
     @Json(name = "isLinkExpired")
     val isLinkExpired: kotlin.Boolean? = null,
 
+    @Json(name = "assignedMetadataTemplates")
+    val assignedMetadataTemplates: kotlin.collections.List<kotlin.Int>? = null,
+
+    @Json(name = "metadataMatches")
+    val metadataMatches: kotlin.collections.List<AiMetadataMatchDto>? = null,
+
     @Json(name = "parentId")
     val parentId: kotlin.Int? = null,
 
@@ -234,7 +243,7 @@ data class AiFolderDto (
     val tags: kotlin.collections.List<kotlin.String>? = null,
 
     @Json(name = "logo")
-    val logo: AiLogo? = null,
+    val logo: AiLogoDto? = null,
 
     @Json(name = "pinned")
     val pinned: kotlin.Boolean? = null,

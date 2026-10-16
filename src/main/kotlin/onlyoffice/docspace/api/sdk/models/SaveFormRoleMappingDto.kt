@@ -16,7 +16,7 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.FormRole
+import onlyoffice.docspace.api.sdk.models.FormRoleRequest
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -35,7 +35,7 @@ data class SaveFormRoleMappingDto (
     val formId: kotlin.Int,
 
     @Json(name = "roles")
-    val roles: kotlin.collections.List<FormRole>?
+    val roles: kotlin.collections.List<FormRoleRequest>?
 
 ) {
 

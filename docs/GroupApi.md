@@ -8,7 +8,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 | [**addMembersTo**](GroupApi.md#addMembersTo) | **PUT** api/2.0/group/{id}/members | Add group members |
 | [**deleteGroup**](GroupApi.md#deleteGroup) | **DELETE** api/2.0/group/{id} | Delete a group |
 | [**getGroup**](GroupApi.md#getGroup) | **GET** api/2.0/group/{id} | Get a group |
-| [**getGroupByUserId**](GroupApi.md#getGroupByUserId) | **GET** api/2.0/group/user/{userid} | Get user groups |
+| [**getGroupByUserId**](GroupApi.md#getGroupByUserId) | **GET** api/2.0/group/user/{userId} | Get user groups |
 | [**getGroups**](GroupApi.md#getGroups) | **GET** api/2.0/group | Get groups |
 | [**moveMembersTo**](GroupApi.md#moveMembersTo) | **PUT** api/2.0/group/{fromId}/members/{toId} | Move group members |
 | [**removeMembersFrom**](GroupApi.md#removeMembersFrom) | **DELETE** api/2.0/group/{id}/members | Remove group members |
@@ -220,7 +220,7 @@ launch(Dispatchers.IO) {
 
 <a id="getGroupByUserId"></a>
 # **getGroupByUserId**
-> GroupSummaryArrayWrapper getGroupByUserId (java.util.UUID userid)
+> GroupSummaryArrayWrapper getGroupByUserId (java.util.UUID userId)
 
 Returns every group the account with the ID in the route belongs to, as a flat list of ID and name pairs.  The caller needs the permission to read groups.  The call is read-only, is not paged, and answers an empty list both for an account that belongs to no group  and for an ID that matches no account, so an empty answer does not prove the account exists.  The entries are summaries and carry neither the manager nor the members - read `GET api/2.0/group/{id}` for  the full picture of one of them.
 
@@ -229,7 +229,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **userid** | **java.util.UUID**| The ID of the account whose groups are listed, taken from the route. An ID that matches no account yields an  empty list rather than 404. | |
+| **userId** | **java.util.UUID**| The ID of the account whose groups are listed, taken from the route. An ID that matches no account yields an  empty list rather than 404. | |
 
 ### Return type
 
@@ -254,10 +254,10 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(GroupApi::class.java)
-val userid : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The ID of the account whose groups are listed, taken from the route. An ID that matches no account yields an  empty list rather than 404.
+val userId : java.util.UUID = 00000000-0000-0000-0000-000000000000 // java.util.UUID | The ID of the account whose groups are listed, taken from the route. An ID that matches no account yields an  empty list rather than 404.
 
 launch(Dispatchers.IO) {
-    val result : GroupSummaryArrayWrapper = webService.getGroupByUserId(userid)
+    val result : GroupSummaryArrayWrapper = webService.getGroupByUserId(userId)
 }
 ```
 
@@ -271,7 +271,7 @@ launch(Dispatchers.IO) {
 # **getGroups**
 > GroupArrayWrapper getGroups (java.util.UUID userId, kotlin.Boolean manager, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterValue)
 
-Returns the groups of the portal, one page at a time, with the summary information about each of them - the  ID, the name and the manager - but without the member list.  The caller needs the permission to read groups.  The call is read-only, and the number of groups that match the filters is reported in the total count of the  response, so a client can page through them with `count` and `startIndex`.  Narrow the result with `filterValue` on the group name, with `userId` to keep only the groups that account  belongs to, and with `manager` set to true to keep only the groups it manages; order it with `sortBy` and  `sortOrder`, and an unknown `sortBy` falls back to sorting by title.  The entries carry no members - read `GET api/2.0/group/{id}` with `includeMembers` for one group, or  `GET api/2.0/group/user/{userid}` to find the groups of a single account.
+Returns the groups of the portal, one page at a time, with the summary information about each of them - the  ID, the name and the manager - but without the member list.  The caller needs the permission to read groups.  The call is read-only, and the number of groups that match the filters is reported in the total count of the  response, so a client can page through them with `count` and `startIndex`.  Narrow the result with `filterValue` on the group name, with `userId` to keep only the groups that account  belongs to, and with `manager` set to true to keep only the groups it manages; order it with `sortBy` and  `sortOrder`, and an unknown `sortBy` falls back to sorting by title.  The entries carry no members - read `GET api/2.0/group/{id}` with `includeMembers` for one group, or  `GET api/2.0/group/user/{userId}` to find the groups of a single account.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-groups/).
 

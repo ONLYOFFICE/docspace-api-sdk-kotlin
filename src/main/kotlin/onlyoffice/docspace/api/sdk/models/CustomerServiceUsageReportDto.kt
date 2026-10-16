@@ -45,7 +45,7 @@ data class CustomerServiceUsageReportDto (
     val limit: kotlin.Int? = null,
 
     @Json(name = "totalQuantity")
-    val totalQuantity: kotlin.Long? = null,
+    val totalQuantity: kotlin.Int? = null,
 
     @Json(name = "totalPage")
     val totalPage: kotlin.Int? = null,

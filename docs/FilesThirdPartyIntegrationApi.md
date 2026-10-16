@@ -19,7 +19,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 # **deleteThirdParty**
 > StringWrapper deleteThirdParty (kotlin.Int providerId)
 
-Disconnects a third-party storage account from the portal and returns the ID of the folder that stood for it,  in the `provider-accountId` form the Files operations use for third-party entries. Take `providerId` from  `GET api/2.0/files/thirdparty`: it is the numeric account ID, not that composed folder ID. The member who  connected the account can remove it; another member's request is refused unless they hold delete rights on the  folder it stands for. Nothing is deleted at the storage service: the files stay with the provider, and what  goes away is the portal's link to them together with the stored credentials, the sharing records and the tags  kept for its entries. A room that was created on this account stops being available. When the account being  removed is the one connected for backups by `POST api/2.0/files/thirdparty/backup`, its backup schedule is  deleted as well. The removal cannot be repeated: once the account is gone the same ID is refused rather than  confirmed, so treat the first successful answer as the record of it.
+Disconnects a third-party storage account from the portal and returns the ID of the folder that stood for it,  in the `provider-accountId` form the Files operations use for third-party entries. Take `providerId` from  `GET api/2.0/files/thirdparty`: it is the numeric account ID, not that composed folder ID. The member who  connected the account can remove it; another member's request is refused unless they hold delete rights on the  folder it stands for. Nothing is deleted at the storage service: the files stay with the provider, and what  goes away is the portal's link to them together with the stored credentials, the sharing records and the tags  kept for its entries. An account a room was created on is refused with 403 while the room exists: delete the  room instead, which disconnects the account along with it. When the account being  removed is the one connected for backups by `POST api/2.0/files/thirdparty/backup`, its backup schedule is  deleted as well. The removal cannot be repeated: once the account is gone the same ID is refused rather than  confirmed, so treat the first successful answer as the record of it.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-third-party/).
 
@@ -253,7 +253,7 @@ launch(Dispatchers.IO) {
 
 <a id="getThirdPartyAccounts"></a>
 # **getThirdPartyAccounts**
-> ThirdPartyParamsArrayWrapper getThirdPartyAccounts ()
+> ThirdPartyAccountArrayWrapper getThirdPartyAccounts ()
 
 Lists the third-party storage accounts the caller has connected, one element per account, with the title it  was saved under, the storage service behind it and the portal section it is attached to. Accounts connected by  other members are not included, and neither is the portal backup account of  `GET api/2.0/files/thirdparty/backup`, even for an administrator. The `providerId` of an element is the value  to send to `DELETE api/2.0/files/thirdparty/{providerId}` and, as `providerId` in  `POST api/2.0/files/thirdparty`, the way to re-authenticate that same account instead of connecting a new one.  Credentials are never disclosed: `auth_data` comes back empty for every element. An element with  `roomsStorage` set is available as storage for a room, while `corporate` marks an account inherited from the  legacy Common section. The call is read-only, returns a plain array with no paging and no contractual  ordering, and answers with an empty array when the caller has connected nothing. To browse the content of an  account, take the folder ID from the answer of the operation that connected it or from  `GET api/2.0/files/@root`.
 
@@ -264,7 +264,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ThirdPartyParamsArrayWrapper**](ThirdPartyParamsArrayWrapper.md)
+[**ThirdPartyAccountArrayWrapper**](ThirdPartyAccountArrayWrapper.md)
 
 ### Authorization
 
@@ -287,7 +287,7 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(ThirdPartyIntegrationApi::class.java)
 
 launch(Dispatchers.IO) {
-    val result : ThirdPartyParamsArrayWrapper = webService.getThirdPartyAccounts()
+    val result : ThirdPartyAccountArrayWrapper = webService.getThirdPartyAccounts()
 }
 ```
 

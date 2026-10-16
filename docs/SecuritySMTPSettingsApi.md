@@ -14,7 +14,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 
 <a id="getSmtpOperationStatus"></a>
 # **getSmtpOperationStatus**
-> SmtpOperationStatusRequestsWrapper getSmtpOperationStatus ()
+> SmtpOperationStatusWrapper getSmtpOperationStatus ()
 
 Returns the state of the test message that `GET api/2.0/smtpsettings/smtp/test` queued for this portal, and is  the operation to poll while that test runs. A test has to be queued first; the caller needs the  portal-settings right of a DocSpace administrator, and the SMTP settings section has to be enabled for the  portal, otherwise the call is answered with 402. The call changes no settings, but it is not free of  consequence: the first answer that reports `completed` true also discards the finished job, so a later call no  longer knows about it - take `error` from that answer and keep it. An empty answer means the portal has no  test on record, either because none was queued or because its result has already been read. While the job  runs, `percents` climbs to 100 and `status` names the step reached, such as `Connect to host` or  `Send test message`; `error` is empty until something fails and stays empty when the relay accepted the  message. `id` identifies the queued job, of which a portal only ever has one.
 
@@ -25,7 +25,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**SmtpOperationStatusRequestsWrapper**](SmtpOperationStatusRequestsWrapper.md)
+[**SmtpOperationStatusWrapper**](SmtpOperationStatusWrapper.md)
 
 ### Authorization
 
@@ -48,7 +48,7 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SMTPSettingsApi::class.java)
 
 launch(Dispatchers.IO) {
-    val result : SmtpOperationStatusRequestsWrapper = webService.getSmtpOperationStatus()
+    val result : SmtpOperationStatusWrapper = webService.getSmtpOperationStatus()
 }
 ```
 
@@ -201,7 +201,7 @@ launch(Dispatchers.IO) {
 
 <a id="testSmtpSettings"></a>
 # **testSmtpSettings**
-> SmtpOperationStatusRequestsWrapper testSmtpSettings ()
+> SmtpOperationStatusWrapper testSmtpSettings ()
 
 Queues a background job that sends a test message through the SMTP settings currently stored for the portal to  the email address of the calling user, and returns the state of that job. Save the settings with  `POST api/2.0/smtpsettings/smtp` first: the job always takes the stored settings and nothing can be passed to  it here. The caller needs the portal-settings right of a DocSpace administrator, and the SMTP settings section  has to be enabled for the portal, otherwise the call is answered with 402. The call is mutating, it sends  mail, and it is rate-limited to five requests per fifteen minutes per user and path by default, answering 429  above that; while a test is still running the same job is returned instead of a second one being started. The  message has not been sent when the answer arrives: poll `GET api/2.0/smtpsettings/smtp/test/status` until  `completed` is true, then read `error` - empty means the relay accepted the message, otherwise it carries the  reason. `percents` climbs to 100 and `status` names the step reached, such as `Connect to host` or  `Send test message`. An unreachable relay is reported in `error` after a 30-second connection timeout, not as  a failed request.
 
@@ -212,7 +212,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**SmtpOperationStatusRequestsWrapper**](SmtpOperationStatusRequestsWrapper.md)
+[**SmtpOperationStatusWrapper**](SmtpOperationStatusWrapper.md)
 
 ### Authorization
 
@@ -235,7 +235,7 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SMTPSettingsApi::class.java)
 
 launch(Dispatchers.IO) {
-    val result : SmtpOperationStatusRequestsWrapper = webService.testSmtpSettings()
+    val result : SmtpOperationStatusWrapper = webService.testSmtpSettings()
 }
 ```
 

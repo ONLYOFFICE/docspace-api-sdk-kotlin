@@ -16,7 +16,7 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.AiTMCPItem
+import onlyoffice.docspace.api.sdk.models.AiMCPItem
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -33,7 +33,7 @@ import com.squareup.moshi.JsonClass
 data class AiToolsListSystemTools200Response (
 
     @Json(name = "groups")
-    val groups: kotlin.collections.Map<kotlin.String, kotlin.collections.List<AiTMCPItem>>,
+    val groups: kotlin.collections.Map<kotlin.String, kotlin.collections.List<AiMCPItem>>,
 
     @Json(name = "errors")
     val errors: kotlin.collections.Map<kotlin.String, kotlin.String>,

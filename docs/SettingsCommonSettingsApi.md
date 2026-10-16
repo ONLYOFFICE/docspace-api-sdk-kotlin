@@ -77,7 +77,7 @@ launch(Dispatchers.IO) {
 
 <a id="completeWizard"></a>
 # **completeWizard**
-> WizardSettingsWrapper completeWizard (WizardRequestsDto wizardRequestsDto)
+> WizardSettingsWrapper completeWizard (WizardRequestDto wizardRequestDto)
 
 Finishes the initial portal setup wizard: sets the owner's password and locale, applies the supplied license  if one is required, and marks the wizard as completed so it is not shown again. This call is not for a normal  logged-in session: it requires a confirmation link bearing the Wizard claim, of the kind issued when a new  portal is created, and the link is consumed as part of authenticating the request; the caller must also hold  the EditPortalSettings permission. An empty password or a malformed email address is rejected without  completing the wizard, and so is a missing, invalid, or expired license, or a license whose user quota does  not cover the portal. This call is meant to run once per portal; running it again is accepted but has no  further effect once the wizard is already completed. It returns the resulting wizard settings, including the  completed flag.
 
@@ -86,7 +86,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **wizardRequestsDto** | [**WizardRequestsDto**](WizardRequestsDto.md)|  | [optional] |
+| **wizardRequestDto** | [**WizardRequestDto**](WizardRequestDto.md)|  | [optional] |
 
 ### Return type
 
@@ -111,10 +111,10 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(CommonSettingsApi::class.java)
-val wizardRequestsDto : WizardRequestsDto =  // WizardRequestsDto | 
+val wizardRequestDto : WizardRequestDto =  // WizardRequestDto | 
 
 launch(Dispatchers.IO) {
-    val result : WizardSettingsWrapper = webService.completeWizard(wizardRequestsDto)
+    val result : WizardSettingsWrapper = webService.completeWizard(wizardRequestDto)
 }
 ```
 
@@ -126,7 +126,7 @@ launch(Dispatchers.IO) {
 
 <a id="configureDeepLink"></a>
 # **configureDeepLink**
-> TenantDeepLinkSettingsWrapper configureDeepLink (DeepLinkConfigurationRequestsDto deepLinkConfigurationRequestsDto)
+> TenantDeepLinkSettingsWrapper configureDeepLink (DeepLinkConfigurationRequestDto deepLinkConfigurationRequestDto)
 
 Sets how the portal responds when a client opens a DocSpace link on a mobile device: always in the browser,  always in the native app, or asking the user to choose each time. Requires Owner or DocSpaceAdmin (the  EditPortalSettings permission). The handling mode must be one of the documented enum values; anything else is  rejected without being saved. This is a mutating, idempotent call: sending the same mode again leaves the  setting unchanged. It returns the saved deep link settings, including the timestamp of the last change; read  the current value at any time, including anonymously, from `GET api/2.0/settings/deeplink`.
 
@@ -135,7 +135,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **deepLinkConfigurationRequestsDto** | [**DeepLinkConfigurationRequestsDto**](DeepLinkConfigurationRequestsDto.md)|  | [optional] |
+| **deepLinkConfigurationRequestDto** | [**DeepLinkConfigurationRequestDto**](DeepLinkConfigurationRequestDto.md)|  | [optional] |
 
 ### Return type
 
@@ -160,10 +160,10 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(CommonSettingsApi::class.java)
-val deepLinkConfigurationRequestsDto : DeepLinkConfigurationRequestsDto =  // DeepLinkConfigurationRequestsDto | 
+val deepLinkConfigurationRequestDto : DeepLinkConfigurationRequestDto =  // DeepLinkConfigurationRequestDto | 
 
 launch(Dispatchers.IO) {
-    val result : TenantDeepLinkSettingsWrapper = webService.configureDeepLink(deepLinkConfigurationRequestsDto)
+    val result : TenantDeepLinkSettingsWrapper = webService.configureDeepLink(deepLinkConfigurationRequestDto)
 }
 ```
 
@@ -549,7 +549,7 @@ launch(Dispatchers.IO) {
 
 <a id="getSupportedCultures"></a>
 # **getSupportedCultures**
-> STRINGArrayWrapper getSupportedCultures ()
+> StringArrayWrapper getSupportedCultures ()
 
 Returns the two- or four-letter language codes of every culture currently enabled on the portal (for example  `en-US`), used to populate a language picker before or after login. No permission is required; anonymous  callers can read it too. This is a read-only, idempotent call, and the list is not paginated. The response  supports conditional requests: an unchanged result is signaled instead of resending the same list. The set of  enabled cultures is a portal-wide configuration value, not a per-user preference.
 
@@ -560,7 +560,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**STRINGArrayWrapper**](STRINGArrayWrapper.md)
+[**StringArrayWrapper**](StringArrayWrapper.md)
 
 ### Authorization
 
@@ -583,7 +583,7 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(CommonSettingsApi::class.java)
 
 launch(Dispatchers.IO) {
-    val result : STRINGArrayWrapper = webService.getSupportedCultures()
+    val result : StringArrayWrapper = webService.getSupportedCultures()
 }
 ```
 
@@ -687,7 +687,7 @@ launch(Dispatchers.IO) {
 
 <a id="getTimeZones"></a>
 # **getTimeZones**
-> TimezonesRequestsArrayWrapper getTimeZones ()
+> TimezoneArrayWrapper getTimeZones ()
 
 Returns every time zone known to the host machine, each with its IANA identifier and a human-readable display  name, ordered from the most negative to the most positive UTC offset. This call is not for a normal logged-in  session: it requires a confirmation link bearing the Wizard or Administrators claim, of the kind generated  during initial portal setup or issued by an administrator, and the link is consumed as part of authenticating  the request. This is a read-only, idempotent call, and the list is not paginated. Use the returned `id` values  wherever the portal expects a time zone identifier; an unrecognized value is rejected there, not here.
 
@@ -698,7 +698,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**TimezonesRequestsArrayWrapper**](TimezonesRequestsArrayWrapper.md)
+[**TimezoneArrayWrapper**](TimezoneArrayWrapper.md)
 
 ### Authorization
 
@@ -721,7 +721,7 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(CommonSettingsApi::class.java)
 
 launch(Dispatchers.IO) {
-    val result : TimezonesRequestsArrayWrapper = webService.getTimeZones()
+    val result : TimezoneArrayWrapper = webService.getTimeZones()
 }
 ```
 
@@ -782,7 +782,7 @@ launch(Dispatchers.IO) {
 
 <a id="saveDnsSettings"></a>
 # **saveDnsSettings**
-> StringWrapper saveDnsSettings (DnsSettingsRequestsDto dnsSettingsRequestsDto)
+> StringWrapper saveDnsSettings (DnsSettingsRequestDto dnsSettingsRequestDto)
 
 Maps a custom domain name onto the current tenant, or clears the mapping, so the portal becomes reachable  under the caller's own DNS name instead of only its default alias. Available only on a Standalone  (self-hosted) installation; on SaaS the call is always refused. Requires Owner or DocSpaceAdmin (the  EditPortalSettings permission). Disable the mapping by passing `enable=false`, in which case the domain name  in the request is ignored. A domain that collides with the portal's reserved base domain, or otherwise fails  validation, is rejected without changing the current mapping. This is a mutating, idempotent call. On success  the previous domain also stops answering, and any CSP configuration referencing it is updated to the new one.
 
@@ -791,7 +791,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **dnsSettingsRequestsDto** | [**DnsSettingsRequestsDto**](DnsSettingsRequestsDto.md)|  | [optional] |
+| **dnsSettingsRequestDto** | [**DnsSettingsRequestDto**](DnsSettingsRequestDto.md)|  | [optional] |
 
 ### Return type
 
@@ -816,10 +816,10 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(CommonSettingsApi::class.java)
-val dnsSettingsRequestsDto : DnsSettingsRequestsDto =  // DnsSettingsRequestsDto | 
+val dnsSettingsRequestDto : DnsSettingsRequestDto =  // DnsSettingsRequestDto | 
 
 launch(Dispatchers.IO) {
-    val result : StringWrapper = webService.saveDnsSettings(dnsSettingsRequestsDto)
+    val result : StringWrapper = webService.saveDnsSettings(dnsSettingsRequestDto)
 }
 ```
 
@@ -831,7 +831,7 @@ launch(Dispatchers.IO) {
 
 <a id="saveMailDomainSettings"></a>
 # **saveMailDomainSettings**
-> StringWrapper saveMailDomainSettings (MailDomainSettingsRequestsDto mailDomainSettingsRequestsDto)
+> StringWrapper saveMailDomainSettings (MailDomainSettingsRequestDto mailDomainSettingsRequestDto)
 
 Overwrites the portal's trusted mail domain configuration, which controls which email domains are treated as  already verified when a user is invited or self-registers. Requires Owner or DocSpaceAdmin (the  EditPortalSettings permission). When the requested mode is a custom domain list, every domain is normalized to  lowercase and checked against the expected hostname format; a domain that fails the check, or an empty custom  list, causes the whole call to be rejected without saving anything. For the other modes the domain list in the  request is ignored. The `inviteUsersAsVisitors` flag controls whether users who join through a trusted domain  are added as full members or as visitors, and takes effect on the next join rather than retroactively. This is  a mutating, idempotent call: repeating it with the same body leaves the portal in the same state. On success  it returns a confirmation message, not the saved settings themselves; read them back from  `GET api/2.0/settings`.
 
@@ -840,7 +840,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **mailDomainSettingsRequestsDto** | [**MailDomainSettingsRequestsDto**](MailDomainSettingsRequestsDto.md)|  | [optional] |
+| **mailDomainSettingsRequestDto** | [**MailDomainSettingsRequestDto**](MailDomainSettingsRequestDto.md)|  | [optional] |
 
 ### Return type
 
@@ -865,10 +865,10 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(CommonSettingsApi::class.java)
-val mailDomainSettingsRequestsDto : MailDomainSettingsRequestsDto =  // MailDomainSettingsRequestsDto | 
+val mailDomainSettingsRequestDto : MailDomainSettingsRequestDto =  // MailDomainSettingsRequestDto | 
 
 launch(Dispatchers.IO) {
-    val result : StringWrapper = webService.saveMailDomainSettings(mailDomainSettingsRequestsDto)
+    val result : StringWrapper = webService.saveMailDomainSettings(mailDomainSettingsRequestDto)
 }
 ```
 
@@ -880,7 +880,7 @@ launch(Dispatchers.IO) {
 
 <a id="savePortalColorTheme"></a>
 # **savePortalColorTheme**
-> CustomColorThemesSettingsWrapper savePortalColorTheme (CustomColorThemesSettingsRequestsDto customColorThemesSettingsRequestsDto)
+> CustomColorThemesSettingsWrapper savePortalColorTheme (CustomColorThemesSettingsRequestDto customColorThemesSettingsRequestDto)
 
 Adds or updates a custom color theme, or changes which theme is selected, for the whole portal. Requires Owner  or DocSpaceAdmin (the EditPortalSettings permission). Pass `theme` to create or edit one: an existing theme is  matched and updated by its ID, a new one is appended, and an ID that collides with a built-in default theme is  treated as a request to create a new custom theme instead of overwriting the default. Once the plan's  custom-theme limit is reached, a new theme is silently not added rather than rejected with an error, so check  the returned `themes` count against `limit` before assuming it was saved. Pass `selected` to switch the active  theme; an ID that does not match any existing theme is ignored. This is a mutating call, not strictly  idempotent once the limit has been reached. It returns the full updated theme configuration.
 
@@ -889,7 +889,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **customColorThemesSettingsRequestsDto** | [**CustomColorThemesSettingsRequestsDto**](CustomColorThemesSettingsRequestsDto.md)|  | [optional] |
+| **customColorThemesSettingsRequestDto** | [**CustomColorThemesSettingsRequestDto**](CustomColorThemesSettingsRequestDto.md)|  | [optional] |
 
 ### Return type
 
@@ -914,10 +914,10 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(CommonSettingsApi::class.java)
-val customColorThemesSettingsRequestsDto : CustomColorThemesSettingsRequestsDto =  // CustomColorThemesSettingsRequestsDto | 
+val customColorThemesSettingsRequestDto : CustomColorThemesSettingsRequestDto =  // CustomColorThemesSettingsRequestDto | 
 
 launch(Dispatchers.IO) {
-    val result : CustomColorThemesSettingsWrapper = webService.savePortalColorTheme(customColorThemesSettingsRequestsDto)
+    val result : CustomColorThemesSettingsWrapper = webService.savePortalColorTheme(customColorThemesSettingsRequestDto)
 }
 ```
 
@@ -929,7 +929,7 @@ launch(Dispatchers.IO) {
 
 <a id="setTenantAiAccessSettings"></a>
 # **setTenantAiAccessSettings**
-> TenantAiAccessSettingsWrapper setTenantAiAccessSettings (TenantAiAccessSettingsDto tenantAiAccessSettingsDto)
+> TenantAiAccessSettingsWrapper setTenantAiAccessSettings (TenantAiAccessSettingsRequestDto tenantAiAccessSettingsRequestDto)
 
 Turns AI functionality (chat, agents, vectorization) on or off for the whole portal; AI is enabled by default.  Requires Owner or DocSpaceAdmin (the EditPortalSettings permission); every other caller is refused. Disabling  it immediately hides the AI Agents folder from root folder listings, makes AI status checks report disabled,  and makes AI chat endpoints unreachable for every user on the tenant, not only the caller. This is a mutating,  idempotent, portal-wide call, and the change is pushed to already-connected clients over the real-time  notification hub rather than waiting for their next request. It returns the saved setting.
 
@@ -938,7 +938,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **tenantAiAccessSettingsDto** | [**TenantAiAccessSettingsDto**](TenantAiAccessSettingsDto.md)|  | [optional] |
+| **tenantAiAccessSettingsRequestDto** | [**TenantAiAccessSettingsRequestDto**](TenantAiAccessSettingsRequestDto.md)|  | [optional] |
 
 ### Return type
 
@@ -963,10 +963,10 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(CommonSettingsApi::class.java)
-val tenantAiAccessSettingsDto : TenantAiAccessSettingsDto =  // TenantAiAccessSettingsDto | 
+val tenantAiAccessSettingsRequestDto : TenantAiAccessSettingsRequestDto =  // TenantAiAccessSettingsRequestDto | 
 
 launch(Dispatchers.IO) {
-    val result : TenantAiAccessSettingsWrapper = webService.setTenantAiAccessSettings(tenantAiAccessSettingsDto)
+    val result : TenantAiAccessSettingsWrapper = webService.setTenantAiAccessSettings(tenantAiAccessSettingsRequestDto)
 }
 ```
 
@@ -978,7 +978,7 @@ launch(Dispatchers.IO) {
 
 <a id="updateEmailActivationSettings"></a>
 # **updateEmailActivationSettings**
-> EmailActivationSettingsWrapper updateEmailActivationSettings (EmailActivationSettings emailActivationSettings)
+> EmailActivationSettingsWrapper updateEmailActivationSettings (EmailActivationSettingsRequestDto emailActivationSettingsRequestDto)
 
 Updates the current user's own preference for whether the email confirmation prompt is displayed on their  account. Requires an authenticated session; every role may change its own setting, and the change never  affects any other user. This is a mutating, idempotent call. It returns the settings exactly as submitted,  without validating them against the account's actual email confirmation state, so `show` can be set to `true`  even after the address is already confirmed.
 
@@ -987,7 +987,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **emailActivationSettings** | [**EmailActivationSettings**](EmailActivationSettings.md)|  | [optional] |
+| **emailActivationSettingsRequestDto** | [**EmailActivationSettingsRequestDto**](EmailActivationSettingsRequestDto.md)|  | [optional] |
 
 ### Return type
 
@@ -1012,10 +1012,10 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(CommonSettingsApi::class.java)
-val emailActivationSettings : EmailActivationSettings =  // EmailActivationSettings | 
+val emailActivationSettingsRequestDto : EmailActivationSettingsRequestDto =  // EmailActivationSettingsRequestDto | 
 
 launch(Dispatchers.IO) {
-    val result : EmailActivationSettingsWrapper = webService.updateEmailActivationSettings(emailActivationSettings)
+    val result : EmailActivationSettingsWrapper = webService.updateEmailActivationSettings(emailActivationSettingsRequestDto)
 }
 ```
 

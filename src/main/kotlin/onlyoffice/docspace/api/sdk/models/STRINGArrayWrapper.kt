@@ -32,7 +32,7 @@ import com.squareup.moshi.JsonClass
  */
 
 
-data class STRINGArrayWrapper (
+data class StringArrayWrapper (
 
     @Json(name = "response")
     val response: kotlin.collections.List<kotlin.String>? = null,

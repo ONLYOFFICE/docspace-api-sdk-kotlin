@@ -24,8 +24,8 @@ import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
 import onlyoffice.docspace.api.sdk.models.ErrorApiResponse
-import onlyoffice.docspace.api.sdk.models.FireBaseUserWrapper
-import onlyoffice.docspace.api.sdk.models.FirebaseRequestsDto
+import onlyoffice.docspace.api.sdk.models.FirebaseDeviceWrapper
+import onlyoffice.docspace.api.sdk.models.FirebaseRequestDto
 
 interface FirebaseApi {
     /**
@@ -34,9 +34,9 @@ interface FirebaseApi {
      * Registers one mobile device of the calling user for the push notifications of the Documents application, by  storing the Firebase token that device was issued together with the initial `isSubscribed` state. The token is  handed out by Firebase to the mobile client, so obtain it there before calling: nothing here checks it, and it  is kept as an opaque string of up to 255 characters. Every signed-in member registers its own devices,  whatever its role - owner, administrator, user or guest - and a registration is bound to the caller and the  current portal, so another member's devices cannot be touched. The call is safe to repeat, but it is not an  update: a token already registered comes back as it stands and `isSubscribed` from the request is ignored, so  switch an existing registration on or off with `PUT api/2.0/settings/push/docsubscribe` instead. What comes  back is the stored registration, with `application` always `doc` and `isSubscribed` as stored. Only a  subscribed device is sent the room activity messages, such as an invitation to a room, a role change, an  archived room or a new document in a room, and only while the installation itself is configured with Firebase  credentials.
      * Responses:
      *  - 200: The stored device registration of the calling user, with the Firebase token, the `doc` application and the subscription state as they are kept
+     *  - 500: The Firebase token is longer than 255 characters and the database refuses to store it, as PostgreSQL and MySQL in strict mode do
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
-     *  - 500: Internal Server Error.
      *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
@@ -45,11 +45,11 @@ interface FirebaseApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/doc-register-pusn-notification-device/
      *
      *
-     * @param firebaseRequestsDto  (optional)
-     * @return [FireBaseUserWrapper]
+     * @param firebaseRequestDto  (optional)
+     * @return [FirebaseDeviceWrapper]
      */
     @POST("api/2.0/settings/push/docregisterdevice")
-    suspend fun docRegisterPusnNotificationDevice(@Body firebaseRequestsDto: FirebaseRequestsDto? = null): Response<FireBaseUserWrapper>
+    suspend fun docRegisterPusnNotificationDevice(@Body firebaseRequestDto: FirebaseRequestDto? = null): Response<FirebaseDeviceWrapper>
 
     /**
      * PUT api/2.0/settings/push/docsubscribe
@@ -68,10 +68,10 @@ interface FirebaseApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/subscribe-documents-push-notification/
      *
      *
-     * @param firebaseRequestsDto  (optional)
-     * @return [FireBaseUserWrapper]
+     * @param firebaseRequestDto  (optional)
+     * @return [FirebaseDeviceWrapper]
      */
     @PUT("api/2.0/settings/push/docsubscribe")
-    suspend fun subscribeDocumentsPushNotification(@Body firebaseRequestsDto: FirebaseRequestsDto? = null): Response<FireBaseUserWrapper>
+    suspend fun subscribeDocumentsPushNotification(@Body firebaseRequestDto: FirebaseRequestDto? = null): Response<FirebaseDeviceWrapper>
 
 }

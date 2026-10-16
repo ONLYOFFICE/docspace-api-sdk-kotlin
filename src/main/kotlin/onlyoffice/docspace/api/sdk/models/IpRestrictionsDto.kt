@@ -16,7 +16,7 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.IpRestrictionBase
+import onlyoffice.docspace.api.sdk.models.IpRestrictionEntryDto
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -32,7 +32,7 @@ import com.squareup.moshi.JsonClass
 data class IpRestrictionsDto (
 
     @Json(name = "ipRestrictions")
-    val ipRestrictions: kotlin.collections.List<IpRestrictionBase>?,
+    val ipRestrictions: kotlin.collections.List<IpRestrictionEntryDto>?,
 
     @Json(name = "enable")
     val enable: kotlin.Boolean? = null

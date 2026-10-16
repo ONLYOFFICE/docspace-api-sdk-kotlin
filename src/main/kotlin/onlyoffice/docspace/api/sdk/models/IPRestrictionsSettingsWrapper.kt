@@ -17,15 +17,15 @@
 package onlyoffice.docspace.api.sdk.models
 
 import onlyoffice.docspace.api.sdk.models.GetPortalPrices200ResponseLinksInner
-import onlyoffice.docspace.api.sdk.models.IPRestrictionsSettings
+import onlyoffice.docspace.api.sdk.models.IpRestrictionsSettingsDto
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The successful API response containing the IPRestrictionsSettings object.
+ * The successful API response containing the IpRestrictionsSettingsDto object.
  *
- * @param response The IPRestrictionsSettings object returned by the operation.
+ * @param response The IpRestrictionsSettingsDto object returned by the operation.
  * @param count The total number of items in the response
  * @param links List of links related to the response
  * @param status HTTP status code of the response
@@ -33,10 +33,10 @@ import com.squareup.moshi.JsonClass
  */
 
 
-data class IPRestrictionsSettingsWrapper (
+data class IpRestrictionsSettingsWrapper (
 
     @Json(name = "response")
-    val response: IPRestrictionsSettings? = null,
+    val response: IpRestrictionsSettingsDto? = null,
 
     @Json(name = "count")
     val count: kotlin.Int? = null,

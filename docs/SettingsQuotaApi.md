@@ -13,7 +13,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 
 <a id="getUserQuotaSettings"></a>
 # **getUserQuotaSettings**
-> TenantUserQuotaSettingsWrapper getUserQuotaSettings ()
+> EntityQuotaSettingsWrapper getUserQuotaSettings ()
 
 Returns the portal's per-user default storage quota: whether it is enabled and, if so, its size in bytes.  Requires Owner or DocSpaceAdmin (the EditPortalSettings permission); every other authenticated role, and an  anonymous caller, is refused. This is a read-only, idempotent call. When `enableQuota` is false, the size  value is not enforced and users get unlimited personal storage regardless of what it holds. The response  supports conditional requests: send the standard If-Modified-Since header with the previous `lastModified`  value, and an unchanged response comes back empty instead of resending the settings.
 
@@ -24,7 +24,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**TenantUserQuotaSettingsWrapper**](TenantUserQuotaSettingsWrapper.md)
+[**EntityQuotaSettingsWrapper**](EntityQuotaSettingsWrapper.md)
 
 ### Authorization
 
@@ -47,7 +47,7 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(QuotaApi::class.java)
 
 launch(Dispatchers.IO) {
-    val result : TenantUserQuotaSettingsWrapper = webService.getUserQuotaSettings()
+    val result : EntityQuotaSettingsWrapper = webService.getUserQuotaSettings()
 }
 ```
 
@@ -59,7 +59,7 @@ launch(Dispatchers.IO) {
 
 <a id="saveAiAgentQuotaSettings"></a>
 # **saveAiAgentQuotaSettings**
-> TenantAiAgentQuotaSettingsWrapper saveAiAgentQuotaSettings (QuotaSettingsRequestsDto quotaSettingsRequestsDto)
+> EntityQuotaSettingsWrapper saveAiAgentQuotaSettings (QuotaSettingsRequestDto quotaSettingsRequestDto)
 
 Sets the portal's default storage quota for AI agents, applied as the starting limit for newly created agents.  Requires Owner or DocSpaceAdmin (the EditPortalSettings permission), and on a paid SaaS tenant the portal's  plan must include the statistics feature, or the call is rejected as not covered by the plan. The requested  size cannot exceed the portal's own total storage quota, nor, on a Standalone install with a portal-wide quota  enabled, that quota's size. Disable enforcement by passing `enableQuota=false`; the size is then ignored for  new agents. This is a mutating, idempotent call: sending the same body again leaves the quota unchanged. It  returns the saved settings, not any agent's current usage.
 
@@ -68,11 +68,11 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **quotaSettingsRequestsDto** | [**QuotaSettingsRequestsDto**](QuotaSettingsRequestsDto.md)|  | [optional] |
+| **quotaSettingsRequestDto** | [**QuotaSettingsRequestDto**](QuotaSettingsRequestDto.md)|  | [optional] |
 
 ### Return type
 
-[**TenantAiAgentQuotaSettingsWrapper**](TenantAiAgentQuotaSettingsWrapper.md)
+[**EntityQuotaSettingsWrapper**](EntityQuotaSettingsWrapper.md)
 
 ### Authorization
 
@@ -93,10 +93,10 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(QuotaApi::class.java)
-val quotaSettingsRequestsDto : QuotaSettingsRequestsDto =  // QuotaSettingsRequestsDto | 
+val quotaSettingsRequestDto : QuotaSettingsRequestDto =  // QuotaSettingsRequestDto | 
 
 launch(Dispatchers.IO) {
-    val result : TenantAiAgentQuotaSettingsWrapper = webService.saveAiAgentQuotaSettings(quotaSettingsRequestsDto)
+    val result : EntityQuotaSettingsWrapper = webService.saveAiAgentQuotaSettings(quotaSettingsRequestDto)
 }
 ```
 
@@ -108,7 +108,7 @@ launch(Dispatchers.IO) {
 
 <a id="saveRoomQuotaSettings"></a>
 # **saveRoomQuotaSettings**
-> TenantRoomQuotaSettingsWrapper saveRoomQuotaSettings (QuotaSettingsRequestsDto quotaSettingsRequestsDto)
+> EntityQuotaSettingsWrapper saveRoomQuotaSettings (QuotaSettingsRequestDto quotaSettingsRequestDto)
 
 Sets the portal's default per-room storage quota, applied to newly created rooms as their starting limit.  Requires Owner or DocSpaceAdmin (the EditPortalSettings permission), and on a paid SaaS tenant the portal's  plan must include the statistics feature, or the call is rejected as not covered by the plan. The requested  size cannot exceed the portal's own total storage quota, nor, on a Standalone install with a portal-wide quota  enabled, that quota's size. Disable enforcement by passing `enableQuota=false`; the size is then ignored for  new rooms. This is a mutating, idempotent call: sending the same body again leaves the quota unchanged. It  returns the saved settings, not the individual rooms' current usage.
 
@@ -117,11 +117,11 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **quotaSettingsRequestsDto** | [**QuotaSettingsRequestsDto**](QuotaSettingsRequestsDto.md)|  | [optional] |
+| **quotaSettingsRequestDto** | [**QuotaSettingsRequestDto**](QuotaSettingsRequestDto.md)|  | [optional] |
 
 ### Return type
 
-[**TenantRoomQuotaSettingsWrapper**](TenantRoomQuotaSettingsWrapper.md)
+[**EntityQuotaSettingsWrapper**](EntityQuotaSettingsWrapper.md)
 
 ### Authorization
 
@@ -142,10 +142,10 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(QuotaApi::class.java)
-val quotaSettingsRequestsDto : QuotaSettingsRequestsDto =  // QuotaSettingsRequestsDto | 
+val quotaSettingsRequestDto : QuotaSettingsRequestDto =  // QuotaSettingsRequestDto | 
 
 launch(Dispatchers.IO) {
-    val result : TenantRoomQuotaSettingsWrapper = webService.saveRoomQuotaSettings(quotaSettingsRequestsDto)
+    val result : EntityQuotaSettingsWrapper = webService.saveRoomQuotaSettings(quotaSettingsRequestDto)
 }
 ```
 
@@ -157,7 +157,7 @@ launch(Dispatchers.IO) {
 
 <a id="setTenantQuotaSettings"></a>
 # **setTenantQuotaSettings**
-> TenantQuotaSettingsWrapper setTenantQuotaSettings (TenantQuotaSettingsRequestsDto tenantQuotaSettingsRequestsDto)
+> TenantQuotaSettingsWrapper setTenantQuotaSettings (TenantQuotaSettingsRequestDto tenantQuotaSettingsRequestDto)
 
 Sets or removes the storage quota for a given tenant. Available only on a Standalone (self-hosted)  installation; on SaaS the call is always refused. Requires a DocSpace administrator, and the portal's plan  must include the statistics feature or the call is rejected as not covered by the plan. Pass a non-negative  `quota` in bytes to enable the limit for the tenant identified by `tenantId`, or a negative value to remove  any limit. This is a mutating, idempotent call: sending the same body again leaves the quota unchanged. It  returns the saved quota settings for that tenant, not its current usage.
 
@@ -166,7 +166,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **tenantQuotaSettingsRequestsDto** | [**TenantQuotaSettingsRequestsDto**](TenantQuotaSettingsRequestsDto.md)|  | [optional] |
+| **tenantQuotaSettingsRequestDto** | [**TenantQuotaSettingsRequestDto**](TenantQuotaSettingsRequestDto.md)|  | [optional] |
 
 ### Return type
 
@@ -191,10 +191,10 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(QuotaApi::class.java)
-val tenantQuotaSettingsRequestsDto : TenantQuotaSettingsRequestsDto =  // TenantQuotaSettingsRequestsDto | 
+val tenantQuotaSettingsRequestDto : TenantQuotaSettingsRequestDto =  // TenantQuotaSettingsRequestDto | 
 
 launch(Dispatchers.IO) {
-    val result : TenantQuotaSettingsWrapper = webService.setTenantQuotaSettings(tenantQuotaSettingsRequestsDto)
+    val result : TenantQuotaSettingsWrapper = webService.setTenantQuotaSettings(tenantQuotaSettingsRequestDto)
 }
 ```
 

@@ -17,8 +17,8 @@
 package onlyoffice.docspace.api.sdk.models
 
 import onlyoffice.docspace.api.sdk.models.ApiDateTime
-import onlyoffice.docspace.api.sdk.models.EditHistoryAuthor
-import onlyoffice.docspace.api.sdk.models.EditHistoryChangesWrapper
+import onlyoffice.docspace.api.sdk.models.EditHistoryAuthorDto
+import onlyoffice.docspace.api.sdk.models.EditHistoryChangesDto
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -53,7 +53,7 @@ data class EditHistoryDto (
     val versionGroup: kotlin.Int? = null,
 
     @Json(name = "user")
-    val user: EditHistoryAuthor? = null,
+    val user: EditHistoryAuthorDto? = null,
 
     @Json(name = "created")
     val created: ApiDateTime? = null,
@@ -62,7 +62,7 @@ data class EditHistoryDto (
     val changesHistory: kotlin.String? = null,
 
     @Json(name = "changes")
-    val changes: kotlin.collections.List<EditHistoryChangesWrapper>? = null,
+    val changes: kotlin.collections.List<EditHistoryChangesDto>? = null,
 
     @Json(name = "serverVersion")
     val serverVersion: kotlin.String? = null

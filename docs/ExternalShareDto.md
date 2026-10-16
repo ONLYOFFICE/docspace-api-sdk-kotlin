@@ -4,7 +4,7 @@
 ## Properties
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
-| **status** | [**Status**](Status.md) | How validating the link went. It is the first field to read: a refused link is reported here with the answer  still arriving as a success. A link that resolved describes both the entry and the link, one that is waiting  for its password describes only the entry, and one that failed outright leaves the rest of the object empty. |  |
+| **status** | [**ExternalShareStatus**](ExternalShareStatus.md) | How validating the link went. It is the first field to read: a refused link is reported here with the answer  still arriving as a success. A link that resolved describes both the entry and the link, one that is waiting  for its password describes only the entry, and one that failed outright leaves the rest of the object empty. |  |
 | **tenantId** | **kotlin.Int** | The portal the link belongs to, which matters for a client that works with more than one. It stays 0 for a  link that did not resolve. |  |
 | **shared** | **kotlin.Boolean** | True when the entry now sits in the calling account's own lists - it was already shared with that account, or  resolving the link has just put it there. It stays false for a visitor browsing without an account, who  reaches the entry through the link alone. |  |
 | **linkId** | [**java.util.UUID**](java.util.UUID.md) | The link the token belongs to, which is also the subject under which the link appears among the sharing rights  of the entry. It is an empty identifier when the link did not resolve. |  |

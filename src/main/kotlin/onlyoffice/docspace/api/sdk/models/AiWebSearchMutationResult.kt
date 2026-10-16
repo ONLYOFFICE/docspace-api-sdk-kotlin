@@ -16,7 +16,7 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.AiTErrorData
+import onlyoffice.docspace.api.sdk.models.AiErrorData
 import onlyoffice.docspace.api.sdk.models.AiWebSearchConfig
 
 import com.squareup.moshi.Json
@@ -40,7 +40,7 @@ data class AiWebSearchMutationResult (
     val config: AiWebSearchConfig? = null,
 
     @Json(name = "error")
-    val error: AiTErrorData? = null
+    val error: AiErrorData? = null
 
 ) {
 

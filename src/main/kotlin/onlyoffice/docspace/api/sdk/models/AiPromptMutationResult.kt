@@ -16,8 +16,8 @@
 
 package onlyoffice.docspace.api.sdk.models
 
+import onlyoffice.docspace.api.sdk.models.AiErrorData
 import onlyoffice.docspace.api.sdk.models.AiPrompt
-import onlyoffice.docspace.api.sdk.models.AiTErrorData
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -40,7 +40,7 @@ data class AiPromptMutationResult (
     val prompt: AiPrompt? = null,
 
     @Json(name = "error")
-    val error: AiTErrorData? = null
+    val error: AiErrorData? = null
 
 ) {
 

@@ -16,7 +16,7 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.FormMetadata
+import onlyoffice.docspace.api.sdk.models.FormMetadataDto
 import onlyoffice.docspace.api.sdk.models.FormResultsDto
 
 import com.squareup.moshi.Json
@@ -33,7 +33,7 @@ import com.squareup.moshi.JsonClass
 data class FormSubmissionsDto (
 
     @Json(name = "metadata")
-    val metadata: kotlin.collections.List<FormMetadata>? = null,
+    val metadata: kotlin.collections.List<FormMetadataDto>? = null,
 
     @Json(name = "submissions")
     val submissions: kotlin.collections.List<FormResultsDto>? = null

@@ -25,7 +25,7 @@ import com.squareup.moshi.Json
 
 import onlyoffice.docspace.api.sdk.models.BooleanWrapper
 import onlyoffice.docspace.api.sdk.models.ErrorApiResponse
-import onlyoffice.docspace.api.sdk.models.GreetingSettingsRequestsDto
+import onlyoffice.docspace.api.sdk.models.GreetingSettingsRequestDto
 import onlyoffice.docspace.api.sdk.models.StringWrapper
 
 interface GreetingSettingsApi {
@@ -77,6 +77,7 @@ interface GreetingSettingsApi {
      * Drops the custom greeting title of the current portal and puts back the title configured for the installation,  which is an empty value unless the installation defines a portal name of its own. The caller needs the  portal-settings right of a DocSpace administrator, otherwise the call is refused. The change is immediate for  every user of the portal and a second call changes nothing, so a retry after a failed attempt is safe. The  answer is the greeting in force afterwards: the configured title when there is one, and the localized default  caption when the stored title ends up empty - in that case `GET api/2.0/settings/greetingsettings/isdefault`  starts answering `true`. Only the caption is touched: the portal logos and the white-label logo text keep  their values and are reset separately by `PUT api/2.0/settings/whitelabel/logos/restore` and  `PUT api/2.0/settings/whitelabel/logotext/restore`. To set a title instead of the default one use  `POST api/2.0/settings/greetingsettings`.
      * Responses:
      *  - 200: The greeting title in force after the restore, or the localized default caption when the installation configures none
+     *  - 403: The caller has no portal-settings right
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
@@ -98,10 +99,11 @@ interface GreetingSettingsApi {
      * Replaces the greeting title of the current portal with the `title` from the request, storing it as the portal  name. The caller needs the portal-settings right of a DocSpace administrator, otherwise the call is refused.  The new caption takes effect at once for every user of the portal and the change is written to the audit  trail; repeating the call with the same title leaves the portal in the same state. A missing `title` or one  longer than 255 characters is rejected as an invalid request before the handler runs. On a cloud portal with a  free or trial plan the title is also matched against the character rule configured for the installation and a  title that breaks it is refused, while a paid cloud plan and a server installation apply no character check.  An empty `title` clears the greeting: the portal falls back to the built-in default caption and  `GET api/2.0/settings/greetingsettings/isdefault` starts answering `true`. What comes back is a localized  confirmation message, not the stored title - read the title with `GET api/2.0/settings/greetingsettings`.
      * Responses:
      *  - 200: A localized message confirming that the greeting title has been saved
+     *  - 400: The request body cannot be read or has no `title`, the `title` is longer than 255 characters, or on a free or trial cloud plan it breaks the character rule of the installation
+     *  - 403: The caller has no portal-settings right
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -109,10 +111,10 @@ interface GreetingSettingsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/save-greeting-settings/
      *
      *
-     * @param greetingSettingsRequestsDto  (optional)
+     * @param greetingSettingsRequestDto  (optional)
      * @return [StringWrapper]
      */
     @POST("api/2.0/settings/greetingsettings")
-    suspend fun saveGreetingSettings(@Body greetingSettingsRequestsDto: GreetingSettingsRequestsDto? = null): Response<StringWrapper>
+    suspend fun saveGreetingSettings(@Body greetingSettingsRequestDto: GreetingSettingsRequestDto? = null): Response<StringWrapper>
 
 }

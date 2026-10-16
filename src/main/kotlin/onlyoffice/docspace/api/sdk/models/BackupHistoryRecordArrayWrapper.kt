@@ -16,16 +16,16 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.BackupHistoryRecord
+import onlyoffice.docspace.api.sdk.models.BackupHistoryRecordDto
 import onlyoffice.docspace.api.sdk.models.GetPortalPrices200ResponseLinksInner
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The successful API response containing the list of BackupHistoryRecord objects.
+ * The successful API response containing the list of BackupHistoryRecordDto objects.
  *
- * @param response The list of BackupHistoryRecord objects returned by the operation.
+ * @param response The list of BackupHistoryRecordDto objects returned by the operation.
  * @param count The total number of items in the response
  * @param links List of links related to the response
  * @param status HTTP status code of the response
@@ -36,7 +36,7 @@ import com.squareup.moshi.JsonClass
 data class BackupHistoryRecordArrayWrapper (
 
     @Json(name = "response")
-    val response: kotlin.collections.List<BackupHistoryRecord>? = null,
+    val response: kotlin.collections.List<BackupHistoryRecordDto>? = null,
 
     @Json(name = "count")
     val count: kotlin.Int? = null,

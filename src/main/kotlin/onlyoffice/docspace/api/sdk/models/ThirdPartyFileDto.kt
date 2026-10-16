@@ -28,7 +28,8 @@ import onlyoffice.docspace.api.sdk.models.FileStatus
 import onlyoffice.docspace.api.sdk.models.FileType
 import onlyoffice.docspace.api.sdk.models.FolderType
 import onlyoffice.docspace.api.sdk.models.FormFillingStatus
-import onlyoffice.docspace.api.sdk.models.Size
+import onlyoffice.docspace.api.sdk.models.ImageSizeDto
+import onlyoffice.docspace.api.sdk.models.MetadataMatchDto
 import onlyoffice.docspace.api.sdk.models.ThirdPartyDraftLocation
 import onlyoffice.docspace.api.sdk.models.Thumbnail
 import onlyoffice.docspace.api.sdk.models.VectorizationStatus
@@ -75,6 +76,8 @@ import com.squareup.moshi.JsonClass
  * @param `external` Set when the link being used was made for this very entry, and false when the entry is reached through a link  to the room around it. It is null when no link is involved.
  * @param expirationDate When the link being used stops working, written with the offset of the portal's time zone. It is null for a  link that never expires and whenever no link is involved.
  * @param isLinkExpired Set when the link being used has already passed its expiration date, which is why the entry cannot be opened  even though it is described here. It is null when no link is involved.
+ * @param assignedMetadataTemplates The IDs of the metadata templates assigned to the file entry.
+ * @param metadataMatches Where the search text of the listing was met in the metadata of the entry: one item per string value holding  the text, in the order of the fields. Present only in a listing filtered by text, and only for the entries whose  metadata contain it; an entry found by its title alone carries nothing here.
  * @param folderId The folder the file is stored in. When the file was reached through a share and the caller cannot open its  real parent, the identifier of the Shared with me section is reported instead, so this is where the file is  visible rather than where it physically sits.
  * @param version The revision this entry describes. It starts at 1 and moves to the next number each time new content is stored  over the file, except for an editing session opened against the file itself, which replaces the content and  keeps the number. `GET api/2.0/files/file/{fileId}/history` lists them all.
  * @param versionGroup Groups revisions that belong together, which is how a history can fold a long editing session into one entry:  versions saved inside one session share this number, and an upload over the file starts a new group.
@@ -223,6 +226,12 @@ data class ThirdPartyFileDto (
     @Json(name = "isLinkExpired")
     val isLinkExpired: kotlin.Boolean? = null,
 
+    @Json(name = "assignedMetadataTemplates")
+    val assignedMetadataTemplates: kotlin.collections.List<kotlin.Int>? = null,
+
+    @Json(name = "metadataMatches")
+    val metadataMatches: kotlin.collections.List<MetadataMatchDto>? = null,
+
     @Json(name = "folderId")
     val folderId: kotlin.String? = null,
 
@@ -326,7 +335,7 @@ data class ThirdPartyFileDto (
     val externalDbTableName: kotlin.String? = null,
 
     @Json(name = "dimensions")
-    val dimensions: Size? = null
+    val dimensions: ImageSizeDto? = null
 
 ) {
 

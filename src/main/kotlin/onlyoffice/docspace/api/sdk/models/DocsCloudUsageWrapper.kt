@@ -16,16 +16,16 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.DocsCloudUsage
+import onlyoffice.docspace.api.sdk.models.DocsCloudUsageDto
 import onlyoffice.docspace.api.sdk.models.GetPortalPrices200ResponseLinksInner
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The successful API response containing the DocsCloudUsage object.
+ * The successful API response containing the DocsCloudUsageDto object.
  *
- * @param response The DocsCloudUsage object returned by the operation.
+ * @param response The DocsCloudUsageDto object returned by the operation.
  * @param count The total number of items in the response
  * @param links List of links related to the response
  * @param status HTTP status code of the response
@@ -36,7 +36,7 @@ import com.squareup.moshi.JsonClass
 data class DocsCloudUsageWrapper (
 
     @Json(name = "response")
-    val response: DocsCloudUsage? = null,
+    val response: DocsCloudUsageDto? = null,
 
     @Json(name = "count")
     val count: kotlin.Int? = null,

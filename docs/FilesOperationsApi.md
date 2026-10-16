@@ -344,7 +344,7 @@ launch(Dispatchers.IO) {
 
 <a id="checkMoveOrCopyBatchItems"></a>
 # **checkMoveOrCopyBatchItems**
-> FileEntryBaseArrayWrapper checkMoveOrCopyBatchItems (BatchRequestDto inDto)
+> FileEntryBaseArrayWrapper checkMoveOrCopyBatchItems (kotlin.Boolean returnSingleOperation, kotlin.collections.List<CheckMoveOrCopyBatchItemsFolderIdsParameterInner> folderIds, kotlin.collections.List<CheckMoveOrCopyBatchItemsFolderIdsParameterInner> fileIds, CheckMoveOrCopyBatchItemsDestFolderIdParameter destFolderId, FileConflictResolveType conflictResolveType, kotlin.Boolean deleteAfter, kotlin.Boolean content, kotlin.Boolean toFillOut)
 
 Reports which of the requested files and folders already have a same-named entry in `destFolderId`, so that  the clash can be settled before the move or the copy is started. Nothing is moved, copied or changed by the  call, although the address is shared with `PUT api/2.0/files/fileops/move`: the answer is the part of the  request that clashes, and an empty array means the batch would go through without one. The  `conflictResolveType` of the request is not taken into account — clashing items are reported whatever it says  — and encrypted files are left out of the report. A source id that resolves to nothing is not an error and is  passed over. The caller needs create access to the destination: an archived room and a room the caller cannot  write to are refused with 403, a destination that does not exist is answered as missing, and a request without  `destFolderId` is rejected as an invalid request. To learn whether the destination accepts the files at all  use `GET api/2.0/files/fileops/checkdestfolder`.
 
@@ -353,7 +353,14 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **inDto** | [**BatchRequestDto**](.md)| The files and folders to move or copy, the folder they go to, and the way name clashes are settled. | [optional] |
+| **returnSingleOperation** | **kotlin.Boolean**| Which operations the answer carries: `true` returns the operation this call started and nothing else, `false`  returns every operation of the same kind that the caller has running or unread. When nothing was queued, which  happens for an empty selection, `true` falls back to the full list. | [optional] |
+| **folderIds** | [**kotlin.collections.List&lt;CheckMoveOrCopyBatchItemsFolderIdsParameterInner&gt;**](CheckMoveOrCopyBatchItemsFolderIdsParameterInner.md)| The folders to move or copy, by id. A number addresses a folder stored in the portal itself, a string  addresses a folder on a connected third-party account, and both kinds may be sent in one list. | [optional] |
+| **fileIds** | [**kotlin.collections.List&lt;CheckMoveOrCopyBatchItemsFolderIdsParameterInner&gt;**](CheckMoveOrCopyBatchItemsFolderIdsParameterInner.md)| The files to move or copy, by id. A number addresses a file stored in the portal itself, a string addresses a  file on a connected third-party account, and both kinds may be sent in one list. | [optional] |
+| **destFolderId** | [**CheckMoveOrCopyBatchItemsDestFolderIdParameter**](.md)| The folder the items go to, by id — a number for a folder stored in the portal itself, a string for a folder  on a connected third-party account. Take it from a folder listing such as `GET api/2.0/files/@root`; the  caller has to be allowed to create items in it, and the id of a room addresses the root of that room. | [optional] |
+| **conflictResolveType** | [**FileConflictResolveType**](.md)| What happens to an item whose name is already taken in the destination folder: `skip` leaves it where it is,  `overwrite` replaces the entry at the destination, and `duplicate` places it beside that entry under a name  with a numeric suffix. `GET api/2.0/files/fileops/move` reports which items would clash. | [optional] [enum: Skip, Overwrite, Duplicate] |
+| **deleteAfter** | **kotlin.Boolean**| Whether the finished operation is still reported: `false` keeps its final record readable through  `GET api/2.0/files/fileops` until it has been read once, `true` drops the record as soon as the work is done.  It deletes nothing: a move takes the sources away in any case, and a copy always leaves them. | [optional] |
+| **content** | **kotlin.Boolean**| What is taken from a listed folder: `false` moves or copies the folder itself, `true` takes only what it  contains, so its files and subfolders land in the destination and the folder is not recreated there. | [optional] |
+| **toFillOut** | **kotlin.Boolean**| Marks every copied PDF form as a draft prepared for filling, which is how such a copy reports its filling  status in a virtual data room. Files that are not forms are left unaffected. | [optional] |
 
 ### Return type
 
@@ -378,10 +385,17 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(OperationsApi::class.java)
-val inDto : BatchRequestDto =  // BatchRequestDto | The files and folders to move or copy, the folder they go to, and the way name clashes are settled.
+val returnSingleOperation : kotlin.Boolean = false // kotlin.Boolean | Which operations the answer carries: `true` returns the operation this call started and nothing else, `false`  returns every operation of the same kind that the caller has running or unread. When nothing was queued, which  happens for an empty selection, `true` falls back to the full list.
+val folderIds : kotlin.collections.List<CheckMoveOrCopyBatchItemsFolderIdsParameterInner> = [1, 2, 3] // kotlin.collections.List<CheckMoveOrCopyBatchItemsFolderIdsParameterInner> | The folders to move or copy, by id. A number addresses a folder stored in the portal itself, a string  addresses a folder on a connected third-party account, and both kinds may be sent in one list.
+val fileIds : kotlin.collections.List<CheckMoveOrCopyBatchItemsFolderIdsParameterInner> = [1, 2, 3] // kotlin.collections.List<CheckMoveOrCopyBatchItemsFolderIdsParameterInner> | The files to move or copy, by id. A number addresses a file stored in the portal itself, a string addresses a  file on a connected third-party account, and both kinds may be sent in one list.
+val destFolderId : CheckMoveOrCopyBatchItemsDestFolderIdParameter =  // CheckMoveOrCopyBatchItemsDestFolderIdParameter | The folder the items go to, by id — a number for a folder stored in the portal itself, a string for a folder  on a connected third-party account. Take it from a folder listing such as `GET api/2.0/files/@root`; the  caller has to be allowed to create items in it, and the id of a room addresses the root of that room.
+val conflictResolveType : FileConflictResolveType =  // FileConflictResolveType | What happens to an item whose name is already taken in the destination folder: `skip` leaves it where it is,  `overwrite` replaces the entry at the destination, and `duplicate` places it beside that entry under a name  with a numeric suffix. `GET api/2.0/files/fileops/move` reports which items would clash.
+val deleteAfter : kotlin.Boolean = false // kotlin.Boolean | Whether the finished operation is still reported: `false` keeps its final record readable through  `GET api/2.0/files/fileops` until it has been read once, `true` drops the record as soon as the work is done.  It deletes nothing: a move takes the sources away in any case, and a copy always leaves them.
+val content : kotlin.Boolean = false // kotlin.Boolean | What is taken from a listed folder: `false` moves or copies the folder itself, `true` takes only what it  contains, so its files and subfolders land in the destination and the folder is not recreated there.
+val toFillOut : kotlin.Boolean = false // kotlin.Boolean | Marks every copied PDF form as a draft prepared for filling, which is how such a copy reports its filling  status in a virtual data room. Files that are not forms are left unaffected.
 
 launch(Dispatchers.IO) {
-    val result : FileEntryBaseArrayWrapper = webService.checkMoveOrCopyBatchItems(inDto)
+    val result : FileEntryBaseArrayWrapper = webService.checkMoveOrCopyBatchItems(returnSingleOperation, folderIds, fileIds, destFolderId, conflictResolveType, deleteAfter, content, toFillOut)
 }
 ```
 
@@ -393,7 +407,7 @@ launch(Dispatchers.IO) {
 
 <a id="checkMoveOrCopyDestFolder"></a>
 # **checkMoveOrCopyDestFolder**
-> CheckDestFolderWrapper checkMoveOrCopyDestFolder (BatchRequestDto inDto)
+> CheckDestFolderWrapper checkMoveOrCopyDestFolder (kotlin.Boolean returnSingleOperation, kotlin.collections.List<CheckMoveOrCopyBatchItemsFolderIdsParameterInner> folderIds, kotlin.collections.List<CheckMoveOrCopyBatchItemsFolderIdsParameterInner> fileIds, CheckMoveOrCopyBatchItemsDestFolderIdParameter destFolderId, FileConflictResolveType conflictResolveType, kotlin.Boolean deleteAfter, kotlin.Boolean content, kotlin.Boolean toFillOut)
 
 Reports whether the destination folder accepts the listed files, before a move or a copy is started. Only  `fileIds` and `destFolderId` are read from the request: `result` says whether all of the files are accepted,  only some of them or none, and `files` names the ones that are. The check is about what the destination allows  to be stored in it rather than about name clashes — everywhere except a form-filling room every file is  accepted, while a form-filling room accepts only PDF forms, so a text document offered to one comes back as  none accepted. The caller needs create access to the destination, so a room the caller cannot write to and an  archived room are refused with 403, a destination that does not exist is answered as missing, and a request  without `destFolderId` is rejected as an invalid request. Folder ids and the copying options of the request  play no part here. The call changes nothing; for same-named entries at the destination use  `GET api/2.0/files/fileops/move`.
 
@@ -402,7 +416,14 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **inDto** | [**BatchRequestDto**](.md)| The files and folders to move or copy, the folder they go to, and the way name clashes are settled. | [optional] |
+| **returnSingleOperation** | **kotlin.Boolean**| Which operations the answer carries: `true` returns the operation this call started and nothing else, `false`  returns every operation of the same kind that the caller has running or unread. When nothing was queued, which  happens for an empty selection, `true` falls back to the full list. | [optional] |
+| **folderIds** | [**kotlin.collections.List&lt;CheckMoveOrCopyBatchItemsFolderIdsParameterInner&gt;**](CheckMoveOrCopyBatchItemsFolderIdsParameterInner.md)| The folders to move or copy, by id. A number addresses a folder stored in the portal itself, a string  addresses a folder on a connected third-party account, and both kinds may be sent in one list. | [optional] |
+| **fileIds** | [**kotlin.collections.List&lt;CheckMoveOrCopyBatchItemsFolderIdsParameterInner&gt;**](CheckMoveOrCopyBatchItemsFolderIdsParameterInner.md)| The files to move or copy, by id. A number addresses a file stored in the portal itself, a string addresses a  file on a connected third-party account, and both kinds may be sent in one list. | [optional] |
+| **destFolderId** | [**CheckMoveOrCopyBatchItemsDestFolderIdParameter**](.md)| The folder the items go to, by id — a number for a folder stored in the portal itself, a string for a folder  on a connected third-party account. Take it from a folder listing such as `GET api/2.0/files/@root`; the  caller has to be allowed to create items in it, and the id of a room addresses the root of that room. | [optional] |
+| **conflictResolveType** | [**FileConflictResolveType**](.md)| What happens to an item whose name is already taken in the destination folder: `skip` leaves it where it is,  `overwrite` replaces the entry at the destination, and `duplicate` places it beside that entry under a name  with a numeric suffix. `GET api/2.0/files/fileops/move` reports which items would clash. | [optional] [enum: Skip, Overwrite, Duplicate] |
+| **deleteAfter** | **kotlin.Boolean**| Whether the finished operation is still reported: `false` keeps its final record readable through  `GET api/2.0/files/fileops` until it has been read once, `true` drops the record as soon as the work is done.  It deletes nothing: a move takes the sources away in any case, and a copy always leaves them. | [optional] |
+| **content** | **kotlin.Boolean**| What is taken from a listed folder: `false` moves or copies the folder itself, `true` takes only what it  contains, so its files and subfolders land in the destination and the folder is not recreated there. | [optional] |
+| **toFillOut** | **kotlin.Boolean**| Marks every copied PDF form as a draft prepared for filling, which is how such a copy reports its filling  status in a virtual data room. Files that are not forms are left unaffected. | [optional] |
 
 ### Return type
 
@@ -427,10 +448,17 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(OperationsApi::class.java)
-val inDto : BatchRequestDto =  // BatchRequestDto | The files and folders to move or copy, the folder they go to, and the way name clashes are settled.
+val returnSingleOperation : kotlin.Boolean = false // kotlin.Boolean | Which operations the answer carries: `true` returns the operation this call started and nothing else, `false`  returns every operation of the same kind that the caller has running or unread. When nothing was queued, which  happens for an empty selection, `true` falls back to the full list.
+val folderIds : kotlin.collections.List<CheckMoveOrCopyBatchItemsFolderIdsParameterInner> = [1, 2, 3] // kotlin.collections.List<CheckMoveOrCopyBatchItemsFolderIdsParameterInner> | The folders to move or copy, by id. A number addresses a folder stored in the portal itself, a string  addresses a folder on a connected third-party account, and both kinds may be sent in one list.
+val fileIds : kotlin.collections.List<CheckMoveOrCopyBatchItemsFolderIdsParameterInner> = [1, 2, 3] // kotlin.collections.List<CheckMoveOrCopyBatchItemsFolderIdsParameterInner> | The files to move or copy, by id. A number addresses a file stored in the portal itself, a string addresses a  file on a connected third-party account, and both kinds may be sent in one list.
+val destFolderId : CheckMoveOrCopyBatchItemsDestFolderIdParameter =  // CheckMoveOrCopyBatchItemsDestFolderIdParameter | The folder the items go to, by id — a number for a folder stored in the portal itself, a string for a folder  on a connected third-party account. Take it from a folder listing such as `GET api/2.0/files/@root`; the  caller has to be allowed to create items in it, and the id of a room addresses the root of that room.
+val conflictResolveType : FileConflictResolveType =  // FileConflictResolveType | What happens to an item whose name is already taken in the destination folder: `skip` leaves it where it is,  `overwrite` replaces the entry at the destination, and `duplicate` places it beside that entry under a name  with a numeric suffix. `GET api/2.0/files/fileops/move` reports which items would clash.
+val deleteAfter : kotlin.Boolean = false // kotlin.Boolean | Whether the finished operation is still reported: `false` keeps its final record readable through  `GET api/2.0/files/fileops` until it has been read once, `true` drops the record as soon as the work is done.  It deletes nothing: a move takes the sources away in any case, and a copy always leaves them.
+val content : kotlin.Boolean = false // kotlin.Boolean | What is taken from a listed folder: `false` moves or copies the folder itself, `true` takes only what it  contains, so its files and subfolders land in the destination and the folder is not recreated there.
+val toFillOut : kotlin.Boolean = false // kotlin.Boolean | Marks every copied PDF form as a draft prepared for filling, which is how such a copy reports its filling  status in a virtual data room. Files that are not forms are left unaffected.
 
 launch(Dispatchers.IO) {
-    val result : CheckDestFolderWrapper = webService.checkMoveOrCopyDestFolder(inDto)
+    val result : CheckDestFolderWrapper = webService.checkMoveOrCopyDestFolder(returnSingleOperation, folderIds, fileIds, destFolderId, conflictResolveType, deleteAfter, content, toFillOut)
 }
 ```
 
@@ -491,7 +519,7 @@ launch(Dispatchers.IO) {
 
 <a id="createUploadSession"></a>
 # **createUploadSession**
-> ChunkedUploadSessionResponseWrapperWrapper createUploadSession (kotlin.Int folderId, SessionRequest sessionRequest)
+> ChunkedUploadSessionResultWrapper createUploadSession (kotlin.Int folderId, SessionRequest sessionRequest)
 
 Deprecated in favour of `POST api/2.0/files/{folderId}/session`, which opens the same session and returns it  without the success envelope used here; new callers should go there. Reserves a chunked upload of a file in  the folder named by the path: the title comes from `fileName`, the declared payload size from `fileSize`, and  the answer carries the session id every later call quotes, the address of the standalone chunk handler, the  moment an idle session is dropped and the reserved byte count. No content is stored yet. Send the payload as  multipart parts to `POST api/2.0/files/{folderId}/session/{sessionId}/upload`, keeping each part within  `chunkUploadSize` from `GET api/2.0/files/settings`, then close the session with  `PUT api/2.0/files/{folderId}/session/{sessionId}/finalize`. The caller needs the right to add content to the  target folder, which room managers and content creators have and readers, editors and guests do not: they get  403, as does a section root such as Rooms or Archive, while an unknown folder is answered as missing. A  payload above the portal limit for chunked uploads is refused before the session exists.
 
@@ -505,7 +533,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Return type
 
-[**ChunkedUploadSessionResponseWrapperWrapper**](ChunkedUploadSessionResponseWrapperWrapper.md)
+[**ChunkedUploadSessionResultWrapper**](ChunkedUploadSessionResultWrapper.md)
 
 ### Authorization
 
@@ -530,7 +558,7 @@ val folderId : kotlin.Int = 1 // kotlin.Int | The folder that receives the file;
 val sessionRequest : SessionRequest =  // SessionRequest | The file the session is opened for, and how a clash with an existing name is settled.
 
 launch(Dispatchers.IO) {
-    val result : ChunkedUploadSessionResponseWrapperWrapper = webService.createUploadSession(folderId, sessionRequest)
+    val result : ChunkedUploadSessionResultWrapper = webService.createUploadSession(folderId, sessionRequest)
 }
 ```
 
@@ -542,7 +570,7 @@ launch(Dispatchers.IO) {
 
 <a id="createUploadSession-thirdparty"></a>
 # **createUploadSession** (third-party storage)
-> ThirdPartyChunkedUploadSessionResponseWrapperWrapper createUploadSession (kotlin.String folderId, SessionRequest sessionRequest)
+> ThirdPartyChunkedUploadSessionResultWrapper createUploadSession (kotlin.String folderId, SessionRequest sessionRequest)
 
 Deprecated in favour of `POST api/2.0/files/{folderId}/session`, which opens the same session and returns it  without the success envelope used here; new callers should go there. Reserves a chunked upload of a file in  the folder named by the path: the title comes from `fileName`, the declared payload size from `fileSize`, and  the answer carries the session id every later call quotes, the address of the standalone chunk handler, the  moment an idle session is dropped and the reserved byte count. No content is stored yet. Send the payload as  multipart parts to `POST api/2.0/files/{folderId}/session/{sessionId}/upload`, keeping each part within  `chunkUploadSize` from `GET api/2.0/files/settings`, then close the session with  `PUT api/2.0/files/{folderId}/session/{sessionId}/finalize`. The caller needs the right to add content to the  target folder, which room managers and content creators have and readers, editors and guests do not: they get  403, as does a section root such as Rooms or Archive, while an unknown folder is answered as missing. A  payload above the portal limit for chunked uploads is refused before the session exists.
 
@@ -556,7 +584,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Return type
 
-[**ThirdPartyChunkedUploadSessionResponseWrapperWrapper**](ThirdPartyChunkedUploadSessionResponseWrapperWrapper.md)
+[**ThirdPartyChunkedUploadSessionResultWrapper**](ThirdPartyChunkedUploadSessionResultWrapper.md)
 
 ### Authorization
 
@@ -581,7 +609,7 @@ val folderId : kotlin.String = sbox-42 // kotlin.String | The folder that receiv
 val sessionRequest : SessionRequest =  // SessionRequest | The file the session is opened for, and how a clash with an existing name is settled.
 
 launch(Dispatchers.IO) {
-    val result : ThirdPartyChunkedUploadSessionResponseWrapperWrapper = webService.createUploadSession(folderId, sessionRequest)
+    val result : ThirdPartyChunkedUploadSessionResultWrapper = webService.createUploadSession(folderId, sessionRequest)
 }
 ```
 
@@ -593,7 +621,7 @@ launch(Dispatchers.IO) {
 
 <a id="createUploadSessionInFolder"></a>
 # **createUploadSessionInFolder**
-> ChunkedUploadSessionResponseResponseWrapper createUploadSessionInFolder (kotlin.Int folderId, SessionRequest sessionRequest)
+> ChunkedUploadSessionWrapper createUploadSessionInFolder (kotlin.Int folderId, SessionRequest sessionRequest)
 
 Opens a chunked upload session for a file in the folder named by the path and returns the session itself,  which is the difference from the deprecated `POST api/2.0/files/{folderId}/upload/create_session` and its  success envelope. The answer gives `id`, quoted by every later call, `location` for the standalone chunk  handler used by clients that bypass this API, `expired`, and `bytes_total` echoing the reserved size. Whether  parts are really needed follows from `fileSize`: below `chunkUploadSize` from `GET api/2.0/files/settings` the  whole payload goes in one `POST api/2.0/files/{folderId}/session/{sessionId}`, which stores the file and  answers 201, and above it the parts go one by one to  `POST api/2.0/files/{folderId}/session/{sessionId}/upload` and the file appears only after  `PUT api/2.0/files/{folderId}/session/{sessionId}/finalize`. The caller must be allowed to add content to the  folder, so readers, editors and guests are refused, a section root is refused as well, and an unknown folder  is answered as missing. Nothing is written until the parts arrive, and an abandoned session disappears twelve  hours later.
 
@@ -607,7 +635,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Return type
 
-[**ChunkedUploadSessionResponseResponseWrapper**](ChunkedUploadSessionResponseResponseWrapper.md)
+[**ChunkedUploadSessionWrapper**](ChunkedUploadSessionWrapper.md)
 
 ### Authorization
 
@@ -632,7 +660,7 @@ val folderId : kotlin.Int = 1 // kotlin.Int | The folder that receives the file;
 val sessionRequest : SessionRequest =  // SessionRequest | The file the session is opened for, and how a clash with an existing name is settled.
 
 launch(Dispatchers.IO) {
-    val result : ChunkedUploadSessionResponseResponseWrapper = webService.createUploadSessionInFolder(folderId, sessionRequest)
+    val result : ChunkedUploadSessionWrapper = webService.createUploadSessionInFolder(folderId, sessionRequest)
 }
 ```
 
@@ -644,7 +672,7 @@ launch(Dispatchers.IO) {
 
 <a id="createUploadSessionInFolder-thirdparty"></a>
 # **createUploadSessionInFolder** (third-party storage)
-> ThirdPartyChunkedUploadSessionResponseResponseWrapper createUploadSessionInFolder (kotlin.String folderId, SessionRequest sessionRequest)
+> ThirdPartyChunkedUploadSessionWrapper createUploadSessionInFolder (kotlin.String folderId, SessionRequest sessionRequest)
 
 Opens a chunked upload session for a file in the folder named by the path and returns the session itself,  which is the difference from the deprecated `POST api/2.0/files/{folderId}/upload/create_session` and its  success envelope. The answer gives `id`, quoted by every later call, `location` for the standalone chunk  handler used by clients that bypass this API, `expired`, and `bytes_total` echoing the reserved size. Whether  parts are really needed follows from `fileSize`: below `chunkUploadSize` from `GET api/2.0/files/settings` the  whole payload goes in one `POST api/2.0/files/{folderId}/session/{sessionId}`, which stores the file and  answers 201, and above it the parts go one by one to  `POST api/2.0/files/{folderId}/session/{sessionId}/upload` and the file appears only after  `PUT api/2.0/files/{folderId}/session/{sessionId}/finalize`. The caller must be allowed to add content to the  folder, so readers, editors and guests are refused, a section root is refused as well, and an unknown folder  is answered as missing. Nothing is written until the parts arrive, and an abandoned session disappears twelve  hours later.
 
@@ -658,7 +686,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Return type
 
-[**ThirdPartyChunkedUploadSessionResponseResponseWrapper**](ThirdPartyChunkedUploadSessionResponseResponseWrapper.md)
+[**ThirdPartyChunkedUploadSessionWrapper**](ThirdPartyChunkedUploadSessionWrapper.md)
 
 ### Authorization
 
@@ -683,7 +711,7 @@ val folderId : kotlin.String = sbox-42 // kotlin.String | The folder that receiv
 val sessionRequest : SessionRequest =  // SessionRequest | The file the session is opened for, and how a clash with an existing name is settled.
 
 launch(Dispatchers.IO) {
-    val result : ThirdPartyChunkedUploadSessionResponseResponseWrapper = webService.createUploadSessionInFolder(folderId, sessionRequest)
+    val result : ThirdPartyChunkedUploadSessionWrapper = webService.createUploadSessionInFolder(folderId, sessionRequest)
 }
 ```
 
@@ -901,7 +929,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **single** | **kotlin.Boolean**| Which operations the answer carries: `true` returns the operation this call started and nothing else, `false`  returns every delete operation that the caller has running or unread. | [optional] |
-| **folderType** | [**kotlin.collections.List&lt;kotlin.Int&gt;**](kotlin.Int.md)| Limits the sweep to the items whose original location was inside a section or a room of one of the named  types, leaving the rest of the Trash untouched; without the parameter the whole Trash is emptied. `5` covers  what was deleted from personal documents, `14` what was deleted from rooms. | [optional] [enum: 0, 1, 2, 3, 5, 6, 8, 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36] |
+| **folderType** | [**kotlin.collections.List&lt;kotlin.Int&gt;**](kotlin.Int.md)| Limits the sweep to the items whose original location was inside a section or a room of one of the named  types, leaving the rest of the Trash untouched; without the parameter the whole Trash is emptied. `5` covers  what was deleted from personal documents, `14` what was deleted from rooms. | [optional] [enum: 0, 1, 2, 3, 5, 6, 8, 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37] |
 
 ### Return type
 
@@ -1393,7 +1421,7 @@ launch(Dispatchers.IO) {
 
 <a id="updateFileComment"></a>
 # **updateFileComment**
-> StringWrapper updateFileComment (kotlin.Int fileId, UpdateComment updateComment)
+> StringWrapper updateFileComment (kotlin.Int fileId, UpdateCommentRequest updateCommentRequest)
 
 Replaces the comment stored on one version of a file - the note that explains what changed in it - and answers  with the comment as it was stored, which is the text cut to the length the portal keeps. `version` names the  version and has to be an existing one: a version that does not exist is rejected as an invalid request, while  a file that does not exist at all is answered as not found. Sending an empty comment clears the note. The  caller needs the right to edit the history of the file, which the room admin, a DocSpace admin acting as room  manager and a member with content-creator rights have; a member with editing access to somebody else's file,  read-only access, a guest and an anonymous caller are all refused. A file that is locked by somebody else or  lies in Trash is refused as well. The call is mutating and idempotent - repeating it with the same text leaves  the same comment. The comments of all versions come back with `GET api/2.0/files/file/{fileId}/edit/history`.
 
@@ -1403,7 +1431,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **fileId** | **kotlin.Int**| The file whose version comment is replaced. | |
-| **updateComment** | [**UpdateComment**](UpdateComment.md)| The version and the comment to store on it. | |
+| **updateCommentRequest** | [**UpdateCommentRequest**](UpdateCommentRequest.md)| The version and the comment to store on it. | |
 
 ### Return type
 
@@ -1429,10 +1457,10 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(OperationsApi::class.java)
 val fileId : kotlin.Int = 1 // kotlin.Int | The file whose version comment is replaced.
-val updateComment : UpdateComment =  // UpdateComment | The version and the comment to store on it.
+val updateCommentRequest : UpdateCommentRequest =  // UpdateCommentRequest | The version and the comment to store on it.
 
 launch(Dispatchers.IO) {
-    val result : StringWrapper = webService.updateFileComment(fileId, updateComment)
+    val result : StringWrapper = webService.updateFileComment(fileId, updateCommentRequest)
 }
 ```
 
@@ -1444,7 +1472,7 @@ launch(Dispatchers.IO) {
 
 <a id="updateFileComment-thirdparty"></a>
 # **updateFileComment** (third-party storage)
-> StringWrapper updateFileComment (kotlin.String fileId, UpdateComment updateComment)
+> StringWrapper updateFileComment (kotlin.String fileId, UpdateCommentRequest updateCommentRequest)
 
 Replaces the comment stored on one version of a file - the note that explains what changed in it - and answers  with the comment as it was stored, which is the text cut to the length the portal keeps. `version` names the  version and has to be an existing one: a version that does not exist is rejected as an invalid request, while  a file that does not exist at all is answered as not found. Sending an empty comment clears the note. The  caller needs the right to edit the history of the file, which the room admin, a DocSpace admin acting as room  manager and a member with content-creator rights have; a member with editing access to somebody else's file,  read-only access, a guest and an anonymous caller are all refused. A file that is locked by somebody else or  lies in Trash is refused as well. The call is mutating and idempotent - repeating it with the same text leaves  the same comment. The comments of all versions come back with `GET api/2.0/files/file/{fileId}/edit/history`.
 
@@ -1454,7 +1482,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **fileId** | **kotlin.String**| The file whose version comment is replaced. | |
-| **updateComment** | [**UpdateComment**](UpdateComment.md)| The version and the comment to store on it. | |
+| **updateCommentRequest** | [**UpdateCommentRequest**](UpdateCommentRequest.md)| The version and the comment to store on it. | |
 
 ### Return type
 
@@ -1480,10 +1508,10 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(OperationsApi::class.java)
 val fileId : kotlin.String = sbox-42-L1JlcG9ydC5kb2N4 // kotlin.String | The file whose version comment is replaced.
-val updateComment : UpdateComment =  // UpdateComment | The version and the comment to store on it.
+val updateCommentRequest : UpdateCommentRequest =  // UpdateCommentRequest | The version and the comment to store on it.
 
 launch(Dispatchers.IO) {
-    val result : StringWrapper = webService.updateFileComment(fileId, updateComment)
+    val result : StringWrapper = webService.updateFileComment(fileId, updateCommentRequest)
 }
 ```
 
@@ -1495,7 +1523,7 @@ launch(Dispatchers.IO) {
 
 <a id="uploadAsyncSession"></a>
 # **uploadAsyncSession**
-> ChunkedUploadSessionResponseResponseWrapper uploadAsyncSession (kotlin.Int folderId, kotlin.String sessionId, kotlin.Int chunkNumber, java.io.File file)
+> ChunkedUploadSessionWrapper uploadAsyncSession (kotlin.Int folderId, kotlin.String sessionId, kotlin.Int chunkNumber, java.io.File file)
 
 Stores one part of a file under the number given in `chunkNumber`, which is what the ordinary chunked flow  uses: parts are kept by their number rather than by arrival, so a part that failed can be resent under the  same number without restarting the session. Numbering starts at 1, and leaving the number out makes the server  count the parts itself. The answer is always the session, never the file, and this call never completes the  upload: the file appears only after `PUT api/2.0/files/{folderId}/session/{sessionId}/finalize`. Use  `POST api/2.0/files/{folderId}/session/{sessionId}` instead when the parts go strictly in order and the upload  should complete by itself. A part bigger than `chunkUploadSize` from `GET api/2.0/files/settings` is refused,  so that value is also the size to split the payload by. The first part of a PDF is inspected, and a PDF that  is not a fillable form is refused when the session targets a form-filling room. The session is found by its id  alone.
 
@@ -1511,7 +1539,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Return type
 
-[**ChunkedUploadSessionResponseResponseWrapper**](ChunkedUploadSessionResponseResponseWrapper.md)
+[**ChunkedUploadSessionWrapper**](ChunkedUploadSessionWrapper.md)
 
 ### Authorization
 
@@ -1538,7 +1566,7 @@ val chunkNumber : kotlin.Int = 1 // kotlin.Int | The position of this part in th
 val file : java.io.File = BINARY_DATA_HERE // java.io.File | The part of the file to store, sent as the multipart field of the same name. It is kept under the number given  beside it, and a part larger than the portal chunk size is refused.
 
 launch(Dispatchers.IO) {
-    val result : ChunkedUploadSessionResponseResponseWrapper = webService.uploadAsyncSession(folderId, sessionId, chunkNumber, file)
+    val result : ChunkedUploadSessionWrapper = webService.uploadAsyncSession(folderId, sessionId, chunkNumber, file)
 }
 ```
 
@@ -1550,7 +1578,7 @@ launch(Dispatchers.IO) {
 
 <a id="uploadAsyncSession-thirdparty"></a>
 # **uploadAsyncSession** (third-party storage)
-> ThirdPartyChunkedUploadSessionResponseResponseWrapper uploadAsyncSession (kotlin.String folderId, kotlin.String sessionId, kotlin.Int chunkNumber, java.io.File file)
+> ThirdPartyChunkedUploadSessionWrapper uploadAsyncSession (kotlin.String folderId, kotlin.String sessionId, kotlin.Int chunkNumber, java.io.File file)
 
 Stores one part of a file under the number given in `chunkNumber`, which is what the ordinary chunked flow  uses: parts are kept by their number rather than by arrival, so a part that failed can be resent under the  same number without restarting the session. Numbering starts at 1, and leaving the number out makes the server  count the parts itself. The answer is always the session, never the file, and this call never completes the  upload: the file appears only after `PUT api/2.0/files/{folderId}/session/{sessionId}/finalize`. Use  `POST api/2.0/files/{folderId}/session/{sessionId}` instead when the parts go strictly in order and the upload  should complete by itself. A part bigger than `chunkUploadSize` from `GET api/2.0/files/settings` is refused,  so that value is also the size to split the payload by. The first part of a PDF is inspected, and a PDF that  is not a fillable form is refused when the session targets a form-filling room. The session is found by its id  alone.
 
@@ -1566,7 +1594,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Return type
 
-[**ThirdPartyChunkedUploadSessionResponseResponseWrapper**](ThirdPartyChunkedUploadSessionResponseResponseWrapper.md)
+[**ThirdPartyChunkedUploadSessionWrapper**](ThirdPartyChunkedUploadSessionWrapper.md)
 
 ### Authorization
 
@@ -1593,7 +1621,7 @@ val chunkNumber : kotlin.Int = 1 // kotlin.Int | The position of this part in th
 val file : java.io.File = BINARY_DATA_HERE // java.io.File | The part of the file to store, sent as the multipart field of the same name. It is kept under the number given  beside it, and a part larger than the portal chunk size is refused.
 
 launch(Dispatchers.IO) {
-    val result : ThirdPartyChunkedUploadSessionResponseResponseWrapper = webService.uploadAsyncSession(folderId, sessionId, chunkNumber, file)
+    val result : ThirdPartyChunkedUploadSessionWrapper = webService.uploadAsyncSession(folderId, sessionId, chunkNumber, file)
 }
 ```
 

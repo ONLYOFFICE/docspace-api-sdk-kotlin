@@ -21,16 +21,20 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * Whether the `User` role is barred from the portal developer tools.
+ * Whether the developer tools are closed to the portal's users with the `User` role.
  *
- * @param limitedAccessForUsers Whether members holding the `User` role are barred from the developer tools - API keys, OAuth applications  and webhooks. Room administrators and DocSpace administrators keep their access either way.
+ * @param limitedAccessForUsers Specifies if the Developer Tools access are limited for users or not.
+ * @param lastModified The timestamp indicating when the settings were last modified.
  */
 
 
 data class TenantDevToolsAccessSettingsDto (
 
     @Json(name = "limitedAccessForUsers")
-    val limitedAccessForUsers: kotlin.Boolean? = null
+    val limitedAccessForUsers: kotlin.Boolean? = null,
+
+    @Json(name = "lastModified")
+    val lastModified: java.time.OffsetDateTime? = null
 
 ) {
 

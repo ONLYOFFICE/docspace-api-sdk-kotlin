@@ -496,7 +496,7 @@ launch(Dispatchers.IO) {
 
 <a id="getGroupsMembersWithFileSecurity"></a>
 # **getGroupsMembersWithFileSecurity**
-> GroupMemberSecurityRequestArrayWrapper getGroupsMembersWithFileSecurity (kotlin.Int fileId, java.util.UUID groupId, kotlin.Int count, kotlin.Int startIndex, kotlin.String filterValue)
+> GroupMemberSecurityArrayWrapper getGroupsMembersWithFileSecurity (kotlin.Int fileId, java.util.UUID groupId, kotlin.Int count, kotlin.Int startIndex, kotlin.String filterValue)
 
 Lists the members of one portal group together with the access each of them has on a file that group was  granted rights to: `groupAccess` is the level the group itself carries, `userAccess` is the level set on that  member alone, `overridden` says which of the two applies, `owner` marks the member who created the file, and  `canEditAccess` says whether the caller may still change that member's level. Take the group identifier from  the group entries of `GET api/2.0/files/file/{id}/share`. `startIndex` and `count` page through the members,  `filterValue` keeps only those whose first name, last name or email contains the value - the comparison is  made in lower case, so an uppercase value matches nothing - and the number of members is reported in the  response headers. Members come back ordered by first name. A group that holds no rights on this file, a file  the caller cannot read and a file that does not exist are all answered with an empty list rather than an  error, so an empty answer does not mean that the group has no members. A guest is refused. The call is  read-only.
 
@@ -513,7 +513,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Return type
 
-[**GroupMemberSecurityRequestArrayWrapper**](GroupMemberSecurityRequestArrayWrapper.md)
+[**GroupMemberSecurityArrayWrapper**](GroupMemberSecurityArrayWrapper.md)
 
 ### Authorization
 
@@ -541,7 +541,7 @@ val startIndex : kotlin.Int = 0 // kotlin.Int | How many members to skip before 
 val filterValue : kotlin.String = john // kotlin.String | Keeps only the members whose first name, last name or email contains this value. The value is matched in lower  case, so an uppercase one finds nothing.
 
 launch(Dispatchers.IO) {
-    val result : GroupMemberSecurityRequestArrayWrapper = webService.getGroupsMembersWithFileSecurity(fileId, groupId, count, startIndex, filterValue)
+    val result : GroupMemberSecurityArrayWrapper = webService.getGroupsMembersWithFileSecurity(fileId, groupId, count, startIndex, filterValue)
 }
 ```
 
@@ -553,7 +553,7 @@ launch(Dispatchers.IO) {
 
 <a id="getGroupsMembersWithFileSecurity-thirdparty"></a>
 # **getGroupsMembersWithFileSecurity** (third-party storage)
-> GroupMemberSecurityRequestArrayWrapper getGroupsMembersWithFileSecurity (kotlin.String fileId, java.util.UUID groupId, kotlin.Int count, kotlin.Int startIndex, kotlin.String filterValue)
+> GroupMemberSecurityArrayWrapper getGroupsMembersWithFileSecurity (kotlin.String fileId, java.util.UUID groupId, kotlin.Int count, kotlin.Int startIndex, kotlin.String filterValue)
 
 Lists the members of one portal group together with the access each of them has on a file that group was  granted rights to: `groupAccess` is the level the group itself carries, `userAccess` is the level set on that  member alone, `overridden` says which of the two applies, `owner` marks the member who created the file, and  `canEditAccess` says whether the caller may still change that member's level. Take the group identifier from  the group entries of `GET api/2.0/files/file/{id}/share`. `startIndex` and `count` page through the members,  `filterValue` keeps only those whose first name, last name or email contains the value - the comparison is  made in lower case, so an uppercase value matches nothing - and the number of members is reported in the  response headers. Members come back ordered by first name. A group that holds no rights on this file, a file  the caller cannot read and a file that does not exist are all answered with an empty list rather than an  error, so an empty answer does not mean that the group has no members. A guest is refused. The call is  read-only.
 
@@ -570,7 +570,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Return type
 
-[**GroupMemberSecurityRequestArrayWrapper**](GroupMemberSecurityRequestArrayWrapper.md)
+[**GroupMemberSecurityArrayWrapper**](GroupMemberSecurityArrayWrapper.md)
 
 ### Authorization
 
@@ -598,7 +598,7 @@ val startIndex : kotlin.Int = 0 // kotlin.Int | How many members to skip before 
 val filterValue : kotlin.String = john // kotlin.String | Keeps only the members whose first name, last name or email contains this value. The value is matched in lower  case, so an uppercase one finds nothing.
 
 launch(Dispatchers.IO) {
-    val result : GroupMemberSecurityRequestArrayWrapper = webService.getGroupsMembersWithFileSecurity(fileId, groupId, count, startIndex, filterValue)
+    val result : GroupMemberSecurityArrayWrapper = webService.getGroupsMembersWithFileSecurity(fileId, groupId, count, startIndex, filterValue)
 }
 ```
 
@@ -610,7 +610,7 @@ launch(Dispatchers.IO) {
 
 <a id="getGroupsMembersWithFolderSecurity"></a>
 # **getGroupsMembersWithFolderSecurity**
-> GroupMemberSecurityRequestArrayWrapper getGroupsMembersWithFolderSecurity (kotlin.Int folderId, java.util.UUID groupId, kotlin.Int count, kotlin.Int startIndex, kotlin.String filterValue)
+> GroupMemberSecurityArrayWrapper getGroupsMembersWithFolderSecurity (kotlin.Int folderId, java.util.UUID groupId, kotlin.Int count, kotlin.Int startIndex, kotlin.String filterValue)
 
 Lists the members of one portal group together with the access each of them has on a folder or room that group  was granted rights to: `groupAccess` is the level the group itself carries, `userAccess` is the level set on  that member alone, `overridden` says which of the two applies, `owner` marks the member who created the entry,  and `canEditAccess` says whether the caller may still change that member's level. Take the group identifier  from the group entries of `GET api/2.0/files/folder/{id}/share`. `startIndex` and `count` page through the  members, `filterValue` keeps only those whose first name, last name or email contains the value - the  comparison is made in lower case, so an uppercase value matches nothing - and the number of members is  reported in the response headers. Members come back ordered by first name. A group that holds no rights on  this folder, a folder the caller cannot read and a folder that does not exist are all answered with an empty  list rather than an error, so an empty answer does not mean that the group has no members. A guest is refused.  The call is read-only.
 
@@ -627,7 +627,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Return type
 
-[**GroupMemberSecurityRequestArrayWrapper**](GroupMemberSecurityRequestArrayWrapper.md)
+[**GroupMemberSecurityArrayWrapper**](GroupMemberSecurityArrayWrapper.md)
 
 ### Authorization
 
@@ -655,7 +655,7 @@ val startIndex : kotlin.Int = 0 // kotlin.Int | How many members to skip before 
 val filterValue : kotlin.String = john // kotlin.String | Keeps only the members whose first name, last name or email contains this value. The value is matched in lower  case, so an uppercase one finds nothing.
 
 launch(Dispatchers.IO) {
-    val result : GroupMemberSecurityRequestArrayWrapper = webService.getGroupsMembersWithFolderSecurity(folderId, groupId, count, startIndex, filterValue)
+    val result : GroupMemberSecurityArrayWrapper = webService.getGroupsMembersWithFolderSecurity(folderId, groupId, count, startIndex, filterValue)
 }
 ```
 
@@ -667,7 +667,7 @@ launch(Dispatchers.IO) {
 
 <a id="getGroupsMembersWithFolderSecurity-thirdparty"></a>
 # **getGroupsMembersWithFolderSecurity** (third-party storage)
-> GroupMemberSecurityRequestArrayWrapper getGroupsMembersWithFolderSecurity (kotlin.String folderId, java.util.UUID groupId, kotlin.Int count, kotlin.Int startIndex, kotlin.String filterValue)
+> GroupMemberSecurityArrayWrapper getGroupsMembersWithFolderSecurity (kotlin.String folderId, java.util.UUID groupId, kotlin.Int count, kotlin.Int startIndex, kotlin.String filterValue)
 
 Lists the members of one portal group together with the access each of them has on a folder or room that group  was granted rights to: `groupAccess` is the level the group itself carries, `userAccess` is the level set on  that member alone, `overridden` says which of the two applies, `owner` marks the member who created the entry,  and `canEditAccess` says whether the caller may still change that member's level. Take the group identifier  from the group entries of `GET api/2.0/files/folder/{id}/share`. `startIndex` and `count` page through the  members, `filterValue` keeps only those whose first name, last name or email contains the value - the  comparison is made in lower case, so an uppercase value matches nothing - and the number of members is  reported in the response headers. Members come back ordered by first name. A group that holds no rights on  this folder, a folder the caller cannot read and a folder that does not exist are all answered with an empty  list rather than an error, so an empty answer does not mean that the group has no members. A guest is refused.  The call is read-only.
 
@@ -684,7 +684,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Return type
 
-[**GroupMemberSecurityRequestArrayWrapper**](GroupMemberSecurityRequestArrayWrapper.md)
+[**GroupMemberSecurityArrayWrapper**](GroupMemberSecurityArrayWrapper.md)
 
 ### Authorization
 
@@ -712,7 +712,7 @@ val startIndex : kotlin.Int = 0 // kotlin.Int | How many members to skip before 
 val filterValue : kotlin.String = john // kotlin.String | Keeps only the members whose first name, last name or email contains this value. The value is matched in lower  case, so an uppercase one finds nothing.
 
 launch(Dispatchers.IO) {
-    val result : GroupMemberSecurityRequestArrayWrapper = webService.getGroupsMembersWithFolderSecurity(folderId, groupId, count, startIndex, filterValue)
+    val result : GroupMemberSecurityArrayWrapper = webService.getGroupsMembersWithFolderSecurity(folderId, groupId, count, startIndex, filterValue)
 }
 ```
 
@@ -773,7 +773,7 @@ launch(Dispatchers.IO) {
 
 <a id="getSharedUsers"></a>
 # **getSharedUsers**
-> MentionWrapperArrayWrapper getSharedUsers (kotlin.Int fileId)
+> MentionArrayWrapper getSharedUsers (kotlin.Int fileId)
 
 Lists the portal members who can read the file, which is what an editor client offers when somebody types a  mention. The set holds the readers of the file plus everyone who reads it by role rather than by share - the  portal owner, the DocSpace administrators and the author of the file - while the caller themselves, the  subjects standing behind external links and deactivated accounts are left out. It is ordered by display name  as the portal renders it. A guest receives a single entry, the owner of the file, because a guest is not a  portal member and may not learn who else works on the document. The caller needs read access to the file, and  an unknown file id is reported as missing. The call only reads. A caller who reached the file through an  external link instead of an account is answered with nothing at all. For the users to offer when protecting a  document use `GET api/2.0/files/file/{fileId}/protectusers`.
 
@@ -786,7 +786,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Return type
 
-[**MentionWrapperArrayWrapper**](MentionWrapperArrayWrapper.md)
+[**MentionArrayWrapper**](MentionArrayWrapper.md)
 
 ### Authorization
 
@@ -810,7 +810,7 @@ val webService = apiClient.createWebservice(SharingApi::class.java)
 val fileId : kotlin.Int = 10 // kotlin.Int | The file the operation addresses. Take the identifier from a listing such as `GET api/2.0/files/{folderId}`: a  file stored on the portal is numbered, while a file in a connected third-party account is named by an opaque  string.
 
 launch(Dispatchers.IO) {
-    val result : MentionWrapperArrayWrapper = webService.getSharedUsers(fileId)
+    val result : MentionArrayWrapper = webService.getSharedUsers(fileId)
 }
 ```
 
@@ -822,7 +822,7 @@ launch(Dispatchers.IO) {
 
 <a id="getSharedUsers-thirdparty"></a>
 # **getSharedUsers** (third-party storage)
-> MentionWrapperArrayWrapper getSharedUsers (kotlin.String fileId)
+> MentionArrayWrapper getSharedUsers (kotlin.String fileId)
 
 Lists the portal members who can read the file, which is what an editor client offers when somebody types a  mention. The set holds the readers of the file plus everyone who reads it by role rather than by share - the  portal owner, the DocSpace administrators and the author of the file - while the caller themselves, the  subjects standing behind external links and deactivated accounts are left out. It is ordered by display name  as the portal renders it. A guest receives a single entry, the owner of the file, because a guest is not a  portal member and may not learn who else works on the document. The caller needs read access to the file, and  an unknown file id is reported as missing. The call only reads. A caller who reached the file through an  external link instead of an account is answered with nothing at all. For the users to offer when protecting a  document use `GET api/2.0/files/file/{fileId}/protectusers`.
 
@@ -835,7 +835,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Return type
 
-[**MentionWrapperArrayWrapper**](MentionWrapperArrayWrapper.md)
+[**MentionArrayWrapper**](MentionArrayWrapper.md)
 
 ### Authorization
 
@@ -859,7 +859,7 @@ val webService = apiClient.createWebservice(SharingApi::class.java)
 val fileId : kotlin.String = sbox-42-L1JlcG9ydC5kb2N4 // kotlin.String | The file the operation addresses. Take the identifier from a listing such as `GET api/2.0/files/{folderId}`: a  file stored on the portal is numbered, while a file in a connected third-party account is named by an opaque  string.
 
 launch(Dispatchers.IO) {
-    val result : MentionWrapperArrayWrapper = webService.getSharedUsers(fileId)
+    val result : MentionArrayWrapper = webService.getSharedUsers(fileId)
 }
 ```
 
@@ -920,7 +920,7 @@ launch(Dispatchers.IO) {
 
 <a id="sendEditorNotify"></a>
 # **sendEditorNotify**
-> AceShortWrapperArrayWrapper sendEditorNotify (kotlin.Int fileId, MentionMessageWrapper mentionMessageWrapper)
+> AceShortArrayWrapper sendEditorNotify (kotlin.Int fileId, MentionMessageRequest mentionMessageRequest)
 
 Emails the people named in `emails` that they were mentioned in a file, with a link that opens the file at the  place the mention sits when `actionLink` carries the anchor the editor produced. Only addresses that belong to  portal accounts are notified: an address that belongs to nobody is skipped, and the note is cut to its first  200 characters in the mail, while a `message` longer than the field allows is refused with 400. The answer is  usually empty: the access list of the file comes back when the file is encrypted, or when one of the addresses  belongs to nobody and the caller may share the file - that is then the cue to invite that person with  `PUT api/2.0/files/file/{id}/share`. The caller needs comment rights, which the creator of the file, the  manager of its room and a member invited to comment, review or edit have, while a guest or a member without  access is refused with 403; a file that does not exist answers with 404 and a file in the trash is refused.  The operation is rate-limited and answers 429 once the caller sends too many notifications. A delivery failure  is swallowed, so 200 does not prove that the mail left the portal.
 
@@ -930,11 +930,11 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **fileId** | **kotlin.Int**| The file the mention was made in. A file stored on the portal is numbered, while a file in a connected  third-party account is named by an opaque string. | |
-| **mentionMessageWrapper** | [**MentionMessageWrapper**](MentionMessageWrapper.md)| The notification to send. | [optional] |
+| **mentionMessageRequest** | [**MentionMessageRequest**](MentionMessageRequest.md)| The notification to send. | [optional] |
 
 ### Return type
 
-[**AceShortWrapperArrayWrapper**](AceShortWrapperArrayWrapper.md)
+[**AceShortArrayWrapper**](AceShortArrayWrapper.md)
 
 ### Authorization
 
@@ -956,10 +956,10 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SharingApi::class.java)
 val fileId : kotlin.Int = 10 // kotlin.Int | The file the mention was made in. A file stored on the portal is numbered, while a file in a connected  third-party account is named by an opaque string.
-val mentionMessageWrapper : MentionMessageWrapper =  // MentionMessageWrapper | The notification to send.
+val mentionMessageRequest : MentionMessageRequest =  // MentionMessageRequest | The notification to send.
 
 launch(Dispatchers.IO) {
-    val result : AceShortWrapperArrayWrapper = webService.sendEditorNotify(fileId, mentionMessageWrapper)
+    val result : AceShortArrayWrapper = webService.sendEditorNotify(fileId, mentionMessageRequest)
 }
 ```
 
@@ -971,7 +971,7 @@ launch(Dispatchers.IO) {
 
 <a id="sendEditorNotify-thirdparty"></a>
 # **sendEditorNotify** (third-party storage)
-> AceShortWrapperArrayWrapper sendEditorNotify (kotlin.String fileId, MentionMessageWrapper mentionMessageWrapper)
+> AceShortArrayWrapper sendEditorNotify (kotlin.String fileId, MentionMessageRequest mentionMessageRequest)
 
 Emails the people named in `emails` that they were mentioned in a file, with a link that opens the file at the  place the mention sits when `actionLink` carries the anchor the editor produced. Only addresses that belong to  portal accounts are notified: an address that belongs to nobody is skipped, and the note is cut to its first  200 characters in the mail, while a `message` longer than the field allows is refused with 400. The answer is  usually empty: the access list of the file comes back when the file is encrypted, or when one of the addresses  belongs to nobody and the caller may share the file - that is then the cue to invite that person with  `PUT api/2.0/files/file/{id}/share`. The caller needs comment rights, which the creator of the file, the  manager of its room and a member invited to comment, review or edit have, while a guest or a member without  access is refused with 403; a file that does not exist answers with 404 and a file in the trash is refused.  The operation is rate-limited and answers 429 once the caller sends too many notifications. A delivery failure  is swallowed, so 200 does not prove that the mail left the portal.
 
@@ -981,11 +981,11 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **fileId** | **kotlin.String**| The file the mention was made in. A file stored on the portal is numbered, while a file in a connected  third-party account is named by an opaque string. | |
-| **mentionMessageWrapper** | [**MentionMessageWrapper**](MentionMessageWrapper.md)| The notification to send. | [optional] |
+| **mentionMessageRequest** | [**MentionMessageRequest**](MentionMessageRequest.md)| The notification to send. | [optional] |
 
 ### Return type
 
-[**AceShortWrapperArrayWrapper**](AceShortWrapperArrayWrapper.md)
+[**AceShortArrayWrapper**](AceShortArrayWrapper.md)
 
 ### Authorization
 
@@ -1007,10 +1007,10 @@ apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SharingApi::class.java)
 val fileId : kotlin.String = sbox-42-L1JlcG9ydC5kb2N4 // kotlin.String | The file the mention was made in. A file stored on the portal is numbered, while a file in a connected  third-party account is named by an opaque string.
-val mentionMessageWrapper : MentionMessageWrapper =  // MentionMessageWrapper | The notification to send.
+val mentionMessageRequest : MentionMessageRequest =  // MentionMessageRequest | The notification to send.
 
 launch(Dispatchers.IO) {
-    val result : AceShortWrapperArrayWrapper = webService.sendEditorNotify(fileId, mentionMessageWrapper)
+    val result : AceShortArrayWrapper = webService.sendEditorNotify(fileId, mentionMessageRequest)
 }
 ```
 

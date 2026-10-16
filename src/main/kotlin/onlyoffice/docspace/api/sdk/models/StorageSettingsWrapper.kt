@@ -17,15 +17,15 @@
 package onlyoffice.docspace.api.sdk.models
 
 import onlyoffice.docspace.api.sdk.models.GetPortalPrices200ResponseLinksInner
-import onlyoffice.docspace.api.sdk.models.StorageSettings
+import onlyoffice.docspace.api.sdk.models.StorageSettingsDto
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The successful API response containing the StorageSettings object.
+ * The successful API response containing the StorageSettingsDto object.
  *
- * @param response The StorageSettings object returned by the operation.
+ * @param response The StorageSettingsDto object returned by the operation.
  * @param count The total number of items in the response
  * @param links List of links related to the response
  * @param status HTTP status code of the response
@@ -36,7 +36,7 @@ import com.squareup.moshi.JsonClass
 data class StorageSettingsWrapper (
 
     @Json(name = "response")
-    val response: StorageSettings? = null,
+    val response: StorageSettingsDto? = null,
 
     @Json(name = "count")
     val count: kotlin.Int? = null,
