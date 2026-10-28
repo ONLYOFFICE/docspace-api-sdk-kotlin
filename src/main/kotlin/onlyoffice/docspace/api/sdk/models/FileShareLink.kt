@@ -23,35 +23,32 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * A shareable link for a file with its configuration and status.
+ * A sharing link of a file, a folder or a room, with everything set on it.
  *
- * @param id The unique identifier of the shared link.
- * @param title The title of the shared content.
- * @param shareLink The URL for accessing the shared content.
- * @param expirationDate 
- * @param linkType 
- * @param password The password protection for accessing the shared content.
- * @param denyDownload Indicates whether downloading of the shared content is prohibited.
- * @param isExpired Indicates whether the shared link has expired.
- * @param primary Indicates whether this is the primary shared link.
- * @param `internal` Indicates whether the link is for the internal sharing only.
- * @param requestToken The token for validating access requests.
- * @param maxUseCount The maximum number of times the invitation link can be used.
- * @param currentUseCount The current number of times the invitation link has been used.
+ * @param id The identifier of the link, the one to send back as `linkId` to change or delete it.
+ * @param title The name the link is listed under, which its author is free to choose and to leave empty.
+ * @param shareLink The shortened address to hand out. Opening it is what turns the link into access; the address stays the same  while the link exists.
+ * @param expirationDate The moment the link stops working, written with the offset of the portal time zone. Null when the link was  left without an end.
+ * @param linkType Which of the two jobs the link does: letting somebody into the room as a member, or handing out the entry  itself. The counters of uses are filled in for the first kind only.
+ * @param password The password a visitor has to send before the link resolves, readable only by those who may manage the link.  Empty when the link asks for none.
+ * @param denyDownload Whether visitors coming through this link may only read the entry in the editor and not download or print it.
+ * @param isExpired Whether the moment in `expirationDate` has already passed, which leaves the link in place but refuses  everybody who opens it.
+ * @param primary Whether this is the one link the entry always keeps: a public or a form-filling room is given it at creation,  and deleting it there only makes a new one.
+ * @param `internal` Whether the visitor has to sign in to the portal before the link resolves, as opposed to it being open to  anybody who has the address.
+ * @param requestToken The key that stands for this link in the calls that resolve it, such as `GET api/2.0/files/share/{key}`. It is  filled in for links that hand out the entry, and empty for the ones that invite into a room.
+ * @param maxUseCount How many accounts may still join the room through this invitation link in total. Null on a link that hands out  the entry, where nothing is counted.
+ * @param currentUseCount How many accounts have already joined through this invitation link. Once it reaches `maxUseCount` the link  stops letting anybody else in. Null on a link that hands out the entry.
  */
 
 
 data class FileShareLink (
 
-    /* The unique identifier of the shared link. */
     @Json(name = "id")
     val id: java.util.UUID? = null,
 
-    /* The title of the shared content. */
     @Json(name = "title")
     val title: kotlin.String? = null,
 
-    /* The URL for accessing the shared content. */
     @Json(name = "shareLink")
     val shareLink: kotlin.String? = null,
 
@@ -61,35 +58,27 @@ data class FileShareLink (
     @Json(name = "linkType")
     val linkType: LinkType? = null,
 
-    /* The password protection for accessing the shared content. */
     @Json(name = "password")
     val password: kotlin.String? = null,
 
-    /* Indicates whether downloading of the shared content is prohibited. */
     @Json(name = "denyDownload")
     val denyDownload: kotlin.Boolean? = null,
 
-    /* Indicates whether the shared link has expired. */
     @Json(name = "isExpired")
     val isExpired: kotlin.Boolean? = null,
 
-    /* Indicates whether this is the primary shared link. */
     @Json(name = "primary")
     val primary: kotlin.Boolean? = null,
 
-    /* Indicates whether the link is for the internal sharing only. */
     @Json(name = "internal")
     val `internal`: kotlin.Boolean? = null,
 
-    /* The token for validating access requests. */
     @Json(name = "requestToken")
     val requestToken: kotlin.String? = null,
 
-    /* The maximum number of times the invitation link can be used. */
     @Json(name = "maxUseCount")
     val maxUseCount: kotlin.Int? = null,
 
-    /* The current number of times the invitation link has been used. */
     @Json(name = "currentUseCount")
     val currentUseCount: kotlin.Int? = null
 

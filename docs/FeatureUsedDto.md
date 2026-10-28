@@ -4,8 +4,8 @@
 ## Properties
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
-| **&#x60;value&#x60;** | [**kotlin.Any**](.md) | The used space value. |  |
-| **title** | **kotlin.String** | The used space title. |  [optional] |
+| **&#x60;value&#x60;** | [**kotlin.Any**](.md) |  |  |
+| **title** | **kotlin.String** | The same figure as a sentence in the portal language, ready to print. It is empty when this build ships no  wording for the feature. |  [optional] |
 
 
 

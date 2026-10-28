@@ -17,20 +17,20 @@
 package onlyoffice.docspace.api.sdk.models
 
 import onlyoffice.docspace.api.sdk.models.BackupStorageType
-import onlyoffice.docspace.api.sdk.models.CronParams
+import onlyoffice.docspace.api.sdk.models.CronParamsDto
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The backup schedule parameters.
+ * The backup schedule of a portal.
  *
- * @param storageType 
- * @param storageParams The backup storage parameters.
- * @param cronParams 
- * @param lastBackupTime The date and time when the last backup was reated.
- * @param dump Specifies if a dump will be created or not.
- * @param backupsStored The maximum number of the stored backup copies.
+ * @param storageType The storage the scheduled archives are written to, reported as a number rather than as the name the  schedule was created with.
+ * @param storageParams The settings of the storage, as an object keyed by parameter name - not as the array of key and value  pairs the schedule was created with, so it cannot be sent back unchanged. For every storage type  except `ThirdPartyConsumer` the `folderId` key is built from the stored base path.
+ * @param cronParams When the backup runs, read back from the stored cron expression. `day` is 0 for a daily schedule,  because a daily one has no day.
+ * @param lastBackupTime The date and time the schedule last ran at. It is `0001-01-01T00:00:00` until the schedule has run  for the first time.
+ * @param dump Specifies whether this schedule backs up the whole server instead of one portal.
+ * @param backupsStored The number of scheduled copies kept. It is null, not 0, when the schedule keeps an unlimited number.
  */
 
 
@@ -39,22 +39,18 @@ data class ScheduleDto (
     @Json(name = "storageType")
     val storageType: BackupStorageType,
 
-    /* The backup storage parameters. */
     @Json(name = "storageParams")
-    val storageParams: kotlin.collections.Map<kotlin.String, kotlin.String>?,
+    val storageParams: kotlin.collections.Map<kotlin.String, kotlin.String?>,
 
     @Json(name = "cronParams")
-    val cronParams: CronParams,
+    val cronParams: CronParamsDto,
 
-    /* The date and time when the last backup was reated. */
     @Json(name = "lastBackupTime")
     val lastBackupTime: java.time.OffsetDateTime,
 
-    /* Specifies if a dump will be created or not. */
     @Json(name = "dump")
     val dump: kotlin.Boolean,
 
-    /* The maximum number of the stored backup copies. */
     @Json(name = "backupsStored")
     val backupsStored: kotlin.Int? = null
 

@@ -22,9 +22,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The successful API response containing the ICompress object.
  *
- * @param response The archiving class unification interface.
+ * @param response The ICompress object returned by the operation.
  * @param count The total number of items in the response
  * @param links List of links related to the response
  * @param status HTTP status code of the response
@@ -34,23 +34,18 @@ import com.squareup.moshi.JsonClass
 
 data class ICompressWrapper (
 
-    /* The archiving class unification interface. */
     @Json(name = "response")
     val response: kotlin.Any? = null,
 
-    /* The total number of items in the response */
     @Json(name = "count")
     val count: kotlin.Int? = null,
 
-    /* List of links related to the response */
     @Json(name = "links")
     val links: kotlin.collections.List<GetPortalPrices200ResponseLinksInner>? = null,
 
-    /* HTTP status code of the response */
     @Json(name = "status")
     val status: kotlin.Int? = null,
 
-    /* HTTP status code of the response (duplicate of status) */
     @Json(name = "statusCode")
     val statusCode: kotlin.Int? = null
 

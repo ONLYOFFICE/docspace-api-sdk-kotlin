@@ -16,52 +16,21 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.ChatMultimodalSettingsDto
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The chat settings parameters.
+ * The chat configuration of an AI room.
  *
- * @param providerId The AI provider ID.
- * @param modelId The AI model ID used for chat completions.
- * @param modelAlias The AI model display alias.
- * @param prompt The system prompt for the chat.
- * @param multimodal 
- * @param thinking Indicates whether the model supports extended thinking mode.
- * @param `internal` Indicates whether this is an internal AI gateway provider.
+ * @param prompt The instruction put in front of every conversation held in the room, which sets the role the assistant takes  and the way it answers. Empty when the room was left on the behaviour the portal provides by default.
  */
 
 
 data class ChatSettingsDto (
 
-    /* The AI provider ID. */
-    @Json(name = "providerId")
-    val providerId: kotlin.Int? = null,
-
-    /* The AI model ID used for chat completions. */
-    @Json(name = "modelId")
-    val modelId: kotlin.String? = null,
-
-    /* The AI model display alias. */
-    @Json(name = "modelAlias")
-    val modelAlias: kotlin.String? = null,
-
-    /* The system prompt for the chat. */
     @Json(name = "prompt")
-    val prompt: kotlin.String? = null,
-
-    @Json(name = "multimodal")
-    val multimodal: ChatMultimodalSettingsDto? = null,
-
-    /* Indicates whether the model supports extended thinking mode. */
-    @Json(name = "thinking")
-    val thinking: kotlin.Boolean? = null,
-
-    /* Indicates whether this is an internal AI gateway provider. */
-    @Json(name = "internal")
-    val `internal`: kotlin.Boolean? = null
+    val prompt: kotlin.String? = null
 
 ) {
 

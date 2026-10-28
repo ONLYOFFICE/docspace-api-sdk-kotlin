@@ -31,11 +31,9 @@ import com.squareup.moshi.JsonClass
 
 data class InviteUsersRequestDto (
 
-    /* The list of user invitations. */
     @Json(name = "invitations")
     val invitations: kotlin.collections.List<UserInvitationRequestDto>,
 
-    /* The culture code of invitations. */
     @Json(name = "culture")
     val culture: kotlin.String? = null
 

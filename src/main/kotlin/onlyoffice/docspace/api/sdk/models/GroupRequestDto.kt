@@ -23,25 +23,22 @@ import com.squareup.moshi.JsonClass
 /**
  * The group request parameters.
  *
- * @param groupManager The group manager ID.
- * @param members The list of group member IDs.
- * @param groupName The group name.
+ * @param groupName The name of the group, from 1 to 128 characters. It is required, it may not be blank, and it does not have to  be unique.
+ * @param members The accounts to put into the new group. Every one of them has to be an active member that is not a guest,  otherwise the whole call is rejected. Omit it to create an empty group.
+ * @param groupManager The account to make the manager of the new group. It is added to the group as well, so it does not have to be  repeated in `members`. Omit it to create a group without a manager.
  */
 
 
 data class GroupRequestDto (
 
-    /* The group manager ID. */
-    @Json(name = "groupManager")
-    val groupManager: java.util.UUID,
+    @Json(name = "groupName")
+    val groupName: kotlin.String?,
 
-    /* The list of group member IDs. */
     @Json(name = "members")
     val members: kotlin.collections.List<java.util.UUID>? = null,
 
-    /* The group name. */
-    @Json(name = "groupName")
-    val groupName: kotlin.String? = null
+    @Json(name = "groupManager")
+    val groupManager: java.util.UUID? = null
 
 ) {
 

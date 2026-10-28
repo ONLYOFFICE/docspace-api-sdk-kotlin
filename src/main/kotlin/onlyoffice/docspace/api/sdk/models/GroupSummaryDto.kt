@@ -32,19 +32,15 @@ import com.squareup.moshi.JsonClass
 
 data class GroupSummaryDto (
 
-    /* The group ID. */
     @Json(name = "id")
     val id: java.util.UUID,
 
-    /* The group name. */
     @Json(name = "name")
     val name: kotlin.String?,
 
-    /* The group manager. */
     @Json(name = "manager")
     val manager: kotlin.String? = null,
 
-    /* Indicates whether the group is a system group. */
     @Json(name = "isSystem")
     val isSystem: kotlin.Boolean? = null
 

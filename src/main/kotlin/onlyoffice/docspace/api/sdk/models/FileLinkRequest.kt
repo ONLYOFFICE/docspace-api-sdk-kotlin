@@ -23,22 +23,21 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The external link request parameters.
+ * The settings of an external link to a file.
  *
- * @param linkId The external link ID.
- * @param access 
- * @param expirationDate 
- * @param title The link name.
- * @param `internal` The link scope, whether it is internal or not.
- * @param primary Specifies whether the file link is primary or not.
- * @param denyDownload Specifies whether to deny downloading the file or not.
- * @param password Password for access via link.
+ * @param linkId The link to rewrite, as reported by `GET api/2.0/files/file/{id}/links`. An identifier that is not yet in use,  the empty one included, creates a link instead.
+ * @param access The rights the link grants to whoever follows it. The value that denies everything revokes the link.
+ * @param expirationDate The moment the link stops working, read in the time zone of the portal. A date more than a few years ahead is  rejected as an invalid request; left out, the link does not expire on its own.
+ * @param title The name the link carries in the sharing list of the file, for the people who manage it; it is not shown to  whoever follows the link.
+ * @param `internal` Who may follow the link: `true` admits only accounts that are signed in to the portal, `false` admits anybody  who has the address.
+ * @param primary Whether this link becomes the primary link of the file - the one the Copy link action of a client hands out.  A file has one primary link at a time.
+ * @param denyDownload What a visitor may do with the content: `true` leaves them with viewing in the browser, `false` lets them  download and print it as their rights allow.
+ * @param password The secret a visitor has to type before the file opens; left out, the link opens without one.
  */
 
 
 data class FileLinkRequest (
 
-    /* The external link ID. */
     @Json(name = "linkId")
     val linkId: java.util.UUID? = null,
 
@@ -48,23 +47,18 @@ data class FileLinkRequest (
     @Json(name = "expirationDate")
     val expirationDate: ApiDateTime? = null,
 
-    /* The link name. */
     @Json(name = "title")
     val title: kotlin.String? = null,
 
-    /* The link scope, whether it is internal or not. */
     @Json(name = "internal")
     val `internal`: kotlin.Boolean? = null,
 
-    /* Specifies whether the file link is primary or not. */
     @Json(name = "primary")
     val primary: kotlin.Boolean? = null,
 
-    /* Specifies whether to deny downloading the file or not. */
     @Json(name = "denyDownload")
     val denyDownload: kotlin.Boolean? = null,
 
-    /* Password for access via link. */
     @Json(name = "password")
     val password: kotlin.String? = null
 

@@ -22,25 +22,22 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The parameters of the security information request.
+ * The rights to apply to a single file or folder, and how to announce them.
  *
- * @param share The collection of sharing parameters.
- * @param notify Specifies whether to notify users about the shared file or not.
- * @param sharingMessage The message to send when notifying about the shared file.
+ * @param share One record per account or group whose rights are being set, each naming the subject and the level it gets; a  level of `None` takes the access away. An empty collection makes the call change nothing.
+ * @param notify Set to true to have every account named in `share` emailed about the access it just received; false changes  the rights without telling anyone.
+ * @param sharingMessage The text put into that email, ignored while `notify` is false. Markup is stripped before sending, so only the  plain text of the value survives.
  */
 
 
 data class SecurityInfoSimpleRequestDto (
 
-    /* The collection of sharing parameters. */
     @Json(name = "share")
     val share: kotlin.collections.List<FileShareParams>? = null,
 
-    /* Specifies whether to notify users about the shared file or not. */
     @Json(name = "notify")
     val notify: kotlin.Boolean? = null,
 
-    /* The message to send when notifying about the shared file. */
     @Json(name = "sharingMessage")
     val sharingMessage: kotlin.String? = null
 

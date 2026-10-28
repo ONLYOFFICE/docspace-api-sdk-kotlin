@@ -21,30 +21,26 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The progress parameters of creating a room from the template.
+ * The progress of the job that creates a room out of a room template.
  *
- * @param roomId The room ID.
- * @param progress The progress of creating a room from the template.
- * @param error The error message that is sent when a room is not created successfully from the template.
- * @param isCompleted Specifies whether the process of creating a room from the template is completed.
+ * @param roomId The room the job is creating. It is meaningful once the room exists, which is guaranteed only after  `isCompleted` turns true and `error` stays empty; until then it carries no usable id.
+ * @param progress How far the job has got. The value climbs while the contents of the template are being copied into the new  room and reaches its maximum at the very end.
+ * @param error Why the job stopped. It is empty while the job runs and after a successful one, and a filled value means that  no room was created, so the request has to be repeated rather than waited out.
+ * @param isCompleted Whether the job has ended. It is set both after a successful creation and after a failure, so it is the flag  to poll for, while `error` is what separates the two outcomes.
  */
 
 
 data class RoomFromTemplateStatusDto (
 
-    /* The room ID. */
     @Json(name = "roomId")
     val roomId: kotlin.Int,
 
-    /* The progress of creating a room from the template. */
     @Json(name = "progress")
     val progress: kotlin.Double,
 
-    /* The error message that is sent when a room is not created successfully from the template. */
     @Json(name = "error")
     val error: kotlin.String?,
 
-    /* Specifies whether the process of creating a room from the template is completed. */
     @Json(name = "isCompleted")
     val isCompleted: kotlin.Boolean
 

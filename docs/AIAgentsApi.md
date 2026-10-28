@@ -4,40 +4,38 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**createAgent**](AIAgentsApi.md#createAgent) | **POST** api/2.0/ai/agents | Create an ai agent |
-| [**deleteAgent**](AIAgentsApi.md#deleteAgent) | **DELETE** api/2.0/ai/agents/{id} | Remove an ai agent |
-| [**getAgentInfo**](AIAgentsApi.md#getAgentInfo) | **GET** api/2.0/ai/agents/{id} | Return an ai agent |
-| [**getAgents**](AIAgentsApi.md#getAgents) | **GET** api/2.0/ai/agents | Get ai agents |
-| [**getAgentsNewItems**](AIAgentsApi.md#getAgentsNewItems) | **GET** api/2.0/ai/agents/news | Get the room new items |
-| [**resetAgentsQuota**](AIAgentsApi.md#resetAgentsQuota) | **PUT** api/2.0/ai/agents/resetquota | Reset the AI agents quota limit |
-| [**updateAgent**](AIAgentsApi.md#updateAgent) | **PUT** api/2.0/ai/agents/{id} | Update an ai agent |
-| [**updateAgentsQuota**](AIAgentsApi.md#updateAgentsQuota) | **PUT** api/2.0/ai/agents/agentquota | Change the AI agent quota limit |
+| [**aiAgentsCreate**](AIAgentsApi.md#aiAgentsCreate) | **POST** api/2.0/ai/agents | Create an agent |
+| [**aiAgentsDelete**](AIAgentsApi.md#aiAgentsDelete) | **DELETE** api/2.0/ai/agents/{id} | Delete an agent |
+| [**aiAgentsGet**](AIAgentsApi.md#aiAgentsGet) | **GET** api/2.0/ai/agents/{id} | Get an agent |
+| [**aiAgentsList**](AIAgentsApi.md#aiAgentsList) | **GET** api/2.0/ai/agents | List agents |
+| [**aiAgentsNews**](AIAgentsApi.md#aiAgentsNews) | **GET** api/2.0/ai/agents/news | List agent news items |
+| [**aiAgentsResetQuota**](AIAgentsApi.md#aiAgentsResetQuota) | **PUT** api/2.0/ai/agents/resetquota | Reset agents' quota |
+| [**aiAgentsUpdate**](AIAgentsApi.md#aiAgentsUpdate) | **PUT** api/2.0/ai/agents/{id} | Update an agent |
+| [**aiAgentsUpdateQuota**](AIAgentsApi.md#aiAgentsUpdateQuota) | **PUT** api/2.0/ai/agents/agentquota | Update agents' quota |
 
 
 
-<a id="createAgent"></a>
-# **createAgent**
-> FolderIntegerWrapper createAgent (CreateAgentRequestDto createAgentRequestDto)
+<a id="aiAgentsCreate"></a>
+# **aiAgentsCreate**
+> AiFolderWrapper aiAgentsCreate (AiAgentsCreateRequest aiAgentsCreateRequest)
 
-Creates an ai agent.
+Creates an AI agent room and binds a model to it, in that order. `profileId` is required, has to be a UUID, has to name an existing profile, and that profile has to support chat - an image-only model is refused here rather than failing on every later request. `prompt` is required and is stored on the room as its standing instruction with any markup stripped, so it cannot round-trip HTML into another user's reply. The two steps are not atomic: when the room is created but the model binding fails, the call reports an error and the room is left behind, so re-bind it with `PUT api/2.0/ai/agents/{id}` rather than creating a second one.
 
-For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-agent/).
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-agents-create/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **createAgentRequestDto** | [**CreateAgentRequestDto**](CreateAgentRequestDto.md)|  | [optional] |
+| **aiAgentsCreateRequest** | [**AiAgentsCreateRequest**](AiAgentsCreateRequest.md)|  | |
 
 ### Return type
 
-[**FolderIntegerWrapper**](FolderIntegerWrapper.md)
+[**AiFolderWrapper**](AiFolderWrapper.md)
 
 ### Authorization
 
 
-Configure Basic:
-    ApiClient().setCredentials("USERNAME", "PASSWORD")
-Configure Bearer:
+Configure bearerAuth:
     ApiClient().setBearerToken("TOKEN")
 
 ### Example
@@ -48,13 +46,12 @@ Configure Bearer:
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
-apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIAgentsApi::class.java)
-val createAgentRequestDto : CreateAgentRequestDto =  // CreateAgentRequestDto | 
+val aiAgentsCreateRequest : AiAgentsCreateRequest =  // AiAgentsCreateRequest | 
 
 launch(Dispatchers.IO) {
-    val result : FolderIntegerWrapper = webService.createAgent(createAgentRequestDto)
+    val result : AiFolderWrapper = webService.aiAgentsCreate(aiAgentsCreateRequest)
 }
 ```
 
@@ -64,30 +61,28 @@ launch(Dispatchers.IO) {
  - **Accept**: application/json
 
 
-<a id="deleteAgent"></a>
-# **deleteAgent**
-> FileOperationWrapper deleteAgent (kotlin.Int id, DeleteRoomRequest deleteRoomRequest)
+<a id="aiAgentsDelete"></a>
+# **aiAgentsDelete**
+> AiFileOperationWrapper aiAgentsDelete (kotlin.String id, AiAgentsDeleteRequest aiAgentsDeleteRequest)
 
-Removes an ai agent.
+Deletes an AI agent room. The ID has to be the room's integer identifier, and the body is forwarded to the DocSpace AI service unchanged, so it accepts the same options as deleting an ordinary room - `deleteAfter` among them. Deletion is asynchronous there: the answer is a file-operation payload to poll, not a completed result. The agent's model binding is deliberately left behind, because the upstream assignment API has no per-entry delete, so an orphaned assignment row survives the room.
 
-For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-agent/).
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-agents-delete/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **id** | **kotlin.Int**| The room ID. | |
-| **deleteRoomRequest** | [**DeleteRoomRequest**](DeleteRoomRequest.md)| The parameters for deleting a room. | |
+| **id** | **kotlin.String**| The agent identifier. | |
+| **aiAgentsDeleteRequest** | [**AiAgentsDeleteRequest**](AiAgentsDeleteRequest.md)|  | |
 
 ### Return type
 
-[**FileOperationWrapper**](FileOperationWrapper.md)
+[**AiFileOperationWrapper**](AiFileOperationWrapper.md)
 
 ### Authorization
 
 
-Configure Basic:
-    ApiClient().setCredentials("USERNAME", "PASSWORD")
-Configure Bearer:
+Configure bearerAuth:
     ApiClient().setBearerToken("TOKEN")
 
 ### Example
@@ -98,14 +93,13 @@ Configure Bearer:
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
-apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIAgentsApi::class.java)
-val id : kotlin.Int = 10 // kotlin.Int | The room ID.
-val deleteRoomRequest : DeleteRoomRequest =  // DeleteRoomRequest | The parameters for deleting a room.
+val id : kotlin.String = 1234 // kotlin.String | The agent identifier.
+val aiAgentsDeleteRequest : AiAgentsDeleteRequest =  // AiAgentsDeleteRequest | 
 
 launch(Dispatchers.IO) {
-    val result : FileOperationWrapper = webService.deleteAgent(id, deleteRoomRequest)
+    val result : AiFileOperationWrapper = webService.aiAgentsDelete(id, aiAgentsDeleteRequest)
 }
 ```
 
@@ -115,29 +109,27 @@ launch(Dispatchers.IO) {
  - **Accept**: application/json
 
 
-<a id="getAgentInfo"></a>
-# **getAgentInfo**
-> FolderIntegerWrapper getAgentInfo (kotlin.Int id)
+<a id="aiAgentsGet"></a>
+# **aiAgentsGet**
+> AiAgentsGet200Response aiAgentsGet (kotlin.String id)
 
-Returns an ai agent.
+Returns one AI agent room, enriched with the `profileId` currently bound to it so an edit form can prefill its model selector. The ID is the room's integer identifier, and a non-integer value is refused rather than passed on to fail opaquely upstream. The binding lives in an assignment rather than on the room, so it is looked up separately: a missing or unreadable assignment simply leaves `profileId` out of the answer instead of failing the call. The standing instruction comes back on the room as `chatSettings.prompt`.
 
-For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-agent-info/).
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-agents-get/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **id** | **kotlin.Int**| The room ID. | |
+| **id** | **kotlin.String**| The agent identifier. | |
 
 ### Return type
 
-[**FolderIntegerWrapper**](FolderIntegerWrapper.md)
+[**AiAgentsGet200Response**](AiAgentsGet200Response.md)
 
 ### Authorization
 
 
-Configure Basic:
-    ApiClient().setCredentials("USERNAME", "PASSWORD")
-Configure Bearer:
+Configure bearerAuth:
     ApiClient().setBearerToken("TOKEN")
 
 ### Example
@@ -148,13 +140,12 @@ Configure Bearer:
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
-apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIAgentsApi::class.java)
-val id : kotlin.Int = 1 // kotlin.Int | The room ID.
+val id : kotlin.String = 1234 // kotlin.String | The agent identifier.
 
 launch(Dispatchers.IO) {
-    val result : FolderIntegerWrapper = webService.getAgentInfo(id)
+    val result : AiAgentsGet200Response = webService.aiAgentsGet(id)
 }
 ```
 
@@ -164,39 +155,37 @@ launch(Dispatchers.IO) {
  - **Accept**: application/json
 
 
-<a id="getAgents"></a>
-# **getAgents**
-> FolderContentIntegerWrapper getAgents (kotlin.String subjectId, kotlin.Boolean withoutTags, kotlin.String tags, kotlin.Boolean excludeSubject, SubjectFilter subjectFilter, QuotaFilter quotaFilter, kotlin.Int count, kotlin.Int startIndex, kotlin.String sortBy, SortOrder sortOrder, kotlin.String filterValue)
+<a id="aiAgentsList"></a>
+# **aiAgentsList**
+> AiFolderContentWrapper aiAgentsList (kotlin.String subjectId, kotlin.String subjectOwnerId, kotlin.Boolean excludeSubject, kotlin.String tags, kotlin.Boolean withoutTags, kotlin.Int quotaFilter, kotlin.String filterValue, kotlin.String sortBy, kotlin.String sortOrder, kotlin.Int startIndex, kotlin.Int count)
 
-Get ai agents
+Lists the portal's AI agent rooms. The query is forwarded unchanged to the DocSpace AI service, so it takes the same paging, sorting and filtering parameters as an ordinary room listing, and the answer is that service's folder-content payload rather than a shape of this API's own. Array and object query values are dropped rather than guessed at, so send flat strings. The profile bound to each agent is not included here - read one agent with `GET api/2.0/ai/agents/{id}` for that.
 
-For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-agents/).
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-agents-list/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **subjectId** | **kotlin.String**| The filter by user ID. | [optional] |
-| **withoutTags** | **kotlin.Boolean**| Specifies whether to search by tags or not. | [optional] |
-| **tags** | **kotlin.String**| The tags in the serialized format. | [optional] |
-| **excludeSubject** | **kotlin.Boolean**| Specifies whether to exclude search by user or group ID. | [optional] |
-| **subjectFilter** | [**SubjectFilter**](.md)| The filter by user (Owner - 0, Member - 1). | [optional] [enum: 0, 1] |
-| **quotaFilter** | [**QuotaFilter**](.md)| The filter by quota (All - 0, Default - 1, Custom - 2). | [optional] [enum: 0, 1, 2] |
-| **count** | **kotlin.Int**| Specifies the maximum number of items to retrieve. | [optional] |
-| **startIndex** | **kotlin.Int**| The index from which to start retrieving the room content. | [optional] |
-| **sortBy** | **kotlin.String**| Specifies the field by which the room content should be sorted. | [optional] |
-| **sortOrder** | [**SortOrder**](.md)| The order in which the results are sorted. | [optional] [enum: 0, 1] |
-| **filterValue** | **kotlin.String**| The text filter value used to refine search or query operations. | [optional] |
+| **subjectId** | **kotlin.String**| Show only the agent rooms this user takes part in. | [optional] |
+| **subjectOwnerId** | **kotlin.String**| Show only the agent rooms owned by this user. | [optional] |
+| **excludeSubject** | **kotlin.Boolean**| Invert the user filter: leave out what `subjectId` selects instead of keeping it. | [optional] |
+| **tags** | **kotlin.String**| Show only the agent rooms carrying these tags, comma-separated. | [optional] |
+| **withoutTags** | **kotlin.Boolean**| Show only the agent rooms that carry no tags at all. | [optional] |
+| **quotaFilter** | **kotlin.Int**| Filter by quota kind: 0 for all, 1 for the default quota, 2 for a custom one. | [optional] |
+| **filterValue** | **kotlin.String**| Show only the agent rooms whose title matches this text. | [optional] |
+| **sortBy** | **kotlin.String**| Field to sort by, for example `DateAndTime`. | [optional] |
+| **sortOrder** | **kotlin.String**| Sort direction, `ascending` or `descending`. | [optional] |
+| **startIndex** | **kotlin.Int**| Index of the first entry to return; 0 starts at the beginning. | [optional] |
+| **count** | **kotlin.Int**| How many entries to return. The internal service applies its own default. | [optional] |
 
 ### Return type
 
-[**FolderContentIntegerWrapper**](FolderContentIntegerWrapper.md)
+[**AiFolderContentWrapper**](AiFolderContentWrapper.md)
 
 ### Authorization
 
 
-Configure Basic:
-    ApiClient().setCredentials("USERNAME", "PASSWORD")
-Configure Bearer:
+Configure bearerAuth:
     ApiClient().setBearerToken("TOKEN")
 
 ### Example
@@ -207,23 +196,22 @@ Configure Bearer:
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
-apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIAgentsApi::class.java)
-val subjectId : kotlin.String = 00000000-0000-0000-0000-000000000000 // kotlin.String | The filter by user ID.
-val withoutTags : kotlin.Boolean = false // kotlin.Boolean | Specifies whether to search by tags or not.
-val tags : kotlin.String = ai,assistant // kotlin.String | The tags in the serialized format.
-val excludeSubject : kotlin.Boolean = false // kotlin.Boolean | Specifies whether to exclude search by user or group ID.
-val subjectFilter : SubjectFilter = 0 // SubjectFilter | The filter by user (Owner - 0, Member - 1).
-val quotaFilter : QuotaFilter = 0 // QuotaFilter | The filter by quota (All - 0, Default - 1, Custom - 2).
-val count : kotlin.Int = 25 // kotlin.Int | Specifies the maximum number of items to retrieve.
-val startIndex : kotlin.Int = 0 // kotlin.Int | The index from which to start retrieving the room content.
-val sortBy : kotlin.String = DateAndTime // kotlin.String | Specifies the field by which the room content should be sorted.
-val sortOrder : SortOrder = 1 // SortOrder | The order in which the results are sorted.
-val filterValue : kotlin.String = my agent // kotlin.String | The text filter value used to refine search or query operations.
+val subjectId : kotlin.String = 00000000-0000-0000-0000-000000000000 // kotlin.String | Show only the agent rooms this user takes part in.
+val subjectOwnerId : kotlin.String = 00000000-0000-0000-0000-000000000000 // kotlin.String | Show only the agent rooms owned by this user.
+val excludeSubject : kotlin.Boolean = false // kotlin.Boolean | Invert the user filter: leave out what `subjectId` selects instead of keeping it.
+val tags : kotlin.String = ai,assistant // kotlin.String | Show only the agent rooms carrying these tags, comma-separated.
+val withoutTags : kotlin.Boolean = false // kotlin.Boolean | Show only the agent rooms that carry no tags at all.
+val quotaFilter : kotlin.Int = 0 // kotlin.Int | Filter by quota kind: 0 for all, 1 for the default quota, 2 for a custom one.
+val filterValue : kotlin.String = assistant // kotlin.String | Show only the agent rooms whose title matches this text.
+val sortBy : kotlin.String = DateAndTime // kotlin.String | Field to sort by, for example `DateAndTime`.
+val sortOrder : kotlin.String = descending // kotlin.String | Sort direction, `ascending` or `descending`.
+val startIndex : kotlin.Int = 0 // kotlin.Int | Index of the first entry to return; 0 starts at the beginning.
+val count : kotlin.Int = 25 // kotlin.Int | How many entries to return. The internal service applies its own default.
 
 launch(Dispatchers.IO) {
-    val result : FolderContentIntegerWrapper = webService.getAgents(subjectId, withoutTags, tags, excludeSubject, subjectFilter, quotaFilter, count, startIndex, sortBy, sortOrder, filterValue)
+    val result : AiFolderContentWrapper = webService.aiAgentsList(subjectId, subjectOwnerId, excludeSubject, tags, withoutTags, quotaFilter, filterValue, sortBy, sortOrder, startIndex, count)
 }
 ```
 
@@ -233,27 +221,25 @@ launch(Dispatchers.IO) {
  - **Accept**: application/json
 
 
-<a id="getAgentsNewItems"></a>
-# **getAgentsNewItems**
-> NewItemsAgentNewItemsArrayWrapper getAgentsNewItems ()
+<a id="aiAgentsNews"></a>
+# **aiAgentsNews**
+> AiNewItemsAgentNewItemsArrayWrapper aiAgentsNews ()
 
-Returns the room new items.
+Lists the unread items across the caller's AI agent rooms, so a badge can be rendered without walking each room. It takes no parameters and is scoped to the caller by the DocSpace AI service. The answer is that service's new-items payload. This is a read-only operation and does not mark anything as seen.
 
-For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-agents-new-items/).
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-agents-news/).
 
 ### Parameters
 This endpoint does not need any parameter.
 
 ### Return type
 
-[**NewItemsAgentNewItemsArrayWrapper**](NewItemsAgentNewItemsArrayWrapper.md)
+[**AiNewItemsAgentNewItemsArrayWrapper**](AiNewItemsAgentNewItemsArrayWrapper.md)
 
 ### Authorization
 
 
-Configure Basic:
-    ApiClient().setCredentials("USERNAME", "PASSWORD")
-Configure Bearer:
+Configure bearerAuth:
     ApiClient().setBearerToken("TOKEN")
 
 ### Example
@@ -264,12 +250,11 @@ Configure Bearer:
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
-apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIAgentsApi::class.java)
 
 launch(Dispatchers.IO) {
-    val result : NewItemsAgentNewItemsArrayWrapper = webService.getAgentsNewItems()
+    val result : AiNewItemsAgentNewItemsArrayWrapper = webService.aiAgentsNews()
 }
 ```
 
@@ -279,29 +264,27 @@ launch(Dispatchers.IO) {
  - **Accept**: application/json
 
 
-<a id="resetAgentsQuota"></a>
-# **resetAgentsQuota**
-> FolderIntegerArrayWrapper resetAgentsQuota (UpdateRoomsRoomIdsRequestDtoInteger updateRoomsRoomIdsRequestDtoInteger)
+<a id="aiAgentsResetQuota"></a>
+# **aiAgentsResetQuota**
+> AiFolderArrayWrapper aiAgentsResetQuota (AiAgentsResetQuotaRequest aiAgentsResetQuotaRequest)
 
-Resets the quota limit for the AI agents with the IDs specified in the request.
+Returns the listed AI agent rooms to the portal's default storage quota, forwarding `roomIds` to the DocSpace AI service unchanged. The answer is that service's payload, one updated room per entry. This is the counterpart of `PUT api/2.0/ai/agents/agentquota` and takes no quota value of its own. Rooms already on the default are unaffected.
 
-For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/reset-agents-quota/).
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-agents-reset-quota/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **updateRoomsRoomIdsRequestDtoInteger** | [**UpdateRoomsRoomIdsRequestDtoInteger**](UpdateRoomsRoomIdsRequestDtoInteger.md)|  | [optional] |
+| **aiAgentsResetQuotaRequest** | [**AiAgentsResetQuotaRequest**](AiAgentsResetQuotaRequest.md)|  | |
 
 ### Return type
 
-[**FolderIntegerArrayWrapper**](FolderIntegerArrayWrapper.md)
+[**AiFolderArrayWrapper**](AiFolderArrayWrapper.md)
 
 ### Authorization
 
 
-Configure Basic:
-    ApiClient().setCredentials("USERNAME", "PASSWORD")
-Configure Bearer:
+Configure bearerAuth:
     ApiClient().setBearerToken("TOKEN")
 
 ### Example
@@ -312,13 +295,12 @@ Configure Bearer:
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
-apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIAgentsApi::class.java)
-val updateRoomsRoomIdsRequestDtoInteger : UpdateRoomsRoomIdsRequestDtoInteger =  // UpdateRoomsRoomIdsRequestDtoInteger | 
+val aiAgentsResetQuotaRequest : AiAgentsResetQuotaRequest =  // AiAgentsResetQuotaRequest | 
 
 launch(Dispatchers.IO) {
-    val result : FolderIntegerArrayWrapper = webService.resetAgentsQuota(updateRoomsRoomIdsRequestDtoInteger)
+    val result : AiFolderArrayWrapper = webService.aiAgentsResetQuota(aiAgentsResetQuotaRequest)
 }
 ```
 
@@ -328,30 +310,28 @@ launch(Dispatchers.IO) {
  - **Accept**: application/json
 
 
-<a id="updateAgent"></a>
-# **updateAgent**
-> FolderIntegerWrapper updateAgent (kotlin.Int id, UpdateRoomRequest updateRoomRequest)
+<a id="aiAgentsUpdate"></a>
+# **aiAgentsUpdate**
+> AiFolderWrapper aiAgentsUpdate (kotlin.String id, AiAgentsUpdateRequest aiAgentsUpdateRequest)
 
-Updates an ai agent.
+Changes an AI agent room - its title, tags or standing instruction - and optionally rebinds its model. The ID has to be the room's integer identifier. `profileId` is not part of the room contract: it is taken out of the forwarded body and applied afterwards as the agent's assignment, and it has to be a UUID naming an existing chat-capable profile. An instruction sent as `chatSettings.prompt` has its markup stripped, as on create; note that when `chatSettings` is present the upstream service still requires the rest of that object to be valid, so send it whole.
 
-For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/update-agent/).
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-agents-update/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **id** | **kotlin.Int**| The room ID. | |
-| **updateRoomRequest** | [**UpdateRoomRequest**](UpdateRoomRequest.md)| The request parameters for updating a room. | |
+| **id** | **kotlin.String**| The agent identifier. | |
+| **aiAgentsUpdateRequest** | [**AiAgentsUpdateRequest**](AiAgentsUpdateRequest.md)|  | |
 
 ### Return type
 
-[**FolderIntegerWrapper**](FolderIntegerWrapper.md)
+[**AiFolderWrapper**](AiFolderWrapper.md)
 
 ### Authorization
 
 
-Configure Basic:
-    ApiClient().setCredentials("USERNAME", "PASSWORD")
-Configure Bearer:
+Configure bearerAuth:
     ApiClient().setBearerToken("TOKEN")
 
 ### Example
@@ -362,14 +342,13 @@ Configure Bearer:
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
-apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIAgentsApi::class.java)
-val id : kotlin.Int = 56 // kotlin.Int | The room ID.
-val updateRoomRequest : UpdateRoomRequest =  // UpdateRoomRequest | The request parameters for updating a room.
+val id : kotlin.String = 1234 // kotlin.String | The agent identifier.
+val aiAgentsUpdateRequest : AiAgentsUpdateRequest =  // AiAgentsUpdateRequest | 
 
 launch(Dispatchers.IO) {
-    val result : FolderIntegerWrapper = webService.updateAgent(id, updateRoomRequest)
+    val result : AiFolderWrapper = webService.aiAgentsUpdate(id, aiAgentsUpdateRequest)
 }
 ```
 
@@ -379,29 +358,27 @@ launch(Dispatchers.IO) {
  - **Accept**: application/json
 
 
-<a id="updateAgentsQuota"></a>
-# **updateAgentsQuota**
-> FolderIntegerArrayWrapper updateAgentsQuota (UpdateRoomsQuotaRequestDtoInteger updateRoomsQuotaRequestDtoInteger)
+<a id="aiAgentsUpdateQuota"></a>
+# **aiAgentsUpdateQuota**
+> AiFolderArrayWrapper aiAgentsUpdateQuota (AiAgentsUpdateQuotaRequest aiAgentsUpdateQuotaRequest)
 
-Changes the quota limit for the AI agents with the IDs specified in the request.
+Sets the storage quota of the listed AI agent rooms in one call, forwarding `roomIds` and `quota` to the DocSpace AI service unchanged. The answer is that service's payload, one updated room per entry. A quota applies to the room's stored files, not to the model usage of its chats. Use `PUT api/2.0/ai/agents/resetquota` to return rooms to the portal default instead of naming a number.
 
-For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/update-agents-quota/).
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-agents-update-quota/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **updateRoomsQuotaRequestDtoInteger** | [**UpdateRoomsQuotaRequestDtoInteger**](UpdateRoomsQuotaRequestDtoInteger.md)|  | [optional] |
+| **aiAgentsUpdateQuotaRequest** | [**AiAgentsUpdateQuotaRequest**](AiAgentsUpdateQuotaRequest.md)|  | |
 
 ### Return type
 
-[**FolderIntegerArrayWrapper**](FolderIntegerArrayWrapper.md)
+[**AiFolderArrayWrapper**](AiFolderArrayWrapper.md)
 
 ### Authorization
 
 
-Configure Basic:
-    ApiClient().setCredentials("USERNAME", "PASSWORD")
-Configure Bearer:
+Configure bearerAuth:
     ApiClient().setBearerToken("TOKEN")
 
 ### Example
@@ -412,13 +389,12 @@ Configure Bearer:
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
-apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIAgentsApi::class.java)
-val updateRoomsQuotaRequestDtoInteger : UpdateRoomsQuotaRequestDtoInteger =  // UpdateRoomsQuotaRequestDtoInteger | 
+val aiAgentsUpdateQuotaRequest : AiAgentsUpdateQuotaRequest =  // AiAgentsUpdateQuotaRequest | 
 
 launch(Dispatchers.IO) {
-    val result : FolderIntegerArrayWrapper = webService.updateAgentsQuota(updateRoomsQuotaRequestDtoInteger)
+    val result : AiFolderArrayWrapper = webService.aiAgentsUpdateQuota(aiAgentsUpdateQuotaRequest)
 }
 ```
 

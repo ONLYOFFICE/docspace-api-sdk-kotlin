@@ -21,45 +21,38 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The parameters representing the Two-Factor Authentication (TFA) configuration settings.
+ * One two-factor authentication method the portal offers, with the portal-wide state of that method.
  *
- * @param id The ID of the TFA configuration.
- * @param title The display name or description of the TFA configuration.
- * @param enabled Indicates whether the TFA configuration is currently active.
- * @param avaliable Indicates whether the TFA configuration can be used.
- * @param trustedIps The list of IP addresses that are exempt from TFA requirements.
- * @param mandatoryUsers The list of user IDs that are required to use TFA.
- * @param mandatoryGroups The list of group IDs whose members are required to use TFA.
+ * @param id Which method this entry describes: `sms` for a code sent by text message, `app` for a code from an  authenticator application. It is the value `PUT api/2.0/settings/tfaapp` takes as its `type`, and no other  value ever appears here.
+ * @param title The label for the method in the portal language, meant for a button or a radio option. It is not stable  enough to branch on - match `id` for that.
+ * @param enabled Whether this method is the portal's current policy. At most one entry can have it set, and none has it  while the portal challenges nobody. It says nothing about the caller's own account, which may be exempt  through `trustedIps` or forced through `mandatoryUsers`.
+ * @param available Whether the method could be switched on at all. For `sms` it is `false` until the installation has a  working SMS provider, so a method can be offered here and still be impossible to enable; for `app` it is  always `true`.
+ * @param trustedIps The addresses that skip the challenge, each either a single address, a `from-to` pair or a CIDR range. It  is empty when no address is exempt, which means every account is challenged.
+ * @param mandatoryUsers The accounts that are challenged even from a trusted address, by user ID. Empty means the exemption in  `trustedIps` holds for everyone.
+ * @param mandatoryGroups The groups whose members are challenged even from a trusted address, by group ID, with the same reading of  an empty list as `mandatoryUsers`.
  */
 
 
 data class TfaSettingsDto (
 
-    /* The ID of the TFA configuration. */
     @Json(name = "id")
     val id: kotlin.String?,
 
-    /* The display name or description of the TFA configuration. */
     @Json(name = "title")
     val title: kotlin.String?,
 
-    /* Indicates whether the TFA configuration is currently active. */
     @Json(name = "enabled")
     val enabled: kotlin.Boolean,
 
-    /* Indicates whether the TFA configuration can be used. */
-    @Json(name = "avaliable")
-    val avaliable: kotlin.Boolean,
+    @Json(name = "available")
+    val available: kotlin.Boolean,
 
-    /* The list of IP addresses that are exempt from TFA requirements. */
     @Json(name = "trustedIps")
     val trustedIps: kotlin.collections.List<kotlin.String>? = null,
 
-    /* The list of user IDs that are required to use TFA. */
     @Json(name = "mandatoryUsers")
     val mandatoryUsers: kotlin.collections.List<java.util.UUID>? = null,
 
-    /* The list of group IDs whose members are required to use TFA. */
     @Json(name = "mandatoryGroups")
     val mandatoryGroups: kotlin.collections.List<java.util.UUID>? = null
 

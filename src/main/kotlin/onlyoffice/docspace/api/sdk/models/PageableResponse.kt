@@ -21,30 +21,26 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The response containing paginated data.
+ * One page of results together with the cursor that asks for the next page.
  *
- * @param `data` The paginated data.
- * @param limit The maximum number of results returned per page.
- * @param lastClientId The identifier of the last retrieved client.
- * @param lastCreatedOn The creation date of the last retrieved client.
+ * @param `data` 
+ * @param limit The page size that was applied to this request, between 1 and 50.
+ * @param lastClientId The cursor to send back as last_client_id to ask for the next page, together with last_created_on. It is null when the page is empty.
+ * @param lastCreatedOn The cursor to send back as last_created_on to ask for the next page, together with last_client_id. It is null when the page is empty.
  */
 
 
 data class PageableResponse (
 
-    /* The paginated data. */
     @Json(name = "data")
     val `data`: kotlin.Any? = null,
 
-    /* The maximum number of results returned per page. */
     @Json(name = "limit")
     val limit: kotlin.Int? = null,
 
-    /* The identifier of the last retrieved client. */
     @Json(name = "last_client_id")
     val lastClientId: kotlin.String? = null,
 
-    /* The creation date of the last retrieved client. */
     @Json(name = "last_created_on")
     val lastCreatedOn: java.time.OffsetDateTime? = null
 

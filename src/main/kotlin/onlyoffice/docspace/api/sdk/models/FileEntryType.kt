@@ -55,7 +55,7 @@ enum class FileEntryType(val value: kotlin.Int) {
          */
         fun decode(data: kotlin.Any?): FileEntryType? = data?.let {
           val normalizedData = "$it".lowercase()
-          values().firstOrNull { value ->
+          entries.firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()
           }
         }

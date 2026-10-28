@@ -21,15 +21,14 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The request parameters for changing the client activation status.
+ * Client activation change request
  *
- * @param status The client activation status.
+ * @param status Whether the client may obtain tokens from now on. Sending false leaves the registration and the already issued tokens in place but refuses new authorization requests; sending true allows them again.
  */
 
 
 data class ChangeClientActivationRequest (
 
-    /* The client activation status. */
     @Json(name = "status")
     val status: kotlin.Boolean
 

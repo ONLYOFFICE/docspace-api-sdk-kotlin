@@ -30,11 +30,9 @@ import com.squareup.moshi.JsonClass
 
 data class GetPortalPrices200ResponseLinksInner (
 
-    /* URL of the link */
     @Json(name = "href")
     val href: kotlin.String? = null,
 
-    /* Action associated with the link */
     @Json(name = "action")
     val action: kotlin.String? = null
 

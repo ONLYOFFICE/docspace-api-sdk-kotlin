@@ -25,42 +25,36 @@ import com.squareup.moshi.JsonClass
 /**
  * The response data for the API key operations.
  *
- * @param id The API key unique identifier.
- * @param name The API key name.
- * @param key The full API key value (only returned when creating a new key).
- * @param permissions The list of permissions granted to the API key.
- * @param isActive Indicates whether the API key is active or not.
- * @param keyPostfix The API key postfix (used for identification).
- * @param lastUsed 
- * @param createOn 
- * @param createBy 
- * @param expiresAt 
+ * @param id The ID of the key. This is the value to pass to `PUT api/2.0/keys/{keyId}` and  `DELETE api/2.0/keys/{keyId}`.
+ * @param name The label given to the key when it was created or last updated.
+ * @param key The secret to send in the `Authorization` header as `Bearer sk-...`. It is filled in only by the answer of  `POST api/2.0/keys` and cannot be read again afterwards, so it has to be stored at that moment.
+ * @param permissions The scopes the key may use, as accepted by `GET api/2.0/keys/permissions`. An empty list means the key has no  scope restrictions.
+ * @param isActive Whether the key may authenticate requests. A key deactivated through `PUT api/2.0/keys/{keyId}` stays in the  list with this field set to false.
+ * @param keyPostfix The last four characters of the secret. It is the only part of the secret that later reads expose, and it is  meant for telling keys apart in a list.
+ * @param lastUsed The UTC moment the key was last used to authenticate a request. It is empty for a key that has never been  used.
+ * @param createOn The UTC moment the key was created.
+ * @param createBy The portal member who created the key, and whose access the key acts with.
+ * @param expiresAt The UTC moment the key stops working. It is empty for a key created without `expiresInDays`, which never  expires.
  */
 
 
 data class ApiKeyResponseDto (
 
-    /* The API key unique identifier. */
     @Json(name = "id")
     val id: java.util.UUID,
 
-    /* The API key name. */
     @Json(name = "name")
     val name: kotlin.String?,
 
-    /* The full API key value (only returned when creating a new key). */
     @Json(name = "key")
     val key: kotlin.String?,
 
-    /* The list of permissions granted to the API key. */
     @Json(name = "permissions")
     val permissions: kotlin.collections.List<kotlin.String>?,
 
-    /* Indicates whether the API key is active or not. */
     @Json(name = "isActive")
     val isActive: kotlin.Boolean,
 
-    /* The API key postfix (used for identification). */
     @Json(name = "keyPostfix")
     val keyPostfix: kotlin.String? = null,
 

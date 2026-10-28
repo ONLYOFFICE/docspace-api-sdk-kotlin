@@ -21,72 +21,60 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The request parameters for creating a client.
+ * Client creation request containing client details
  *
- * @param redirectUris The list of allowed redirect URIs.
- * @param allowedOrigins The list of allowed CORS origins.
- * @param name The client name.
- * @param description The client description.
- * @param logo The client logo in base64 format.
- * @param scopes The client scopes.
- * @param allowPkce Indicates whether PKCE is allowed for the client.
- * @param isPublic Indicates whether the client is accessible by third-party tenants.
- * @param websiteUrl The URL to the client's website.
- * @param termsUrl The URL to the client's terms of service.
- * @param policyUrl The URL to the client's privacy policy.
- * @param logoutRedirectUri The list of allowed logout redirect URIs.
+ * @param name The display name shown to the user on the consent screen. It has to be between 3 and 256 characters long.
+ * @param logo The client logo as a data URI carrying base64 image data, shown on the consent screen. Only png, jpeg, jpg and svg+xml are accepted, the whole string may not exceed 2000000 characters and the decoded image may not exceed 256000 bytes.
+ * @param scopes The permissions the client may ask for, named as they appear in the tenant scope catalogue - for example files:read, rooms:write or openid. A client cannot request a scope that is not listed here.
+ * @param websiteUrl The URL of the client home page, offered to the user before they consent. The value has to be an http or https URL.
+ * @param termsUrl The URL of the client terms of service, linked from the consent screen. The value has to be an http or https URL.
+ * @param policyUrl The URL of the client privacy policy, linked from the consent screen. The value has to be an http or https URL.
+ * @param redirectUris The URIs an authorization code may be delivered to. An authorization request naming any other URI is refused, and the set holds between 1 and 12 addresses.
+ * @param allowedOrigins The web origins allowed to call the portal on behalf of this client, used for the CORS check. The set holds between 1 and 12 addresses.
+ * @param logoutRedirectUri The single URI the user may be sent back to once they have logged out. The value has to be an http or https URL.
+ * @param description The free-text description shown next to the name on the consent screen, at most 255 characters.
+ * @param allowPkce Whether the client may use PKCE. Turning it on lets the client authenticate with the none method and prove itself with a code verifier instead of sending a secret, which is what a client that cannot keep a secret needs.
+ * @param isPublic Whether the client is offered to third-party tenants rather than only to the tenant that registers it.
  */
 
 
 data class CreateClientRequest (
 
-    /* The list of allowed redirect URIs. */
+    @Json(name = "name")
+    val name: kotlin.String,
+
+    @Json(name = "logo")
+    val logo: kotlin.String,
+
+    @Json(name = "scopes")
+    val scopes: kotlin.collections.Set<kotlin.String>,
+
+    @Json(name = "website_url")
+    val websiteUrl: kotlin.String,
+
+    @Json(name = "terms_url")
+    val termsUrl: kotlin.String,
+
+    @Json(name = "policy_url")
+    val policyUrl: kotlin.String,
+
     @Json(name = "redirect_uris")
     val redirectUris: kotlin.collections.Set<kotlin.String>,
 
-    /* The list of allowed CORS origins. */
     @Json(name = "allowed_origins")
     val allowedOrigins: kotlin.collections.Set<kotlin.String>,
 
-    /* The client name. */
-    @Json(name = "name")
-    val name: kotlin.String? = null,
+    @Json(name = "logout_redirect_uri")
+    val logoutRedirectUri: kotlin.String,
 
-    /* The client description. */
     @Json(name = "description")
     val description: kotlin.String? = null,
 
-    /* The client logo in base64 format. */
-    @Json(name = "logo")
-    val logo: kotlin.String? = null,
-
-    /* The client scopes. */
-    @Json(name = "scopes")
-    val scopes: kotlin.collections.Set<kotlin.String>? = null,
-
-    /* Indicates whether PKCE is allowed for the client. */
     @Json(name = "allow_pkce")
     val allowPkce: kotlin.Boolean? = null,
 
-    /* Indicates whether the client is accessible by third-party tenants. */
     @Json(name = "is_public")
-    val isPublic: kotlin.Boolean? = null,
-
-    /* The URL to the client's website. */
-    @Json(name = "website_url")
-    val websiteUrl: kotlin.String? = null,
-
-    /* The URL to the client's terms of service. */
-    @Json(name = "terms_url")
-    val termsUrl: kotlin.String? = null,
-
-    /* The URL to the client's privacy policy. */
-    @Json(name = "policy_url")
-    val policyUrl: kotlin.String? = null,
-
-    /* The list of allowed logout redirect URIs. */
-    @Json(name = "logout_redirect_uri")
-    val logoutRedirectUri: kotlin.String? = null
+    val isPublic: kotlin.Boolean? = null
 
 ) {
 

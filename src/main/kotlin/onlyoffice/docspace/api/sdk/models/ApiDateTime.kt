@@ -30,11 +30,9 @@ import com.squareup.moshi.JsonClass
 
 data class ApiDateTime (
 
-    /* The time in UTC format. */
     @Json(name = "utcTime")
     val utcTime: java.time.OffsetDateTime? = null,
 
-    /* The time zone offset. */
     @Json(name = "timeZoneOffset")
     val timeZoneOffset: kotlin.String? = null
 

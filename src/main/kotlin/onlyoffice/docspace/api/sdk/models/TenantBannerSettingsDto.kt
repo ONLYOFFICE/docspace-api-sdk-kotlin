@@ -21,17 +21,20 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The request parameters for managing the visibility settings of the promotional banners for the current tenant.
+ * Whether the portal hides its promotional banners.
  *
  * @param hidden The banners visibility flag.
+ * @param lastModified The timestamp indicating when the settings were last modified.
  */
 
 
 data class TenantBannerSettingsDto (
 
-    /* The banners visibility flag. */
     @Json(name = "hidden")
-    val hidden: kotlin.Boolean? = null
+    val hidden: kotlin.Boolean? = null,
+
+    @Json(name = "lastModified")
+    val lastModified: java.time.OffsetDateTime? = null
 
 ) {
 

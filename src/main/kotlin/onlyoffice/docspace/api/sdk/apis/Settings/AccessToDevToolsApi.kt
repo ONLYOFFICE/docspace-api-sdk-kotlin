@@ -23,16 +23,21 @@ import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
+import onlyoffice.docspace.api.sdk.models.ErrorApiResponse
 import onlyoffice.docspace.api.sdk.models.TenantDevToolsAccessSettingsWrapper
 
 interface AccessToDevToolsApi {
     /**
      * GET api/2.0/settings/devtoolsaccess
      * Get the Developer Tools access settings
-     * Returns the Developer Tools access settings for the portal.
+     * Returns whether the portal currently restricts the `User` role from using the developer tools (API keys, OAuth  apps, webhooks). Requires an authenticated session; every role can read the restriction, even though it only  limits what a `User` may do, not what a `RoomAdmin` or `DocSpaceAdmin` may do. This is a read-only, idempotent  call. Change the restriction with `POST api/2.0/security/devtoolsaccess`, which requires the  EditPortalSettings permission.
      * Responses:
-     *  - 200: Developer Tools access settings
+     *  - 200: Whether the `User` role is currently restricted from using the developer tools
      *  - 401: Unauthorized
+     *  - 429: Too Many Requests.
+     *  - 500: Internal Server Error.
+     *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
+     *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
      * REST API Reference for getTenantAccessDevToolsSettings Operation
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tenant-access-dev-tools-settings/

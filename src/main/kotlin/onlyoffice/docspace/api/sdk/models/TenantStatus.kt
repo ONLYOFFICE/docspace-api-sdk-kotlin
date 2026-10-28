@@ -21,9 +21,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * [0 - Active, 1 - Suspended, 2 - Remove pending, 3 - Transfering, 4 - Restoring, 5 - Migrating, 6 - Encryption]
+ * [0 - Active, 1 - Suspended, 2 - Remove pending, 3 - Transfering, 4 - Restoring, 5 - Migrating, 6 - Encryption, 7 - Blocked]
  *
- * Values: Active,Suspended,RemovePending,Transfering,Restoring,Migrating,Encryption
+ * Values: Active,Suspended,RemovePending,Transfering,Restoring,Migrating,Encryption,Blocked
  */
 
 @JsonClass(generateAdapter = false)
@@ -48,7 +48,10 @@ enum class TenantStatus(val value: kotlin.Int) {
     Migrating(5),
 
     @Json(name = "6")
-    Encryption(6);
+    Encryption(6),
+
+    @Json(name = "7")
+    Blocked(7);
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use
@@ -70,7 +73,7 @@ enum class TenantStatus(val value: kotlin.Int) {
          */
         fun decode(data: kotlin.Any?): TenantStatus? = data?.let {
           val normalizedData = "$it".lowercase()
-          values().firstOrNull { value ->
+          entries.firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()
           }
         }

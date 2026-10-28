@@ -22,15 +22,15 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The watermark settings.
+ * The watermark drawn over the documents of a room while they are viewed and printed.
  *
- * @param additions 
- * @param rotate The watermark text and image rotate.
- * @param imageScale The watermark image scale.
- * @param imageHeight The watermark image height.
- * @param imageWidth The watermark image width.
- * @param text The watermark text.
- * @param imageUrl The watermark image url.
+ * @param additions Which details of the reader and of the room are stamped alongside the text. The values combine, so a number  that is not a member on its own is the sum of several of them, and 0 means that only the text is stamped.
+ * @param rotate How far the stamp is turned, in degrees, with negative values turning it anticlockwise and 0 drawing it  horizontally.
+ * @param imageScale How large the image is drawn, as a percentage of its own size. It is 0 for a text watermark, where nothing is  scaled.
+ * @param imageHeight The height the picture is drawn with, in pixels, kept together with the width so that the proportions survive.  It is 0 for a text watermark.
+ * @param imageWidth The width the picture is drawn with, in pixels, kept together with the height so that the proportions survive.  It is 0 for a text watermark.
+ * @param text The fixed line drawn over the document, printed before the details selected alongside it. Empty when the room  stamps an image instead.
+ * @param imageUrl The address the stamped picture is served from, inside the storage of the room. Empty for a text watermark.
  */
 
 
@@ -39,27 +39,21 @@ data class WatermarkDto (
     @Json(name = "additions")
     val additions: WatermarkAdditions,
 
-    /* The watermark text and image rotate. */
     @Json(name = "rotate")
     val rotate: kotlin.Int,
 
-    /* The watermark image scale. */
     @Json(name = "imageScale")
     val imageScale: kotlin.Int,
 
-    /* The watermark image height. */
     @Json(name = "imageHeight")
     val imageHeight: kotlin.Double,
 
-    /* The watermark image width. */
     @Json(name = "imageWidth")
     val imageWidth: kotlin.Double,
 
-    /* The watermark text. */
     @Json(name = "text")
     val text: kotlin.String? = null,
 
-    /* The watermark image url. */
     @Json(name = "imageUrl")
     val imageUrl: kotlin.String? = null
 

@@ -22,44 +22,38 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The tenant quota feature parameters.
+ * One feature a quota switches on, with the limit it grants and how much of that limit is used.
  *
- * @param id The ID of the tenant quota feature.
- * @param title The title of the tenant quota feature.
- * @param image The image URL of the tenant quota feature.
- * @param `value` The value of the tenant quota feature.
- * @param type The type of the tenant quota feature.
- * @param used 
- * @param priceTitle The price title of the tenant quota feature.
+ * @param id The stable key of the feature - `total_size`, `manager`, `room`, `backup` and so on. It is the value to  branch on, since `title` is prose in the portal language.
+ * @param title The feature described in the portal language, with its limit already substituted into the sentence, so it  can be printed as it is. It is empty when this build ships no wording for the feature.
+ * @param image The feature's icon as SVG markup to render inline - not a URL to fetch. It is filled in only when the  quota comes from the catalogue, and left empty on the quota the portal is actually on, on a feature that  this quota switches off, and on a feature that ships no icon.
+ * @param `value` 
+ * @param type How to read `value` and `used`: `size` for bytes, `count` for a number of things, `flag` for a feature  that is merely on or off.
+ * @param used How much of the limit is already used. It is present only on the quota the portal is actually on, and  only for a feature whose consumption is counted; a guest is shown none of these figures and a plain member  only the one for total size, so an absent value can mean the caller may not see it rather than that  nothing is used.
+ * @param priceTitle What the feature is charged as, in the portal language - for instance the per-unit price of an add-on. It  is filled in only for a feature that costs money on top of the plan.
  */
 
 
 data class TenantQuotaFeatureDto (
 
-    /* The ID of the tenant quota feature. */
     @Json(name = "id")
     val id: kotlin.String? = null,
 
-    /* The title of the tenant quota feature. */
     @Json(name = "title")
     val title: kotlin.String? = null,
 
-    /* The image URL of the tenant quota feature. */
     @Json(name = "image")
     val image: kotlin.String? = null,
 
-    /* The value of the tenant quota feature. */
     @Json(name = "value")
     val `value`: kotlin.Any? = null,
 
-    /* The type of the tenant quota feature. */
     @Json(name = "type")
     val type: kotlin.String? = null,
 
     @Json(name = "used")
     val used: FeatureUsedDto? = null,
 
-    /* The price title of the tenant quota feature. */
     @Json(name = "priceTitle")
     val priceTitle: kotlin.String? = null
 

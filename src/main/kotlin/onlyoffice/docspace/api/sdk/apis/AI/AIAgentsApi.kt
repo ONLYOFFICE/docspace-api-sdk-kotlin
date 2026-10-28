@@ -23,174 +23,198 @@ import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
-import onlyoffice.docspace.api.sdk.models.CreateAgentRequestDto
-import onlyoffice.docspace.api.sdk.models.DeleteRoomRequest
-import onlyoffice.docspace.api.sdk.models.FileOperationWrapper
-import onlyoffice.docspace.api.sdk.models.FolderContentIntegerWrapper
-import onlyoffice.docspace.api.sdk.models.FolderIntegerArrayWrapper
-import onlyoffice.docspace.api.sdk.models.FolderIntegerWrapper
-import onlyoffice.docspace.api.sdk.models.NewItemsAgentNewItemsArrayWrapper
-import onlyoffice.docspace.api.sdk.models.QuotaFilter
-import onlyoffice.docspace.api.sdk.models.SortOrder
-import onlyoffice.docspace.api.sdk.models.SubjectFilter
-import onlyoffice.docspace.api.sdk.models.UpdateRoomRequest
-import onlyoffice.docspace.api.sdk.models.UpdateRoomsQuotaRequestDtoInteger
-import onlyoffice.docspace.api.sdk.models.UpdateRoomsRoomIdsRequestDtoInteger
+import onlyoffice.docspace.api.sdk.models.AiAgentsCreateRequest
+import onlyoffice.docspace.api.sdk.models.AiAgentsDeleteRequest
+import onlyoffice.docspace.api.sdk.models.AiAgentsGet200Response
+import onlyoffice.docspace.api.sdk.models.AiAgentsResetQuotaRequest
+import onlyoffice.docspace.api.sdk.models.AiAgentsUpdateQuotaRequest
+import onlyoffice.docspace.api.sdk.models.AiAgentsUpdateRequest
+import onlyoffice.docspace.api.sdk.models.AiErrorResponse
+import onlyoffice.docspace.api.sdk.models.AiFileOperationWrapper
+import onlyoffice.docspace.api.sdk.models.AiFolderArrayWrapper
+import onlyoffice.docspace.api.sdk.models.AiFolderContentWrapper
+import onlyoffice.docspace.api.sdk.models.AiFolderWrapper
+import onlyoffice.docspace.api.sdk.models.AiNewItemsAgentNewItemsArrayWrapper
 
 interface AIAgentsApi {
     /**
      * POST api/2.0/ai/agents
-     * Create an ai agent
-     * Creates an ai agent.
+     * Create an agent
+     * Creates an AI agent room and binds a model to it, in that order. `profileId` is required, has to be a UUID, has to name an existing profile, and that profile has to support chat - an image-only model is refused here rather than failing on every later request. `prompt` is required and is stored on the room as its standing instruction with any markup stripped, so it cannot round-trip HTML into another user's reply. The two steps are not atomic: when the room is created but the model binding fails, the call reports an error and the room is left behind, so re-bind it with `PUT api/2.0/ai/agents/{id}` rather than creating a second one.
      * Responses:
-     *  - 200: Agent information
-     *  - 401: Unauthorized
+     *  - 200: The created agent room, with the model already bound to it.
+     *  - 400: `profileId` is missing, is not a UUID, names no existing profile, or names one that does not support chat; or `prompt` is missing.
+     *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
+     *  - 413: The request body is larger than 100 KB, the JSON parser's limit on this route.
+     *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
      *
-     * REST API Reference for createAgent Operation
-     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/create-agent/
+     * REST API Reference for aiAgentsCreate Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-agents-create/
      *
      *
-     * @param createAgentRequestDto  (optional)
-     * @return [FolderIntegerWrapper]
+     * @param aiAgentsCreateRequest 
+     * @return [AiFolderWrapper]
      */
     @POST("api/2.0/ai/agents")
-    suspend fun createAgent(@Body createAgentRequestDto: CreateAgentRequestDto? = null): Response<FolderIntegerWrapper>
+    suspend fun aiAgentsCreate(@Body aiAgentsCreateRequest: AiAgentsCreateRequest): Response<AiFolderWrapper>
 
     /**
      * DELETE api/2.0/ai/agents/{id}
-     * Remove an ai agent
-     * Removes an ai agent.
+     * Delete an agent
+     * Deletes an AI agent room. The ID has to be the room's integer identifier, and the body is forwarded to the DocSpace AI service unchanged, so it accepts the same options as deleting an ordinary room - `deleteAfter` among them. Deletion is asynchronous there: the answer is a file-operation payload to poll, not a completed result. The agent's model binding is deliberately left behind, because the upstream assignment API has no per-entry delete, so an orphaned assignment row survives the room.
      * Responses:
-     *  - 200: File operation
-     *  - 401: Unauthorized
+     *  - 200: The queued file operation. Deletion runs asynchronously, so poll DocSpace for its outcome.
+     *  - 400: The agent ID is not a positive integer.
+     *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
+     *  - 413: The request body is larger than 100 KB, the JSON parser's limit on this route.
+     *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
      *
-     * REST API Reference for deleteAgent Operation
-     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-agent/
+     * REST API Reference for aiAgentsDelete Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-agents-delete/
      *
      *
-     * @param id The room ID.
-     * @param deleteRoomRequest The parameters for deleting a room.
-     * @return [FileOperationWrapper]
+     * @param id The agent identifier.
+     * @param aiAgentsDeleteRequest 
+     * @return [AiFileOperationWrapper]
      */
-    @DELETE("api/2.0/ai/agents/{id}")
-    suspend fun deleteAgent(@Path("id") id: kotlin.Int, @Body deleteRoomRequest: DeleteRoomRequest): Response<FileOperationWrapper>
+    @HTTP(method = "DELETE", path = "api/2.0/ai/agents/{id}", hasBody = true)
+    suspend fun aiAgentsDelete(@Path("id") id: kotlin.String, @Body aiAgentsDeleteRequest: AiAgentsDeleteRequest): Response<AiFileOperationWrapper>
 
     /**
      * GET api/2.0/ai/agents/{id}
-     * Return an ai agent
-     * Returns an ai agent.
+     * Get an agent
+     * Returns one AI agent room, enriched with the `profileId` currently bound to it so an edit form can prefill its model selector. The ID is the room's integer identifier, and a non-integer value is refused rather than passed on to fail opaquely upstream. The binding lives in an assignment rather than on the room, so it is looked up separately: a missing or unreadable assignment simply leaves `profileId` out of the answer instead of failing the call. The standing instruction comes back on the room as `chatSettings.prompt`.
      * Responses:
-     *  - 200: Agent information
-     *  - 401: Unauthorized
+     *  - 200: The agent room, with `profileId` added when a model is bound to it.
+     *  - 400: The agent ID is not a positive integer.
+     *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
+     *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
      *
-     * REST API Reference for getAgentInfo Operation
-     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-agent-info/
+     * REST API Reference for aiAgentsGet Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-agents-get/
      *
      *
-     * @param id The room ID.
-     * @return [FolderIntegerWrapper]
+     * @param id The agent identifier.
+     * @return [AiAgentsGet200Response]
      */
     @GET("api/2.0/ai/agents/{id}")
-    suspend fun getAgentInfo(@Path("id") id: kotlin.Int): Response<FolderIntegerWrapper>
+    suspend fun aiAgentsGet(@Path("id") id: kotlin.String): Response<AiAgentsGet200Response>
 
     /**
      * GET api/2.0/ai/agents
-     * Get ai agents
-     * Get ai agents
+     * List agents
+     * Lists the portal's AI agent rooms. The query is forwarded unchanged to the DocSpace AI service, so it takes the same paging, sorting and filtering parameters as an ordinary room listing, and the answer is that service's folder-content payload rather than a shape of this API's own. Array and object query values are dropped rather than guessed at, so send flat strings. The profile bound to each agent is not included here - read one agent with `GET api/2.0/ai/agents/{id}` for that.
      * Responses:
-     *  - 200: Agent information
-     *  - 401: Unauthorized
+     *  - 200: The agent rooms, in the DocSpace AI service's folder-content envelope.
+     *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
+     *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
      *
-     * REST API Reference for getAgents Operation
-     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-agents/
+     * REST API Reference for aiAgentsList Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-agents-list/
      *
      *
-     * @param subjectId The filter by user ID. (optional)
-     * @param withoutTags Specifies whether to search by tags or not. (optional)
-     * @param tags The tags in the serialized format. (optional)
-     * @param excludeSubject Specifies whether to exclude search by user or group ID. (optional)
-     * @param subjectFilter The filter by user (Owner - 0, Member - 1). (optional)
-     * @param quotaFilter The filter by quota (All - 0, Default - 1, Custom - 2). (optional)
-     * @param count Specifies the maximum number of items to retrieve. (optional)
-     * @param startIndex The index from which to start retrieving the room content. (optional)
-     * @param sortBy Specifies the field by which the room content should be sorted. (optional)
-     * @param sortOrder The order in which the results are sorted. (optional)
-     * @param filterValue The text filter value used to refine search or query operations. (optional)
-     * @return [FolderContentIntegerWrapper]
+     * @param subjectId Show only the agent rooms this user takes part in. (optional)
+     * @param subjectOwnerId Show only the agent rooms owned by this user. (optional)
+     * @param excludeSubject Invert the user filter: leave out what `subjectId` selects instead of keeping it. (optional)
+     * @param tags Show only the agent rooms carrying these tags, comma-separated. (optional)
+     * @param withoutTags Show only the agent rooms that carry no tags at all. (optional)
+     * @param quotaFilter Filter by quota kind: 0 for all, 1 for the default quota, 2 for a custom one. (optional)
+     * @param filterValue Show only the agent rooms whose title matches this text. (optional)
+     * @param sortBy Field to sort by, for example `DateAndTime`. (optional)
+     * @param sortOrder Sort direction, `ascending` or `descending`. (optional)
+     * @param startIndex Index of the first entry to return; 0 starts at the beginning. (optional)
+     * @param count How many entries to return. The internal service applies its own default. (optional)
+     * @return [AiFolderContentWrapper]
      */
     @GET("api/2.0/ai/agents")
-    suspend fun getAgents(@Query("subjectId") subjectId: kotlin.String? = null, @Query("withoutTags") withoutTags: kotlin.Boolean? = null, @Query("tags") tags: kotlin.String? = null, @Query("excludeSubject") excludeSubject: kotlin.Boolean? = null, @Query("subjectFilter") subjectFilter: SubjectFilter? = null, @Query("quotaFilter") quotaFilter: QuotaFilter? = null, @Query("count") count: kotlin.Int? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrder? = null, @Query("filterValue") filterValue: kotlin.String? = null): Response<FolderContentIntegerWrapper>
+    suspend fun aiAgentsList(@Query("subjectId") subjectId: kotlin.String? = null, @Query("subjectOwnerId") subjectOwnerId: kotlin.String? = null, @Query("excludeSubject") excludeSubject: kotlin.Boolean? = null, @Query("tags") tags: kotlin.String? = null, @Query("withoutTags") withoutTags: kotlin.Boolean? = null, @Query("quotaFilter") quotaFilter: kotlin.Int? = null, @Query("filterValue") filterValue: kotlin.String? = null, @Query("sortBy") sortBy: kotlin.String? = null, @Query("sortOrder") sortOrder: kotlin.String? = null, @Query("startIndex") startIndex: kotlin.Int? = null, @Query("count") count: kotlin.Int? = null): Response<AiFolderContentWrapper>
 
     /**
      * GET api/2.0/ai/agents/news
-     * Get the room new items
-     * Returns the room new items.
+     * List agent news items
+     * Lists the unread items across the caller's AI agent rooms, so a badge can be rendered without walking each room. It takes no parameters and is scoped to the caller by the DocSpace AI service. The answer is that service's new-items payload. This is a read-only operation and does not mark anything as seen.
      * Responses:
-     *  - 200: List of new items
-     *  - 401: Unauthorized
+     *  - 200: The unread items of the caller's agent rooms.
+     *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
+     *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
      *
-     * REST API Reference for getAgentsNewItems Operation
-     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/get-agents-new-items/
+     * REST API Reference for aiAgentsNews Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-agents-news/
      *
      *
-     * @return [NewItemsAgentNewItemsArrayWrapper]
+     * @return [AiNewItemsAgentNewItemsArrayWrapper]
      */
     @GET("api/2.0/ai/agents/news")
-    suspend fun getAgentsNewItems(): Response<NewItemsAgentNewItemsArrayWrapper>
+    suspend fun aiAgentsNews(): Response<AiNewItemsAgentNewItemsArrayWrapper>
 
     /**
      * PUT api/2.0/ai/agents/resetquota
-     * Reset the AI agents quota limit
-     * Resets the quota limit for the AI agents with the IDs specified in the request.
+     * Reset agents' quota
+     * Returns the listed AI agent rooms to the portal's default storage quota, forwarding `roomIds` to the DocSpace AI service unchanged. The answer is that service's payload, one updated room per entry. This is the counterpart of `PUT api/2.0/ai/agents/agentquota` and takes no quota value of its own. Rooms already on the default are unaffected.
      * Responses:
-     *  - 200: List of AI agents with the detailed information
-     *  - 401: Unauthorized
+     *  - 200: The updated agent rooms, one entry each.
+     *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
+     *  - 413: The request body is larger than 100 KB, the JSON parser's limit on this route.
+     *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
      *
-     * REST API Reference for resetAgentsQuota Operation
-     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/reset-agents-quota/
+     * REST API Reference for aiAgentsResetQuota Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-agents-reset-quota/
      *
      *
-     * @param updateRoomsRoomIdsRequestDtoInteger  (optional)
-     * @return [FolderIntegerArrayWrapper]
+     * @param aiAgentsResetQuotaRequest 
+     * @return [AiFolderArrayWrapper]
      */
     @PUT("api/2.0/ai/agents/resetquota")
-    suspend fun resetAgentsQuota(@Body updateRoomsRoomIdsRequestDtoInteger: UpdateRoomsRoomIdsRequestDtoInteger? = null): Response<FolderIntegerArrayWrapper>
+    suspend fun aiAgentsResetQuota(@Body aiAgentsResetQuotaRequest: AiAgentsResetQuotaRequest): Response<AiFolderArrayWrapper>
 
     /**
      * PUT api/2.0/ai/agents/{id}
-     * Update an ai agent
-     * Updates an ai agent.
+     * Update an agent
+     * Changes an AI agent room - its title, tags or standing instruction - and optionally rebinds its model. The ID has to be the room's integer identifier. `profileId` is not part of the room contract: it is taken out of the forwarded body and applied afterwards as the agent's assignment, and it has to be a UUID naming an existing chat-capable profile. An instruction sent as `chatSettings.prompt` has its markup stripped, as on create; note that when `chatSettings` is present the upstream service still requires the rest of that object to be valid, so send it whole.
      * Responses:
-     *  - 200: Updated agent information
-     *  - 401: Unauthorized
+     *  - 200: The updated agent room.
+     *  - 400: The agent ID is not a positive integer, or `profileId` is not a UUID, names no existing profile, or names one that does not support chat.
+     *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
+     *  - 413: The request body is larger than 100 KB, the JSON parser's limit on this route.
+     *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
      *
-     * REST API Reference for updateAgent Operation
-     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-agent/
+     * REST API Reference for aiAgentsUpdate Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-agents-update/
      *
      *
-     * @param id The room ID.
-     * @param updateRoomRequest The request parameters for updating a room.
-     * @return [FolderIntegerWrapper]
+     * @param id The agent identifier.
+     * @param aiAgentsUpdateRequest 
+     * @return [AiFolderWrapper]
      */
     @PUT("api/2.0/ai/agents/{id}")
-    suspend fun updateAgent(@Path("id") id: kotlin.Int, @Body updateRoomRequest: UpdateRoomRequest): Response<FolderIntegerWrapper>
+    suspend fun aiAgentsUpdate(@Path("id") id: kotlin.String, @Body aiAgentsUpdateRequest: AiAgentsUpdateRequest): Response<AiFolderWrapper>
 
     /**
      * PUT api/2.0/ai/agents/agentquota
-     * Change the AI agent quota limit
-     * Changes the quota limit for the AI agents with the IDs specified in the request.
+     * Update agents' quota
+     * Sets the storage quota of the listed AI agent rooms in one call, forwarding `roomIds` and `quota` to the DocSpace AI service unchanged. The answer is that service's payload, one updated room per entry. A quota applies to the room's stored files, not to the model usage of its chats. Use `PUT api/2.0/ai/agents/resetquota` to return rooms to the portal default instead of naming a number.
      * Responses:
-     *  - 200: List of AI agents with the detailed information
-     *  - 401: Unauthorized
+     *  - 200: The updated agent rooms, one entry each.
+     *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
+     *  - 413: The request body is larger than 100 KB, the JSON parser's limit on this route.
+     *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
      *
-     * REST API Reference for updateAgentsQuota Operation
-     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/update-agents-quota/
+     * REST API Reference for aiAgentsUpdateQuota Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-agents-update-quota/
      *
      *
-     * @param updateRoomsQuotaRequestDtoInteger  (optional)
-     * @return [FolderIntegerArrayWrapper]
+     * @param aiAgentsUpdateQuotaRequest 
+     * @return [AiFolderArrayWrapper]
      */
     @PUT("api/2.0/ai/agents/agentquota")
-    suspend fun updateAgentsQuota(@Body updateRoomsQuotaRequestDtoInteger: UpdateRoomsQuotaRequestDtoInteger? = null): Response<FolderIntegerArrayWrapper>
+    suspend fun aiAgentsUpdateQuota(@Body aiAgentsUpdateQuotaRequest: AiAgentsUpdateQuotaRequest): Response<AiFolderArrayWrapper>
 
 }

@@ -58,7 +58,7 @@ enum class FileConflictResolveType(val value: kotlin.String) {
          */
         fun decode(data: kotlin.Any?): FileConflictResolveType? = data?.let {
           val normalizedData = "$it".lowercase()
-          values().firstOrNull { value ->
+          entries.firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()
           }
         }

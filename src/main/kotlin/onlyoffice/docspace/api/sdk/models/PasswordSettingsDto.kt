@@ -21,50 +21,42 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The password settings parameters.
+ * The password policy of the portal, with the expressions a client can check a password against.
  *
- * @param minLength The minimum number of characters required for valid passwords.
- * @param upperCase Specifies whether the password should contain the uppercase letters or not.
- * @param digits Specifies whether the password should contain the digits or not.
- * @param specSymbols Specifies whether the password should contain the special symbols or not.
- * @param allowedCharactersRegexStr The allowed password characters in the regex string format.
- * @param digitsRegexStr The password digits in the regex string format.
- * @param upperCaseRegexStr The password uppercase letters in the regex string format.
- * @param specSymbolsRegexStr The passaword special symbols in the regex string format.
+ * @param minLength The shortest password the portal accepts, 8 characters on a portal nobody has configured. Whatever the  policy says, a password longer than 30 characters is refused as well, and that ceiling is not reported  here.
+ * @param upperCase Whether at least one uppercase letter is demanded. While it is `false` an uppercase letter is still  allowed - the flag adds a requirement rather than permission.
+ * @param digits Whether at least one digit is demanded, read the same way as `upperCase`.
+ * @param specSymbols Whether at least one special symbol is demanded, read the same way as `upperCase`. Which symbols count is  spelled out by `specSymbolsRegexStr`.
+ * @param allowedCharactersRegexStr The expression the whole password has to match, which is what defines the alphabet the portal accepts at  all. It comes from the installation's configuration rather than from the portal policy, so it is the same  for every portal of an installation and unaffected by the flags above.
+ * @param digitsRegexStr The look-ahead expression that tests the digit requirement, meant to be applied only while `digits` is  `true`. It is always filled in, so its presence is not itself a requirement.
+ * @param upperCaseRegexStr The look-ahead expression that tests the uppercase requirement, to be applied while `upperCase` is `true`.
+ * @param specSymbolsRegexStr The look-ahead expression that tests the special-symbol requirement, to be applied while `specSymbols` is  `true`. It also enumerates the symbols the portal treats as special.
  */
 
 
 data class PasswordSettingsDto (
 
-    /* The minimum number of characters required for valid passwords. */
     @Json(name = "minLength")
     val minLength: kotlin.Int,
 
-    /* Specifies whether the password should contain the uppercase letters or not. */
     @Json(name = "upperCase")
     val upperCase: kotlin.Boolean,
 
-    /* Specifies whether the password should contain the digits or not. */
     @Json(name = "digits")
     val digits: kotlin.Boolean,
 
-    /* Specifies whether the password should contain the special symbols or not. */
     @Json(name = "specSymbols")
     val specSymbols: kotlin.Boolean,
 
-    /* The allowed password characters in the regex string format. */
     @Json(name = "allowedCharactersRegexStr")
     val allowedCharactersRegexStr: kotlin.String?,
 
-    /* The password digits in the regex string format. */
     @Json(name = "digitsRegexStr")
     val digitsRegexStr: kotlin.String?,
 
-    /* The password uppercase letters in the regex string format. */
     @Json(name = "upperCaseRegexStr")
     val upperCaseRegexStr: kotlin.String?,
 
-    /* The passaword special symbols in the regex string format. */
     @Json(name = "specSymbolsRegexStr")
     val specSymbolsRegexStr: kotlin.String?
 

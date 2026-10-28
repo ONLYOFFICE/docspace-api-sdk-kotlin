@@ -25,7 +25,6 @@ import com.squareup.moshi.JsonClass
  *
  * @param id The user ID.
  * @param displayName The HTML-encoded user's display name formatted according to the default format for the current culture.
- * @param title The user title.
  * @param avatar The user avatar.
  * @param avatarOriginal The user original size avatar.
  * @param avatarMax The user maximum size avatar.
@@ -39,47 +38,33 @@ import com.squareup.moshi.JsonClass
 
 data class EmployeeDto (
 
-    /* The user ID. */
     @Json(name = "id")
     val id: java.util.UUID? = null,
 
-    /* The HTML-encoded user's display name formatted according to the default format for the current culture. */
     @Json(name = "displayName")
     val displayName: kotlin.String? = null,
 
-    /* The user title. */
-    @Json(name = "title")
-    val title: kotlin.String? = null,
-
-    /* The user avatar. */
     @Json(name = "avatar")
     val avatar: kotlin.String? = null,
 
-    /* The user original size avatar. */
     @Json(name = "avatarOriginal")
     val avatarOriginal: kotlin.String? = null,
 
-    /* The user maximum size avatar. */
     @Json(name = "avatarMax")
     val avatarMax: kotlin.String? = null,
 
-    /* The user medium size avatar. */
     @Json(name = "avatarMedium")
     val avatarMedium: kotlin.String? = null,
 
-    /* The user small size avatar. */
     @Json(name = "avatarSmall")
     val avatarSmall: kotlin.String? = null,
 
-    /* The user profile URL. */
     @Json(name = "profileUrl")
     val profileUrl: kotlin.String? = null,
 
-    /* Specifies if the user has an avatar or not. */
     @Json(name = "hasAvatar")
     val hasAvatar: kotlin.Boolean? = null,
 
-    /* Specifies if the user is anonymous or not. */
     @Json(name = "isAnonim")
     val isAnonim: kotlin.Boolean? = null
 

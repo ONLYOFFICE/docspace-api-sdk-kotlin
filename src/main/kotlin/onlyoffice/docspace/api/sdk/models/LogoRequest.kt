@@ -21,35 +21,30 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The logo request parameters.
+ * The part of an uploaded picture to use as the logo.
  *
- * @param tmpFile The path to the temporary image file.
- * @param x The X coordinate of the rectangle starting point.
- * @param y The Y coordinate of the rectangle starting point.
- * @param width The rectangle width.
- * @param height The rectangle height.
+ * @param tmpFile The picture to cut the logo out of, named by the path that `POST api/2.0/files/logos` returned for it. The  path may be used once and only by the account that uploaded it.
+ * @param x The left edge of the rectangle cut out of the uploaded picture, counted in pixels from its left side. The  picture itself was already scaled down to fit 1280 by 1280 pixels when it was uploaded.
+ * @param y The top edge of the rectangle cut out of the uploaded picture, counted in pixels from its top.
+ * @param width How wide a piece of the uploaded picture to cut out, in pixels. It has to be sent together with the height,  and the portal builds the four logo sizes out of the piece.
+ * @param height How tall a piece of the uploaded picture to cut out, in pixels. It has to be sent together with the width.
  */
 
 
 data class LogoRequest (
 
-    /* The path to the temporary image file. */
     @Json(name = "tmpFile")
-    val tmpFile: kotlin.String? = null,
+    val tmpFile: kotlin.String,
 
-    /* The X coordinate of the rectangle starting point. */
     @Json(name = "x")
     val x: kotlin.Int? = null,
 
-    /* The Y coordinate of the rectangle starting point. */
     @Json(name = "y")
     val y: kotlin.Int? = null,
 
-    /* The rectangle width. */
     @Json(name = "width")
     val width: kotlin.Int? = null,
 
-    /* The rectangle height. */
     @Json(name = "height")
     val height: kotlin.Int? = null
 

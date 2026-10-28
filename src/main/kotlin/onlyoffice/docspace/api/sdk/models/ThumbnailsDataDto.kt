@@ -34,27 +34,21 @@ import com.squareup.moshi.JsonClass
 
 data class ThumbnailsDataDto (
 
-    /* The thumbnail original photo. */
     @Json(name = "original")
     val original: kotlin.String? = null,
 
-    /* The thumbnail retina. */
     @Json(name = "retina")
     val retina: kotlin.String? = null,
 
-    /* The thumbnail maximum size photo. */
     @Json(name = "max")
     val max: kotlin.String? = null,
 
-    /* The thumbnail big size photo. */
     @Json(name = "big")
     val big: kotlin.String? = null,
 
-    /* The thumbnail medium size photo. */
     @Json(name = "medium")
     val medium: kotlin.String? = null,
 
-    /* The thumbnail small size photo. */
     @Json(name = "small")
     val small: kotlin.String? = null
 

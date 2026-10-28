@@ -21,17 +21,20 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The request parameters for managing the tenant-level AI access settings.
+ * Whether AI functionality is switched on for the portal.
  *
- * @param enabled Specifies whether AI functionality is enabled for the tenant.  Set to `true` to enable all AI features or `false` to disable them tenant-wide.
+ * @param enabled Specifies whether AI functionality is enabled for the tenant.  When set to `false`, all AI features (chat, agents, vectorization) are disabled tenant-wide.
+ * @param lastModified The timestamp indicating when the settings were last modified.
  */
 
 
 data class TenantAiAccessSettingsDto (
 
-    /* Specifies whether AI functionality is enabled for the tenant.  Set to `true` to enable all AI features or `false` to disable them tenant-wide. */
     @Json(name = "enabled")
-    val enabled: kotlin.Boolean? = null
+    val enabled: kotlin.Boolean? = null,
+
+    @Json(name = "lastModified")
+    val lastModified: java.time.OffsetDateTime? = null
 
 ) {
 

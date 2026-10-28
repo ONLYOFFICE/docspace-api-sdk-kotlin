@@ -23,10 +23,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The new item parameters.
+ * One day of the entries the caller has not opened yet, the groups running from the most recent day backwards.
  *
- * @param date 
- * @param items The list of items.
+ * @param date The day the grouped entries were last changed, written with the offset of the portal time zone. The time part  is the moment of the newest entry of the group.
+ * @param items What changed on that day, the most recent first. Folders are left out of it, so an entry here is always a file  or a room that holds them.
  */
 
 
@@ -35,7 +35,6 @@ data class NewItemsDtoRoomNewItemsDto (
     @Json(name = "date")
     val date: ApiDateTime,
 
-    /* The list of items. */
     @Json(name = "items")
     val items: kotlin.collections.List<RoomNewItemsDto>?
 

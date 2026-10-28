@@ -21,25 +21,22 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The upload result parameters.
+ * The outcome of storing an image in temporary storage before it is used as a room logo.
  *
- * @param success Specifies if the upload operation is successful or not.
- * @param `data` The uploaded data.
- * @param message The message sent after the successful upload operation.
+ * @param success True when the image was stored and its path is in the data field. A rejected image is reported with an error  response rather than with a false here, so this field is true in every answer that carries a body.
+ * @param `data` 
+ * @param message Left empty by this operation: nothing is reported here, and a refused image comes back as an error response  instead.
  */
 
 
 data class UploadResultDto (
 
-    /* Specifies if the upload operation is successful or not. */
     @Json(name = "success")
     val success: kotlin.Boolean? = null,
 
-    /* The uploaded data. */
     @Json(name = "data")
     val `data`: kotlin.Any? = null,
 
-    /* The message sent after the successful upload operation. */
     @Json(name = "message")
     val message: kotlin.String? = null
 

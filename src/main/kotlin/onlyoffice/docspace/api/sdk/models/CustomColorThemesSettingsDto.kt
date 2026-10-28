@@ -16,31 +16,28 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.CustomColorThemesSettingsItem
+import onlyoffice.docspace.api.sdk.models.CustomColorThemeDto
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The custom color themes settings.
+ * The colour themes the portal offers, which of them is applied, and how many the plan allows.
  *
- * @param themes The list of the custom color themes.
- * @param selected Specifies whether the custom color theme is selected.
- * @param limit The maximum number of the custom color themes.
+ * @param themes Every theme the portal can apply, ordered by ID, with the built-in ones first because they were created  first. It is never empty - the built-in themes cannot be deleted - and a custom theme is one whose ID is  higher than the built-in ones.
+ * @param selected The ID of the theme in `themes` that is currently applied to the whole portal. Deleting the applied theme  moves it to the lowest remaining ID, so it can change without anyone having chosen a new one.
+ * @param limit How many entries `themes` may hold in total, built-in ones included; `0` means the plan caps nothing. Once  the cap is reached `PUT api/2.0/settings/colortheme` drops a new theme silently instead of failing, so  compare this with the length of `themes` to tell whether a save took effect.
  */
 
 
 data class CustomColorThemesSettingsDto (
 
-    /* The list of the custom color themes. */
     @Json(name = "themes")
-    val themes: kotlin.collections.List<CustomColorThemesSettingsItem>? = null,
+    val themes: kotlin.collections.List<CustomColorThemeDto>? = null,
 
-    /* Specifies whether the custom color theme is selected. */
     @Json(name = "selected")
     val selected: kotlin.Int? = null,
 
-    /* The maximum number of the custom color themes. */
     @Json(name = "limit")
     val limit: kotlin.Int? = null
 

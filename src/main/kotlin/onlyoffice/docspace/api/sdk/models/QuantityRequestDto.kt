@@ -21,17 +21,16 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The request parameters for specifying payment quantity.
+ * The new size of the portal subscription.
  *
- * @param quantity The mapping of item identifiers to their respective quantities in the payment.
+ * @param quantity The plan and the number of units it is to cover, as a single pair. While the portal is on a priced plan the  key has to be the `name` of that same plan, which `GET api/2.0/portal/payment/quota` reports, because the  subscription is resized rather than swapped; the value is the total the subscription is to have afterwards,  not the difference. Exactly one pair is accepted, and a value that is already in effect is refused with 400.
  */
 
 
 data class QuantityRequestDto (
 
-    /* The mapping of item identifiers to their respective quantities in the payment. */
     @Json(name = "quantity")
-    val quantity: kotlin.collections.Map<kotlin.String, kotlin.Int>? = null
+    val quantity: kotlin.collections.Map<kotlin.String, kotlin.Int>
 
 ) {
 

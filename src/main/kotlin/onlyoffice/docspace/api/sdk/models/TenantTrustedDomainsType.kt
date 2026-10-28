@@ -58,7 +58,7 @@ enum class TenantTrustedDomainsType(val value: kotlin.Int) {
          */
         fun decode(data: kotlin.Any?): TenantTrustedDomainsType? = data?.let {
           val normalizedData = "$it".lowercase()
-          values().firstOrNull { value ->
+          entries.firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()
           }
         }

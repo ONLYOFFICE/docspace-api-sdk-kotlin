@@ -242,10 +242,6 @@
 
     * `StartStorageEncryption` (value: `5050`)
 
-    * `PrivacyRoomEnable` (value: `5051`)
-
-    * `PrivacyRoomDisable` (value: `5052`)
-
     * `StartStorageDecryption` (value: `5053`)
 
     * `FileOpenedForChange` (value: `5054`)
@@ -428,6 +424,12 @@
 
     * `DocumentsDefaultTemplatesSettingsUpdated` (value: `5160`)
 
+    * `PrivacyRoomKeyCreated` (value: `5161`)
+
+    * `PrivacyRoomKeyUpdated` (value: `5162`)
+
+    * `PrivacyRoomKeyDeleted` (value: `5163`)
+
     * `FileSavedButUserQuotaExceeded` (value: `5201`)
 
     * `FileNotSavedDueToUserQuota` (value: `5202`)
@@ -435,6 +437,32 @@
     * `FileSavedButRoomQuotaExceeded` (value: `5203`)
 
     * `FileNotSavedDueToRoomQuota` (value: `5204`)
+
+    * `FileSavedButTenantQuotaExceeded` (value: `5205`)
+
+    * `FileNotSavedDueToTenantQuota` (value: `5206`)
+
+    * `DocumentsShowQuickActionsUpdated` (value: `5207`)
+
+    * `MetadataTemplateCreated` (value: `5300`)
+
+    * `MetadataTemplateUpdated` (value: `5301`)
+
+    * `MetadataTemplateDeleted` (value: `5302`)
+
+    * `MetadataFieldCreated` (value: `5303`)
+
+    * `MetadataFieldUpdated` (value: `5304`)
+
+    * `MetadataFieldDeleted` (value: `5305`)
+
+    * `MetadataTemplateAssigned` (value: `5306`)
+
+    * `MetadataTemplateUnassigned` (value: `5307`)
+
+    * `MetadataValuesUpdated` (value: `5308`)
+
+    * `MetadataCascadeStarted` (value: `5309`)
 
     * `LdapEnabled` (value: `5501`)
 
@@ -640,6 +668,32 @@
 
     * `AIAccessDisabled` (value: `6098`)
 
+    * `UserUpdatedAiSettings` (value: `6099`)
+
+    * `SubscriptionBalanceMovedToWallet` (value: `6100`)
+
+    * `DocsCloudConfigUpdated` (value: `6101`)
+
+    * `DocsCloudQuotaReportDownloaded` (value: `6102`)
+
+    * `AiProfileCreated` (value: `6103`)
+
+    * `AiProfileUpdated` (value: `6104`)
+
+    * `AiProfileDeleted` (value: `6105`)
+
+    * `AiProfileAssigned` (value: `6106`)
+
+    * `AiProfileUnassigned` (value: `6107`)
+
+    * `AiAgentProfileAssigned` (value: `6108`)
+
+    * `UpdatedServerOfAgent` (value: `6109`)
+
+    * `PortalBlocked` (value: `6110`)
+
+    * `PortalUnblocked` (value: `6111`)
+
     * `ContactAdminMailSent` (value: `7000`)
 
     * `RoomInviteLinkUsed` (value: `7001`)
@@ -649,6 +703,8 @@
     * `GuestCreatedAndAddedToRoom` (value: `7003`)
 
     * `ContactSalesMailSent` (value: `7004`)
+
+    * `SuspiciousLoginDetected` (value: `7005`)
 
     * `CreateClient` (value: `9901`)
 

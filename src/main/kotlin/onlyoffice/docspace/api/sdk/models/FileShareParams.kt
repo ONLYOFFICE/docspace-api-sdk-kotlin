@@ -22,21 +22,19 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The collection of file sharing parameters.
+ * One sharing entry: an account, a group or an email address, and the access level it is given.
  *
- * @param email The email address.
- * @param shareTo The ID of the user to whom the file will be shared.
- * @param access 
+ * @param email The address of somebody who has no portal account yet. An invitation is sent to it and an account is created  once it is accepted, so this is the field to use instead of an account identifier when the person is new to  the portal.
+ * @param shareTo The account or the group the entry is about, taken from the portal people and group listings. Leave it out and  give an email address instead to share with somebody who has no account yet.
+ * @param access What the subject may do with the shared item. The value 0 takes the access away again, and which of the other  levels are accepted depends on what is being shared.
  */
 
 
 data class FileShareParams (
 
-    /* The email address. */
     @Json(name = "email")
     val email: kotlin.String? = null,
 
-    /* The ID of the user to whom the file will be shared. */
     @Json(name = "shareTo")
     val shareTo: java.util.UUID? = null,
 

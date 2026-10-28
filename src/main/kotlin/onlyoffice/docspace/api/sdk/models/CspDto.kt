@@ -21,20 +21,18 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The CSP (Content Security Policy) parameters.
+ * The Content Security Policy of the portal: the domains an administrator allowed, and the header built from them.
  *
- * @param domains The list of CSP domains.
- * @param header The CSP header.
+ * @param domains The external hosts an administrator has allowed, each in the form it was saved in - a bare host, a host  with a scheme, or a wildcard such as `*.example.com`. An empty list means nobody has added one, not that  the portal serves no policy.
+ * @param header The complete policy value the portal sends to browsers, assembled from `domains` together with the  portal's own sources and the integrations it has switched on. It is therefore wider than `domains` alone,  and is filled in even while that list is empty.
  */
 
 
 data class CspDto (
 
-    /* The list of CSP domains. */
     @Json(name = "domains")
     val domains: kotlin.collections.List<kotlin.String>?,
 
-    /* The CSP header. */
     @Json(name = "header")
     val header: kotlin.String?
 

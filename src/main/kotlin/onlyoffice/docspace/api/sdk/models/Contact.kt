@@ -30,11 +30,9 @@ import com.squareup.moshi.JsonClass
 
 data class Contact (
 
-    /* The contact type. */
     @Json(name = "type")
     val type: kotlin.String? = null,
 
-    /* The contact value. */
     @Json(name = "value")
     val `value`: kotlin.String? = null
 

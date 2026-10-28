@@ -67,7 +67,7 @@ enum class FormFillingStatus(val value: kotlin.Int) {
          */
         fun decode(data: kotlin.Any?): FormFillingStatus? = data?.let {
           val normalizedData = "$it".lowercase()
-          values().firstOrNull { value ->
+          entries.firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()
           }
         }

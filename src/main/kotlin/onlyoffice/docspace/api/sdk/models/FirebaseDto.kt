@@ -21,50 +21,42 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The Firebase parameters.
+ * The Firebase project a client initialises its SDK with to receive push notifications from this portal.
  *
- * @param apiKey The Firebase API key.
- * @param authDomain The Firebase authentication domain.
- * @param projectId The Firebase project ID.
- * @param storageBucket The Firebase storage bucket.
- * @param messagingSenderId The Firebase messaging sender ID.
- * @param appId The Firebase application ID.
- * @param measurementId The Firebase measurement ID.
- * @param databaseURL The Firebase database URL.
+ * @param apiKey The web API key of the project. Every field of this object is an empty string on an installation that  configures no Firebase project, and an empty `projectId` is the cheapest thing to test for before  initialising an SDK. None of these values is a secret - they are meant to be embedded in a client.
+ * @param authDomain The host the Firebase SDK performs its own authentication against.
+ * @param projectId The identifier of the Firebase project itself, which ties all the other fields together.
+ * @param storageBucket The Cloud Storage bucket of the project. The portal does not store portal files there; it is part of the  SDK configuration.
+ * @param messagingSenderId The sender ID that push messages of this project arrive under, which a client checks an incoming message  against.
+ * @param appId The identifier of the Firebase application registration this client is to use.
+ * @param measurementId The Google Analytics measurement ID of the project, empty when the project reports no analytics.
+ * @param databaseURL The Realtime Database endpoint of the project, empty when the project has no such database.
  */
 
 
 data class FirebaseDto (
 
-    /* The Firebase API key. */
     @Json(name = "apiKey")
     val apiKey: kotlin.String?,
 
-    /* The Firebase authentication domain. */
     @Json(name = "authDomain")
     val authDomain: kotlin.String?,
 
-    /* The Firebase project ID. */
     @Json(name = "projectId")
     val projectId: kotlin.String?,
 
-    /* The Firebase storage bucket. */
     @Json(name = "storageBucket")
     val storageBucket: kotlin.String?,
 
-    /* The Firebase messaging sender ID. */
     @Json(name = "messagingSenderId")
     val messagingSenderId: kotlin.String?,
 
-    /* The Firebase application ID. */
     @Json(name = "appId")
     val appId: kotlin.String?,
 
-    /* The Firebase measurement ID. */
     @Json(name = "measurementId")
     val measurementId: kotlin.String?,
 
-    /* The Firebase database URL. */
     @Json(name = "databaseURL")
     val databaseURL: kotlin.String?
 

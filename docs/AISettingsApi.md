@@ -4,21 +4,23 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**getAiSettings**](AISettingsApi.md#getAiSettings) | **GET** api/2.0/ai/config | Get AI settings |
-| [**getVectorizationSettings**](AISettingsApi.md#getVectorizationSettings) | **GET** api/2.0/ai/config/vectorization | Get vectorization settings |
-| [**getWebSearchSettings**](AISettingsApi.md#getWebSearchSettings) | **GET** api/2.0/ai/config/web-search | Get web search settings |
-| [**setVectorizationSettings**](AISettingsApi.md#setVectorizationSettings) | **PUT** api/2.0/ai/config/vectorization | Update vectorization settings |
-| [**setWebSearchSettings**](AISettingsApi.md#setWebSearchSettings) | **PUT** api/2.0/ai/config/web-search | Update web search settings |
+| [**aiSettingsGet**](AISettingsApi.md#aiSettingsGet) | **GET** api/2.0/ai/config | Get AI settings |
+| [**aiSettingsGetToolMode**](AISettingsApi.md#aiSettingsGetToolMode) | **GET** api/2.0/ai/config/tool-mode | Get the tool permission mode |
+| [**aiSettingsGetUser**](AISettingsApi.md#aiSettingsGetUser) | **GET** api/2.0/ai/config/user | Get user AI settings |
+| [**aiSettingsGetVectorization**](AISettingsApi.md#aiSettingsGetVectorization) | **GET** api/2.0/ai/config/vectorization | Get vectorization settings |
+| [**aiSettingsSetToolMode**](AISettingsApi.md#aiSettingsSetToolMode) | **PUT** api/2.0/ai/config/tool-mode | Set the tool permission mode |
+| [**aiSettingsSetUser**](AISettingsApi.md#aiSettingsSetUser) | **PUT** api/2.0/ai/config/user | Update user AI settings |
+| [**aiSettingsSetVectorization**](AISettingsApi.md#aiSettingsSetVectorization) | **PUT** api/2.0/ai/config/vectorization | Update vectorization settings |
 
 
 
-<a id="getAiSettings"></a>
-# **getAiSettings**
-> AiSettingsWrapper getAiSettings ()
+<a id="aiSettingsGet"></a>
+# **aiSettingsGet**
+> AiSettingsWrapper aiSettingsGet ()
 
-Retrieves the combined AI configuration for the current portal, including the status of web search,  vectorization, and AI readiness, along with tool names and the portal MCP server identifier.
+Reports the portal's AI configuration and whether AI is usable at all, which is the first call a client makes before offering any AI feature. It takes no parameters and is proxied unchanged to the DocSpace AI service, so the answer is that service's settings payload. Among other things it says whether the portal runs on the central AI gateway, which decides whether provider profiles can be edited here at all. This is a read-only operation.
 
-For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-ai-settings/).
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-settings-get/).
 
 ### Parameters
 This endpoint does not need any parameter.
@@ -30,9 +32,7 @@ This endpoint does not need any parameter.
 ### Authorization
 
 
-Configure Basic:
-    ApiClient().setCredentials("USERNAME", "PASSWORD")
-Configure Bearer:
+Configure bearerAuth:
     ApiClient().setBearerToken("TOKEN")
 
 ### Example
@@ -43,12 +43,11 @@ Configure Bearer:
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
-apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AISettingsApi::class.java)
 
 launch(Dispatchers.IO) {
-    val result : AiSettingsWrapper = webService.getAiSettings()
+    val result : AiSettingsWrapper = webService.aiSettingsGet()
 }
 ```
 
@@ -58,27 +57,25 @@ launch(Dispatchers.IO) {
  - **Accept**: application/json
 
 
-<a id="getVectorizationSettings"></a>
-# **getVectorizationSettings**
-> VectorizationSettingsWrapper getVectorizationSettings ()
+<a id="aiSettingsGetToolMode"></a>
+# **aiSettingsGetToolMode**
+> AiSuccessResponse aiSettingsGetToolMode ()
 
-Retrieves the current embedding provider settings used for document vectorization,  including the configured provider type and whether the API key needs to be reset.
+Returns the calling user's tool permission mode as the DocSpace AI service spells it - `{ mode }` with the service's `ToolPermissionMode` enum (`Ask`, `Auto`, `Allow`), proxied unchanged. The chat reads the same value in its own spelling through `GET api/2.0/ai/preferences/get-tool-permission-mode`. This is a read-only operation.
 
-For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-vectorization-settings/).
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-settings-get-tool-mode/).
 
 ### Parameters
 This endpoint does not need any parameter.
 
 ### Return type
 
-[**VectorizationSettingsWrapper**](VectorizationSettingsWrapper.md)
+[**AiSuccessResponse**](AiSuccessResponse.md)
 
 ### Authorization
 
 
-Configure Basic:
-    ApiClient().setCredentials("USERNAME", "PASSWORD")
-Configure Bearer:
+Configure bearerAuth:
     ApiClient().setBearerToken("TOKEN")
 
 ### Example
@@ -89,12 +86,11 @@ Configure Bearer:
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
-apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AISettingsApi::class.java)
 
 launch(Dispatchers.IO) {
-    val result : VectorizationSettingsWrapper = webService.getVectorizationSettings()
+    val result : AiSuccessResponse = webService.aiSettingsGetToolMode()
 }
 ```
 
@@ -104,27 +100,25 @@ launch(Dispatchers.IO) {
  - **Accept**: application/json
 
 
-<a id="getWebSearchSettings"></a>
-# **getWebSearchSettings**
-> WebSearchSettingsWrapper getWebSearchSettings ()
+<a id="aiSettingsGetUser"></a>
+# **aiSettingsGetUser**
+> AiUserSettingsWrapper aiSettingsGetUser ()
 
-Retrieves the current web search integration settings for AI chat sessions,  including whether web search is enabled, the configured search engine type, and whether the API key needs to be reset.
+Returns the AI settings of the calling user, as opposed to the portal-wide ones. It takes no parameters - the user is the authenticated caller, and there is no way to read somebody else's settings - and is proxied unchanged to the DocSpace AI service. Use `GET api/2.0/ai/config` for the portal-wide configuration. This is a read-only operation.
 
-For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-web-search-settings/).
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-settings-get-user/).
 
 ### Parameters
 This endpoint does not need any parameter.
 
 ### Return type
 
-[**WebSearchSettingsWrapper**](WebSearchSettingsWrapper.md)
+[**AiUserSettingsWrapper**](AiUserSettingsWrapper.md)
 
 ### Authorization
 
 
-Configure Basic:
-    ApiClient().setCredentials("USERNAME", "PASSWORD")
-Configure Bearer:
+Configure bearerAuth:
     ApiClient().setBearerToken("TOKEN")
 
 ### Example
@@ -135,12 +129,11 @@ Configure Bearer:
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
-apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AISettingsApi::class.java)
 
 launch(Dispatchers.IO) {
-    val result : WebSearchSettingsWrapper = webService.getWebSearchSettings()
+    val result : AiUserSettingsWrapper = webService.aiSettingsGetUser()
 }
 ```
 
@@ -150,29 +143,70 @@ launch(Dispatchers.IO) {
  - **Accept**: application/json
 
 
-<a id="setVectorizationSettings"></a>
-# **setVectorizationSettings**
-> VectorizationSettingsWrapper setVectorizationSettings (SetEmbeddingConfigRequestBody setEmbeddingConfigRequestBody)
+<a id="aiSettingsGetVectorization"></a>
+# **aiSettingsGetVectorization**
+> AiVectorizationSettingsWrapper aiSettingsGetVectorization ()
 
-Configures the embedding provider used for document vectorization at the portal level.  Vectorization enables semantic search and knowledge retrieval capabilities in AI chat sessions.  Allows selecting the embedding provider type and providing the API key for the chosen provider.  Only portal administrators can modify these settings.
+Returns the portal's vectorization settings - the embedding provider and the options used when portal content is indexed for retrieval. It takes no parameters and is proxied unchanged to the DocSpace AI service. Vectorization is a portal-wide setting, so there is no room-scoped form of it. Change it with `PUT api/2.0/ai/config/vectorization`.
 
-For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/set-vectorization-settings/).
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-settings-get-vectorization/).
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**AiVectorizationSettingsWrapper**](AiVectorizationSettingsWrapper.md)
+
+### Authorization
+
+
+Configure bearerAuth:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(AISettingsApi::class.java)
+
+launch(Dispatchers.IO) {
+    val result : AiVectorizationSettingsWrapper = webService.aiSettingsGetVectorization()
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+<a id="aiSettingsSetToolMode"></a>
+# **aiSettingsSetToolMode**
+> AiSuccessResponse aiSettingsSetToolMode (kotlin.collections.Map<kotlin.String, kotlin.Any?> aiSettingsSetToolModeRequest)
+
+Stores the calling user's tool permission mode and returns the stored result. The body (`{ mode }`) is proxied unchanged to the DocSpace AI service, which rejects a value outside its `ToolPermissionMode` enum. The mode applies to every chat of the user in the portal.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-settings-set-tool-mode/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **setEmbeddingConfigRequestBody** | [**SetEmbeddingConfigRequestBody**](SetEmbeddingConfigRequestBody.md)| The embedding provider configuration parameters. | |
+| **aiSettingsSetToolModeRequest** | [**kotlin.collections.Map&lt;kotlin.String, kotlin.Any?&gt;**](kotlin.Any.md)| `{ mode }` with the AI service's `ToolPermissionMode` enum, proxied unchanged; the service rejects anything outside the enum. | |
 
 ### Return type
 
-[**VectorizationSettingsWrapper**](VectorizationSettingsWrapper.md)
+[**AiSuccessResponse**](AiSuccessResponse.md)
 
 ### Authorization
 
 
-Configure Basic:
-    ApiClient().setCredentials("USERNAME", "PASSWORD")
-Configure Bearer:
+Configure bearerAuth:
     ApiClient().setBearerToken("TOKEN")
 
 ### Example
@@ -183,13 +217,12 @@ Configure Bearer:
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
-apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AISettingsApi::class.java)
-val setEmbeddingConfigRequestBody : SetEmbeddingConfigRequestBody =  // SetEmbeddingConfigRequestBody | The embedding provider configuration parameters.
+val aiSettingsSetToolModeRequest : kotlin.collections.Map<kotlin.String, kotlin.Any?> = Object // kotlin.collections.Map<kotlin.String, kotlin.Any?> | `{ mode }` with the AI service's `ToolPermissionMode` enum, proxied unchanged; the service rejects anything outside the enum.
 
 launch(Dispatchers.IO) {
-    val result : VectorizationSettingsWrapper = webService.setVectorizationSettings(setEmbeddingConfigRequestBody)
+    val result : AiSuccessResponse = webService.aiSettingsSetToolMode(aiSettingsSetToolModeRequest)
 }
 ```
 
@@ -199,29 +232,27 @@ launch(Dispatchers.IO) {
  - **Accept**: application/json
 
 
-<a id="setWebSearchSettings"></a>
-# **setWebSearchSettings**
-> WebSearchSettingsWrapper setWebSearchSettings (SetWebSearchSettingsRequestBody setWebSearchSettingsRequestBody)
+<a id="aiSettingsSetUser"></a>
+# **aiSettingsSetUser**
+> AiUserSettingsWrapper aiSettingsSetUser (kotlin.collections.Map<kotlin.String, kotlin.Any?> aiSettingsSetUserRequest)
 
-Configures the web search integration for AI chat sessions at the portal level.  Allows enabling or disabling web search, selecting the search engine type, and providing the API key for the chosen engine.  Only portal administrators can modify these settings.
+Replaces the AI settings of the calling user and returns the stored result. `chatRecommendedModelVisible` is required and has to be a real boolean - a body the JSON parser cannot read, such as one sent as text/plain, used to arrive empty and answer 200 having stored nothing. The body is then proxied to the DocSpace AI service, which validates the rest, so a rejected value comes back with that service's verdict. Only the caller's own settings can be written. Portal-wide configuration is not touched by this operation.
 
-For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/set-web-search-settings/).
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-settings-set-user/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **setWebSearchSettingsRequestBody** | [**SetWebSearchSettingsRequestBody**](SetWebSearchSettingsRequestBody.md)| The web search configuration parameters. | |
+| **aiSettingsSetUserRequest** | [**kotlin.collections.Map&lt;kotlin.String, kotlin.Any?&gt;**](kotlin.Any.md)| The user's AI settings: `chatRecommendedModelVisible` as a boolean, required. Read the current one with `GET api/2.0/ai/config/user` and send it back changed. | |
 
 ### Return type
 
-[**WebSearchSettingsWrapper**](WebSearchSettingsWrapper.md)
+[**AiUserSettingsWrapper**](AiUserSettingsWrapper.md)
 
 ### Authorization
 
 
-Configure Basic:
-    ApiClient().setCredentials("USERNAME", "PASSWORD")
-Configure Bearer:
+Configure bearerAuth:
     ApiClient().setBearerToken("TOKEN")
 
 ### Example
@@ -232,13 +263,58 @@ Configure Bearer:
 //import onlyoffice.docspace.api.sdk.models.*
 
 val apiClient = ApiClient()
-apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AISettingsApi::class.java)
-val setWebSearchSettingsRequestBody : SetWebSearchSettingsRequestBody =  // SetWebSearchSettingsRequestBody | The web search configuration parameters.
+val aiSettingsSetUserRequest : kotlin.collections.Map<kotlin.String, kotlin.Any?> = Object // kotlin.collections.Map<kotlin.String, kotlin.Any?> | The user's AI settings: `chatRecommendedModelVisible` as a boolean, required. Read the current one with `GET api/2.0/ai/config/user` and send it back changed.
 
 launch(Dispatchers.IO) {
-    val result : WebSearchSettingsWrapper = webService.setWebSearchSettings(setWebSearchSettingsRequestBody)
+    val result : AiUserSettingsWrapper = webService.aiSettingsSetUser(aiSettingsSetUserRequest)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+<a id="aiSettingsSetVectorization"></a>
+# **aiSettingsSetVectorization**
+> AiVectorizationSettingsWrapper aiSettingsSetVectorization (kotlin.collections.Map<kotlin.String, kotlin.Any?> aiSettingsSetVectorizationRequest)
+
+Replaces the portal's vectorization settings and returns the stored result. The body is proxied unchanged to the DocSpace AI service, which validates it, so a rejected value is reported with that service's own verdict rather than being checked here. Changing the embedding provider does not re-index anything already indexed - start that separately with `POST api/2.0/ai/vectorization/tasks`. This is a portal-wide setting and requires the permissions the AI service demands for it.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-settings-set-vectorization/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **aiSettingsSetVectorizationRequest** | [**kotlin.collections.Map&lt;kotlin.String, kotlin.Any?&gt;**](kotlin.Any.md)| The portal's vectorization settings, proxied unchanged to the DocSpace AI service, which owns and validates the shape. Read the current one with `GET api/2.0/ai/config/vectorization` and send it back changed. | |
+
+### Return type
+
+[**AiVectorizationSettingsWrapper**](AiVectorizationSettingsWrapper.md)
+
+### Authorization
+
+
+Configure bearerAuth:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(AISettingsApi::class.java)
+val aiSettingsSetVectorizationRequest : kotlin.collections.Map<kotlin.String, kotlin.Any?> = Object // kotlin.collections.Map<kotlin.String, kotlin.Any?> | The portal's vectorization settings, proxied unchanged to the DocSpace AI service, which owns and validates the shape. Read the current one with `GET api/2.0/ai/config/vectorization` and send it back changed.
+
+launch(Dispatchers.IO) {
+    val result : AiVectorizationSettingsWrapper = webService.aiSettingsSetVectorization(aiSettingsSetVectorizationRequest)
 }
 ```
 

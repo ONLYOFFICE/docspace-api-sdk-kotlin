@@ -23,28 +23,24 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param accessToken The access token issued by the authorization server.
- * @param tokenType The type of token issued, typically 'Bearer'.
- * @param expiresIn The number of seconds until the access token expires.
- * @param refreshToken The token used to obtain a new access token when the current one expires.
+ * @param accessToken The token to send as a Bearer credential when calling the portal on the user behalf.
+ * @param tokenType How the access token is to be presented. It is always Bearer.
+ * @param expiresIn How many seconds the access token stays valid, counted from the moment it was issued.
+ * @param refreshToken The token that buys a new access token once the current one expires. It is present only when the client is registered for the refresh token grant.
  */
 
 
 data class ExchangeToken200Response (
 
-    /* The access token issued by the authorization server. */
     @Json(name = "access_token")
     val accessToken: kotlin.String? = null,
 
-    /* The type of token issued, typically 'Bearer'. */
     @Json(name = "token_type")
     val tokenType: kotlin.String? = null,
 
-    /* The number of seconds until the access token expires. */
     @Json(name = "expires_in")
     val expiresIn: kotlin.Int? = null,
 
-    /* The token used to obtain a new access token when the current one expires. */
     @Json(name = "refresh_token")
     val refreshToken: kotlin.String? = null
 

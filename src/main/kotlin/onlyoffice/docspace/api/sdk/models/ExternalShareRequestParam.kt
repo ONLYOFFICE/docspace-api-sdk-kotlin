@@ -21,15 +21,14 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The external data parameters.
+ * The password that unlocks a protected external share link.
  *
- * @param password The password to share external data.
+ * @param password The password chosen by the member who shared the entry, spelled exactly as they typed it. It is compared  against the stored value and never returned back; a mismatch is reported through the answer's status instead  of an error.
  */
 
 
 data class ExternalShareRequestParam (
 
-    /* The password to share external data. */
     @Json(name = "password")
     val password: kotlin.String? = null
 

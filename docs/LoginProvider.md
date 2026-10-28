@@ -32,5 +32,7 @@
 
     * `Github` (value: `13`)
 
+    * `Nextcloud` (value: `14`)
+
 
 

@@ -16,46 +16,41 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.AceShortWrapper
+import onlyoffice.docspace.api.sdk.models.AceShortDto
 import onlyoffice.docspace.api.sdk.models.EditorType
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The information config parameters.
+ * The facts the editor information panel shows about the open document.
  *
- * @param favorite Specifies if the file is favorite or not.
- * @param folder The folder of the file.
- * @param owner The file owner.
- * @param sharingSettings The sharing settings of the file.
- * @param type 
- * @param uploaded The uploaded file.
+ * @param favorite Whether the caller has this document among their favorites. It is empty when favorites do not apply - for an  anonymous caller, for a guest, and for an encrypted document.
+ * @param folder The place of the document as a readable path, its folders joined from the root downwards. It is empty in the  embedded layout, which shows no such panel.
+ * @param owner The display name of the owner of the document. It is empty for an anonymous session.
+ * @param sharingSettings Who the document is shared with, as the information panel lists it. An empty list means it is shared with  nobody beyond its owner.
+ * @param type The layout the information panel is rendered for.
+ * @param uploaded When the document was created on the portal, already formatted for reading in the culture of the caller rather  than as a machine timestamp.
  */
 
 
 data class InfoConfigDto (
 
-    /* Specifies if the file is favorite or not. */
     @Json(name = "favorite")
     val favorite: kotlin.Boolean? = null,
 
-    /* The folder of the file. */
     @Json(name = "folder")
     val folder: kotlin.String? = null,
 
-    /* The file owner. */
     @Json(name = "owner")
     val owner: kotlin.String? = null,
 
-    /* The sharing settings of the file. */
     @Json(name = "sharingSettings")
-    val sharingSettings: kotlin.collections.List<AceShortWrapper>? = null,
+    val sharingSettings: kotlin.collections.List<AceShortDto>? = null,
 
     @Json(name = "type")
     val type: EditorType? = null,
 
-    /* The uploaded file. */
     @Json(name = "uploaded")
     val uploaded: kotlin.String? = null
 

@@ -1,0 +1,55 @@
+ /*
+ * (c) Copyright Ascensio System SIA 2026
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package onlyoffice.docspace.api.sdk.models
+
+
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
+
+/**
+ * The cascade metadata assignment operation status.
+ *
+ * @param id The operation ID.
+ * @param progress The operation progress percentage.
+ * @param isCompleted Specifies if the operation is completed.
+ * @param error The operation error message.
+ * @param templateIds The IDs of the metadata templates the operation propagates to the subtree. Empty when there is no operation to  report, so the answer describes nothing in progress.
+ */
+
+
+data class MetadataOperationDto (
+
+    @Json(name = "id")
+    val id: kotlin.String? = null,
+
+    @Json(name = "progress")
+    val progress: kotlin.Double? = null,
+
+    @Json(name = "isCompleted")
+    val isCompleted: kotlin.Boolean? = null,
+
+    @Json(name = "error")
+    val error: kotlin.String? = null,
+
+    @Json(name = "templateIds")
+    val templateIds: kotlin.collections.List<kotlin.Int>? = null
+
+) {
+
+
+}
+

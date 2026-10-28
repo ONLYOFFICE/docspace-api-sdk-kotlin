@@ -23,23 +23,20 @@ import com.squareup.moshi.JsonClass
 /**
  * The file upload result.
  *
- * @param success Specifies if the upload operation is successful or not.
- * @param `data` The file upload result data.
- * @param message The file upload result message.
+ * @param success Whether the upload succeeded. This is the field to check: the operation answers 200 even when it fails, and  reports the reason in `message` instead of in the status code.
+ * @param `data` 
+ * @param message The reason the upload failed, ready to be shown to a person. It is empty for a successful upload, and it is  the only place where a failure is described, because the status code stays 200.
  */
 
 
 data class FileUploadResultDto (
 
-    /* Specifies if the upload operation is successful or not. */
     @Json(name = "success")
     val success: kotlin.Boolean? = null,
 
-    /* The file upload result data. */
     @Json(name = "data")
     val `data`: kotlin.Any? = null,
 
-    /* The file upload result message. */
     @Json(name = "message")
     val message: kotlin.String? = null
 

@@ -23,25 +23,25 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * The migration API information.
  *
- * @param migratorName 
- * @param operation 
- * @param failedArchives 
- * @param users 
- * @param withoutEmailUsers 
- * @param existUsers 
- * @param groups 
- * @param importPersonalFiles 
- * @param importSharedFiles 
- * @param importSharedFolders 
- * @param importCommonFiles 
- * @param importProjectFiles 
- * @param importGroups 
- * @param successedUsers 
- * @param failedUsers 
- * @param files 
- * @param errors 
+ * @param migratorName The migrator name.
+ * @param operation The migration operation.
+ * @param failedArchives The list of failed archives.
+ * @param users The list of migrating users.
+ * @param withoutEmailUsers The list of migrating users without email.
+ * @param existUsers The list of existing migrating users.
+ * @param groups The list of migrating groups.
+ * @param importPersonalFiles Specifies whether to import personal files or not.
+ * @param importSharedFiles Specifies whether to import shared files or not.
+ * @param importSharedFolders Specifies whether to import shared folders or not.
+ * @param importCommonFiles Specifies whether to import common files or not.
+ * @param importProjectFiles Specifies whether to import project files or not.
+ * @param importGroups Specifies whether to import groups or not.
+ * @param successedUsers The number of successfully migrated users.
+ * @param failedUsers The number of unsuccessfully migrated users.
+ * @param files The list of migrated files.
+ * @param errors The list of migration errors.
  */
 
 

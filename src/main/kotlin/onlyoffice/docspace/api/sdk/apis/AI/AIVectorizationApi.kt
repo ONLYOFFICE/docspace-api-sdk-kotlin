@@ -23,25 +23,30 @@ import retrofit2.Response
 import okhttp3.RequestBody
 import com.squareup.moshi.Json
 
-import onlyoffice.docspace.api.sdk.models.VectorizationStartRequestBody
+import onlyoffice.docspace.api.sdk.models.AiErrorResponse
+import onlyoffice.docspace.api.sdk.models.AiVectorizationStartTask200Response
+import onlyoffice.docspace.api.sdk.models.AiVectorizationStartTaskRequest
 
 interface AIVectorizationApi {
     /**
      * POST api/2.0/ai/vectorization/tasks
      * Start a vectorization task
-     * Submits the specified files for vectorization. Each file is processed asynchronously by the configured embedding provider  and indexed for semantic search in AI chat sessions. Only files accessible to the current user can be vectorized.
+     * Queues the indexing of the portal files named in the body so their contents can be retrieved during a chat round. The body is proxied unchanged to the DocSpace AI service, which validates it and owns the job. Indexing is asynchronous and fire-and-forget: the answer acknowledges the request without carrying a job handle, so there is nothing to poll and progress is not reported here. The embedding provider used is the one in `GET api/2.0/ai/config/vectorization`, and changing that setting does not re-index anything already indexed - queue it again for that.
      * Responses:
-     *  - 200: The vectorization task was successfully submitted
-     *  - 401: Unauthorized
+     *  - 200: Confirms the indexing was queued. It carries no job handle, so there is nothing to poll.
+     *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
+     *  - 413: The request body is larger than 100 KB, the JSON parser's limit on this route.
+     *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
      *
-     * REST API Reference for startTask Operation
-     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/start-task/
+     * REST API Reference for aiVectorizationStartTask Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-vectorization-start-task/
      *
      *
-     * @param vectorizationStartRequestBody The vectorization parameters including file identifiers.
-     * @return [Unit]
+     * @param aiVectorizationStartTaskRequest The files to index, proxied unchanged to the DocSpace AI service, which owns and validates the shape.
+     * @return [AiVectorizationStartTask200Response]
      */
     @POST("api/2.0/ai/vectorization/tasks")
-    suspend fun startTask(@Body vectorizationStartRequestBody: VectorizationStartRequestBody): Response<Unit>
+    suspend fun aiVectorizationStartTask(@Body aiVectorizationStartTaskRequest: AiVectorizationStartTaskRequest): Response<AiVectorizationStartTask200Response>
 
 }

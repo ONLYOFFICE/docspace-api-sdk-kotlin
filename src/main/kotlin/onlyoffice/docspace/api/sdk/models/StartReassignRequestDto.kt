@@ -23,23 +23,20 @@ import com.squareup.moshi.JsonClass
 /**
  * The request parameters for starting the reassignment process.
  *
- * @param fromUserId The user ID whose data will be reassigned to another user.
- * @param toUserId The user ID to whom all the data will be reassigned.
- * @param deleteProfile Specifies whether to delete a profile when the data reassignment will be finished or not.
+ * @param fromUserId The ID of the user whose rooms and shared files are transferred away. The account has to have the `Terminated`  status already, and it cannot be a system account, the portal owner or the caller.
+ * @param toUserId The ID of the user who receives the data. The account has to be an active room admin or DocSpace admin, so a  guest, a system account or a disabled account is rejected.
+ * @param deleteProfile Specifies whether to delete the source profile once the transfer succeeds. When false, which is the default,  the emptied profile is kept and can be deleted later through `DELETE api/2.0/people/{userId}`.
  */
 
 
 data class StartReassignRequestDto (
 
-    /* The user ID whose data will be reassigned to another user. */
     @Json(name = "fromUserId")
     val fromUserId: java.util.UUID,
 
-    /* The user ID to whom all the data will be reassigned. */
     @Json(name = "toUserId")
     val toUserId: java.util.UUID,
 
-    /* Specifies whether to delete a profile when the data reassignment will be finished or not. */
     @Json(name = "deleteProfile")
     val deleteProfile: kotlin.Boolean? = null
 

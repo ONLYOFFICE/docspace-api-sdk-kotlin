@@ -21,25 +21,22 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The response containing paginated modification information.
+ * One page of results ordered by modification time, together with the cursor that asks for the next page.
  *
- * @param `data` The paginated modification data.
- * @param limit The maximum number of results returned per page.
- * @param lastModifiedOn The date when the user consent was last modified.
+ * @param `data` 
+ * @param limit The page size that was applied to this request, between 1 and 50.
+ * @param lastModifiedOn The cursor to send back as last_modified_on to ask for the next page. It is null when the page is empty.
  */
 
 
 data class PageableModificationResponse (
 
-    /* The paginated modification data. */
     @Json(name = "data")
     val `data`: kotlin.Any? = null,
 
-    /* The maximum number of results returned per page. */
     @Json(name = "limit")
     val limit: kotlin.Int? = null,
 
-    /* The date when the user consent was last modified. */
     @Json(name = "last_modified_on")
     val lastModifiedOn: java.time.OffsetDateTime? = null
 

@@ -16,22 +16,39 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.TenantAuditSettings
+import onlyoffice.docspace.api.sdk.models.GetPortalPrices200ResponseLinksInner
+import onlyoffice.docspace.api.sdk.models.TenantAuditSettingsDto
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The tenant audit settings wrapper.
+ * The successful API response containing the TenantAuditSettingsDto object.
  *
- * @param settings 
+ * @param response The TenantAuditSettingsDto object returned by the operation.
+ * @param count The total number of items in the response
+ * @param links List of links related to the response
+ * @param status HTTP status code of the response
+ * @param statusCode HTTP status code of the response (duplicate of status)
  */
 
 
 data class TenantAuditSettingsWrapper (
 
-    @Json(name = "settings")
-    val settings: TenantAuditSettings? = null
+    @Json(name = "response")
+    val response: TenantAuditSettingsDto? = null,
+
+    @Json(name = "count")
+    val count: kotlin.Int? = null,
+
+    @Json(name = "links")
+    val links: kotlin.collections.List<GetPortalPrices200ResponseLinksInner>? = null,
+
+    @Json(name = "status")
+    val status: kotlin.Int? = null,
+
+    @Json(name = "statusCode")
+    val statusCode: kotlin.Int? = null
 
 ) {
 

@@ -24,14 +24,13 @@ import com.squareup.moshi.JsonClass
 /**
  * The user invitation parameters.
  *
- * @param email The email address.
- * @param type 
+ * @param email The address of somebody who has no portal account yet. An invitation is sent to it and an account is created  once it is accepted, so this is the field to use instead of an account identifier when the person is new to  the portal.
+ * @param type The user type.
  */
 
 
 data class UserInvitationRequestDto (
 
-    /* The email address. */
     @Json(name = "email")
     val email: kotlin.String? = null,
 

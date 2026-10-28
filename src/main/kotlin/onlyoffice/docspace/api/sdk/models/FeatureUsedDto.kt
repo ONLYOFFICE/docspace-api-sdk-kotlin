@@ -21,20 +21,18 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The used space parameters of the tenant quota feature.
+ * How much of one quota feature the portal has already consumed.
  *
- * @param `value` The used space value.
- * @param title The used space title.
+ * @param `value` 
+ * @param title The same figure as a sentence in the portal language, ready to print. It is empty when this build ships no  wording for the feature.
  */
 
 
 data class FeatureUsedDto (
 
-    /* The used space value. */
     @Json(name = "value")
     val `value`: kotlin.Any?,
 
-    /* The used space title. */
     @Json(name = "title")
     val title: kotlin.String? = null
 

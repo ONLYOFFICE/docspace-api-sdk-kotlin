@@ -30,7 +30,7 @@ import com.squareup.moshi.JsonClass
  * @param isLDAP Specifies if the LDAP settings are enabled for the group or not.
  * @param parent The parent group ID.
  * @param isSystem Indicates whether the group is a system group.
- * @param manager 
+ * @param manager The group manager full information.
  * @param members The list of group members.
  * @param shared Specifies whether the group can be shared or not.
  * @param membersCount The number of group members.
@@ -39,42 +39,33 @@ import com.squareup.moshi.JsonClass
 
 data class GroupDto (
 
-    /* The group name. */
     @Json(name = "name")
     val name: kotlin.String?,
 
-    /* The group category ID. */
     @Json(name = "category")
     val category: java.util.UUID,
 
-    /* The group ID. */
     @Json(name = "id")
     val id: java.util.UUID,
 
-    /* Specifies if the LDAP settings are enabled for the group or not. */
     @Json(name = "isLDAP")
     val isLDAP: kotlin.Boolean,
 
-    /* The parent group ID. */
     @Json(name = "parent")
     val parent: java.util.UUID? = null,
 
-    /* Indicates whether the group is a system group. */
     @Json(name = "isSystem")
     val isSystem: kotlin.Boolean? = null,
 
     @Json(name = "manager")
     val manager: EmployeeFullDto? = null,
 
-    /* The list of group members. */
     @Json(name = "members")
     val members: kotlin.collections.List<EmployeeFullDto>? = null,
 
-    /* Specifies whether the group can be shared or not. */
     @Json(name = "shared")
     val shared: kotlin.Boolean? = null,
 
-    /* The number of group members. */
     @Json(name = "membersCount")
     val membersCount: kotlin.Int? = null
 

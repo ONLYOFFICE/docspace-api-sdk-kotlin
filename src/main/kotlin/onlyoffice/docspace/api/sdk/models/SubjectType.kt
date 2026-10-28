@@ -64,7 +64,7 @@ enum class SubjectType(val value: kotlin.Int) {
          */
         fun decode(data: kotlin.Any?): SubjectType? = data?.let {
           val normalizedData = "$it".lowercase()
-          values().firstOrNull { value ->
+          entries.firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()
           }
         }
