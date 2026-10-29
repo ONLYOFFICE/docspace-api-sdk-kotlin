@@ -21,9 +21,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * [0 - Move, 1 - Copy, 2 - Delete, 3 - Download, 4 - MarkAsRead, 5 - Import, 6 - Convert, 7 - Duplicate]
+ * [0 - Move, 1 - Copy, 2 - Delete, 3 - Download, 4 - MarkAsRead, 5 - Import, 6 - Convert, 7 - Duplicate, 8 - Build]
  *
- * Values: Move,Copy,Delete,Download,MarkAsRead,Import,Convert,Duplicate
+ * Values: Move,Copy,Delete,Download,MarkAsRead,Import,Convert,Duplicate,Build
  */
 
 @JsonClass(generateAdapter = false)
@@ -51,7 +51,10 @@ enum class AiFileOperationType(val value: kotlin.Int) {
     Convert(6),
 
     @Json(name = "7")
-    Duplicate(7);
+    Duplicate(7),
+
+    @Json(name = "8")
+    Build(8);
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use

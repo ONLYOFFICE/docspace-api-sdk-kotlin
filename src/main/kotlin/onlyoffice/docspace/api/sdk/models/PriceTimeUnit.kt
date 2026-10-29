@@ -21,34 +21,37 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * [0 - None, 1 - Hour, 2 - Day, 3 - Week, 4 - Month, 5 - Year, 6 - ThreeYears]
+ * [1 - None, 2 - Hour, 3 - Day, 4 - Week, 5 - Month, 6 - Year, 7 - ThreeYears, 8 - Minute]
  *
- * Values: None,Hour,Day,Week,Month,Year,ThreeYears
+ * Values: None,Hour,Day,Week,Month,Year,ThreeYears,Minute
  */
 
 @JsonClass(generateAdapter = false)
 enum class PriceTimeUnit(val value: kotlin.Int) {
 
-    @Json(name = "0")
-    None(0),
-
     @Json(name = "1")
-    Hour(1),
+    None(1),
 
     @Json(name = "2")
-    Day(2),
+    Hour(2),
 
     @Json(name = "3")
-    Week(3),
+    Day(3),
 
     @Json(name = "4")
-    Month(4),
+    Week(4),
 
     @Json(name = "5")
-    Year(5),
+    Month(5),
 
     @Json(name = "6")
-    ThreeYears(6);
+    Year(6),
+
+    @Json(name = "7")
+    ThreeYears(7),
+
+    @Json(name = "8")
+    Minute(8);
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use

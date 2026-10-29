@@ -24,6 +24,7 @@ import onlyoffice.docspace.api.sdk.models.EmployeeDto
 import onlyoffice.docspace.api.sdk.models.EmployeeStatus
 import onlyoffice.docspace.api.sdk.models.GroupSummaryDto
 import onlyoffice.docspace.api.sdk.models.MobilePhoneActivationStatus
+import onlyoffice.docspace.api.sdk.models.UserServiceLimitDto
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -69,6 +70,7 @@ import com.squareup.moshi.JsonClass
  * @param usedSpace The portal used space of the user.
  * @param shared Specifies if the user has access rights.
  * @param isCustomQuota Specifies if the user has a custom quota or not.
+ * @param aiServicesLimit The spending limit on the AI services in force for this user - the personal one, or else the limit for every  user - with what the user spent against it. Null when no such limit applies to the user, when the portal has no  billing service, or when the caller is neither a DocSpace administrator nor the user; the limit of the portal as  a whole is not reflected here. The value, and the spending in particular, can lag by a few minutes.
  * @param loginEventId The current login event ID.
  * @param authCookieLifetime The auth cookie lifetime in seconds.
  * @param createdBy The user who created the current user.
@@ -193,6 +195,9 @@ data class EmployeeFullDto (
 
     @Json(name = "isCustomQuota")
     val isCustomQuota: kotlin.Boolean? = null,
+
+    @Json(name = "aiServicesLimit")
+    val aiServicesLimit: UserServiceLimitDto? = null,
 
     @Json(name = "loginEventId")
     val loginEventId: kotlin.Int? = null,

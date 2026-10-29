@@ -20,5 +20,7 @@
 
     * `Duplicate` (value: `7`)
 
+    * `Build` (value: `8`)
+
 
 

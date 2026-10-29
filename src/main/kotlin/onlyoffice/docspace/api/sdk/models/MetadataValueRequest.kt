@@ -25,7 +25,7 @@ import com.squareup.moshi.JsonClass
  *
  * @param fieldId The field ID.
  * @param stringValue The string value.
- * @param numberValue The number value.
+ * @param numberValue The number value: a whole number of at most 2^53-1 (9007199254740991) in magnitude, the largest integer a JSON  client reads exactly. A larger one is refused rather than stored and returned rounded.
  * @param dateValue The date value. A value without a time zone offset is treated as UTC, the same way the metadata filters treat their date bounds.
  * @param optionIds The selected choice option IDs.
  */

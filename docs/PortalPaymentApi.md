@@ -9,11 +9,15 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 | [**createCustomerMonthlyUsageReport**](PortalPaymentApi.md#createCustomerMonthlyUsageReport) | **POST** api/2.0/portal/payment/customer/usage/monthly/report | Start the monthly usage report |
 | [**createCustomerOperationsReport**](PortalPaymentApi.md#createCustomerOperationsReport) | **POST** api/2.0/portal/payment/customer/operationsreport | Start the operations report |
 | [**createCustomerServiceUsageReport**](PortalPaymentApi.md#createCustomerServiceUsageReport) | **POST** api/2.0/portal/payment/customer/usage/report | Start the service usage report |
+| [**createServiceLimit**](PortalPaymentApi.md#createServiceLimit) | **POST** api/2.0/portal/payment/servicelimit | Create a service limit |
+| [**deleteServiceLimit**](PortalPaymentApi.md#deleteServiceLimit) | **DELETE** api/2.0/portal/payment/servicelimit/{id} | Delete a service limit |
+| [**disableParticipantServiceLimits**](PortalPaymentApi.md#disableParticipantServiceLimits) | **PUT** api/2.0/portal/payment/servicelimit/participants/disable | Disable the user service limits |
 | [**getAccountingServicePrices**](PortalPaymentApi.md#getAccountingServicePrices) | **GET** api/2.0/portal/payment/accounting/prices/{serviceName} | Get the service prices from the accounting service |
 | [**getActiveServices**](PortalPaymentApi.md#getActiveServices) | **GET** api/2.0/portal/payment/activeservices | Get the active wallet services |
 | [**getAiPrices**](PortalPaymentApi.md#getAiPrices) | **GET** api/2.0/portal/payment/ai-prices | Get AI model prices |
 | [**getCheckoutSetupUrl**](PortalPaymentApi.md#getCheckoutSetupUrl) | **GET** api/2.0/portal/payment/checkoutsetupurl | Get the checkout setup page URL |
 | [**getCustomerBalance**](PortalPaymentApi.md#getCustomerBalance) | **GET** api/2.0/portal/payment/customer/balance | Get the customer balance |
+| [**getCustomerDeposits**](PortalPaymentApi.md#getCustomerDeposits) | **GET** api/2.0/portal/payment/customer/deposits | Get the wallet top-ups |
 | [**getCustomerInfo**](PortalPaymentApi.md#getCustomerInfo) | **GET** api/2.0/portal/payment/customerinfo | Get the customer information |
 | [**getCustomerMonthlyUsage**](PortalPaymentApi.md#getCustomerMonthlyUsage) | **GET** api/2.0/portal/payment/customer/usage/monthly | Get the customer monthly usage |
 | [**getCustomerMonthlyUsageReport**](PortalPaymentApi.md#getCustomerMonthlyUsageReport) | **GET** api/2.0/portal/payment/customer/usage/monthly/report | Get the monthly usage report status |
@@ -21,6 +25,9 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 | [**getCustomerOperationsReport**](PortalPaymentApi.md#getCustomerOperationsReport) | **GET** api/2.0/portal/payment/customer/operationsreport | Get the operations report status |
 | [**getCustomerServiceUsage**](PortalPaymentApi.md#getCustomerServiceUsage) | **GET** api/2.0/portal/payment/customer/usage | Get the customer service usage |
 | [**getCustomerServiceUsageReport**](PortalPaymentApi.md#getCustomerServiceUsageReport) | **GET** api/2.0/portal/payment/customer/usage/report | Get the service usage report status |
+| [**getDepositInvoice**](PortalPaymentApi.md#getDepositInvoice) | **GET** api/2.0/portal/payment/customer/deposits/{id}/invoice | Get the top-up invoice |
+| [**getGlobalServiceLimit**](PortalPaymentApi.md#getGlobalServiceLimit) | **GET** api/2.0/portal/payment/servicelimit/global | Get the global service limit |
+| [**getParticipantServiceLimits**](PortalPaymentApi.md#getParticipantServiceLimits) | **GET** api/2.0/portal/payment/servicelimit/participants | Get the user service limits |
 | [**getPaymentAccount**](PortalPaymentApi.md#getPaymentAccount) | **GET** api/2.0/portal/payment/account | Get the billing account page |
 | [**getPaymentCurrencies**](PortalPaymentApi.md#getPaymentCurrencies) | **GET** api/2.0/portal/payment/currencies | Get the billing currencies |
 | [**getPaymentQuotas**](PortalPaymentApi.md#getPaymentQuotas) | **GET** api/2.0/portal/payment/quotas | Get the purchasable quotas |
@@ -28,13 +35,16 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 | [**getPortalPrices**](PortalPaymentApi.md#getPortalPrices) | **GET** api/2.0/portal/payment/prices | Get the product prices |
 | [**getQuotaPaymentInformation**](PortalPaymentApi.md#getQuotaPaymentInformation) | **GET** api/2.0/portal/payment/quota | Get the current plan and limits |
 | [**getRestrictedAiModels**](PortalPaymentApi.md#getRestrictedAiModels) | **GET** api/2.0/portal/payment/ai-model/restrictions | Get restricted AI models |
+| [**getServiceLimit**](PortalPaymentApi.md#getServiceLimit) | **GET** api/2.0/portal/payment/servicelimit/{id} | Get a service limit |
 | [**getSubscriptionBalanceInfo**](PortalPaymentApi.md#getSubscriptionBalanceInfo) | **GET** api/2.0/portal/payment/subscription/balance | Get the subscription balance information |
 | [**getTenantWalletServiceSettings**](PortalPaymentApi.md#getTenantWalletServiceSettings) | **GET** api/2.0/portal/payment/servicessettings | Get the wallet service settings |
 | [**getTenantWalletSettings**](PortalPaymentApi.md#getTenantWalletSettings) | **GET** api/2.0/portal/payment/topupsettings | Get the auto top-up settings |
+| [**getTotalServiceLimit**](PortalPaymentApi.md#getTotalServiceLimit) | **GET** api/2.0/portal/payment/servicelimit/total | Get the portal service limit |
 | [**getWalletService**](PortalPaymentApi.md#getWalletService) | **GET** api/2.0/portal/payment/walletservice | Get a wallet service |
 | [**getWalletServices**](PortalPaymentApi.md#getWalletServices) | **GET** api/2.0/portal/payment/walletservices | Get wallet services |
 | [**moveSubscriptionToWallet**](PortalPaymentApi.md#moveSubscriptionToWallet) | **POST** api/2.0/portal/payment/subscription/movetowallet | Move the subscription to the wallet |
 | [**sendPaymentRequest**](PortalPaymentApi.md#sendPaymentRequest) | **POST** api/2.0/portal/payment/request | Contact the sales team |
+| [**setParticipantServiceLimits**](PortalPaymentApi.md#setParticipantServiceLimits) | **PUT** api/2.0/portal/payment/servicelimit/participants | Set the user service limits |
 | [**setRestrictedAiModels**](PortalPaymentApi.md#setRestrictedAiModels) | **PUT** api/2.0/portal/payment/ai-model/restrictions | Set restricted AI models |
 | [**setTenantWalletSettings**](PortalPaymentApi.md#setTenantWalletSettings) | **POST** api/2.0/portal/payment/topupsettings | Set the auto top-up settings |
 | [**terminateCustomerMonthlyUsageReport**](PortalPaymentApi.md#terminateCustomerMonthlyUsageReport) | **DELETE** api/2.0/portal/payment/customer/usage/monthly/report | Terminate the monthly usage report |
@@ -42,6 +52,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 | [**terminateCustomerServiceUsageReport**](PortalPaymentApi.md#terminateCustomerServiceUsageReport) | **DELETE** api/2.0/portal/payment/customer/usage/report | Terminate the service usage report |
 | [**topUpDeposit**](PortalPaymentApi.md#topUpDeposit) | **POST** api/2.0/portal/payment/deposit | Top up the wallet |
 | [**updatePayment**](PortalPaymentApi.md#updatePayment) | **PUT** api/2.0/portal/payment/update | Change the subscription quantity |
+| [**updateServiceLimit**](PortalPaymentApi.md#updateServiceLimit) | **PUT** api/2.0/portal/payment/servicelimit | Update a service limit |
 | [**updateWalletPayment**](PortalPaymentApi.md#updateWalletPayment) | **PUT** api/2.0/portal/payment/updatewallet | Change a wallet service quantity |
 
 
@@ -291,18 +302,162 @@ launch(Dispatchers.IO) {
  - **Accept**: application/json
 
 
+<a id="createServiceLimit"></a>
+# **createServiceLimit**
+> ServiceLimitWrapper createServiceLimit (CreateServiceLimitRequestDto createServiceLimitRequestDto)
+
+Creates a spending limit on the AI services - AI tools and AI search together - with `scope` saying whom it  applies to: `Total` for the portal as a whole, `Global` for every user separately, `Custom` for the user in  `userId`, which only this scope takes. A personal limit applies to its user instead of the one for every user,  and the limit of the portal is checked on top of both. The portal needs a billing customer, and the caller needs  the permission to edit the portal settings as well as DocSpace administrator rights. At least one of  `amountValue` and `quantityValue` must be given; with both, the services stop as soon as either is reached. The  call is mutating and written to the portal audit trail. It is not idempotent: a second limit of the same scope,  or for the same user, is refused with 409 - change the existing one with  `PUT api/2.0/portal/payment/servicelimit` instead. The scope, the user and the period cannot be changed later.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-service-limit/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **createServiceLimitRequestDto** | [**CreateServiceLimitRequestDto**](CreateServiceLimitRequestDto.md)|  | [optional] |
+
+### Return type
+
+[**ServiceLimitWrapper**](ServiceLimitWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(PaymentApi::class.java)
+val createServiceLimitRequestDto : CreateServiceLimitRequestDto =  // CreateServiceLimitRequestDto | 
+
+launch(Dispatchers.IO) {
+    val result : ServiceLimitWrapper = webService.createServiceLimit(createServiceLimitRequestDto)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+<a id="deleteServiceLimit"></a>
+# **deleteServiceLimit**
+> void deleteServiceLimit (kotlin.Int id)
+
+Removes one spending limit on the AI services completely - the limit of the portal as a whole, the one for  every user, or a personal one - so it no longer restricts anyone. The portal needs a billing customer, and the  caller needs the permission to edit the portal settings as well as DocSpace administrator rights. The call is  destructive and cannot be undone: unlike switching a limit off with `PUT api/2.0/portal/payment/servicelimit`,  which keeps its settings, a deleted limit is gone, and a new one has to be created with  `POST api/2.0/portal/payment/servicelimit`. Deleting a personal limit lets the limit for every user apply to  that user. It is written to the portal audit trail. An ID that does not exist, belongs to another portal or is  not a limit on the AI services answers 404, which is also what a repeated deletion of the same limit gets.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-service-limit/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **kotlin.Int**| The ID of the service limit, as returned in `id` by the operation that created it or by the reads of limits. | |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(PaymentApi::class.java)
+val id : kotlin.Int = 42 // kotlin.Int | The ID of the service limit, as returned in `id` by the operation that created it or by the reads of limits.
+
+launch(Dispatchers.IO) {
+    webService.deleteServiceLimit(id)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+<a id="disableParticipantServiceLimits"></a>
+# **disableParticipantServiceLimits**
+> Int32Wrapper disableParticipantServiceLimits ()
+
+Switches off every personal spending limit on the AI services in one call, so each user falls back to the limit  for every user, if one is set. The limit of the portal as a whole and the one for every user stay as they are.  The portal needs a billing customer, and the caller needs the permission to edit the portal settings as well as  DocSpace administrator rights. The switched-off limits stop restricting their users at once and are kept, so  each can be switched back on with `PUT api/2.0/portal/payment/servicelimit`. The call is mutating and  idempotent - repeating it switches off nothing more - and it is written to the portal audit trail. The answer is  the number of personal limits that were switched off, zero when none was in force. To switch off the limit of a  single user, use `PUT api/2.0/portal/payment/servicelimit` with `enabled` set to false.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/disable-participant-service-limits/).
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**Int32Wrapper**](Int32Wrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(PaymentApi::class.java)
+
+launch(Dispatchers.IO) {
+    val result : Int32Wrapper = webService.disableParticipantServiceLimits()
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
 <a id="getAccountingServicePrices"></a>
 # **getAccountingServicePrices**
 > ServicePriceArrayWrapper getAccountingServicePrices (kotlin.String serviceName, kotlin.Boolean active)
 
-Returns the portal's automatic wallet top-up settings: whether it is switched on, the balance that triggers  it, the balance it tops the wallet up to and the currency it charges in. Only a DocSpace administrator may  read it, no billing customer is needed, and the call is read-only. A portal that has never configured it gets  the defaults rather than an empty result, so `enabled` is the field that says whether anything happens at all.  Two of the values are kept by the portal itself and cannot be set through this API: `lowBalanceThreshold` is  the balance below which the portal warns its administrators by mail, and `lowBalanceNotified` says whether  that warning has already gone out for the current dip. Change the rest with  `POST api/2.0/portal/payment/topupsettings`.
+Returns the price list of one wallet service as the accounting service keeps it: every price record with its  time unit, cost and resulting price, volume threshold, validity period, status and discount category. Take  the service name from the `serviceName` field of `GET api/2.0/portal/payment/walletservices`. The caller must  be a DocSpace administrator, and the server must have the billing and accounting services configured;  otherwise the call fails with 403. The call is read-only and can be repeated safely. By default the list  also holds retired and not yet started records; `active=true` keeps only the prices in force now. A service  with no prices comes back as an empty list. Amounts are in the currency of the service, which the records do  not name. The list is cached for all portals for up to an hour, so a change in the accounting service can  take that long to appear. For the current price of every plan and wallet service as the customer sees it, use  `GET api/2.0/portal/payment/quotas`. An unknown service name fails with 500, as does an unreachable  accounting service.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-accounting-service-prices/).
 
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **serviceName** | **kotlin.String**| The service whose price list is read, named the way the billing catalogue names it, such as `ai-tools` or  `backup`. Take the value from the `serviceName` field of `GET api/2.0/portal/payment/walletservices`; a name  the accounting service does not price yields an empty list rather than an error. | |
+| **serviceName** | **kotlin.String**| The service whose price list is read, named the way the billing catalogue names it, such as `ai-tools` or  `backup`. Take the value from the `serviceName` field of `GET api/2.0/portal/payment/walletservices`. | |
 | **active** | **kotlin.Boolean**| Whether the answer is narrowed to the prices in force at the moment of the call. Leaving it false also  returns the retired and the not yet started ones, which is what pricing a movement recorded in the past  needs. | [optional] |
 
 ### Return type
@@ -328,7 +483,7 @@ val apiClient = ApiClient()
 apiClient.setCredentials("USERNAME", "PASSWORD")
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(PaymentApi::class.java)
-val serviceName : kotlin.String = ai-tools // kotlin.String | The service whose price list is read, named the way the billing catalogue names it, such as `ai-tools` or  `backup`. Take the value from the `serviceName` field of `GET api/2.0/portal/payment/walletservices`; a name  the accounting service does not price yields an empty list rather than an error.
+val serviceName : kotlin.String = ai-tools // kotlin.String | The service whose price list is read, named the way the billing catalogue names it, such as `ai-tools` or  `backup`. Take the value from the `serviceName` field of `GET api/2.0/portal/payment/walletservices`.
 val active : kotlin.Boolean = false // kotlin.Boolean | Whether the answer is narrowed to the prices in force at the moment of the call. Leaving it false also  returns the retired and the not yet started ones, which is what pricing a movement recorded in the past  needs.
 
 launch(Dispatchers.IO) {
@@ -525,6 +680,63 @@ val refresh : kotlin.Boolean = true // kotlin.Boolean | Whether the answer is fe
 
 launch(Dispatchers.IO) {
     val result : BalanceWrapper = webService.getCustomerBalance(refresh)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+<a id="getCustomerDeposits"></a>
+# **getCustomerDeposits**
+> DepositReportWrapper getCustomerDeposits (java.time.OffsetDateTime startDate, java.time.OffsetDateTime endDate, OperationStatus status, kotlin.Int offset, kotlin.Int limit)
+
+Lists the top-ups of the portal's wallet - the payments into it - one page at a time, which is what a list of  payments with their invoices is built from. A portal that is not a billing customer yet has no top-ups and  gets an empty result rather than an error. Only the payer or the portal owner may read it, as with the  invoices, and the call is read-only. Every filter is optional: `startDate` and `endDate` default to the  portal creation date and the present moment, a value without `Z` or an offset is read in the portal time  zone, and `status` narrows to how a top-up ended. `offset` and `limit` default to 0 and 25 and are echoed next  to `totalQuantity`, `totalPage` and `currentPage`; a negative `offset` or a `limit` outside 1 to 100 fails  with 400. An empty result means the portal is not a billing customer, has no wallet at the accounting service  yet, or that service could not be read; a period without top-ups gives an empty `collection`. A top-up with  `hasInvoice` true has an invoice, opened with `GET api/2.0/portal/payment/customer/deposits/{id}/invoice`.  For the full wallet history, charges and refunds included, use  `GET api/2.0/portal/payment/customer/operations`.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-customer-deposits/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **startDate** | **java.time.OffsetDateTime**| The beginning of the period, inclusive, as an ISO 8601 timestamp. A value with neither `Z` nor an offset is  read in the portal time zone, not in the caller's; defaults to the portal creation date. | [optional] |
+| **endDate** | **java.time.OffsetDateTime**| The end of the period, inclusive, as an ISO 8601 timestamp. A value with neither `Z` nor an offset is read in  the portal time zone, not in the caller's; defaults to the moment the call is made. | [optional] |
+| **status** | [**OperationStatus**](.md)| The outcome to keep. A top-up that is still being settled is reported as pending and may change later, while  the other outcomes are final; every outcome is reported when this is omitted. | [optional] [enum: 0, 1, 2, 3] |
+| **offset** | **kotlin.Int**| The number of top-ups to skip before the first one returned, for walking through a long history page by page.  Counted after the filters are applied, and starts at 0 when omitted. | [optional] |
+| **limit** | **kotlin.Int**| The maximum number of top-ups returned in one page. Defaults to 25 when omitted; the answer echoes the window  back next to `totalQuantity`, `totalPage` and `currentPage`, so the next `offset` can be computed without  counting the items. | [optional] |
+
+### Return type
+
+[**DepositReportWrapper**](DepositReportWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(PaymentApi::class.java)
+val startDate : java.time.OffsetDateTime = 2025-01-01T00:00:00Z // java.time.OffsetDateTime | The beginning of the period, inclusive, as an ISO 8601 timestamp. A value with neither `Z` nor an offset is  read in the portal time zone, not in the caller's; defaults to the portal creation date.
+val endDate : java.time.OffsetDateTime = 2025-12-31T23:59:59Z // java.time.OffsetDateTime | The end of the period, inclusive, as an ISO 8601 timestamp. A value with neither `Z` nor an offset is read in  the portal time zone, not in the caller's; defaults to the moment the call is made.
+val status : OperationStatus = Completed // OperationStatus | The outcome to keep. A top-up that is still being settled is reported as pending and may change later, while  the other outcomes are final; every outcome is reported when this is omitted.
+val offset : kotlin.Int = 0 // kotlin.Int | The number of top-ups to skip before the first one returned, for walking through a long history page by page.  Counted after the filters are applied, and starts at 0 when omitted.
+val limit : kotlin.Int = 25 // kotlin.Int | The maximum number of top-ups returned in one page. Defaults to 25 when omitted; the answer echoes the window  back next to `totalQuantity`, `totalPage` and `currentPage`, so the next `offset` can be computed without  counting the items.
+
+launch(Dispatchers.IO) {
+    val result : DepositReportWrapper = webService.getCustomerDeposits(startDate, endDate, status, offset, limit)
 }
 ```
 
@@ -910,6 +1122,156 @@ launch(Dispatchers.IO) {
  - **Accept**: application/json
 
 
+<a id="getDepositInvoice"></a>
+# **getDepositInvoice**
+> StringWrapper getDepositInvoice (kotlin.Long id)
+
+Hands back the address of the page on which the billing provider shows the invoice for one top-up of the  portal's wallet, so a client can open or download it. The top-up is named by the `id` that  `GET api/2.0/portal/payment/customer/deposits` returns, and only one listed there with `hasInvoice` true has an  invoice to show. Only the payer or the portal owner may read it, as with the billing account page, and the  call changes nothing. The address is absolute and points to the billing provider rather than to the portal;  it is asked for anew on every call, so request it when the user is about to open the invoice instead of  storing it. A top-up this portal does not have, one without an invoice, or a portal that is not a billing  customer answers 404, and an `id` that is not a number fails with 400. An installation without a billing  service answers 403, and 402 means the billing or the accounting service rejected the request or did not  answer, which a later retry may get past.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-deposit-invoice/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **kotlin.Long**| The ID of the top-up, taken from the `id` field of `GET api/2.0/portal/payment/customer/deposits`. | |
+
+### Return type
+
+[**StringWrapper**](StringWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(PaymentApi::class.java)
+val id : kotlin.Long = 15342 // kotlin.Long | The ID of the top-up, taken from the `id` field of `GET api/2.0/portal/payment/customer/deposits`.
+
+launch(Dispatchers.IO) {
+    val result : StringWrapper = webService.getDepositInvoice(id)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+<a id="getGlobalServiceLimit"></a>
+# **getGlobalServiceLimit**
+> ServiceLimitWrapper getGlobalServiceLimit ()
+
+Returns the spending limit on the AI services for every user - the same ceiling applied to each user separately,  for any user without a personal limit in force. Only a DocSpace administrator may read it, an installation  without a billing service answers 403, and the call is read-only. It comes without spending, since that is  counted per user: read it for each user from `GET api/2.0/portal/payment/servicelimit/participants`; `periodEnd`  still says when the current period ends for everyone. When no  such limit has been set, or it was deleted, the answer is 200 with a null `response`; create the limit with  `POST api/2.0/portal/payment/servicelimit` and the scope `Global`. A switched-off limit is still returned, with  `enabled` false. A portal with no billing customer answers 404.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-global-service-limit/).
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ServiceLimitWrapper**](ServiceLimitWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(PaymentApi::class.java)
+
+launch(Dispatchers.IO) {
+    val result : ServiceLimitWrapper = webService.getGlobalServiceLimit()
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+<a id="getParticipantServiceLimits"></a>
+# **getParticipantServiceLimits**
+> ServiceLimitReportWrapper getParticipantServiceLimits (kotlin.Int offset, kotlin.Int limit, ServiceLimitOrderBy orderBy, OperationOrderType orderType)
+
+Lists, one page at a time, the spending limit on the AI services in force for each portal user, with what the  user spent against it in the current period and what is left. Only a DocSpace administrator may read it, an  installation without a billing service answers 403, a portal with no billing customer answers 404, and the call  is read-only; a portal with no limits gets an empty page. A user's own limit wins over the one for every user: an item with the scope `Custom` is a  personal limit, one with `Global` the limit for every user, its ID repeated for each user it applies to.  Switched-off limits are not listed, and a user who has not used the AI services yet may be missing. `offset`  and `limit` page through the result and default to 0 and 25, and the answer repeats them next to  `totalQuantity`, `totalPage` and `currentPage`; `orderBy` and `orderType` sort it, the newest limits first by  default.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-participant-service-limits/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **offset** | **kotlin.Int**| The number of limits to skip before the first one returned, counted in the sort order of the list. | [optional] |
+| **limit** | **kotlin.Int**| The largest number of limits one page holds. | [optional] |
+| **orderBy** | [**ServiceLimitOrderBy**](.md)| The field the list is sorted by: the user a limit applies to, or the moment it was created. | [optional] [enum: 0, 1] |
+| **orderType** | [**OperationOrderType**](.md)| The direction the field named in `orderBy` is sorted in. | [optional] [enum: 0, 1] |
+
+### Return type
+
+[**ServiceLimitReportWrapper**](ServiceLimitReportWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(PaymentApi::class.java)
+val offset : kotlin.Int = 0 // kotlin.Int | The number of limits to skip before the first one returned, counted in the sort order of the list.
+val limit : kotlin.Int = 25 // kotlin.Int | The largest number of limits one page holds.
+val orderBy : ServiceLimitOrderBy = Created // ServiceLimitOrderBy | The field the list is sorted by: the user a limit applies to, or the moment it was created.
+val orderType : OperationOrderType = Descending // OperationOrderType | The direction the field named in `orderBy` is sorted in.
+
+launch(Dispatchers.IO) {
+    val result : ServiceLimitReportWrapper = webService.getParticipantServiceLimits(offset, limit, orderBy, orderType)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
 <a id="getPaymentAccount"></a>
 # **getPaymentAccount**
 > StringWrapper getPaymentAccount (java.net.URI backUrl)
@@ -1155,7 +1517,7 @@ launch(Dispatchers.IO) {
 # **getQuotaPaymentInformation**
 > QuotaWrapper getQuotaPaymentInformation (kotlin.Boolean refresh)
 
-Returns the quota the portal is on right now - its paid plan or the free one - with everything a client needs  to render itself: the price, the features that are switched on, the limits they grant (rooms, storage in  bytes, users, administrators, AI) and how much of each is already used. Every signed-in member of the portal  reads it, so it is not restricted to administrators; only guests are refused with 403. The call is read-only.  The plan is served from the cache by default, which is what a start-up needs; `refresh=true` fetches it from  the billing service instead, so use that right after a purchase and not routinely, because it is a remote  call. The catalogue of the quotas that could be bought instead is `GET api/2.0/portal/payment/quotas`, and the  money side of the same portal - customer, wallet and balance - starts at  `GET api/2.0/portal/payment/customerinfo`.
+Returns the quota the portal is on - its paid plan or the free one - with the limits its features grant and how  much of each is already used. Any signed-in member except a guest may call it. The call is read-only; the plan  comes from the cache, and `refresh=true` re-reads it from the billing service, a remote call meant for right  after a purchase. The answer is trimmed to the caller's user type: a DocSpace administrator or the owner gets  the price, the due date and all features, a room administrator only the `manager`, `room`, `total_size` and  `statistic` features, and a user only `total_size`. For both of the latter `price` is an empty object and  `dueDate` is omitted, while the storage quota settings (`usersQuota`, `roomsQuota`, `aiAgentsQuota`,  `tenantCustomQuota`) come back as for an administrator. The quotas that could be bought instead are  `GET api/2.0/portal/payment/quotas`. A guest is refused with 403.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-quota-payment-information/).
 
@@ -1237,6 +1599,55 @@ val webService = apiClient.createWebservice(PaymentApi::class.java)
 
 launch(Dispatchers.IO) {
     val result : RestrictedAiModelsWrapper = webService.getRestrictedAiModels()
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+<a id="getServiceLimit"></a>
+# **getServiceLimit**
+> ServiceLimitWrapper getServiceLimit (kotlin.Int id)
+
+Returns one spending limit on the AI services of the portal by its ID - the limit of the portal as a whole, the  one for every user, or a personal one. Only a DocSpace administrator may read it, an installation without a  billing service answers 403, and the call is read-only. The limit comes back with its scope, thresholds, their  currency and unit, the period and whether it is in force, but without its spending: that comes with  `GET api/2.0/portal/payment/servicelimit/total` for the portal and with  `GET api/2.0/portal/payment/servicelimit/participants` for each user. A portal with no billing customer, and an  ID that does not exist, belongs to another portal or is not a limit on the AI services, answer 404.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-service-limit/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **kotlin.Int**| The ID of the service limit, as returned in `id` by the operation that created it or by the reads of limits. | |
+
+### Return type
+
+[**ServiceLimitWrapper**](ServiceLimitWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(PaymentApi::class.java)
+val id : kotlin.Int = 42 // kotlin.Int | The ID of the service limit, as returned in `id` by the operation that created it or by the reads of limits.
+
+launch(Dispatchers.IO) {
+    val result : ServiceLimitWrapper = webService.getServiceLimit(id)
 }
 ```
 
@@ -1375,6 +1786,52 @@ val webService = apiClient.createWebservice(PaymentApi::class.java)
 
 launch(Dispatchers.IO) {
     val result : TenantWalletSettingsWrapper = webService.getTenantWalletSettings()
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+<a id="getTotalServiceLimit"></a>
+# **getTotalServiceLimit**
+> ServiceLimitWrapper getTotalServiceLimit ()
+
+Returns the spending limit on the AI services for the portal as a whole - the ceiling the spending of every user  counts towards - together with what was spent against it in the current period and what is left. Only a  DocSpace administrator may read it, an installation without a billing service answers 403, and the call is  read-only. The limit is checked in addition to the limits  of the users, so a user can be stopped by it before reaching their own. The spending includes the expected cost  of AI operations still in progress. When no such limit has been set, or it was deleted, the answer is 200 with a  null `response`; create the limit with `POST api/2.0/portal/payment/servicelimit` and the scope `Total`. A  switched-off limit is still returned, with `enabled` false. A portal with no billing customer answers 404.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-total-service-limit/).
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ServiceLimitWrapper**](ServiceLimitWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(PaymentApi::class.java)
+
+launch(Dispatchers.IO) {
+    val result : ServiceLimitWrapper = webService.getTotalServiceLimit()
 }
 ```
 
@@ -1568,6 +2025,55 @@ val salesRequestDto : SalesRequestDto =  // SalesRequestDto |
 
 launch(Dispatchers.IO) {
     webService.sendPaymentRequest(salesRequestDto)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+<a id="setParticipantServiceLimits"></a>
+# **setParticipantServiceLimits**
+> Int32Wrapper setParticipantServiceLimits (SetParticipantServiceLimitsRequestDto setParticipantServiceLimitsRequestDto)
+
+Sets the same personal spending limit on the AI services for each of the listed portal users in one call,  replacing the personal limit any of them already has and switching it on, so it is how a ceiling is rolled out  to a group of users. The portal needs a billing customer, and the caller needs the permission to edit the portal  settings as well as DocSpace administrator rights. At least one of `amountValue` and `quantityValue` must be  given, every user in `userIds` must exist on the portal, and a user listed twice is limited once. One call takes  at most 1000 users; split a larger group into several calls. Unlike  `PUT api/2.0/portal/payment/servicelimit`, this sets the whole limit: a threshold left out is removed, and the  period may change, though a lifetime limit set to lifetime again keeps counting from where it was. Each personal  limit applies instead of the one for every user, and the limit of the portal is checked on top. The call is mutating and idempotent, and it is written to the portal audit trail. The answer is  the number of personal limits that were set; the result is listed by  `GET api/2.0/portal/payment/servicelimit/participants`.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/set-participant-service-limits/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **setParticipantServiceLimitsRequestDto** | [**SetParticipantServiceLimitsRequestDto**](SetParticipantServiceLimitsRequestDto.md)|  | [optional] |
+
+### Return type
+
+[**Int32Wrapper**](Int32Wrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(PaymentApi::class.java)
+val setParticipantServiceLimitsRequestDto : SetParticipantServiceLimitsRequestDto =  // SetParticipantServiceLimitsRequestDto | 
+
+launch(Dispatchers.IO) {
+    val result : Int32Wrapper = webService.setParticipantServiceLimits(setParticipantServiceLimitsRequestDto)
 }
 ```
 
@@ -1902,6 +2408,55 @@ val quantityRequestDto : QuantityRequestDto =  // QuantityRequestDto |
 
 launch(Dispatchers.IO) {
     val result : BooleanWrapper = webService.updatePayment(quantityRequestDto)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+<a id="updateServiceLimit"></a>
+# **updateServiceLimit**
+> ServiceLimitWrapper updateServiceLimit (UpdateServiceLimitRequestDto updateServiceLimitRequestDto)
+
+Changes the thresholds of an existing spending limit on the AI services, or switches it off and back on with  `enabled`. The portal needs a billing customer, and the caller needs the permission to edit the portal settings  as well as DocSpace administrator rights. Only the given fields change: an omitted threshold keeps its value, so  a threshold once set cannot be removed here - delete the limit with  `DELETE api/2.0/portal/payment/servicelimit/{id}` and create it anew with  `POST api/2.0/portal/payment/servicelimit`, which is also the way to change its scope, user or period. A  switched-off limit stops restricting the AI services at once. The call is mutating and idempotent, it is written  to the portal audit trail, and a new threshold applies from the very next operation; lowering it below what was  already spent blocks the AI services until the period ends. An ID that does not exist, belongs to another portal  or is not a limit on the AI services answers 404.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/update-service-limit/).
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **updateServiceLimitRequestDto** | [**UpdateServiceLimitRequestDto**](UpdateServiceLimitRequestDto.md)|  | [optional] |
+
+### Return type
+
+[**ServiceLimitWrapper**](ServiceLimitWrapper.md)
+
+### Authorization
+
+
+Configure Basic:
+    ApiClient().setCredentials("USERNAME", "PASSWORD")
+Configure Bearer:
+    ApiClient().setBearerToken("TOKEN")
+
+### Example
+```kotlin
+// Import classes:
+//import onlyoffice.docspace.api.sdk.*
+//import onlyoffice.docspace.api.sdk.infrastructure.*
+//import onlyoffice.docspace.api.sdk.models.*
+
+val apiClient = ApiClient()
+apiClient.setCredentials("USERNAME", "PASSWORD")
+apiClient.setBearerToken("TOKEN")
+val webService = apiClient.createWebservice(PaymentApi::class.java)
+val updateServiceLimitRequestDto : UpdateServiceLimitRequestDto =  // UpdateServiceLimitRequestDto | 
+
+launch(Dispatchers.IO) {
+    val result : ServiceLimitWrapper = webService.updateServiceLimit(updateServiceLimitRequestDto)
 }
 ```
 

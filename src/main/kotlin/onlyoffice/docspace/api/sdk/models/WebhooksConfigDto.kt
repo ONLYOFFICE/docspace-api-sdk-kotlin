@@ -30,8 +30,8 @@ import com.squareup.moshi.JsonClass
  * @param uri The address every delivery is posted to. The signing secret that lets the receiver verify a delivery is  never part of this answer, so it has to be kept from the moment the subscription was created.
  * @param enabled Whether the subscription is delivering. While it is `false` events are dropped rather than queued, so  nothing arrives late after it is switched back on.
  * @param ssl Whether the certificate of `uri` is verified before a delivery. While it is `false` a self-signed  certificate is accepted as well.
- * @param triggers The events the subscription covers, as the bits of `GET api/2.0/settings/webhook/triggers` added  together. `0` is the catch-all and means every event, not none.
- * @param targetId The single room or file the subscription is narrowed to, empty for a subscription that covers the whole  portal. It is kept as an opaque value, so both a numeric and a third-party identifier can appear.
+ * @param triggers The events the subscription covers, as the bits of `GET api/2.0/settings/webhook/triggers` added  together. `0` is the catch-all, not none: it covers every event the subscription creator's current role may  receive, which can be fewer than all the events of the portal.
+ * @param targetId The single entity the subscription is narrowed to, empty for a subscription that covers the whole portal. It  is the GUID of a user or group for user and group events, and the Files API entry ID of a file, folder or room  otherwise, kept as an opaque value, so a numeric ID, a third-party ID or a GUID can appear.
  * @param createdBy The member who created the subscription, which is also who a non-administrator is limited to seeing. It is  empty for a subscription created by a portal background job.
  * @param createdOn When the subscription was created, in the portal time zone.
  * @param modifiedBy The member who last changed the subscription, empty while nobody has changed it since it was created.

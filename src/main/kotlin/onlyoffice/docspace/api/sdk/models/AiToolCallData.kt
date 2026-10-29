@@ -28,7 +28,7 @@ import com.squareup.moshi.JsonClass
  * @param threadId Thread the assistant message belongs to.
  * @param messageId Storage id of the assistant message holding the tool call.
  * @param idx Index of the tool-call content part inside `message.content`.
- * @param message Snapshot of the assistant message at the time the tool call surfaced.
+ * @param message Snapshot of the assistant message at the time the tool call surfaced. Optional and ignored: the engine resumes from the stored message, and the copy inflated the body past the parser limit (Bug 84608).
  * @param actionArgs Per-request engine options: extra tools, reasoning, prompt override.
  * @param entityId Optional entity (room) scope for profile resolution.
  * @param profileId Session-level profile override for this request only.
@@ -47,7 +47,7 @@ data class AiToolCallData (
     val idx: java.math.BigDecimal,
 
     @Json(name = "message")
-    val message: AiThreadMessageLike,
+    val message: AiThreadMessageLike? = null,
 
     @Json(name = "actionArgs")
     val actionArgs: AiActionArgs? = null,

@@ -1,0 +1,6 @@
+# Per-run logs the generate-webhook-sdk skill writes into generated/.
+.generate.log
+.verify.log
+
+# Maven build output: this repository has no .gitignore of its own.
+target/

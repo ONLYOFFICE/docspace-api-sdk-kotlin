@@ -29,7 +29,7 @@ import com.squareup.moshi.JsonClass
  * @param image The feature's icon as SVG markup to render inline - not a URL to fetch. It is filled in only when the  quota comes from the catalogue, and left empty on the quota the portal is actually on, on a feature that  this quota switches off, and on a feature that ships no icon.
  * @param `value` 
  * @param type How to read `value` and `used`: `size` for bytes, `count` for a number of things, `flag` for a feature  that is merely on or off.
- * @param used How much of the limit is already used. It is present only on the quota the portal is actually on, and  only for a feature whose consumption is counted; a guest is shown none of these figures and a plain member  only the one for total size, so an absent value can mean the caller may not see it rather than that  nothing is used.
+ * @param used How much of the limit is already used. It is present only when the portal's own quota is read through  `GET api/2.0/portal/payment/quota`, and only for a feature whose consumption is counted.
  * @param priceTitle What the feature is charged as, in the portal language - for instance the per-unit price of an add-on. It  is filled in only for a feature that costs money on top of the plan.
  */
 

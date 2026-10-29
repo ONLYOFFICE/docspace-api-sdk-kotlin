@@ -23,7 +23,7 @@ import com.squareup.moshi.JsonClass
 /**
  * The credentials and the title of the third-party storage account the portal writes its backups to.
  *
- * @param url The address of the storage server to connect to. It is needed by the WebDAV presets whose server is not known  in advance (`WebDav`, `Nextcloud`, `ownCloud`), where it points at the WebDAV endpoint of that server, and by  `SharePoint`; the presets with a fixed address and the OAuth services ignore it.
+ * @param url The address of the storage server to connect to. It is needed by the WebDAV presets whose server is not known  in advance (`WebDav`, `Nextcloud`, `ownCloud`), where it points at the WebDAV endpoint of that server, and by  `SharePoint`. For `kDrive` it is the WebDAV address of the drive, `https://{kDrive ID}.connect.kdrive.infomaniak.com`,  optionally followed by a folder path; the kDrive ID is the number after `/drive/` in the URL of the kDrive web app.  The OAuth services ignore it.
  * @param login The account name at the storage service, used by the services that authenticate by login and password. A login  sent without a password is rejected as an invalid request.
  * @param password The password, or the application password, for `login` at the storage service. Either this or `token` has to  be sent, and the credentials are verified against the service before the account is saved.
  * @param token The OAuth 2.0 authorization code from the consent screen of `Box`, `DropboxV2`, `GoogleDrive` or `OneDrive` -  not an access token: the portal exchanges the code for its own token and keeps that. The client ID and  redirect URL the consent screen URL is built from come from `GET api/2.0/files/thirdparty/capabilities`.
