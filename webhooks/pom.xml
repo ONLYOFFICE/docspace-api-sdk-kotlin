@@ -37,7 +37,7 @@
 
   <properties>
     <kotlin.version>2.4.21</kotlin.version>
-    <moshi.version>1.15.1</moshi.version>
+    <moshi.version>1.15.2</moshi.version>
     <maven.compiler.release>17</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
@@ -109,7 +109,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
-        <version>3.5.0</version>
+        <version>3.6.4</version>
         <configuration>
           <mainClass>com.onlyoffice.docspace.webhooks.samples.LogWebhookKt</mainClass>
         </configuration>
