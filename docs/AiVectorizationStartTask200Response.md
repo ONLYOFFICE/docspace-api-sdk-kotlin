@@ -1,6 +1,8 @@
 
 # AiVectorizationStartTask200Response
 
+Inherits from [kotlin.collections.HashMap<String, kotlin.Any>](kotlin.collections.HashMap<String, kotlin.Any>.md).
+
 ## Properties
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
