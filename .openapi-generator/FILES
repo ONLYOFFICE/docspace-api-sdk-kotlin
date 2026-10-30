@@ -319,8 +319,6 @@ docs/CheckDestFolderResult.md
 docs/CheckDestFolderWrapper.md
 docs/CheckDocServiceUrlRequestDto.md
 docs/CheckFillFormDraftRequest.md
-docs/CheckMoveOrCopyBatchItemsDestFolderIdParameter.md
-docs/CheckMoveOrCopyBatchItemsFolderIdsParameterInner.md
 docs/CheckUploadRequest.md
 docs/ChunkedUploadSessionDto.md
 docs/ChunkedUploadSessionResultDto.md
@@ -1562,8 +1560,6 @@ src/main/kotlin/onlyoffice/docspace/api/sdk/models/CheckDestFolderResult.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/CheckDestFolderWrapper.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/CheckDocServiceUrlRequestDto.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/CheckFillFormDraftRequest.kt
-src/main/kotlin/onlyoffice/docspace/api/sdk/models/CheckMoveOrCopyBatchItemsDestFolderIdParameter.kt
-src/main/kotlin/onlyoffice/docspace/api/sdk/models/CheckMoveOrCopyBatchItemsFolderIdsParameterInner.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/CheckUploadRequest.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/ChunkedUploadSessionDto.kt
 src/main/kotlin/onlyoffice/docspace/api/sdk/models/ChunkedUploadSessionResultDto.kt

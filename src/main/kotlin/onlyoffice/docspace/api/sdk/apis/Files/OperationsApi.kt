@@ -28,8 +28,6 @@ import onlyoffice.docspace.api.sdk.models.BatchRequestDto
 import onlyoffice.docspace.api.sdk.models.BooleanWrapper
 import onlyoffice.docspace.api.sdk.models.CheckConversionRequestDto
 import onlyoffice.docspace.api.sdk.models.CheckDestFolderWrapper
-import onlyoffice.docspace.api.sdk.models.CheckMoveOrCopyBatchItemsDestFolderIdParameter
-import onlyoffice.docspace.api.sdk.models.CheckMoveOrCopyBatchItemsFolderIdsParameterInner
 import onlyoffice.docspace.api.sdk.models.ChunkedUploadSessionResultWrapper
 import onlyoffice.docspace.api.sdk.models.ChunkedUploadSessionWrapper
 import onlyoffice.docspace.api.sdk.models.ConversationResultArrayWrapper
@@ -50,8 +48,6 @@ import onlyoffice.docspace.api.sdk.models.ThirdPartyChunkedUploadSessionWrapper
 import onlyoffice.docspace.api.sdk.models.ThirdPartyUploadSessionResponseWrapper
 import onlyoffice.docspace.api.sdk.models.UpdateCommentRequest
 import onlyoffice.docspace.api.sdk.models.UploadSessionResponseWrapper
-
-import onlyoffice.docspace.api.sdk.models.*
 
 import okhttp3.MultipartBody
 
@@ -240,7 +236,7 @@ interface OperationsApi {
      * @return [FileEntryBaseArrayWrapper]
      */
     @GET("api/2.0/files/fileops/move")
-    suspend fun checkMoveOrCopyBatchItems(@Query("returnSingleOperation") returnSingleOperation: kotlin.Boolean? = null, @Query("folderIds") folderIds: @JvmSuppressWildcards kotlin.collections.List<CheckMoveOrCopyBatchItemsFolderIdsParameterInner>? = null, @Query("fileIds") fileIds: @JvmSuppressWildcards kotlin.collections.List<CheckMoveOrCopyBatchItemsFolderIdsParameterInner>? = null, @Query("destFolderId") destFolderId: CheckMoveOrCopyBatchItemsDestFolderIdParameter? = null, @Query("conflictResolveType") conflictResolveType: FileConflictResolveType? = null, @Query("deleteAfter") deleteAfter: kotlin.Boolean? = null, @Query("content") content: kotlin.Boolean? = null, @Query("toFillOut") toFillOut: kotlin.Boolean? = null): Response<FileEntryBaseArrayWrapper>
+    suspend fun checkMoveOrCopyBatchItems(@Query("returnSingleOperation") returnSingleOperation: kotlin.Boolean? = null, @Query("folderIds") folderIds: @JvmSuppressWildcards kotlin.collections.List<kotlin.String>? = null, @Query("fileIds") fileIds: @JvmSuppressWildcards kotlin.collections.List<kotlin.String>? = null, @Query("destFolderId") destFolderId: kotlin.String? = null, @Query("conflictResolveType") conflictResolveType: FileConflictResolveType? = null, @Query("deleteAfter") deleteAfter: kotlin.Boolean? = null, @Query("content") content: kotlin.Boolean? = null, @Query("toFillOut") toFillOut: kotlin.Boolean? = null): Response<FileEntryBaseArrayWrapper>
 
     /**
      * GET api/2.0/files/fileops/checkdestfolder
@@ -272,7 +268,7 @@ interface OperationsApi {
      * @return [CheckDestFolderWrapper]
      */
     @GET("api/2.0/files/fileops/checkdestfolder")
-    suspend fun checkMoveOrCopyDestFolder(@Query("returnSingleOperation") returnSingleOperation: kotlin.Boolean? = null, @Query("folderIds") folderIds: @JvmSuppressWildcards kotlin.collections.List<CheckMoveOrCopyBatchItemsFolderIdsParameterInner>? = null, @Query("fileIds") fileIds: @JvmSuppressWildcards kotlin.collections.List<CheckMoveOrCopyBatchItemsFolderIdsParameterInner>? = null, @Query("destFolderId") destFolderId: CheckMoveOrCopyBatchItemsDestFolderIdParameter? = null, @Query("conflictResolveType") conflictResolveType: FileConflictResolveType? = null, @Query("deleteAfter") deleteAfter: kotlin.Boolean? = null, @Query("content") content: kotlin.Boolean? = null, @Query("toFillOut") toFillOut: kotlin.Boolean? = null): Response<CheckDestFolderWrapper>
+    suspend fun checkMoveOrCopyDestFolder(@Query("returnSingleOperation") returnSingleOperation: kotlin.Boolean? = null, @Query("folderIds") folderIds: @JvmSuppressWildcards kotlin.collections.List<kotlin.String>? = null, @Query("fileIds") fileIds: @JvmSuppressWildcards kotlin.collections.List<kotlin.String>? = null, @Query("destFolderId") destFolderId: kotlin.String? = null, @Query("conflictResolveType") conflictResolveType: FileConflictResolveType? = null, @Query("deleteAfter") deleteAfter: kotlin.Boolean? = null, @Query("content") content: kotlin.Boolean? = null, @Query("toFillOut") toFillOut: kotlin.Boolean? = null): Response<CheckDestFolderWrapper>
 
     /**
      * PUT api/2.0/files/fileops/copy
