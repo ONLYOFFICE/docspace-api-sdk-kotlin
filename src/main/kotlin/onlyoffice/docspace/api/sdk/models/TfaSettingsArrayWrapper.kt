@@ -26,7 +26,8 @@ import com.squareup.moshi.JsonClass
  * The successful API response containing the list of TfaSettingsDto objects.
  *
  * @param response The list of TfaSettingsDto objects returned by the operation.
- * @param count The total number of items in the response
+ * @param count How many items this response carries: the length of the page for a list, 1 for a single object
+ * @param total How many items the whole list holds across all pages, for working out how many pages to request. Sent only by the operations that page their results, and left out of every other response
  * @param links List of links related to the response
  * @param status HTTP status code of the response
  * @param statusCode HTTP status code of the response (duplicate of status)
@@ -40,6 +41,9 @@ data class TfaSettingsArrayWrapper (
 
     @Json(name = "count")
     val count: kotlin.Int? = null,
+
+    @Json(name = "total")
+    val total: kotlin.Long? = null,
 
     @Json(name = "links")
     val links: kotlin.collections.List<GetPortalPrices200ResponseLinksInner>? = null,
