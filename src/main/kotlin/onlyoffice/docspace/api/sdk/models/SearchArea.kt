@@ -21,9 +21,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * [Active - Active, Archive - Archive, Any - Any, RecentByLinks - Recent by links, Templates - Template, Knowledge - Knowledge, ResultStorage - Result storage, AiAgents - AiAgents, Forms - Forms, FormTemplates - Form templates]
+ * [Active - Active, Archive - Archive, Any - Any, RecentByLinks - Recent by links, Templates - Template, Knowledge - Knowledge, ResultStorage - Result storage, AiAgents - AiAgents, Forms - Forms, FormTemplates - Form templates, AiHub - AiHub]
  *
- * Values: Active,Archive,Any,RecentByLinks,Templates,Knowledge,ResultStorage,AiAgents,Forms,FormTemplates
+ * Values: Active,Archive,Any,RecentByLinks,Templates,Knowledge,ResultStorage,AiAgents,Forms,FormTemplates,AiHub
  */
 
 @JsonClass(generateAdapter = false)
@@ -57,7 +57,10 @@ enum class SearchArea(val value: kotlin.String) {
     Forms("Forms"),
 
     @Json(name = "FormTemplates")
-    FormTemplates("FormTemplates");
+    FormTemplates("FormTemplates"),
+
+    @Json(name = "AiHub")
+    AiHub("AiHub");
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use

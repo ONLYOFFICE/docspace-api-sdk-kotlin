@@ -36,7 +36,7 @@ interface AIAssignmentsApi {
     /**
      * PUT api/2.0/ai/assignments/assign
      * Bind a profile to an action
-     * Binds a profile to one AI action portal-wide, creating the assignment or replacing it in place, and returns the result. Both `actionType` and `profileId` are required. The profile's declared capabilities are checked against the action, so a model that cannot generate images cannot be bound to `ImageGeneration` - the `Default` slot is exempt, because it stands in for every action. There is no room-scoped form of this write: a room's own binding is created by the agent that owns it, while reads accept an `entityId`.
+     * Binds a profile to one AI action portal-wide, creating the assignment or replacing it in place, and returns the result. Both `actionType` and `profileId` are required. The profile's declared capabilities are checked against the action, so a model that cannot generate images cannot be bound to `ImageGeneration` - the `Default` slot is exempt, because it stands in for every action. There is no room-scoped form of this write; the reads accept an `entityId` for compatibility and answer the same portal-wide bindings.
      * Responses:
      *  - 200: Whether the binding was stored. A failure is reported in `error` rather than as a status.
      *  - 400: `actionType` or `profileId` is missing.
@@ -102,9 +102,9 @@ interface AIAssignmentsApi {
     /**
      * GET api/2.0/ai/assignments/get-all-assignments
      * Get all assignments
-     * Returns every action-to-profile binding of a scope as one map, which is what a settings screen loads. `entityId` narrows it to a room and has to name one the caller can open; a room that is not an agent room degrades to the portal-wide set rather than answering empty, and omitting the parameter reads the portal-wide set directly. Actions with no binding are simply absent from the map. The `Default` slot is reported as an entry of its own rather than being folded into the others.
+     * Returns every action-to-profile binding of a scope as one map, which is what a settings screen loads. `entityId`, when sent, has to name a room the caller can open; the bindings are portal-wide, so the answer is the same set with or without it. Actions with no binding are simply absent from the map. The `Default` slot is reported as an entry of its own rather than being folded into the others. With `expand=profile` the answer is `{ assignments, profilesTotal, chatProfilesTotal }`: the assigned profiles themselves (as `GET api/2.0/ai/profiles/list` describes them) keyed by action, a binding whose profile no longer exists left out, plus how many profiles the portal has and how many of them can chat; this is the one read a chat needs to start.
      * Responses:
-     *  - 200: The scope's bindings as a map of action type to profile ID. An action with no binding is absent.
+     *  - 200: The scope's bindings as a map of action type to profile ID, or with `expand=profile` the envelope of the assigned profiles and the catalogue's counts. An action with no binding is absent.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
      *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
      *  - 404: The referenced object does not exist: an unknown or deleted room named by `entityId`, or an object the caller cannot read - for those the two cases are deliberately indistinguishable.
@@ -114,11 +114,12 @@ interface AIAssignmentsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-assignments-get-all-assignments/
      *
      *
-     * @param entityId The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. (optional)
+     * @param entityId The DocSpace folder the request names. For a chat it is the AI project the chat runs in, and is omitted outside a project; the settings operations accept it for the room the client is in, which has to be one the caller can open, but their data is kept per user and portal, not per room. (optional)
+     * @param expand Set to profile to answer the assigned profiles themselves instead of their IDs: `{ assignments, profilesTotal, chatProfilesTotal }`. Omit for the plain ID map. (optional)
      * @return [kotlin.collections.Map<kotlin.String, kotlin.String>]
      */
     @GET("api/2.0/ai/assignments/get-all-assignments")
-    suspend fun aiAssignmentsGetAllAssignments(@Query("entityId") entityId: kotlin.String? = null): Response<kotlin.collections.Map<kotlin.String, kotlin.String>>
+    suspend fun aiAssignmentsGetAllAssignments(@Query("entityId") entityId: kotlin.String? = null, @Query("expand") expand: kotlin.String? = null): Response<kotlin.collections.Map<kotlin.String, kotlin.String>>
 
     /**
      * GET api/2.0/ai/assignments/get-assignment
@@ -158,7 +159,7 @@ interface AIAssignmentsApi {
      *
      *
      * @param actionType The AI action the request applies to - one of Default, Chat, Code, Summarization, Translation, TextAnalyze, ImageGeneration, OCR, Vision, FormAnalysis.
-     * @param entityId The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. (optional)
+     * @param entityId The DocSpace folder the request names. For a chat it is the AI project the chat runs in, and is omitted outside a project; the settings operations accept it for the room the client is in, which has to be one the caller can open, but their data is kept per user and portal, not per room. (optional)
      * @return [AiResolvedAssignment]
      */
     @GET("api/2.0/ai/assignments/resolve-for-action")
@@ -181,7 +182,7 @@ interface AIAssignmentsApi {
      *
      *
      * @param actionType The AI action the request applies to - one of Default, Chat, Code, Summarization, Translation, TextAnalyze, ImageGeneration, OCR, Vision, FormAnalysis.
-     * @param entityId The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. (optional)
+     * @param entityId The DocSpace folder the request names. For a chat it is the AI project the chat runs in, and is omitted outside a project; the settings operations accept it for the room the client is in, which has to be one the caller can open, but their data is kept per user and portal, not per room. (optional)
      * @return [AiResolvedAssignment]
      */
     @GET("api/2.0/ai/assignments/try-resolve-for-action")

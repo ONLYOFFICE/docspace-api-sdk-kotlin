@@ -93,7 +93,7 @@ interface AIWebSearchApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-web-search-get-active-config/
      *
      *
-     * @param entityId The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. (optional)
+     * @param entityId The DocSpace folder the request names. For a chat it is the AI project the chat runs in, and is omitted outside a project; the settings operations accept it for the room the client is in, which has to be one the caller can open, but their data is kept per user and portal, not per room. (optional)
      * @return [AiWebSearchConfig]
      */
     @GET("api/2.0/ai/web-search/get-active-config")
@@ -115,7 +115,7 @@ interface AIWebSearchApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-web-search-is-configured/
      *
      *
-     * @param entityId The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. (optional)
+     * @param entityId The DocSpace folder the request names. For a chat it is the AI project the chat runs in, and is omitted outside a project; the settings operations accept it for the room the client is in, which has to be one the caller can open, but their data is kept per user and portal, not per room. (optional)
      * @return [kotlin.Boolean]
      */
     @GET("api/2.0/ai/web-search/is-configured")

@@ -21,9 +21,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * [0 - User, 1 - External link, 2 - Group, 3 - Invitation link, 4 - Primary external link]
+ * [0 - User, 1 - External link, 2 - Group, 3 - Invitation link, 4 - Primary external link, 5 - Read access to a room linked to an AI project the user is a member of]
  *
- * Values: User,ExternalLink,Group,InvitationLink,PrimaryExternalLink
+ * Values: User,ExternalLink,Group,InvitationLink,PrimaryExternalLink,AiProject
  */
 
 @JsonClass(generateAdapter = false)
@@ -42,7 +42,10 @@ enum class SubjectType(val value: kotlin.Int) {
     InvitationLink(3),
 
     @Json(name = "4")
-    PrimaryExternalLink(4);
+    PrimaryExternalLink(4),
+
+    @Json(name = "5")
+    AiProject(5);
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use

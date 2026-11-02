@@ -16,5 +16,11 @@
 
     * `AiRoom` (value: `9`)
 
+    * `InstructionsRoom` (value: `10`)
+
+    * `KnowledgeRoom` (value: `11`)
+
+    * `AiProjectRoom` (value: `12`)
+
 
 

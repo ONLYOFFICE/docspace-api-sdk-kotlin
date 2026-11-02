@@ -47,6 +47,25 @@ interface AIContextApi {
     suspend fun aiContextGetContextFolders(): Response<AiSuccessResponse>
 
     /**
+     * GET api/2.0/ai/context/get-knowledge-folders
+     * Get knowledge folders
+     * 
+     * Responses:
+     *  - 200: Success.
+     *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
+     *  - 403: AI is disabled for this portal, the caller is a guest, or the room named by `entityId` is one the caller cannot open. Relayed from the DocSpace AI service or the Files API.
+     *  - 500: Unhandled failure. The reason is logged server-side and never echoed back.
+     *
+     * REST API Reference for aiContextGetKnowledgeFolders Operation
+     * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-context-get-knowledge-folders/
+     *
+     *
+     * @return [AiSuccessResponse]
+     */
+    @GET("api/2.0/ai/context/get-knowledge-folders")
+    suspend fun aiContextGetKnowledgeFolders(): Response<AiSuccessResponse>
+
+    /**
      * GET api/2.0/ai/context/get-room-skill
      * Get room skill
      * 

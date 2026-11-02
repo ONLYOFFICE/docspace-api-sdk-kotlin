@@ -119,7 +119,6 @@ class ValueEnumJsonAdapterFactory : JsonAdapter.Factory {
  */
 class ApiDateTimeAdapterFactory : JsonAdapter.Factory {
     private val apiDateTimeTypes: Set<Class<*>> = setOf(
-        onlyoffice.docspace.api.sdk.models.AiApiDateTime::class.java,
         onlyoffice.docspace.api.sdk.models.ApiDateTime::class.java,
     )
 

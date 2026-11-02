@@ -26,7 +26,7 @@ import com.squareup.moshi.JsonClass
  *
  * @param name The template name.
  * @param visible Specifies if the template is visible in the UI pickers.
- * @param fields The template metadata fields.
+ * @param fields The template metadata fields. At least one field is required: a template without fields is not created.
  */
 
 

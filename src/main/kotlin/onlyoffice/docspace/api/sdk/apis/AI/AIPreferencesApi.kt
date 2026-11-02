@@ -69,7 +69,7 @@ interface AIPreferencesApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-preferences-get-deep-mode/
      *
      *
-     * @param entityId The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. (optional)
+     * @param entityId The DocSpace folder the request names. For a chat it is the AI project the chat runs in, and is omitted outside a project; the settings operations accept it for the room the client is in, which has to be one the caller can open, but their data is kept per user and portal, not per room. (optional)
      * @return [kotlin.Boolean]
      */
     @GET("api/2.0/ai/preferences/get-deep-mode")
@@ -90,7 +90,7 @@ interface AIPreferencesApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-preferences-get-reasoning-level/
      *
      *
-     * @param entityId The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. (optional)
+     * @param entityId The DocSpace folder the request names. For a chat it is the AI project the chat runs in, and is omitted outside a project; the settings operations accept it for the room the client is in, which has to be one the caller can open, but their data is kept per user and portal, not per room. (optional)
      * @return [AiReasoningLevel]
      */
     @GET("api/2.0/ai/preferences/get-reasoning-level")
@@ -111,7 +111,7 @@ interface AIPreferencesApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-preferences-get-tool-permission-mode/
      *
      *
-     * @param entityId The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. (optional)
+     * @param entityId The DocSpace folder the request names. For a chat it is the AI project the chat runs in, and is omitted outside a project; the settings operations accept it for the room the client is in, which has to be one the caller can open, but their data is kept per user and portal, not per room. (optional)
      * @return [AiChatToolPermissionMode]
      */
     @GET("api/2.0/ai/preferences/get-tool-permission-mode")
@@ -132,7 +132,7 @@ interface AIPreferencesApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-preferences-is-deep-mode-set/
      *
      *
-     * @param entityId The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. (optional)
+     * @param entityId The DocSpace folder the request names. For a chat it is the AI project the chat runs in, and is omitted outside a project; the settings operations accept it for the room the client is in, which has to be one the caller can open, but their data is kept per user and portal, not per room. (optional)
      * @return [kotlin.Boolean]
      */
     @GET("api/2.0/ai/preferences/is-deep-mode-set")

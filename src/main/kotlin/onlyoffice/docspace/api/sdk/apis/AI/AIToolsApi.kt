@@ -39,7 +39,7 @@ interface AIToolsApi {
     /**
      * POST api/2.0/ai/tools/add-custom-server
      * Add custom server
-     * Registers a custom MCP server under the given name so the model may call its tools. The name becomes a URL path segment, so it may not be `.`, `..`, or contain a path separator or a control character. `config` may be omitted in two cases: a name matching a host-configured system server pins the entry to that server's canonical settings as a whitelist marker, and a name already registered portal-wide copies the portal-level configuration into this scope; anything else without a config is rejected. `entityId` scopes the registration and has to name a room the caller can open - a room that is not an agent room folds to the portal-wide scope, while an unreachable one is refused so it cannot silently rewrite the portal's own registry.
+     * Registers a custom MCP server under the given name so the model may call its tools. The name becomes a URL path segment, so it may not be `.`, `..`, or contain a path separator or a control character. `config` may be omitted in two cases: a name matching a host-configured system server pins the entry to that server's canonical settings, and a name already registered keeps its stored configuration; anything else without a config is rejected. The registry is one map per portal: `entityId`, when sent, has to name a room the caller can open, and an unreachable one is refused so it cannot silently rewrite the registry.
      * Responses:
      *  - 200: Whether the server was registered, with the stored entry.
      *  - 400: The server name is missing or is not routable.
@@ -73,7 +73,7 @@ interface AIToolsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-tools-get-allow-always/
      *
      *
-     * @param entityId The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. (optional)
+     * @param entityId The DocSpace folder the request names. For a chat it is the AI project the chat runs in, and is omitted outside a project; the settings operations accept it for the room the client is in, which has to be one the caller can open, but their data is kept per user and portal, not per room. (optional)
      * @return [kotlin.collections.List<kotlin.String>]
      */
     @GET("api/2.0/ai/tools/get-allow-always")
@@ -95,7 +95,7 @@ interface AIToolsApi {
      *
      *
      * @param name The custom MCP server name.
-     * @param entityId The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. (optional)
+     * @param entityId The DocSpace folder the request names. For a chat it is the AI project the chat runs in, and is omitted outside a project; the settings operations accept it for the room the client is in, which has to be one the caller can open, but their data is kept per user and portal, not per room. (optional)
      * @return [kotlin.Any]
      */
     @GET("api/2.0/ai/tools/get-custom-server")
@@ -117,7 +117,7 @@ interface AIToolsApi {
      *
      *
      * @param scope 
-     * @param entityId The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. (optional)
+     * @param entityId The DocSpace folder the request names. For a chat it is the AI project the chat runs in, and is omitted outside a project; the settings operations accept it for the room the client is in, which has to be one the caller can open, but their data is kept per user and portal, not per room. (optional)
      * @return [kotlin.collections.Map<kotlin.String, kotlin.collections.List<kotlin.String>>]
      */
     @GET("api/2.0/ai/tools/get-disabled")
@@ -140,7 +140,7 @@ interface AIToolsApi {
      *
      * @param serverType The MCP server type the tool belongs to.
      * @param toolName The tool name.
-     * @param entityId The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. (optional)
+     * @param entityId The DocSpace folder the request names. For a chat it is the AI project the chat runs in, and is omitted outside a project; the settings operations accept it for the room the client is in, which has to be one the caller can open, but their data is kept per user and portal, not per room. (optional)
      * @return [kotlin.Boolean]
      */
     @GET("api/2.0/ai/tools/is-allow-always")
@@ -163,7 +163,7 @@ interface AIToolsApi {
      *
      * @param serverType The MCP server type the tool belongs to.
      * @param toolName The tool name.
-     * @param entityId The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. (optional)
+     * @param entityId The DocSpace folder the request names. For a chat it is the AI project the chat runs in, and is omitted outside a project; the settings operations accept it for the room the client is in, which has to be one the caller can open, but their data is kept per user and portal, not per room. (optional)
      * @return [kotlin.Boolean]
      */
     @GET("api/2.0/ai/tools/is-tool-disabled")
@@ -183,7 +183,7 @@ interface AIToolsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-tools-list-custom-servers/
      *
      *
-     * @param entityId The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. (optional)
+     * @param entityId The DocSpace folder the request names. For a chat it is the AI project the chat runs in, and is omitted outside a project; the settings operations accept it for the room the client is in, which has to be one the caller can open, but their data is kept per user and portal, not per room. (optional)
      * @return [kotlin.collections.Map<kotlin.String, kotlin.Any>]
      */
     @GET("api/2.0/ai/tools/list-custom-servers")
@@ -192,7 +192,7 @@ interface AIToolsApi {
     /**
      * GET api/2.0/ai/tools/list-system-tools
      * List system tools
-     * Lists every tool the scope can offer the model, as a map of server type to tool group. The answer merges two sources - the host-configured system servers and the live tools of the scope's registered custom MCP servers; for an agent room those are the servers enabled for that agent alone, never the portal-wide registry - and names the system ones separately in `system`, so a client can tell the two apart. `errors` carries the reason a registered server delivered no tools, which is the text to show on a permission card, because the browser cannot reach a server-executed MCP server to find out for itself. The connections are opened server-side, so one request is enough and the client never speaks MCP itself; the portal's own built-in server is left out because it is always enabled.
+     * Lists every tool the scope can offer the model, as a map of server type to tool group. The answer merges two sources - the host-configured system servers and the live tools of the portal's registered custom MCP servers - and names the system ones separately in `system`, so a client can tell the two apart. `errors` carries the reason a registered server delivered no tools, which is the text to show on a permission card, because the browser cannot reach a server-executed MCP server to find out for itself. The connections are opened server-side, so one request is enough and the client never speaks MCP itself; the portal's own built-in server is left out because it is always enabled.
      * Responses:
      *  - 200: The scope's tools grouped by server type, the system group keys named in `system`, and the reason a registered server delivered none in `errors`.
      *  - 401: Missing `asc_auth_key` cookie or `Authorization` header.
@@ -203,7 +203,7 @@ interface AIToolsApi {
      * @see https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-tools-list-system-tools/
      *
      *
-     * @param entityId The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. (optional)
+     * @param entityId The DocSpace folder the request names. For a chat it is the AI project the chat runs in, and is omitted outside a project; the settings operations accept it for the room the client is in, which has to be one the caller can open, but their data is kept per user and portal, not per room. (optional)
      * @return [AiToolsListSystemTools200Response]
      */
     @GET("api/2.0/ai/tools/list-system-tools")

@@ -322,16 +322,16 @@ interface FilesApi {
     /**
      * POST api/2.0/files/file/{fileId}/edit_session
      * Create the editing session
-     * Opens a chunked session that replaces the content of an existing file, which is how WebDAV clients save over a  document. The answer carries the session id the later calls quote, the address of the standalone chunk  handler, the expiry and the reserved size, and nothing is written until the parts reach  `POST api/2.0/files/{folderId}/session/{sessionId}/upload` and the session is closed with  `PUT api/2.0/files/{folderId}/session/{sessionId}/finalize`, where `folderId` is the folder the file lives in.  Unlike an upload into a folder, the finished content does not become a new version: it overwrites the current  one, and the file loses its encrypted flag and its stored conversion result in the process. The caller must be  allowed to edit the file, as the owner, a room manager and a member invited with editing rights are; a reader  and a guest get 403. A file that does not exist is answered as missing, and a payload above the portal limit  for chunked uploads is refused before the session is created.
+     * Opens a chunked session that replaces the content of an existing file, which is how WebDAV clients save over a  document. The answer carries the session id the later calls quote, the address of the standalone chunk  handler, the expiry and the reserved size, and nothing is written until the parts reach  `POST api/2.0/files/{folderId}/session/{sessionId}/upload` and the session is closed with  `PUT api/2.0/files/{folderId}/session/{sessionId}/finalize`, where `folderId` is the folder the file lives in.  Unlike an upload into a folder, the finished content does not become a new version: it overwrites the current  one, and the file loses its encrypted flag and its stored conversion result in the process. The caller must be  allowed to edit the file, as the owner, a room manager and a member invited with editing rights are; a reader  and a guest get 403. A file that does not exist is answered as missing, a payload above the portal limit for  chunked uploads is refused before the session is created. A `fileSize` of -1 means the size is not known in  advance, as for a WebDAV body sent without Content-Length; a smaller value is rejected as an invalid request.
      * Responses:
      *  - 200: The created editing session, wrapped in the success envelope
+     *  - 400: `fileSize` is below -1
      *  - 402: The declared `fileSize` exceeds the portal limit for chunked uploads
      *  - 403: The caller cannot edit this file, or the file is locked, open in the editor, in the trash or encrypted
      *  - 404: No file with the specified ID
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *
@@ -349,16 +349,16 @@ interface FilesApi {
     /**
      * POST api/2.0/files/file/{fileId}/edit_session
      * Create the editing session (third-party storage)
-     * Opens a chunked session that replaces the content of an existing file, which is how WebDAV clients save over a  document. The answer carries the session id the later calls quote, the address of the standalone chunk  handler, the expiry and the reserved size, and nothing is written until the parts reach  `POST api/2.0/files/{folderId}/session/{sessionId}/upload` and the session is closed with  `PUT api/2.0/files/{folderId}/session/{sessionId}/finalize`, where `folderId` is the folder the file lives in.  Unlike an upload into a folder, the finished content does not become a new version: it overwrites the current  one, and the file loses its encrypted flag and its stored conversion result in the process. The caller must be  allowed to edit the file, as the owner, a room manager and a member invited with editing rights are; a reader  and a guest get 403. A file that does not exist is answered as missing, and a payload above the portal limit  for chunked uploads is refused before the session is created.
+     * Opens a chunked session that replaces the content of an existing file, which is how WebDAV clients save over a  document. The answer carries the session id the later calls quote, the address of the standalone chunk  handler, the expiry and the reserved size, and nothing is written until the parts reach  `POST api/2.0/files/{folderId}/session/{sessionId}/upload` and the session is closed with  `PUT api/2.0/files/{folderId}/session/{sessionId}/finalize`, where `folderId` is the folder the file lives in.  Unlike an upload into a folder, the finished content does not become a new version: it overwrites the current  one, and the file loses its encrypted flag and its stored conversion result in the process. The caller must be  allowed to edit the file, as the owner, a room manager and a member invited with editing rights are; a reader  and a guest get 403. A file that does not exist is answered as missing, a payload above the portal limit for  chunked uploads is refused before the session is created. A `fileSize` of -1 means the size is not known in  advance, as for a WebDAV body sent without Content-Length; a smaller value is rejected as an invalid request.
      * Responses:
      *  - 200: The created editing session, wrapped in the success envelope
+     *  - 400: `fileSize` is below -1
      *  - 402: The declared `fileSize` exceeds the portal limit for chunked uploads
      *  - 403: The caller cannot edit this file, or the file is locked, open in the editor, in the trash or encrypted
      *  - 404: No file with the specified ID
      *  - 401: Unauthorized
      *  - 429: Too Many Requests.
      *  - 500: Internal Server Error.
-     *  - 400: Bad Request.
      *  - 502: Bad Gateway. Returned by the reverse proxy, response body may be HTML and not JSON.
      *  - 503: Service Unavailable. Returned by the reverse proxy, response body may be HTML and not JSON.
      *

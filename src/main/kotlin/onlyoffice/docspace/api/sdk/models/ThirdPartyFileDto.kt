@@ -16,12 +16,12 @@
 
 package onlyoffice.docspace.api.sdk.models
 
-import onlyoffice.docspace.api.sdk.models.AiFileEntryDtoAllOfAvailableShareRights
-import onlyoffice.docspace.api.sdk.models.AiFileEntryDtoAllOfSecurity
-import onlyoffice.docspace.api.sdk.models.AiFileEntryDtoAllOfShareSettings
 import onlyoffice.docspace.api.sdk.models.ApiDateTime
 import onlyoffice.docspace.api.sdk.models.EmployeeDto
 import onlyoffice.docspace.api.sdk.models.FileDtoAllOfViewAccessibility
+import onlyoffice.docspace.api.sdk.models.FileEntryDtoAllOfAvailableShareRights
+import onlyoffice.docspace.api.sdk.models.FileEntryDtoAllOfSecurity
+import onlyoffice.docspace.api.sdk.models.FileEntryDtoAllOfShareSettings
 import onlyoffice.docspace.api.sdk.models.FileEntryType
 import onlyoffice.docspace.api.sdk.models.FileShare
 import onlyoffice.docspace.api.sdk.models.FileStatus
@@ -78,6 +78,7 @@ import com.squareup.moshi.JsonClass
  * @param expirationDate When the link being used stops working, written with the offset of the portal's time zone. It is null for a  link that never expires and whenever no link is involved.
  * @param isLinkExpired Set when the link being used has already passed its expiration date, which is why the entry cannot be opened  even though it is described here. It is null when no link is involved.
  * @param assignedMetadataTemplates The IDs of the metadata templates assigned to the file entry.
+ * @param hasMetadataFields Whether the entry has a metadata field a user can see and fill, by hand or with the AI filling: a field of a  visible assigned template, or a custom field. False when the entry has no metadata, when its assigned templates  are all hidden, or when they have no fields. It says nothing about the values: it stays true once every field is  filled, and nothing about the caller's rights: writing the values still needs the right to edit the entry  (`security.Edit`). It cannot be derived from `assignedMetadataTemplates`, which lists hidden templates too and  never lists the custom fields. Present, with a value, in the folder listing and in the file and folder info  responses; absent in the other responses that carry an entry (the answer to a creation, an upload or a rename),  which do not compute it, and for an entry of a third-party storage, which has no metadata. The same flag is  answered by `GET api/2.0/files/metadata/file/{fileId}` and `GET api/2.0/files/metadata/folder/{folderId}`.
  * @param metadataMatches Where the search text of the listing was met in the metadata of the entry: one item per string value holding  the text, in the order of the fields. Present only in a listing filtered by text, and only for the entries whose  metadata contain it; an entry found by its title alone carries nothing here.
  * @param folderId The folder the file is stored in. When the file was reached through a share and the caller cannot open its  real parent, the identifier of the Shared with me section is reported instead, so this is where the file is  visible rather than where it physically sits.
  * @param version The revision this entry describes. It starts at 1 and moves to the next number each time new content is stored  over the file, except for an editing session opened against the file itself, which replaces the content and  keeps the number. `GET api/2.0/files/file/{fileId}/history` lists them all.
@@ -210,13 +211,13 @@ data class ThirdPartyFileDto (
     val canShare: kotlin.Boolean? = null,
 
     @Json(name = "shareSettings")
-    val shareSettings: AiFileEntryDtoAllOfShareSettings? = null,
+    val shareSettings: FileEntryDtoAllOfShareSettings? = null,
 
     @Json(name = "security")
-    val security: AiFileEntryDtoAllOfSecurity? = null,
+    val security: FileEntryDtoAllOfSecurity? = null,
 
     @Json(name = "availableShareRights")
-    val availableShareRights: AiFileEntryDtoAllOfAvailableShareRights? = null,
+    val availableShareRights: FileEntryDtoAllOfAvailableShareRights? = null,
 
     @Json(name = "requestToken")
     val requestToken: kotlin.String? = null,
@@ -232,6 +233,9 @@ data class ThirdPartyFileDto (
 
     @Json(name = "assignedMetadataTemplates")
     val assignedMetadataTemplates: kotlin.collections.List<kotlin.Int>? = null,
+
+    @Json(name = "hasMetadataFields")
+    val hasMetadataFields: kotlin.Boolean? = null,
 
     @Json(name = "metadataMatches")
     val metadataMatches: kotlin.collections.List<MetadataMatchDto>? = null,

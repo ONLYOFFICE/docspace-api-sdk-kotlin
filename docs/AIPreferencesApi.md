@@ -72,7 +72,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **entityId** | **kotlin.String**| The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. | [optional] |
+| **entityId** | **kotlin.String**| The DocSpace folder the request names. For a chat it is the AI project the chat runs in, and is omitted outside a project; the settings operations accept it for the room the client is in, which has to be one the caller can open, but their data is kept per user and portal, not per room. | [optional] |
 
 ### Return type
 
@@ -94,7 +94,7 @@ Configure bearerAuth:
 val apiClient = ApiClient()
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIPreferencesApi::class.java)
-val entityId : kotlin.String = 1234 // kotlin.String | The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope.
+val entityId : kotlin.String = 1234 // kotlin.String | The DocSpace folder the request names. For a chat it is the AI project the chat runs in, and is omitted outside a project; the settings operations accept it for the room the client is in, which has to be one the caller can open, but their data is kept per user and portal, not per room.
 
 launch(Dispatchers.IO) {
     val result : kotlin.Boolean = webService.aiPreferencesGetDeepMode(entityId)
@@ -118,7 +118,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **entityId** | **kotlin.String**| The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. | [optional] |
+| **entityId** | **kotlin.String**| The DocSpace folder the request names. For a chat it is the AI project the chat runs in, and is omitted outside a project; the settings operations accept it for the room the client is in, which has to be one the caller can open, but their data is kept per user and portal, not per room. | [optional] |
 
 ### Return type
 
@@ -140,7 +140,7 @@ Configure bearerAuth:
 val apiClient = ApiClient()
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIPreferencesApi::class.java)
-val entityId : kotlin.String = 1234 // kotlin.String | The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope.
+val entityId : kotlin.String = 1234 // kotlin.String | The DocSpace folder the request names. For a chat it is the AI project the chat runs in, and is omitted outside a project; the settings operations accept it for the room the client is in, which has to be one the caller can open, but their data is kept per user and portal, not per room.
 
 launch(Dispatchers.IO) {
     val result : AiReasoningLevel = webService.aiPreferencesGetReasoningLevel(entityId)
@@ -164,7 +164,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **entityId** | **kotlin.String**| The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. | [optional] |
+| **entityId** | **kotlin.String**| The DocSpace folder the request names. For a chat it is the AI project the chat runs in, and is omitted outside a project; the settings operations accept it for the room the client is in, which has to be one the caller can open, but their data is kept per user and portal, not per room. | [optional] |
 
 ### Return type
 
@@ -186,7 +186,7 @@ Configure bearerAuth:
 val apiClient = ApiClient()
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIPreferencesApi::class.java)
-val entityId : kotlin.String = 1234 // kotlin.String | The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope.
+val entityId : kotlin.String = 1234 // kotlin.String | The DocSpace folder the request names. For a chat it is the AI project the chat runs in, and is omitted outside a project; the settings operations accept it for the room the client is in, which has to be one the caller can open, but their data is kept per user and portal, not per room.
 
 launch(Dispatchers.IO) {
     val result : AiChatToolPermissionMode = webService.aiPreferencesGetToolPermissionMode(entityId)
@@ -210,7 +210,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **entityId** | **kotlin.String**| The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. | [optional] |
+| **entityId** | **kotlin.String**| The DocSpace folder the request names. For a chat it is the AI project the chat runs in, and is omitted outside a project; the settings operations accept it for the room the client is in, which has to be one the caller can open, but their data is kept per user and portal, not per room. | [optional] |
 
 ### Return type
 
@@ -232,7 +232,7 @@ Configure bearerAuth:
 val apiClient = ApiClient()
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AIPreferencesApi::class.java)
-val entityId : kotlin.String = 1234 // kotlin.String | The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope.
+val entityId : kotlin.String = 1234 // kotlin.String | The DocSpace folder the request names. For a chat it is the AI project the chat runs in, and is omitted outside a project; the settings operations accept it for the room the client is in, which has to be one the caller can open, but their data is kept per user and portal, not per room.
 
 launch(Dispatchers.IO) {
     val result : kotlin.Boolean = webService.aiPreferencesIsDeepModeSet(entityId)

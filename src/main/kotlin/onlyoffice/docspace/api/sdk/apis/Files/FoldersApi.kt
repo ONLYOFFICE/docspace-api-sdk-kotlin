@@ -434,7 +434,11 @@ interface FoldersApi {
         @Json(name = "34") AiAgents(34),
         @Json(name = "35") DefaultTemplates(35),
         @Json(name = "36") Forms(36),
-        @Json(name = "37") Ai(37)
+        @Json(name = "37") Ai(37),
+        @Json(name = "38") InstructionsRoom(38),
+        @Json(name = "39") KnowledgeRoom(39),
+        @Json(name = "40") AiProjectRoom(40),
+        @Json(name = "41") AiHub(41)
     }
 
     /**

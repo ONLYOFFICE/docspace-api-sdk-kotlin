@@ -24,5 +24,7 @@
 
     * `FormTemplates` (value: `"FormTemplates"`)
 
+    * `AiHub` (value: `"AiHub"`)
+
 
 

@@ -21,9 +21,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * [0 - None, 1 - Files  only, 2 - Folders only, 3 - Documents only, 4 - Presentations only, 5 - Spreadsheets only, 7 - Images only, 8 - By user, 9 - By department, 10 - Archive only, 11 - By extension, 12 - Media only, 13 - Filling forms rooms, 14 - Editing rooms, 17 - Custom rooms, 20 - Public rooms, 22 - Pdf, 23 - Pdf form, 24 - Virtual data rooms, 25 - Diagrams only, 26 - Ai rooms]
+ * [0 - None, 1 - Files  only, 2 - Folders only, 3 - Documents only, 4 - Presentations only, 5 - Spreadsheets only, 7 - Images only, 8 - By user, 9 - By department, 10 - Archive only, 11 - By extension, 12 - Media only, 13 - Filling forms rooms, 14 - Editing rooms, 17 - Custom rooms, 20 - Public rooms, 22 - Pdf, 23 - Pdf form, 24 - Virtual data rooms, 25 - Diagrams only, 26 - Ai rooms, 27 - Instructions rooms, 28 - Knowledge rooms, 29 - AI project rooms]
  *
- * Values: None,FilesOnly,FoldersOnly,DocumentsOnly,PresentationsOnly,SpreadsheetsOnly,ImagesOnly,ByUser,ByDepartment,ArchiveOnly,ByExtension,MediaOnly,FillingFormsRooms,EditingRooms,CustomRooms,PublicRooms,Pdf,PdfForm,VirtualDataRooms,DiagramsOnly,AiRooms
+ * Values: None,FilesOnly,FoldersOnly,DocumentsOnly,PresentationsOnly,SpreadsheetsOnly,ImagesOnly,ByUser,ByDepartment,ArchiveOnly,ByExtension,MediaOnly,FillingFormsRooms,EditingRooms,CustomRooms,PublicRooms,Pdf,PdfForm,VirtualDataRooms,DiagramsOnly,AiRooms,InstructionsRooms,KnowledgeRooms,AiProjectRooms
  */
 
 @JsonClass(generateAdapter = false)
@@ -90,7 +90,16 @@ enum class FilterType(val value: kotlin.Int) {
     DiagramsOnly(25),
 
     @Json(name = "26")
-    AiRooms(26);
+    AiRooms(26),
+
+    @Json(name = "27")
+    InstructionsRooms(27),
+
+    @Json(name = "28")
+    KnowledgeRooms(28),
+
+    @Json(name = "29")
+    AiProjectRooms(29);
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use

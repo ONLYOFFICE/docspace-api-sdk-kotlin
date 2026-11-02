@@ -227,7 +227,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **includeMembers** | **kotlin.Boolean**| Whether the rooms of each group are listed in the answer: true fills the `rooms` array of every entry, false  leaves it out and reports only how many there are in `totalRooms`. | [optional] |
-| **searchArea** | [**SearchArea**](.md)| The section to list the groups of: Active for Rooms and Forms for Forms. Active when omitted. | [optional] [enum: Active, Archive, Any, RecentByLinks, Templates, Knowledge, ResultStorage, AiAgents, Forms, FormTemplates] |
+| **searchArea** | [**SearchArea**](.md)| The section to list the groups of: Active for Rooms and Forms for Forms. Active when omitted. | [optional] [enum: Active, Archive, Any, RecentByLinks, Templates, Knowledge, ResultStorage, AiAgents, Forms, FormTemplates, AiHub] |
 
 ### Return type
 

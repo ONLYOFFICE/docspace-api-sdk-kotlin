@@ -712,6 +712,12 @@
 
     * `AppDisabled` (value: `6120`)
 
+    * `RoomsLinkedToAiProject` (value: `6121`)
+
+    * `RoomsUnlinkedFromAiProject` (value: `6122`)
+
+    * `AiProjectProfileAssigned` (value: `6123`)
+
     * `ContactAdminMailSent` (value: `7000`)
 
     * `RoomInviteLinkUsed` (value: `7001`)

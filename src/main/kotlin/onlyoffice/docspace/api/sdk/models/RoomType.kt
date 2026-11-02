@@ -21,9 +21,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * [1 - Form filling room, 2 - Collaboration room, 5 - Custom room, 6 - Public room, 8 - Virtual data room, 9 - AI Room]
+ * [1 - Form filling room, 2 - Collaboration room, 5 - Custom room, 6 - Public room, 8 - Virtual data room, 9 - AI Room, 10 - Instructions room, 11 - Knowledge room, 12 - AI project room]
  *
- * Values: FillingFormsRoom,EditingRoom,CustomRoom,PublicRoom,VirtualDataRoom,AiRoom
+ * Values: FillingFormsRoom,EditingRoom,CustomRoom,PublicRoom,VirtualDataRoom,AiRoom,InstructionsRoom,KnowledgeRoom,AiProjectRoom
  */
 
 @JsonClass(generateAdapter = false)
@@ -45,7 +45,16 @@ enum class RoomType(val value: kotlin.Int) {
     VirtualDataRoom(8),
 
     @Json(name = "9")
-    AiRoom(9);
+    AiRoom(9),
+
+    @Json(name = "10")
+    InstructionsRoom(10),
+
+    @Json(name = "11")
+    KnowledgeRoom(11),
+
+    @Json(name = "12")
+    AiProjectRoom(12);
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use
