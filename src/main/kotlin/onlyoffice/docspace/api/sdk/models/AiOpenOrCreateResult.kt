@@ -22,10 +22,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * Resolved thread state returned by `ThreadsEngine.openOrCreate`.
+ * The thread that was opened or created, with its stored messages.
  *
  * @param threadId The thread that was opened, or the one just created.
- * @param title Empty string for existing threads — the engine doesn't re-fetch.
+ * @param title The title generated for a thread this call created; an empty string when it opened an existing thread.
  * @param priorMessages The messages already in the thread - empty for a thread that was just created.
  */
 

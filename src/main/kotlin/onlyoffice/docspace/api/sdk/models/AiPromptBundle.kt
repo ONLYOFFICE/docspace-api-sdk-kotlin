@@ -34,7 +34,7 @@ import com.squareup.moshi.JsonClass
 data class AiPromptBundle (
 
     @Json(name = "version")
-    val version: AiPromptBundle.Version,
+    val version: kotlin.Int,
 
     @Json(name = "folders")
     val folders: kotlin.collections.List<AiPromptFolder>,
@@ -44,15 +44,6 @@ data class AiPromptBundle (
 
 ) {
 
-    /**
-     * The bundle format version, so an import can migrate an older export.
-     *
-     * Values: _1
-     */
-    @JsonClass(generateAdapter = false)
-    enum class Version(val value: kotlin.Long) {
-        @Json(name = "1") _1(1);
-    }
 
 }
 

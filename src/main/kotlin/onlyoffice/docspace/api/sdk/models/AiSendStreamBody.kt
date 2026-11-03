@@ -27,8 +27,9 @@ import com.squareup.moshi.JsonClass
  *
  * @param userMessage The user turn to send.
  * @param threadId Target thread; a new one is created (with an auto title) when omitted.
- * @param actionArgs Per-request engine options: extra tools, reasoning, prompt override.
+ * @param actionArgs Per-request options of the round: extra tools, reasoning, a prompt override and the connected context.
  * @param entityId Optional entity (room) scope for profile resolution.
+ * @param contextEntityId The folder or room the user is in. Tools run against it and the model is told it is the user's location; falls back to `entityId` when omitted.
  * @param profileId Session-level profile override for this request only.
  */
 
@@ -46,6 +47,9 @@ data class AiSendStreamBody (
 
     @Json(name = "entityId")
     val entityId: kotlin.String? = null,
+
+    @Json(name = "contextEntityId")
+    val contextEntityId: kotlin.String? = null,
 
     @Json(name = "profileId")
     val profileId: kotlin.String? = null

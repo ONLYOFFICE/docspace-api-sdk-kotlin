@@ -16,6 +16,7 @@
 
 package onlyoffice.docspace.api.sdk.models
 
+import onlyoffice.docspace.api.sdk.models.AiChatErrorPayload
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -23,14 +24,22 @@ import com.squareup.moshi.JsonClass
 /**
  * Delivery/generation status of the message.
  *
- * @param type 
+ * @param type `running`, `requires-action`, `complete` or `incomplete`.
+ * @param reason Why the message is in that state: `tool-calls` or `interrupt` for `requires-action`; `stop` or `unknown` for `complete`; `cancelled`, `tool-calls`, `length`, `content-filter`, `other` or `error` for `incomplete`. An `incomplete` message the chat stored carries `cancelled` (the round was stopped) or `error`.
+ * @param error What failed, on an `incomplete` message whose `reason` is `error`.
  */
 
 
 data class AiThreadMessageLikeStatus (
 
     @Json(name = "type")
-    val type: kotlin.String
+    val type: kotlin.String,
+
+    @Json(name = "reason")
+    val reason: kotlin.String? = null,
+
+    @Json(name = "error")
+    val error: AiChatErrorPayload? = null
 
 ) {
 

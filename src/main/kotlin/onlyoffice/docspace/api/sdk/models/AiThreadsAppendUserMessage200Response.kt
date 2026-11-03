@@ -16,6 +16,7 @@
 
 package onlyoffice.docspace.api.sdk.models
 
+import onlyoffice.docspace.api.sdk.models.AiThreadMessageLike
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -23,14 +24,14 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param messageId Identifier of the message that was appended to the thread.
+ * @param messageId The stored message itself - with its storage-assigned `id` and `createdAt` - despite the field name, which is kept for the clients that already read it. The message ID is `messageId.id`.
  */
 
 
 data class AiThreadsAppendUserMessage200Response (
 
     @Json(name = "messageId")
-    val messageId: kotlin.String
+    val messageId: AiThreadMessageLike
 
 ) {
 

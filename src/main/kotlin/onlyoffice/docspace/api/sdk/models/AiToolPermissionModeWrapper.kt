@@ -1,0 +1,61 @@
+ /*
+ * (c) Copyright Ascensio System SIA 2026
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package onlyoffice.docspace.api.sdk.models
+
+import onlyoffice.docspace.api.sdk.models.AiToolPermissionModeDto
+import onlyoffice.docspace.api.sdk.models.GetPortalPrices200ResponseLinksInner
+
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
+
+/**
+ * The successful API response containing the ToolPermissionModeDto object.
+ *
+ * @param response The ToolPermissionModeDto object returned by the operation.
+ * @param count How many items this response carries: the length of the page for a list, 1 for a single object
+ * @param total How many items the whole list holds across all pages, for working out how many pages to request. Sent only by the operations that page their results, and left out of every other response
+ * @param links List of links related to the response
+ * @param status HTTP status code of the response
+ * @param statusCode HTTP status code of the response (duplicate of status)
+ */
+
+
+data class AiToolPermissionModeWrapper (
+
+    @Json(name = "response")
+    val response: AiToolPermissionModeDto? = null,
+
+    @Json(name = "count")
+    val count: kotlin.Int? = null,
+
+    @Json(name = "total")
+    val total: kotlin.Long? = null,
+
+    @Json(name = "links")
+    val links: kotlin.collections.List<GetPortalPrices200ResponseLinksInner>? = null,
+
+    @Json(name = "status")
+    val status: kotlin.Int? = null,
+
+    @Json(name = "statusCode")
+    val statusCode: kotlin.Int? = null
+
+) {
+
+
+}
+

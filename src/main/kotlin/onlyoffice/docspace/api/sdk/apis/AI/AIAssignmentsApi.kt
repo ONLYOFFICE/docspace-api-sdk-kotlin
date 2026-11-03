@@ -27,6 +27,7 @@ import onlyoffice.docspace.api.sdk.models.AiActionType
 import onlyoffice.docspace.api.sdk.models.AiAssignmentMutationResult
 import onlyoffice.docspace.api.sdk.models.AiAssignmentsAssignRequest
 import onlyoffice.docspace.api.sdk.models.AiAssignmentsCascadeProfileDeleteRequest
+import onlyoffice.docspace.api.sdk.models.AiAssignmentsGetAllAssignments200Response
 import onlyoffice.docspace.api.sdk.models.AiBulkAssignmentResult
 import onlyoffice.docspace.api.sdk.models.AiErrorResponse
 import onlyoffice.docspace.api.sdk.models.AiResolvedAssignment
@@ -116,10 +117,10 @@ interface AIAssignmentsApi {
      *
      * @param entityId The DocSpace folder the request names. For a chat it is the AI project the chat runs in, and is omitted outside a project; the settings operations accept it for the room the client is in, which has to be one the caller can open, but their data is kept per user and portal, not per room. (optional)
      * @param expand Set to profile to answer the assigned profiles themselves instead of their IDs: `{ assignments, profilesTotal, chatProfilesTotal }`. Omit for the plain ID map. (optional)
-     * @return [kotlin.collections.Map<kotlin.String, kotlin.String>]
+     * @return [AiAssignmentsGetAllAssignments200Response]
      */
     @GET("api/2.0/ai/assignments/get-all-assignments")
-    suspend fun aiAssignmentsGetAllAssignments(@Query("entityId") entityId: kotlin.String? = null, @Query("expand") expand: kotlin.String? = null): Response<kotlin.collections.Map<kotlin.String, kotlin.String>>
+    suspend fun aiAssignmentsGetAllAssignments(@Query("entityId") entityId: kotlin.String? = null, @Query("expand") expand: kotlin.String? = null): Response<AiAssignmentsGetAllAssignments200Response>
 
     /**
      * GET api/2.0/ai/assignments/get-assignment

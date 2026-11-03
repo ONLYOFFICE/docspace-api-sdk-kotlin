@@ -30,8 +30,8 @@ import com.squareup.moshi.JsonClass
  * @param id Storage-assigned message id (absent on inbound drafts).
  * @param createdAt Creation timestamp, ISO-8601 on the wire.
  * @param status 
- * @param metadata Arbitrary per-message metadata.
- * @param attachments Attachments linked to the message.
+ * @param metadata Per-message metadata. The chat library writes `custom` (with the round's `contextEntityId`) and `steps` (token usage per provider request); `unstable_state`, `unstable_annotations`, `unstable_data` and `submittedFeedback` may appear as well. Read it as an open map.
+ * @param attachments Attachments linked to the message (`id`, `type`, `name`, `contentType`, `status`, `content`). Read them as open objects.
  */
 
 

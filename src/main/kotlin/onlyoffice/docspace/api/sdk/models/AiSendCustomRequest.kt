@@ -28,7 +28,8 @@ import com.squareup.moshi.JsonClass
  * @param isStream Stream the reply (ndjson) when true, else return a single message.
  * @param systemPrompt Caller-supplied system prompt for this one-turn call.
  * @param userMessage 
- * @param actionArgs Per-request engine options: extra tools, reasoning, prompt override.
+ * @param actionArgs Per-request options of the round: extra tools, reasoning, a prompt override and the connected context.
+ * @param profileId Profile to run this call on. When omitted, or when no profile has this id, the `Default` assignment is used.
  */
 
 
@@ -44,7 +45,10 @@ data class AiSendCustomRequest (
     val userMessage: AiThreadMessageLike,
 
     @Json(name = "actionArgs")
-    val actionArgs: AiActionArgs? = null
+    val actionArgs: AiActionArgs? = null,
+
+    @Json(name = "profileId")
+    val profileId: kotlin.String? = null
 
 ) {
 

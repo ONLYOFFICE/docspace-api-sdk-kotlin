@@ -27,6 +27,7 @@ import com.squareup.moshi.JsonClass
  * @param title Document title (also the file name).
  * @param content Markdown content to convert.
  * @param folderId 
+ * @param format Output format: `Docx` (the default when omitted), `Pdf`, or `Md`, which stores the markdown verbatim instead of converting it.
  */
 
 
@@ -39,10 +40,24 @@ data class AiExportTextToDocxRequest (
     val content: kotlin.String,
 
     @Json(name = "folderId")
-    val folderId: AiExportTextToDocxRequestFolderId
+    val folderId: AiExportTextToDocxRequestFolderId,
+
+    @Json(name = "format")
+    val format: AiExportTextToDocxRequest.Format? = null
 
 ) {
 
+    /**
+     * Output format: `Docx` (the default when omitted), `Pdf`, or `Md`, which stores the markdown verbatim instead of converting it.
+     *
+     * Values: Docx,Pdf,Md
+     */
+    @JsonClass(generateAdapter = false)
+    enum class Format(val value: kotlin.String) {
+        @Json(name = "Docx") Docx("Docx"),
+        @Json(name = "Pdf") Pdf("Pdf"),
+        @Json(name = "Md") Md("Md");
+    }
 
 }
 

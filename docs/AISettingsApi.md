@@ -59,9 +59,9 @@ launch(Dispatchers.IO) {
 
 <a id="aiSettingsGetToolMode"></a>
 # **aiSettingsGetToolMode**
-> AiSuccessResponse aiSettingsGetToolMode ()
+> AiToolPermissionModeWrapper aiSettingsGetToolMode ()
 
-Returns the calling user's tool permission mode as the DocSpace AI service spells it - `{ mode }` with the service's `ToolPermissionMode` enum (`Ask`, `Auto`, `Allow`), proxied unchanged. The chat reads the same value in its own spelling through `GET api/2.0/ai/preferences/get-tool-permission-mode`. This is a read-only operation.
+Returns the calling user's tool permission mode as the DocSpace AI service spells it - `{ mode }` with the service's `ToolPermissionMode` enum (`Ask`, `Auto`, `Allow`), inside the service's `response` envelope, proxied unchanged. The chat reads the same value in its own spelling through `GET api/2.0/ai/preferences/get-tool-permission-mode`. This is a read-only operation.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-settings-get-tool-mode/).
 
@@ -70,7 +70,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**AiSuccessResponse**](AiSuccessResponse.md)
+[**AiToolPermissionModeWrapper**](AiToolPermissionModeWrapper.md)
 
 ### Authorization
 
@@ -90,7 +90,7 @@ apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(AISettingsApi::class.java)
 
 launch(Dispatchers.IO) {
-    val result : AiSuccessResponse = webService.aiSettingsGetToolMode()
+    val result : AiToolPermissionModeWrapper = webService.aiSettingsGetToolMode()
 }
 ```
 
@@ -188,9 +188,9 @@ launch(Dispatchers.IO) {
 
 <a id="aiSettingsSetToolMode"></a>
 # **aiSettingsSetToolMode**
-> AiSuccessResponse aiSettingsSetToolMode (kotlin.collections.Map<kotlin.String, kotlin.Any?> aiSettingsSetToolModeRequest)
+> AiToolPermissionModeWrapper aiSettingsSetToolMode (kotlin.collections.Map<kotlin.String, kotlin.Any?> aiSettingsSetToolModeRequest)
 
-Stores the calling user's tool permission mode and returns the stored result. The body (`{ mode }`) is proxied unchanged to the DocSpace AI service, which rejects a value outside its `ToolPermissionMode` enum. The mode applies to every chat of the user in the portal.
+Stores the calling user's tool permission mode and returns the stored result. The body (`{ mode }`) is proxied unchanged to the DocSpace AI service, which rejects a value outside its `ToolPermissionMode` enum with 400; the answer is the stored mode inside the service's `response` envelope. The mode applies to every chat of the user in the portal.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-settings-set-tool-mode/).
 
@@ -201,7 +201,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Return type
 
-[**AiSuccessResponse**](AiSuccessResponse.md)
+[**AiToolPermissionModeWrapper**](AiToolPermissionModeWrapper.md)
 
 ### Authorization
 
@@ -222,7 +222,7 @@ val webService = apiClient.createWebservice(AISettingsApi::class.java)
 val aiSettingsSetToolModeRequest : kotlin.collections.Map<kotlin.String, kotlin.Any?> = Object // kotlin.collections.Map<kotlin.String, kotlin.Any?> | `{ mode }` with the AI service's `ToolPermissionMode` enum, proxied unchanged; the service rejects anything outside the enum.
 
 launch(Dispatchers.IO) {
-    val result : AiSuccessResponse = webService.aiSettingsSetToolMode(aiSettingsSetToolModeRequest)
+    val result : AiToolPermissionModeWrapper = webService.aiSettingsSetToolMode(aiSettingsSetToolModeRequest)
 }
 ```
 

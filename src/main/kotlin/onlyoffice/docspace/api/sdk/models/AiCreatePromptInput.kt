@@ -21,7 +21,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * Input for creating a prompt — the engine generates `id`/`createdAt`/`updatedAt`.
+ * Input for creating a prompt; the service fills in `id`, `createdAt` and `updatedAt`.
  *
  * @param name The prompt name.
  * @param text The prompt body.

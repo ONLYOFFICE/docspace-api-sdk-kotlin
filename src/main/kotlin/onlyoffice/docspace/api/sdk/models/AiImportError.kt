@@ -22,7 +22,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * Per-entry error reported by `PromptsEngine.importBundle`.
+ * One refused entry of a prompt bundle import.
  *
  * @param kind `folder` or `prompt`, plus the offending name or id.
  * @param ref The offending entry - its name or its id.

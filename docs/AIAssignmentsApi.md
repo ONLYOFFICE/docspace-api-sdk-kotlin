@@ -155,7 +155,7 @@ launch(Dispatchers.IO) {
 
 <a id="aiAssignmentsGetAllAssignments"></a>
 # **aiAssignmentsGetAllAssignments**
-> kotlin.collections.Map&lt;kotlin.String, kotlin.String&gt; aiAssignmentsGetAllAssignments (kotlin.String entityId, kotlin.String expand)
+> AiAssignmentsGetAllAssignments200Response aiAssignmentsGetAllAssignments (kotlin.String entityId, kotlin.String expand)
 
 Returns every action-to-profile binding of a scope as one map, which is what a settings screen loads. `entityId`, when sent, has to name a room the caller can open; the bindings are portal-wide, so the answer is the same set with or without it. Actions with no binding are simply absent from the map. The `Default` slot is reported as an entry of its own rather than being folded into the others. With `expand=profile` the answer is `{ assignments, profilesTotal, chatProfilesTotal }`: the assigned profiles themselves (as `GET api/2.0/ai/profiles/list` describes them) keyed by action, a binding whose profile no longer exists left out, plus how many profiles the portal has and how many of them can chat; this is the one read a chat needs to start.
 
@@ -169,7 +169,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 ### Return type
 
-**kotlin.collections.Map&lt;kotlin.String, kotlin.String&gt;**
+[**AiAssignmentsGetAllAssignments200Response**](AiAssignmentsGetAllAssignments200Response.md)
 
 ### Authorization
 
@@ -191,7 +191,7 @@ val entityId : kotlin.String = 1234 // kotlin.String | The DocSpace folder the r
 val expand : kotlin.String = profile // kotlin.String | Set to profile to answer the assigned profiles themselves instead of their IDs: `{ assignments, profilesTotal, chatProfilesTotal }`. Omit for the plain ID map.
 
 launch(Dispatchers.IO) {
-    val result : kotlin.collections.Map<kotlin.String, kotlin.String> = webService.aiAssignmentsGetAllAssignments(entityId, expand)
+    val result : AiAssignmentsGetAllAssignments200Response = webService.aiAssignmentsGetAllAssignments(entityId, expand)
 }
 ```
 

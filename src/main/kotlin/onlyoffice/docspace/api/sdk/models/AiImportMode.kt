@@ -21,7 +21,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * Mode passed to `PromptsEngine.importBundle`.
+ * How an imported prompt bundle meets the library: `merge` adds to it, `replace` replaces it.
  *
  * Values: replace,merge
  */

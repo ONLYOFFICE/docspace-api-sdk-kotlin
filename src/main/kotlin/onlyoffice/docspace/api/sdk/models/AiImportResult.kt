@@ -23,7 +23,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * Outcome of `PromptsEngine.importBundle`. Either every entry persisted with counts, or no entries persisted plus a per-entry error report.
+ * The outcome of a prompt bundle import: either every entry was stored, with counts, or none was and the errors are reported per entry.
  *
  * @param success True when the whole bundle was imported.
  * @param imported 

@@ -22,7 +22,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * Outcome of `ToolsEngine.replaceAllCustomServers` — either every entry persisted, or no entries persisted plus a per-key error report.
+ * The outcome of replacing the custom MCP servers: either every entry was stored, or none was and the errors are reported per server.
  *
  * @param success True when every custom MCP server was persisted.
  * @param errors What was rejected, per server. Present on failure - and then no server was persisted.
